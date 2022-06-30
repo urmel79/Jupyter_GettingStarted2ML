@@ -1,2 +1,17 @@
-# Jupyter_GettingStarted2ML
-The goal of this project is to provide a rough overview of typical process steps for building a simple machine learning model. This is done using the well-known and well-researched MNIST dataset for handwritten digit recognition as an example.
+# Getting started with machine learning and MNIST
+
+Last changed on June 30, 2022.
+
+## Table of contents
+
+<!--
+@HINT:
+auto-generate the TOC with the command line tool 'gh-md-toc' (https://github.com/ekalinin/github-markdown-toc) with following syntax:
+$ cat README.md | ./tools/github-markdown-toc/gh-md-toc - > toc.md
+-->
+
+# Introduction
+
+## Aim of the project
+
+The goal of this project is to provide a rough overview of typical process steps (data acquisition, data preparation, training of the ML model, execution of classification, and quality assessment) for building a simple machine learning model. This is done using the well-known and well-researched [MNIST dataset](http://yann.lecun.com/exdb/mnist/) for handwritten digit recognition as an example.
