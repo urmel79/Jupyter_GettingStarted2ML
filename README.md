@@ -10,6 +10,11 @@ auto-generate the TOC with the command line tool 'gh-md-toc' (https://github.com
 $ cat README.md | ./tools/github-markdown-toc/gh-md-toc - > toc.md
 -->
 
+* [Getting started with machine learning and MNIST](#getting-started-with-machine-learning-and-mnist)
+   * [Table of contents](#table-of-contents)
+* [Introduction](#introduction)
+   * [Aim of the project](#aim-of-the-project)
+
 # Introduction
 
 ## Aim of the project
