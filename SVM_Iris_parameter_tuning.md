@@ -54,6 +54,7 @@ It can be downloaded on [Iris Flower Dataset | Kaggle](https://www.kaggle.com/da
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn import svm
+import seaborn as sns
 %matplotlib inline
 
 # import some data to play with
@@ -158,7 +159,7 @@ pd.set_option('display.max_rows', None)
 irisdata_df
 ```
 
-### Get data types and ranges
+### Get data types
 
 ```python tags=[]
 irisdata_df.info()
@@ -166,6 +167,41 @@ irisdata_df.info()
 
 ```python
 irisdata_df.describe()
+```
+
+### Get data ranges with Boxplots
+
+**Boxplots** can be used to explore the data ranges in the data set. These also provide information about **outliers**.
+
+```python
+fig, axs = plt.subplots(2, 2, figsize=(10, 10))
+
+sns.set_style("whitegrid")
+#sns.set_style("white")
+
+fn = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
+cn = ['Iris-setosa', 'Iris-versicolor', 'Iris-virginica']
+box1 = sns.boxplot(x = 'species', y = 'sepal_length', data = irisdata_df, order = cn, ax = axs[0,0])
+box2 = sns.boxplot(x = 'species', y = 'sepal_width', data = irisdata_df, order = cn, ax = axs[0,1])
+box3 = sns.boxplot(x = 'species', y = 'petal_length', data = irisdata_df, order = cn, ax = axs[1,0])
+box4 = sns.boxplot(x = 'species', y = 'petal_width', data = irisdata_df,  order = cn, ax = axs[1,1])
+
+# add some spacing between subplots
+fig.tight_layout(pad=2.0)
+
+box1.set_xlabel('species', fontsize = 16)
+box1.set_ylabel('sepal length', fontsize = 16)
+
+box2.set_xlabel('species', fontsize = 16)
+box2.set_ylabel('sepal width', fontsize = 16)
+
+box3.set_xlabel('species', fontsize = 16)
+box3.set_ylabel('petal length', fontsize = 16)
+
+box4.set_xlabel('species', fontsize = 16)
+box4.set_ylabel('petal width', fontsize = 16)
+
+plt.show()
 ```
 
 <!-- #region tags=[] -->
@@ -409,7 +445,7 @@ heatmap = sns.heatmap(irisdata_df_enc.corr(), vmin=-1, vmax=1, annot=True, cmap=
 
 # give a title to the heatmap
 # 'pad=12' defines the distance of the title from the top of the heatmap
-heatmap.set_title('Correlation Heatmap', fontdict={'fontsize':18}, pad=16);
+heatmap.set_title('Correlation Heatmap', fontdict={'fontsize':18}, pad=16)
 ```
 
 #### Triangle correlation heatmap
@@ -448,10 +484,6 @@ In the following, [Seaborn](https://seaborn.pydata.org/) is applied which is a l
 
 To investigate whether there are dependencies (e.g. correlations) in `irisdata_df` between individual variables in the data set, it is advisable to plot them in a **scatter plot**.
 <!-- #endregion -->
-
-```python
-import seaborn as sns
-```
 
 ```python
 # There are five preset seaborn themes: darkgrid, whitegrid, dark, white, and ticks.
@@ -513,7 +545,7 @@ Typically, the **test dataset** set should contain **20%** of the entire dataset
 ```python
 from sklearn.model_selection import train_test_split
 
-X = irisdata_df.drop('species', axis=1)  
+X = irisdata_df.drop('species', axis=1)
 y = irisdata_df['species']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)
@@ -535,6 +567,7 @@ classifier.fit(X_train, y_train)
 
 ```python
 y_pred = classifier.predict(X_test)
+#X_test
 ```
 
 # STEP 4: Evaluate the results (metrics)
@@ -579,16 +612,62 @@ X = iris.data[:, :2]
 y = iris.target
 ```
 
+```python tags=[]
+y = irisdata_df_enc['species']
+y
+```
+
+```python tags=[]
+x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+
+h = (x_max / x_min)/100
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+
+print(xx, yy)
+```
+
 ```python
-def plotSVC(title):
+x_min, x_max = X.min()['sepal_length'] - 1, X.max()['sepal_length'] + 1
+y_min, y_max = X.min()['sepal_width'] - 1, X.min()['sepal_width'] + 1
+
+h = (x_max / x_min)/100
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+
+print(xx, yy)
+```
+
+```python
+svc = svm.SVC(kernel=kernel).fit(X[['sepal_length', 'sepal_width']], y)
+```
+
+```python
+Z = svc.predict(np.c_[xx.ravel(), yy.ravel()])
+```
+
+```python
+Z = svc.predict(np.c_[xx.ravel(), yy.ravel()])
+```
+
+```python
+plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)
+```
+
+```python
+def plotSVC(title, svc):
     # create a mesh to plot in
-    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
-    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    #x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+    #y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    
+    x_min, x_max = X.min()['sepal_length'] - 1, X.max()['sepal_length'] + 1
+    y_min, y_max = X.min()['sepal_width'] - 1, X.min()['sepal_width'] + 1
+    
     h = (x_max / x_min)/100
     xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
     
     plt.subplot(1, 1, 1)
     Z = svc.predict(np.c_[xx.ravel(), yy.ravel()])
+    #Z = svc.predict(X_test)
     Z = Z.reshape(xx.shape)
     plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)
     plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Paired)
@@ -605,8 +684,10 @@ def plotSVC(title):
 kernels = ['linear', 'rbf', 'poly']
 
 for kernel in kernels:
-    svc = svm.SVC(kernel=kernel).fit(X, y)
-    plotSVC('kernel=' + str(kernel))
+    #svc = svm.SVC(kernel=kernel).fit(X, y)
+    svc = svm.SVC(kernel=kernel).fit(X[['sepal_length', 'sepal_width']], y)
+    
+    plotSVC('kernel=' + str(kernel), svc)
 ```
 
 ## Vary `gamma`
