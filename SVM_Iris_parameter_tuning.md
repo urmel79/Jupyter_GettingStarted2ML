@@ -388,9 +388,13 @@ irisdata_df['species'].value_counts(ascending=False, dropna=False, normalize=Tru
 employees_df['Team'].value_counts(ascending=False, dropna=False, normalize=False)
 ```
 
-#### Display Histogram
+### Display Histogram
 
 This section was inspired by: [Pandas Histogram – DataFrame.hist()](https://dataindependent.com/pandas/pandas-histogram-dataframe-hist/).
+
+**Histograms** represent **frequency distributions** graphically. This requires the separation of the data into classes (so-called **bins**).
+
+These classes are represented in the histogram as rectangles of equal or variable width. The height of each rectangle then represents the (relative or absolute) **frequency density**.
 
 ```python
 employees_df.hist(column=['Salary'])
