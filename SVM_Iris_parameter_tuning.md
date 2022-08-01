@@ -37,6 +37,12 @@ Following steps will be shown in next **chapters**:
 import time
 
 from IPython.display import HTML
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn import svm, metrics
+import seaborn as sns
+%matplotlib inline
 ```
 
 <!-- #region tags=[] -->
@@ -51,12 +57,6 @@ It can be downloaded on [Iris Flower Dataset | Kaggle](https://www.kaggle.com/da
 <!-- #endregion -->
 
 ```python
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn import svm
-import seaborn as sns
-%matplotlib inline
-
 # import some data to play with
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 ```
@@ -174,10 +174,11 @@ irisdata_df.describe()
 **Boxplots** can be used to explore the data ranges in the data set. These also provide information about **outliers**.
 
 ```python
-fig, axs = plt.subplots(2, 2, figsize=(10, 10))
-
+sns.set_context("notebook", font_scale=1.3, rc={"lines.linewidth": 2.0})
 sns.set_style("whitegrid")
 #sns.set_style("white")
+
+fig, axs = plt.subplots(2, 2, figsize=(12, 12))
 
 fn = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 cn = ['Iris-setosa', 'Iris-versicolor', 'Iris-virginica']
@@ -188,18 +189,6 @@ box4 = sns.boxplot(x = 'species', y = 'petal_width', data = irisdata_df,  order 
 
 # add some spacing between subplots
 fig.tight_layout(pad=2.0)
-
-box1.set_xlabel('species', fontsize = 16)
-box1.set_ylabel('sepal length', fontsize = 16)
-
-box2.set_xlabel('species', fontsize = 16)
-box2.set_ylabel('sepal width', fontsize = 16)
-
-box3.set_xlabel('species', fontsize = 16)
-box3.set_ylabel('petal length', fontsize = 16)
-
-box4.set_xlabel('species', fontsize = 16)
-box4.set_ylabel('petal width', fontsize = 16)
 
 plt.show()
 ```
@@ -425,7 +414,7 @@ Because **string values can never be correlated**, the class names (species) hav
 
 ```python
 # encoding the class column
-irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":1,"Iris-versicolor":2, "Iris-virginica":3}})
+irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":0,"Iris-versicolor":1, "Iris-virginica":2}})
 irisdata_df_enc
 ```
 
@@ -555,6 +544,15 @@ y = irisdata_df['species']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)
 ```
 
+For training, do not use only the variables that correlate best with each other, but all of them. 
+
+Otherwise, the result of the prediction would be significantly worse. Maybe this is already an indication of **overfitting** of the ML model.
+
+```python
+# do not use this!
+X_train, X_test, y_train, y_test = train_test_split(X[['sepal_length', 'sepal_width']], y, test_size = 0.20)
+```
+
 ## Create the SVM model
 
 In this step we create the SVC model and fit it to our training data.
@@ -578,11 +576,31 @@ y_pred = classifier.predict(X_test)
 
 And finally for checking the accuracy of the model, the **confusion matrix** is used for the **cross validation**.
 
-```python
-from sklearn.metrics import confusion_matrix
+By using the function `sklearn.metrics.confusion_matrix()` a confusion matrix of the true digit values versus the predicted digit values is plotted.
 
-cm = confusion_matrix(y_test, y_pred)
+## Textual confusion matrix
+
+```python
+cm = metrics.confusion_matrix(y_test, y_pred)
 print(cm)
+```
+
+## Colored confusion matrix
+
+The function `sklearn.metrics.ConfusionMatrixDisplay()` plots a colored confusion matrix.
+
+```python
+sns.set_style("white")
+
+# print colored confusion matrix
+cm_colored = metrics.ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
+
+#cm_colored.figure_.suptitle("Confusion Matrix")
+cm_colored.figure_.set_figwidth(8)
+cm_colored.figure_.set_figheight(8)
+
+cm_colored.confusion_matrix
+plt.show()
 ```
 
 ```python
@@ -597,121 +615,128 @@ print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
 
 This section was inspired by [In Depth: Parameter tuning for SVC](https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769)
 
+In this section, the 4 SVC parameters `kernel`, `gamma`, `C` and `degree` will be introduced one by one. Furthermore, their influence on the classification result by varying these single parameters will be shown.
+
+## Prepare dataset
+
+```python
+# import iris dataset again
+irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
+
+# encode the class column from class strings to integer equivalents
+irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":0,"Iris-versicolor":1, "Iris-virginica":2}})
+irisdata_df_enc
+```
+
+```python tags=[]
+# copy only 2 feature columns
+# and convert pandas dataframe to numpy array
+X = irisdata_df_enc[['petal_length', 'petal_width']].to_numpy(copy=True)
+#X = irisdata_df_enc[['sepal_length', 'sepal_width']].to_numpy(copy=True)
+#X
+```
+
+```python
+# convert pandas dataframe to numpy array
+# and get a flat 1D copy of 2D numpy array
+y = irisdata_df_enc[['species']].to_numpy(copy=True).flatten()
+#y
+```
+
 ## Plotting function
 
-This function helps to visualize the modifications by varying the individual parameters.
+This function helps to visualize the modifications by varying the individual SVC parameters.
 
 ```python
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn import svm, datasets
-%matplotlib inline
-
-# import some data to play with
-iris = datasets.load_iris()
-X = iris.data[:, :2]
-
-# we only take the first two features
-# we could avoid this ugly slicing by using a two-dim dataset
-y = iris.target
-```
-
-```python tags=[]
-y = irisdata_df_enc['species']
-y
-```
-
-```python tags=[]
-x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
-y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
-
-h = (x_max / x_min)/100
-xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
-
-print(xx, yy)
-```
-
-```python
-x_min, x_max = X.min()['sepal_length'] - 1, X.max()['sepal_length'] + 1
-y_min, y_max = X.min()['sepal_width'] - 1, X.min()['sepal_width'] + 1
-
-h = (x_max / x_min)/100
-xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
-
-print(xx, yy)
-```
-
-```python
-svc = svm.SVC(kernel=kernel).fit(X[['sepal_length', 'sepal_width']], y)
-```
-
-```python
-Z = svc.predict(np.c_[xx.ravel(), yy.ravel()])
-```
-
-```python
-Z = svc.predict(np.c_[xx.ravel(), yy.ravel()])
-```
-
-```python
-plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)
-```
-
-```python
-def plotSVC(title, svc):
+def plotSVC(title, xlabel, ylabel):
     # create a mesh to plot in
-    #x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
-    #y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
     
-    x_min, x_max = X.min()['sepal_length'] - 1, X.max()['sepal_length'] + 1
-    y_min, y_max = X.min()['sepal_width'] - 1, X.min()['sepal_width'] + 1
+    # prevent division by zero
+    if x_min == 0.0:
+        x_min = 0.1
     
-    h = (x_max / x_min)/100
+    h = (x_max / x_min)/1000
     xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
     
     plt.subplot(1, 1, 1)
     Z = svc.predict(np.c_[xx.ravel(), yy.ravel()])
-    #Z = svc.predict(X_test)
     Z = Z.reshape(xx.shape)
-    plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)
+    
+    plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.6)
     plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Paired)
-    plt.xlabel('Sepal length')
-    plt.ylabel('Sepal width')
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
     plt.xlim(xx.min(), xx.max())
     plt.title(title)
     plt.show()
 ```
 
-## Vary `kernel`
+## Vary `kernel` parameter
 
-```python
+The `kernel` parameter selects the type of hyperplane that is used to separate the data. Using `linear` ([linear classifier](https://en.wikipedia.org/wiki/Linear_classifier)) kernel will use a linear hyperplane (a line in the case of 2D data). The `rbf` ([radial basis function kernel](https://en.wikipedia.org/wiki/Radial_basis_function_kernel)) and `poly` ([polynomial kernel](https://en.wikipedia.org/wiki/Polynomial_kernel)) kernel use non linear hyperplanes.
+
+```python tags=[]
 kernels = ['linear', 'rbf', 'poly']
 
+xlabel = 'Petal length'
+ylabel = 'Petal width'
+
 for kernel in kernels:
-    #svc = svm.SVC(kernel=kernel).fit(X, y)
-    svc = svm.SVC(kernel=kernel).fit(X[['sepal_length', 'sepal_width']], y)
-    
-    plotSVC('kernel=' + str(kernel), svc)
+    svc = svm.SVC(kernel=kernel).fit(X, y)
+    plotSVC('kernel = ' + str(kernel), xlabel, ylabel)
 ```
 
-## Vary `gamma`
+## Vary `gamma` parameter
 
-```python
-gammas = [0.1, 1, 10, 100]
+The `gamma` parameter is used for non linear hyperplanes. The higher the `gamma` value it tries to exactly fit the training data set.
+
+As we can see, increasing `gamma` leads to **overfitting** as the classifier tries to perfectly fit the training data.
+
+```python tags=[]
+gammas = [0.1, 1, 10, 100, 200]
+
+xlabel = 'Petal length'
+ylabel = 'Petal width'
 
 for gamma in gammas:
     svc = svm.SVC(kernel='rbf', gamma=gamma).fit(X, y)
-    plotSVC('gamma=' + str(gamma))
+    plotSVC('gamma = ' + str(gamma), xlabel, ylabel)
 ```
 
-## Vary `C`
+## Vary `C` parameter
 
-```python
-cs = [0.1, 1, 10, 100, 1000]
+The `C` parameter is the **penalty** of the error term. It controls the trade off between smooth decision boundary and classifying the training points correctly.
+
+But be careful: to high `C` values may lead to **overfitting** the training data.
+
+```python tags=[]
+cs = [0.1, 1, 10, 100, 1000, 10000]
+
+xlabel = 'Petal length'
+ylabel = 'Petal width'
 
 for c in cs:
     svc = svm.SVC(kernel='rbf', C=c).fit(X, y)
-    plotSVC('C=' + str(c))
+    plotSVC('C = ' + str(c), xlabel, ylabel)
+```
+
+## Vary `degree` parameter
+
+The `degree` parameter is used when the `kernel` is set to `poly`. It’s basically the **degree of the polynomial** used to find the hyperplane to split the data.
+
+Using `degree = 1` is the same as using a `linear` kernel. Also, increasing this parameters leads to **higher training times**.
+
+```python tags=[]
+degrees = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+xlabel = 'Petal length'
+ylabel = 'Petal width'
+
+for degree in degrees:
+    svc = svm.SVC(kernel='poly', degree=degree).fit(X, y)
+    plotSVC('degree = ' + str(degree), xlabel, ylabel)
 ```
 
 ```python
