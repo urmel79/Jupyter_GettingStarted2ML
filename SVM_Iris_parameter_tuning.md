@@ -617,6 +617,8 @@ This section was inspired by [In Depth: Parameter tuning for SVC](https://medium
 
 In this section, the 4 SVC parameters `kernel`, `gamma`, `C` and `degree` will be introduced one by one. Furthermore, their influence on the classification result by varying these single parameters will be shown.
 
+**Disclaimer:** In order to show the effects of varying the individual parameters in 2D graphs, only the best correlating variables `petal_length` and `petal_width` are used to train the SVC.
+
 ## Prepare dataset
 
 ```python
