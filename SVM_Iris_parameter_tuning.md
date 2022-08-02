@@ -15,18 +15,20 @@ jupyter:
 
 # Introduction
 
-This notebook was basically inspired by:  
+This notebook was basically inspired by:
+
 - [In Depth: Parameter tuning for SVC](https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769)
 - [SVM Hyperparameter Tuning using GridSearchCV](https://www.vebuso.com/2020/03/svm-hyperparameter-tuning-using-gridsearchcv/):
 
 The goal of this notebook is to show the basic steps in machine learning and the influence of choosing the "right" the kernel of a **support vector classifier (SVC)**. Furthermore, the SVC parameters are described and their effect on the classification result is shown.
 
 Following steps will be shown in next **chapters**:
+
 - [STEP 0: Get the data](#STEP-0:-Get-the-data)
 - [STEP 1: Exploring the data](#STEP-1:-Exploring-the-data)
 - [STEP 2: Prepare the data](#STEP-2:-Prepare-the-data)
-- [STEP 3: Classify by support vector classifier (SVC)](#STEP-3:-Classify-by-support-vector-classifier-(SVC))
-- [STEP 4: Evaluate the results (metrics)](#STEP-4:-Evaluate-the-results-(metrics))
+- [STEP 3: Classify by support vector classifier - SVC](#STEP-3:-Classify-by-support-vector-classifier---SVC)
+- [STEP 4: Evaluate the results - metrics](#STEP-4:-Evaluate-the-results---metrics)
 - [STEP 5: Vary parameters](#STEP-5:-Vary-parameters)
 
 <!-- #region tags=[] -->
@@ -178,7 +180,7 @@ sns.set_context("notebook", font_scale=1.3, rc={"lines.linewidth": 2.0})
 sns.set_style("whitegrid")
 #sns.set_style("white")
 
-fig, axs = plt.subplots(2, 2, figsize=(12, 12))
+fig, axs = plt.subplots(2, 2, figsize=(12, 10))
 
 fn = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 cn = ['Iris-setosa', 'Iris-versicolor', 'Iris-virginica']
@@ -503,7 +505,8 @@ This function will create a grid of Axes such that **each numeric variable** in 
 
 ```python
 sns.set_style("white")
-g = sns.pairplot(irisdata_df, diag_kind="kde", hue='species', palette='Dark2')
+g = sns.pairplot(irisdata_df, diag_kind="kde", hue='species', palette='Dark2', height=2.5)
+
 g.map_lower(sns.kdeplot, levels=4, color=".2")
 ```
 
@@ -514,7 +517,7 @@ Through the intensive exploration of the data in Step 1 ([STEP 1: Exploring the 
 Furthermore, we know that the **classes** are very **evenly distributed** and thus bias tendencies should be avoided.
 
 <!-- #region tags=[] toc-hr-collapsed=true -->
-# STEP 3: Classify by support vector classifier (SVC)
+# STEP 3: Classify by support vector classifier - SVC
 
 ## Operating principal
 
@@ -572,7 +575,7 @@ y_pred = classifier.predict(X_test)
 #X_test
 ```
 
-# STEP 4: Evaluate the results (metrics)
+# STEP 4: Evaluate the results - metrics
 
 And finally for checking the accuracy of the model, the **confusion matrix** is used for the **cross validation**.
 
@@ -596,8 +599,8 @@ sns.set_style("white")
 cm_colored = metrics.ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
 
 #cm_colored.figure_.suptitle("Confusion Matrix")
-cm_colored.figure_.set_figwidth(8)
-cm_colored.figure_.set_figheight(8)
+cm_colored.figure_.set_figwidth(7)
+cm_colored.figure_.set_figheight(6)
 
 cm_colored.confusion_matrix
 plt.show()
