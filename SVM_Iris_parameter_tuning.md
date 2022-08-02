@@ -184,10 +184,14 @@ fig, axs = plt.subplots(2, 2, figsize=(12, 10))
 
 fn = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 cn = ['Iris-setosa', 'Iris-versicolor', 'Iris-virginica']
-box1 = sns.boxplot(x = 'species', y = 'sepal_length', data = irisdata_df, order = cn, ax = axs[0,0])
-box2 = sns.boxplot(x = 'species', y = 'sepal_width', data = irisdata_df, order = cn, ax = axs[0,1])
-box3 = sns.boxplot(x = 'species', y = 'petal_length', data = irisdata_df, order = cn, ax = axs[1,0])
-box4 = sns.boxplot(x = 'species', y = 'petal_width', data = irisdata_df,  order = cn, ax = axs[1,1])
+box1 = sns.boxplot(x = 'species', y = 'sepal_length', 
+                   data = irisdata_df, order = cn, ax = axs[0,0])
+box2 = sns.boxplot(x = 'species', y = 'sepal_width', 
+                   data = irisdata_df, order = cn, ax = axs[0,1])
+box3 = sns.boxplot(x = 'species', y = 'petal_length', 
+                   data = irisdata_df, order = cn, ax = axs[1,0])
+box4 = sns.boxplot(x = 'species', y = 'petal_width', 
+                   data = irisdata_df,  order = cn, ax = axs[1,1])
 
 # add some spacing between subplots
 fig.tight_layout(pad=2.0)
@@ -271,7 +275,8 @@ Finally we compare the sizes of dataframes so that we learn how many rows had at
 ```python
 print("Old data frame length:", len(employees_df))
 print("New data frame length:", len(employees_df_dropped))
-print("Number of rows with at least 1 NaN value: ", (len(employees_df)-len(employees_df_dropped)))
+print("Number of rows with at least 1 NaN value: ", 
+      (len(employees_df)-len(employees_df_dropped)))
 ```
 
 ### Find and remove duplicates in dataset
@@ -309,13 +314,15 @@ Find duplicate rows across **specific columns**:
 
 ```python
 # identify duplicate rows across 'First Name' and 'Last Login Time' columns
-duplicateRows = employees_df[employees_df.duplicated(subset=['First Name', 'Last Login Time'])]
+duplicateRows = employees_df[employees_df.duplicated(
+                    subset=['First Name', 'Last Login Time'])]
 duplicateRows
 ```
 
 ```python tags=[]
 # argument keep=’last’ displays the first duplicate rows instead of the last
-duplicateRows = employees_df[employees_df.duplicated(subset=['First Name', 'Last Login Time'], keep='last')]
+duplicateRows = employees_df[employees_df.duplicated(
+                    subset=['First Name', 'Last Login Time'], keep='last')]
 duplicateRows
 ```
 
@@ -343,7 +350,8 @@ Remove duplicate rows across **specific columns**:
 
 ```python tags=[]
 # remove duplicate rows across 'First Name' and 'Last Login Time' columns
-employees_df.drop_duplicates(subset=['First Name', 'Last Login Time'], keep='last', inplace=True)
+employees_df.drop_duplicates(
+    subset=['First Name', 'Last Login Time'], keep='last', inplace=True)
 employees_df
 ```
 
@@ -370,12 +378,14 @@ employees_df = pd.read_csv("./datasets/employees_edit.csv")
 ```
 
 ```python
-# count unique values without missing values in a column, ordered descending and normalized
+# count unique values without missing values in a column, 
+# ordered descending and normalized
 irisdata_df['species'].value_counts(ascending=False, dropna=False, normalize=True)
 ```
 
 ```python
-# count unique values and missing values in a column, ordered descending and not absolute values
+# count unique values and missing values in a column, 
+# ordered descending and not absolute values
 employees_df['Team'].value_counts(ascending=False, dropna=False, normalize=False)
 ```
 
@@ -389,10 +399,12 @@ These classes are represented in the histogram as rectangles of equal or variabl
 
 ```python
 employees_df.hist(column=['Salary'])
+plt.show()
 ```
 
 ```python
 employees_df.hist(column='Salary', by='Gender')
+plt.show()
 ```
 
 ## First **idea of correlations** in data set
@@ -416,7 +428,9 @@ Because **string values can never be correlated**, the class names (species) hav
 
 ```python
 # encoding the class column
-irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":0,"Iris-versicolor":1, "Iris-virginica":2}})
+irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":0,
+                                                    "Iris-versicolor":1, 
+                                                    "Iris-virginica":2}})
 irisdata_df_enc
 ```
 
@@ -436,11 +450,13 @@ plt.figure(figsize=(16, 6))
 # when you want to include more features (such as title)
 # set the range of values to be displayed on the colormap from -1 to 1,
 # and set 'annotation=True' to display the correlation values on the heatmap
-heatmap = sns.heatmap(irisdata_df_enc.corr(), vmin=-1, vmax=1, annot=True, cmap='PRGn_r')
+heatmap = sns.heatmap(irisdata_df_enc.corr(), vmin=-1, vmax=1, 
+                      annot=True, cmap='PRGn_r')
 
 # give a title to the heatmap
 # 'pad=12' defines the distance of the title from the top of the heatmap
 heatmap.set_title('Correlation Heatmap', fontdict={'fontsize':18}, pad=16)
+plt.show()
 ```
 
 #### Triangle correlation heatmap
@@ -463,9 +479,11 @@ plt.figure(figsize=(16, 6))
 # define the mask to set the values in the upper triangle to 'True'
 mask = np.triu(np.ones_like(irisdata_df_enc.corr(), dtype=bool))
 
-heatmap = sns.heatmap(irisdata_df_enc.corr(), mask=mask, vmin=-1, vmax=1, annot=True, cmap='PRGn_r')
+heatmap = sns.heatmap(irisdata_df_enc.corr(), mask=mask, 
+                      vmin=-1, vmax=1, annot=True, cmap='PRGn_r')
 
 heatmap.set_title('Triangle Correlation Heatmap', fontdict={'fontsize':18}, pad=16)
+plt.show()
 ```
 
 As a result from the **heatmaps** we can see, that the shape of the **petals** are the **most correlationed columns** (0.96) with the **type of flowers** (species classes).
@@ -493,6 +511,10 @@ sns.FacetGrid(irisdata_df, hue ="species",
               height = 7).map(plt.scatter,
                               'petal_width',
                               'petal_length').add_legend()
+
+
+plt.title('Scatterplot of petal length and width')
+plt.show()
 ```
 
 ### Visualise data with **pairs plot**
@@ -505,9 +527,12 @@ This function will create a grid of Axes such that **each numeric variable** in 
 
 ```python
 sns.set_style("white")
-g = sns.pairplot(irisdata_df, diag_kind="kde", hue='species', palette='Dark2', height=2.5)
+g = sns.pairplot(irisdata_df, diag_kind="kde", hue='species', 
+                 palette='Dark2', height=2.5)
 
 g.map_lower(sns.kdeplot, levels=4, color=".2")
+
+plt.show()
 ```
 
 # STEP 2: Prepare the data
@@ -536,7 +561,7 @@ display(HTML("<figure><img src='./images/SVM_separating_hyperplanes.svg' width='
 
 In the next very important step, the dataset is split into **2 subsets**: a **training dataset** and a **test dataset**. As the names suggest, the training dataset is used to train the ML algorithm. The test data set is then used to check the quality of the trained ML algorithm (here the **recognition rate**). For this purpose, the **class labels** are **removed** from the training data set - after all, these are to be predicted.
 
-Typically, the **test dataset** set should contain **20%** of the entire dataset.
+Typically, the **test dataset** should contain about **20%** of the entire dataset.
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -552,8 +577,10 @@ For training, do not use only the variables that correlate best with each other,
 Otherwise, the result of the prediction would be significantly worse. Maybe this is already an indication of **overfitting** of the ML model.
 
 ```python
-# do not use this!
-X_train, X_test, y_train, y_test = train_test_split(X[['sepal_length', 'sepal_width']], y, test_size = 0.20)
+# DO NOT USE THIS!!
+X_train, X_test, y_train, y_test = train_test_split(X[['sepal_length', 
+                                                       'sepal_width']], 
+                                                    y, test_size = 0.20)
 ```
 
 ## Create the SVM model
@@ -609,7 +636,9 @@ plt.show()
 ```python
 from sklearn.model_selection import cross_val_score
 
-accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, cv = 10)
+accuracies = cross_val_score(estimator = classifier, X = X_train, 
+                             y = y_train, cv = 10)
+
 print("Accuracy: {:.2f} %".format(accuracies.mean()*100))
 print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
 ```
@@ -629,7 +658,9 @@ In this section, the 4 SVC parameters `kernel`, `gamma`, `C` and `degree` will b
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 
 # encode the class column from class strings to integer equivalents
-irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":0,"Iris-versicolor":1, "Iris-virginica":2}})
+irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":0,
+                                                    "Iris-versicolor":1, 
+                                                    "Iris-virginica":2}})
 irisdata_df_enc
 ```
 
