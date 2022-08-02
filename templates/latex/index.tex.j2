@@ -1,0 +1,139 @@
+
+((=- Default to the notebook output style -=))
+((*- if not cell_style is defined -*))
+    ((* set cell_style = 'style_jupyter.tex.j2' *))
+((*- endif -*))
+
+((=- Inherit from the specified cell style. -=))
+((* extends cell_style *))
+
+
+%===============================================================================
+% Latex Article
+%===============================================================================
+
+((* block packages *))
+((=- super(): extend existing block from derived template -=))
+((( super() )))
+    % Using fancy headers and footers
+    \usepackage{fancyhdr}
+((* endblock packages *))
+
+% Author and Title from metadata
+((* block title *))
+
+((*- if nb.metadata["latex_metadata"]: -*))
+((*- if nb.metadata["latex_metadata"]["author"]: -*))
+((*- if nb.metadata["latex_metadata"]["email"]: -*))
+    ((*- set nb_email = nb.metadata["latex_metadata"]["email"] -*))
+    \author{((( nb.metadata["latex_metadata"]["author"] ))) (\href{mailto:((( nb_email )))}{((( nb_email )))})}
+((*- endif *))
+((*- endif *))
+((*- endif *))
+
+((=-
+((*- if nb.metadata["latex_metadata"]: -*))
+((*- if nb.metadata["latex_metadata"]["affiliation"]: -*))
+    \affiliation{((( nb.metadata["latex_metadata"]["affiliation"] )))}
+((*- endif *))
+((*- endif *))
+-=))
+
+((*- if nb.metadata["latex_metadata"]: -*))
+((*- if nb.metadata["latex_metadata"]["title"]: -*))
+    \title{\textbf{\textsf{((( nb.metadata["latex_metadata"]["title"] )))}}}
+((*- endif *))
+((*- endif *))
+
+((* endblock title *))
+
+((* block commands *))
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy
+
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      bookmarksnumbered=true,
+      pdfauthor=((( nb.metadata["latex_metadata"]["author"] ))),
+      pdftitle=((( nb.metadata["latex_metadata"]["title"] ))),
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      pdfpagemode={UseOutlines},
+      pdfview = {XYZ},
+      pdfstartview = {XYZ},
+      pdfstartpage = {1},
+      pdfborder={0 0 0}
+      }
+    % Slightly bigger margins than the latex defaults
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+((* endblock commands *))
+
+((* block predoc *))
+    % Without changing the numbering style,
+    % page numbers and column titles should be turned off.
+    \pagestyle{empty}
+
+    \maketitle\thispagestyle{empty}
+    
+    \vfill
+    
+    ((*- if nb.metadata["latex_metadata"]: -*))
+    ((*- if nb.metadata["latex_metadata"]["cover_image"]: -*))
+        \begin{center}
+        \includegraphics[width=0.75\textwidth]{((( nb.metadata["latex_metadata"]["cover_image"] )))}
+        \end{center}
+        \vfill
+    ((*- endif *))
+    ((*- endif *))
+
+    \noindent
+    \begin{tabular}{l l}
+    \begin{minipage}{0.24\textwidth}
+        \includegraphics{images/CC_BY-SA_40.png}
+    \end{minipage}
+    &
+    \begin{minipage}{0.68\textwidth}
+        This work is licensed under a \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)}.
+    \end{minipage}
+    \end{tabular}
+
+    \newpage
+
+    ((* block abstract -*))
+    ((*- if nb.metadata["abstract"]: -*))
+    ((*- set nb_abstract = nb.metadata["abstract"] -*))
+    ((=- ((*- set nb_abstract = nb.metadata.get('abstract', '') -*)) -=))
+    \begin{abstract}
+    ((( nb_abstract )))
+    \end{abstract}
+    ((*- endif *))
+    ((*- endblock abstract *))
+
+    % Activate own page style
+    \pagestyle{fancy}
+    % Delete all fields
+    \fancyhf{}
+    % \fancyhead[EL,OL]{$header$}
+    % \fancyfoot[EL,OL]{$footer$}
+    % Header leftside: chapter/section
+    \fancyhead[ER,OR]{\leftmark}
+    % Footer rightside: page number
+    \fancyfoot[ER,OR]{Seite \thepage}
+
+    \renewcommand{\sectionmark}[1]{
+        \markboth{\thesection{} #1}{}
+    }
+
+    ((* block tableofcontents *))
+    \tableofcontents
+    ((* endblock tableofcontents *))
+
+((* endblock predoc *))
+
+((*- block docclass -*))
+\documentclass [oneside,10pt,a4paper,ngerman,BCOR10mm,headsepline,parindent,final]{scrartcl}
+((*- endblock docclass -*))
