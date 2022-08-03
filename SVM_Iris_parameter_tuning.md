@@ -109,31 +109,18 @@ This dataset became a typical test case for many statistical classification tech
 The data set consists of 50 samples from each of three species of Iris ([*Iris setosa*](https://en.wikipedia.org/wiki/Iris_setosa), [*Iris virginica*](https://en.wikipedia.org/wiki/Iris_virginica) and [*Iris versicolor*](https://en.wikipedia.org/wiki/Iris_versicolor)), so there are 150 total samples. Four features were measured from each sample: the length and the width of the [sepals](https://en.wikipedia.org/wiki/Sepal) and [petals](https://en.wikipedia.org/wiki/Petal), in centimetres.  
 Here is a principle illustration of a flower with sepal and petal:
 
-```python tags=[] jupyter={"source_hidden": true}
-display(HTML("<figure><img src='./images/Mature_flower_diagram.svg' width='800px'> \
-                 <figcaption>Principle illustration of a flower with sepal and petal (source: <a href='https://en.wikipedia.org/wiki/File:Mature_flower_diagram.svg'>Mature_flower_diagram.svg</a>)</figcaption> \
-              </figure>"))
-```
+<!-- #region caption="" label="fig:flower_sepal_petal" tags=[] widefigure=true -->
+![Principle illustration of a flower with sepal and petal (source: [Mature_flower_diagram.svg](https://en.wikipedia.org/wiki/File:Mature_flower_diagram.svg), license: public domain)](images/Mature_flower_diagram_1024px.png)
+<!-- #endregion -->
 
 <!-- #region tags=[] -->
 Here are pictures of the three different Iris species (*Iris setosa*, *Iris virginica* and *Iris versicolor*). Given the dimensions of the flower, it will be possible to predict the class of the flower.
 <!-- #endregion -->
 
-```python tags=[] jupyter={"source_hidden": true}
-display(HTML("<table> \
-                <tr> \
-                <td><figure><img src='./images/Iris_setosa_640px.jpg' width='320px'> \
-                        <figcaption><i>Iris setosa</i> (source: <a href='https://commons.wikimedia.org/wiki/File:Irissetosa1.jpg'>Irissetosa1.jpg</a>)</figcaption> \
-                    </figure></td> \
-                <td><figure><img src='./images/Iris_versicolor_640px.jpg' width='320px'> \
-                        <figcaption><i>Iris versicolor</i> (source: <a href='https://en.wikipedia.org/wiki/File:Iris_versicolor_3.jpg'>Iris versicolor 3.jpg</a>)</figcaption> \
-                    </figure></td> \
-                <td><figure><img src='./images/Iris_virginica_590px.jpg' width='295px'> \
-                        <figcaption><i>Iris virginica</i> (source: <a href='https://en.wikipedia.org/wiki/File:Iris_virginica.jpg'>Iris virginica.jpg</a>)</figcaption> \
-                    </figure></td> \
-                </tr> \
-              </table>"))
-```
+<!-- #region caption="" label="fig:Iris_setosa_virginica_versicolor" tags=[] widefigure=true -->
+![left: *Iris setosa* (source: [Irissetosa1.jpg](https://commons.wikimedia.org/wiki/File:Irissetosa1.jpg), license: public domain); middle: *Iris versicolor* (source: [Iris_versicolor_3.jpg](https://en.wikipedia.org/wiki/File:Iris_versicolor_3.jpg), license: CC-SA 3.0); right: *Iris virginica* (source: [Iris_virginica.jpg](https://en.wikipedia.org/wiki/File:Iris_virginica.jpg), license: CC-SA 2.0)
+](images/Iris_images.png)
+<!-- #endregion -->
 
 ### Inspect **structure of dataframe**
 
@@ -173,9 +160,9 @@ irisdata_df.describe()
 
 ### Get data ranges with Boxplots
 
-**Boxplots** can be used to explore the data ranges in the data set. These also provide information about **outliers**.
+**Boxplots** can be used to explore the data ranges in the dataset. These also provide information about **outliers**.
 
-```python
+```python caption="Boxplots used to explore the data ranges in the Iris dataset" label="fig:boxplots_iris" tags=[] widefigure=true
 sns.set_context("notebook", font_scale=1.3, rc={"lines.linewidth": 2.0})
 sns.set_style("whitegrid")
 #sns.set_style("white")
@@ -548,14 +535,12 @@ Furthermore, we know that the **classes** are very **evenly distributed** and th
 
 > Support Vectors Classifier tries to **find the best hyperplane to separate** the different classes by maximizing the distance between sample points and the hyperplane (source: [In Depth: Parameter tuning for SVC](https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769)).
 
-Following graphic shows the operating principal of SVC: the hyperplane *H1* does not separate the classes. *H2* does, but only with a small margin. *H3* separates them with the maximal margin (source: [Support-vector machine](https://en.wikipedia.org/wiki/Support-vector_machine)).
+Following graphic \ref{fig:Svm_separating_hyperplanes} shows the operating principal of SVC: the hyperplane *H1* does not separate the classes. *H2* does, but only with a small margin. *H3* separates them with the maximal margin (source: [Support-vector machine](https://en.wikipedia.org/wiki/Support-vector_machine)).
 <!-- #endregion -->
 
-```python jupyter={"source_hidden": true} tags=[]
-display(HTML("<figure><img src='./images/SVM_separating_hyperplanes.svg' width='400px'> \
-                 <figcaption>SVC seperate the data in classes by finding the best hyperplane (source: <a href='https://en.wikipedia.org/wiki/File:Svm_separating_hyperplanes_(SVG).svg'>Svm separating hyperplanes (SVG).svg</a>)</figcaption> \
-              </figure>"))
-```
+<!-- #region caption="" label="fig:Svm_separating_hyperplanes" tags=[] widefigure=true -->
+![Support Vectors Classifiers (SVC) seperate the data in classes by finding the best hyperplane (source: [Svm_separating_hyperplanes_(SVG).svg](https://en.wikipedia.org/wiki/File:Svm_separating_hyperplanes_(SVG).svg), license: CC-SA 3.0)](images/SVM_separating_hyperplanes.png)
+<!-- #endregion -->
 
 ## Split the dataset
 
@@ -773,8 +758,4 @@ ylabel = 'Petal width'
 for degree in degrees:
     svc = svm.SVC(kernel='poly', degree=degree).fit(X, y)
     plotSVC('degree = ' + str(degree), xlabel, ylabel)
-```
-
-```python
-
 ```
