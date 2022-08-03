@@ -36,3 +36,7 @@ Or:
 ```
 $ jupyter nbconvert jupyter_notebook.ipynb --to pdf
 ```
+
+## Including figures
+
+The handling of figures was inspired by and adapted from http://blog.juliusschulz.de/blog/ultimate-ipython-notebook#figures.
