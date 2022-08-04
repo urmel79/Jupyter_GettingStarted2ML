@@ -17,26 +17,13 @@
 ((( super() )))
     % Using fancy headers and footers
     \usepackage{fancyhdr}
+    
+    % Used for entering author names and their affiliations
+    \usepackage[affil-it]{authblk}
 ((* endblock packages *))
 
 % Author and Title from metadata
 ((* block title *))
-
-((*- if nb.metadata["latex_metadata"]: -*))
-((*- if nb.metadata["latex_metadata"]["author"]: -*))
-    \author{((( nb.metadata["latex_metadata"]["author"] )))}
-((*- endif *))
-((*- else -*))
-    \author{Björn Kasper}
-((*- endif *))
-
-((=-
-((*- if nb.metadata["latex_metadata"]: -*))
-((*- if nb.metadata["latex_metadata"]["affiliation"]: -*))
-    \affiliation{((( nb.metadata["latex_metadata"]["affiliation"] )))}
-((*- endif *))
-((*- endif *))
--=))
 
 ((*- if nb.metadata["latex_metadata"]: -*))
 ((*- if nb.metadata["latex_metadata"]["title"]: -*))
@@ -45,6 +32,26 @@
 ((*- else -*))
     \title{((( resources.metadata.name )))}
 ((*- endif *))
+
+((*- if nb.metadata["latex_metadata"]: -*))
+((*- if nb.metadata["latex_metadata"]["author"]: -*))
+((*- set nb_author = nb.metadata["latex_metadata"]["author"] -*))
+((*- if nb.metadata["latex_metadata"]["email"]: -*))
+((*- set nb_email = nb.metadata["latex_metadata"]["email"] -*))
+    \author{((( nb_author ))) (\href{mailto:((( nb_email )))}{((( nb_email )))})}
+((*- endif *))
+((*- endif *))
+((*- else -*))
+    \author{Bj\"orn Kasper}
+((*- endif *))
+
+((*- if nb.metadata["latex_metadata"]: -*))
+((*- if nb.metadata["latex_metadata"]["affiliation"]: -*))
+    \affil{((( nb.metadata["latex_metadata"]["affiliation"] )))}
+((*- endif *))
+((*- endif *))
+
+\date{\today} 
 
 ((* endblock title *))
 
@@ -85,12 +92,23 @@
     ((*- if nb.metadata["latex_metadata"]: -*))
     ((*- if nb.metadata["latex_metadata"]["cover_image"]: -*))
         \begin{center}
-        \includegraphics[width=0.75\textwidth]{((( nb.metadata["latex_metadata"]["cover_image"] )))}
+        \includegraphics[width=0.90\textwidth]{((( nb.metadata["latex_metadata"]["cover_image"] )))}
         \end{center}
         \vfill
     ((*- endif *))
     ((*- endif *))
 
+    ((* block abstract -*))
+    ((*- if nb.metadata["abstract"]: -*))
+    ((*- set nb_abstract = nb.metadata["abstract"] -*))
+    ((=- ((*- set nb_abstract = nb.metadata.get('abstract', '') -*)) -=))
+    \begin{abstract}
+    ((( nb_abstract )))
+    \end{abstract}
+    \vfill
+    ((*- endif *))
+    ((*- endblock abstract *))
+    
     \noindent
     \begin{tabular}{l l}
     \begin{minipage}{0.24\textwidth}
@@ -103,16 +121,6 @@
     \end{tabular}
 
     \newpage
-
-    ((* block abstract -*))
-    ((*- if nb.metadata["abstract"]: -*))
-    ((*- set nb_abstract = nb.metadata["abstract"] -*))
-    ((=- ((*- set nb_abstract = nb.metadata.get('abstract', '') -*)) -=))
-    \begin{abstract}
-    ((( nb_abstract )))
-    \end{abstract}
-    ((*- endif *))
-    ((*- endblock abstract *))
 
     % Activate own page style
     \pagestyle{fancy}
