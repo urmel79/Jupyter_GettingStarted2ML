@@ -170,7 +170,7 @@
     \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
     % Document parameters
     % Document title
-    \title{\textbf{\textsf{Getting started with Support Vector Classifiers (SVC) - A systematic step-by-step approach}}}\author{Dipl.-Ing. Bj\"orn Kasper (\href{mailto:kasper.bjoern@bgetem.de}{kasper.bjoern@bgetem.de})}\affil{Test and Certification Body for Electrical Engineering at BG ETEM}
+    \title{\textbf{\textsf{Getting started with Machine Learning (ML) and Support Vector Classifiers (SVC) - A systematic step-by-step approach}}}\author{Dipl.-Ing. Bj\"orn Kasper (\href{mailto:kasper.bjoern@bgetem.de}{kasper.bjoern@bgetem.de})}\affil{Test and Certification Body for Electrical Engineering at BG ETEM}
 
 \date{\today} 
 
@@ -383,7 +383,7 @@
       breaklinks=true,  % so long urls are correctly broken across lines
       bookmarksnumbered=true,
       pdfauthor=Dipl.-Ing. Bj\"orn Kasper,
-      pdftitle=Getting started with Support Vector Classifiers (SVC) - A systematic step-by-step approach,
+      pdftitle=Getting started with Machine Learning (ML) and Support Vector Classifiers (SVC) - A systematic step-by-step approach,
       colorlinks=true,
       urlcolor=urlcolor,
       linkcolor=linkcolor,
@@ -404,16 +404,14 @@
     % Without changing the numbering style,
     % page numbers and column titles should be turned off.
     \pagestyle{empty}
-
-    \maketitle\thispagestyle{empty}
     
-    \vfill\begin{center}
+    \maketitle\thispagestyle{empty}\begin{center}
         \includegraphics[width=0.90\textwidth]{images/Cover_image.pdf}
         \end{center}
         \vfill
 
     \begin{abstract}
-    Wer sich mit dem Hypethema unserer Zeit "KI" bzw. "Machine Learning (ML)" ernsthaft auseinandersetzen möchte, kommt nicht umhin, sich mit den grundlegenden ML-Algorithmen, -Werkzeugen und Programmiersystemen zu beschäftigen. Jemand, der das erste Mal die Tür zu dieser gleichermaßen sehr spannenden wie beliebig komplexen und auf den ersten Blick unübersichtlichen Welt aufstößt, wird sehr schnell überfordert sein. Hier bietet es sich an, einführende und systematische Anleitungen zu suchen.
+    Anyone who wants to seriously deal with the hypothetical topic of our time ``Artificial Intelligence (AI)'' or ``Machine Learning (ML)'' cannot avoid dealing with the basic ML algorithms, corresponding software tools, libraries and programming systems. However, someone who opens the door for the first time to this equally very exciting as well as arbitrarily complex and, at first glance, confusing world will very quickly be overwhelmed. Here, it is a good idea to consult introductory and systematic tutorials. Therefore, this Getting Started tutorial systematically demonstrates the typical ML work process step-by-step using the very powerful and performant ``Support Vector Classifier (SVC)'' and the widely known and very beginner-friendly ``Iris Dataset''. Furthermore, the selection of the ``correct'' SVC kernel and its parameters are described and their effect on the classification result is shown.
     \end{abstract}
     \vfill
     
@@ -455,40 +453,255 @@
     \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-This notebook was basically inspired by:
+\hypertarget{english-introduction}{%
+\subsection{English introduction}\label{english-introduction}}
+
+In the \textbf{digitised work environment}, there is an increasing
+demand for \textbf{Work equipment} to be able to adapt independently and
+in a task-related manner to changing work situations. This
+\textbf{situational adaptivity} can often only be realised through the
+use of \textbf{Artificial Intelligence (AI)} or \textbf{Machine Learning
+(ML)}, depending on the degree of flexibility. Examples of such AI
+applications in the world of work can range from comparatively simple
+\textbf{voice assistance systems} (similar, for example, to Siri or
+Alexa from the private sphere) to partially or even \textbf{fully
+autonomous systems}. Such fully autonomous systems are, for example,
+autonomously driving logistics vehicles in larger industrial plants
+(so-called \textbf{driverless transport systems}).
+
+In addition to the many very interesting advantages in terms of economic
+efficiency, workload reduction, etc., such fully autonomous systems are
+characterised by a very high level of technical complexity. This
+concerns both their \textbf{operating functions} (e.g.~autonomous
+navigation through complex industrial environments with shared use of
+the roadways by other human-controlled vehicles) and their
+\textbf{safety functions} (e.g.~evaluation of complex, interconnected,
+mostly imaging safety sensors for monitoring the driving space).
+
+Very high demands are placed on such autonomous systems and the AI
+algorithms used for them with regard to \textbf{functional safety}.
+However, when assessing their safety, one quickly comes up against clear
+limits with regard to the \textbf{transparency} and
+\textbf{explainability} of the decisions made by AI as well as limits to
+the \textbf{recognition rates} and thus their \textbf{reliability}. In
+particular, the detection rates achievable by AI even under the most
+convenient conditions very often do not meet the requirements for
+realising higher safety levels (e.g.~Performance Level d (PLd) according
+to ISO 13849).
+
+An appropriate assessment or even \textbf{testing} with regard to the
+required functional safety according to uniform and ideally standardised
+criteria has many implications for the future orientation of technical
+\textbf{occupational safety and health (OSH)} in Germany and in Europe.
+In addition to the currently still very difficult algorithmic
+evaluability, a significant aspect is that the previous clear separation
+between \textbf{placing on the market law} (see e.g.~Machinery
+Directive) and \textbf{occupational health and safety law} (see European
+Occupational Health and Safety Framework Directive and German Ordinance
+on Occupational Safety and Health) can no longer be continued in this
+way. The reason for this is that the \textbf{safety-relevant properties}
+of the autonomous systems will change due to new or \textbf{adapted
+behaviours} learned during operation.
+
+For these reasons, those involved in technical occupational safety and
+health who will be involved in the testing of work equipment in the
+future should deal with AI and ML algorithms in depth as early as
+possible. This is the only way to ensure that the rapid development of
+adaptive systems capable of learning can be accompanied by OSH and its
+testing institutes in a constructive, critical and technically
+appropriate manner. If this is not done, the OSH system will be
+ruthlessly circumvented or undermined by the economic interests of
+globally operating software giants. This would have the consequence that
+serious or fatal occupational accidents are likely to occur due to
+inadequately designed AI-based work systems.
+
+Anyone seeking a serious technical entrance into the world of
+\textbf{Artificial Intelligence (AI)} or \textbf{Machine Learning (ML)}
+will not be able to avoid dealing with the basic ML algorithms,
+corresponding software tools, libraries and programming systems.
+
+However, someone who opens the door for the first time to this equally
+very exciting as well as arbitrarily complex and, at first glance,
+confusing world will very quickly be overwhelmed. Here, it is a good
+idea to consult introductory and systematic tutorials.
+
+The aim of this Getting Started tutorial is to systematically
+demonstrate the typical ML working process step-by-step based on the
+example of the very powerful and performant \textbf{Support Vector
+Classifier (SVC)}.
+
+This tutorial will be presented as part of a workshop at the DGUV
+symposium \textbf{Artificial Intelligence}, probably in November 2022 in
+Dresden. The workshop addresses interested ML novices in the technical
+occupational safety and health of the social accident insurance
+institutions.
+
+For the target audience in the workshop, the SVC algorithm was
+intentionally chosen to show that there are many other very powerful and
+performant ML algorithms apart from the \textbf{deep neural networks}
+that are very present in the media. On the other hand, a necessary and
+comprehensible introduction to neural networks and the the technical
+background to perceptrons, activation functions etc. for newcomers would
+not be possible within the time frame given for the workshop.
+
+Furthermore, this tutorial does \emph{not} address the generation or
+acquisition of ML-ready datasets. Reason for this is that a newcomer to
+ML will (or should) first try to familiarize himself with ML algorithms,
+tools, libraries and programming systems. Only then it makes sense to
+explore one's own environment with respect to ML-suitable applications
+and to acquire suitable datasets from them.
+
+Therefore, this tutorial demonstrates the usage of selected ML tools in
+the form of Python libraries as well as the systematic approach to the
+widely known and very beginner-friendly \textbf{Iris dataset}. According
+to the literature, the Support Vector Classifier is particularly well
+suited for the classification of the iris dataset in terms of
+recognition rate and performance. Alternatively, decision tree-based ML
+algorithms such as the \textbf{Random Forests Classifier} could be used.
+
+After the classification of the iris dataset by the SVC initially with
+standard parameters, the selection of the ``correct'' SVC kernel with
+its setting parameters is furthermore described and the effect on the
+classification result is shown.
+
+    \hypertarget{german-introduction}{%
+\subsection{German introduction}\label{german-introduction}}
+
+Von den \textbf{Arbeitsmitteln} in der \textbf{digitalisierten
+Arbeitswelt} wird immer stärker gefordert, dass sie sich selbstständig
+und aufgabenbezogen an sich ändernde Arbeitssituationen anpassen können.
+Diese \textbf{situative Adaptivität} kann je nach Stärke des
+Flexibilisierungsgrades oft nur durch Anwendung von \textbf{Artificial
+Intelligence (AI)} oder \textbf{Machine Learning (ML)} realisiert
+werden.
+
+Als Beispiele für solche KI-Anwendungen in der Arbeitswelt können
+vergleichsweise einfache \textbf{Sprachassistenzsysteme} (ähnlich z. B.
+Siri oder Alexa aus dem privaten Umfeld) bis hin zu teil- oder gar
+\textbf{vollautonomen Systemen} genannt werden. Solche vollautonomen
+Systemen sind beispielsweise autonom fahrende Logistikfahrzeuge in
+größeren Industrieanlagen (sog. \textbf{fahrerlosen Transportsystemen}).
+
+Neben den vielen sehr interessanten Vorteilen bzgl. Wirtschaftlichkeit,
+Arbeitserleichterung usw. kennzeichnet solche vollautonomen Systeme eine
+sehr hohe technische Komplexität. Diese betrifft sowohl ihre
+\textbf{Betriebsfunktionen} (z. B. autonome Navigation durch komplexe
+industrielle Umgebungen bei gemeinsamer Nutzung der Fahrwege durch
+andere menschlich gesteuerte Fahrzeuge) als auch seiner
+\textbf{Sicherheitsfunktionen} (z. B. Auswertung komplexer, miteinander
+verknüpfter, meist bildgebender Sicherheitssensorik zur Überwachung des
+Fahrraums).
+
+An solche autonomen Systeme und die hierfür eingesetzten KI-Algorithmen
+werden sehr hohe Anforderungen hinsichtlich der \textbf{funktionalen
+Sicherheit} gestellt. Jedoch stößt man bei ihrer sicherheitstechnischen
+Bewertung heute noch sehr schnell an deutliche Grenzen hinsichtlich der
+\textbf{Transparenz} und \textbf{Erklärbarkeit} der durch KI getroffenen
+Entscheidungen sowie Grenzen der \textbf{Erkennnungsraten} und damit
+ihrer \textbf{Zuverlässigkeit}. Insbesondere erfüllen die durch KI
+selbst unter günstigsten Bedingungen erreichbaren Erkennnungsraten sehr
+oft nicht die Anforderderungen, um höhere Safety-Level (z. B.
+Performance Level d (PLd) nach ISO 13849) zu realisieren.
+
+Eine hinsichtlich der geforderten funktionalen Sicherheit angemessene
+Bewertung oder gar \textbf{Prüfung} nach einheitlichen und idealerweise
+genormten Maßstäben hat viele Implikationen auf die zukünftige
+Ausrichtung des \textbf{technischen Arbeitsschutzes} in Deutschland und
+in Europa. Neben der derzeit noch sehr schwierigen algorithmischen
+Bewertbarkeit ist ein wesentlicher Aspekt, dass die bisherige klare
+Trennung zwischen \textbf{Inverkehrbringensrecht} (siehe z. B.
+Maschinenrichtlinie) und \textbf{betrieblichem Arbeitsschutzrecht}
+(siehe Arbeitschutzrahmenrichtlinie und Betriebssicherheitsverordnung)
+so nicht mehr aufrechterhalten werden kann. Grund hierfür ist, dass sich
+die \textbf{sicherheitsrelevanten Eigenschaften} der autonomen Systeme
+durch während des Betriebs erlernte, neue oder \textbf{angepasste
+Verhaltensweisen} verändern werden.
+
+Aus diesen Gründen sollten sich insbesondere die zukünftig mit der
+Prüfung befassten Akteure des technischen Arbeitsschutzes möglichst
+frühzeitig mit den KI- bzw. ML-Algorithmen vertieft auseinandersetzen.
+Nur dadurch lässt sich erreichen, dass die stürmische Entwicklung
+lernfähiger, adaptiver Systeme durch den Arbeitsschutz und deren
+Prüfinstitute konstruktiv, kritisch und fachlich angemessen begleitet
+werden kann. Wird dies versäumt, wird das Arbeitsschutzsystem durch die
+wirtschaftlichen Interessen global agierender Softwaregiganten
+skrupellos umgangen oder ausgehebelt werden. Dies hätte die Folge, dass
+schwere oder tödliche Arbeitsunfälle auf Grund unzulänglich gestalteter
+KI-basierter Arbeitssysteme wahrscheinlich werden.
+
+Wer einen ernsthaften fachlichen Einstieg in die Welt von
+\textbf{Künstlicher Intelligenz (KI)} bzw. \textbf{Machine Learning
+(ML)} sucht, wird nicht umhin kommen, sich mit den grundlegenden
+ML-Algorithmen, entsprechenden Software-Werkzeugen, Bibliotheken und
+Programmiersystemen auseinander zu setzen.
+
+Wer jedoch zum ersten Mal die Tür zu dieser ebenso spannenden wie
+beliebig komplexen und auf den ersten Blick verwirrenden Welt öffnet,
+wird sehr schnell überfordert sein. Hier empfiehlt es sich, einführende
+und systematische Anleitungen zu Rate zu ziehen.
+
+Ziel dieses Getting-Started-Tutorials ist es, den typischen
+ML-Arbeitsablauf systematisch und Schritt-für-Schritt am Beispiel des
+sehr leistungsfähigen \textbf{Support Vector Classifier (SVC)} zu
+demonstrieren.
+
+Dieses Tutorial wird im Rahmen eines Workshops auf der DGUV-Fachtagung
+\textbf{Künstliche Intelligenz} voraussichtlich im November 2022 in
+Dresden vorgestellt. Der Workshop richtet sich an interessierte
+ML-Neulinge im technischen Arbeitsschutz der gesetzlichen
+Unfallversicherungsträger.
+
+Für die Zielgruppe des Workshops wurde der SVC-Algorithmus bewusst
+gewählt, um zu zeigen, dass es neben den \textbf{tiefen neuronalen
+Netzen}, die in den Medien sehr präsent sind, noch viele andere sehr
+leistungsfähige ML-Algorithmen gibt. Andererseits wäre eine notwendige
+und verständliche Einführung in neuronale Netze und die technischen
+Hintergründe zu Perzeptronen, Aktivierungsfunktionen etc. für Neulinge
+in dem für den Workshop vorgegebenen Zeitrahmen nicht möglich gewesen.
+
+Außerdem befasst sich dieses Tutorial \emph{nicht} mit der Erzeugung
+oder Akquisition von ML-tauglichen Datensätzen. Der Grund dafür ist,
+dass ein ML-Neuling zunächst versuchen wird (oder sollte), sich mit den
+ML-Algorithmen, Werkzeugen, Bibliotheken und Programmiersystemen
+vertraut zu machen. Erst dann ist es sinnvoll, die eigene Umgebung auf
+ML-taugliche Anwendungen hin zu untersuchen und daraus geeignete
+Datensätze zu gewinnen.
+
+Daher demonstriert dieses Tutorial die Verwendung ausgewählter ML-Tools
+in Form von Python-Bibliotheken sowie die systematische Herangehensweise
+an den weithin bekannten und sehr einsteigerfreundlichen
+\textbf{Iris-Datensatz}. Laut Fachliteratur ist für die Klassifikation
+des Iris-Datensatzes der Support Vector Classifier hinsichtlich
+Erkennungsrate als auch Performanz besonders gut geeignet. Alternativ
+könnten auch entscheidungsbaum-basierte ML-Algorithmen wie z. B. der
+\textbf{Random-forests-Klassifikator} eingesetzt werden.
+
+Nach der Klassifikation des Iris-Datensatzes durch den SVC zunächst mit
+Standard-Parametern wird darüber hinaus die Auswahl des ``richtigen''
+SVC-Kernels mit seinen Einstellparametern beschrieben und die Auswirkung
+auf das Klassifikationsergebnis wird gezeigt.
+
+    \hypertarget{steps-of-the-systematic-ml-process}{%
+\subsection{Steps of the systematic ML
+process}\label{steps-of-the-systematic-ml-process}}
+
+The following steps of the systematic ML process are covered in the next
+main sections:
 
 \begin{itemize}
 \tightlist
 \item
-  \href{https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769}{In
-  Depth: Parameter tuning for SVC}
+  \hyperref[step-0-get-the-dataset]{STEP 0: Get the dataset}
 \item
-  \href{https://www.vebuso.com/2020/03/svm-hyperparameter-tuning-using-gridsearchcv/}{SVM
-  Hyperparameter Tuning using GridSearchCV}:
-\end{itemize}
-
-The goal of this notebook is to show the basic steps in machine learning
-and the influence of choosing the ``right'' the kernel of a
-\textbf{support vector classifier (SVC)}. Furthermore, the SVC
-parameters are described and their effect on the classification result
-is shown.
-
-Following steps will be shown in next \textbf{chapters}:
-
-\begin{itemize}
-\tightlist
+  \hyperref[step-1-exploring-the-dataset]{STEP 1: Exploring the dataset}
 \item
-  \hyperref[step-0-get-the-data]{STEP 0: Get the data}
-\item
-  \hyperref[step-1-exploring-the-data]{STEP 1: Exploring the data}
-\item
-  \hyperref[step-2-prepare-the-data]{STEP 2: Prepare the data}
+  \hyperref[step-2-prepare-the-dataset]{STEP 2: Prepare the dataset}
 \item
   \hyperref[step-3-classify-by-support-vector-classifier---svc]{STEP 3: Classify by support vector classifier - SVC}
 \item
-  \hyperref[step-4-evaluate-the-results---metrics]{STEP 4: Evaluate the results - metrics}
+  \hyperref[step-4-evaluate-the-classification-results---metrics]{STEP 4: Evaluate the classification results - metrics}
 \item
-  \hyperref[step-5-vary-parameters]{STEP 5: Vary parameters}
+  \hyperref[step-5-select-svc-kernel-and-vary-parameters]{STEP 5: Select SVC kernel and vary parameters}
 \end{itemize}
 
     \hypertarget{load-globally-used-libraries-and-set-plot-parameters}{%
@@ -510,8 +723,8 @@ parameters}\label{load-globally-used-libraries-and-set-plot-parameters}}
 \end{Verbatim}
 \end{tcolorbox}
 
-    \hypertarget{step-0-get-the-data}{%
-\section{STEP 0: Get the data}\label{step-0-get-the-data}}
+    \hypertarget{step-0-get-the-dataset}{%
+\section{STEP 0: Get the dataset}\label{step-0-get-the-dataset}}
 
 Since this is intended to be an introduction to the world of machine
 learning (ML), this step does NOT deal with the design of an application
@@ -538,8 +751,9 @@ it without having to find a special source for it.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \hypertarget{step-1-exploring-the-data}{%
-\section{STEP 1: Exploring the data}\label{step-1-exploring-the-data}}
+    \hypertarget{step-1-exploring-the-dataset}{%
+\section{STEP 1: Exploring the
+dataset}\label{step-1-exploring-the-dataset}}
 
 \hypertarget{goals-of-exploration}{%
 \subsection{Goals of exploration}\label{goals-of-exploration}}
@@ -1017,7 +1231,7 @@ These also provide information about \textbf{outliers}.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_22_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_24_0.png}\end{center}
         \caption{Boxplots used to explore the data ranges in the Iris dataset}
         \label{fig:boxplots_iris}
     \end{figure}
@@ -1938,7 +2152,7 @@ variable width. The height of each rectangle then represents the
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_54_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_56_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
@@ -1952,7 +2166,7 @@ variable width. The height of each rectangle then represents the
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_55_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_57_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
@@ -2090,7 +2304,7 @@ Choose the color sets from
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_61_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_63_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
@@ -2146,7 +2360,7 @@ array([[1., 1., 1., 1., 1.],
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_65_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_67_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
@@ -2194,7 +2408,7 @@ is advisable to plot them in a \textbf{scatter plot}.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_68_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_70_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
@@ -2229,17 +2443,17 @@ single row and in the x-axis across a single column.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_70_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_72_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
     
-    \hypertarget{step-2-prepare-the-data}{%
-\section{STEP 2: Prepare the data}\label{step-2-prepare-the-data}}
+    \hypertarget{step-2-prepare-the-dataset}{%
+\section{STEP 2: Prepare the dataset}\label{step-2-prepare-the-dataset}}
 
 Through the intensive exploration of the data in Step 1
-(\hyperref[step-1-exploring-the-data]{STEP 1: Exploring the data}), we
-know that special \textbf{preparation} of the data is \textbf{not
+(\hyperref[step-1-exploring-the-dataset]{STEP 1: Exploring the dataset}),
+we know that special \textbf{preparation} of the data is \textbf{not
 necessary}. The values are \textbf{complete} and \textbf{without gaps}
 and there are \textbf{no duplicates}. The values are in similar ranges,
 which \textbf{does not require} \textbf{normalization} of the data.
@@ -2362,9 +2576,9 @@ SVC(kernel='linear', random\_state=0)
 \end{Verbatim}
 \end{tcolorbox}
 
-    \hypertarget{step-4-evaluate-the-results---metrics}{%
-\section{STEP 4: Evaluate the results -
-metrics}\label{step-4-evaluate-the-results---metrics}}
+    \hypertarget{step-4-evaluate-the-classification-results---metrics}{%
+\section{STEP 4: Evaluate the classification results -
+metrics}\label{step-4-evaluate-the-classification-results---metrics}}
 
 And finally for checking the accuracy of the model, the
 \textbf{confusion matrix} is used for the \textbf{cross validation}.
@@ -2418,7 +2632,7 @@ colored confusion matrix.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_85_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_87_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
@@ -2441,8 +2655,9 @@ Accuracy: 79.17 \%
 Standard Deviation: 6.72 \%
     \end{Verbatim}
 
-    \hypertarget{step-5-vary-parameters}{%
-\section{STEP 5: Vary parameters}\label{step-5-vary-parameters}}
+    \hypertarget{step-5-select-svc-kernel-and-vary-parameters}{%
+\section{STEP 5: Select SVC kernel and vary
+parameters}\label{step-5-select-svc-kernel-and-vary-parameters}}
 
 This section was inspired by
 \href{https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769}{In
@@ -2600,19 +2815,19 @@ kernel}) kernel use non linear hyperplanes.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_94_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_96_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_94_1.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_96_1.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_94_2.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_96_2.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
@@ -2639,61 +2854,6 @@ as the classifier tries to perfectly fit the training data.
 \PY{k}{for} \PY{n}{gamma} \PY{o+ow}{in} \PY{n}{gammas}\PY{p}{:}
     \PY{n}{svc} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{SVC}\PY{p}{(}\PY{n}{kernel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rbf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{gamma}\PY{o}{=}\PY{n}{gamma}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{)}
     \PY{n}{plotSVC}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gamma = }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{gamma}\PY{p}{)}\PY{p}{,} \PY{n}{xlabel}\PY{p}{,} \PY{n}{ylabel}\PY{p}{)}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_96_0.png}\end{center}
-        \caption{}
-        \label{}
-    \end{figure}
-    
-    \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_96_1.png}\end{center}
-        \caption{}
-        \label{}
-    \end{figure}
-    
-    \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_96_2.png}\end{center}
-        \caption{}
-        \label{}
-    \end{figure}
-    
-    \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_96_3.png}\end{center}
-        \caption{}
-        \label{}
-    \end{figure}
-    
-    \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_96_4.png}\end{center}
-        \caption{}
-        \label{}
-    \end{figure}
-    
-    \hypertarget{vary-c-parameter}{%
-\subsection{\texorpdfstring{Vary \texttt{C}
-parameter}{Vary C parameter}}\label{vary-c-parameter}}
-
-The \texttt{C} parameter is the \textbf{penalty} of the error term. It
-controls the trade off between smooth decision boundary and classifying
-the training points correctly.
-
-But be careful: to high \texttt{C} values may lead to
-\textbf{overfitting} the training data.
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{50}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{cs} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{]}
-
-\PY{n}{xlabel} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal length}\PY{l+s+s1}{\PYZsq{}}
-\PY{n}{ylabel} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal width}\PY{l+s+s1}{\PYZsq{}}
-
-\PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n}{cs}\PY{p}{:}
-    \PY{n}{svc} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{SVC}\PY{p}{(}\PY{n}{kernel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rbf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{C}\PY{o}{=}\PY{n}{c}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{)}
-    \PY{n}{plotSVC}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C = }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{c}\PY{p}{)}\PY{p}{,} \PY{n}{xlabel}\PY{p}{,} \PY{n}{ylabel}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -2727,35 +2887,28 @@ But be careful: to high \texttt{C} values may lead to
         \label{}
     \end{figure}
     
-    \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_98_5.png}\end{center}
-        \caption{}
-        \label{}
-    \end{figure}
-    
-    \hypertarget{vary-degree-parameter}{%
-\subsection{\texorpdfstring{Vary \texttt{degree}
-parameter}{Vary degree parameter}}\label{vary-degree-parameter}}
+    \hypertarget{vary-c-parameter}{%
+\subsection{\texorpdfstring{Vary \texttt{C}
+parameter}{Vary C parameter}}\label{vary-c-parameter}}
 
-The \texttt{degree} parameter is used when the \texttt{kernel} is set to
-\texttt{poly}. It's basically the \textbf{degree of the polynomial} used
-to find the hyperplane to split the data.
+The \texttt{C} parameter is the \textbf{penalty} of the error term. It
+controls the trade off between smooth decision boundary and classifying
+the training points correctly.
 
-Using \texttt{degree\ =\ 1} is the same as using a \texttt{linear}
-kernel. Also, increasing this parameters leads to \textbf{higher
-training times}.
+But be careful: to high \texttt{C} values may lead to
+\textbf{overfitting} the training data.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{51}{\boxspacing}
+\prompt{In}{incolor}{50}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{degrees} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}
+\PY{n}{cs} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{]}
 
 \PY{n}{xlabel} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal length}\PY{l+s+s1}{\PYZsq{}}
 \PY{n}{ylabel} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal width}\PY{l+s+s1}{\PYZsq{}}
 
-\PY{k}{for} \PY{n}{degree} \PY{o+ow}{in} \PY{n}{degrees}\PY{p}{:}
-    \PY{n}{svc} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{SVC}\PY{p}{(}\PY{n}{kernel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{poly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{degree}\PY{o}{=}\PY{n}{degree}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{)}
-    \PY{n}{plotSVC}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{degree = }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{degree}\PY{p}{)}\PY{p}{,} \PY{n}{xlabel}\PY{p}{,} \PY{n}{ylabel}\PY{p}{)}
+\PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n}{cs}\PY{p}{:}
+    \PY{n}{svc} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{SVC}\PY{p}{(}\PY{n}{kernel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rbf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{C}\PY{o}{=}\PY{n}{c}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+    \PY{n}{plotSVC}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C = }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{c}\PY{p}{)}\PY{p}{,} \PY{n}{xlabel}\PY{p}{,} \PY{n}{ylabel}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -2795,26 +2948,88 @@ training times}.
         \label{}
     \end{figure}
     
+    \hypertarget{vary-degree-parameter}{%
+\subsection{\texorpdfstring{Vary \texttt{degree}
+parameter}{Vary degree parameter}}\label{vary-degree-parameter}}
+
+The \texttt{degree} parameter is used when the \texttt{kernel} is set to
+\texttt{poly}. It's basically the \textbf{degree of the polynomial} used
+to find the hyperplane to split the data.
+
+Using \texttt{degree\ =\ 1} is the same as using a \texttt{linear}
+kernel. Also, increasing this parameters leads to \textbf{higher
+training times}.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{51}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{degrees} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}
+
+\PY{n}{xlabel} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal length}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{ylabel} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal width}\PY{l+s+s1}{\PYZsq{}}
+
+\PY{k}{for} \PY{n}{degree} \PY{o+ow}{in} \PY{n}{degrees}\PY{p}{:}
+    \PY{n}{svc} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{SVC}\PY{p}{(}\PY{n}{kernel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{poly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{degree}\PY{o}{=}\PY{n}{degree}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+    \PY{n}{plotSVC}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{degree = }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{degree}\PY{p}{)}\PY{p}{,} \PY{n}{xlabel}\PY{p}{,} \PY{n}{ylabel}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_100_6.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_102_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_100_7.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_102_1.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_100_8.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_102_2.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_100_9.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_102_3.png}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    
+    \begin{figure}[h!]
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_102_4.png}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    
+    \begin{figure}[h!]
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_102_5.png}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    
+    \begin{figure}[h!]
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_102_6.png}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    
+    \begin{figure}[h!]
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_102_7.png}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    
+    \begin{figure}[h!]
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_102_8.png}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    
+    \begin{figure}[h!]
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{SVM_Iris_parameter_tuning_files/SVM_Iris_parameter_tuning_102_9.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
