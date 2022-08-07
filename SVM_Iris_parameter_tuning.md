@@ -15,7 +15,7 @@ jupyter:
 
 # Introduction
 
-<!-- #region tags=[] jupyter={"source_hidden": true} -->
+<!-- #region tags=[] -->
 ## English introduction
 
 In the **digitised work environment**, there is an increasing demand for **Work equipment** to be able to adapt independently and in a task-related manner to changing work situations. This **situational adaptivity** can often only be realised through the use of **Artificial Intelligence (AI)** or **Machine Learning (ML)**, depending on the degree of flexibility.
@@ -46,7 +46,7 @@ Therefore, this tutorial demonstrates the usage of selected ML tools in the form
 After the classification of the iris dataset by the SVC initially with standard parameters, the selection of the "correct" SVC kernel with its setting parameters is furthermore described and the effect on the classification result is shown.
 <!-- #endregion -->
 
-<!-- #region jupyter={"source_hidden": true} tags=[] -->
+<!-- #region tags=[] -->
 ## German introduction
 
 Von den **Arbeitsmitteln** in der **digitalisierten Arbeitswelt** wird immer stärker gefordert, dass sie sich selbstständig und aufgabenbezogen an sich ändernde Arbeitssituationen anpassen können. Diese **situative Adaptivität** kann je nach Stärke des Flexibilisierungsgrades oft nur durch Anwendung von **Artificial Intelligence (AI)** oder **Machine Learning (ML)** realisiert werden.
@@ -471,12 +471,12 @@ This section was inspired by [How to Create a Seaborn Correlation Heatmap in Pyt
 Because **string values can never be correlated**, the class names (species) have to be converted first:
 <!-- #endregion -->
 
-```python
+```python tags=[]
 # encoding the class column
 irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":0,
                                                     "Iris-versicolor":1, 
                                                     "Iris-virginica":2}})
-irisdata_df_enc
+#irisdata_df_enc
 ```
 
 ```python
@@ -570,13 +570,16 @@ With this so called **[pairs plot](https://vita.had.co.nz/papers/gpp.pdf)** it i
 
 This function will create a grid of Axes such that **each numeric variable** in `irisdata_df` will by shared in the y-axis across a single row and in the x-axis across a single column.
 
-```python caption="Plot all individual variables of the iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables" tags=[] label="fig:pairs_plot" widefigure=true
+```python caption="Plot all individual variables of the Iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables" tags=[] label="fig:pairs_plot" widefigure=true
+sns.set(font_scale=1.0)
 sns.set_style("white")
+
 g = sns.pairplot(irisdata_df, diag_kind="kde", hue='species', 
                  palette='Dark2', height=2.5)
 
 g.map_lower(sns.kdeplot, levels=4, color=".2")
-
+# y .. padding between title and plot
+g.fig.suptitle('Pairs plot of the Iris dataset', y=1.05)
 plt.show()
 ```
 
@@ -670,7 +673,7 @@ sns.set_style("white")
 # print colored confusion matrix
 cm_colored = metrics.ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
 
-#cm_colored.figure_.suptitle("Confusion Matrix")
+cm_colored.figure_.suptitle("Colored Confusion Matrix")
 cm_colored.figure_.set_figwidth(8)
 cm_colored.figure_.set_figheight(7)
 
@@ -681,6 +684,8 @@ plt.tight_layout()
 plt.savefig('images/confusion_matrix.png', dpi=150, pad_inches=5)
 plt.show()
 ```
+
+## Classification accuracy
 
 ```python
 from sklearn.model_selection import cross_val_score
@@ -702,7 +707,12 @@ In this section, the 4 SVC parameters `kernel`, `gamma`, `C` and `degree` will b
 
 ## Prepare dataset
 
-```python
+```python tags=[]
+from sklearn.svm import SVC
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import cross_val_score
+import numpy as np
+
 # import iris dataset again
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 
@@ -710,30 +720,47 @@ irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":0,
                                                     "Iris-versicolor":1, 
                                                     "Iris-virginica":2}})
-irisdata_df_enc
+#irisdata_df_enc
 ```
+
+### Prepare datasets for parameter variation and plotting
+
+These datasets will  be used for parameter variation and plotting only. In particular, for later **2D plotting** of the effects of parameter variation, only **2 variables** of the iris dataset can be used.
+
+However, as seen in the previous section, this selection is very much at the expense of detection accuracy. Therefore, it is not useful to make predictions with this subset of data - it is not necessary to divide it into a training and a test data set.
 
 ```python tags=[]
 # copy only 2 feature columns
 # and convert pandas dataframe to numpy array
-X = irisdata_df_enc[['petal_length', 'petal_width']].to_numpy(copy=True)
-#X = irisdata_df_enc[['sepal_length', 'sepal_width']].to_numpy(copy=True)
-#X
+X_plot = irisdata_df_enc[['petal_length', 'petal_width']].to_numpy(copy=True)
+#X_plot = irisdata_df_enc[['sepal_length', 'sepal_width']].to_numpy(copy=True)
+#X_plot
 ```
 
 ```python
 # convert pandas dataframe to numpy array
 # and get a flat 1D copy of 2D numpy array
-y = irisdata_df_enc[['species']].to_numpy(copy=True).flatten()
-#y
+y_plot = irisdata_df_enc[['species']].to_numpy(copy=True).flatten()
+#y_plot
 ```
 
-## Plotting function
+### Prepare dataset for prediction and evaluation
 
-This function helps to visualize the modifications by varying the individual SVC parameters.
+To **evaluate the recognition accuracy** by parameter variation, the complete iris data set with all variables must be used. To make predictions with test data, the data set is again divided into a training and a test data set.
 
 ```python
-def plotSVC(title, xlabel, ylabel):
+X = irisdata_df.drop('species', axis=1)
+y = irisdata_df['species']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)
+```
+
+## Plotting functions
+
+This function helps to visualize the modifications by varying the individual SVC parameters:
+
+```python
+def plotSVC(title, svc, X, y, xlabel, ylabel):
     # create a mesh to plot in
     x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
     y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
@@ -758,58 +785,127 @@ def plotSVC(title, xlabel, ylabel):
     plt.show()
 ```
 
+This function cares for cross validation:
+
+```python
+def crossValSVC(X_train, y_train, kernel='rbf', gamma='scale', C=1.0, degree=3):
+    # train the SVC
+    svc = svm.SVC(kernel=kernel, 
+                  gamma=gamma, 
+                  C=C, 
+                  degree=degree).fit(X_train, y_train)
+    # calculate accuracies
+    accuracies = cross_val_score(estimator = svc, X = X_train, 
+                                 y = y_train, cv = 10)
+    
+    accuracy = accuracies.mean()*100
+    return accuracy
+```
+
+This function plots the variation of the SVC parameters against the prediction accuracy to show the effect of variation and its limits regarding the phenomenon **overfitting**:
+
+```python
+def plotParamsAcc(param_list, acc_list, param_name, log_scale=False):
+    fig, ax = plt.subplots(figsize=(10,6))
+    title_str = 'Variation of {} parameter '.format(param_name) \
+                +'and its effect to prediction accuracy'
+    plt.title(title_str)
+    ax.plot(param_list, accuracy_list)
+    if log_scale:
+        # set the X axis scale to logarithmic
+        ax.set_xscale('log')
+    plt.xlabel(param_name)
+    plt.ylabel('accuracy [%]')
+    plt.grid()
+    plt.show()
+```
+
 ## Vary `kernel` of SVC
 
-The `kernel` parameter selects the type of hyperplane that is used to separate the data. Using `linear` ([linear classifier](https://en.wikipedia.org/wiki/Linear_classifier)) kernel will use a linear hyperplane (a line in the case of 2D data). The `rbf` ([radial basis function kernel](https://en.wikipedia.org/wiki/Radial_basis_function_kernel)) and `poly` ([polynomial kernel](https://en.wikipedia.org/wiki/Polynomial_kernel)) kernel use non linear hyperplanes.
+The `kernel` parameter selects the type of hyperplane that is used to separate the data. Using `linear` ([linear classifier](https://en.wikipedia.org/wiki/Linear_classifier)) kernel will use a linear hyperplane (a line in the case of 2D data). The `rbf` ([radial basis function kernel](https://en.wikipedia.org/wiki/Radial_basis_function_kernel)) and `poly` ([polynomial kernel](https://en.wikipedia.org/wiki/Polynomial_kernel)) kernel use non linear hyperplanes. The **default** is `kernel=rbf`.
 
-```python tags=[] caption="This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly')" label="fig:vary_kernels" widefigure=false
-kernels = ['linear', 'rbf', 'poly']
+```python tags=[] caption="This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')" label="fig:vary_kernels" widefigure=false
+kernels = ['linear', 'rbf', 'poly', 'sigmoid']
 
 xlabel = 'Petal length'
 ylabel = 'Petal width'
 
 for kernel in kernels:
-    svc = svm.SVC(kernel=kernel).fit(X, y)
-    plotSVC('kernel = ' + str(kernel), xlabel, ylabel)
+    svc_plot = svm.SVC(kernel=kernel).fit(X_plot, y_plot)
+    accuracy = crossValSVC(X_train, y_train, kernel=kernel)
+    title_str = 'kernel: \''+str(kernel)+'\', '+'Acc. prediction: {:.2f}%'.format(accuracy)
+    plotSVC(title_str, svc_plot, X_plot, y_plot, xlabel, ylabel)
 ```
 
 ## Vary `gamma` parameter
 
-The `gamma` parameter is used for non linear hyperplanes. The higher the `gamma` value it tries to exactly fit the training data set.
+The `gamma` parameter is used for **non linear hyperplanes**. The higher the `gamma` float value it tries to exactly fit the training data set. The **default** is `gamma='scale'`.
 
-As we can see, increasing `gamma` leads to **overfitting** as the classifier tries to perfectly fit the training data.
-
-```python tags=[] caption="This group of images shows the effect on the classification by the variation of the parameter 'gamma'" label="fig:vary_gamma_parameter" widefigure=false
+```python tags=[] caption="This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel" label="fig:vary_gamma_parameter" widefigure=false
 gammas = [0.1, 1, 10, 100, 200]
 
 xlabel = 'Petal length'
 ylabel = 'Petal width'
 
 for gamma in gammas:
-    svc = svm.SVC(kernel='rbf', gamma=gamma).fit(X, y)
-    plotSVC('gamma = ' + str(gamma), xlabel, ylabel)
+    svc_plot = svm.SVC(kernel='rbf', gamma=gamma).fit(X_plot, y_plot)
+    accuracy = crossValSVC(X_train, y_train, kernel='rbf', gamma=gamma)
+    title_str = 'gamma: \''+str(gamma)+'\', ' \
+                +'Acc. prediction: {:.2f}%'.format(accuracy)
+    plotSVC(title_str, svc_plot, X_plot, y_plot, xlabel, ylabel)
+```
+
+Show the variation of the SVC parameter `gamma` against the **prediction accuracy**.
+
+As we can see, increasing `gamma` leads to **overfitting** as the classifier tries to perfectly fit the training data.
+
+```python tags=[] caption="The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy" label="fig:plot_vary_gamma" widefigure=true
+gammas = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 10, 100, 200]
+
+accuracy_list = list()
+for gamma in gammas:
+    accuracy = crossValSVC(X_train, y_train, kernel='rbf', gamma=gamma)
+    accuracy_list.append(accuracy)
+
+plotParamsAcc(gammas, accuracy_list, 'gamma', log_scale=True)
 ```
 
 ## Vary `C` parameter
 
-The `C` parameter is the **penalty** of the error term. It controls the trade off between smooth decision boundary and classifying the training points correctly.
+The `C` parameter is the **penalty** of the error term. It controls the trade off between smooth decision boundary and classifying the training points correctly. The **default** is `C=1.0`.
 
-But be careful: to high `C` values may lead to **overfitting** the training data.
-
-```python tags=[] caption="This group of images shows the effect on the classification by the variation of the parameter 'C'" label="fig:vary_c_parameter" widefigure=false
-cs = [0.1, 1, 10, 100, 1000, 10000]
+```python tags=[] caption="This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel" label="fig:vary_c_parameter" widefigure=false
+cs = [0.1, 1, 5, 10, 100, 1000, 10000]
 
 xlabel = 'Petal length'
 ylabel = 'Petal width'
 
 for c in cs:
-    svc = svm.SVC(kernel='rbf', C=c).fit(X, y)
-    plotSVC('C = ' + str(c), xlabel, ylabel)
+    svc_plot = svm.SVC(kernel='rbf', C=c).fit(X_plot, y_plot)
+    accuracy = crossValSVC(X_train, y_train, kernel='rbf', C=c)
+    title_str = 'C: \''+str(c)+'\', ' \
+                 +'Acc. prediction: {:.2f}%'.format(accuracy)
+    plotSVC(title_str, svc_plot, X_plot, y_plot, xlabel, ylabel)
+```
+
+Show the variation of the SVC parameter `C` against the **prediction accuracy**.
+
+But be careful: to high `C` values may lead to **overfitting** the training data.
+
+```python tags=[] caption="The plot shows the variation of the SVC parameter 'C' against the prediction accuracy" label="fig:plot_vary_c" widefigure=true
+cs = [0.1, 1, 5, 6, 7, 8, 10, 100, 1000, 10000]
+
+accuracy_list = list()
+for c in cs:
+    accuracy = crossValSVC(X_train, y_train, kernel='rbf', C=c)
+    accuracy_list.append(accuracy)
+
+plotParamsAcc(cs, accuracy_list, 'C', log_scale=True)
 ```
 
 ## Vary `degree` parameter
 
-The `degree` parameter is used when the `kernel` is set to `poly`. It’s basically the **degree of the polynomial** used to find the hyperplane to split the data.
+The `degree` parameter is used when the `kernel` is set to `poly` and is ignored by all other kernels. It’s basically the **degree of the polynomial** used to find the hyperplane to split the data. The **default** is `degree=3`.
 
 Using `degree = 1` is the same as using a `linear` kernel. Also, increasing this parameters leads to **higher training times**.
 
@@ -820,6 +916,28 @@ xlabel = 'Petal length'
 ylabel = 'Petal width'
 
 for degree in degrees:
-    svc = svm.SVC(kernel='poly', degree=degree).fit(X, y)
-    plotSVC('degree = ' + str(degree), xlabel, ylabel)
+    svc_plot = svm.SVC(kernel='poly', degree=degree).fit(X_plot, y_plot)
+    accuracy = crossValSVC(X_train, y_train, kernel='poly', degree=degree)
+    title_str = 'degree: \''+str(degree)+'\', ' \
+                 +'Acc. prediction: {:.2f}%'.format(accuracy)
+    plotSVC(title_str, svc_plot, X_plot, y_plot, xlabel, ylabel)
+```
+
+Show the variation of the SVC parameter `degree` against the **prediction accuracy**.
+
+As we can see, increasing the `degree` of the polynomial hyperplane leads to **overfitting** the training data.
+
+```python tags=[] caption="The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy" label="fig:plot_vary_degree" widefigure=true
+degrees = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+accuracy_list = list()
+for degree in degrees:
+    accuracy = crossValSVC(X_train, y_train, kernel='poly', degree=degree)
+    accuracy_list.append(accuracy)
+
+plotParamsAcc(degrees, accuracy_list, 'degree', log_scale=False)
+```
+
+```python
+
 ```
