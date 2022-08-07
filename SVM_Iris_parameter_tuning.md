@@ -15,21 +15,79 @@ jupyter:
 
 # Introduction
 
-This notebook was basically inspired by:
+<!-- #region tags=[] jupyter={"source_hidden": true} -->
+## English introduction
 
-- [In Depth: Parameter tuning for SVC](https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769)
-- [SVM Hyperparameter Tuning using GridSearchCV](https://www.vebuso.com/2020/03/svm-hyperparameter-tuning-using-gridsearchcv/):
+In the **digitised work environment**, there is an increasing demand for **Work equipment** to be able to adapt independently and in a task-related manner to changing work situations. This **situational adaptivity** can often only be realised through the use of **Artificial Intelligence (AI)** or **Machine Learning (ML)**, depending on the degree of flexibility.
+Examples of such AI applications in the world of work can range from comparatively simple **voice assistance systems** (similar, for example, to Siri or Alexa from the private sphere) to partially or even **fully autonomous systems**. Such fully autonomous systems are, for example, autonomously driving logistics vehicles in larger industrial plants (so-called **driverless transport systems**).
 
-The goal of this notebook is to show the basic steps in machine learning and the influence of choosing the "right" the kernel of a **support vector classifier (SVC)**. Furthermore, the SVC parameters are described and their effect on the classification result is shown.
+In addition to the many very interesting advantages in terms of economic efficiency, workload reduction, etc., such fully autonomous systems are characterised by a very high level of technical complexity. This concerns both their **operating functions** (e.g. autonomous navigation through complex industrial environments with shared use of the roadways by other human-controlled vehicles) and their **safety functions** (e.g. evaluation of complex, interconnected, mostly imaging safety sensors for monitoring the driving space).
 
-Following steps will be shown in next **chapters**:
+Very high demands are placed on such autonomous systems and the AI algorithms used for them with regard to **functional safety**. However, when assessing their safety, one quickly comes up against clear limits with regard to the **transparency** and **explainability** of the decisions made by AI as well as limits to the **recognition rates** and thus their **reliability**. In particular, the detection rates achievable by AI even under the most convenient conditions very often do not meet the requirements for realising higher safety levels (e.g. Performance Level d (PLd) according to ISO 13849).
 
-- [STEP 0: Get the data](#STEP-0:-Get-the-data)
-- [STEP 1: Exploring the data](#STEP-1:-Exploring-the-data)
-- [STEP 2: Prepare the data](#STEP-2:-Prepare-the-data)
+An appropriate assessment or even **testing** with regard to the required functional safety according to uniform and ideally standardised criteria has many implications for the future orientation of technical **occupational safety and health (OSH)** in Germany and in Europe. In addition to the currently still very difficult algorithmic evaluability, a significant aspect is that the previous clear separation between **placing on the market law** (see e.g. Machinery Directive) and **occupational health and safety law** (see European Occupational Health and Safety Framework Directive and German Ordinance on Occupational Safety and Health) can no longer be continued in this way. The reason for this is that the **safety-relevant properties** of the autonomous systems will change due to new or **adapted behaviours** learned during operation.
+
+For these reasons, those involved in technical occupational safety and health who will be involved in the testing of work equipment in the future should deal with AI and ML algorithms in depth as early as possible. This is the only way to ensure that the rapid development of adaptive systems capable of learning can be accompanied by OSH and its testing institutes in a constructive, critical and technically appropriate manner. If this is not done, the OSH system will be ruthlessly circumvented or undermined by the economic interests of globally operating software giants. This would have the consequence that serious or fatal occupational accidents are likely to occur due to inadequately designed AI-based work systems.
+
+Anyone seeking a serious technical entrance into the world of **Artificial Intelligence (AI)** or **Machine Learning (ML)** will not be able to avoid dealing with the basic ML algorithms, corresponding software tools, libraries and programming systems.
+
+However, someone who opens the door for the first time to this equally very exciting as well as arbitrarily complex and, at first glance, confusing world will very quickly be overwhelmed. Here, it is a good idea to consult introductory and systematic tutorials.
+
+The aim of this Getting Started tutorial is to systematically demonstrate the typical ML working process step-by-step based on the example of the very powerful and performant **Support Vector Classifier (SVC)**.
+
+This tutorial will be presented as part of a workshop at the DGUV symposium **Artificial Intelligence**, probably in November 2022 in Dresden. The workshop addresses interested ML novices in the technical occupational safety and health of the social accident insurance institutions.
+
+For the target audience in the workshop, the SVC algorithm was intentionally chosen to show that there are many other very powerful and performant ML algorithms apart from the **deep neural networks** that are very present in the media. On the other hand, a necessary and comprehensible introduction to neural networks and the the technical background to perceptrons, activation functions etc. for newcomers would not be possible within the time frame given for the workshop.
+
+Furthermore, this tutorial does *not* address the generation or acquisition of ML-ready datasets. Reason for this is that a newcomer to ML will (or should) first try to familiarize himself with ML algorithms, tools, libraries and programming systems. Only then it makes sense to explore one's own environment with respect to ML-suitable applications and to acquire suitable datasets from them.
+
+Therefore, this tutorial demonstrates the usage of selected ML tools in the form of Python libraries as well as the systematic approach to the widely known and very beginner-friendly **Iris dataset**. According to the literature, the Support Vector Classifier is particularly well suited for the classification of the iris dataset in terms of recognition rate and performance. Alternatively, decision tree-based ML algorithms such as the **Random Forests Classifier** could be used.
+
+After the classification of the iris dataset by the SVC initially with standard parameters, the selection of the "correct" SVC kernel with its setting parameters is furthermore described and the effect on the classification result is shown.
+<!-- #endregion -->
+
+<!-- #region jupyter={"source_hidden": true} tags=[] -->
+## German introduction
+
+Von den **Arbeitsmitteln** in der **digitalisierten Arbeitswelt** wird immer stärker gefordert, dass sie sich selbstständig und aufgabenbezogen an sich ändernde Arbeitssituationen anpassen können. Diese **situative Adaptivität** kann je nach Stärke des Flexibilisierungsgrades oft nur durch Anwendung von **Artificial Intelligence (AI)** oder **Machine Learning (ML)** realisiert werden.
+
+Als Beispiele für solche KI-Anwendungen in der Arbeitswelt können vergleichsweise einfache **Sprachassistenzsysteme** (ähnlich z. B. Siri oder Alexa aus dem privaten Umfeld) bis hin zu teil- oder gar **vollautonomen Systemen** genannt werden. Solche vollautonomen Systemen sind beispielsweise autonom fahrende Logistikfahrzeuge in größeren Industrieanlagen (sog. **fahrerlosen Transportsystemen**).
+
+Neben den vielen sehr interessanten Vorteilen bzgl. Wirtschaftlichkeit, Arbeitserleichterung usw. kennzeichnet solche vollautonomen Systeme eine sehr hohe technische Komplexität. Diese betrifft sowohl ihre **Betriebsfunktionen** (z. B. autonome Navigation durch komplexe industrielle Umgebungen bei gemeinsamer Nutzung der Fahrwege durch andere menschlich gesteuerte Fahrzeuge) als auch seiner **Sicherheitsfunktionen** (z. B. Auswertung komplexer, miteinander verknüpfter, meist bildgebender Sicherheitssensorik zur Überwachung des Fahrraums).
+
+An solche autonomen Systeme und die hierfür eingesetzten KI-Algorithmen werden sehr hohe Anforderungen hinsichtlich der **funktionalen Sicherheit** gestellt. Jedoch stößt man bei ihrer sicherheitstechnischen Bewertung heute noch sehr schnell an deutliche Grenzen hinsichtlich der **Transparenz** und **Erklärbarkeit** der durch KI getroffenen Entscheidungen sowie Grenzen der **Erkennnungsraten** und damit ihrer **Zuverlässigkeit**. Insbesondere erfüllen die durch KI selbst unter günstigsten Bedingungen erreichbaren Erkennnungsraten sehr oft nicht die Anforderderungen, um höhere Safety-Level (z. B. Performance Level d (PLd) nach ISO 13849) zu realisieren.
+
+Eine hinsichtlich der geforderten funktionalen Sicherheit angemessene Bewertung oder gar **Prüfung** nach einheitlichen und idealerweise genormten Maßstäben hat viele Implikationen auf die zukünftige Ausrichtung des **technischen Arbeitsschutzes** in Deutschland und in Europa. Neben der derzeit noch sehr schwierigen algorithmischen Bewertbarkeit ist ein wesentlicher Aspekt, dass die bisherige klare Trennung zwischen **Inverkehrbringensrecht** (siehe z. B. Maschinenrichtlinie) und **betrieblichem Arbeitsschutzrecht** (siehe Arbeitschutzrahmenrichtlinie und Betriebssicherheitsverordnung) so nicht mehr aufrechterhalten werden kann. Grund hierfür ist, dass sich die **sicherheitsrelevanten Eigenschaften** der autonomen Systeme durch während des Betriebs erlernte, neue oder **angepasste Verhaltensweisen** verändern werden.
+
+Aus diesen Gründen sollten sich insbesondere die zukünftig mit der Prüfung befassten Akteure des technischen Arbeitsschutzes möglichst frühzeitig mit den KI- bzw. ML-Algorithmen vertieft auseinandersetzen. Nur dadurch lässt sich erreichen, dass die stürmische Entwicklung lernfähiger, adaptiver Systeme durch den Arbeitsschutz und deren Prüfinstitute konstruktiv, kritisch und fachlich angemessen begleitet werden kann. Wird dies versäumt, wird das Arbeitsschutzsystem durch die wirtschaftlichen Interessen global agierender Softwaregiganten skrupellos umgangen oder ausgehebelt werden. Dies hätte die Folge, dass schwere oder tödliche Arbeitsunfälle auf Grund unzulänglich gestalteter KI-basierter Arbeitssysteme wahrscheinlich werden.
+
+Wer einen ernsthaften fachlichen Einstieg in die Welt von **Künstlicher Intelligenz (KI)** bzw. **Machine Learning (ML)** sucht, wird nicht umhin kommen, sich mit den grundlegenden ML-Algorithmen, entsprechenden Software-Werkzeugen, Bibliotheken und Programmiersystemen auseinander zu setzen.
+
+Wer jedoch zum ersten Mal die Tür zu dieser ebenso spannenden wie beliebig komplexen und auf den ersten Blick verwirrenden Welt öffnet, wird sehr schnell überfordert sein. Hier empfiehlt es sich, einführende und systematische Anleitungen zu Rate zu ziehen.
+
+Ziel dieses Getting-Started-Tutorials ist es, den typischen ML-Arbeitsablauf systematisch und Schritt-für-Schritt am Beispiel des sehr leistungsfähigen **Support Vector Classifier (SVC)** zu demonstrieren.
+
+Dieses Tutorial wird im Rahmen eines Workshops auf der DGUV-Fachtagung **Künstliche Intelligenz** voraussichtlich im November 2022 in Dresden vorgestellt. Der Workshop richtet sich an interessierte ML-Neulinge im technischen Arbeitsschutz der gesetzlichen Unfallversicherungsträger.
+
+Für die Zielgruppe des Workshops wurde der SVC-Algorithmus bewusst gewählt, um zu zeigen, dass es neben den **tiefen neuronalen Netzen**, die in den Medien sehr präsent sind, noch viele andere sehr leistungsfähige ML-Algorithmen gibt. Andererseits wäre eine notwendige und verständliche Einführung in neuronale Netze und die technischen Hintergründe zu Perzeptronen, Aktivierungsfunktionen etc. für Neulinge in dem für den Workshop vorgegebenen Zeitrahmen nicht möglich gewesen.
+
+Außerdem befasst sich dieses Tutorial *nicht* mit der Erzeugung oder Akquisition von ML-tauglichen Datensätzen. Der Grund dafür ist, dass ein ML-Neuling zunächst versuchen wird (oder sollte), sich mit den ML-Algorithmen, Werkzeugen, Bibliotheken und Programmiersystemen vertraut zu machen. Erst dann ist es sinnvoll, die eigene Umgebung auf ML-taugliche Anwendungen hin zu untersuchen und daraus geeignete Datensätze zu gewinnen.
+
+Daher demonstriert dieses Tutorial die Verwendung ausgewählter ML-Tools in Form von Python-Bibliotheken sowie die systematische Herangehensweise an den weithin bekannten und sehr einsteigerfreundlichen **Iris-Datensatz**. Laut Fachliteratur ist für die Klassifikation des Iris-Datensatzes der Support Vector Classifier hinsichtlich Erkennungsrate als auch Performanz besonders gut geeignet. Alternativ könnten auch entscheidungsbaum-basierte ML-Algorithmen wie z. B. der **Random-forests-Klassifikator** eingesetzt werden.
+
+Nach der Klassifikation des Iris-Datensatzes durch den SVC zunächst mit Standard-Parametern wird darüber hinaus die Auswahl des "richtigen" SVC-Kernels mit seinen Einstellparametern beschrieben und die Auswirkung auf das Klassifikationsergebnis wird gezeigt.
+<!-- #endregion -->
+
+## Steps of the systematic ML process
+
+The following steps of the systematic ML process are covered in the next main sections:
+
+- [STEP 0: Get the dataset](#STEP-0:-Get-the-dataset)
+- [STEP 1: Exploring the dataset](#STEP-1:-Exploring-the-dataset)
+- [STEP 2: Prepare the dataset](#STEP-2:-Prepare-the-dataset)
 - [STEP 3: Classify by support vector classifier - SVC](#STEP-3:-Classify-by-support-vector-classifier---SVC)
-- [STEP 4: Evaluate the results - metrics](#STEP-4:-Evaluate-the-results---metrics)
-- [STEP 5: Vary parameters](#STEP-5:-Vary-parameters)
+- [STEP 4: Evaluate the classification results - metrics](#STEP-4:-Evaluate-the-classification-results---metrics)
+- [STEP 5: Select SVC kernel and vary parameters](#STEP-5:-Select-SVC-kernel-and-vary-parameters)
 
 <!-- #region tags=[] -->
 # Load globally used libraries and set plot parameters
@@ -48,7 +106,7 @@ import seaborn as sns
 ```
 
 <!-- #region tags=[] -->
-# STEP 0: Get the data
+# STEP 0: Get the dataset
 
 Since this is intended to be an introduction to the world of machine learning (ML), this step does NOT deal with the design of an application suitable for ML and the acquisition of valid measurement data.
 
@@ -63,8 +121,8 @@ It can be downloaded on [Iris Flower Dataset | Kaggle](https://www.kaggle.com/da
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 ```
 
-<!-- #region tags=[] toc-hr-collapsed=true -->
-# STEP 1: Exploring the data
+<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true -->
+# STEP 1: Exploring the dataset
 
 ## Goals of exploration
 
@@ -384,12 +442,12 @@ This section was inspired by: [Pandas Histogram – DataFrame.hist()](https://da
 
 These classes are represented in the histogram as rectangles of equal or variable width. The height of each rectangle then represents the (relative or absolute) **frequency density**.
 
-```python
+```python caption="Histogram for frequency distribution of the salary" tags=[] label="fig:histogram_salary" widefigure=true
 employees_df.hist(column=['Salary'])
 plt.show()
 ```
 
-```python
+```python caption="Histogram for the frequency distribution of the salary in comparison between men and women" tags=[] label="fig:histogram_male_female" widefigure=true
 employees_df.hist(column='Salary', by='Gender')
 plt.show()
 ```
@@ -429,7 +487,7 @@ irisdata_df_enc.corr()
 
 Choose the color sets from [color map](https://pod.hatenablog.com/entry/2018/09/20/212527).
 
-```python
+```python caption="Correlation heatmap to explore coherences between single variables in the iris dataset" tags=[] label="fig:correlation_heatmap" widefigure=true
 # increase the size of the heatmap
 plt.figure(figsize=(16, 6))
 
@@ -460,7 +518,7 @@ np.triu(np.ones_like(irisdata_df_enc.corr()))
 
 Use this mask to cut the heatmap along the diagonal:
 
-```python
+```python caption="Correlation heatmap, which was cut at its main diagonal without losing any information" tags=[] label="fig:correlation_heatmap_triangle" widefigure=true
 plt.figure(figsize=(16, 6))
 
 # define the mask to set the values in the upper triangle to 'True'
@@ -485,7 +543,7 @@ In the following, [Seaborn](https://seaborn.pydata.org/) is applied which is a l
 To investigate whether there are dependencies (e.g. correlations) in `irisdata_df` between individual variables in the data set, it is advisable to plot them in a **scatter plot**.
 <!-- #endregion -->
 
-```python
+```python caption="Plotting two individual variables of the iris dataset in the scatterplot to explore the relationships between these two" tags=[] label="fig:scatter_plot" widefigure=true
 # There are five preset seaborn themes: darkgrid, whitegrid, dark, white, and ticks.
 sns.set_style("whitegrid")
 # set scale of fonts
@@ -512,7 +570,7 @@ With this so called **[pairs plot](https://vita.had.co.nz/papers/gpp.pdf)** it i
 
 This function will create a grid of Axes such that **each numeric variable** in `irisdata_df` will by shared in the y-axis across a single row and in the x-axis across a single column.
 
-```python
+```python caption="Plot all individual variables of the iris dataset in pairs-plot to see both the relationships between two variables and the distribution of the individual variables" tags=[] label="fig:pairs_plot" widefigure=true
 sns.set_style("white")
 g = sns.pairplot(irisdata_df, diag_kind="kde", hue='species', 
                  palette='Dark2', height=2.5)
@@ -522,9 +580,9 @@ g.map_lower(sns.kdeplot, levels=4, color=".2")
 plt.show()
 ```
 
-# STEP 2: Prepare the data
+# STEP 2: Prepare the dataset
 
-Through the intensive exploration of the data in Step 1 ([STEP 1: Exploring the data](#STEP-1:-Exploring-the-data)), we know that special **preparation** of the data is **not necessary**. The values are **complete** and **without gaps** and there are **no duplicates**. The values are in similar ranges, which **does not require** **normalization** of the data.
+Through the intensive exploration of the data in Step 1 ([STEP 1: Exploring the dataset](#STEP-1:-Exploring-the-dataset)), we know that special **preparation** of the data is **not necessary**. The values are **complete** and **without gaps** and there are **no duplicates**. The values are in similar ranges, which **does not require** **normalization** of the data.
 
 Furthermore, we know that the **classes** are very **evenly distributed** and thus bias tendencies should be avoided.
 
@@ -535,11 +593,13 @@ Furthermore, we know that the **classes** are very **evenly distributed** and th
 
 > Support Vectors Classifier tries to **find the best hyperplane to separate** the different classes by maximizing the distance between sample points and the hyperplane (source: [In Depth: Parameter tuning for SVC](https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769)).
 
-Following graphic \ref{fig:Svm_separating_hyperplanes} shows the operating principal of SVC: the hyperplane *H1* does not separate the classes. *H2* does, but only with a small margin. *H3* separates them with the maximal margin (source: [Support-vector machine](https://en.wikipedia.org/wiki/Support-vector_machine)).
+The figure \ref{fig:Svm_separating_hyperplanes} shows the operating principal of the SVC algorithm: the hyperplanes *H1* till *H4* (left graphic) do separate the classes. A good separation is achieved by the hyperplane that has the largest distance to the nearest training-data point of any class (so-called functional margin), since in general the larger the margin, the lower the generalization error of the classifier (source: [Support-vector machine](https://en.wikipedia.org/wiki/Support-vector_machine)).
+
+The right graphic shows the optimal hyperplane characterized by maximising the margin between the classes. The perpendicular distance of the closest data points to the hyperplane determines their position and orientation. These perpendicular distances are the **support vectors** of the hyperplane - this is how the algorithm got its name.
 <!-- #endregion -->
 
 <!-- #region caption="" label="fig:Svm_separating_hyperplanes" tags=[] widefigure=true -->
-![Support Vectors Classifiers (SVC) seperate the data in classes by finding the best hyperplane (source: [Svm_separating_hyperplanes_(SVG).svg](https://en.wikipedia.org/wiki/File:Svm_separating_hyperplanes_(SVG).svg), license: CC-SA 3.0)](images/SVM_separating_hyperplanes.png)
+![Support Vectors Classifiers (SVC) separate the data points in classes by finding the best hyperplane](images/SVC_operatingPrinciple.png)
 <!-- #endregion -->
 
 ## Split the dataset
@@ -587,7 +647,7 @@ y_pred = classifier.predict(X_test)
 #X_test
 ```
 
-# STEP 4: Evaluate the results - metrics
+# STEP 4: Evaluate the classification results - metrics
 
 And finally for checking the accuracy of the model, the **confusion matrix** is used for the **cross validation**.
 
@@ -604,17 +664,21 @@ print(cm)
 
 The function `sklearn.metrics.ConfusionMatrixDisplay()` plots a colored confusion matrix.
 
-```python
+```python caption="Checking the accuracy of the model by using the confusion matrix for cross-validation" tags=[] label="fig:confusion_matrix" widefigure=true
 sns.set_style("white")
 
 # print colored confusion matrix
 cm_colored = metrics.ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
 
 #cm_colored.figure_.suptitle("Confusion Matrix")
-cm_colored.figure_.set_figwidth(7)
-cm_colored.figure_.set_figheight(6)
+cm_colored.figure_.set_figwidth(8)
+cm_colored.figure_.set_figheight(7)
 
 cm_colored.confusion_matrix
+
+# save figure as PNG
+plt.tight_layout()
+plt.savefig('images/confusion_matrix.png', dpi=150, pad_inches=5)
 plt.show()
 ```
 
@@ -628,7 +692,7 @@ print("Accuracy: {:.2f} %".format(accuracies.mean()*100))
 print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
 ```
 
-# STEP 5: Vary parameters
+# STEP 5: Select SVC kernel and vary parameters
 
 This section was inspired by [In Depth: Parameter tuning for SVC](https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769)
 
@@ -694,11 +758,11 @@ def plotSVC(title, xlabel, ylabel):
     plt.show()
 ```
 
-## Vary `kernel` parameter
+## Vary `kernel` of SVC
 
 The `kernel` parameter selects the type of hyperplane that is used to separate the data. Using `linear` ([linear classifier](https://en.wikipedia.org/wiki/Linear_classifier)) kernel will use a linear hyperplane (a line in the case of 2D data). The `rbf` ([radial basis function kernel](https://en.wikipedia.org/wiki/Radial_basis_function_kernel)) and `poly` ([polynomial kernel](https://en.wikipedia.org/wiki/Polynomial_kernel)) kernel use non linear hyperplanes.
 
-```python tags=[]
+```python tags=[] caption="The group of images shows the effect on the classification by the choice of the different SVC kernels (`linear`, `rbf`, `poly`)" label="fig:vary_kernels" widefigure=true
 kernels = ['linear', 'rbf', 'poly']
 
 xlabel = 'Petal length'
@@ -715,7 +779,7 @@ The `gamma` parameter is used for non linear hyperplanes. The higher the `gamma`
 
 As we can see, increasing `gamma` leads to **overfitting** as the classifier tries to perfectly fit the training data.
 
-```python tags=[]
+```python tags=[] caption="The group of images shows the effect on the classification by the variation of the parameter `gamma`" label="fig:vary_gamma_parameter" widefigure=true
 gammas = [0.1, 1, 10, 100, 200]
 
 xlabel = 'Petal length'
@@ -732,7 +796,7 @@ The `C` parameter is the **penalty** of the error term. It controls the trade of
 
 But be careful: to high `C` values may lead to **overfitting** the training data.
 
-```python tags=[]
+```python tags=[] caption="The group of images shows the effect on the classification by the variation of the parameter `C`" label="fig:vary_c_parameter" widefigure=true
 cs = [0.1, 1, 10, 100, 1000, 10000]
 
 xlabel = 'Petal length'
@@ -749,7 +813,7 @@ The `degree` parameter is used when the `kernel` is set to `poly`. It’s basica
 
 Using `degree = 1` is the same as using a `linear` kernel. Also, increasing this parameters leads to **higher training times**.
 
-```python tags=[]
+```python tags=[] caption="The group of images shows the effect on the classification by the variation of the parameter `degree` of the `poly` kernel" label="fig:vary_degree_parameter" widefigure=true
 degrees = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 xlabel = 'Petal length'
