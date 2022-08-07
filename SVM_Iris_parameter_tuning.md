@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -176,7 +176,7 @@ Here are pictures of the three different Iris species (*Iris setosa*, *Iris virg
 <!-- #endregion -->
 
 <!-- #region caption="" label="fig:Iris_setosa_virginica_versicolor" tags=[] widefigure=true -->
-![left: *Iris setosa* (source: [Irissetosa1.jpg](https://commons.wikimedia.org/wiki/File:Irissetosa1.jpg), license: public domain); middle: *Iris versicolor* (source: [Iris_versicolor_3.jpg](https://en.wikipedia.org/wiki/File:Iris_versicolor_3.jpg), license: CC-SA 3.0); right: *Iris virginica* (source: [Iris_virginica.jpg](https://en.wikipedia.org/wiki/File:Iris_virginica.jpg), license: CC-SA 2.0)
+![Left: *Iris setosa* (source: [Irissetosa1.jpg](https://commons.wikimedia.org/wiki/File:Irissetosa1.jpg), license: public domain); middle: *Iris versicolor* (source: [Iris_versicolor_3.jpg](https://en.wikipedia.org/wiki/File:Iris_versicolor_3.jpg), license: CC-SA 3.0); right: *Iris virginica* (source: [Iris_virginica.jpg](https://en.wikipedia.org/wiki/File:Iris_virginica.jpg), license: CC-SA 2.0)
 ](images/Iris_images.png)
 <!-- #endregion -->
 
@@ -442,12 +442,12 @@ This section was inspired by: [Pandas Histogram – DataFrame.hist()](https://da
 
 These classes are represented in the histogram as rectangles of equal or variable width. The height of each rectangle then represents the (relative or absolute) **frequency density**.
 
-```python caption="Histogram for frequency distribution of the salary" tags=[] label="fig:histogram_salary" widefigure=true
+```python caption="Histogram for frequency distribution of the salary" tags=[] label="fig:histogram_salary" widefigure=false
 employees_df.hist(column=['Salary'])
 plt.show()
 ```
 
-```python caption="Histogram for the frequency distribution of the salary in comparison between men and women" tags=[] label="fig:histogram_male_female" widefigure=true
+```python caption="Histogram for the frequency distribution of the salary in comparison between men and women" tags=[] label="fig:histogram_male_female" widefigure=false
 employees_df.hist(column='Salary', by='Gender')
 plt.show()
 ```
@@ -570,7 +570,7 @@ With this so called **[pairs plot](https://vita.had.co.nz/papers/gpp.pdf)** it i
 
 This function will create a grid of Axes such that **each numeric variable** in `irisdata_df` will by shared in the y-axis across a single row and in the x-axis across a single column.
 
-```python caption="Plot all individual variables of the iris dataset in pairs-plot to see both the relationships between two variables and the distribution of the individual variables" tags=[] label="fig:pairs_plot" widefigure=true
+```python caption="Plot all individual variables of the iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables" tags=[] label="fig:pairs_plot" widefigure=true
 sns.set_style("white")
 g = sns.pairplot(irisdata_df, diag_kind="kde", hue='species', 
                  palette='Dark2', height=2.5)
@@ -599,7 +599,7 @@ The right graphic shows the optimal hyperplane characterized by maximising the m
 <!-- #endregion -->
 
 <!-- #region caption="" label="fig:Svm_separating_hyperplanes" tags=[] widefigure=true -->
-![Support Vectors Classifiers (SVC) separate the data points in classes by finding the best hyperplane](images/SVC_operatingPrinciple.png)
+![Support Vectors Classifiers (SVC) separate the data points in classes by finding the best hyperplane by maximizing the margin to its support vectors](images/SVC_operatingPrinciple.png)
 <!-- #endregion -->
 
 ## Split the dataset
@@ -664,7 +664,7 @@ print(cm)
 
 The function `sklearn.metrics.ConfusionMatrixDisplay()` plots a colored confusion matrix.
 
-```python caption="Checking the accuracy of the model by using the confusion matrix for cross-validation" tags=[] label="fig:confusion_matrix" widefigure=true
+```python caption="Checking the accuracy of the model by using the confusion matrix for cross-validation" tags=[] label="fig:confusion_matrix" widefigure=false
 sns.set_style("white")
 
 # print colored confusion matrix
@@ -762,7 +762,7 @@ def plotSVC(title, xlabel, ylabel):
 
 The `kernel` parameter selects the type of hyperplane that is used to separate the data. Using `linear` ([linear classifier](https://en.wikipedia.org/wiki/Linear_classifier)) kernel will use a linear hyperplane (a line in the case of 2D data). The `rbf` ([radial basis function kernel](https://en.wikipedia.org/wiki/Radial_basis_function_kernel)) and `poly` ([polynomial kernel](https://en.wikipedia.org/wiki/Polynomial_kernel)) kernel use non linear hyperplanes.
 
-```python tags=[] caption="The group of images shows the effect on the classification by the choice of the different SVC kernels (`linear`, `rbf`, `poly`)" label="fig:vary_kernels" widefigure=true
+```python tags=[] caption="This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly')" label="fig:vary_kernels" widefigure=false
 kernels = ['linear', 'rbf', 'poly']
 
 xlabel = 'Petal length'
@@ -779,7 +779,7 @@ The `gamma` parameter is used for non linear hyperplanes. The higher the `gamma`
 
 As we can see, increasing `gamma` leads to **overfitting** as the classifier tries to perfectly fit the training data.
 
-```python tags=[] caption="The group of images shows the effect on the classification by the variation of the parameter `gamma`" label="fig:vary_gamma_parameter" widefigure=true
+```python tags=[] caption="This group of images shows the effect on the classification by the variation of the parameter 'gamma'" label="fig:vary_gamma_parameter" widefigure=false
 gammas = [0.1, 1, 10, 100, 200]
 
 xlabel = 'Petal length'
@@ -796,7 +796,7 @@ The `C` parameter is the **penalty** of the error term. It controls the trade of
 
 But be careful: to high `C` values may lead to **overfitting** the training data.
 
-```python tags=[] caption="The group of images shows the effect on the classification by the variation of the parameter `C`" label="fig:vary_c_parameter" widefigure=true
+```python tags=[] caption="This group of images shows the effect on the classification by the variation of the parameter 'C'" label="fig:vary_c_parameter" widefigure=false
 cs = [0.1, 1, 10, 100, 1000, 10000]
 
 xlabel = 'Petal length'
@@ -813,7 +813,7 @@ The `degree` parameter is used when the `kernel` is set to `poly`. It’s basica
 
 Using `degree = 1` is the same as using a `linear` kernel. Also, increasing this parameters leads to **higher training times**.
 
-```python tags=[] caption="The group of images shows the effect on the classification by the variation of the parameter `degree` of the `poly` kernel" label="fig:vary_degree_parameter" widefigure=true
+```python tags=[] caption="This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel" label="fig:vary_degree_parameter" widefigure=false
 degrees = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 xlabel = 'Petal length'
