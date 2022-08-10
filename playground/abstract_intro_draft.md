@@ -106,3 +106,30 @@ The following **steps of the systematic ML process** are covered in the next mai
 - [STEP 8: Tune the ML model systematically](#STEP-8:-Tune-the-ML-model-systematically)
 
 
+## STEP 0: Select hardware and software suitable for ML
+
+
+## STEP 1: Acquire the ML dataset
+
+
+## STEP 2: Explore the ML dataset
+
+
+## STEP 3: Create the ML model
+
+
+## STEP 4: Prepare the dataset for training
+
+
+## STEP 5: Carry out training, prediction and testing
+
+
+## STEP 6: Evaluate model's performance
+
+
+## STEP 7: Vary parameters of the ML model manually
+
+
+## STEP 8: Tune the ML model systematically
+
+
