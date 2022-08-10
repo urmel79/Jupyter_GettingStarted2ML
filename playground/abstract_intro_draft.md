@@ -1,6 +1,16 @@
-# Getting started with Machine Learning (ML) and Support Vector Classifiers (SVC) - A systematic step-by-step approach
+---
+title: |
+    Getting started with Machine Learning (ML) and Support Vector Classifiers (SVC) - A systematic step-by-step approach
+subtitle: |
+author: Dipl.-Ing. Björn Kasper ([kasper.bjoern@bgetem.de](mailto:kasper.bjoern@bgetem.de))
+date: 10. August 2022
+lang: en-US
+lang_babel: english
+link-citations: true
+abstract:
+...
 
-## Abstract (de/en)
+# Abstract (de/en)
 Wer sich mit dem Hypethema unserer Zeit ``Künstliche Intelligenz (KI)'' bzw. ``Maschinelles Lernen (ML)'' ernsthaft auseinandersetzen möchte, kommt nicht umhin, sich mit den grundlegenden ML-Algorithmen, entsprechenden Software-Werkzeugen, -Bibliotheken und Programmiersystemen zu beschäftigen.
 
 Anyone who wants to seriously deal with the hypothetical topic of our time ``Artificial Intelligence (AI)'' or ``Machine Learning (ML)'' cannot avoid dealing with the basic ML algorithms, corresponding software tools, libraries and programming systems.
@@ -17,7 +27,7 @@ Darüber hinaus werden die Auswahl des ``richtigen'' SVC-Kernels sowie dessen Pa
 
 Furthermore, the selection of the ``correct'' SVC kernel and its parameters are described and their effects on the classification result are shown.
 
-## Introduction (de/en)
+# Introduction (de/en)
 
 Von den **Arbeitsmitteln** in der **digitalisierten Arbeitswelt** wird immer stärker gefordert, dass sie sich selbstständig und aufgabenbezogen an sich ändernde Arbeitssituationen anpassen können. Diese **situative Adaptivität** kann je nach Stärke des Flexibilisierungsgrades oft nur durch Anwendung von **Künstliche Intelligenz (KI)** bzw. **Maschinelles Lernen (ML)** realisiert werden.
 
@@ -87,7 +97,7 @@ Im abschließenden **Schritt 8** werden zwei Ansätze zur systematischen Hyper-P
 
 In the final **Step 8**, two approaches to systematic hyper-parameter search are presented: **Grid Search** and **Randomized Search**. While the former exhaustively considers all parameter combinations for given values, the latter selects a number of candidates from a parameter space with a particular random distribution.
 
-## Steps of the systematic ML process
+# Steps of the systematic ML process
 
 +++
 @TODO: Adapt section headers and internal links.
@@ -106,30 +116,30 @@ The following **steps of the systematic ML process** are covered in the next mai
 - [STEP 8: Tune the ML model systematically](#STEP-8:-Tune-the-ML-model-systematically)
 
 
-## STEP 0: Select hardware and software suitable for ML
+# STEP 0: Select hardware and software suitable for ML
 
 
-## STEP 1: Acquire the ML dataset
+# STEP 1: Acquire the ML dataset
 
 
-## STEP 2: Explore the ML dataset
+# STEP 2: Explore the ML dataset
 
 
-## STEP 3: Create the ML model
+# STEP 3: Create the ML model
 
 
-## STEP 4: Prepare the dataset for training
+# STEP 4: Prepare the dataset for training
 
 
-## STEP 5: Carry out training, prediction and testing
+# STEP 5: Carry out training, prediction and testing
 
 
-## STEP 6: Evaluate model's performance
+# STEP 6: Evaluate model's performance
 
 
-## STEP 7: Vary parameters of the ML model manually
+# STEP 7: Vary parameters of the ML model manually
 
 
-## STEP 8: Tune the ML model systematically
+# STEP 8: Tune the ML model systematically
 
 
