@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -98,7 +98,7 @@ The following **steps of the systematic ML process** are covered in the next mai
 - [STEP 0: Select hardware and software suitable for ML](#STEP-0:-Select-hardware-and-software-suitable-for-ML)
 - [STEP 1: Acquire the ML dataset](#STEP-1:-Acquire-the-ML-dataset)
 - [STEP 2: Explore the ML dataset](#STEP-2:-Explore-the-ML-dataset)
-- [STEP 3: Create the ML model](#STEP-3:-Create-the-ML-model)
+- [STEP 3: Choose and create the ML model](#STEP-3:-Choose-and-create-the-ML-model)
 - [STEP 4: Prepare the dataset for training](#STEP-4:-Prepare-the-dataset-for-training)
 - [STEP 5: Carry out training, prediction and testing](#STEP-5:-Carry-out-training,-prediction-and-testing)
 - [STEP 6: Evaluate model's performance](#STEP-6:-Evaluate-model's-performance)
@@ -642,56 +642,146 @@ g.fig.suptitle('Pairs plot of the Iris dataset', y=1.05)
 plt.show()
 ```
 
-# STEP 3: Create the ML model
+# STEP 3: Choose and create the ML model
 
-After exploring the dataset, in this step one has to decide on a specific ML algorithm based on certain selection criteria. Among other ML algorithms suitable for the Iris dataset (such as the decision-tree-based **random-forests classifier**), the reasoned choice here in the tutorial falls on the **support vector classifier (SVC)**. A dedicated SVC model is now being implemented.
+After exploring the dataset, in this step one has to decide on a specific ML algorithm based on certain selection criteria.
 
-## Relationship between AI, ML and others
+However, since the AI or ML world is so huge and impossible for a ML novice to overlook, a brief description of the **relationship between AI and ML** is given in the following sections. Furthermore, a **taxonomy** of the different **learning types** is presented by also providing some example algorithms.
 
-The following Venn diagram shows the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies. The quantities that do not belong to the main category represent techniques that can function as stand-alone techniques and do not necessarily fall into the artificial intelligence group in all cases (for further details see [Emerging technologies based on artificial intelligence to assess quality and consumer preference of beverages](https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages), Figure 5).
+## Short overview of the AI world and its ML algorithms
+
+### Relationship between AI, ML and others
+
+In the **science world**, the term **artificial intelligence (AI)** refers to machines and systems that are capable of performing tasks that are characteristic of human intelligence.
+
+In the **business world**, on the other hand, AI typically refers to mechanisms that perceive environmental factors and take autonomous actions. This is seen as an opportunity to achieve **predefined goals** with maximum success - without human intervention. Ultimately, this view is a mapping of **input information** to controlled **output actions** of a system. This expectation of AI-driven systems is thus hardly higher than what can be expected from today's modern automation systems.
+
+**Machine Learning (ML)**, on the other hand, addresses the mathematical models and algorithms that enable a computer system to recognize (new) correlations in huge amounts of sample data from various sources by inferring them independently. For scientists, machine learning is a subset of AI.
+
+The umbrella term AI covers a very large research area. It includes a number of techniques that enable computers to learn independently and solve complex problems:
+
+- Computer-Vision (CV)
+- Supervised and Unsupervised Learning
+- Reinforcement Learning and Genetic Algorithms
+- Computational Linguistics
+- Robotics
+- etc.
+
+The following Venn diagram shows the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies. The quantities that do not belong to the main category represent techniques that can function as stand-alone techniques and do not necessarily fall into the artificial intelligence group in all cases (for further details see [Emerging technologies based on artificial intelligence to assess quality and consumer preference of beverages](https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages)).
 
 <!-- #region caption="" label="fig:AI_ML_venn_diagram" tags=[] widefigure=false -->
-![Venn diagram showing the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies (source: Kasper, adapted from [Emerging technologies based on artificial intelligence to assess quality and consumer preference of beverages](https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages), license: CC-BY-SA 4.0)](images/AI_ML_venn_diagram.png)
+![Venn diagram showing the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies (source: Kasper, adapted from [Emerging technologies based on artificial intelligence to assess quality and consumer preference of beverages](https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages), license: CC-BY-SA 4.0)](images/AI_ML_venn_diagram_wide.png)
 <!-- #endregion -->
 
 <!-- #region -->
-## Taxonomy of machine learning
+### Taxonomy of machine learning
 
-Sources:
+The field of machine learning can be divided into the following **types of learning**:
+
+- Supervised learning
+- Unsupervised learning
+- Semi-supervised learning
+- Reinforcement learning
+
+Here are some further sources:
 
 - [Taxonomy of machine learning algorithms](https://subscription.packtpub.com/book/big-data-/9781783558742/1/ch01lvl1sec12/taxonomy-of-machine-learning-algorithms)
-- [Comprehensive Survey of Machine Learning Approaches in Cognitive Radio-Based Vehicular Ad Hoc Networks](https://www.researchgate.net/publication/340878018_Comprehensive_Survey_of_Machine_Learning_Approaches_in_Cognitive_Radio-Based_Vehicular_Ad_Hoc_Networks), Figure 3
-- [A Taxonomy of Machine Learning Techniques](https://www.researchgate.net/publication/358089496_A_Taxonomy_of_Machine_Learning_Techniques), Figure 2
+- [Comprehensive Survey of Machine Learning Approaches in Cognitive Radio-Based Vehicular Ad Hoc Networks](https://www.researchgate.net/publication/340878018_Comprehensive_Survey_of_Machine_Learning_Approaches_in_Cognitive_Radio-Based_Vehicular_Ad_Hoc_Networks)
+- [A Taxonomy of Machine Learning Techniques](https://www.researchgate.net/publication/358089496_A_Taxonomy_of_Machine_Learning_Techniques)
 - [ML Algorithms: One SD](https://medium.com/@Shaier/ml-algorithms-one-sd-%CF%83-74bcb28fafb6)
 - [Machine Learning Map](https://github.com/trekhleb/homemade-machine-learning#machine-learning-map)
 
 
-### Supervised learning
+#### Supervised learning
 
+The goal of **supervised learning (SL)** is to learn a **function** that maps a **input to an output**, based on example input-output pairs. This involves inferring a relationship describable by a mathematical function from **labeled training data** consisting of a set of training examples (see [Supervised Learning](https://en.wikipedia.org/wiki/Supervised_learning)).
 
-### Unsupervised learning
+A few well-known algorithms from the field of **supervised learning** are mentioned here:
 
+- Naive Bayes
+- Linear Regression
+- Logistic Regression
+- Artificial Neural Networks (ANN)
+- Support Vector Classifier (SVC)
+- Decision Trees
+- Random Forests
 
-### Semi-supervised learning
+#### Unsupervised learning
 
+The algorithms of this category look for internal structures in the data of a dataset, such as **grouping** or **clustering of data points**. These algorithms can thus learn relationships from test data that have not been labeled, classified, or categorized. Rather than responding to feedback (as in supervised learning), unsupervised learning algorithms detect **commonalities in the data** and respond based on the presence or absence of such commonalities in each new dataset (see [Unsupervised learning](https://en.wikipedia.org/wiki/Machine_learning#Unsupervised_learning)).
 
-### Reinforcement learning
+Here are some algorithms from the field of **unsupervised learning**:
 
+- K-means Clustering
+- Spectral Clustering
+- Hierarchical Clustering
+- Principal Component Analysis (PCA)
 
-## Decision graph for selecting an ML algorithm
+#### Semi-supervised learning
+
+This type of learning falls between **unsupervised** learning (without any labeled training data) and **supervised** learning (with completely labeled training data). Some of the training examples are missing training labels, yet many machine-learning researchers have found that unlabeled data, when used in conjunction with a small amount of labeled data, can produce a considerable improvement in learning accuracy (source: [Semi-supervised learning](https://en.wikipedia.org/wiki/Machine_learning#Semi-supervised_learning)).
+
+#### Reinforcement learning
+
+This is an area of machine learning concerned with how **intelligent agents** ought to **take actions in an environment** in order to maximize the notion of cumulative **reward**. Due to its generality, the field is studied in many other disciplines, such as **game theory** and **control theory**.
+
+Reinforcement learning differs from supervised learning in **not needing labeled input/output pairs** be presented, and in not needing sub-optimal actions to be explicitly corrected. Instead the focus is on **finding a balance** between **exploration** (of uncharted territory) and **exploitation** (of current knowledge) (source: [Reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning)).
+
+Here are some algorithms from the field of **reinforcement learning**:
+
+- Iterative Policy
+- Q-Learning
+- SARSA
+- Learning Classifiers
+- Stochastic Gradient
+- Genetic Algorithm
+<!-- #endregion -->
+
+## Decision graph for selecting an suitable algorithm
 
 Now that the iris dataset has been analyzed in terms of its data structure and internal correlations, the most difficult task on the way to solving a problem using machine learning arises: finding the "right" ML algorithm (also called **estimator**).
 
-The diverse estimators available are more or less well qualified for the respective problems with their partly very different data types.
+The diverse estimators available are more or less well qualified for the respective problems with their partly very different data types. The good news is that the ML software package **Scikit-Learn** provides the following **flowchart** as a rough **guide** in choosing the right estimator for the particular task (see: [Choosing the right estimator](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)).
 
-Scikit-Learn provides the following **flowchart** as a rough **guide** in choosing the right estimator for the particular task (see: [Choosing the right estimator](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)).
-
-However, it must also be emphasized that a considerable level of experience through systematic trial and error is crucial to be successful in finding an "optimal" estimator.
-<!-- #endregion -->
+However, it must also be emphasized that a considerable **level of experience** through systematic trial and error is crucial to be successful in finding an "optimal" estimator.
 
 <!-- #region caption="" label="fig:scikit-learn_ml_algorithm_decision" tags=[] widefigure=true -->
 ![Decision graph for choosing an appropriate ML algorithm (source: [Choosing the right estimator](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html), license: unknown)](images/scikit-learn_ml_algorithm_decision.png)
 <!-- #endregion -->
+
+## Reasons for choosing Support Vector Classifier (SVC)
+
+Among other ML algorithms suitable for the Iris dataset (such as the decision-tree-based **random-forests classifier**), the reasoned choice here in this tutorial falls on the **support vector classifier (SVC)**.
+
+The following **reasons** led to the decision for the **Support Vector Classifier (SVC)**:
+
+- the aim is to predict the species using unlabeled test data, so the task is to **classify**
+- the iris dataset is **fully labeled** (by designating the iris species)
+- the dataset contains significantly **less than 100k samples**
+
+But the most important reason is that it is **easy to understand** how it works - so it is exactly suitable for a beginner tutorial ;)
+
+
+## Operating principal of SVC
+
+> Support Vector Classifiers (SVC) try to **find the best hyperplane to separate** the different classes by maximizing the distance between sample points and the hyperplane (source: [In Depth: Parameter tuning for SVC](https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769)).
+
+The figure \ref{fig:Svm_separating_hyperplanes} shows the operating principal of the SVC algorithm: the hyperplanes *H1* till *H4* (left graphic) do separate the classes. A good separation is achieved by the hyperplane that has the largest distance to the nearest training-data point of any class (so-called functional margin), since in general the larger the margin, the lower the generalization error of the classifier (source: [Support-vector machine](https://en.wikipedia.org/wiki/Support-vector_machine)).
+
+The right graphic shows the optimal hyperplane characterized by maximizing the margin between the classes. The perpendicular distance of the closest data points to the hyperplane determines their position and orientation. These perpendicular distances are the **support vectors** of the hyperplane - this is how the algorithm got its name.
+
+<!-- #region caption="" label="fig:Svm_separating_hyperplanes" tags=[] widefigure=true -->
+![Support Vector Classifiers (SVC) separate the data points in classes by finding the best hyperplane by maximizing the margin to its support vectors (source: Kasper, license: CC-BY-SA 4.0)](images/SVC_operatingPrinciple.png)
+<!-- #endregion -->
+
+## Create the SVC model
+
+In this step we create the SVC model choosing a **linear kernel** with default parameters.
+
+```python
+from sklearn.svm import SVC
+classifier = SVC(kernel = 'linear', random_state = 0)
+```
 
 # STEP 4: Prepare the dataset for training
 
@@ -701,21 +791,8 @@ Through the intensive exploration of the data in ([STEP 2: Explore the ML datase
 
 Furthermore, we know that the **classes** are very **evenly distributed** and thus bias tendencies should be avoided.
 
-<!-- #region tags=[] toc-hr-collapsed=true -->
+
 # STEP 5: Carry out training, prediction and testing
-
-## Operating principal of SVC
-
-> Support Vectors Classifiers (SVC) try to **find the best hyperplane to separate** the different classes by maximizing the distance between sample points and the hyperplane (source: [In Depth: Parameter tuning for SVC](https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769)).
-
-The figure \ref{fig:Svm_separating_hyperplanes} shows the operating principal of the SVC algorithm: the hyperplanes *H1* till *H4* (left graphic) do separate the classes. A good separation is achieved by the hyperplane that has the largest distance to the nearest training-data point of any class (so-called functional margin), since in general the larger the margin, the lower the generalization error of the classifier (source: [Support-vector machine](https://en.wikipedia.org/wiki/Support-vector_machine)).
-
-The right graphic shows the optimal hyperplane characterized by maximizing the margin between the classes. The perpendicular distance of the closest data points to the hyperplane determines their position and orientation. These perpendicular distances are the **support vectors** of the hyperplane - this is how the algorithm got its name.
-<!-- #endregion -->
-
-<!-- #region caption="" label="fig:Svm_separating_hyperplanes" tags=[] widefigure=true -->
-![Support Vectors Classifiers (SVC) separate the data points in classes by finding the best hyperplane by maximizing the margin to its support vectors](images/SVC_operatingPrinciple.png)
-<!-- #endregion -->
 
 ## Split the dataset
 
@@ -743,19 +820,18 @@ X_train, X_test, y_train, y_test = train_test_split(X[['sepal_length',
                                                     y, test_size = 0.20)
 ```
 
-## Create the SVM model
+## Train the SVC
 
-In this step we create the SVC model and fit it to our training data.
+In this step the SVC is trained with the training data. Training means to **fit** the SVC to the **training data**.
 
 ```python
-from sklearn.svm import SVC
-classifier = SVC(kernel = 'linear', random_state = 0)
-
 # fit the model for the data
 classifier.fit(X_train, y_train)
 ```
 
 ## Make predictions
+
+In this step the aim is to **predict the species** using unlabeled test data.
 
 ```python
 y_pred = classifier.predict(X_test)
