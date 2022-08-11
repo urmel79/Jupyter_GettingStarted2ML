@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -673,7 +673,7 @@ The following Venn diagram shows the relationship between Artificial Intelligenc
 ![Venn diagram showing the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies (source: Kasper, adapted from [Emerging technologies based on artificial intelligence to assess quality and consumer preference of beverages](https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages), license: CC-BY-SA 4.0)](images/AI_ML_venn_diagram_wide.png)
 <!-- #endregion -->
 
-<!-- #region -->
+<!-- #region tags=[] -->
 ### Taxonomy of machine learning
 
 The field of machine learning can be divided into the following **types of learning**:
@@ -690,7 +690,7 @@ Here are some further sources:
 - [A Taxonomy of Machine Learning Techniques](https://www.researchgate.net/publication/358089496_A_Taxonomy_of_Machine_Learning_Techniques)
 - [ML Algorithms: One SD](https://medium.com/@Shaier/ml-algorithms-one-sd-%CF%83-74bcb28fafb6)
 - [Machine Learning Map](https://github.com/trekhleb/homemade-machine-learning#machine-learning-map)
-
+<!-- #endregion -->
 
 #### Supervised learning
 
@@ -706,6 +706,7 @@ A few well-known algorithms from the field of **supervised learning** are mentio
 - Decision Trees
 - Random Forests
 
+
 #### Unsupervised learning
 
 The algorithms of this category look for internal structures in the data of a dataset, such as **grouping** or **clustering of data points**. These algorithms can thus learn relationships from test data that have not been labeled, classified, or categorized. Rather than responding to feedback (as in supervised learning), unsupervised learning algorithms detect **commonalities in the data** and respond based on the presence or absence of such commonalities in each new dataset (see [Unsupervised learning](https://en.wikipedia.org/wiki/Machine_learning#Unsupervised_learning)).
@@ -717,9 +718,11 @@ Here are some algorithms from the field of **unsupervised learning**:
 - Hierarchical Clustering
 - Principal Component Analysis (PCA)
 
+
 #### Semi-supervised learning
 
 This type of learning falls between **unsupervised** learning (without any labeled training data) and **supervised** learning (with completely labeled training data). Some of the training examples are missing training labels, yet many machine-learning researchers have found that unlabeled data, when used in conjunction with a small amount of labeled data, can produce a considerable improvement in learning accuracy (source: [Semi-supervised learning](https://en.wikipedia.org/wiki/Machine_learning#Semi-supervised_learning)).
+
 
 #### Reinforcement learning
 
@@ -735,7 +738,7 @@ Here are some algorithms from the field of **reinforcement learning**:
 - Learning Classifiers
 - Stochastic Gradient
 - Genetic Algorithm
-<!-- #endregion -->
+
 
 ## Decision graph for selecting an suitable algorithm
 
