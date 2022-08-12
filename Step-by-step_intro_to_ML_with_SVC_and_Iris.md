@@ -121,7 +121,7 @@ import seaborn as sns
 %matplotlib inline
 ```
 
-<!-- #region -->
+<!-- #region toc-hr-collapsed=true tags=[] -->
 # STEP 0: Select hardware and software suitable for ML
 
 In this step, specific guidance is provided for selecting hardware and software suitable for machine learning.
@@ -339,13 +339,20 @@ So let's look for something else for exercise: [employes.csv](https://media.geek
 # import data to dataframe from csv file
 employees_df = pd.read_csv("./datasets/employees_edit.csv")
 
-employees_df
+# highlight cells with nan values
+employees_df_hl = employees_df.style.highlight_null('yellow')
+
+employees_df_hl
 ```
 
 Show only the gaps from this gappy dataset again:
 
 ```python tags=[]
 employees_df_gaps = employees_df[employees_df.isnull().any(axis=1)]
+
+# highlight cells with nan values
+employees_df_gaps = employees_df_gaps.style.highlight_null('yellow')
+
 employees_df_gaps
 ```
 
@@ -353,12 +360,16 @@ employees_df_gaps
 
 Now we are going to fill all the null (NaN) values in Gender column with *"No Gender"*.
 
-**Attention:** We are doing that directly in this dataframe with `inplace = True` - we don't make a deep copy!
+**Warning:** We are doing that directly in this dataframe with `inplace = True` - we don't make a deep copy!
 
 ```python tags=[]
 # filling a null values using fillna()
 employees_df["Gender"].fillna("No Gender", inplace = True)
-employees_df
+
+# highlight cells by condition
+employees_df_hl = employees_df.style.apply(lambda x: ["background: yellow" if v == 'No Gender' else "" for v in x], axis = 1)
+
+employees_df_hl
 ```
 
 #### Dropping missing values using `dropna()`
@@ -439,7 +450,7 @@ This function can be used in two ways:
 - remove duplicate rows across **all columns** with `df.drop_duplicates()`
 - find duplicate rows across **specific columns** `df.drop_duplicates(subset=['col1', 'col2'])`
 
-**Attention:** We are doing that directly in this dataframe with `inplace = True` - we don't make a deep copy!
+**Warning:** We are doing that directly in this dataframe with `inplace = True` - we don't make a deep copy!
 
 Remove duplicate rows across **all columns**:
 <!-- #endregion -->
