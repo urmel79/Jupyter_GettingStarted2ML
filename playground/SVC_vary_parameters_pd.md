@@ -32,6 +32,18 @@ irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":0,"Iris-versic
 irisdata_df_enc
 ```
 
+```python
+# import data to dataframe from csv file
+employees_df = pd.read_csv("../datasets/employees_edit.csv")
+
+# https://stackoverflow.com/questions/20685635/pandas-dataframe-as-latex-or-html-table-nbconvert/61496015#61496015
+from IPython.display import Markdown, display
+
+employees_df_head = employees_df.head(20)
+
+display(Markdown(employees_df_head.to_markdown()))
+```
+
 ```python tags=[]
 # copy only 2 feature columns
 # and convert pandas dataframe to numpy array
