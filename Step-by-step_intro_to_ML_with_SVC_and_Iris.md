@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -1207,6 +1207,9 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.model_selection import RepeatedKFold
 from scipy.stats import loguniform
+
+# import class MeasExecTimeOfProgram from python file MeasExecTimeOfProgramclass.py
+from MeasExecTimeOfProgram_class import MeasExecTimeOfProgram
 ```
 
 Set path and columns of the abalone dataset for import:
@@ -1253,13 +1256,31 @@ Train the model with **no tuning of hyperparameters** to find the baseline for l
 
 ```python
 model = SVR()
+
+# initiate measuring execution time
+execTime = MeasExecTimeOfProgram()
+execTime.start()
+
 model.fit(trainX, trainY)
+
+# print time delta
+print('Execution time: {:.2f} s'.format(execTime.stop()/1000))
 ```
 
 Evaluate our model using R^2-score (1.0 is the best value):
 
 ```python
 print("R2: {:.2f}".format(model.score(testX, testY)))
+```
+
+```python
+from sklearn.metrics import mean_squared_error
+
+y_pred = model.predict(testX)
+
+mean_squared_error = mean_squared_error(testY, y_pred)
+
+print("Mean squared error: {:.2f} %".format(mean_squared_error))
 ```
 
 ## Grid Search
@@ -1282,7 +1303,14 @@ cvFold = RepeatedKFold(n_splits=10, n_repeats=3, random_state=1)
 gridSearch = GridSearchCV(estimator=model, param_grid=grid, n_jobs=-1,
                           cv=cvFold, scoring="neg_mean_squared_error")
 
+# initiate measuring execution time
+execTime = MeasExecTimeOfProgram()
+execTime.start()
+
 searchResults = gridSearch.fit(trainX, trainY)
+
+# print time delta
+print('Execution time: {:.2f} s'.format(execTime.stop()/1000))
 ```
 
 Extract the best model and evaluate it:
@@ -1291,6 +1319,20 @@ Extract the best model and evaluate it:
 bestModel = searchResults.best_estimator_
 
 print("R2: {:.2f}".format(bestModel.score(testX, testY)))
+```
+
+```python tags=[]
+from sklearn.metrics import mean_squared_error
+
+y_pred = bestModel.predict(testX)
+
+mean_squared_error = mean_squared_error(testY, y_pred)
+
+print("Mean squared error: {:.2f} %".format(mean_squared_error))
+```
+
+```python
+bestModel.get_params()
 ```
 
 ## Randomized Search
@@ -1315,7 +1357,14 @@ randomSearch = RandomizedSearchCV(estimator=model, n_jobs=-1,
                                   cv=cvFold, param_distributions=grid,
                                   scoring="neg_mean_squared_error")
 
+# initiate measuring execution time
+execTime = MeasExecTimeOfProgram()
+execTime.start()
+
 searchResults = randomSearch.fit(trainX, trainY)
+
+# print time delta
+print('Execution time: {:.2f} s'.format(execTime.stop()/1000))
 ```
 
 Extract the best model and evaluate it:
@@ -1324,6 +1373,20 @@ Extract the best model and evaluate it:
 bestModel = searchResults.best_estimator_
 
 print("R2: {:.2f}".format(bestModel.score(testX, testY)))
+```
+
+```python tags=[]
+from sklearn.metrics import mean_squared_error
+
+y_pred = bestModel.predict(testX)
+
+mean_squared_error = mean_squared_error(testY, y_pred)
+
+print("Mean squared error: {:.2f} %".format(mean_squared_error))
+```
+
+```python
+bestModel.get_params()
 ```
 
 # Summary and conclusions
