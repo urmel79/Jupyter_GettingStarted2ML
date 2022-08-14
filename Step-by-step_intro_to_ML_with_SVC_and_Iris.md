@@ -822,6 +822,9 @@ Typically, the **test dataset** should contain about **20%** of the entire datas
 ```python
 from sklearn.model_selection import train_test_split
 
+# Load dataset again
+irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
+
 X = irisdata_df.drop('species', axis=1)
 y = irisdata_df['species']
 
@@ -837,6 +840,18 @@ Otherwise, the result of the prediction would be significantly worse. Maybe this
 X_train, X_test, y_train, y_test = train_test_split(X[['sepal_length', 
                                                        'sepal_width']], 
                                                     y, test_size = 0.20)
+```
+
+## Standardize feature values
+
+Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**:
+
+```python tags=[]
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+#X_train
 ```
 
 ## Train the SVC
@@ -1196,7 +1211,7 @@ Import the necessary packages:
 # general packages
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.svm import SVR
+from sklearn.svm import SVC
 import pandas as pd
 
 # additional packages for grid search
@@ -1206,108 +1221,134 @@ from sklearn.model_selection import GridSearchCV
 # additional packages for randomized search
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.model_selection import RepeatedKFold
-from scipy.stats import loguniform
 
 # import class MeasExecTimeOfProgram from python file MeasExecTimeOfProgramclass.py
 from MeasExecTimeOfProgram_class import MeasExecTimeOfProgram
 ```
 
-Set path and columns of the abalone dataset for import:
+Set path and columns of the Iris dataset for import:
 
 ```python
 # specify the path of the dataset
-CSV_PATH = "./datasets/abalone_dataset.csv"
-
-# specify the column names of our dataframe
-COLS = ["Sex", "Length", "Diameter", "Height", "Whole weight",
-        "Shucked weight", "Viscera weight", "Shell weight", "Age"]
+CSV_PATH = "./datasets/IRIS_flower_dataset_kaggle.csv"
 ```
 
-Load dataset and split it into subsets for training and testing in the ratio 85% to 15%:
+Load dataset and split it into subsets for training and testing in the ratio 80% to 20%:
 
 ```python
 # load the dataset, separate the features and labels, and perform a
-# training and testing split using 85% of the data for training and
-# 15% for evaluation
-dataset = pd.read_csv(CSV_PATH, names=COLS, header=0)
+# training and testing split using 80% of the data for training and
+# 20% for evaluation
+irisdata_df = pd.read_csv(CSV_PATH)
 
-# omit also 1. column due to non-float categorical
-dataX = dataset[dataset.columns[1:-1]]
-# take only last comlumn for ages
-dataY = dataset[dataset.columns[-1]]
-# split into train and test data subsets (ratio: 85% to 15%)
-(trainX, testX, trainY, testY) = train_test_split(dataX, dataY, random_state=3, test_size=0.15)
+X = irisdata_df.drop('species', axis=1)
+y = irisdata_df['species']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)
 ```
 
 Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**:
 
-```python
+```python tags=[]
 scaler = StandardScaler()
-trainX = scaler.fit_transform(trainX)
-testX = scaler.transform(testX)
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+#X_train
 ```
 
 ## Finding a baseline
 
-The aim of this sub-step is to establish a baseline on the [Abalone Dataset](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset?resource=download) by training a **Support Vector Regression (SVR)** with no hyperparameter tuning.
-
+The aim of this sub-step is to establish a baseline on the Iris dataset by training a **Support Vector Classifier (SVC)** with no hyperparameter tuning.
 
 Train the model with **no tuning of hyperparameters** to find the baseline for later improvements:
 
 ```python
-model = SVR()
+classifier = SVC(kernel = 'linear', random_state = 0)
 
 # initiate measuring execution time
 execTime = MeasExecTimeOfProgram()
 execTime.start()
 
-model.fit(trainX, trainY)
+classifier.fit(X_train, y_train)
 
 # print time delta
 print('Execution time: {:.2f} s'.format(execTime.stop()/1000))
 ```
 
-Evaluate our model using R^2-score (1.0 is the best value):
+Evaluate our model using accuracy score:
 
 ```python
-print("R2: {:.2f}".format(model.score(testX, testY)))
+from sklearn.metrics import accuracy_score
+
+y_pred = classifier.predict(X_test)
+
+acc_score = accuracy_score(y_test, y_pred)
+
+print("Accuracy score: {:.2f} %".format(acc_score.mean()*100))
 ```
 
 ```python
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import classification_report
 
-y_pred = model.predict(testX)
+print(classification_report(y_test, y_pred))
+```
 
-mean_squared_error = mean_squared_error(testY, y_pred)
+```python
+sns.set_style("white")
 
-print("Mean squared error: {:.2f} %".format(mean_squared_error))
+# print colored confusion matrix
+cm_colored = metrics.ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
+
+cm_colored.figure_.suptitle("Colored Confusion Matrix")
+cm_colored.figure_.set_figwidth(8)
+cm_colored.figure_.set_figheight(7)
+
+cm_colored.confusion_matrix
+
+plt.tight_layout()
+plt.show()
+```
+
+```python
+from sklearn.metrics import classification_report
+
+print(classification_report(y_test, y_pred))
+```
+
+```python
+classifier.get_params()
 ```
 
 ## Grid Search
 
 
-Initialize the SVR model and define the **space of the hyperparameters** to perform the **grid-search** over:
+Initialize the SVC model and define the **space of the hyperparameters** to perform the **grid-search** over:
 
 ```python
-model = SVR()
-kernel = ["linear", "rbf", "sigmoid", "poly"]
-tolerance = [1e-3, 1e-4, 1e-5, 1e-6]
-C = [1, 1.5, 2, 2.5, 3]
-grid = dict(kernel=kernel, tol=tolerance, C=C)
+classifier = SVC()
+
+kernels = ["linear", "rbf", "sigmoid", "poly"]
+gammas = [0.1, 1, 10, 100, 200]
+cs = [0.1, 1, 5, 10, 100, 1000, 10000]
+degrees = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+grid = dict(kernel=kernels, gamma=gammas, C=cs, degree=degrees)
 ```
 
 Initialize a **cross-validation fold** and **perform a grid-search** to tune the hyperparameters:
 
-```python
+```python tags=[] jupyter={"outputs_hidden": true}
 cvFold = RepeatedKFold(n_splits=10, n_repeats=3, random_state=1)
-gridSearch = GridSearchCV(estimator=model, param_grid=grid, n_jobs=-1,
-                          cv=cvFold, scoring="neg_mean_squared_error")
+
+gridSearch = GridSearchCV(estimator=classifier, param_grid=grid, n_jobs=-1,
+                          cv=cvFold, scoring="accuracy")
 
 # initiate measuring execution time
 execTime = MeasExecTimeOfProgram()
 execTime.start()
 
-searchResults = gridSearch.fit(trainX, trainY)
+searchResults = gridSearch.fit(X_train, y_train)
 
 # print time delta
 print('Execution time: {:.2f} s'.format(execTime.stop()/1000))
@@ -1315,20 +1356,22 @@ print('Execution time: {:.2f} s'.format(execTime.stop()/1000))
 
 Extract the best model and evaluate it:
 
-```python
+```python tags=[]
+from sklearn.metrics import accuracy_score
+
 bestModel = searchResults.best_estimator_
 
-print("R2: {:.2f}".format(bestModel.score(testX, testY)))
+y_pred = bestModel.predict(X_test)
+
+acc_score = accuracy_score(y_test, y_pred)
+
+print("Accuracy score: {:.2f} %".format(acc_score.mean()*100))
 ```
 
-```python tags=[]
-from sklearn.metrics import mean_squared_error
+```python
+from sklearn.metrics import classification_report
 
-y_pred = bestModel.predict(testX)
-
-mean_squared_error = mean_squared_error(testY, y_pred)
-
-print("Mean squared error: {:.2f} %".format(mean_squared_error))
+print(classification_report(y_test, y_pred))
 ```
 
 ```python
@@ -1338,30 +1381,33 @@ bestModel.get_params()
 ## Randomized Search
 
 
-Initialize the SVR model and define the **space of the hyperparameters** to perform the **randomized-search** over:
+Initialize the SVC model and define the **space of the hyperparameters** to perform the **randomized-search** over:
 
 ```python
-model = SVR()
-kernel = ["linear", "rbf", "sigmoid", "poly"]
-tolerance = loguniform(1e-6, 1e-3)
-C = [1, 1.5, 2, 2.5, 3]
-grid = dict(kernel=kernel, tol=tolerance, C=C)
+classifier = SVC()
+
+kernels = ["linear", "rbf", "sigmoid", "poly"]
+gammas = [0.1, 1, 10, 100, 200]
+cs = [0.1, 1, 5, 10, 100, 1000, 10000]
+degrees = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+grid = dict(kernel=kernels, gamma=gammas, C=cs, degree=degrees)
 ```
 
 Initialize a **cross-validation fold** and **perform a randomized-search** to tune the hyperparameters:
 
-```python
+```python tags=[]
 cvFold = RepeatedKFold(n_splits=10, n_repeats=3, random_state=1)
 
-randomSearch = RandomizedSearchCV(estimator=model, n_jobs=-1,
+randomSearch = RandomizedSearchCV(estimator=classifier, n_jobs=-1,
                                   cv=cvFold, param_distributions=grid,
-                                  scoring="neg_mean_squared_error")
+                                  scoring="accuracy")
 
 # initiate measuring execution time
 execTime = MeasExecTimeOfProgram()
 execTime.start()
 
-searchResults = randomSearch.fit(trainX, trainY)
+searchResults = randomSearch.fit(X_train, y_train)
 
 # print time delta
 print('Execution time: {:.2f} s'.format(execTime.stop()/1000))
@@ -1370,19 +1416,37 @@ print('Execution time: {:.2f} s'.format(execTime.stop()/1000))
 Extract the best model and evaluate it:
 
 ```python
+from sklearn.metrics import accuracy_score
+
 bestModel = searchResults.best_estimator_
 
-print("R2: {:.2f}".format(bestModel.score(testX, testY)))
+y_pred = bestModel.predict(X_test)
+
+acc_score = accuracy_score(y_test, y_pred)
+
+print("Accuracy score: {:.2f} %".format(acc_score.mean()*100))
 ```
 
-```python tags=[]
-from sklearn.metrics import mean_squared_error
+```python
+from sklearn.metrics import classification_report
 
-y_pred = bestModel.predict(testX)
+print(classification_report(y_test, y_pred))
+```
 
-mean_squared_error = mean_squared_error(testY, y_pred)
+```python
+sns.set_style("white")
 
-print("Mean squared error: {:.2f} %".format(mean_squared_error))
+# print colored confusion matrix
+cm_colored = metrics.ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
+
+cm_colored.figure_.suptitle("Colored Confusion Matrix")
+cm_colored.figure_.set_figwidth(8)
+cm_colored.figure_.set_figheight(7)
+
+cm_colored.confusion_matrix
+
+plt.tight_layout()
+plt.show()
 ```
 
 ```python
