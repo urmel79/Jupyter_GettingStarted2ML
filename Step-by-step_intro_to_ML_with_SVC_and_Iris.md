@@ -13,7 +13,9 @@ jupyter:
     name: python3
 ---
 
+<!-- #region toc-hr-collapsed=true -->
 # Introduction
+<!-- #endregion -->
 
 <!-- #region tags=[] -->
 ## English introduction
@@ -124,7 +126,7 @@ import seaborn as sns
 from ipypublish import nb_setup
 ```
 
-<!-- #region tags=[] toc-hr-collapsed=true -->
+<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true tags=[] -->
 # STEP 0: Select hardware and software suitable for ML
 
 In this step, specific guidance is provided for selecting hardware and software suitable for machine learning.
@@ -181,7 +183,7 @@ It can be downloaded on [Kaggle: Iris Flower Dataset](https://www.kaggle.com/dat
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 ```
 
-<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true -->
+<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true toc-hr-collapsed=true -->
 # STEP 2: Explore the ML dataset
 
 One of the most important steps in the entire ML process is this step, in which the dataset included in Step 1 is examined using typical data analysis tools. In addition to exploring the **data structure** and **internal correlations** in the dataset, errors such as **gaps**, **duplications**, or obvious **misentries** must also be found and corrected where possible. This is enormously important so that the classification can later provide plausible results.
@@ -658,6 +660,7 @@ g.fig.suptitle('Pairs plot of the Iris dataset', y=1.05)
 plt.show()
 ```
 
+<!-- #region toc-hr-collapsed=true tags=[] -->
 # STEP 3: Choose and create the ML model
 
 After exploring the dataset, in this step one has to decide on a specific ML algorithm based on certain selection criteria.
@@ -684,6 +687,7 @@ The umbrella term AI covers a very large research area. It includes a number of 
 - etc.
 
 The following Venn diagram shows the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies. The quantities that do not belong to the main category represent techniques that can function as stand-alone techniques and do not necessarily fall into the artificial intelligence group in all cases (for further details see [Emerging technologies based on artificial intelligence to assess quality and consumer preference of beverages](https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages)).
+<!-- #endregion -->
 
 <!-- #region caption="" label="fig:AI_ML_venn_diagram" tags=[] widefigure=false -->
 ![Venn diagram showing the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies (source: Kasper, adapted from [Emerging technologies based on artificial intelligence to assess quality and consumer preference of beverages](https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages), license: CC-BY-SA 4.0)](images/AI_ML_venn_diagram_wide.png)
@@ -810,7 +814,7 @@ Through the intensive exploration of the data in ([STEP 2: Explore the ML datase
 
 Furthermore, we know that the **classes** are very **evenly distributed** and thus bias tendencies should be avoided.
 
-
+<!-- #region toc-hr-collapsed=true tags=[] -->
 # STEP 5: Carry out training, prediction and testing
 
 ## Split the dataset
@@ -818,6 +822,7 @@ Furthermore, we know that the **classes** are very **evenly distributed** and th
 In the next very important step, the dataset is split into **2 subsets**: a **training dataset** and a **test dataset**. As the names suggest, the training dataset is used to train the ML algorithm. The test dataset is then used to check the quality of the trained ML algorithm (here the **recognition rate**). For this purpose, the **class labels** are **removed** from the training dataset - after all, these are to be predicted.
 
 Typically, the **test dataset** should contain about **20%** of the entire dataset.
+<!-- #endregion -->
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -872,10 +877,11 @@ y_pred = classifier.predict(X_test)
 #X_test
 ```
 
+<!-- #region toc-hr-collapsed=true -->
 # STEP 6: Evaluate model's performance
 
 Subsequently to the training of the SVC model and the classification predictions made based on the test data, this step evaluates the **quality of the classification result** using known **metrics** such as the **accuracy score** as well as the **confusion matrix**.
-
+<!-- #endregion -->
 
 ## Accuracy Score
 
@@ -950,6 +956,7 @@ plt.savefig('images/confusion_matrix.png', dpi=150, pad_inches=5)
 plt.show()
 ```
 
+<!-- #region toc-hr-collapsed=true -->
 # STEP 7: Vary parameters of the ML model manually
 
 This section was inspired by [In Depth: Parameter tuning for SVC](https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769)
@@ -959,6 +966,7 @@ In this section, the 4 SVC parameters `kernel`, `gamma`, `C` and `degree` will b
 **Disclaimer:** In order to show the effects of varying the individual parameters in 2D graphs, only the best correlating variables `petal_length` and `petal_width` are used to train the SVC.
 
 ## Prepare dataset
+<!-- #endregion -->
 
 ```python tags=[]
 from sklearn.svm import SVC
@@ -1191,6 +1199,7 @@ for degree in degrees:
 plotParamsAcc(degrees, accuracy_list, 'degree', log_scale=False)
 ```
 
+<!-- #region toc-hr-collapsed=true tags=[] -->
 # STEP 8: Tune the ML model systematically
 
 In the final step, two approaches to systematic hyper-parameter search are presented: **Grid Search** and **Randomized Search**. While the former exhaustively considers all parameter combinations for given values, the latter selects a number of candidates from a parameter space with a particular random distribution.
@@ -1203,7 +1212,7 @@ Sources:
 - [Introduction to hyperparameter tuning with scikit-learn and Python](https://pyimagesearch.com/2021/05/17/introduction-to-hyperparameter-tuning-with-scikit-learn-and-python/)
     - [Abalone Dataset](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset?resource=download)
 - [Hyperparameter tuning using Grid Search and Random Search: A Conceptual Guide](https://medium.com/@jackstalfort/hyperparameter-tuning-using-grid-search-and-random-search-f8750a464b35)
-
+<!-- #endregion -->
 
 Import the necessary packages:
 
