@@ -32,7 +32,7 @@ An appropriate assessment or even **testing** with regard to the required functi
 
 For these reasons, especially the actors of technical occupational safety and health who will deal with the evaluation of such adaptive, autonomous systems or system components with AI algorithms in the future should familiarize themselves with the AI or ML algorithms in depth as early as possible. This is the only way to ensure that the rapid development of adaptive systems capable of learning can be accompanied by OSH and their testing authorities in a constructive, critical and technically appropriate manner. If this is omitted, it must be assumed on the basis of the experiences of recent years that the OSH system will be ruthlessly circumvented or undermined by the economic interests of globally operating software giants. This would have the consequence that serious or fatal occupational accidents are likely to occur due to inadequately designed AI-based work systems.
 
-The safety-related evaluation of such learning-capable systems requires a deeper technical entry into the world of **Artificial Intelligence (AI)** or **Machine Learning (ML)**. For this purpose, it is necessary to deal with the basic operation of typical ML algorithms, corresponding software tools, libraries and programming systems.
+The safety-related evaluation of such learning-capable systems requires a deeper technical entry into the world of **Artificial Intelligence** or **Machine Learning**. For this purpose, it is necessary to deal with the basic operation of typical ML algorithms, corresponding software tools, libraries and programming systems.
 
 However, someone who opens the door for the first time to this equally very exciting as well as arbitrarily complex and, at first glance, confusing world will very quickly be overwhelmed. In addition to reading general technical literature, it is advisable to consult introductory and systematic tutorials.
 
@@ -46,7 +46,7 @@ The following main sections will demonstrate the typical ML workflow step-by-ste
 
 One of the most important steps in the entire ML process is **Step 2**, in which the dataset included in Step 1 is examined using typical data analysis tools. In addition to exploring the **data structure** and **internal correlations** in the dataset, errors such as gaps, duplications, or obvious misentries must also be found and corrected where possible. This is enormously important so that the classification can later provide plausible results.
 
-After exploring the dataset, in **step 3** one has to decide on a specific ML algorithm based on certain selection criteria. Among other ML algorithms suitable for the Iris dataset (such as the decision-tree-based **random-forests classifier**), the reasoned choice here in the tutorial falls on the **support vector classifier (SVC)**. A dedicated SVC model is now being implemented.
+After exploring the dataset, in **step 3** one has to decide on a specific ML algorithm based on certain selection criteria. Among other ML algorithms suitable for the Iris dataset (such as the decision-tree-based **random-forests classifier**), the reasoned choice here in the tutorial falls on the **support vector classifier**. A dedicated SVC model is now being implemented.
 
 In **step 4** the dataset is prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by standardization, normalization, or binarization based on thresholds). After splitting the dataset into a training and test dataset, the SVC model is trained with the training dataset in **step 5**. Subsequently, classification predictions are made with the trained SVC model based on the test data. In **step 6**, the quality of the classification result is evaluated using known **metrics** such as the **confusion matrix**.
 
@@ -55,12 +55,12 @@ Since the classification in step 5 was initially performed with standard paramet
 In the final **Step 8**, two approaches to systematic hyper-parameter search are presented: **Grid Search** and **Randomized Search**. While the former exhaustively considers all parameter combinations for given values, the latter selects a number of candidates from a parameter space with a particular random distribution.
 <!-- #endregion -->
 
-<!-- #region tags=[] -->
+<!-- #region tags=[] jp-MarkdownHeadingCollapsed=true tags=[] -->
 ## German introduction
 
 Von den **Arbeitsmitteln** in der **digitalisierten Arbeitswelt** wird immer stärker gefordert, dass sie sich selbstständig und aufgabenbezogen an sich ändernde Arbeitssituationen anpassen können. Diese **situative Adaptivität** kann je nach Stärke des Flexibilisierungsgrades oft nur durch Anwendung von **Künstlicher Intelligenz (KI)** bzw. **Maschinellem Lernen (ML)** realisiert werden.
 
-Beispiele für solche KI-Anwendungen in der Arbeitswelt reichen von vergleichsweise einfachen **Sprachassistenzsystemen** (ähnlich z. B. Siri oder Alexa aus dem privaten Umfeld) bis hin zu teil- oder gar **vollautonomen Systemen**. Solche vollautonomen Systeme sind beispielsweise sog. **fahrerlose Transportsysteme**, bei denen es sich um autonom fahrende Logistikfahrzeuge in größeren Industrieanlagen handelt.
+Beispiele für solche KI-Anwendungen in der Arbeitswelt reichen von vergleichsweise einfachen **Sprachassistenzsystemen** (ähnlich z. B. Siri oder Alexa aus dem privaten Umfeld) bis hin zu teil- oder gar **vollautonomen Systemen**. Solche vollautonomen Systeme sind beispielsweise sogenannte **fahrerlose Transportsysteme**, bei denen es sich um autonom fahrende Logistikfahrzeuge in größeren Industrieanlagen handelt.
 
 Neben den vielen sehr interessanten Vorteilen bzgl. Wirtschaftlichkeit, Arbeitserleichterung usw. kennzeichnet solche vollautonomen Systeme eine sehr hohe technische Komplexität. Diese betrifft sowohl ihre **Betriebsfunktionen** (z. B. autonome Navigation durch komplexe industrielle Umgebungen bei gemeinsamer Nutzung der Fahrwege durch andere menschlich gesteuerte Fahrzeuge) als auch ihre **Sicherheitsfunktionen** (z. B. Auswertung miteinander verknüpfter bildgebender und nicht-bildgebender Sicherheitssensorik zur Überwachung des Fahrraums zur Kollisionsvermeidung).
 
@@ -70,7 +70,7 @@ Eine hinsichtlich der geforderten funktionalen Sicherheit angemessene Bewertung 
 
 Aus diesen Gründen sollten sich insbesondere die Akteure des technischen Arbeitsschutzes, die sich zukünftig mit der Prüfung solcher lernfähigen, autonomen Systeme oder Systemkomponenten mit KI-Algorithmen befassen werden, möglichst frühzeitig mit den KI- bzw. ML-Algorithmen vertieft auseinandersetzen. Nur dadurch lässt sich erreichen, dass die stürmische Entwicklung lernfähiger, adaptiver Systeme durch den Arbeitsschutz und dessen Prüfinstitute konstruktiv, kritisch und fachlich angemessen begleitet werden kann. Wird dies versäumt, muss aufgrund der Erfahrungen der vergangenen Jahre davon ausgegangen werden, dass das Arbeitsschutzsystem durch die wirtschaftlichen Interessen global agierender Softwaregiganten skrupellos umgangen oder ausgehebelt werden wird. Dies hätte die Folge, dass schwere oder tödliche Arbeitsunfälle wegen unzulänglich gestalteter KI-basierter Arbeitssysteme wahrscheinlich werden.
 
-Allerdings erfordert die sicherheitstechnische Bewertung solcher lernfähigen Systeme einen tiefer gehenden fachlichen Einstieg in die Welt von **Künstlicher Intelligenz (KI)** bzw. **Maschinellem Lernen (ML)**. Hierzu muss sich mit den grundlegenden Funktionsweisen typischer ML-Algorithmen, entsprechenden Software-Werkzeugen, Bibliotheken und Programmiersystemen auseinander gesetzt werden.
+Allerdings erfordert die sicherheitstechnische Bewertung solcher lernfähigen Systeme einen tiefer gehenden fachlichen Einstieg in die Welt von **Künstlicher Intelligenz** bzw. **Maschinellem Lernen**. Hierzu muss sich mit den grundlegenden Funktionsweisen typischer ML-Algorithmen, entsprechenden Software-Werkzeugen, Bibliotheken und Programmiersystemen auseinander gesetzt werden.
 
 Wer jedoch zum ersten Mal die Tür zu dieser ebenso spannenden wie beliebig komplexen und auf den ersten Blick verwirrenden Welt öffnet, wird sehr schnell überfordert sein. Hier empfiehlt es sich neben dem Lesen allgemeiner Fachliteratur, einführende und systematische Anleitungen zu Rate zu ziehen.
 
@@ -84,11 +84,11 @@ Die folgenden Hauptabschnitte demonstrieren den typischen ML-Arbeitsablauf Schri
 
 Mit der wichtigste Schritt im gesamten ML-Prozess ist **Schritt 2**, in dem der in Schritt 1 einbezogene Datensatz mit Hilfe typischer Datenanalyse-Werkzeuge untersucht wird. Neben der Erkundung der **Datenstruktur** sowie **innerer Zusammenhänge** im Datensatz müssen auch Fehler wie z. B. Lücken, Dopplungen oder offensichtliche Fehleingaben gefunden und nach Möglichkeit behoben werden. Dies ist enorm wichtig, damit die Klassifikation später plausible Ergebnisse liefern kann.
 
-Nach der Erkundung des Datensatzes muss man sich im **Schritt 3** anhand bestimmter Auswahlkriterien für einen konkreten ML-Algorithmus entscheiden. Neben anderen für den Iris-Datensatz passenden ML-Algorithmen (wie z. B. der entscheidungsbaum-basierte **Random-forests-Classifier**) fällt die begründete Auswahl hier im Tutorial auf den **Support-Vector-Classifier (SVC)**. Ein entsprechendes SVC-Modell wird nun implementiert.
+Nach der Erkundung des Datensatzes muss man sich im **Schritt 3** anhand bestimmter Auswahlkriterien für einen konkreten ML-Algorithmus entscheiden. Neben anderen für den Iris-Datensatz passenden ML-Algorithmen (wie z. B. der entscheidungsbaum-basierte **Random-forests-Classifier**) fällt die begründete Auswahl hier im Tutorial auf den **Support-Vector-Classifier**. Ein entsprechendes SVC-Modell wird nun implementiert.
 
 Im **Schritt 4** wird der Datensatz für die eigentliche Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus sowie der Datenstruktur kann es erforderlich sein, dass die Daten vor dem Training aufbereitet werden müssen (z. B. durch Standardisierung, Normalisierung oder Binärisierung anhand von Schwellwerten). Nach der Aufteilung des Datensatzes in einen Trainings- und Testdatensatz, wird das SVC-Modell im **Schritt 5** mit dem Trainingsdatensatz trainiert. Anschließend werden mit dem trainierten SVC-Modell anhand der Testdaten Klassifikationsvorhersagen getroffen. Im **Schritt 6** wird die Güte des Klassifikationsergebnisses anhand bekannter **Metriken** wie z. B. der **Konfusionsmatrix** evaluiert.
 
-Da die Klassifikation im Schritt 5 zunächst mit Standard-Parametern (den sog. **Hyper-Parametern**) durchgeführt wurde, wird ihre Bedeutung im **Schritt 7** erklärt und danach ihr Einfluss auf das Klassifikationsergebnis durch manuelle Variation der einzelnen Hyper-Parameter demonstriert.
+Da die Klassifikation im Schritt 5 zunächst mit Standard-Parametern (den sogenannte **Hyper-Parametern**) durchgeführt wurde, wird ihre Bedeutung im **Schritt 7** erklärt und danach ihr Einfluss auf das Klassifikationsergebnis durch manuelle Variation der einzelnen Hyper-Parameter demonstriert.
 
 Im abschließenden **Schritt 8** werden zwei Ansätze zur systematischen Hyper-Parameter-Suche vorgestellt: **Grid Search** und **Randomized Search**. Während bei ersterer für gegebene Werte erschöpfend alle Parameterkombinationen betrachtet werden, wird beim zweiten Ansatz eine Anzahl von Kandidaten aus einem Parameterraum mit einer bestimmten zufälligen Verteilung ausgewählt.
 <!-- #endregion -->
@@ -106,25 +106,6 @@ The following **steps of the systematic ML process** are covered in the next mai
 - [STEP 6: Evaluate model's performance](#STEP-6:-Evaluate-model's-performance)
 - [STEP 7: Vary parameters of the ML model manually](#STEP-7:-Vary-parameters-of-the-ML-model-manually)
 - [STEP 8: Tune the ML model systematically](#STEP-8:-Tune-the-ML-model-systematically)
-
-<!-- #region tags=[] -->
-# Load globally used libraries and set plot parameters
-<!-- #endregion -->
-
-```python
-import time
-
-from IPython.display import HTML
-
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn import svm, metrics
-import seaborn as sns
-%matplotlib inline
-
-from ipypublish import nb_setup
-```
 
 <!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true tags=[] -->
 # STEP 0: Select hardware and software suitable for ML
@@ -147,26 +128,55 @@ In this step, specific guidance is provided for selecting hardware and software 
 
 ### Programming IDEs
 
-#### R and RStudio
+#### RStudio (based on R language)
 
-#### Python and JupyterLab
+#### JupyterLab (Python language used)
 
 ### Packages for data analytics and libraries for ML (Python only)
 
-#### `NumPy`
+#### Data analytics
 
-#### `Pandas`
+##### `NumPy`
 
-#### `matplotlib` and `seaborn`
+##### `Pandas`
 
-#### `Scikit-Learn`
+#### Data visualization
 
-#### `TensorFlow`
+##### `matplotlib`
+
+##### `seaborn`
+
+#### Machine learning
+
+##### `Scikit-Learn`
+
+##### `TensorFlow`
 
 The package `TensorFlow` offers, among other things, the possibility to create and train **artificial neural networks (ANN)** based on Google AI. However, the installation and application is very much beyond the scope of this beginner tutorial. Further information can be found here: [https://www.tensorflow.org](https://www.tensorflow.org).
 
 
 <!-- #endregion -->
+
+<!-- #region tags=[] -->
+## Import Python packages
+
+The aim of this section is to import globally used Python packages for data analysis and ML, such as `Pandas`, `NumPY`, `matplotlib` and `Scikit-Learn`.
+<!-- #endregion -->
+
+```python
+import time
+
+from IPython.display import HTML
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import svm, metrics
+import seaborn as sns
+%matplotlib inline
+
+from ipypublish import nb_setup
+```
 
 <!-- #region tags=[] -->
 # STEP 1: Acquire the ML dataset
@@ -179,7 +189,7 @@ It can be downloaded on [Kaggle: Iris Flower Dataset](https://www.kaggle.com/dat
 <!-- #endregion -->
 
 ```python
-# import some data to play with
+# import Iris dataset for exploration
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 ```
 
@@ -249,7 +259,7 @@ Here are pictures of the three different Iris species (*Iris setosa*, *Iris virg
 Print first or last 5 rows of dataframe:
 
 ```python
-irisdata_df.head()
+irisdata_df.head(10)
 ```
 
 ```python
@@ -806,6 +816,7 @@ from sklearn.svm import SVC
 classifier = SVC(kernel = 'linear', random_state = 0)
 ```
 
+<!-- #region tags=[] -->
 # STEP 4: Prepare the dataset for training
 
 In this step the dataset is prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by **standardization**, **normalization**, or **binarization** based on thresholds). Furthermore, errors in the dataset (e.g. **data gaps**, **duplicates** or obvious **misentries**) should be corrected now at the latest.
@@ -813,6 +824,28 @@ In this step the dataset is prepared for the actual classification by SVC. Depen
 Through the intensive exploration of the data in ([STEP 2: Explore the ML dataset](#STEP-2:-Explore-the-ML-dataset)), we know that special **preparation** of the data is **not necessary**. The values are complete and without gaps and there are no duplicates. The values are in similar ranges, which **does not require normalization** of the data.
 
 Furthermore, we know that the **classes** are very **evenly distributed** and thus bias tendencies should be avoided.
+
+For further details about **Standarization** and **Normalization** read here: [What are standarization and normalization? Test with iris data set in Scikit-learn](http://techflare.blog/what-are-standarization-and-normalization-test-with-iris-data-set-in-scikit-learn/).
+<!-- #endregion -->
+
+```python
+# import Iris dataset for exploration (again)
+irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
+```
+
+## Standarization
+
+Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**.
+
+```python tags=[]
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+#X_train
+```
+
+## Normalization
 
 <!-- #region toc-hr-collapsed=true tags=[] -->
 # STEP 5: Carry out training, prediction and testing
@@ -822,18 +855,33 @@ Furthermore, we know that the **classes** are very **evenly distributed** and th
 In the next very important step, the dataset is split into **2 subsets**: a **training dataset** and a **test dataset**. As the names suggest, the training dataset is used to train the ML algorithm. The test dataset is then used to check the quality of the trained ML algorithm (here the **recognition rate**). For this purpose, the **class labels** are **removed** from the training dataset - after all, these are to be predicted.
 
 Typically, the **test dataset** should contain about **20%** of the entire dataset.
+
+In particular, to **avoid bias** in the sorted iris dataset due to splitting, the **order** of the data rows must be **randomized**. This is done with the parameter `shuffle=True`.
 <!-- #endregion -->
 
 ```python
 from sklearn.model_selection import train_test_split
 
-# Load dataset again
-irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
-
 X = irisdata_df.drop('species', axis=1)
 y = irisdata_df['species']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, shuffle=True)
+```
+
+Check that the split datasets are still balanced and that no **bias** has been created by the splitting.
+
+For this test, the previously separated labels `y_train` must be added back to the training dataset `X_train`.
+
+```python tags=[]
+# make a deep copy of 'X_train'
+X_train_bias_test_df = X_train.copy(deep=True)
+
+# add list of labels to test dataframe
+X_train_bias_test_df['species'] = y_train
+
+# count unique values without missing values in a column, 
+# ordered descending and normalized
+X_train_bias_test_df['species'].value_counts(ascending=False, dropna=False, normalize=True)
 ```
 
 For training, do not use only the variables that correlate best with each other, but all of them. 
@@ -845,18 +893,6 @@ Otherwise, the result of the prediction would be significantly worse. Maybe this
 X_train, X_test, y_train, y_test = train_test_split(X[['sepal_length', 
                                                        'sepal_width']], 
                                                     y, test_size = 0.20)
-```
-
-## Standardize feature values
-
-Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**:
-
-```python tags=[]
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
-
-#X_train
 ```
 
 ## Train the SVC
@@ -875,6 +911,7 @@ In this step the aim is to **predict the species** using unlabeled test data.
 ```python
 y_pred = classifier.predict(X_test)
 #X_test
+#y_pred
 ```
 
 <!-- #region toc-hr-collapsed=true -->
@@ -1013,7 +1050,7 @@ To **evaluate the recognition accuracy** by parameter variation, the complete ir
 X = irisdata_df.drop('species', axis=1)
 y = irisdata_df['species']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, shuffle=True)
 ```
 
 ## Plotting functions
@@ -1253,7 +1290,23 @@ irisdata_df = pd.read_csv(CSV_PATH)
 X = irisdata_df.drop('species', axis=1)
 y = irisdata_df['species']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, shuffle=True)
+```
+
+Check that the split datasets are still balanced and that no **bias** has been created by the splitting.
+
+For this test, the previously separated labels `y_train` must be added back to the training dataset `X_train`.
+
+```python tags=[]
+# make a deep copy of 'X_train'
+X_train_bias_test_df = X_train.copy(deep=True)
+
+# add list of labels to test dataframe
+X_train_bias_test_df['species'] = y_train
+
+# count unique values without missing values in a column, 
+# ordered descending and normalized
+X_train_bias_test_df['species'].value_counts(ascending=False, dropna=False, normalize=True)
 ```
 
 Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**:
@@ -1282,7 +1335,7 @@ execTime.start()
 classifier.fit(X_train, y_train)
 
 # print time delta
-print('Execution time: {:.2f} s'.format(execTime.stop()/1000))
+print('Execution time: {:.4f} ms'.format(execTime.stop()))
 ```
 
 Evaluate our model using accuracy score:
@@ -1340,14 +1393,17 @@ classifier = SVC()
 kernels = ["linear", "rbf", "sigmoid", "poly"]
 gammas = [0.1, 1, 10, 100, 200]
 cs = [0.1, 1, 5, 10, 100, 1000, 10000]
-degrees = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# reduce the possible polynomial degrees to reasonable values,
+# since with higher degrees the calculation time increases exponentially
+degrees = [1, 2, 3, 4, 5]
 
 grid = dict(kernel=kernels, gamma=gammas, C=cs, degree=degrees)
 ```
 
 Initialize a **cross-validation fold** and **perform a grid-search** to tune the hyperparameters:
 
-```python tags=[] jupyter={"outputs_hidden": true}
+```python tags=[]
 cvFold = RepeatedKFold(n_splits=10, n_repeats=3, random_state=1)
 
 gridSearch = GridSearchCV(estimator=classifier, param_grid=grid, n_jobs=-1,
@@ -1398,7 +1454,10 @@ classifier = SVC()
 kernels = ["linear", "rbf", "sigmoid", "poly"]
 gammas = [0.1, 1, 10, 100, 200]
 cs = [0.1, 1, 5, 10, 100, 1000, 10000]
-degrees = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# reduce the possible polynomial degrees to reasonable values,
+# since with higher degrees the calculation time increases exponentially
+degrees = [1, 2, 3, 4, 5]
 
 grid = dict(kernel=kernels, gamma=gammas, C=cs, degree=degrees)
 ```
@@ -1419,7 +1478,7 @@ execTime.start()
 searchResults = randomSearch.fit(X_train, y_train)
 
 # print time delta
-print('Execution time: {:.2f} s'.format(execTime.stop()/1000))
+print('Execution time: {:.3f} s'.format(execTime.stop()/1000))
 ```
 
 Extract the best model and evaluate it:
