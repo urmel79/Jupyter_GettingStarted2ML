@@ -1257,8 +1257,15 @@ Import the necessary packages:
 # general packages
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.svm import SVC
+from sklearn.model_selection import cross_val_score
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import classification_report
+#from sklearn.svm import SVC
+from sklearn import svm, metrics
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+%matplotlib inline
 
 # additional packages for grid search
 from sklearn.model_selection import RepeatedKFold
@@ -1326,7 +1333,7 @@ The aim of this sub-step is to establish a baseline on the Iris dataset by train
 Train the model with **no tuning of hyperparameters** to find the baseline for later improvements:
 
 ```python
-classifier = SVC(kernel = 'linear', random_state = 0)
+classifier = svm.SVC(kernel = 'linear', random_state = 0)
 
 # initiate measuring execution time
 execTime = MeasExecTimeOfProgram()
@@ -1341,18 +1348,22 @@ print('Execution time: {:.4f} ms'.format(execTime.stop()))
 Evaluate our model using accuracy score:
 
 ```python
-from sklearn.metrics import accuracy_score
-
+# predict labels
 y_pred = classifier.predict(X_test)
-
-acc_score = accuracy_score(y_test, y_pred)
-
-print("Accuracy score: {:.2f} %".format(acc_score.mean()*100))
 ```
 
 ```python
-from sklearn.metrics import classification_report
+# calculate cross validation score
+# HINT: do NOT use the accuracy score - it's to inaccurate!
+accuracies = cross_val_score(estimator = classifier, X = X_train, 
+                             y = y_train, cv = 10)
 
+print("Cross-validation score: {:.2f} %".format(accuracies.mean()*100))
+print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
+```
+
+```python
+# print classification report
 print(classification_report(y_test, y_pred))
 ```
 
@@ -1373,12 +1384,6 @@ plt.show()
 ```
 
 ```python
-from sklearn.metrics import classification_report
-
-print(classification_report(y_test, y_pred))
-```
-
-```python
 classifier.get_params()
 ```
 
@@ -1388,7 +1393,7 @@ classifier.get_params()
 Initialize the SVC model and define the **space of the hyperparameters** to perform the **grid-search** over:
 
 ```python
-classifier = SVC()
+classifier = svm.SVC()
 
 kernels = ["linear", "rbf", "sigmoid", "poly"]
 gammas = [0.1, 1, 10, 100, 200]
@@ -1421,22 +1426,43 @@ print('Execution time: {:.2f} s'.format(execTime.stop()/1000))
 
 Extract the best model and evaluate it:
 
-```python tags=[]
-from sklearn.metrics import accuracy_score
-
+```python
+# predict labels by best model
 bestModel = searchResults.best_estimator_
 
 y_pred = bestModel.predict(X_test)
+```
 
-acc_score = accuracy_score(y_test, y_pred)
+```python
+# calculate cross validation score from the best model
+# HINT: do NOT use the accuracy score - it's to inaccurate!
+accuracies = cross_val_score(estimator = bestModel, X = X_train, 
+                             y = y_train, cv = 10)
 
-print("Accuracy score: {:.2f} %".format(acc_score.mean()*100))
+print("Cross-validation score: {:.2f} %".format(accuracies.mean()*100))
+print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
 ```
 
 ```python
 from sklearn.metrics import classification_report
 
 print(classification_report(y_test, y_pred))
+```
+
+```python
+sns.set_style("white")
+
+# print colored confusion matrix
+cm_colored = metrics.ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
+
+cm_colored.figure_.suptitle("Colored Confusion Matrix")
+cm_colored.figure_.set_figwidth(8)
+cm_colored.figure_.set_figheight(7)
+
+cm_colored.confusion_matrix
+
+plt.tight_layout()
+plt.show()
 ```
 
 ```python
@@ -1449,7 +1475,7 @@ bestModel.get_params()
 Initialize the SVC model and define the **space of the hyperparameters** to perform the **randomized-search** over:
 
 ```python
-classifier = SVC()
+classifier = svm.SVC()
 
 kernels = ["linear", "rbf", "sigmoid", "poly"]
 gammas = [0.1, 1, 10, 100, 200]
@@ -1484,15 +1510,20 @@ print('Execution time: {:.3f} s'.format(execTime.stop()/1000))
 Extract the best model and evaluate it:
 
 ```python
-from sklearn.metrics import accuracy_score
-
+# predict labels by best model
 bestModel = searchResults.best_estimator_
 
 y_pred = bestModel.predict(X_test)
+```
 
-acc_score = accuracy_score(y_test, y_pred)
+```python
+# calculate cross validation score from the best model
+# HINT: do NOT use the accuracy score - it's to inaccurate!
+accuracies = cross_val_score(estimator = bestModel, X = X_train, 
+                             y = y_train, cv = 10)
 
-print("Accuracy score: {:.2f} %".format(acc_score.mean()*100))
+print("Cross-validation score: {:.2f} %".format(accuracies.mean()*100))
+print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
 ```
 
 ```python
