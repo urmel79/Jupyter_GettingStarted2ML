@@ -174,8 +174,6 @@ import matplotlib.pyplot as plt
 from sklearn import svm, metrics
 import seaborn as sns
 %matplotlib inline
-
-from ipypublish import nb_setup
 ```
 
 <!-- #region tags=[] -->
@@ -351,16 +349,14 @@ Fine - this dataset seems to be complete :)
 So let's look for something else for exercise: [employes.csv](https://media.geeksforgeeks.org/wp-content/uploads/employees.csv)
 
 ```python tags=[]
-pd = nb_setup.setup_pandas(escape_latex = False)
-
 # import data to dataframe from csv file
 employees_df = pd.read_csv("./datasets/employees_edit.csv")
 
 # highlight cells with nan values
-employees_df_hl = employees_df.style.highlight_null('yellow')
-employees_df_hl
+#employees_df_hl = employees_df.style.highlight_null('yellow')
+#employees_df_hl
 
-#employees_df
+employees_df
 ```
 
 Show only the gaps from this gappy dataset again:
@@ -369,7 +365,7 @@ Show only the gaps from this gappy dataset again:
 employees_df_gaps = employees_df[employees_df.isnull().any(axis=1)]
 
 # highlight cells with nan values
-employees_df_gaps = employees_df_gaps.style.highlight_null('yellow')
+#employees_df_gaps = employees_df_gaps.style.highlight_null('yellow')
 
 employees_df_gaps
 ```
@@ -385,10 +381,10 @@ Now we are going to fill all the null (NaN) values in Gender column with *"No Ge
 employees_df["Gender"].fillna("No Gender", inplace = True)
 
 # highlight cells by condition
-employees_df_hl = employees_df.style.apply(lambda x: ["background: yellow" if v == 'No Gender' else "" for v in x], axis = 1)
-employees_df_hl
+#employees_df_hl = employees_df.style.apply(lambda x: ["background: yellow" if v == 'No Gender' else "" for v in x], axis = 1)
+#employees_df_hl
 
-#employees_df
+employees_df
 ```
 
 #### Dropping missing values using `dropna()`
@@ -839,9 +835,12 @@ irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**.
 
 ```python tags=[]
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
+from sklearn.preprocessing import StandardScaler
+
+#scaler = StandardScaler()
+#X_train = scaler.fit_transform(X_train)
+#X_test = scaler.transform(X_test)
+irisdata_df
 
 #X_train
 ```

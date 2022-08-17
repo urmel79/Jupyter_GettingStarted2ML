@@ -524,10 +524,9 @@ inadequately designed AI-based work systems.
 
 The safety-related evaluation of such learning-capable systems requires
 a deeper technical entry into the world of \textbf{Artificial
-Intelligence (AI)} or \textbf{Machine Learning (ML)}. For this purpose,
-it is necessary to deal with the basic operation of typical ML
-algorithms, corresponding software tools, libraries and programming
-systems.
+Intelligence} or \textbf{Machine Learning}. For this purpose, it is
+necessary to deal with the basic operation of typical ML algorithms,
+corresponding software tools, libraries and programming systems.
 
 However, someone who opens the door for the first time to this equally
 very exciting as well as arbitrarily complex and, at first glance,
@@ -579,7 +578,7 @@ specific ML algorithm based on certain selection criteria. Among other
 ML algorithms suitable for the Iris dataset (such as the
 decision-tree-based \textbf{random-forests classifier}), the reasoned
 choice here in the tutorial falls on the \textbf{support vector
-classifier (SVC)}. A dedicated SVC model is now being implemented.
+classifier}. A dedicated SVC model is now being implemented.
 
 In \textbf{step 4} the dataset is prepared for the actual classification
 by SVC. Depending on the selected ML algorithm as well as the data
@@ -619,9 +618,9 @@ Beispiele für solche KI-Anwendungen in der Arbeitswelt reichen von
 vergleichsweise einfachen \textbf{Sprachassistenzsystemen} (ähnlich z.
 B. Siri oder Alexa aus dem privaten Umfeld) bis hin zu teil- oder gar
 \textbf{vollautonomen Systemen}. Solche vollautonomen Systeme sind
-beispielsweise sog. \textbf{fahrerlose Transportsysteme}, bei denen es
-sich um autonom fahrende Logistikfahrzeuge in größeren Industrieanlagen
-handelt.
+beispielsweise sogenannte \textbf{fahrerlose Transportsysteme}, bei
+denen es sich um autonom fahrende Logistikfahrzeuge in größeren
+Industrieanlagen handelt.
 
 Neben den vielen sehr interessanten Vorteilen bzgl. Wirtschaftlichkeit,
 Arbeitserleichterung usw. kennzeichnet solche vollautonomen Systeme eine
@@ -679,8 +678,8 @@ wahrscheinlich werden.
 
 Allerdings erfordert die sicherheitstechnische Bewertung solcher
 lernfähigen Systeme einen tiefer gehenden fachlichen Einstieg in die
-Welt von \textbf{Künstlicher Intelligenz (KI)} bzw. \textbf{Maschinellem
-Lernen (ML)}. Hierzu muss sich mit den grundlegenden Funktionsweisen
+Welt von \textbf{Künstlicher Intelligenz} bzw. \textbf{Maschinellem
+Lernen}. Hierzu muss sich mit den grundlegenden Funktionsweisen
 typischer ML-Algorithmen, entsprechenden Software-Werkzeugen,
 Bibliotheken und Programmiersystemen auseinander gesetzt werden.
 
@@ -738,8 +737,8 @@ anhand bestimmter Auswahlkriterien für einen konkreten ML-Algorithmus
 entscheiden. Neben anderen für den Iris-Datensatz passenden
 ML-Algorithmen (wie z. B. der entscheidungsbaum-basierte
 \textbf{Random-forests-Classifier}) fällt die begründete Auswahl hier im
-Tutorial auf den \textbf{Support-Vector-Classifier (SVC)}. Ein
-entsprechendes SVC-Modell wird nun implementiert.
+Tutorial auf den \textbf{Support-Vector-Classifier}. Ein entsprechendes
+SVC-Modell wird nun implementiert.
 
 Im \textbf{Schritt 4} wird der Datensatz für die eigentliche
 Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus
@@ -754,8 +753,8 @@ wird die Güte des Klassifikationsergebnisses anhand bekannter
 \textbf{Metriken} wie z. B. der \textbf{Konfusionsmatrix} evaluiert.
 
 Da die Klassifikation im Schritt 5 zunächst mit Standard-Parametern (den
-sog. \textbf{Hyper-Parametern}) durchgeführt wurde, wird ihre Bedeutung
-im \textbf{Schritt 7} erklärt und danach ihr Einfluss auf das
+sogenannte \textbf{Hyper-Parametern}) durchgeführt wurde, wird ihre
+Bedeutung im \textbf{Schritt 7} erklärt und danach ihr Einfluss auf das
 Klassifikationsergebnis durch manuelle Variation der einzelnen
 Hyper-Parameter demonstriert.
 
@@ -782,7 +781,7 @@ the next main sections:
 \item
   \hyperref[step-2-explore-the-ml-dataset]{STEP 2: Explore the ML dataset}
 \item
-  \hyperref[step-3-create-the-ml-model]{STEP 3: Create the ML model}
+  \hyperref[step-3-choose-and-create-the-ml-model]{STEP 3: Choose and create the ML model}
 \item
   \hyperref[step-4-prepare-the-dataset-for-training]{STEP 4: Prepare the dataset for training}
 \item
@@ -794,25 +793,6 @@ the next main sections:
 \item
   \hyperref[step-8-tune-the-ml-model-systematically]{STEP 8: Tune the ML model systematically}
 \end{itemize}
-
-    \hypertarget{load-globally-used-libraries-and-set-plot-parameters}{%
-\section{Load globally used libraries and set plot
-parameters}\label{load-globally-used-libraries-and-set-plot-parameters}}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{1}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{import} \PY{n+nn}{time}
-
-\PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k+kn}{import} \PY{n}{HTML}
-
-\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
-\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
-\PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k+kn}{import} \PY{n}{svm}\PY{p}{,} \PY{n}{metrics}
-\PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
-\PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
-\end{Verbatim}
-\end{tcolorbox}
 
     \hypertarget{step-0-select-hardware-and-software-suitable-for-ml}{%
 \section{STEP 0: Select hardware and software suitable for
@@ -844,37 +824,75 @@ system}\label{general-requirements-to-the-operating-system}}
 \hypertarget{programming-ides}{%
 \subsubsection{Programming IDEs}\label{programming-ides}}
 
-\hypertarget{r-and-rstudio}{%
-\paragraph{R and RStudio}\label{r-and-rstudio}}
+\hypertarget{rstudio-based-on-r-language}{%
+\paragraph{RStudio (based on R
+language)}\label{rstudio-based-on-r-language}}
 
-\hypertarget{python-and-jupyterlab}{%
-\paragraph{Python and JupyterLab}\label{python-and-jupyterlab}}
+\hypertarget{jupyterlab-python-language-used}{%
+\paragraph{JupyterLab (Python language
+used)}\label{jupyterlab-python-language-used}}
 
 \hypertarget{packages-for-data-analytics-and-libraries-for-ml-python-only}{%
 \subsubsection{Packages for data analytics and libraries for ML (Python
 only)}\label{packages-for-data-analytics-and-libraries-for-ml-python-only}}
 
+\hypertarget{data-analytics}{%
+\paragraph{Data analytics}\label{data-analytics}}
+
 \hypertarget{numpy}{%
-\paragraph{\texorpdfstring{\texttt{NumPy}}{NumPy}}\label{numpy}}
+\subparagraph{\texorpdfstring{\texttt{NumPy}}{NumPy}}\label{numpy}}
 
 \hypertarget{pandas}{%
-\paragraph{\texorpdfstring{\texttt{Pandas}}{Pandas}}\label{pandas}}
+\subparagraph{\texorpdfstring{\texttt{Pandas}}{Pandas}}\label{pandas}}
 
-\hypertarget{matplotlib-and-seaborn}{%
-\paragraph{\texorpdfstring{\texttt{matplotlib} and
-\texttt{seaborn}}{matplotlib and seaborn}}\label{matplotlib-and-seaborn}}
+\hypertarget{data-visualization}{%
+\paragraph{Data visualization}\label{data-visualization}}
+
+\hypertarget{matplotlib}{%
+\subparagraph{\texorpdfstring{\texttt{matplotlib}}{matplotlib}}\label{matplotlib}}
+
+\hypertarget{seaborn}{%
+\subparagraph{\texorpdfstring{\texttt{seaborn}}{seaborn}}\label{seaborn}}
+
+\hypertarget{machine-learning}{%
+\paragraph{Machine learning}\label{machine-learning}}
 
 \hypertarget{scikit-learn}{%
-\paragraph{\texorpdfstring{\texttt{Scikit-Learn}}{Scikit-Learn}}\label{scikit-learn}}
+\subparagraph{\texorpdfstring{\texttt{Scikit-Learn}}{Scikit-Learn}}\label{scikit-learn}}
 
 \hypertarget{tensorflow}{%
-\paragraph{\texorpdfstring{\texttt{TensorFlow}}{TensorFlow}}\label{tensorflow}}
+\subparagraph{\texorpdfstring{\texttt{TensorFlow}}{TensorFlow}}\label{tensorflow}}
 
 The package \texttt{TensorFlow} offers, among other things, the
 possibility to create and train \textbf{artificial neural networks
 (ANN)} based on Google AI. However, the installation and application is
 very much beyond the scope of this beginner tutorial. Further
 information can be found here: \url{https://www.tensorflow.org}.
+
+    \hypertarget{import-python-packages}{%
+\subsection{Import Python packages}\label{import-python-packages}}
+
+The aim of this section is to import globally used Python packages for
+data analysis and ML, such as \texttt{Pandas}, \texttt{NumPY},
+\texttt{matplotlib} and \texttt{Scikit-Learn}.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{48}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{time}
+
+\PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k+kn}{import} \PY{n}{HTML}
+
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k+kn}{import} \PY{n}{svm}\PY{p}{,} \PY{n}{metrics}
+\PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+\PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+
+\PY{c+c1}{\PYZsh{}from ipypublish import nb\PYZus{}setup}
+\end{Verbatim}
+\end{tcolorbox}
 
     \hypertarget{step-1-acquire-the-ml-dataset}{%
 \section{STEP 1: Acquire the ML
@@ -901,9 +919,9 @@ in the machine learning package
 it without having to find a special source for it.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{2}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} import some data to play with}
+\PY{c+c1}{\PYZsh{} import Iris dataset for exploration}
 \PY{n}{irisdata\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
@@ -1078,14 +1096,14 @@ dataframe}}{Inspect structure of dataframe}}\label{inspect-structure-of-datafram
 Print first or last 5 rows of dataframe:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{3}{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{3}{\boxspacing}
+\prompt{Out}{outcolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
    sepal\_length  sepal\_width  petal\_length  petal\_width      species
 0           5.1          3.5           1.4          0.2  Iris-setosa
@@ -1093,6 +1111,11 @@ Print first or last 5 rows of dataframe:
 2           4.7          3.2           1.3          0.2  Iris-setosa
 3           4.6          3.1           1.5          0.2  Iris-setosa
 4           5.0          3.6           1.4          0.2  Iris-setosa
+5           5.4          3.9           1.7          0.4  Iris-setosa
+6           4.6          3.4           1.4          0.3  Iris-setosa
+7           5.0          3.4           1.5          0.2  Iris-setosa
+8           4.4          2.9           1.4          0.2  Iris-setosa
+9           4.9          3.1           1.5          0.1  Iris-setosa
 \end{Verbatim}
 \end{tcolorbox}
         
@@ -1121,14 +1144,14 @@ Default setting in the pandas library makes it to display only 5 lines
 from head and from tail.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{5}{\boxspacing}
+\prompt{In}{incolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{5}{\boxspacing}
+\prompt{Out}{outcolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      sepal\_length  sepal\_width  petal\_length  petal\_width         species
 0             5.1          3.5           1.4          0.2     Iris-setosa
@@ -1151,7 +1174,7 @@ from head and from tail.
 has to set to \texttt{None} in pandas:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{8}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.max\PYZus{}rows}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
 \PY{n}{irisdata\PYZus{}df}
@@ -1159,7 +1182,7 @@ has to set to \texttt{None} in pandas:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{6}{\boxspacing}
+\prompt{Out}{outcolor}{8}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      sepal\_length  sepal\_width  petal\_length  petal\_width          species
 0             5.1          3.5           1.4          0.2      Iris-setosa
@@ -1319,7 +1342,7 @@ has to set to \texttt{None} in pandas:
 \subsubsection{Get data types}\label{get-data-types}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{9}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
@@ -1341,14 +1364,14 @@ memory usage: 6.0+ KB
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
+\prompt{In}{incolor}{10}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{8}{\boxspacing}
+\prompt{Out}{outcolor}{10}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        sepal\_length  sepal\_width  petal\_length  petal\_width
 count    150.000000   150.000000    150.000000   150.000000
@@ -1370,7 +1393,7 @@ Boxplots}\label{get-data-ranges-with-boxplots}}
 These also provide information about \textbf{outliers}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{4}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}context}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{notebook}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{font\PYZus{}scale}\PY{o}{=}\PY{l+m+mf}{1.3}\PY{p}{,} \PY{n}{rc}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lines.linewidth}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mf}{2.0}\PY{p}{\PYZcb{}}\PY{p}{)}
 \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{whitegrid}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -1455,7 +1478,126 @@ values which are True for \textbf{NaN values}.
 12          False        False         False        False    False
 13          False        False         False        False    False
 14          False        False         False        False    False
-..            {\ldots}          {\ldots}           {\ldots}          {\ldots}      {\ldots}
+15          False        False         False        False    False
+16          False        False         False        False    False
+17          False        False         False        False    False
+18          False        False         False        False    False
+19          False        False         False        False    False
+20          False        False         False        False    False
+21          False        False         False        False    False
+22          False        False         False        False    False
+23          False        False         False        False    False
+24          False        False         False        False    False
+25          False        False         False        False    False
+26          False        False         False        False    False
+27          False        False         False        False    False
+28          False        False         False        False    False
+29          False        False         False        False    False
+30          False        False         False        False    False
+31          False        False         False        False    False
+32          False        False         False        False    False
+33          False        False         False        False    False
+34          False        False         False        False    False
+35          False        False         False        False    False
+36          False        False         False        False    False
+37          False        False         False        False    False
+38          False        False         False        False    False
+39          False        False         False        False    False
+40          False        False         False        False    False
+41          False        False         False        False    False
+42          False        False         False        False    False
+43          False        False         False        False    False
+44          False        False         False        False    False
+45          False        False         False        False    False
+46          False        False         False        False    False
+47          False        False         False        False    False
+48          False        False         False        False    False
+49          False        False         False        False    False
+50          False        False         False        False    False
+51          False        False         False        False    False
+52          False        False         False        False    False
+53          False        False         False        False    False
+54          False        False         False        False    False
+55          False        False         False        False    False
+56          False        False         False        False    False
+57          False        False         False        False    False
+58          False        False         False        False    False
+59          False        False         False        False    False
+60          False        False         False        False    False
+61          False        False         False        False    False
+62          False        False         False        False    False
+63          False        False         False        False    False
+64          False        False         False        False    False
+65          False        False         False        False    False
+66          False        False         False        False    False
+67          False        False         False        False    False
+68          False        False         False        False    False
+69          False        False         False        False    False
+70          False        False         False        False    False
+71          False        False         False        False    False
+72          False        False         False        False    False
+73          False        False         False        False    False
+74          False        False         False        False    False
+75          False        False         False        False    False
+76          False        False         False        False    False
+77          False        False         False        False    False
+78          False        False         False        False    False
+79          False        False         False        False    False
+80          False        False         False        False    False
+81          False        False         False        False    False
+82          False        False         False        False    False
+83          False        False         False        False    False
+84          False        False         False        False    False
+85          False        False         False        False    False
+86          False        False         False        False    False
+87          False        False         False        False    False
+88          False        False         False        False    False
+89          False        False         False        False    False
+90          False        False         False        False    False
+91          False        False         False        False    False
+92          False        False         False        False    False
+93          False        False         False        False    False
+94          False        False         False        False    False
+95          False        False         False        False    False
+96          False        False         False        False    False
+97          False        False         False        False    False
+98          False        False         False        False    False
+99          False        False         False        False    False
+100         False        False         False        False    False
+101         False        False         False        False    False
+102         False        False         False        False    False
+103         False        False         False        False    False
+104         False        False         False        False    False
+105         False        False         False        False    False
+106         False        False         False        False    False
+107         False        False         False        False    False
+108         False        False         False        False    False
+109         False        False         False        False    False
+110         False        False         False        False    False
+111         False        False         False        False    False
+112         False        False         False        False    False
+113         False        False         False        False    False
+114         False        False         False        False    False
+115         False        False         False        False    False
+116         False        False         False        False    False
+117         False        False         False        False    False
+118         False        False         False        False    False
+119         False        False         False        False    False
+120         False        False         False        False    False
+121         False        False         False        False    False
+122         False        False         False        False    False
+123         False        False         False        False    False
+124         False        False         False        False    False
+125         False        False         False        False    False
+126         False        False         False        False    False
+127         False        False         False        False    False
+128         False        False         False        False    False
+129         False        False         False        False    False
+130         False        False         False        False    False
+131         False        False         False        False    False
+132         False        False         False        False    False
+133         False        False         False        False    False
+134         False        False         False        False    False
 135         False        False         False        False    False
 136         False        False         False        False    False
 137         False        False         False        False    False
@@ -1471,15 +1613,13 @@ values which are True for \textbf{NaN values}.
 147         False        False         False        False    False
 148         False        False         False        False    False
 149         False        False         False        False    False
-
-[150 rows x 5 columns]
 \end{Verbatim}
 \end{tcolorbox}
         
     Show only the gaps:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{12}{\boxspacing}
+\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
 \PY{n}{irisdata\PYZus{}df\PYZus{}gaps}
@@ -1487,7 +1627,7 @@ values which are True for \textbf{NaN values}.
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{12}{\boxspacing}
+\prompt{Out}{outcolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 Empty DataFrame
 Columns: [sepal\_length, sepal\_width, petal\_length, petal\_width, species]
@@ -1501,171 +1641,67 @@ So let's look for something else for exercise:
 \href{https://media.geeksforgeeks.org/wp-content/uploads/employees.csv}{employes.csv}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{13}{\boxspacing}
+\prompt{In}{incolor}{49}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}pd = nb\PYZus{}setup.setup\PYZus{}pandas(escape\PYZus{}latex = False)}
+
 \PY{c+c1}{\PYZsh{} import data to dataframe from csv file}
 \PY{n}{employees\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{./datasets/employees\PYZus{}edit.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} highlight cells with nan values}
+\PY{c+c1}{\PYZsh{}employees\PYZus{}df\PYZus{}hl = employees\PYZus{}df.style.highlight\PYZus{}null(\PYZsq{}yellow\PYZsq{})}
+\PY{c+c1}{\PYZsh{}employees\PYZus{}df\PYZus{}hl}
 
 \PY{n}{employees\PYZus{}df}
 \end{Verbatim}
 \end{tcolorbox}
 
-            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{13}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-     First Name  Gender  Start Date Last Login Time  Salary   Bonus \%  \textbackslash{}
-0       Douglas    Male    8/6/1993        12:42 PM   97308   6945.00
-1        Thomas    Male   3/31/1996         6:53 AM   61933      4.17
-2         Maria  Female   4/23/1993        11:17 AM  130590  11858.00
-3         Jerry    Male    3/4/2005         1:00 PM  138705      9.34
-4         Larry    Male   1/24/1998         4:47 PM  101004   1389.00
-5        Dennis    Male   4/18/1987         1:35 AM  115163  10125.00
-6          Ruby  Female   8/17/1987         4:20 PM   65476  10012.00
-7           NaN  Female   7/20/2015        10:43 AM   45906  11598.00
-8        Angela  Female  11/22/2005         6:29 AM   95570  18523.00
-9       Frances  Female    8/8/2002         6:51 AM  139852   7524.00
-10       Louise  Female   8/12/1980         9:01 AM   63241  15132.00
-11        Julie  Female  10/26/1997         3:19 PM  102508  12637.00
-12      Brandon    Male   12/1/1980         1:08 AM  112807  17492.00
-13         Gary    Male   1/27/2008        11:40 PM  109831   5831.00
-14     Kimberly  Female   1/14/1999         7:13 AM   41426  14543.00
-{\ldots}         {\ldots}     {\ldots}         {\ldots}             {\ldots}     {\ldots}       {\ldots}
-989     Stephen     NaN   7/10/1983         8:10 PM   85668   1909.00
-990       Donna  Female  11/26/1982         7:04 AM   82871  17999.00
-991      Gloria  Female   12/8/2014         5:08 AM  136709  10331.00
-992       Alice  Female   10/5/2004         9:34 AM   47638  11209.00
-993      Justin     NaN   2/10/1991         4:58 PM   38344   3794.00
-994       Robin  Female   7/24/1987         1:35 PM  100765  10982.00
-995        Rose  Female   8/25/2002         5:12 AM  134505  11051.00
-996     Anthony    Male  10/16/2011         8:35 AM  112769  11625.00
-997        Tina  Female   5/15/1997         3:53 PM   56450     19.04
-998      George    Male   6/21/2013         5:47 PM   98874   4479.00
-999       Henry     NaN  11/23/2014         6:09 AM  132483  16655.00
-1000    Phillip    Male   1/31/1984         6:30 AM   42392  19675.00
-1001    Russell    Male   5/20/2013        12:39 PM   96914   1421.00
-1002      Larry    Male   4/20/2013         4:45 PM   60500  11985.00
-1003     Albert    Male   5/15/2012         6:24 PM  129949  10169.00
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/bk/anaconda3/envs/PyLab/lib/python3.9/site-
+packages/IPython/core/formatters.py:343: FutureWarning: In future versions
+`DataFrame.to\_latex` is expected to utilise the base implementation of
+`Styler.to\_latex` for formatting and rendering. The arguments signature may
+therefore change. It is recommended instead to use `DataFrame.style.to\_latex`
+which also contains additional functionality.
+  return method()
+    \end{Verbatim}
+ 
+            
+\prompt{Out}{outcolor}{49}{}
 
-     Senior Management                  Team
-0                 True             Marketing
-1                 True                   NaN
-2                False               Finance
-3                 True               Finance
-4                 True       Client Services
-5                False                 Legal
-6                 True               Product
-7                  NaN               Finance
-8                 True           Engineering
-9                 True  Business Development
-10                True                   NaN
-11                True                 Legal
-12                True       Human Resources
-13               False                 Sales
-14                True               Finance
-{\ldots}                {\ldots}                   {\ldots}
-989              False                 Legal
-990              False             Marketing
-991               True               Finance
-992              False       Human Resources
-993              False                 Legal
-994               True       Client Services
-995               True             Marketing
-996               True               Finance
-997               True           Engineering
-998               True             Marketing
-999              False          Distribution
-1000             False               Finance
-1001             False               Product
-1002             False  Business Development
-1003              True                 Sales
 
-[1004 rows x 8 columns]
-\end{Verbatim}
-\end{tcolorbox}
-        
+    
+
     Show only the gaps from this gappy dataset again:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{14}{\boxspacing}
+\prompt{In}{incolor}{50}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{employees\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} highlight cells with nan values}
+\PY{c+c1}{\PYZsh{}employees\PYZus{}df\PYZus{}gaps = employees\PYZus{}df\PYZus{}gaps.style.highlight\PYZus{}null(\PYZsq{}yellow\PYZsq{})}
+
 \PY{n}{employees\PYZus{}df\PYZus{}gaps}
 \end{Verbatim}
 \end{tcolorbox}
 
-            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{14}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-    First Name  Gender  Start Date Last Login Time  Salary   Bonus \%  \textbackslash{}
-1       Thomas    Male   3/31/1996         6:53 AM   61933      4.17
-7          NaN  Female   7/20/2015        10:43 AM   45906  11598.00
-10      Louise  Female   8/12/1980         9:01 AM   63241  15132.00
-20        Lois     NaN   4/22/1995         7:18 PM   64714   4934.00
-22      Joshua     NaN    3/8/2012         1:58 AM   90816  18816.00
-23         NaN    Male   6/14/2012         4:19 PM  125792   5042.00
-25         NaN    Male   10/8/2012         1:12 AM   37076  18576.00
-27       Scott     NaN   7/11/1991         6:58 PM  122367   5218.00
-31       Joyce     NaN   2/20/2005         2:40 PM   88657  12752.00
-32         NaN    Male   8/21/1998         2:27 PM  122340   6417.00
-39         NaN    Male   1/29/2016         2:33 AM  122173   7797.00
-41   Christine     NaN   6/28/2015         1:08 AM   66582  11308.00
-49       Chris     NaN   1/24/1980        12:13 PM  113590   3055.00
-51         NaN     NaN  12/17/2011         8:29 AM   41126  14009.00
-53        Alan     NaN    3/3/2014         1:28 PM   40341  17578.00
-..         {\ldots}     {\ldots}         {\ldots}             {\ldots}     {\ldots}       {\ldots}
-916        Joe    Male   12/8/1998        10:28 AM  126120      1.02
-927      Irene     NaN   2/28/1991        10:23 PM  135369      4.38
-929        NaN  Female   8/23/2000         4:19 PM   95866  19388.00
-941      Aaron     NaN   1/22/1986         7:39 PM   63126  18424.00
-942       Mark     NaN    9/9/2006        12:27 PM   44836   2657.00
-943      Ralph     NaN   7/28/1995         6:53 PM   70635   2147.00
-949     Gerald     NaN   4/15/1989        12:44 PM   93712  17426.00
-950        NaN  Female   9/15/1985         1:50 AM  133472  16941.00
-951        NaN    Male   7/30/2012         3:07 PM  107351   5329.00
-955        NaN  Female   9/14/2010         5:19 AM  143638   9662.00
-965    Antonio     NaN   6/18/1989         9:37 PM  103050      3.05
-976     Victor     NaN   7/28/2006         2:49 PM   76381  11159.00
-989    Stephen     NaN   7/10/1983         8:10 PM   85668   1909.00
-993     Justin     NaN   2/10/1991         4:58 PM   38344   3794.00
-999      Henry     NaN  11/23/2014         6:09 AM  132483  16655.00
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/bk/anaconda3/envs/PyLab/lib/python3.9/site-
+packages/IPython/core/formatters.py:343: FutureWarning: In future versions
+`DataFrame.to\_latex` is expected to utilise the base implementation of
+`Styler.to\_latex` for formatting and rendering. The arguments signature may
+therefore change. It is recommended instead to use `DataFrame.style.to\_latex`
+which also contains additional functionality.
+  return method()
+    \end{Verbatim}
+ 
+            
+\prompt{Out}{outcolor}{50}{}
 
-    Senior Management                  Team
-1                True                   NaN
-7                 NaN               Finance
-10               True                   NaN
-20               True                 Legal
-22               True       Client Services
-23                NaN                   NaN
-25                NaN       Client Services
-27              False                 Legal
-31              False               Product
-32                NaN                   NaN
-39                NaN       Client Services
-41               True  Business Development
-49              False                 Sales
-51                NaN                 Sales
-53               True               Finance
-..                {\ldots}                   {\ldots}
-916             False                   NaN
-927             False  Business Development
-929               NaN                 Sales
-941             False       Client Services
-942             False       Client Services
-943             False       Client Services
-949              True          Distribution
-950               NaN          Distribution
-951               NaN             Marketing
-955               NaN                   NaN
-965             False                 Legal
-976              True                 Sales
-989             False                 Legal
-993             False                 Legal
-999             False          Distribution
 
-[237 rows x 8 columns]
-\end{Verbatim}
-\end{tcolorbox}
-        
+    
+
     \hypertarget{fill-the-missing-values-with-fillna}{%
 \paragraph{\texorpdfstring{Fill the missing values with
 \texttt{fillna()}}{Fill the missing values with fillna()}}\label{fill-the-missing-values-with-fillna}}
@@ -1673,20 +1709,25 @@ So let's look for something else for exercise:
 Now we are going to fill all the null (NaN) values in Gender column with
 \emph{``No Gender''}.
 
-\textbf{Attention:} We are doing that directly in this dataframe with
+\textbf{Warning:} We are doing that directly in this dataframe with
 \texttt{inplace\ =\ True} - we don't make a deep copy!
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{15}{\boxspacing}
+\prompt{In}{incolor}{10}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} filling a null values using fillna()}
 \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Gender}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{No Gender}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} highlight cells by condition}
+\PY{c+c1}{\PYZsh{}employees\PYZus{}df\PYZus{}hl = employees\PYZus{}df.style.apply(lambda x: [\PYZdq{}background: yellow\PYZdq{} if v == \PYZsq{}No Gender\PYZsq{} else \PYZdq{}\PYZdq{} for v in x], axis = 1)}
+\PY{c+c1}{\PYZsh{}employees\PYZus{}df\PYZus{}hl}
+
 \PY{n}{employees\PYZus{}df}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{15}{\boxspacing}
+\prompt{Out}{outcolor}{10}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      First Name     Gender  Start Date Last Login Time  Salary   Bonus \%  \textbackslash{}
 0       Douglas       Male    8/6/1993        12:42 PM   97308   6945.00
@@ -1694,27 +1735,7 @@ Now we are going to fill all the null (NaN) values in Gender column with
 2         Maria     Female   4/23/1993        11:17 AM  130590  11858.00
 3         Jerry       Male    3/4/2005         1:00 PM  138705      9.34
 4         Larry       Male   1/24/1998         4:47 PM  101004   1389.00
-5        Dennis       Male   4/18/1987         1:35 AM  115163  10125.00
-6          Ruby     Female   8/17/1987         4:20 PM   65476  10012.00
-7           NaN     Female   7/20/2015        10:43 AM   45906  11598.00
-8        Angela     Female  11/22/2005         6:29 AM   95570  18523.00
-9       Frances     Female    8/8/2002         6:51 AM  139852   7524.00
-10       Louise     Female   8/12/1980         9:01 AM   63241  15132.00
-11        Julie     Female  10/26/1997         3:19 PM  102508  12637.00
-12      Brandon       Male   12/1/1980         1:08 AM  112807  17492.00
-13         Gary       Male   1/27/2008        11:40 PM  109831   5831.00
-14     Kimberly     Female   1/14/1999         7:13 AM   41426  14543.00
 {\ldots}         {\ldots}        {\ldots}         {\ldots}             {\ldots}     {\ldots}       {\ldots}
-989     Stephen  No Gender   7/10/1983         8:10 PM   85668   1909.00
-990       Donna     Female  11/26/1982         7:04 AM   82871  17999.00
-991      Gloria     Female   12/8/2014         5:08 AM  136709  10331.00
-992       Alice     Female   10/5/2004         9:34 AM   47638  11209.00
-993      Justin  No Gender   2/10/1991         4:58 PM   38344   3794.00
-994       Robin     Female   7/24/1987         1:35 PM  100765  10982.00
-995        Rose     Female   8/25/2002         5:12 AM  134505  11051.00
-996     Anthony       Male  10/16/2011         8:35 AM  112769  11625.00
-997        Tina     Female   5/15/1997         3:53 PM   56450     19.04
-998      George       Male   6/21/2013         5:47 PM   98874   4479.00
 999       Henry  No Gender  11/23/2014         6:09 AM  132483  16655.00
 1000    Phillip       Male   1/31/1984         6:30 AM   42392  19675.00
 1001    Russell       Male   5/20/2013        12:39 PM   96914   1421.00
@@ -1727,27 +1748,7 @@ Now we are going to fill all the null (NaN) values in Gender column with
 2                False               Finance
 3                 True               Finance
 4                 True       Client Services
-5                False                 Legal
-6                 True               Product
-7                  NaN               Finance
-8                 True           Engineering
-9                 True  Business Development
-10                True                   NaN
-11                True                 Legal
-12                True       Human Resources
-13               False                 Sales
-14                True               Finance
 {\ldots}                {\ldots}                   {\ldots}
-989              False                 Legal
-990              False             Marketing
-991               True               Finance
-992              False       Human Resources
-993              False                 Legal
-994               True       Client Services
-995               True             Marketing
-996               True               Finance
-997               True           Engineering
-998               True             Marketing
 999              False          Distribution
 1000             False               Finance
 1001             False               Product
@@ -1771,7 +1772,7 @@ parameter \texttt{how\ =\ \textquotesingle{}all\textquotesingle{}} the
 function drops rows with all data missing or contain null values (NaN).
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{16}{\boxspacing}
+\prompt{In}{incolor}{11}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} making a new dataframe with dropped NaN values}
 \PY{n}{employees\PYZus{}df\PYZus{}dropped} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{how} \PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{any}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -1780,7 +1781,7 @@ function drops rows with all data missing or contain null values (NaN).
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{16}{\boxspacing}
+\prompt{Out}{outcolor}{11}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      First Name     Gender  Start Date Last Login Time  Salary   Bonus \%  \textbackslash{}
 0       Douglas       Male    8/6/1993        12:42 PM   97308   6945.00
@@ -1788,27 +1789,7 @@ function drops rows with all data missing or contain null values (NaN).
 3         Jerry       Male    3/4/2005         1:00 PM  138705      9.34
 4         Larry       Male   1/24/1998         4:47 PM  101004   1389.00
 5        Dennis       Male   4/18/1987         1:35 AM  115163  10125.00
-6          Ruby     Female   8/17/1987         4:20 PM   65476  10012.00
-8        Angela     Female  11/22/2005         6:29 AM   95570  18523.00
-9       Frances     Female    8/8/2002         6:51 AM  139852   7524.00
-11        Julie     Female  10/26/1997         3:19 PM  102508  12637.00
-12      Brandon       Male   12/1/1980         1:08 AM  112807  17492.00
-13         Gary       Male   1/27/2008        11:40 PM  109831   5831.00
-14     Kimberly     Female   1/14/1999         7:13 AM   41426  14543.00
-15      Lillian     Female    6/5/2016         6:09 AM   59414   1256.00
-16       Jeremy       Male   9/21/2010         5:56 AM   90370   7369.00
-17        Shawn       Male   12/7/1986         7:45 PM  111737   6414.00
 {\ldots}         {\ldots}        {\ldots}         {\ldots}             {\ldots}     {\ldots}       {\ldots}
-989     Stephen  No Gender   7/10/1983         8:10 PM   85668   1909.00
-990       Donna     Female  11/26/1982         7:04 AM   82871  17999.00
-991      Gloria     Female   12/8/2014         5:08 AM  136709  10331.00
-992       Alice     Female   10/5/2004         9:34 AM   47638  11209.00
-993      Justin  No Gender   2/10/1991         4:58 PM   38344   3794.00
-994       Robin     Female   7/24/1987         1:35 PM  100765  10982.00
-995        Rose     Female   8/25/2002         5:12 AM  134505  11051.00
-996     Anthony       Male  10/16/2011         8:35 AM  112769  11625.00
-997        Tina     Female   5/15/1997         3:53 PM   56450     19.04
-998      George       Male   6/21/2013         5:47 PM   98874   4479.00
 999       Henry  No Gender  11/23/2014         6:09 AM  132483  16655.00
 1000    Phillip       Male   1/31/1984         6:30 AM   42392  19675.00
 1001    Russell       Male   5/20/2013        12:39 PM   96914   1421.00
@@ -1821,27 +1802,7 @@ function drops rows with all data missing or contain null values (NaN).
 3                 True               Finance
 4                 True       Client Services
 5                False                 Legal
-6                 True               Product
-8                 True           Engineering
-9                 True  Business Development
-11                True                 Legal
-12                True       Human Resources
-13               False                 Sales
-14                True               Finance
-15               False               Product
-16               False       Human Resources
-17               False               Product
 {\ldots}                {\ldots}                   {\ldots}
-989              False                 Legal
-990              False             Marketing
-991               True               Finance
-992              False       Human Resources
-993              False                 Legal
-994               True       Client Services
-995               True             Marketing
-996               True               Finance
-997               True           Engineering
-998               True             Marketing
 999              False          Distribution
 1000             False               Finance
 1001             False               Product
@@ -1881,7 +1842,7 @@ Duplicates in Pandas DataFrame (With Examples)} -
 \href{https://www.statology.org/pandas-drop-duplicates/}{How to Drop
 Duplicate Rows in a Pandas DataFrame}
 
-\hypertarget{checking-for-duplicate-values-using-duplicated}{%
+    \hypertarget{checking-for-duplicate-values-using-duplicated}{%
 \paragraph{\texorpdfstring{Checking for duplicate values using
 \texttt{duplicated()}}{Checking for duplicate values using duplicated()}}\label{checking-for-duplicate-values-using-duplicated}}
 
@@ -1895,7 +1856,7 @@ across \textbf{specific columns}
 Find duplicate rows across \textbf{all columns}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{18}{\boxspacing}
+\prompt{In}{incolor}{12}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} import (again) data to dataframe from csv file}
 \PY{n}{employees\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{./datasets/employees\PYZus{}edit.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -1903,7 +1864,7 @@ Find duplicate rows across \textbf{all columns}:
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{19}{\boxspacing}
+\prompt{In}{incolor}{13}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} find duplicate rows across all columns}
 \PY{n}{duplicateRows} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{p}{)}\PY{p}{]}
@@ -1912,7 +1873,7 @@ Find duplicate rows across \textbf{all columns}:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{19}{\boxspacing}
+\prompt{Out}{outcolor}{13}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
     First Name  Gender  Start Date Last Login Time  Salary  Bonus \%  \textbackslash{}
 112      Karen  Female  11/30/1999         7:46 AM  102488  17653.0
@@ -1929,7 +1890,7 @@ Find duplicate rows across \textbf{all columns}:
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{20}{\boxspacing}
+\prompt{In}{incolor}{14}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} argument keep=’last’ displays the first duplicate rows instead of the last}
 \PY{n}{duplicateRows} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{n}{keep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{last}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
@@ -1938,7 +1899,7 @@ Find duplicate rows across \textbf{all columns}:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{20}{\boxspacing}
+\prompt{Out}{outcolor}{14}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
     First Name  Gender  Start Date Last Login Time  Salary  Bonus \%  \textbackslash{}
 55       Karen  Female  11/30/1999         7:46 AM  102488  17653.0
@@ -1957,7 +1918,7 @@ Find duplicate rows across \textbf{all columns}:
     Find duplicate rows across \textbf{specific columns}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{21}{\boxspacing}
+\prompt{In}{incolor}{15}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} identify duplicate rows across \PYZsq{}First Name\PYZsq{} and \PYZsq{}Last Login Time\PYZsq{} columns}
 \PY{n}{duplicateRows} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}
@@ -1967,7 +1928,7 @@ Find duplicate rows across \textbf{all columns}:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{21}{\boxspacing}
+\prompt{Out}{outcolor}{15}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
     First Name  Gender  Start Date Last Login Time  Salary  Bonus \%  \textbackslash{}
 112      Karen  Female  11/30/1999         7:46 AM  102488  17653.0
@@ -1996,7 +1957,7 @@ Find duplicate rows across \textbf{all columns}:
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{22}{\boxspacing}
+\prompt{In}{incolor}{16}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} argument keep=’last’ displays the first duplicate rows instead of the last}
 \PY{n}{duplicateRows} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}
@@ -2006,7 +1967,7 @@ Find duplicate rows across \textbf{all columns}:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{22}{\boxspacing}
+\prompt{Out}{outcolor}{16}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
     First Name  Gender  Start Date Last Login Time  Salary   Bonus \%  \textbackslash{}
 23         NaN    Male   6/14/2012         4:19 PM  125792   5042.00
@@ -2046,13 +2007,13 @@ This function can be used in two ways: - remove duplicate rows across
 duplicate rows across \textbf{specific columns}
 \texttt{df.drop\_duplicates(subset={[}\textquotesingle{}col1\textquotesingle{},\ \textquotesingle{}col2\textquotesingle{}{]})}
 
-\textbf{Attention:} We are doing that directly in this dataframe with
+\textbf{Warning:} We are doing that directly in this dataframe with
 \texttt{inplace\ =\ True} - we don't make a deep copy!
 
 Remove duplicate rows across \textbf{all columns}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{23}{\boxspacing}
+\prompt{In}{incolor}{17}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} remove duplicate rows across all columns}
 \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
@@ -2061,7 +2022,7 @@ Remove duplicate rows across \textbf{all columns}:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{23}{\boxspacing}
+\prompt{Out}{outcolor}{17}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      First Name  Gender  Start Date Last Login Time  Salary   Bonus \%  \textbackslash{}
 0       Douglas    Male    8/6/1993        12:42 PM   97308   6945.00
@@ -2069,27 +2030,7 @@ Remove duplicate rows across \textbf{all columns}:
 2         Maria  Female   4/23/1993        11:17 AM  130590  11858.00
 3         Jerry    Male    3/4/2005         1:00 PM  138705      9.34
 4         Larry    Male   1/24/1998         4:47 PM  101004   1389.00
-5        Dennis    Male   4/18/1987         1:35 AM  115163  10125.00
-6          Ruby  Female   8/17/1987         4:20 PM   65476  10012.00
-7           NaN  Female   7/20/2015        10:43 AM   45906  11598.00
-8        Angela  Female  11/22/2005         6:29 AM   95570  18523.00
-9       Frances  Female    8/8/2002         6:51 AM  139852   7524.00
-10       Louise  Female   8/12/1980         9:01 AM   63241  15132.00
-11        Julie  Female  10/26/1997         3:19 PM  102508  12637.00
-12      Brandon    Male   12/1/1980         1:08 AM  112807  17492.00
-13         Gary    Male   1/27/2008        11:40 PM  109831   5831.00
-14     Kimberly  Female   1/14/1999         7:13 AM   41426  14543.00
 {\ldots}         {\ldots}     {\ldots}         {\ldots}             {\ldots}     {\ldots}       {\ldots}
-989     Stephen     NaN   7/10/1983         8:10 PM   85668   1909.00
-990       Donna  Female  11/26/1982         7:04 AM   82871  17999.00
-991      Gloria  Female   12/8/2014         5:08 AM  136709  10331.00
-992       Alice  Female   10/5/2004         9:34 AM   47638  11209.00
-993      Justin     NaN   2/10/1991         4:58 PM   38344   3794.00
-994       Robin  Female   7/24/1987         1:35 PM  100765  10982.00
-995        Rose  Female   8/25/2002         5:12 AM  134505  11051.00
-996     Anthony    Male  10/16/2011         8:35 AM  112769  11625.00
-997        Tina  Female   5/15/1997         3:53 PM   56450     19.04
-998      George    Male   6/21/2013         5:47 PM   98874   4479.00
 999       Henry     NaN  11/23/2014         6:09 AM  132483  16655.00
 1000    Phillip    Male   1/31/1984         6:30 AM   42392  19675.00
 1001    Russell    Male   5/20/2013        12:39 PM   96914   1421.00
@@ -2102,27 +2043,7 @@ Remove duplicate rows across \textbf{all columns}:
 2                False               Finance
 3                 True               Finance
 4                 True       Client Services
-5                False                 Legal
-6                 True               Product
-7                  NaN               Finance
-8                 True           Engineering
-9                 True  Business Development
-10                True                   NaN
-11                True                 Legal
-12                True       Human Resources
-13               False                 Sales
-14                True               Finance
 {\ldots}                {\ldots}                   {\ldots}
-989              False                 Legal
-990              False             Marketing
-991               True               Finance
-992              False       Human Resources
-993              False                 Legal
-994               True       Client Services
-995               True             Marketing
-996               True               Finance
-997               True           Engineering
-998               True             Marketing
 999              False          Distribution
 1000             False               Finance
 1001             False               Product
@@ -2136,7 +2057,7 @@ Remove duplicate rows across \textbf{all columns}:
     Remove duplicate rows across \textbf{specific columns}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{24}{\boxspacing}
+\prompt{In}{incolor}{18}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} remove duplicate rows across \PYZsq{}First Name\PYZsq{} and \PYZsq{}Last Login Time\PYZsq{} columns}
 \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}
@@ -2146,7 +2067,7 @@ Remove duplicate rows across \textbf{all columns}:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{24}{\boxspacing}
+\prompt{Out}{outcolor}{18}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      First Name  Gender  Start Date Last Login Time  Salary   Bonus \%  \textbackslash{}
 0       Douglas    Male    8/6/1993        12:42 PM   97308   6945.00
@@ -2154,27 +2075,7 @@ Remove duplicate rows across \textbf{all columns}:
 2         Maria  Female   4/23/1993        11:17 AM  130590  11858.00
 3         Jerry    Male    3/4/2005         1:00 PM  138705      9.34
 4         Larry    Male   1/24/1998         4:47 PM  101004   1389.00
-5        Dennis    Male   4/18/1987         1:35 AM  115163  10125.00
-6          Ruby  Female   8/17/1987         4:20 PM   65476  10012.00
-7           NaN  Female   7/20/2015        10:43 AM   45906  11598.00
-8        Angela  Female  11/22/2005         6:29 AM   95570  18523.00
-9       Frances  Female    8/8/2002         6:51 AM  139852   7524.00
-10       Louise  Female   8/12/1980         9:01 AM   63241  15132.00
-11        Julie  Female  10/26/1997         3:19 PM  102508  12637.00
-12      Brandon    Male   12/1/1980         1:08 AM  112807  17492.00
-13         Gary    Male   1/27/2008        11:40 PM  109831   5831.00
-14     Kimberly  Female   1/14/1999         7:13 AM   41426  14543.00
 {\ldots}         {\ldots}     {\ldots}         {\ldots}             {\ldots}     {\ldots}       {\ldots}
-989     Stephen     NaN   7/10/1983         8:10 PM   85668   1909.00
-990       Donna  Female  11/26/1982         7:04 AM   82871  17999.00
-991      Gloria  Female   12/8/2014         5:08 AM  136709  10331.00
-992       Alice  Female   10/5/2004         9:34 AM   47638  11209.00
-993      Justin     NaN   2/10/1991         4:58 PM   38344   3794.00
-994       Robin  Female   7/24/1987         1:35 PM  100765  10982.00
-995        Rose  Female   8/25/2002         5:12 AM  134505  11051.00
-996     Anthony    Male  10/16/2011         8:35 AM  112769  11625.00
-997        Tina  Female   5/15/1997         3:53 PM   56450     19.04
-998      George    Male   6/21/2013         5:47 PM   98874   4479.00
 999       Henry     NaN  11/23/2014         6:09 AM  132483  16655.00
 1000    Phillip    Male   1/31/1984         6:30 AM   42392  19675.00
 1001    Russell    Male   5/20/2013        12:39 PM   96914   1421.00
@@ -2187,27 +2088,7 @@ Remove duplicate rows across \textbf{all columns}:
 2                False               Finance
 3                 True               Finance
 4                 True       Client Services
-5                False                 Legal
-6                 True               Product
-7                  NaN               Finance
-8                 True           Engineering
-9                 True  Business Development
-10                True                   NaN
-11                True                 Legal
-12                True       Human Resources
-13               False                 Sales
-14                True               Finance
 {\ldots}                {\ldots}                   {\ldots}
-989              False                 Legal
-990              False             Marketing
-991               True               Finance
-992              False       Human Resources
-993              False                 Legal
-994               True       Client Services
-995               True             Marketing
-996               True               Finance
-997               True           Engineering
-998               True             Marketing
 999              False          Distribution
 1000             False               Finance
 1001             False               Product
@@ -2241,7 +2122,7 @@ Following parameters can be used for fine tuning: -
 returned - \texttt{ascending=False}: sort resulting classes descending
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{25}{\boxspacing}
+\prompt{In}{incolor}{19}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} import (again) data to dataframe from csv file}
 \PY{n}{employees\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{./datasets/employees\PYZus{}edit.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -2249,7 +2130,7 @@ returned - \texttt{ascending=False}: sort resulting classes descending
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{26}{\boxspacing}
+\prompt{In}{incolor}{20}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} count unique values without missing values in a column, }
 \PY{c+c1}{\PYZsh{} ordered descending and normalized}
@@ -2258,7 +2139,7 @@ returned - \texttt{ascending=False}: sort resulting classes descending
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{26}{\boxspacing}
+\prompt{Out}{outcolor}{20}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 Iris-setosa        0.333333
 Iris-versicolor    0.333333
@@ -2268,7 +2149,7 @@ Name: species, dtype: float64
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{27}{\boxspacing}
+\prompt{In}{incolor}{21}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} count unique values and missing values in a column, }
 \PY{c+c1}{\PYZsh{} ordered descending and not absolute values}
@@ -2277,7 +2158,7 @@ Name: species, dtype: float64
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{27}{\boxspacing}
+\prompt{Out}{outcolor}{21}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 Client Services         106
 Business Development    103
@@ -2310,7 +2191,7 @@ variable width. The height of each rectangle then represents the
 (relative or absolute) \textbf{frequency density}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{28}{\boxspacing}
+\prompt{In}{incolor}{22}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Salary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
@@ -2318,13 +2199,13 @@ variable width. The height of each rectangle then represents the
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_58_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_59_0.png}\end{center}
         \caption{Histogram for frequency distribution of the salary}
         \label{fig:histogram_salary}
     \end{figure}
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{29}{\boxspacing}
+\prompt{In}{incolor}{23}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Salary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{by}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
@@ -2332,7 +2213,7 @@ variable width. The height of each rectangle then represents the
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_59_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_60_0.png}\end{center}
         \caption{Histogram for the frequency distribution of the salary in comparison between men and women}
         \label{fig:histogram_male_female}
     \end{figure}
@@ -2373,7 +2254,7 @@ Because \textbf{string values can never be correlated}, the class names
 (species) have to be converted first:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{30}{\boxspacing}
+\prompt{In}{incolor}{24}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} encoding the class column}
 \PY{n}{irisdata\PYZus{}df\PYZus{}enc} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{species}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}  \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Iris\PYZhy{}setosa}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{,}
@@ -2384,14 +2265,14 @@ Because \textbf{string values can never be correlated}, the class names
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{31}{\boxspacing}
+\prompt{In}{incolor}{25}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df\PYZus{}enc}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{31}{\boxspacing}
+\prompt{Out}{outcolor}{25}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
               sepal\_length  sepal\_width  petal\_length  petal\_width   species
 sepal\_length      1.000000    -0.109369      0.871754     0.817954  0.782561
@@ -2409,7 +2290,7 @@ Choose the color sets from
 \href{https://pod.hatenablog.com/entry/2018/09/20/212527}{color map}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{32}{\boxspacing}
+\prompt{In}{incolor}{26}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} increase the size of the heatmap}
 \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
@@ -2429,7 +2310,7 @@ Choose the color sets from
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_65_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_66_0.png}\end{center}
         \caption{Correlation heatmap to explore coherences between single variables in the iris dataset}
         \label{fig:correlation_heatmap}
     \end{figure}
@@ -2447,16 +2328,14 @@ the upper triangle of a matrix while turning all the values in the lower
 triangle into 0.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{33}{\boxspacing}
+\prompt{In}{incolor}{27}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
-
 \PY{n}{np}\PY{o}{.}\PY{n}{triu}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{ones\PYZus{}like}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}enc}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{33}{\boxspacing}
+\prompt{Out}{outcolor}{27}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 array([[1., 1., 1., 1., 1.],
        [0., 1., 1., 1., 1.],
@@ -2469,7 +2348,7 @@ array([[1., 1., 1., 1., 1.],
     Use this mask to cut the heatmap along the diagonal:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{34}{\boxspacing}
+\prompt{In}{incolor}{28}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
 
@@ -2485,7 +2364,7 @@ array([[1., 1., 1., 1., 1.],
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_69_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_70_0.png}\end{center}
         \caption{Correlation heatmap, which was cut at its main diagonal without losing any information}
         \label{fig:correlation_heatmap_triangle}
     \end{figure}
@@ -2511,7 +2390,7 @@ To investigate whether there are dependencies (e.g.~correlations) in
 advisable to plot them in a \textbf{scatter plot}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{35}{\boxspacing}
+\prompt{In}{incolor}{29}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} There are five preset seaborn themes: darkgrid, whitegrid, dark, white, and ticks.}
 \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{whitegrid}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -2533,7 +2412,7 @@ advisable to plot them in a \textbf{scatter plot}.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_72_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_73_0.png}\end{center}
         \caption{Plotting two individual variables of the iris dataset in the scatterplot to explore the relationships between these two}
         \label{fig:scatter_plot}
     \end{figure}
@@ -2555,7 +2434,7 @@ variable} in \texttt{irisdata\_df} will by shared in the y-axis across a
 single row and in the x-axis across a single column.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{36}{\boxspacing}
+\prompt{In}{incolor}{30}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{font\PYZus{}scale}\PY{o}{=}\PY{l+m+mf}{1.0}\PY{p}{)}
 \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{white}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -2571,40 +2450,112 @@ single row and in the x-axis across a single column.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_74_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_75_0.png}\end{center}
         \caption{Plot all individual variables of the Iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables}
         \label{fig:pairs_plot}
     \end{figure}
     
-    \hypertarget{step-3-create-the-ml-model}{%
-\section{STEP 3: Create the ML model}\label{step-3-create-the-ml-model}}
+    \hypertarget{step-3-choose-and-create-the-ml-model}{%
+\section{STEP 3: Choose and create the ML
+model}\label{step-3-choose-and-create-the-ml-model}}
 
 After exploring the dataset, in this step one has to decide on a
-specific ML algorithm based on certain selection criteria. Among other
-ML algorithms suitable for the Iris dataset (such as the
-decision-tree-based \textbf{random-forests classifier}), the reasoned
-choice here in the tutorial falls on the \textbf{support vector
-classifier (SVC)}. A dedicated SVC model is now being implemented.
+specific ML algorithm based on certain selection criteria.
+
+However, since the AI or ML world is so huge and impossible for a ML
+novice to overlook, a brief description of the \textbf{relationship
+between AI and ML} is given in the following sections. Furthermore, a
+\textbf{taxonomy} of the different \textbf{learning types} is presented
+by also providing some example algorithms.
+
+\hypertarget{short-overview-of-the-ai-world-and-its-ml-algorithms}{%
+\subsection{Short overview of the AI world and its ML
+algorithms}\label{short-overview-of-the-ai-world-and-its-ml-algorithms}}
 
 \hypertarget{relationship-between-ai-ml-and-others}{%
-\subsection{Relationship between AI, ML and
+\subsubsection{Relationship between AI, ML and
 others}\label{relationship-between-ai-ml-and-others}}
 
-Sources:
+In the \textbf{science world}, the term \textbf{artificial intelligence
+(AI)} refers to machines and systems that are capable of performing
+tasks that are characteristic of human intelligence.
+
+In the \textbf{business world}, on the other hand, AI typically refers
+to mechanisms that perceive environmental factors and take autonomous
+actions. This is seen as an opportunity to achieve \textbf{predefined
+goals} with maximum success - without human intervention. Ultimately,
+this view is a mapping of \textbf{input information} to controlled
+\textbf{output actions} of a system. This expectation of AI-driven
+systems is thus hardly higher than what can be expected from today's
+modern automation systems.
+
+\textbf{Machine Learning (ML)}, on the other hand, addresses the
+mathematical models and algorithms that enable a computer system to
+recognize (new) correlations in huge amounts of sample data from various
+sources by inferring them independently. For scientists, machine
+learning is a subset of AI.
+
+The umbrella term AI covers a very large research area. It includes a
+number of techniques that enable computers to learn independently and
+solve complex problems:
 
 \begin{itemize}
 \tightlist
 \item
-  \href{https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages}{Emerging
-  technologies based on artificial intelligence to assess quality and
-  consumer preference of beverages}, Figure 5
+  Computer-Vision (CV)
+\item
+  Supervised and Unsupervised Learning
+\item
+  Reinforcement Learning and Genetic Algorithms
+\item
+  Computational Linguistics
+\item
+  Robotics
+\item
+  etc.
 \end{itemize}
 
-\hypertarget{taxonomy-of-machine-learning}{%
-\subsection{Taxonomy of machine
+The following Venn diagram shows the relationship between Artificial
+Intelligence (AI), Machine Learning (ML) and other integrated
+technologies. The quantities that do not belong to the main category
+represent techniques that can function as stand-alone techniques and do
+not necessarily fall into the artificial intelligence group in all cases
+(for further details see
+\href{https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages}{Emerging
+technologies based on artificial intelligence to assess quality and
+consumer preference of beverages}).
+
+    \begin{figure}
+\centering
+\includegraphics{images/AI_ML_venn_diagram_wide.png}
+\caption{Venn diagram showing the relationship between Artificial
+Intelligence (AI), Machine Learning (ML) and other integrated
+technologies (source: Kasper, adapted from
+\href{https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages}{Emerging
+technologies based on artificial intelligence to assess quality and
+consumer preference of beverages}, license: CC-BY-SA 4.0)}
+\end{figure}
+
+    \hypertarget{taxonomy-of-machine-learning}{%
+\subsubsection{Taxonomy of machine
 learning}\label{taxonomy-of-machine-learning}}
 
-Sources:
+The field of machine learning can be divided into the following
+\textbf{types of learning}:
+
+\begin{itemize}
+\tightlist
+\item
+  Supervised learning
+\item
+  Unsupervised learning
+\item
+  Semi-supervised learning
+\item
+  Reinforcement learning
+\end{itemize}
+
+Here are some further sources:
 
 \begin{itemize}
 \tightlist
@@ -2614,10 +2565,10 @@ Sources:
 \item
   \href{https://www.researchgate.net/publication/340878018_Comprehensive_Survey_of_Machine_Learning_Approaches_in_Cognitive_Radio-Based_Vehicular_Ad_Hoc_Networks}{Comprehensive
   Survey of Machine Learning Approaches in Cognitive Radio-Based
-  Vehicular Ad Hoc Networks}, Figure 3
+  Vehicular Ad Hoc Networks}
 \item
   \href{https://www.researchgate.net/publication/358089496_A_Taxonomy_of_Machine_Learning_Techniques}{A
-  Taxonomy of Machine Learning Techniques}, Figure 2
+  Taxonomy of Machine Learning Techniques}
 \item
   \href{https://medium.com/@Shaier/ml-algorithms-one-sd-\%CF\%83-74bcb28fafb6}{ML
   Algorithms: One SD}
@@ -2626,22 +2577,120 @@ Sources:
   Learning Map}
 \end{itemize}
 
-\hypertarget{supervised-learning}{%
-\subsubsection{Supervised learning}\label{supervised-learning}}
+    \hypertarget{supervised-learning}{%
+\paragraph{Supervised learning}\label{supervised-learning}}
 
-\hypertarget{unsupervised-learning}{%
-\subsubsection{Unsupervised learning}\label{unsupervised-learning}}
+The goal of \textbf{supervised learning (SL)} is to learn a
+\textbf{function} that maps a \textbf{input to an output}, based on
+example input-output pairs. This involves inferring a relationship
+describable by a mathematical function from \textbf{labeled training
+data} consisting of a set of training examples (see
+\href{https://en.wikipedia.org/wiki/Supervised_learning}{Supervised
+Learning}).
 
-\hypertarget{semi-supervised-learning}{%
-\subsubsection{Semi-supervised
-learning}\label{semi-supervised-learning}}
+A few well-known algorithms from the field of \textbf{supervised
+learning} are mentioned here:
 
-\hypertarget{reinforcement-learning}{%
-\subsubsection{Reinforcement learning}\label{reinforcement-learning}}
+\begin{itemize}
+\tightlist
+\item
+  Naive Bayes
+\item
+  Linear Regression
+\item
+  Logistic Regression
+\item
+  Artificial Neural Networks (ANN)
+\item
+  Support Vector Classifier (SVC)
+\item
+  Decision Trees
+\item
+  Random Forests
+\end{itemize}
 
-\hypertarget{decision-graph-for-selecting-an-ml-algorithm}{%
-\subsection{Decision graph for selecting an ML
-algorithm}\label{decision-graph-for-selecting-an-ml-algorithm}}
+    \hypertarget{unsupervised-learning}{%
+\paragraph{Unsupervised learning}\label{unsupervised-learning}}
+
+The algorithms of this category look for internal structures in the data
+of a dataset, such as \textbf{grouping} or \textbf{clustering of data
+points}. These algorithms can thus learn relationships from test data
+that have not been labeled, classified, or categorized. Rather than
+responding to feedback (as in supervised learning), unsupervised
+learning algorithms detect \textbf{commonalities in the data} and
+respond based on the presence or absence of such commonalities in each
+new dataset (see
+\href{https://en.wikipedia.org/wiki/Machine_learning\#Unsupervised_learning}{Unsupervised
+learning}).
+
+Here are some algorithms from the field of \textbf{unsupervised
+learning}:
+
+\begin{itemize}
+\tightlist
+\item
+  K-means Clustering
+\item
+  Spectral Clustering
+\item
+  Hierarchical Clustering
+\item
+  Principal Component Analysis (PCA)
+\end{itemize}
+
+    \hypertarget{semi-supervised-learning}{%
+\paragraph{Semi-supervised learning}\label{semi-supervised-learning}}
+
+This type of learning falls between \textbf{unsupervised} learning
+(without any labeled training data) and \textbf{supervised} learning
+(with completely labeled training data). Some of the training examples
+are missing training labels, yet many machine-learning researchers have
+found that unlabeled data, when used in conjunction with a small amount
+of labeled data, can produce a considerable improvement in learning
+accuracy (source:
+\href{https://en.wikipedia.org/wiki/Machine_learning\#Semi-supervised_learning}{Semi-supervised
+learning}).
+
+    \hypertarget{reinforcement-learning}{%
+\paragraph{Reinforcement learning}\label{reinforcement-learning}}
+
+This is an area of machine learning concerned with how
+\textbf{intelligent agents} ought to \textbf{take actions in an
+environment} in order to maximize the notion of cumulative
+\textbf{reward}. Due to its generality, the field is studied in many
+other disciplines, such as \textbf{game theory} and \textbf{control
+theory}.
+
+Reinforcement learning differs from supervised learning in \textbf{not
+needing labeled input/output pairs} be presented, and in not needing
+sub-optimal actions to be explicitly corrected. Instead the focus is on
+\textbf{finding a balance} between \textbf{exploration} (of uncharted
+territory) and \textbf{exploitation} (of current knowledge) (source:
+\href{https://en.wikipedia.org/wiki/Reinforcement_learning}{Reinforcement
+learning}).
+
+Here are some algorithms from the field of \textbf{reinforcement
+learning}:
+
+\begin{itemize}
+\tightlist
+\item
+  Iterative Policy
+\item
+  Q-Learning
+\item
+  SARSA
+\item
+  Learning Classifiers
+\item
+  Stochastic Gradient
+\item
+  Genetic Algorithm
+\end{itemize}
+
+    \hypertarget{decision-graph-for-selecting-an-suitable-algorithm}{%
+\subsection{Decision graph for selecting an suitable
+algorithm}\label{decision-graph-for-selecting-an-suitable-algorithm}}
 
 Now that the iris dataset has been analyzed in terms of its data
 structure and internal correlations, the most difficult task on the way
@@ -2649,16 +2698,15 @@ to solving a problem using machine learning arises: finding the
 ``right'' ML algorithm (also called \textbf{estimator}).
 
 The diverse estimators available are more or less well qualified for the
-respective problems with their partly very different data types.
-
-Scikit-Learn provides the following \textbf{flowchart} as a rough
-\textbf{guide} in choosing the right estimator for the particular task
-(see:
+respective problems with their partly very different data types. The
+good news is that the ML software package \textbf{Scikit-Learn} provides
+the following \textbf{flowchart} as a rough \textbf{guide} in choosing
+the right estimator for the particular task (see:
 \href{https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html}{Choosing
 the right estimator}).
 
-However, it must also be emphasized that a considerable level of
-experience through systematic trial and error is crucial to be
+However, it must also be emphasized that a considerable \textbf{level of
+experience} through systematic trial and error is crucial to be
 successful in finding an ``optimal'' estimator.
 
     \begin{figure}
@@ -2670,40 +2718,41 @@ successful in finding an ``optimal'' estimator.
 the right estimator}, license: unknown)}
 \end{figure}
 
-    \hypertarget{step-4-prepare-the-dataset-for-training}{%
-\section{STEP 4: Prepare the dataset for
-training}\label{step-4-prepare-the-dataset-for-training}}
+    \hypertarget{reasons-for-choosing-support-vector-classifier-svc}{%
+\subsection{Reasons for choosing Support Vector Classifier
+(SVC)}\label{reasons-for-choosing-support-vector-classifier-svc}}
 
-In this step the dataset is prepared for the actual classification by
-SVC. Depending on the selected ML algorithm as well as the data
-structure, it may be necessary to prepare the data before training
-(e.g., by \textbf{standardization}, \textbf{normalization}, or
-\textbf{binarization} based on thresholds). Furthermore, errors in the
-dataset (e.g.~\textbf{data gaps}, \textbf{duplicates} or obvious
-\textbf{misentries}) should be corrected now at the latest.
+Among other ML algorithms suitable for the Iris dataset (such as the
+decision-tree-based \textbf{random-forests classifier}), the reasoned
+choice here in this tutorial falls on the \textbf{support vector
+classifier (SVC)}.
 
-Through the intensive exploration of the data in Step 2
-(\hyperref[step-2-explore-the-ml-dataset]{STEP 2: Explore the ML dataset}),
-we know that special \textbf{preparation} of the data is \textbf{not
-necessary}. The values are complete and without gaps and there are no
-duplicates. The values are in similar ranges, which \textbf{does not
-require normalization} of the data.
+The following \textbf{reasons} led to the decision for the
+\textbf{Support Vector Classifier (SVC)}:
 
-Furthermore, we know that the \textbf{classes} are very \textbf{evenly
-distributed} and thus bias tendencies should be avoided.
+\begin{itemize}
+\tightlist
+\item
+  the aim is to predict the species using unlabeled test data, so the
+  task is to \textbf{classify}
+\item
+  the iris dataset is \textbf{fully labeled} (by designating the iris
+  species)
+\item
+  the dataset contains significantly \textbf{less than 100k samples}
+\end{itemize}
 
-    \hypertarget{step-5-carry-out-training-prediction-and-testing}{%
-\section{STEP 5: Carry out training, prediction and
-testing}\label{step-5-carry-out-training-prediction-and-testing}}
+But the most important reason is that it is \textbf{easy to understand}
+how it works - so it is exactly suitable for a beginner tutorial ;)
 
-\hypertarget{operating-principal-of-svc}{%
+    \hypertarget{operating-principal-of-svc}{%
 \subsection{Operating principal of
 SVC}\label{operating-principal-of-svc}}
 
 \begin{quote}
-Support Vectors Classifiers (SVC) try to \textbf{find the best
-hyperplane to separate} the different classes by maximizing the distance
-between sample points and the hyperplane (source:
+Support Vector Classifiers (SVC) try to \textbf{find the best hyperplane
+to separate} the different classes by maximizing the distance between
+sample points and the hyperplane (source:
 \href{https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769}{In
 Depth: Parameter tuning for SVC}).
 \end{quote}
@@ -2727,12 +2776,110 @@ vectors} of the hyperplane - this is how the algorithm got its name.
     \begin{figure}
 \centering
 \includegraphics{images/SVC_operatingPrinciple.png}
-\caption{Support Vectors Classifiers (SVC) separate the data points in
+\caption{Support Vector Classifiers (SVC) separate the data points in
 classes by finding the best hyperplane by maximizing the margin to its
-support vectors}
+support vectors (source: Kasper, license: CC-BY-SA 4.0)}
 \end{figure}
 
-    \hypertarget{split-the-dataset}{%
+    \hypertarget{create-the-svc-model}{%
+\subsection{Create the SVC model}\label{create-the-svc-model}}
+
+In this step we create the SVC model choosing a \textbf{linear kernel}
+with default parameters.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{31}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{svm} \PY{k+kn}{import} \PY{n}{SVC}
+\PY{n}{classifier} \PY{o}{=} \PY{n}{SVC}\PY{p}{(}\PY{n}{kernel} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{linear}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{random\PYZus{}state} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{step-4-prepare-the-dataset-for-training}{%
+\section{STEP 4: Prepare the dataset for
+training}\label{step-4-prepare-the-dataset-for-training}}
+
+In this step the dataset is prepared for the actual classification by
+SVC. Depending on the selected ML algorithm as well as the data
+structure, it may be necessary to prepare the data before training
+(e.g., by \textbf{standardization}, \textbf{normalization}, or
+\textbf{binarization} based on thresholds). Furthermore, errors in the
+dataset (e.g.~\textbf{data gaps}, \textbf{duplicates} or obvious
+\textbf{misentries}) should be corrected now at the latest.
+
+Through the intensive exploration of the data in
+(\hyperref[step-2-explore-the-ml-dataset]{STEP 2: Explore the ML dataset}),
+we know that special \textbf{preparation} of the data is \textbf{not
+necessary}. The values are complete and without gaps and there are no
+duplicates. The values are in similar ranges, which \textbf{does not
+require normalization} of the data.
+
+Furthermore, we know that the \textbf{classes} are very \textbf{evenly
+distributed} and thus bias tendencies should be avoided.
+
+For further details about \textbf{Standarization} and
+\textbf{Normalization} read here:
+\href{http://techflare.blog/what-are-standarization-and-normalization-test-with-iris-data-set-in-scikit-learn/}{What
+are standarization and normalization? Test with iris data set in
+Scikit-learn}.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{32}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} import Iris dataset for exploration (again)}
+\PY{n}{irisdata\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{standarization}{%
+\subsection{Standarization}\label{standarization}}
+
+Standardize the feature values by computing the \textbf{mean},
+subtracting the mean from the data points, and then dividing by the
+\textbf{standard deviation}.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{39}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{StandardScaler}
+
+\PY{c+c1}{\PYZsh{}scaler = StandardScaler()}
+\PY{c+c1}{\PYZsh{}X\PYZus{}train = scaler.fit\PYZus{}transform(X\PYZus{}train)}
+\PY{c+c1}{\PYZsh{}X\PYZus{}test = scaler.transform(X\PYZus{}test)}
+\PY{n}{irisdata\PYZus{}df}
+
+\PY{c+c1}{\PYZsh{}X\PYZus{}train}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{39}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+     sepal\_length  sepal\_width  petal\_length  petal\_width         species
+0             5.1          3.5           1.4          0.2     Iris-setosa
+1             4.9          3.0           1.4          0.2     Iris-setosa
+2             4.7          3.2           1.3          0.2     Iris-setosa
+3             4.6          3.1           1.5          0.2     Iris-setosa
+4             5.0          3.6           1.4          0.2     Iris-setosa
+..            {\ldots}          {\ldots}           {\ldots}          {\ldots}             {\ldots}
+145           6.7          3.0           5.2          2.3  Iris-virginica
+146           6.3          2.5           5.0          1.9  Iris-virginica
+147           6.5          3.0           5.2          2.0  Iris-virginica
+148           6.2          3.4           5.4          2.3  Iris-virginica
+149           5.9          3.0           5.1          1.8  Iris-virginica
+
+[150 rows x 5 columns]
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \hypertarget{normalization}{%
+\subsection{Normalization}\label{normalization}}
+
+    \hypertarget{step-5-carry-out-training-prediction-and-testing}{%
+\section{STEP 5: Carry out training, prediction and
+testing}\label{step-5-carry-out-training-prediction-and-testing}}
+
+\hypertarget{split-the-dataset}{%
 \subsection{Split the dataset}\label{split-the-dataset}}
 
 In the next very important step, the dataset is split into \textbf{2
@@ -2746,17 +2893,55 @@ training dataset - after all, these are to be predicted.
 Typically, the \textbf{test dataset} should contain about \textbf{20\%}
 of the entire dataset.
 
+In particular, to \textbf{avoid bias} in the sorted iris dataset due to
+splitting, the \textbf{order} of the data rows must be
+\textbf{randomized}. This is done with the parameter
+\texttt{shuffle=True}.
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{40}{\boxspacing}
+\prompt{In}{incolor}{35}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
 
 \PY{n}{X} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
 \PY{n}{y} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 
-\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{test\PYZus{}size} \PY{o}{=} \PY{l+m+mf}{0.20}\PY{p}{)}
+\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{test\PYZus{}size} \PY{o}{=} \PY{l+m+mf}{0.20}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
+
+    Check that the split datasets are still balanced and that no
+\textbf{bias} has been created by the splitting.
+
+For this test, the previously separated labels \texttt{y\_train} must be
+added back to the training dataset \texttt{X\_train}.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{37}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} make a deep copy of \PYZsq{}X\PYZus{}train\PYZsq{}}
+\PY{n}{X\PYZus{}train\PYZus{}bias\PYZus{}test\PYZus{}df} \PY{o}{=} \PY{n}{X\PYZus{}train}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} add list of labels to test dataframe}
+\PY{n}{X\PYZus{}train\PYZus{}bias\PYZus{}test\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{y\PYZus{}train}
+
+\PY{c+c1}{\PYZsh{} count unique values without missing values in a column, }
+\PY{c+c1}{\PYZsh{} ordered descending and normalized}
+\PY{n}{X\PYZus{}train\PYZus{}bias\PYZus{}test\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{dropna}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{normalize}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}, frame=single, framerule=2mm, rulecolor=\color{outerrorbackground}]
+\textcolor{ansi-red}{---------------------------------------------------------------------------}
+\textcolor{ansi-red}{TypeError}                                 Traceback (most recent call last)
+Input \textcolor{ansi-green}{In [37]}, in \textcolor{ansi-cyan}{<cell line: 2>}\textcolor{ansi-blue}{()}
+\textcolor{ansi-green-intense}{\textbf{      1}} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{95,135,135}}{\# make a deep copy of 'X\_train'}
+\textcolor{ansi-green}{----> 2} X\_train\_bias\_test\_df \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=} \setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{X\_train\strut}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{.\strut}}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{copy\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{(\strut}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{deep\strut}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{=\strut}}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{0,135,0}}{\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{\textbf{True}\strut}}\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{)\strut}
+\textcolor{ansi-green-intense}{\textbf{      4}} \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{95,135,135}}{\# add list of labels to test dataframe}
+\textcolor{ansi-green-intense}{\textbf{      5}} X\_train\_bias\_test\_df[\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,0}}{'}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,0}}{species}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,0}}{'}] \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=} y\_train
+
+\textcolor{ansi-red}{TypeError}: copy() got an unexpected keyword argument 'deep'
+    \end{Verbatim}
 
     For training, do not use only the variables that correlate best with
 each other, but all of them.
@@ -2775,24 +2960,22 @@ model.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \hypertarget{create-the-svm-model}{%
-\subsection{Create the SVM model}\label{create-the-svm-model}}
+    \hypertarget{train-the-svc}{%
+\subsection{Train the SVC}\label{train-the-svc}}
 
-In this step we create the SVC model and fit it to our training data.
+In this step the SVC is trained with the training data. Training means
+to \textbf{fit} the SVC to the \textbf{training data}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{41}{\boxspacing}
+\prompt{In}{incolor}{39}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{svm} \PY{k+kn}{import} \PY{n}{SVC}
-\PY{n}{classifier} \PY{o}{=} \PY{n}{SVC}\PY{p}{(}\PY{n}{kernel} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{linear}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{random\PYZus{}state} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}
-
 \PY{c+c1}{\PYZsh{} fit the model for the data}
 \PY{n}{classifier}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{41}{\boxspacing}
+\prompt{Out}{outcolor}{39}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 SVC(kernel='linear', random\_state=0)
 \end{Verbatim}
@@ -2801,11 +2984,15 @@ SVC(kernel='linear', random\_state=0)
     \hypertarget{make-predictions}{%
 \subsection{Make predictions}\label{make-predictions}}
 
+In this step the aim is to \textbf{predict the species} using unlabeled
+test data.
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{42}{\boxspacing}
+\prompt{In}{incolor}{40}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{classifier}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
 \PY{c+c1}{\PYZsh{}X\PYZus{}test}
+\PY{c+c1}{\PYZsh{}y\PYZus{}pred}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -2828,7 +3015,7 @@ further details see
 \href{https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html\#sklearn.metrics.accuracy_score}{sklearn.metrics.accuracy\_score}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{54}{\boxspacing}
+\prompt{In}{incolor}{41}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k+kn}{import} \PY{n}{accuracy\PYZus{}score}
 
@@ -2839,7 +3026,7 @@ further details see
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Accuracy score: 96.67 \%
+Accuracy score: 80.00 \%
     \end{Verbatim}
 
     \hypertarget{classification-report}{%
@@ -2853,7 +3040,7 @@ can mask functional weaknesses in one class of a multiclass problem (see
 Report}).
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{52}{\boxspacing}
+\prompt{In}{incolor}{42}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k+kn}{import} \PY{n}{classification\PYZus{}report}
 
@@ -2864,13 +3051,13 @@ Report}).
     \begin{Verbatim}[commandchars=\\\{\}]
                  precision    recall  f1-score   support
 
-    Iris-setosa       1.00      1.00      1.00         4
-Iris-versicolor       1.00      0.92      0.96        13
- Iris-virginica       0.93      1.00      0.96        13
+    Iris-setosa       1.00      1.00      1.00         5
+Iris-versicolor       0.86      0.75      0.80        16
+ Iris-virginica       0.64      0.78      0.70         9
 
-       accuracy                           0.97        30
-      macro avg       0.98      0.97      0.97        30
-   weighted avg       0.97      0.97      0.97        30
+       accuracy                           0.80        30
+      macro avg       0.83      0.84      0.83        30
+   weighted avg       0.81      0.80      0.80        30
 
     \end{Verbatim}
 
@@ -2886,7 +3073,7 @@ train/test split (see
 cross\_val\_score in sklearn, simply explained}).
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{49}{\boxspacing}
+\prompt{In}{incolor}{43}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{cross\PYZus{}val\PYZus{}score}
 
@@ -2899,8 +3086,8 @@ cross\_val\_score in sklearn, simply explained}).
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Cross-validation score: 98.33 \%
-Standard Deviation: 3.33 \%
+Cross-validation score: 82.50 \%
+Standard Deviation: 14.65 \%
     \end{Verbatim}
 
     \hypertarget{confusion-matrix}{%
@@ -2924,7 +3111,7 @@ confusion matrix of the true iris class labels versus the predicted
 class labels is plotted.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{44}{\boxspacing}
+\prompt{In}{incolor}{25}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{cm} \PY{o}{=} \PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{cm}\PY{p}{)}
@@ -2932,9 +3119,9 @@ class labels is plotted.
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[[ 4  0  0]
- [ 0 12  1]
- [ 0  0 13]]
+[[ 6  0  0]
+ [ 0  9  1]
+ [ 0  0 14]]
     \end{Verbatim}
 
     \hypertarget{colored-confusion-matrix}{%
@@ -2945,7 +3132,7 @@ The function \texttt{sklearn.metrics.ConfusionMatrixDisplay()} plots a
 colored confusion matrix.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{45}{\boxspacing}
+\prompt{In}{incolor}{44}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{white}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 
@@ -2966,7 +3153,7 @@ colored confusion matrix.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_98_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_115_0.png}\end{center}
         \caption{Checking the accuracy of the model by using the confusion matrix for cross-validation}
         \label{fig:confusion_matrix}
     \end{figure}
@@ -2993,7 +3180,7 @@ SVC.
 \subsection{Prepare dataset}\label{prepare-dataset}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{142}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{svm} \PY{k+kn}{import} \PY{n}{SVC}
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
@@ -3026,7 +3213,7 @@ predictions with this subset of data - it is not necessary to divide it
 into a training and a test dataset.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{143}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} copy only 2 feature columns}
 \PY{c+c1}{\PYZsh{} and convert pandas dataframe to numpy array}
@@ -3037,7 +3224,7 @@ into a training and a test dataset.
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{144}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} convert pandas dataframe to numpy array}
 \PY{c+c1}{\PYZsh{} and get a flat 1D copy of 2D numpy array}
@@ -3056,12 +3243,12 @@ predictions with test data, the dataset is again divided into a training
 and a test dataset.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{145}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{X} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
 \PY{n}{y} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 
-\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{test\PYZus{}size} \PY{o}{=} \PY{l+m+mf}{0.20}\PY{p}{)}
+\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{test\PYZus{}size} \PY{o}{=} \PY{l+m+mf}{0.20}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -3072,7 +3259,7 @@ This function helps to visualize the modifications by varying the
 individual SVC parameters:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{146}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{plotSVC}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{svc}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{xlabel}\PY{p}{,} \PY{n}{ylabel}\PY{p}{)}\PY{p}{:}
     \PY{c+c1}{\PYZsh{} create a mesh to plot in}
@@ -3103,7 +3290,7 @@ individual SVC parameters:
     This function cares for cross validation:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{168}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{crossValSVC}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{kernel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rbf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{gamma}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{C}\PY{o}{=}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{n}{degree}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{:}
     \PY{c+c1}{\PYZsh{} train the SVC}
@@ -3125,7 +3312,7 @@ prediction accuracy to show the effect of variation and its limits
 regarding the phenomenon \textbf{overfitting}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{182}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{plotParamsAcc}\PY{p}{(}\PY{n}{param\PYZus{}list}\PY{p}{,} \PY{n}{acc\PYZus{}list}\PY{p}{,} \PY{n}{param\PYZus{}name}\PY{p}{,} \PY{n}{log\PYZus{}scale}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{:}
     \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
@@ -3159,7 +3346,7 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \texttt{kernel=rbf}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{149}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{kernels} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{linear}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rbf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{poly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sigmoid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 
@@ -3175,25 +3362,25 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_113_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_130_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_113_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_130_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_113_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_130_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_113_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_130_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
@@ -3208,7 +3395,7 @@ exactly fit the training dataset. The \textbf{default} is
 \texttt{gamma=\textquotesingle{}scale\textquotesingle{}}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{175}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{gammas} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{]}
 
@@ -3225,31 +3412,31 @@ exactly fit the training dataset. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_115_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_132_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_115_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_132_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_115_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_132_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_115_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_132_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_115_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_132_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
@@ -3261,7 +3448,7 @@ As we can see, increasing \texttt{gamma} leads to \textbf{overfitting}
 as the classifier tries to perfectly fit the training data.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{184}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{gammas} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mf}{0.4}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.6}\PY{p}{,} \PY{l+m+mf}{0.7}\PY{p}{,} \PY{l+m+mf}{0.8}\PY{p}{,} \PY{l+m+mf}{0.9}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{]}
 
@@ -3275,7 +3462,7 @@ as the classifier tries to perfectly fit the training data.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_117_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_134_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy}
         \label{fig:plot_vary_gamma}
     \end{figure}
@@ -3289,7 +3476,7 @@ controls the trade off between smooth decision boundary and classifying
 the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{172}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{cs} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{]}
 
@@ -3306,43 +3493,43 @@ the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_119_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_119_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_119_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_119_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_119_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_119_5.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_5.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_119_6.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_6.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
@@ -3354,7 +3541,7 @@ But be careful: to high \texttt{C} values may lead to
 \textbf{overfitting} the training data.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{185}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{cs} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{]}
 
@@ -3368,7 +3555,7 @@ But be careful: to high \texttt{C} values may lead to
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_121_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'C' against the prediction accuracy}
         \label{fig:plot_vary_c}
     \end{figure}
@@ -3387,7 +3574,7 @@ kernel. Also, increasing this parameters leads to \textbf{higher
 training times}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{173}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{degrees} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}
 
@@ -3404,61 +3591,61 @@ training times}.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_123_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_123_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_123_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_123_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_123_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_123_5.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_5.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_123_6.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_6.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_123_7.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_7.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_123_8.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_8.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_123_9.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_9.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
@@ -3470,7 +3657,7 @@ As we can see, increasing the \texttt{degree} of the polynomial
 hyperplane leads to \textbf{overfitting} the training data.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{186}{\boxspacing}
+\prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{degrees} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}
 
@@ -3484,7 +3671,7 @@ hyperplane leads to \textbf{overfitting} the training data.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_125_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy}
         \label{fig:plot_vary_degree}
     \end{figure}
@@ -3514,16 +3701,575 @@ Sources:
   \item
     \href{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html\#sklearn.model_selection.RandomizedSearchCV}{sklearn.model\_selection.RandomizedSearchCV}
   \end{itemize}
+\item
+  \href{https://pyimagesearch.com/2021/05/17/introduction-to-hyperparameter-tuning-with-scikit-learn-and-python/}{Introduction
+  to hyperparameter tuning with scikit-learn and Python}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset?resource=download}{Abalone
+    Dataset}
+  \end{itemize}
+\item
+  \href{https://medium.com/@jackstalfort/hyperparameter-tuning-using-grid-search-and-random-search-f8750a464b35}{Hyperparameter
+  tuning using Grid Search and Random Search: A Conceptual Guide}
 \end{itemize}
 
-\hypertarget{grid-search}{%
+    Import the necessary packages:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{47}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} general packages}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{StandardScaler}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{cross\PYZus{}val\PYZus{}score}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k+kn}{import} \PY{n}{accuracy\PYZus{}score}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k+kn}{import} \PY{n}{classification\PYZus{}report}
+\PY{c+c1}{\PYZsh{}from sklearn.svm import SVC}
+\PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k+kn}{import} \PY{n}{svm}\PY{p}{,} \PY{n}{metrics}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+
+\PY{c+c1}{\PYZsh{} additional packages for grid search}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{RepeatedKFold}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{GridSearchCV}
+
+\PY{c+c1}{\PYZsh{} additional packages for randomized search}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{RandomizedSearchCV}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{RepeatedKFold}
+
+\PY{c+c1}{\PYZsh{} import class MeasExecTimeOfProgram from python file MeasExecTimeOfProgramclass.py}
+\PY{k+kn}{from} \PY{n+nn}{MeasExecTimeOfProgram\PYZus{}class} \PY{k+kn}{import} \PY{n}{MeasExecTimeOfProgram}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Set path and columns of the Iris dataset for import:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} specify the path of the dataset}
+\PY{n}{CSV\PYZus{}PATH} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv}\PY{l+s+s2}{\PYZdq{}}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Load dataset and split it into subsets for training and testing in the
+ratio 80\% to 20\%:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{23}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} load the dataset, separate the features and labels, and perform a}
+\PY{c+c1}{\PYZsh{} training and testing split using 80\PYZpc{} of the data for training and}
+\PY{c+c1}{\PYZsh{} 20\PYZpc{} for evaluation}
+\PY{n}{irisdata\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{CSV\PYZus{}PATH}\PY{p}{)}
+
+\PY{n}{X} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{y} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+
+\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{test\PYZus{}size} \PY{o}{=} \PY{l+m+mf}{0.20}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Check that the split datasets are still balanced and that no
+\textbf{bias} has been created by the splitting.
+
+For this test, the previously separated labels \texttt{y\_train} must be
+added back to the training dataset \texttt{X\_train}.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{24}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} make a deep copy of \PYZsq{}X\PYZus{}train\PYZsq{}}
+\PY{n}{X\PYZus{}train\PYZus{}bias\PYZus{}test\PYZus{}df} \PY{o}{=} \PY{n}{X\PYZus{}train}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} add list of labels to test dataframe}
+\PY{n}{X\PYZus{}train\PYZus{}bias\PYZus{}test\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{y\PYZus{}train}
+
+\PY{c+c1}{\PYZsh{} count unique values without missing values in a column, }
+\PY{c+c1}{\PYZsh{} ordered descending and normalized}
+\PY{n}{X\PYZus{}train\PYZus{}bias\PYZus{}test\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{dropna}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{normalize}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{24}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Iris-versicolor    0.358333
+Iris-virginica     0.333333
+Iris-setosa        0.308333
+Name: species, dtype: float64
+\end{Verbatim}
+\end{tcolorbox}
+        
+    Standardize the feature values by computing the \textbf{mean},
+subtracting the mean from the data points, and then dividing by the
+\textbf{standard deviation}:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{scaler} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}
+\PY{n}{X\PYZus{}train} \PY{o}{=} \PY{n}{scaler}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{)}
+\PY{n}{X\PYZus{}test} \PY{o}{=} \PY{n}{scaler}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}X\PYZus{}train}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{finding-a-baseline}{%
+\subsection{Finding a baseline}\label{finding-a-baseline}}
+
+The aim of this sub-step is to establish a baseline on the Iris dataset
+by training a \textbf{Support Vector Classifier (SVC)} with no
+hyperparameter tuning.
+
+Train the model with \textbf{no tuning of hyperparameters} to find the
+baseline for later improvements:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{54}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{classifier} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{SVC}\PY{p}{(}\PY{n}{kernel} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{linear}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{random\PYZus{}state} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} initiate measuring execution time}
+\PY{n}{execTime} \PY{o}{=} \PY{n}{MeasExecTimeOfProgram}\PY{p}{(}\PY{p}{)}
+\PY{n}{execTime}\PY{o}{.}\PY{n}{start}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{classifier}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} print time delta}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Execution time: }\PY{l+s+si}{\PYZob{}:.4f\PYZcb{}}\PY{l+s+s1}{ ms}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{execTime}\PY{o}{.}\PY{n}{stop}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Execution time: 1.6954 ms
+    \end{Verbatim}
+
+    Evaluate our model using accuracy score:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{55}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} predict labels}
+\PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{classifier}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{56}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} calculate cross validation score}
+\PY{c+c1}{\PYZsh{} HINT: do NOT use the accuracy score \PYZhy{} it\PYZsq{}s to inaccurate!}
+\PY{n}{accuracies} \PY{o}{=} \PY{n}{cross\PYZus{}val\PYZus{}score}\PY{p}{(}\PY{n}{estimator} \PY{o}{=} \PY{n}{classifier}\PY{p}{,} \PY{n}{X} \PY{o}{=} \PY{n}{X\PYZus{}train}\PY{p}{,} 
+                             \PY{n}{y} \PY{o}{=} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{cv} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Cross\PYZhy{}validation score: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{accuracies}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Standard Deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{accuracies}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Cross-validation score: 97.50 \%
+Standard Deviation: 3.82 \%
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{57}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} print classification report}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{classification\PYZus{}report}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+                 precision    recall  f1-score   support
+
+    Iris-setosa       1.00      1.00      1.00        13
+Iris-versicolor       1.00      0.86      0.92         7
+ Iris-virginica       0.91      1.00      0.95        10
+
+       accuracy                           0.97        30
+      macro avg       0.97      0.95      0.96        30
+   weighted avg       0.97      0.97      0.97        30
+
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{58}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{white}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} print colored confusion matrix}
+\PY{n}{cm\PYZus{}colored} \PY{o}{=} \PY{n}{metrics}\PY{o}{.}\PY{n}{ConfusionMatrixDisplay}\PY{o}{.}\PY{n}{from\PYZus{}predictions}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}
+
+\PY{n}{cm\PYZus{}colored}\PY{o}{.}\PY{n}{figure\PYZus{}}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Colored Confusion Matrix}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{cm\PYZus{}colored}\PY{o}{.}\PY{n}{figure\PYZus{}}\PY{o}{.}\PY{n}{set\PYZus{}figwidth}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}
+\PY{n}{cm\PYZus{}colored}\PY{o}{.}\PY{n}{figure\PYZus{}}\PY{o}{.}\PY{n}{set\PYZus{}figheight}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}
+
+\PY{n}{cm\PYZus{}colored}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{figure}[h!]
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_0.png}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{42}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{classifier}\PY{o}{.}\PY{n}{get\PYZus{}params}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{42}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\{'C': 1.0,
+ 'break\_ties': False,
+ 'cache\_size': 200,
+ 'class\_weight': None,
+ 'coef0': 0.0,
+ 'decision\_function\_shape': 'ovr',
+ 'degree': 3,
+ 'gamma': 'scale',
+ 'kernel': 'linear',
+ 'max\_iter': -1,
+ 'probability': False,
+ 'random\_state': 0,
+ 'shrinking': True,
+ 'tol': 0.001,
+ 'verbose': False\}
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \hypertarget{grid-search}{%
 \subsection{Grid Search}\label{grid-search}}
 
+    Initialize the SVC model and define the \textbf{space of the
+hyperparameters} to perform the \textbf{grid-search} over:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{45}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{classifier} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{SVC}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{kernels} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{linear}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rbf}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sigmoid}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{poly}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+\PY{n}{gammas} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{]}
+\PY{n}{cs} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} reduce the possible polynomial degrees to reasonable values,}
+\PY{c+c1}{\PYZsh{} since with higher degrees the calculation time increases exponentially}
+\PY{n}{degrees} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}
+
+\PY{n}{grid} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{n}{kernel}\PY{o}{=}\PY{n}{kernels}\PY{p}{,} \PY{n}{gamma}\PY{o}{=}\PY{n}{gammas}\PY{p}{,} \PY{n}{C}\PY{o}{=}\PY{n}{cs}\PY{p}{,} \PY{n}{degree}\PY{o}{=}\PY{n}{degrees}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Initialize a \textbf{cross-validation fold} and \textbf{perform a
+grid-search} to tune the hyperparameters:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{59}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{cvFold} \PY{o}{=} \PY{n}{RepeatedKFold}\PY{p}{(}\PY{n}{n\PYZus{}splits}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{n\PYZus{}repeats}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+
+\PY{n}{gridSearch} \PY{o}{=} \PY{n}{GridSearchCV}\PY{p}{(}\PY{n}{estimator}\PY{o}{=}\PY{n}{classifier}\PY{p}{,} \PY{n}{param\PYZus{}grid}\PY{o}{=}\PY{n}{grid}\PY{p}{,} \PY{n}{n\PYZus{}jobs}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}
+                          \PY{n}{cv}\PY{o}{=}\PY{n}{cvFold}\PY{p}{,} \PY{n}{scoring}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{accuracy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} initiate measuring execution time}
+\PY{n}{execTime} \PY{o}{=} \PY{n}{MeasExecTimeOfProgram}\PY{p}{(}\PY{p}{)}
+\PY{n}{execTime}\PY{o}{.}\PY{n}{start}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{searchResults} \PY{o}{=} \PY{n}{gridSearch}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} print time delta}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Execution time: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{ s}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{execTime}\PY{o}{.}\PY{n}{stop}\PY{p}{(}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Execution time: 39.64 s
+    \end{Verbatim}
+
+    Extract the best model and evaluate it:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{61}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} predict labels by best model}
+\PY{n}{bestModel} \PY{o}{=} \PY{n}{searchResults}\PY{o}{.}\PY{n}{best\PYZus{}estimator\PYZus{}}
+
+\PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{bestModel}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{62}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} calculate cross validation score from the best model}
+\PY{c+c1}{\PYZsh{} HINT: do NOT use the accuracy score \PYZhy{} it\PYZsq{}s to inaccurate!}
+\PY{n}{accuracies} \PY{o}{=} \PY{n}{cross\PYZus{}val\PYZus{}score}\PY{p}{(}\PY{n}{estimator} \PY{o}{=} \PY{n}{bestModel}\PY{p}{,} \PY{n}{X} \PY{o}{=} \PY{n}{X\PYZus{}train}\PY{p}{,} 
+                             \PY{n}{y} \PY{o}{=} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{cv} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Cross\PYZhy{}validation score: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{accuracies}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Standard Deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{accuracies}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Cross-validation score: 98.33 \%
+Standard Deviation: 3.33 \%
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{63}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k+kn}{import} \PY{n}{classification\PYZus{}report}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{classification\PYZus{}report}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+                 precision    recall  f1-score   support
+
+    Iris-setosa       1.00      1.00      1.00        13
+Iris-versicolor       1.00      0.86      0.92         7
+ Iris-virginica       0.91      1.00      0.95        10
+
+       accuracy                           0.97        30
+      macro avg       0.97      0.95      0.96        30
+   weighted avg       0.97      0.97      0.97        30
+
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{64}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{white}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} print colored confusion matrix}
+\PY{n}{cm\PYZus{}colored} \PY{o}{=} \PY{n}{metrics}\PY{o}{.}\PY{n}{ConfusionMatrixDisplay}\PY{o}{.}\PY{n}{from\PYZus{}predictions}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}
+
+\PY{n}{cm\PYZus{}colored}\PY{o}{.}\PY{n}{figure\PYZus{}}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Colored Confusion Matrix}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{cm\PYZus{}colored}\PY{o}{.}\PY{n}{figure\PYZus{}}\PY{o}{.}\PY{n}{set\PYZus{}figwidth}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}
+\PY{n}{cm\PYZus{}colored}\PY{o}{.}\PY{n}{figure\PYZus{}}\PY{o}{.}\PY{n}{set\PYZus{}figheight}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}
+
+\PY{n}{cm\PYZus{}colored}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{figure}[h!]
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_171_0.png}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{bestModel}\PY{o}{.}\PY{n}{get\PYZus{}params}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\{'C': 5,
+ 'break\_ties': False,
+ 'cache\_size': 200,
+ 'class\_weight': None,
+ 'coef0': 0.0,
+ 'decision\_function\_shape': 'ovr',
+ 'degree': 1,
+ 'gamma': 0.1,
+ 'kernel': 'poly',
+ 'max\_iter': -1,
+ 'probability': False,
+ 'random\_state': None,
+ 'shrinking': True,
+ 'tol': 0.001,
+ 'verbose': False\}
+\end{Verbatim}
+\end{tcolorbox}
+        
     \hypertarget{randomized-search}{%
 \subsection{Randomized Search}\label{randomized-search}}
 
+    Initialize the SVC model and define the \textbf{space of the
+hyperparameters} to perform the \textbf{randomized-search} over:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{72}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{classifier} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{SVC}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{kernels} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{linear}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rbf}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sigmoid}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{poly}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+\PY{n}{gammas} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{]}
+\PY{n}{cs} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} reduce the possible polynomial degrees to reasonable values,}
+\PY{c+c1}{\PYZsh{} since with higher degrees the calculation time increases exponentially}
+\PY{n}{degrees} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}
+
+\PY{n}{grid} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{n}{kernel}\PY{o}{=}\PY{n}{kernels}\PY{p}{,} \PY{n}{gamma}\PY{o}{=}\PY{n}{gammas}\PY{p}{,} \PY{n}{C}\PY{o}{=}\PY{n}{cs}\PY{p}{,} \PY{n}{degree}\PY{o}{=}\PY{n}{degrees}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Initialize a \textbf{cross-validation fold} and \textbf{perform a
+randomized-search} to tune the hyperparameters:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{73}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{cvFold} \PY{o}{=} \PY{n}{RepeatedKFold}\PY{p}{(}\PY{n}{n\PYZus{}splits}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{n\PYZus{}repeats}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+
+\PY{n}{randomSearch} \PY{o}{=} \PY{n}{RandomizedSearchCV}\PY{p}{(}\PY{n}{estimator}\PY{o}{=}\PY{n}{classifier}\PY{p}{,} \PY{n}{n\PYZus{}jobs}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}
+                                  \PY{n}{cv}\PY{o}{=}\PY{n}{cvFold}\PY{p}{,} \PY{n}{param\PYZus{}distributions}\PY{o}{=}\PY{n}{grid}\PY{p}{,}
+                                  \PY{n}{scoring}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{accuracy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} initiate measuring execution time}
+\PY{n}{execTime} \PY{o}{=} \PY{n}{MeasExecTimeOfProgram}\PY{p}{(}\PY{p}{)}
+\PY{n}{execTime}\PY{o}{.}\PY{n}{start}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{searchResults} \PY{o}{=} \PY{n}{randomSearch}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} print time delta}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Execution time: }\PY{l+s+si}{\PYZob{}:.3f\PYZcb{}}\PY{l+s+s1}{ s}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{execTime}\PY{o}{.}\PY{n}{stop}\PY{p}{(}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Execution time: 0.720 s
+    \end{Verbatim}
+
+    Extract the best model and evaluate it:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{74}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} predict labels by best model}
+\PY{n}{bestModel} \PY{o}{=} \PY{n}{searchResults}\PY{o}{.}\PY{n}{best\PYZus{}estimator\PYZus{}}
+
+\PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{bestModel}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{75}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} calculate cross validation score from the best model}
+\PY{c+c1}{\PYZsh{} HINT: do NOT use the accuracy score \PYZhy{} it\PYZsq{}s to inaccurate!}
+\PY{n}{accuracies} \PY{o}{=} \PY{n}{cross\PYZus{}val\PYZus{}score}\PY{p}{(}\PY{n}{estimator} \PY{o}{=} \PY{n}{bestModel}\PY{p}{,} \PY{n}{X} \PY{o}{=} \PY{n}{X\PYZus{}train}\PY{p}{,} 
+                             \PY{n}{y} \PY{o}{=} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{cv} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Cross\PYZhy{}validation score: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{accuracies}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Standard Deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{accuracies}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Cross-validation score: 97.50 \%
+Standard Deviation: 3.82 \%
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{76}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k+kn}{import} \PY{n}{classification\PYZus{}report}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{classification\PYZus{}report}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+                 precision    recall  f1-score   support
+
+    Iris-setosa       1.00      1.00      1.00        13
+Iris-versicolor       1.00      0.86      0.92         7
+ Iris-virginica       0.91      1.00      0.95        10
+
+       accuracy                           0.97        30
+      macro avg       0.97      0.95      0.96        30
+   weighted avg       0.97      0.97      0.97        30
+
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{77}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{white}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} print colored confusion matrix}
+\PY{n}{cm\PYZus{}colored} \PY{o}{=} \PY{n}{metrics}\PY{o}{.}\PY{n}{ConfusionMatrixDisplay}\PY{o}{.}\PY{n}{from\PYZus{}predictions}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}
+
+\PY{n}{cm\PYZus{}colored}\PY{o}{.}\PY{n}{figure\PYZus{}}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Colored Confusion Matrix}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{cm\PYZus{}colored}\PY{o}{.}\PY{n}{figure\PYZus{}}\PY{o}{.}\PY{n}{set\PYZus{}figwidth}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}
+\PY{n}{cm\PYZus{}colored}\PY{o}{.}\PY{n}{figure\PYZus{}}\PY{o}{.}\PY{n}{set\PYZus{}figheight}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}
+
+\PY{n}{cm\PYZus{}colored}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{figure}[h!]
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_182_0.png}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{78}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{bestModel}\PY{o}{.}\PY{n}{get\PYZus{}params}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{78}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\{'C': 10,
+ 'break\_ties': False,
+ 'cache\_size': 200,
+ 'class\_weight': None,
+ 'coef0': 0.0,
+ 'decision\_function\_shape': 'ovr',
+ 'degree': 1,
+ 'gamma': 0.1,
+ 'kernel': 'rbf',
+ 'max\_iter': -1,
+ 'probability': False,
+ 'random\_state': None,
+ 'shrinking': True,
+ 'tol': 0.001,
+ 'verbose': False\}
+\end{Verbatim}
+\end{tcolorbox}
+        
     \hypertarget{summary-and-conclusions}{%
 \section{Summary and conclusions}\label{summary-and-conclusions}}
+
+\hypertarget{english-summary}{%
+\subsection{English summary}\label{english-summary}}
+
+    \hypertarget{german-summary}{%
+\subsection{German summary}\label{german-summary}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
