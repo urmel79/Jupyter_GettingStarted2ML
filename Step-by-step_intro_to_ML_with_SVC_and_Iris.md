@@ -419,6 +419,7 @@ This section was inspired by:
 - [How to Find Duplicates in Pandas DataFrame (With Examples)](https://www.statology.org/pandas-find-duplicates/)
 - [How to Drop Duplicate Rows in a Pandas DataFrame](https://www.statology.org/pandas-drop-duplicates/)
 
+
 #### Checking for duplicate values using `duplicated()`
 
 In order to check for duplicate values in Pandas DataFrame, we use a function `duplicated()`. This function can be used in two ways:
