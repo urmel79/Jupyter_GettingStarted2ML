@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -107,10 +107,13 @@ The following **steps of the systematic ML process** are covered in the next mai
 - [STEP 7: Vary parameters of the ML model manually](#STEP-7:-Vary-parameters-of-the-ML-model-manually)
 - [STEP 8: Tune the ML model systematically](#STEP-8:-Tune-the-ML-model-systematically)
 
-<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true tags=[] -->
+<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true tags=["TODO_Step_0", "STEP_0"] -->
 # STEP 0: Select hardware and software suitable for ML
 
 In this step, specific guidance is provided for selecting hardware and software suitable for machine learning.
+
+**@TODO:**
+Include in this section the presentation `IFA_Steimers_Industry_Risikoquellen_KI_2021-03-05.pdf` by Prof. Steimers (IFA) slide 15 "System Hardware": Distinction between **Training and Application System**.
 
 ## Hardware
 
@@ -176,7 +179,7 @@ import seaborn as sns
 %matplotlib inline
 ```
 
-<!-- #region tags=[] -->
+<!-- #region tags=["STEP_1"] -->
 # STEP 1: Acquire the ML dataset
 
 To allow an ML novice to first familiarize themselves with the ML algorithms, tools, libraries, and programming systems, the ready-made and very beginner-friendly **Iris dataset** is involved in this step. Only after a comprehensive acquaintance with the application of ML tools would it make sense to examine one's own environment for ML-suitable applications and to obtain suitable datasets from them. However, this is beyond the scope of this introductory tutorial.
@@ -191,7 +194,7 @@ It can be downloaded on [Kaggle: Iris Flower Dataset](https://www.kaggle.com/dat
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 ```
 
-<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true toc-hr-collapsed=true -->
+<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true toc-hr-collapsed=true tags=["STEP_2"] -->
 # STEP 2: Explore the ML dataset
 
 One of the most important steps in the entire ML process is this step, in which the dataset included in Step 1 is examined using typical data analysis tools. In addition to exploring the **data structure** and **internal correlations** in the dataset, errors such as **gaps**, **duplications**, or obvious **misentries** must also be found and corrected where possible. This is enormously important so that the classification can later provide plausible results.
@@ -667,7 +670,7 @@ g.fig.suptitle('Pairs plot of the Iris dataset', y=1.05)
 plt.show()
 ```
 
-<!-- #region toc-hr-collapsed=true tags=[] -->
+<!-- #region toc-hr-collapsed=true tags=["TODO_Step_3", "STEP_3"] -->
 # STEP 3: Choose and create the ML model
 
 After exploring the dataset, in this step one has to decide on a specific ML algorithm based on certain selection criteria.
@@ -677,6 +680,11 @@ However, since the AI or ML world is so huge and impossible for a ML novice to o
 ## Short overview of the AI world and its ML algorithms
 
 ### Relationship between AI, ML and others
+
+**@TODO:**
+Include in this section the presentation `IFA_Steimers_KI_Grundlagen_Neuronaler_Netze_2021-03-22.pdf` by Prof. Steimers (IFA):
+- slides 6-7 "Definition of KI"
+- slides 10-12 "ML: Categories based on the data, task and algorithms"
 
 In the **science world**, the term **artificial intelligence (AI)** refers to machines and systems that are capable of performing tasks that are characteristic of human intelligence.
 
@@ -813,7 +821,7 @@ from sklearn.svm import SVC
 classifier = SVC(kernel = 'linear', random_state = 0)
 ```
 
-<!-- #region tags=[] -->
+<!-- #region tags=["STEP_4"] -->
 # STEP 4: Prepare the dataset for training
 
 In this step the dataset is prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by **standardization**, **normalization**, or **binarization** based on thresholds). Furthermore, errors in the dataset (e.g. **data gaps**, **duplicates** or obvious **misentries**) should be corrected now at the latest.
@@ -847,7 +855,7 @@ irisdata_df
 
 ## Normalization
 
-<!-- #region toc-hr-collapsed=true tags=[] -->
+<!-- #region toc-hr-collapsed=true tags=["STEP_5"] -->
 # STEP 5: Carry out training, prediction and testing
 
 ## Split the dataset
@@ -914,7 +922,7 @@ y_pred = classifier.predict(X_test)
 #y_pred
 ```
 
-<!-- #region toc-hr-collapsed=true -->
+<!-- #region toc-hr-collapsed=true tags=["STEP_6"] -->
 # STEP 6: Evaluate model's performance
 
 Subsequently to the training of the SVC model and the classification predictions made based on the test data, this step evaluates the **quality of the classification result** using known **metrics** such as the **accuracy score** as well as the **confusion matrix**.
@@ -993,7 +1001,7 @@ plt.savefig('images/confusion_matrix.png', dpi=150, pad_inches=5)
 plt.show()
 ```
 
-<!-- #region toc-hr-collapsed=true -->
+<!-- #region toc-hr-collapsed=true tags=["STEP_7"] -->
 # STEP 7: Vary parameters of the ML model manually
 
 This section was inspired by [In Depth: Parameter tuning for SVC](https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769)
@@ -1236,7 +1244,7 @@ for degree in degrees:
 plotParamsAcc(degrees, accuracy_list, 'degree', log_scale=False)
 ```
 
-<!-- #region toc-hr-collapsed=true tags=[] -->
+<!-- #region toc-hr-collapsed=true tags=["STEP_8"] -->
 # STEP 8: Tune the ML model systematically
 
 In the final step, two approaches to systematic hyper-parameter search are presented: **Grid Search** and **Randomized Search**. While the former exhaustively considers all parameter combinations for given values, the latter selects a number of candidates from a parameter space with a particular random distribution.
