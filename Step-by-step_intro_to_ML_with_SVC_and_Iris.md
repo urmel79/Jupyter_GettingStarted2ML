@@ -13,7 +13,7 @@ jupyter:
     name: python3
 ---
 
-<!-- #region toc-hr-collapsed=true -->
+<!-- #region toc-hr-collapsed=true tags=[] -->
 # Introduction
 <!-- #endregion -->
 
@@ -107,27 +107,51 @@ The following **steps of the systematic ML process** are covered in the next mai
 - [STEP 7: Vary parameters of the ML model manually](#STEP-7:-Vary-parameters-of-the-ML-model-manually)
 - [STEP 8: Tune the ML model systematically](#STEP-8:-Tune-the-ML-model-systematically)
 
-<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true tags=["TODO_Step_0", "STEP_0"] -->
+<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true tags=["TODO_Step_0"] -->
 # STEP 0: Select hardware and software suitable for ML
 
 In this step, specific guidance is provided for selecting hardware and software suitable for machine learning.
 
-**@TODO:**
-Include in this section the presentation `IFA_Steimers_Industry_Risikoquellen_KI_2021-03-05.pdf` by Prof. Steimers (IFA) slide 15 "System Hardware": Distinction between **Training and Application System**.
-
 ## Hardware
 
-### General hardware requirements
+In regarding the hardware requirements, 2 systems and their use cases need to be considered: the **training system** and the **application system**.
 
-### Desktop or server based
+### Trainingssystem
 
+The **training phase** requires a lot of **computational power** and **memory (RAM)**, depending on the **amount of data** to be processed and the **ML algorithm (so-called estimator)** chosen.
 
-### Embedded application
+Depending on the estimator model, highly parallel processing on a **Graphics Processing Unit (GPU)** can provide significant **speed advantages** over processing on a **Central Processing Unit (CPU)** (e.g., when training deep neural networks in the area of **deep learning**). To take advantage of this speed benefit, the AI application must be suitable in terms of **parallelizability** of the estimator model used as well as **GPU support** through special driver layers (so-called Operating System Abstraction Layer (OSAL)).
 
+Such GPUs are installed on powerful **3D graphics cards**. However, these must be explicitly suitable for the application for AI - not every game-suitable 3D graphics card from any manufacturer can be used. The manufacturer **Nvidia** offers GPUs suitable for AI in its high-performance graphics cards with **CUDA architecture**. CUDA stands for "Compute Unified Device Architecture" and is a **programming interface** (API) developed by Nvidia, with which program parts can be processed by the graphics processor (GPU). The GPU works significantly faster than the CPU, especially with highly parallelizable program sequences (high data parallelism). This speed advantage can be considerable despite currently available CPU technologies like **Multicore** and **Hyper-Threading** with Intel CPUs!
+
+Nvidia graphics cards with CUDA-supporting GPUs can be found listed by their **compute capability** (the higher the value, the better) here: [CUDA GPUs - Compute Capability](https://developer.nvidia.com/cuda-gpus).
+
+The **state of the art** should be taken into account when selecting the rest of the training system's hardware. Otherwise, seemingly (price-wise) inexpensive components could very quickly nullify the speed advantage of the GPU. In addition to a mainboard suitable for one (or more) high-performance 3D graphics cards with a correspondingly powerful BUS system (e.g. PCI Express), the RAM should be as large as possible (min. 64 GB) and fast. A large RAM allows, for example, the **virtualization** of several parallel systems (see [Virtual machine](https://en.wikipedia.org/wiki/Virtual_machine)) and thus a significantly better utilization of the available computing capacity. The permanent memory should also be as large and fast as possible - high-performance **solid-state drives (SSDs)** should be clearly preferred over classic hard disks (HDDs).
+
+### Applikationssystem
+
+In the **application phase** of the trained estimator model, considerably less computing power and RAM are usually required. If the concrete application does not require **continuous learning during operation**, significantly less expensive systems (in terms of acquisition costs, power consumption, etc.) can also be used. Such application-specific **embedded systems** have only one CPU (usually in **ARM architecture**), comparatively limited RAM (e.g. 1 - 8 GB) and usually no GPU. A popular **embedded computer** that is very well supported in terms of ML software is the **[Raspberry Pi](https://en.wikipedia.org/wiki/Raspberry_Pi)**. In addition to its ARM CPU, the Raspberry Pi also has a GPU installed on the same processor in the so-called **System on a Chip design (SoC)**. However, the SoC manufacturer **Broadcom** does not support the CUDA API. Parallelizing the AI application on the GPU of the Raspberry Pi is therefore (currently) not an option.
+
+Here are some links for further reading:
+
+- [Deep learning with Raspberry Pi and alternatives in 2022](https://qengineering.eu/deep-learning-with-raspberry-pi-and-alternatives.html)
+- [Benchmarking Machine Learning on the New Raspberry Pi 4, Model B](https://www.hackster.io/news/benchmarking-machine-learning-on-the-new-raspberry-pi-4-model-b-88db9304ce4)
+- [Portable Computer Vision: TensorFlow 2.0 on a Raspberry Pi](https://towardsdatascience.com/portable-computer-vision-tensorflow-2-0-on-a-raspberry-pi-part-1-of-2-84e318798ce9)
 
 ## Software
 
-### General requirements to the operating system
+### Operating system
+
+**@TODO:** Rephrase and translate!!
+
+These are general requirements to the operating system:
+
+- Offenheit (Verfügbarkeit sehr guter Schnittstellen-Dokumentation und idealerweise quelloffener Software)
+- Verfügbarkeit (Installations- und Konfigurationsrechte)
+- Kommunikation (ungefilterte und bidirektionale Kommunikation im lokalen Netzwerk sowie ins Internet auf allen notwendigen Protokollen)
+- leichte Erweiterbarkeit
+    - SW-Installation + Updates über zentrale Paketmanagementsysteme wie z. B. `apt`, `pip` oder `conda`
+    - Einbindung zusätzlicher SW-Bibliotheken oder externer HW-Sensoren
 
 ### Programming IDEs
 
@@ -153,10 +177,18 @@ Include in this section the presentation `IFA_Steimers_Industry_Risikoquellen_KI
 
 ##### `Scikit-Learn`
 
-##### `TensorFlow`
+##### `TensorFlow`, `Keras`, `CUDA Toolkit`
 
 The package `TensorFlow` offers, among other things, the possibility to create and train **artificial neural networks (ANN)** based on Google AI. However, the installation and application is very much beyond the scope of this beginner tutorial. Further information can be found here: [https://www.tensorflow.org](https://www.tensorflow.org).
 
+## Community Support
+
+When selecting and deciding for or against the use of certain hardware and software components, in addition to purely technical or financial characteristics, significant attention should be paid to broad **support from a well-networked community**. This community should consist of a balanced share of **manufacturers** of hardware components (e.g. GPU suppliers, manufacturers of embedded systems or sensors), **software developers** ideally from the **open source** ecosystem, and an active **user community** (e.g. for reporting hardware and software bugs or providing help in forums).
+
+The author's many years of development experience show that the technically best hardware or software component is worthless if you are (apparently) the only user. This impression arises either because the component is actually very exotic and has only a few users or because the development takes place "behind closed doors", i.e. in the company's internal **closed source** domain.
+
+Without the support of an active community, you are (almost) on your own when it comes to questions or problems. Progress in the development and maintenance of an AI application is therefore very difficult!
+The clear recommendation is therefore: Go for the (technically, price-wise) **second-best alternative** with an even bigger **community** :)
 
 <!-- #endregion -->
 
@@ -179,7 +211,7 @@ import seaborn as sns
 %matplotlib inline
 ```
 
-<!-- #region tags=["STEP_1"] -->
+<!-- #region tags=[] -->
 # STEP 1: Acquire the ML dataset
 
 To allow an ML novice to first familiarize themselves with the ML algorithms, tools, libraries, and programming systems, the ready-made and very beginner-friendly **Iris dataset** is involved in this step. Only after a comprehensive acquaintance with the application of ML tools would it make sense to examine one's own environment for ML-suitable applications and to obtain suitable datasets from them. However, this is beyond the scope of this introductory tutorial.
@@ -194,7 +226,7 @@ It can be downloaded on [Kaggle: Iris Flower Dataset](https://www.kaggle.com/dat
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 ```
 
-<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true toc-hr-collapsed=true tags=["STEP_2"] -->
+<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true toc-hr-collapsed=true tags=[] -->
 # STEP 2: Explore the ML dataset
 
 One of the most important steps in the entire ML process is this step, in which the dataset included in Step 1 is examined using typical data analysis tools. In addition to exploring the **data structure** and **internal correlations** in the dataset, errors such as **gaps**, **duplications**, or obvious **misentries** must also be found and corrected where possible. This is enormously important so that the classification can later provide plausible results.
@@ -670,7 +702,7 @@ g.fig.suptitle('Pairs plot of the Iris dataset', y=1.05)
 plt.show()
 ```
 
-<!-- #region toc-hr-collapsed=true tags=["TODO_Step_3", "STEP_3"] -->
+<!-- #region toc-hr-collapsed=true tags=["TODO_Step_3"] -->
 # STEP 3: Choose and create the ML model
 
 After exploring the dataset, in this step one has to decide on a specific ML algorithm based on certain selection criteria.
@@ -821,7 +853,7 @@ from sklearn.svm import SVC
 classifier = SVC(kernel = 'linear', random_state = 0)
 ```
 
-<!-- #region tags=["STEP_4"] -->
+<!-- #region tags=[] -->
 # STEP 4: Prepare the dataset for training
 
 In this step the dataset is prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by **standardization**, **normalization**, or **binarization** based on thresholds). Furthermore, errors in the dataset (e.g. **data gaps**, **duplicates** or obvious **misentries**) should be corrected now at the latest.
@@ -855,7 +887,7 @@ irisdata_df
 
 ## Normalization
 
-<!-- #region toc-hr-collapsed=true tags=["STEP_5"] -->
+<!-- #region toc-hr-collapsed=true tags=[] -->
 # STEP 5: Carry out training, prediction and testing
 
 ## Split the dataset
@@ -922,7 +954,7 @@ y_pred = classifier.predict(X_test)
 #y_pred
 ```
 
-<!-- #region toc-hr-collapsed=true tags=["STEP_6"] -->
+<!-- #region toc-hr-collapsed=true tags=[] -->
 # STEP 6: Evaluate model's performance
 
 Subsequently to the training of the SVC model and the classification predictions made based on the test data, this step evaluates the **quality of the classification result** using known **metrics** such as the **accuracy score** as well as the **confusion matrix**.
@@ -1001,7 +1033,7 @@ plt.savefig('images/confusion_matrix.png', dpi=150, pad_inches=5)
 plt.show()
 ```
 
-<!-- #region toc-hr-collapsed=true tags=["STEP_7"] -->
+<!-- #region toc-hr-collapsed=true tags=[] -->
 # STEP 7: Vary parameters of the ML model manually
 
 This section was inspired by [In Depth: Parameter tuning for SVC](https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769)
@@ -1244,7 +1276,7 @@ for degree in degrees:
 plotParamsAcc(degrees, accuracy_list, 'degree', log_scale=False)
 ```
 
-<!-- #region toc-hr-collapsed=true tags=["STEP_8"] -->
+<!-- #region toc-hr-collapsed=true tags=[] -->
 # STEP 8: Tune the ML model systematically
 
 In the final step, two approaches to systematic hyper-parameter search are presented: **Grid Search** and **Randomized Search**. While the former exhaustively considers all parameter combinations for given values, the latter selects a number of candidates from a parameter space with a particular random distribution.
