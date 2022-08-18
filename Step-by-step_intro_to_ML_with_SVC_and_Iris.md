@@ -114,7 +114,7 @@ In this step, specific guidance is provided for selecting hardware and software 
 
 ## Hardware
 
-In regarding the hardware requirements, 2 systems and their use cases need to be considered: the **training system** and the **application system**.
+When considering hardware requirements, 2 systems and their use cases must be considered: the **training system** and the **application system**.
 
 ### Training system
 
