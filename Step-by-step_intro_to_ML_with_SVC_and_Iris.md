@@ -116,7 +116,7 @@ In this step, specific guidance is provided for selecting hardware and software 
 
 In regarding the hardware requirements, 2 systems and their use cases need to be considered: the **training system** and the **application system**.
 
-### Trainingssystem
+### Training system
 
 The **training phase** requires a lot of **computational power** and **memory (RAM)**, depending on the **amount of data** to be processed and the **ML algorithm (so-called estimator)** chosen.
 
@@ -128,7 +128,7 @@ Nvidia graphics cards with CUDA-supporting GPUs can be found listed by their **c
 
 The **state of the art** should be taken into account when selecting the rest of the training system's hardware. Otherwise, seemingly (price-wise) inexpensive components could very quickly nullify the speed advantage of the GPU. In addition to a mainboard suitable for one (or more) high-performance 3D graphics cards with a correspondingly powerful BUS system (e.g. PCI Express), the RAM should be as large as possible (min. 64 GB) and fast. A large RAM allows, for example, the **virtualization** of several parallel systems (see [Virtual machine](https://en.wikipedia.org/wiki/Virtual_machine)) and thus a significantly better utilization of the available computing capacity. The permanent memory should also be as large and fast as possible - high-performance **solid-state drives (SSDs)** should be clearly preferred over classic hard disks (HDDs).
 
-### Applikationssystem
+### Application system
 
 In the **application phase** of the trained estimator model, considerably less computing power and RAM are usually required. If the concrete application does not require **continuous learning during operation**, significantly less expensive systems (in terms of acquisition costs, power consumption, etc.) can also be used. Such application-specific **embedded systems** have only one CPU (usually in **ARM architecture**), comparatively limited RAM (e.g. 1 - 8 GB) and usually no GPU. A popular **embedded computer** that is very well supported in terms of ML software is the **[Raspberry Pi](https://en.wikipedia.org/wiki/Raspberry_Pi)**. In addition to its ARM CPU, the Raspberry Pi also has a GPU installed on the same processor in the so-called **System on a Chip design (SoC)**. However, the SoC manufacturer **Broadcom** does not support the CUDA API. Parallelizing the AI application on the GPU of the Raspberry Pi is therefore (currently) not an option.
 
