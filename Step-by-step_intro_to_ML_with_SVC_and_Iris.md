@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -107,14 +107,14 @@ The following **steps of the systematic ML process** are covered in the next mai
 - [STEP 7: Vary parameters of the ML model manually](#STEP-7:-Vary-parameters-of-the-ML-model-manually)
 - [STEP 8: Tune the ML model systematically](#STEP-8:-Tune-the-ML-model-systematically)
 
-<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true tags=["TODO_Step_0"] -->
+<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true tags=[] -->
 # STEP 0: Select hardware and software suitable for ML
 
 In this step, specific guidance is provided for selecting hardware and software suitable for machine learning.
 
 ## Hardware
 
-When considering hardware requirements, 2 systems and their use cases must be taken into account: the **training system** and the **application system**.
+When considering hardware requirements, two systems and their use cases must be taken into account: the **training system** and the **application system**.
 
 ### Training system
 
@@ -122,22 +122,35 @@ The **training phase** requires a lot of **computational power** and **memory (R
 
 Depending on the estimator model, highly parallel processing on a **Graphics Processing Unit (GPU)** can provide significant **speed advantages** over processing on a **Central Processing Unit (CPU)** (e.g., when training deep neural networks in the area of **deep learning**). To take advantage of this speed benefit, the AI application must be suitable in terms of **parallelizability** of the estimator model used as well as **GPU support** through special driver layers (so-called Operating System Abstraction Layer (OSAL)).
 
-Such GPUs are installed on powerful **3D graphics cards**. However, these must be explicitly suitable for the application for AI - not every game-suitable 3D graphics card from any manufacturer can be used. The manufacturer **Nvidia** offers GPUs suitable for AI in its high-performance graphics cards with **CUDA architecture**. CUDA stands for "Compute Unified Device Architecture" and is a **programming interface** (API) developed by Nvidia, with which program parts can be processed by the graphics processor (GPU). The GPU works significantly faster than the CPU, especially with highly parallelizable program sequences (high data parallelism). This speed advantage can be considerable despite currently available CPU technologies like **Multicore** and **Hyper-Threading** with Intel CPUs!
+Such GPUs are installed on powerful **3D graphics cards**. However, these must be explicitly qualified for the application for AI - not every game-suitable 3D graphics card from any manufacturer can be used. The manufacturer **Nvidia** offers GPUs suitable for AI in its high-performance graphics cards with **CUDA architecture**. [CUDA](https://en.wikipedia.org/wiki/CUDA) stands for "Compute Unified Device Architecture" and is a **programming interface** (API) developed by Nvidia, with which program parts can be processed by the graphics processor (GPU). The GPU works significantly faster than the CPU, especially with highly parallelizable program sequences (high data parallelism). This speed advantage can be considerable despite currently available CPU technologies like **Multicore** and **Hyper-Threading** with Intel CPUs!
+
+However, it should be mentioned that currently only the manufacturer Nvidia offers 3D graphics cards with CUDA implementation, since CUDA is a **proprietary** framework. In addition, there is also the much less well-known **open source** alternative **[OpenCL](https://en.wikipedia.org/wiki/OpenCL)**, which has now been implemented by a large number of graphics card manufacturers. Since OpenCL is an **open industry standard**, Intel and AMD chips and their GPUs, ATI Radeon cards of the 5, 6, 7 and R9 series as well as various Nvidia GeForce cards are supported, for example.
 
 Nvidia graphics cards with CUDA-supporting GPUs can be found listed by their **compute capability** (the higher the value, the better) here: [CUDA GPUs - Compute Capability](https://developer.nvidia.com/cuda-gpus).
 
-The **state of the art** should be taken into account when selecting the rest of the training system's hardware. Otherwise, seemingly (price-wise) inexpensive components could very quickly nullify the speed advantage of the GPU. In addition to a mainboard suitable for one (or more) high-performance 3D graphics cards with a correspondingly powerful BUS system (e.g. PCI Express), the RAM should be as large as possible (min. 64 GB) and fast. A large RAM allows, for example, the **virtualization** of several parallel systems (see [Virtual machine](https://en.wikipedia.org/wiki/Virtual_machine)) and thus a significantly better utilization of the available computing capacity. The permanent memory should also be as large and fast as possible - high-performance **solid-state drives (SSDs)** should be clearly preferred over classic hard disks (HDDs).
+Regarding the **code execution performance** of both alternatives in direct comparison, there are different statements in the technical literature. While the 2010 paper [A Performance Comparison of CUDA and OpenCL](https://arxiv.org/abs/1005.2581) sees the CUDA implementation as the clear favorite, more recent publications point out the strong dependence of performance on **code quality**, **algorithm type** and the **GPU hardware** used, among other things (see e.g. here: [CUDA vs OpenCL: Which to Use for GPU Programming](https://www.incredibuild.com/blog/cuda-vs-opencl-which-to-use-for-gpu-programming)).
+
+It is therefore recommended that the decision for **CUDA or OpenCL** should depend on the extent to which most of the applications employed and the GPU hardware used are better supported by one of the two approaches in each case.
+
+The **state of the art** should be also taken into account when selecting the rest of the training system's hardware. Otherwise, seemingly (price-wise) inexpensive components could very quickly nullify the speed advantage of the GPU. In addition to a mainboard suitable for one (or more) high-performance 3D graphics cards with a correspondingly powerful BUS system (e.g. PCI Express), the RAM should be as large as possible (min. 64 GB) and fast. A large RAM allows, for example, the **virtualization** of several parallel systems (see [Virtual machine](https://en.wikipedia.org/wiki/Virtual_machine)) and thus a significantly better utilization of the available computing capacity. The permanent memory should also be as large and fast as possible - high-performance **solid-state drives (SSDs)** should be clearly preferred over classic hard disks (HDDs).
 
 ### Application system
 
-In the **application phase** of the trained estimator model, considerably less computing power and RAM are usually required. If the concrete application does not require **continuous learning during operation**, significantly less expensive systems (in terms of acquisition costs, power consumption, etc.) can also be used. Such application-specific **embedded systems** have only one CPU (usually in **ARM architecture**), comparatively limited RAM (e.g. 1 - 8 GB) and usually no GPU. A popular **embedded computer** that is very well supported in terms of ML software is the **[Raspberry Pi](https://en.wikipedia.org/wiki/Raspberry_Pi)**. In addition to its ARM CPU, the Raspberry Pi also has a GPU installed on the same processor in the so-called **System on a Chip design (SoC)**. However, the SoC manufacturer **Broadcom** does not support the CUDA API. Parallelizing the AI application on the GPU of the Raspberry Pi is therefore (currently) not an option.
+In the **application phase** of the trained estimator model, considerably less computing power and RAM are usually required. If the concrete application does not require **continuous learning during operation**, significantly less expensive systems (in terms of acquisition costs, power consumption, etc.) can also be used. Such application-specific **embedded systems** have only one CPU (usually in **ARM architecture**), comparatively limited RAM (e.g. 1 - 8 GB) and usually no GPU. A popular **embedded computer** that is very well supported in terms of ML software is the **[Raspberry Pi](https://en.wikipedia.org/wiki/Raspberry_Pi)**. In addition to its ARM CPU, the Raspberry Pi also has a GPU installed on the same processor in the so-called **System on a Chip design (SoC)**. However, the SoC manufacturer **Broadcom** does not support the CUDA API. 
+
+There are references in the technical literature that the open source alternative **OpenCL** can be installed on the Raspberry Pi and that the AI framework **TensorFLow** (see section "Software") can be compiled with **[SYCL](https://en.wikipedia.org/wiki/SYCL)** support (SYCL stands for "Single Source OpenCL"). However, a first rough review gives the impression that support for this approach is still very experimental at the moment. Therefore, parallelizing the AI application on the GPU of the Raspberry Pi does not seem to be an option (yet).
 
 Here are some links for further reading:
 
 - [Deep learning with Raspberry Pi and alternatives in 2022](https://qengineering.eu/deep-learning-with-raspberry-pi-and-alternatives.html)
 - [Benchmarking Machine Learning on the New Raspberry Pi 4, Model B](https://www.hackster.io/news/benchmarking-machine-learning-on-the-new-raspberry-pi-4-model-b-88db9304ce4)
 - [Portable Computer Vision: TensorFlow 2.0 on a Raspberry Pi](https://towardsdatascience.com/portable-computer-vision-tensorflow-2-0-on-a-raspberry-pi-part-1-of-2-84e318798ce9)
+- [Install OpenCL on Raspberry Pi 3 B+](https://qengineering.eu/install-opencl-on-raspberry-pi-3.html)
+- [Does TensorFlow Support OpenCL ?](https://indiantechwarrior.com/does-tensorflow-support-opencl/)
+- [TensorFlow for OpenCL using SYCL](https://www.codeplay.com/portal/blogs/2016/06/01/tensorflow-for-opencl-using-sycl.html)
+<!-- #endregion -->
 
+<!-- #region tags=["TODO_Step_0"] -->
 ## Software
 
 ### Operating system
@@ -180,6 +193,7 @@ These are general requirements to the operating system:
 ##### `TensorFlow`, `Keras`, `CUDA Toolkit`
 
 The package `TensorFlow` offers, among other things, the possibility to create and train **artificial neural networks (ANN)** based on Google AI. However, the installation and application is very much beyond the scope of this beginner tutorial. Further information can be found here: [https://www.tensorflow.org](https://www.tensorflow.org).
+<!-- #endregion -->
 
 ## Community Support
 
@@ -188,9 +202,7 @@ When selecting and deciding for or against the use of certain hardware and softw
 The author's many years of development experience show that the technically best hardware or software component is worthless if you are (apparently) the only user. This impression arises either because the component is actually very exotic and has only a few users or because the development takes place "behind closed doors", i.e. in the company's internal **closed source** domain.
 
 Without the support of an active community, you are (almost) on your own when it comes to questions or problems. Progress in the development and maintenance of an AI application is therefore very difficult!
-The clear recommendation is therefore: Go for the (technically, price-wise) **second-best alternative** with an even bigger **community** :)
-
-<!-- #endregion -->
+The clear recommendation is therefore: Go for the (technically, price-wise) **second-best alternative** with an even bigger **community**.
 
 <!-- #region tags=[] -->
 ## Import Python packages

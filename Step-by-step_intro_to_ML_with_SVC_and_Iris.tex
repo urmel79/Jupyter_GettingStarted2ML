@@ -1,7 +1,8 @@
-\documentclass [oneside,10pt,a4paper,ngerman,BCOR10mm,headsepline,parindent,final]{scrartcl}
+\documentclass [oneside,10pt,a4paper,english,BCOR10mm,headsepline,parindent,final]{scrartcl}
 
     \usepackage[breakable]{tcolorbox}
     \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    \usepackage[american]{babel}
     
 
     % Basic figure setup, for now with no caption control since it's done
@@ -804,22 +805,153 @@ software suitable for machine learning.
 \hypertarget{hardware}{%
 \subsection{Hardware}\label{hardware}}
 
-\hypertarget{general-hardware-requirements}{%
-\subsubsection{General hardware
-requirements}\label{general-hardware-requirements}}
+When considering hardware requirements, two systems and their use cases
+must be taken into account: the \textbf{training system} and the
+\textbf{application system}.
 
-\hypertarget{desktop-or-server-based}{%
-\subsubsection{Desktop or server based}\label{desktop-or-server-based}}
+\hypertarget{training-system}{%
+\subsubsection{Training system}\label{training-system}}
 
-\hypertarget{embedded-application}{%
-\subsubsection{Embedded application}\label{embedded-application}}
+The \textbf{training phase} requires a lot of \textbf{computational
+power} and \textbf{memory (RAM)}, depending on the \textbf{amount of
+data} to be processed and the \textbf{ML algorithm (so-called
+estimator)} chosen.
 
-\hypertarget{software}{%
+Depending on the estimator model, highly parallel processing on a
+\textbf{Graphics Processing Unit (GPU)} can provide significant
+\textbf{speed advantages} over processing on a \textbf{Central
+Processing Unit (CPU)} (e.g., when training deep neural networks in the
+area of \textbf{deep learning}). To take advantage of this speed
+benefit, the AI application must be suitable in terms of
+\textbf{parallelizability} of the estimator model used as well as
+\textbf{GPU support} through special driver layers (so-called Operating
+System Abstraction Layer (OSAL)).
+
+Such GPUs are installed on powerful \textbf{3D graphics cards}. However,
+these must be explicitly qualified for the application for AI - not
+every game-suitable 3D graphics card from any manufacturer can be used.
+The manufacturer \textbf{Nvidia} offers GPUs suitable for AI in its
+high-performance graphics cards with \textbf{CUDA architecture}.
+\href{https://en.wikipedia.org/wiki/CUDA}{CUDA} stands for ``Compute
+Unified Device Architecture'' and is a \textbf{programming interface}
+(API) developed by Nvidia, with which program parts can be processed by
+the graphics processor (GPU). The GPU works significantly faster than
+the CPU, especially with highly parallelizable program sequences (high
+data parallelism). This speed advantage can be considerable despite
+currently available CPU technologies like \textbf{Multicore} and
+\textbf{Hyper-Threading} with Intel CPUs!
+
+However, it should be mentioned that currently only the manufacturer
+Nvidia offers 3D graphics cards with CUDA implementation, since CUDA is
+a \textbf{proprietary} framework. In addition, there is also the much
+less well-known \textbf{open source} alternative
+\textbf{\href{https://en.wikipedia.org/wiki/OpenCL}{OpenCL}}, which has
+now been implemented by a large number of graphics card manufacturers.
+Since OpenCL is an \textbf{open industry standard}, Intel and AMD chips
+and their GPUs, ATI Radeon cards of the 5, 6, 7 and R9 series as well as
+various Nvidia GeForce cards are supported, for example.
+
+Nvidia graphics cards with CUDA-supporting GPUs can be found listed by
+their \textbf{compute capability} (the higher the value, the better)
+here: \href{https://developer.nvidia.com/cuda-gpus}{CUDA GPUs - Compute
+Capability}.
+
+Regarding the \textbf{code execution performance} of both alternatives
+in direct comparison, there are different statements in the technical
+literature. While the 2010 paper
+\href{https://arxiv.org/abs/1005.2581}{A Performance Comparison of CUDA
+and OpenCL} sees the CUDA implementation as the clear favorite, more
+recent publications point out the strong dependence of performance on
+\textbf{code quality}, \textbf{algorithm type} and the \textbf{GPU
+hardware} used, among other things (see e.g.~here:
+\href{https://www.incredibuild.com/blog/cuda-vs-opencl-which-to-use-for-gpu-programming}{CUDA
+vs OpenCL: Which to Use for GPU Programming}).
+
+It is therefore recommended that the decision for \textbf{CUDA or
+OpenCL} should depend on the extent to which most of the applications
+employed and the GPU hardware used are better supported by one of the
+two approaches in each case.
+
+The \textbf{state of the art} should be also taken into account when
+selecting the rest of the training system's hardware. Otherwise,
+seemingly (price-wise) inexpensive components could very quickly nullify
+the speed advantage of the GPU. In addition to a mainboard suitable for
+one (or more) high-performance 3D graphics cards with a correspondingly
+powerful BUS system (e.g.~PCI Express), the RAM should be as large as
+possible (min. 64 GB) and fast. A large RAM allows, for example, the
+\textbf{virtualization} of several parallel systems (see
+\href{https://en.wikipedia.org/wiki/Virtual_machine}{Virtual machine})
+and thus a significantly better utilization of the available computing
+capacity. The permanent memory should also be as large and fast as
+possible - high-performance \textbf{solid-state drives (SSDs)} should be
+clearly preferred over classic hard disks (HDDs).
+
+\hypertarget{application-system}{%
+\subsubsection{Application system}\label{application-system}}
+
+In the \textbf{application phase} of the trained estimator model,
+considerably less computing power and RAM are usually required. If the
+concrete application does not require \textbf{continuous learning during
+operation}, significantly less expensive systems (in terms of
+acquisition costs, power consumption, etc.) can also be used. Such
+application-specific \textbf{embedded systems} have only one CPU
+(usually in \textbf{ARM architecture}), comparatively limited RAM
+(e.g.~1 - 8 GB) and usually no GPU. A popular \textbf{embedded computer}
+that is very well supported in terms of ML software is the
+\textbf{\href{https://en.wikipedia.org/wiki/Raspberry_Pi}{Raspberry
+Pi}}. In addition to its ARM CPU, the Raspberry Pi also has a GPU
+installed on the same processor in the so-called \textbf{System on a
+Chip design (SoC)}. However, the SoC manufacturer \textbf{Broadcom} does
+not support the CUDA API. Parallelizing the AI application on the GPU of
+the Raspberry Pi is therefore (currently) not an option.
+
+Here are some links for further reading:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://qengineering.eu/deep-learning-with-raspberry-pi-and-alternatives.html}{Deep
+  learning with Raspberry Pi and alternatives in 2022}
+\item
+  \href{https://www.hackster.io/news/benchmarking-machine-learning-on-the-new-raspberry-pi-4-model-b-88db9304ce4}{Benchmarking
+  Machine Learning on the New Raspberry Pi 4, Model B}
+\item
+  \href{https://towardsdatascience.com/portable-computer-vision-tensorflow-2-0-on-a-raspberry-pi-part-1-of-2-84e318798ce9}{Portable
+  Computer Vision: TensorFlow 2.0 on a Raspberry Pi}
+\end{itemize}
+
+    \hypertarget{software}{%
 \subsection{Software}\label{software}}
 
-\hypertarget{general-requirements-to-the-operating-system}{%
-\subsubsection{General requirements to the operating
-system}\label{general-requirements-to-the-operating-system}}
+\hypertarget{operating-system}{%
+\subsubsection{Operating system}\label{operating-system}}
+
+\textbf{@TODO:} Rephrase and translate!!
+
+These are general requirements to the operating system:
+
+\begin{itemize}
+\tightlist
+\item
+  Offenheit (Verfügbarkeit sehr guter Schnittstellen-Dokumentation und
+  idealerweise quelloffener Software)
+\item
+  Verfügbarkeit (Installations- und Konfigurationsrechte)
+\item
+  Kommunikation (ungefilterte und bidirektionale Kommunikation im
+  lokalen Netzwerk sowie ins Internet auf allen notwendigen Protokollen)
+\item
+  leichte Erweiterbarkeit
+
+  \begin{itemize}
+  \tightlist
+  \item
+    SW-Installation + Updates über zentrale Paketmanagementsysteme wie
+    z. B. \texttt{apt}, \texttt{pip} oder \texttt{conda}
+  \item
+    Einbindung zusätzlicher SW-Bibliotheken oder externer HW-Sensoren
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{programming-ides}{%
 \subsubsection{Programming IDEs}\label{programming-ides}}
@@ -860,14 +992,42 @@ only)}\label{packages-for-data-analytics-and-libraries-for-ml-python-only}}
 \hypertarget{scikit-learn}{%
 \subparagraph{\texorpdfstring{\texttt{Scikit-Learn}}{Scikit-Learn}}\label{scikit-learn}}
 
-\hypertarget{tensorflow}{%
-\subparagraph{\texorpdfstring{\texttt{TensorFlow}}{TensorFlow}}\label{tensorflow}}
+\hypertarget{tensorflow-keras-cuda-toolkit}{%
+\subparagraph{\texorpdfstring{\texttt{TensorFlow}, \texttt{Keras},
+\texttt{CUDA\ Toolkit}}{TensorFlow, Keras, CUDA Toolkit}}\label{tensorflow-keras-cuda-toolkit}}
 
 The package \texttt{TensorFlow} offers, among other things, the
 possibility to create and train \textbf{artificial neural networks
 (ANN)} based on Google AI. However, the installation and application is
 very much beyond the scope of this beginner tutorial. Further
 information can be found here: \url{https://www.tensorflow.org}.
+
+    \hypertarget{community-support}{%
+\subsection{Community Support}\label{community-support}}
+
+When selecting and deciding for or against the use of certain hardware
+and software components, in addition to purely technical or financial
+characteristics, significant attention should be paid to broad
+\textbf{support from a well-networked community}. This community should
+consist of a balanced share of \textbf{manufacturers} of hardware
+components (e.g.~GPU suppliers, manufacturers of embedded systems or
+sensors), \textbf{software developers} ideally from the \textbf{open
+source} ecosystem, and an active \textbf{user community} (e.g.~for
+reporting hardware and software bugs or providing help in forums).
+
+The author's many years of development experience show that the
+technically best hardware or software component is worthless if you are
+(apparently) the only user. This impression arises either because the
+component is actually very exotic and has only a few users or because
+the development takes place ``behind closed doors'', i.e.~in the
+company's internal \textbf{closed source} domain.
+
+Without the support of an active community, you are (almost) on your own
+when it comes to questions or problems. Progress in the development and
+maintenance of an AI application is therefore very difficult! The clear
+recommendation is therefore: Go for the (technically, price-wise)
+\textbf{second-best alternative} with an even bigger \textbf{community}
+:)
 
     \hypertarget{import-python-packages}{%
 \subsection{Import Python packages}\label{import-python-packages}}
@@ -877,7 +1037,7 @@ data analysis and ML, such as \texttt{Pandas}, \texttt{NumPY},
 \texttt{matplotlib} and \texttt{Scikit-Learn}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{48}{\boxspacing}
+\prompt{In}{incolor}{16}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{time}
 
@@ -889,8 +1049,6 @@ data analysis and ML, such as \texttt{Pandas}, \texttt{NumPY},
 \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k+kn}{import} \PY{n}{svm}\PY{p}{,} \PY{n}{metrics}
 \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
 \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
-
-\PY{c+c1}{\PYZsh{}from ipypublish import nb\PYZus{}setup}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -919,7 +1077,7 @@ in the machine learning package
 it without having to find a special source for it.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{3}{\boxspacing}
+\prompt{In}{incolor}{2}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} import Iris dataset for exploration}
 \PY{n}{irisdata\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -1096,14 +1254,14 @@ dataframe}}{Inspect structure of dataframe}}\label{inspect-structure-of-datafram
 Print first or last 5 rows of dataframe:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{6}{\boxspacing}
+\prompt{Out}{outcolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
    sepal\_length  sepal\_width  petal\_length  petal\_width      species
 0           5.1          3.5           1.4          0.2  Iris-setosa
@@ -1144,14 +1302,14 @@ Default setting in the pandas library makes it to display only 5 lines
 from head and from tail.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{7}{\boxspacing}
+\prompt{Out}{outcolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      sepal\_length  sepal\_width  petal\_length  petal\_width         species
 0             5.1          3.5           1.4          0.2     Iris-setosa
@@ -1174,7 +1332,7 @@ from head and from tail.
 has to set to \texttt{None} in pandas:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.max\PYZus{}rows}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
 \PY{n}{irisdata\PYZus{}df}
@@ -1182,7 +1340,7 @@ has to set to \texttt{None} in pandas:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{8}{\boxspacing}
+\prompt{Out}{outcolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      sepal\_length  sepal\_width  petal\_length  petal\_width          species
 0             5.1          3.5           1.4          0.2      Iris-setosa
@@ -1342,7 +1500,7 @@ has to set to \texttt{None} in pandas:
 \subsubsection{Get data types}\label{get-data-types}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
@@ -1364,14 +1522,14 @@ memory usage: 6.0+ KB
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{10}{\boxspacing}
+\prompt{In}{incolor}{8}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{10}{\boxspacing}
+\prompt{Out}{outcolor}{8}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        sepal\_length  sepal\_width  petal\_length  petal\_width
 count    150.000000   150.000000    150.000000   150.000000
@@ -1393,7 +1551,7 @@ Boxplots}\label{get-data-ranges-with-boxplots}}
 These also provide information about \textbf{outliers}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{4}{\boxspacing}
+\prompt{In}{incolor}{9}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}context}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{notebook}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{font\PYZus{}scale}\PY{o}{=}\PY{l+m+mf}{1.3}\PY{p}{,} \PY{n}{rc}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lines.linewidth}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mf}{2.0}\PY{p}{\PYZcb{}}\PY{p}{)}
 \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{whitegrid}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -1420,7 +1578,7 @@ These also provide information about \textbf{outliers}.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_26_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_28_0.png}\end{center}
         \caption{Boxplots used to explore the data ranges in the Iris dataset}
         \label{fig:boxplots_iris}
     \end{figure}
@@ -1478,126 +1636,7 @@ values which are True for \textbf{NaN values}.
 12          False        False         False        False    False
 13          False        False         False        False    False
 14          False        False         False        False    False
-15          False        False         False        False    False
-16          False        False         False        False    False
-17          False        False         False        False    False
-18          False        False         False        False    False
-19          False        False         False        False    False
-20          False        False         False        False    False
-21          False        False         False        False    False
-22          False        False         False        False    False
-23          False        False         False        False    False
-24          False        False         False        False    False
-25          False        False         False        False    False
-26          False        False         False        False    False
-27          False        False         False        False    False
-28          False        False         False        False    False
-29          False        False         False        False    False
-30          False        False         False        False    False
-31          False        False         False        False    False
-32          False        False         False        False    False
-33          False        False         False        False    False
-34          False        False         False        False    False
-35          False        False         False        False    False
-36          False        False         False        False    False
-37          False        False         False        False    False
-38          False        False         False        False    False
-39          False        False         False        False    False
-40          False        False         False        False    False
-41          False        False         False        False    False
-42          False        False         False        False    False
-43          False        False         False        False    False
-44          False        False         False        False    False
-45          False        False         False        False    False
-46          False        False         False        False    False
-47          False        False         False        False    False
-48          False        False         False        False    False
-49          False        False         False        False    False
-50          False        False         False        False    False
-51          False        False         False        False    False
-52          False        False         False        False    False
-53          False        False         False        False    False
-54          False        False         False        False    False
-55          False        False         False        False    False
-56          False        False         False        False    False
-57          False        False         False        False    False
-58          False        False         False        False    False
-59          False        False         False        False    False
-60          False        False         False        False    False
-61          False        False         False        False    False
-62          False        False         False        False    False
-63          False        False         False        False    False
-64          False        False         False        False    False
-65          False        False         False        False    False
-66          False        False         False        False    False
-67          False        False         False        False    False
-68          False        False         False        False    False
-69          False        False         False        False    False
-70          False        False         False        False    False
-71          False        False         False        False    False
-72          False        False         False        False    False
-73          False        False         False        False    False
-74          False        False         False        False    False
-75          False        False         False        False    False
-76          False        False         False        False    False
-77          False        False         False        False    False
-78          False        False         False        False    False
-79          False        False         False        False    False
-80          False        False         False        False    False
-81          False        False         False        False    False
-82          False        False         False        False    False
-83          False        False         False        False    False
-84          False        False         False        False    False
-85          False        False         False        False    False
-86          False        False         False        False    False
-87          False        False         False        False    False
-88          False        False         False        False    False
-89          False        False         False        False    False
-90          False        False         False        False    False
-91          False        False         False        False    False
-92          False        False         False        False    False
-93          False        False         False        False    False
-94          False        False         False        False    False
-95          False        False         False        False    False
-96          False        False         False        False    False
-97          False        False         False        False    False
-98          False        False         False        False    False
-99          False        False         False        False    False
-100         False        False         False        False    False
-101         False        False         False        False    False
-102         False        False         False        False    False
-103         False        False         False        False    False
-104         False        False         False        False    False
-105         False        False         False        False    False
-106         False        False         False        False    False
-107         False        False         False        False    False
-108         False        False         False        False    False
-109         False        False         False        False    False
-110         False        False         False        False    False
-111         False        False         False        False    False
-112         False        False         False        False    False
-113         False        False         False        False    False
-114         False        False         False        False    False
-115         False        False         False        False    False
-116         False        False         False        False    False
-117         False        False         False        False    False
-118         False        False         False        False    False
-119         False        False         False        False    False
-120         False        False         False        False    False
-121         False        False         False        False    False
-122         False        False         False        False    False
-123         False        False         False        False    False
-124         False        False         False        False    False
-125         False        False         False        False    False
-126         False        False         False        False    False
-127         False        False         False        False    False
-128         False        False         False        False    False
-129         False        False         False        False    False
-130         False        False         False        False    False
-131         False        False         False        False    False
-132         False        False         False        False    False
-133         False        False         False        False    False
-134         False        False         False        False    False
+..            {\ldots}          {\ldots}           {\ldots}          {\ldots}      {\ldots}
 135         False        False         False        False    False
 136         False        False         False        False    False
 137         False        False         False        False    False
@@ -1613,13 +1652,15 @@ values which are True for \textbf{NaN values}.
 147         False        False         False        False    False
 148         False        False         False        False    False
 149         False        False         False        False    False
+
+[150 rows x 5 columns]
 \end{Verbatim}
 \end{tcolorbox}
         
     Show only the gaps:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{5}{\boxspacing}
+\prompt{In}{incolor}{12}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
 \PY{n}{irisdata\PYZus{}df\PYZus{}gaps}
@@ -1627,7 +1668,7 @@ values which are True for \textbf{NaN values}.
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{5}{\boxspacing}
+\prompt{Out}{outcolor}{12}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 Empty DataFrame
 Columns: [sepal\_length, sepal\_width, petal\_length, petal\_width, species]
@@ -1641,10 +1682,8 @@ So let's look for something else for exercise:
 \href{https://media.geeksforgeeks.org/wp-content/uploads/employees.csv}{employes.csv}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{49}{\boxspacing}
+\prompt{In}{incolor}{13}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{}pd = nb\PYZus{}setup.setup\PYZus{}pandas(escape\PYZus{}latex = False)}
-
 \PY{c+c1}{\PYZsh{} import data to dataframe from csv file}
 \PY{n}{employees\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{./datasets/employees\PYZus{}edit.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 
@@ -1656,26 +1695,83 @@ So let's look for something else for exercise:
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-/home/bk/anaconda3/envs/PyLab/lib/python3.9/site-
-packages/IPython/core/formatters.py:343: FutureWarning: In future versions
-`DataFrame.to\_latex` is expected to utilise the base implementation of
-`Styler.to\_latex` for formatting and rendering. The arguments signature may
-therefore change. It is recommended instead to use `DataFrame.style.to\_latex`
-which also contains additional functionality.
-  return method()
-    \end{Verbatim}
- 
-            
-\prompt{Out}{outcolor}{49}{}
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{13}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+     First Name  Gender  Start Date Last Login Time  Salary   Bonus \%  \textbackslash{}
+0       Douglas    Male    8/6/1993        12:42 PM   97308   6945.00
+1        Thomas    Male   3/31/1996         6:53 AM   61933      4.17
+2         Maria  Female   4/23/1993        11:17 AM  130590  11858.00
+3         Jerry    Male    3/4/2005         1:00 PM  138705      9.34
+4         Larry    Male   1/24/1998         4:47 PM  101004   1389.00
+5        Dennis    Male   4/18/1987         1:35 AM  115163  10125.00
+6          Ruby  Female   8/17/1987         4:20 PM   65476  10012.00
+7           NaN  Female   7/20/2015        10:43 AM   45906  11598.00
+8        Angela  Female  11/22/2005         6:29 AM   95570  18523.00
+9       Frances  Female    8/8/2002         6:51 AM  139852   7524.00
+10       Louise  Female   8/12/1980         9:01 AM   63241  15132.00
+11        Julie  Female  10/26/1997         3:19 PM  102508  12637.00
+12      Brandon    Male   12/1/1980         1:08 AM  112807  17492.00
+13         Gary    Male   1/27/2008        11:40 PM  109831   5831.00
+14     Kimberly  Female   1/14/1999         7:13 AM   41426  14543.00
+{\ldots}         {\ldots}     {\ldots}         {\ldots}             {\ldots}     {\ldots}       {\ldots}
+989     Stephen     NaN   7/10/1983         8:10 PM   85668   1909.00
+990       Donna  Female  11/26/1982         7:04 AM   82871  17999.00
+991      Gloria  Female   12/8/2014         5:08 AM  136709  10331.00
+992       Alice  Female   10/5/2004         9:34 AM   47638  11209.00
+993      Justin     NaN   2/10/1991         4:58 PM   38344   3794.00
+994       Robin  Female   7/24/1987         1:35 PM  100765  10982.00
+995        Rose  Female   8/25/2002         5:12 AM  134505  11051.00
+996     Anthony    Male  10/16/2011         8:35 AM  112769  11625.00
+997        Tina  Female   5/15/1997         3:53 PM   56450     19.04
+998      George    Male   6/21/2013         5:47 PM   98874   4479.00
+999       Henry     NaN  11/23/2014         6:09 AM  132483  16655.00
+1000    Phillip    Male   1/31/1984         6:30 AM   42392  19675.00
+1001    Russell    Male   5/20/2013        12:39 PM   96914   1421.00
+1002      Larry    Male   4/20/2013         4:45 PM   60500  11985.00
+1003     Albert    Male   5/15/2012         6:24 PM  129949  10169.00
 
+     Senior Management                  Team
+0                 True             Marketing
+1                 True                   NaN
+2                False               Finance
+3                 True               Finance
+4                 True       Client Services
+5                False                 Legal
+6                 True               Product
+7                  NaN               Finance
+8                 True           Engineering
+9                 True  Business Development
+10                True                   NaN
+11                True                 Legal
+12                True       Human Resources
+13               False                 Sales
+14                True               Finance
+{\ldots}                {\ldots}                   {\ldots}
+989              False                 Legal
+990              False             Marketing
+991               True               Finance
+992              False       Human Resources
+993              False                 Legal
+994               True       Client Services
+995               True             Marketing
+996               True               Finance
+997               True           Engineering
+998               True             Marketing
+999              False          Distribution
+1000             False               Finance
+1001             False               Product
+1002             False  Business Development
+1003              True                 Sales
 
-    
-
+[1004 rows x 8 columns]
+\end{Verbatim}
+\end{tcolorbox}
+        
     Show only the gaps from this gappy dataset again:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{50}{\boxspacing}
+\prompt{In}{incolor}{14}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{employees\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
 
@@ -1686,22 +1782,79 @@ which also contains additional functionality.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-/home/bk/anaconda3/envs/PyLab/lib/python3.9/site-
-packages/IPython/core/formatters.py:343: FutureWarning: In future versions
-`DataFrame.to\_latex` is expected to utilise the base implementation of
-`Styler.to\_latex` for formatting and rendering. The arguments signature may
-therefore change. It is recommended instead to use `DataFrame.style.to\_latex`
-which also contains additional functionality.
-  return method()
-    \end{Verbatim}
- 
-            
-\prompt{Out}{outcolor}{50}{}
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{14}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    First Name  Gender  Start Date Last Login Time  Salary   Bonus \%  \textbackslash{}
+1       Thomas    Male   3/31/1996         6:53 AM   61933      4.17
+7          NaN  Female   7/20/2015        10:43 AM   45906  11598.00
+10      Louise  Female   8/12/1980         9:01 AM   63241  15132.00
+20        Lois     NaN   4/22/1995         7:18 PM   64714   4934.00
+22      Joshua     NaN    3/8/2012         1:58 AM   90816  18816.00
+23         NaN    Male   6/14/2012         4:19 PM  125792   5042.00
+25         NaN    Male   10/8/2012         1:12 AM   37076  18576.00
+27       Scott     NaN   7/11/1991         6:58 PM  122367   5218.00
+31       Joyce     NaN   2/20/2005         2:40 PM   88657  12752.00
+32         NaN    Male   8/21/1998         2:27 PM  122340   6417.00
+39         NaN    Male   1/29/2016         2:33 AM  122173   7797.00
+41   Christine     NaN   6/28/2015         1:08 AM   66582  11308.00
+49       Chris     NaN   1/24/1980        12:13 PM  113590   3055.00
+51         NaN     NaN  12/17/2011         8:29 AM   41126  14009.00
+53        Alan     NaN    3/3/2014         1:28 PM   40341  17578.00
+..         {\ldots}     {\ldots}         {\ldots}             {\ldots}     {\ldots}       {\ldots}
+916        Joe    Male   12/8/1998        10:28 AM  126120      1.02
+927      Irene     NaN   2/28/1991        10:23 PM  135369      4.38
+929        NaN  Female   8/23/2000         4:19 PM   95866  19388.00
+941      Aaron     NaN   1/22/1986         7:39 PM   63126  18424.00
+942       Mark     NaN    9/9/2006        12:27 PM   44836   2657.00
+943      Ralph     NaN   7/28/1995         6:53 PM   70635   2147.00
+949     Gerald     NaN   4/15/1989        12:44 PM   93712  17426.00
+950        NaN  Female   9/15/1985         1:50 AM  133472  16941.00
+951        NaN    Male   7/30/2012         3:07 PM  107351   5329.00
+955        NaN  Female   9/14/2010         5:19 AM  143638   9662.00
+965    Antonio     NaN   6/18/1989         9:37 PM  103050      3.05
+976     Victor     NaN   7/28/2006         2:49 PM   76381  11159.00
+989    Stephen     NaN   7/10/1983         8:10 PM   85668   1909.00
+993     Justin     NaN   2/10/1991         4:58 PM   38344   3794.00
+999      Henry     NaN  11/23/2014         6:09 AM  132483  16655.00
 
+    Senior Management                  Team
+1                True                   NaN
+7                 NaN               Finance
+10               True                   NaN
+20               True                 Legal
+22               True       Client Services
+23                NaN                   NaN
+25                NaN       Client Services
+27              False                 Legal
+31              False               Product
+32                NaN                   NaN
+39                NaN       Client Services
+41               True  Business Development
+49              False                 Sales
+51                NaN                 Sales
+53               True               Finance
+..                {\ldots}                   {\ldots}
+916             False                   NaN
+927             False  Business Development
+929               NaN                 Sales
+941             False       Client Services
+942             False       Client Services
+943             False       Client Services
+949              True          Distribution
+950               NaN          Distribution
+951               NaN             Marketing
+955               NaN                   NaN
+965             False                 Legal
+976              True                 Sales
+989             False                 Legal
+993             False                 Legal
+999             False          Distribution
 
-    
-
+[237 rows x 8 columns]
+\end{Verbatim}
+\end{tcolorbox}
+        
     \hypertarget{fill-the-missing-values-with-fillna}{%
 \paragraph{\texorpdfstring{Fill the missing values with
 \texttt{fillna()}}{Fill the missing values with fillna()}}\label{fill-the-missing-values-with-fillna}}
@@ -1713,7 +1866,7 @@ Now we are going to fill all the null (NaN) values in Gender column with
 \texttt{inplace\ =\ True} - we don't make a deep copy!
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{10}{\boxspacing}
+\prompt{In}{incolor}{15}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} filling a null values using fillna()}
 \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Gender}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{No Gender}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
@@ -1727,7 +1880,7 @@ Now we are going to fill all the null (NaN) values in Gender column with
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{10}{\boxspacing}
+\prompt{Out}{outcolor}{15}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      First Name     Gender  Start Date Last Login Time  Salary   Bonus \%  \textbackslash{}
 0       Douglas       Male    8/6/1993        12:42 PM   97308   6945.00
@@ -1735,7 +1888,27 @@ Now we are going to fill all the null (NaN) values in Gender column with
 2         Maria     Female   4/23/1993        11:17 AM  130590  11858.00
 3         Jerry       Male    3/4/2005         1:00 PM  138705      9.34
 4         Larry       Male   1/24/1998         4:47 PM  101004   1389.00
+5        Dennis       Male   4/18/1987         1:35 AM  115163  10125.00
+6          Ruby     Female   8/17/1987         4:20 PM   65476  10012.00
+7           NaN     Female   7/20/2015        10:43 AM   45906  11598.00
+8        Angela     Female  11/22/2005         6:29 AM   95570  18523.00
+9       Frances     Female    8/8/2002         6:51 AM  139852   7524.00
+10       Louise     Female   8/12/1980         9:01 AM   63241  15132.00
+11        Julie     Female  10/26/1997         3:19 PM  102508  12637.00
+12      Brandon       Male   12/1/1980         1:08 AM  112807  17492.00
+13         Gary       Male   1/27/2008        11:40 PM  109831   5831.00
+14     Kimberly     Female   1/14/1999         7:13 AM   41426  14543.00
 {\ldots}         {\ldots}        {\ldots}         {\ldots}             {\ldots}     {\ldots}       {\ldots}
+989     Stephen  No Gender   7/10/1983         8:10 PM   85668   1909.00
+990       Donna     Female  11/26/1982         7:04 AM   82871  17999.00
+991      Gloria     Female   12/8/2014         5:08 AM  136709  10331.00
+992       Alice     Female   10/5/2004         9:34 AM   47638  11209.00
+993      Justin  No Gender   2/10/1991         4:58 PM   38344   3794.00
+994       Robin     Female   7/24/1987         1:35 PM  100765  10982.00
+995        Rose     Female   8/25/2002         5:12 AM  134505  11051.00
+996     Anthony       Male  10/16/2011         8:35 AM  112769  11625.00
+997        Tina     Female   5/15/1997         3:53 PM   56450     19.04
+998      George       Male   6/21/2013         5:47 PM   98874   4479.00
 999       Henry  No Gender  11/23/2014         6:09 AM  132483  16655.00
 1000    Phillip       Male   1/31/1984         6:30 AM   42392  19675.00
 1001    Russell       Male   5/20/2013        12:39 PM   96914   1421.00
@@ -1748,7 +1921,27 @@ Now we are going to fill all the null (NaN) values in Gender column with
 2                False               Finance
 3                 True               Finance
 4                 True       Client Services
+5                False                 Legal
+6                 True               Product
+7                  NaN               Finance
+8                 True           Engineering
+9                 True  Business Development
+10                True                   NaN
+11                True                 Legal
+12                True       Human Resources
+13               False                 Sales
+14                True               Finance
 {\ldots}                {\ldots}                   {\ldots}
+989              False                 Legal
+990              False             Marketing
+991               True               Finance
+992              False       Human Resources
+993              False                 Legal
+994               True       Client Services
+995               True             Marketing
+996               True               Finance
+997               True           Engineering
+998               True             Marketing
 999              False          Distribution
 1000             False               Finance
 1001             False               Product
@@ -2199,7 +2392,7 @@ variable width. The height of each rectangle then represents the
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_59_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_61_0.png}\end{center}
         \caption{Histogram for frequency distribution of the salary}
         \label{fig:histogram_salary}
     \end{figure}
@@ -2213,7 +2406,7 @@ variable width. The height of each rectangle then represents the
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_60_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_62_0.png}\end{center}
         \caption{Histogram for the frequency distribution of the salary in comparison between men and women}
         \label{fig:histogram_male_female}
     \end{figure}
@@ -2310,7 +2503,7 @@ Choose the color sets from
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_66_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_68_0.png}\end{center}
         \caption{Correlation heatmap to explore coherences between single variables in the iris dataset}
         \label{fig:correlation_heatmap}
     \end{figure}
@@ -2364,7 +2557,7 @@ array([[1., 1., 1., 1., 1.],
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_70_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_72_0.png}\end{center}
         \caption{Correlation heatmap, which was cut at its main diagonal without losing any information}
         \label{fig:correlation_heatmap_triangle}
     \end{figure}
@@ -2412,7 +2605,7 @@ advisable to plot them in a \textbf{scatter plot}.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_73_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_75_0.png}\end{center}
         \caption{Plotting two individual variables of the iris dataset in the scatterplot to explore the relationships between these two}
         \label{fig:scatter_plot}
     \end{figure}
@@ -2450,7 +2643,7 @@ single row and in the x-axis across a single column.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_75_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_77_0.png}\end{center}
         \caption{Plot all individual variables of the Iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables}
         \label{fig:pairs_plot}
     \end{figure}
@@ -2475,6 +2668,11 @@ algorithms}\label{short-overview-of-the-ai-world-and-its-ml-algorithms}}
 \hypertarget{relationship-between-ai-ml-and-others}{%
 \subsubsection{Relationship between AI, ML and
 others}\label{relationship-between-ai-ml-and-others}}
+
+\textbf{@TODO:} Include in this section the presentation
+\texttt{IFA\_Steimers\_KI\_Grundlagen\_Neuronaler\_Netze\_2021-03-22.pdf}
+by Prof.~Steimers (IFA): - slides 6-7 ``Definition of KI'' - slides
+10-12 ``ML: Categories based on the data, task and algorithms''
 
 In the \textbf{science world}, the term \textbf{artificial intelligence
 (AI)} refers to machines and systems that are capable of performing
@@ -3153,7 +3351,7 @@ colored confusion matrix.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_115_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_117_0.png}\end{center}
         \caption{Checking the accuracy of the model by using the confusion matrix for cross-validation}
         \label{fig:confusion_matrix}
     \end{figure}
@@ -3362,25 +3560,25 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_130_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_132_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_130_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_132_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_130_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_132_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_130_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_132_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
@@ -3412,31 +3610,31 @@ exactly fit the training dataset. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_132_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_134_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_132_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_134_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_132_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_134_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_132_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_134_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_132_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_134_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
@@ -3462,7 +3660,7 @@ as the classifier tries to perfectly fit the training data.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_134_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy}
         \label{fig:plot_vary_gamma}
     \end{figure}
@@ -3493,43 +3691,43 @@ the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_5.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_5.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_6.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_6.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
@@ -3555,7 +3753,7 @@ But be careful: to high \texttt{C} values may lead to
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'C' against the prediction accuracy}
         \label{fig:plot_vary_c}
     \end{figure}
@@ -3591,61 +3789,61 @@ training times}.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_5.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_5.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_6.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_6.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_7.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_7.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_8.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_8.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_9.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_9.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
@@ -3671,7 +3869,7 @@ hyperplane leads to \textbf{overfitting} the training data.
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_144_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy}
         \label{fig:plot_vary_degree}
     \end{figure}
@@ -3920,7 +4118,7 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_162_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
@@ -4074,7 +4272,7 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_171_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
@@ -4229,7 +4427,7 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{tcolorbox}
 
     \begin{figure}[h!]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_182_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_184_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
