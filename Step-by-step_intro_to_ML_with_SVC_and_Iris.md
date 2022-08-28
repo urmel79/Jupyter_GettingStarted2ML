@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -366,11 +366,11 @@ plt.show()
 <!-- #region tags=[] -->
 ## Identify **anomalies** in the datasets
 
-### Find gaps in dataset
+### Find and repair gaps in dataset
 
 This section was inspired by [Working with Missing Data in Pandas](https://www.geeksforgeeks.org/working-with-missing-data-in-pandas/).
 
-#### Checking for missing values using `isnull()`
+#### Check for missing values using `isnull()`
 
 In order to check for missing values in Pandas DataFrame, we use the function `isnull()`. This function returns a dataframe of Boolean values which are True for **NaN values**.
 <!-- #endregion -->
@@ -417,9 +417,9 @@ employees_df_gaps = employees_df[employees_df.isnull().any(axis=1)]
 employees_df_gaps
 ```
 
-#### Fill the missing values with `fillna()`
+#### Fill in missing *string* values with `fillna()`
 
-Now we are going to fill all the null (NaN) values in Gender column with *"No Gender"*.
+Now all null values (NaN) in the column "Gender" of the data type String are filled with *"No gender "*.
 
 **Warning:** We are doing that directly in this dataframe with `inplace = True` - we don't make a deep copy!
 
@@ -434,7 +434,17 @@ employees_df["Gender"].fillna("No Gender", inplace = True)
 employees_df
 ```
 
-#### Dropping missing values using `dropna()`
+<!-- #region tags=["TODO_Step_2_1"] -->
+#### Fill in missing *numerical* values with mean values
+
+Missing integer or float values can be filled with the mean values of the corresponding column.
+
+**@TODO:**  
+Incorporate section "4.1.3 Fehlende Werte ergänzen" of the book `mitp_Praxishandbuch_Machine_Learning_Python_Scikit-learn_TensorFlow_2018_Anm_bk.pdf`.
+
+<!-- #endregion -->
+
+#### Drop missing values using `dropna()`
 
 In order to drop null values from a dataframe, we use `dropna()` function. This function drops rows or columns of datasets with NaN values in different ways.
 
@@ -463,7 +473,7 @@ This section was inspired by:
 - [How to Drop Duplicate Rows in a Pandas DataFrame](https://www.statology.org/pandas-drop-duplicates/)
 
 
-#### Checking for duplicate values using `duplicated()`
+#### Check for duplicate values using `duplicated()`
 
 In order to check for duplicate values in Pandas DataFrame, we use a function `duplicated()`. This function can be used in two ways:
 - find duplicate rows across **all columns** with `duplicateRows = df[df.duplicated()]`
@@ -505,7 +515,7 @@ duplicateRows
 ```
 
 <!-- #region tags=[] -->
-#### Dropping duplicate values using `drop_duplicates()`
+#### Drop duplicate values using `drop_duplicates()`
 
 In order to drop duplicate values from a dataframe, we use `drop_duplicates()` function.
 
@@ -532,6 +542,23 @@ employees_df.drop_duplicates(
     subset=['First Name', 'Last Login Time'], keep='last', inplace=True)
 employees_df
 ```
+
+<!-- #region tags=["TODO_Step_2_2"] -->
+### Compare the edited dataset with the original dataset side-by-side
+
+**@TODO:**  
+Incorporate following sources:
+- [Compare two DataFrames and output their differences side-by-side](https://stackoverflow.com/questions/17095101/compare-two-dataframes-and-output-their-differences-side-by-side/47112033#47112033)
+- [pandas compare two data frames and highlight the differences](https://stackoverflow.com/questions/71604701/pandas-compare-two-data-frames-and-highlight-the-differences/71617662#71617662)
+- [How to Compare Two Pandas DataFrames and Get Differences](https://datascientyst.com/compare-two-pandas-dataframes-get-differences/)
+<!-- #endregion -->
+
+<!-- #region tags=["TODO_Step_2_3"] -->
+### Save edited dataset to new CSV file
+
+**@TODO:**  
+Add explanation and python code here.
+<!-- #endregion -->
 
 <!-- #region tags=[] -->
 ## Avoidance of **tendencies due to bias**
@@ -882,9 +909,14 @@ For further details about **Standarization** and **Normalization** read here: [W
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 ```
 
+<!-- #region tags=["TODO_Step_4"] -->
 ## Standarization
 
 Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**.
+
+**@TODO:**  
+Incorporate section "Skalieren von Merkmalen" of the book `OReilly_Praxiseinstieg_Machine_Learning_Scikit-Learn_TensorFlow_2018_Anm_bk.pdf`.
+<!-- #endregion -->
 
 ```python tags=[]
 from sklearn.preprocessing import StandardScaler
@@ -997,6 +1029,9 @@ print(classification_report(y_test, y_pred))
 ## Cross-validation score
 
 The function `cross_val_score()` from the Scikit-learn package **trains and tests a model over multiple folds** of your dataset. This cross validation method gives a better **understanding of model performance** over the whole dataset instead of just a single train/test split (see [Using cross_val_score in sklearn, simply explained](https://stephenallwright.com/cross_val_score-sklearn/)).
+
+**@TODO:**  
+Incorporate section "Bessere Auswertung mittels Kreuzvalidierung" of the book `OReilly_Praxiseinstieg_Machine_Learning_Scikit-Learn_TensorFlow_2018_Anm_bk.pdf`.
 
 ```python
 from sklearn.model_selection import cross_val_score
