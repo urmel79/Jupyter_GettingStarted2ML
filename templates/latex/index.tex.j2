@@ -9,7 +9,15 @@
 
 
 %===============================================================================
-% Latex Article
+% Document class
+%===============================================================================
+
+((*- block docclass -*))
+\documentclass [oneside,10pt,a4paper,ngerman,BCOR10mm,headsepline,parindent,final]{scrartcl}
+((*- endblock docclass -*))
+
+%===============================================================================
+% Packages, bibliography, ...
 %===============================================================================
 
 ((* block packages *))
@@ -20,7 +28,54 @@
     
     % Used for entering author names and their affiliations
     \usepackage[affil-it]{authblk}
+    
+    % Use bibliography 
+((*- if nb.metadata["latex_metadata"]: -*))
+    ((*- if nb.metadata["latex_metadata"]["bib"]: -*))
+    % and configure it
+    \usepackage[babel,german=quotes]{csquotes}
+    \usepackage[backend=biber,style=authoryear,backref=true]{biblatex}
+    \bibliography{((( nb.metadata["latex_metadata"]["bib"] )))}
+    \usepackage{url}                    %Output of nicely formatted Internet addresses
+    \setcounter{biburllcpenalty}{7000}  %Setting for counter to wrap URLs in literature references
+    \setcounter{biburlucpenalty}{8000}  %ditto
+    ((*- endif *))
+((*- endif *))
+
 ((* endblock packages *))
+
+%==============================================================================
+% Block commands
+%==============================================================================
+
+((* block commands *))
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy
+
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      bookmarksnumbered=true,
+      pdfauthor=((( nb.metadata["latex_metadata"]["author"] ))),
+      pdftitle=((( nb.metadata["latex_metadata"]["title"] ))),
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      pdfpagemode={UseOutlines},
+      pdfview = {XYZ},
+      pdfstartview = {XYZ},
+      pdfstartpage = {1},
+      pdfborder={0 0 0}
+      }
+    % Slightly bigger margins than the latex defaults
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+((* endblock commands *))
+
+%===============================================================================
+% Title Page
+%===============================================================================
 
 % Author and Title from metadata
 ((* block title *))
@@ -54,31 +109,6 @@
 \date{\today} 
 
 ((* endblock title *))
-
-((* block commands *))
-    % Prevent overflowing lines due to hard-to-break entities
-    \sloppy
-
-    % Setup hyperref package
-    \hypersetup{
-      breaklinks=true,  % so long urls are correctly broken across lines
-      bookmarksnumbered=true,
-      pdfauthor=((( nb.metadata["latex_metadata"]["author"] ))),
-      pdftitle=((( nb.metadata["latex_metadata"]["title"] ))),
-      colorlinks=true,
-      urlcolor=urlcolor,
-      linkcolor=linkcolor,
-      citecolor=citecolor,
-      pdfpagemode={UseOutlines},
-      pdfview = {XYZ},
-      pdfstartview = {XYZ},
-      pdfstartpage = {1},
-      pdfborder={0 0 0}
-      }
-    % Slightly bigger margins than the latex defaults
-    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
-
-((* endblock commands *))
 
 ((* block predoc *))
     % Without changing the numbering style,
@@ -138,8 +168,20 @@
     ((* block tableofcontents *))
     \tableofcontents
     ((* endblock tableofcontents *))
-
+    
 ((* endblock predoc *))
+
+
+((* block postdoc *))
+    ((* block bibliography *))
+    % Use bibliography
+    \printbibliography
+    ((* endblock bibliography *))
+((* endblock postdoc *))
+
+%===============================================================================
+% Figure handling
+%===============================================================================
 
 % New mechanism for rendering figures with captions
 ((*- block data_png -*))
@@ -219,9 +261,6 @@
 ((*- endblock figure_wide -*))
 ((*- endmacro *))
 
-((*- block docclass -*))
-\documentclass [oneside,10pt,a4paper,ngerman,BCOR10mm,headsepline,parindent,final]{scrartcl}
-((*- endblock docclass -*))
 
 
 

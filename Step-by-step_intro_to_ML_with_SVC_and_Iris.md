@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -111,6 +111,8 @@ The following **steps of the systematic ML process** are covered in the next mai
 # STEP 0: Select hardware and software suitable for ML
 
 In this step, specific guidance is provided for selecting hardware and software suitable for machine learning.
+
+This is a test citation <cite data-cite="Kasper_Studie_I4.0_2019">[Kasper_Studie_I4.0_2019]</cite>.
 
 ## Hardware
 
