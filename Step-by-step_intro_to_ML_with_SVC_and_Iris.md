@@ -112,7 +112,7 @@ The following **steps of the systematic ML process** are covered in the next mai
 
 In this step, specific guidance is provided for selecting hardware and software suitable for machine learning.
 
-This is a test citation <cite data-cite="Kasper_Studie_I4.0_2019">[Kasper_Studie_I4.0_2019]</cite>.
+This is a test citation (<cite data-cite="Kasper_Studie_I4.0_2019">Kasper, 2019</cite>) and another (<cite data-cite="parallel-computing">Barney, 2012</cite>).
 
 ## Hardware
 

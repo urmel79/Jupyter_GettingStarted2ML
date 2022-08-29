@@ -34,12 +34,7 @@
     \usepackage{iftex}
     \ifPDFTeX
         \usepackage[T1]{fontenc}
-        \IfFileExists{alphabeta.sty}{
-              \usepackage{alphabeta}
-          }{
-              \usepackage[mathletters]{ucs}
-              \usepackage[utf8x]{inputenc}
-          }
+        \usepackage[utf8]{inputenc}
     \else
         \usepackage{fontspec}
         \usepackage{unicode-math}
@@ -810,7 +805,8 @@ ML}\label{step-0-select-hardware-and-software-suitable-for-ml}}
 In this step, specific guidance is provided for selecting hardware and
 software suitable for machine learning.
 
-This is a test citation \cite{Kasper_Studie_I4.0_2019}.
+This is a test citation (\cite{Kasper_Studie_I4.0_2019}) and another
+(\cite{parallel-computing}).
 
 \hypertarget{hardware}{%
 \subsection{Hardware}\label{hardware}}
@@ -4550,7 +4546,10 @@ Iris-versicolor       1.00      0.86      0.92         7
     
     
     % Use bibliography
-    \printbibliography
+    \printbibheading[heading=bibnumbered]
+    \printbibliography[heading=subbibliography,keyword={URL},title={Online references}]
+    \printbibliography[heading=subbibliography,keyword={book},title={Books, technical reports and others}]
+    %\printbibliography[heading=subbibliography,nottype=online,title={All my non-online references}]
     
 
 \end{document}

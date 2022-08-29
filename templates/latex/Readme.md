@@ -6,7 +6,7 @@ Copy this directory `latex` and it's contents to your user template folder, e.g.
 
 To find out the correct template path in `data`, call the following command:
 
-```
+```bash
 $ jupyter --paths
 
 config:
@@ -27,13 +27,13 @@ runtime:
 
 Call `nbconvert` command to produce LaTeX or PDF output either:
 
-```
+```bash
 $ jupyter nbconvert jupyter_notebook.ipynb --to latex
 ```
 
 Or:
 
-```
+```bash
 $ jupyter nbconvert jupyter_notebook.ipynb --to pdf
 ```
 
@@ -43,12 +43,43 @@ The handling of figures was inspired by and adapted from http://blog.juliusschul
 
 ## Citing and literature references
 
-Install packages `texlive-bibtex-extra` and `biber` for using biblatex first.
+Install packages `texlive-bibtex-extra` and `biber` for using BibLaTeX first.
 
-% Insert citations in markdown as e.g.
-%    <cite data-cite="DevoretS2013">[DevoretS2013]</cite>
-% requires file notebook.bib in current directory (or the file set as "bib" in the latex_metadata)
+Insert citations in markdown cells as e.g.:
 
-%IMPORTANT: 
-% - for biblatex "biber" should be set as preprocessor (bibtex does not work).
-% - Encoding should be set the same in JabRef and Docear (e.g. UTF8) => otherwise there will be problems!
+```html
+<cite data-cite="Kasper_Studie_I4.0_2019">(Kasper, 2019)</cite>
+```
+
+Provide the BibLaTeX formatted library with the notebooks `latex_metadata`, e.g.:
+
+```json
+"latex_metadata": {
+        "affiliation": "Elsewhere Inc.",
+        "author": "You",
+        "bib": "literature/notebook.bib",
+        "cover_image": "images/Cover_image.pdf",
+        "email": "you@email.org",
+        "title": "Your title of your paper"
+    },
+```
+
+Call the custom build script:
+
+```bash
+$ ./build_latex.sh compile your_notebook.ipynb
+```
+
+Cleanup temporary build artefacts:
+
+```bash
+$ ./build_latex.sh clean your_notebook.ipynb
+```
+
+
+
+
+
+
+
+
