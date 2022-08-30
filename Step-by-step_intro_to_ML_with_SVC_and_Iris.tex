@@ -831,9 +831,6 @@ ML}\label{step-0-select-hardware-and-software-suitable-for-ml}}
 In this step, specific guidance is provided for selecting hardware and
 software suitable for machine learning.
 
-This is a test citation (\cite{Kasper_Studie_I4.0_2019}) and another
-(\cite{parallel-computing}).
-
 \hypertarget{hardware}{%
 \subsection{Hardware}\label{hardware}}
 
@@ -867,21 +864,22 @@ high-performance graphics cards with \textbf{CUDA architecture}.
 \href{https://en.wikipedia.org/wiki/CUDA}{CUDA} stands for ``Compute
 Unified Device Architecture'' and is a \textbf{programming interface}
 (API) developed by Nvidia, with which program parts can be processed by
-the graphics processor (GPU). The GPU works significantly faster than
-the CPU, especially with highly parallelizable program sequences (high
-data parallelism). This speed advantage can be considerable despite
-currently available CPU technologies like \textbf{Multicore} and
-\textbf{Hyper-Threading} with Intel CPUs!
+the graphics processor (see \cite{Wiki_CUDA}). The GPU works
+significantly faster than the CPU, especially with highly parallelizable
+program sequences (high data parallelism). This speed advantage can be
+considerable despite currently available CPU technologies like
+\textbf{Multicore} and \textbf{Hyper-Threading} with Intel CPUs!
 
 However, it should be mentioned that currently only the manufacturer
 Nvidia offers 3D graphics cards with CUDA implementation, since CUDA is
 a \textbf{proprietary} framework. In addition, there is also the much
 less well-known \textbf{open source} alternative
 \textbf{\href{https://en.wikipedia.org/wiki/OpenCL}{OpenCL}}, which has
-now been implemented by a large number of graphics card manufacturers.
-Since OpenCL is an \textbf{open industry standard}, Intel and AMD chips
-and their GPUs, ATI Radeon cards of the 5, 6, 7 and R9 series as well as
-various Nvidia GeForce cards are supported, for example.
+now been implemented by a large number of graphics card manufacturers
+(see \cite{Wiki_OpenCL}). Since OpenCL is an \textbf{open industry
+standard}, Intel and AMD chips and their GPUs, ATI Radeon cards of the
+5, 6, 7 and R9 series as well as various Nvidia GeForce cards are
+supported, for example.
 
 Nvidia graphics cards with CUDA-supporting GPUs can be found listed by
 their \textbf{compute capability} (the higher the value, the better)
@@ -2012,7 +2010,8 @@ the corresponding column.
 
 \textbf{@TODO:}\\
 Incorporate section ``4.1.3 Fehlende Werte ergänzen'' of the book
-\texttt{mitp\_Praxishandbuch\_Machine\_Learning\_Python\_Scikit-learn\_TensorFlow\_2018\_Anm\_bk.pdf}.
+\texttt{mitp\_Praxishandbuch\_Machine\_Learning\_Python\_Scikit-learn\_TensorFlow\_2018\_Anm\_bk.pdf}
+(see \cite{ML_ScL_2018}).
 
     \hypertarget{drop-missing-values-using-dropna}{%
 \paragraph{\texorpdfstring{Drop missing values using
@@ -3120,7 +3119,8 @@ subtracting the mean from the data points, and then dividing by the
 
 \textbf{@TODO:}\\
 Incorporate section ``Skalieren von Merkmalen'' of the book
-\texttt{OReilly\_Praxiseinstieg\_Machine\_Learning\_Scikit-Learn\_TensorFlow\_2018\_Anm\_bk.pdf}.
+\texttt{OReilly\_Praxiseinstieg\_Machine\_Learning\_Scikit-Learn\_TensorFlow\_2018\_Anm\_bk.pdf}
+(see \cite{Geron_2018}).
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{39}{\boxspacing}

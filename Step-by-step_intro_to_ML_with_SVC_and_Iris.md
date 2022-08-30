@@ -116,8 +116,6 @@ The following **steps of the systematic ML process** are covered in the next mai
 
 In this step, specific guidance is provided for selecting hardware and software suitable for machine learning.
 
-This is a test citation (<cite data-cite="Kasper_Studie_I4.0_2019">Kasper, 2019</cite>) and another (<cite data-cite="parallel-computing">Barney, 2012</cite>).
-
 ## Hardware
 
 When considering hardware requirements, two systems and their use cases must be taken into account: the **training system** and the **application system**.
@@ -128,9 +126,9 @@ The **training phase** requires a lot of **computational power** and **memory (R
 
 Depending on the estimator model, highly parallel processing on a **Graphics Processing Unit (GPU)** can provide significant **speed advantages** over processing on a **Central Processing Unit (CPU)** (e.g., when training deep neural networks in the area of **deep learning**). To take advantage of this speed benefit, the AI application must be suitable in terms of **parallelizability** of the estimator model used as well as **GPU support** through special driver layers (so-called Operating System Abstraction Layer (OSAL)).
 
-Such GPUs are installed on powerful **3D graphics cards**. However, these must be explicitly qualified for the application for AI - not every game-suitable 3D graphics card from any manufacturer can be used. The manufacturer **Nvidia** offers GPUs suitable for AI in its high-performance graphics cards with **CUDA architecture**. [CUDA](https://en.wikipedia.org/wiki/CUDA) stands for "Compute Unified Device Architecture" and is a **programming interface** (API) developed by Nvidia, with which program parts can be processed by the graphics processor (GPU). The GPU works significantly faster than the CPU, especially with highly parallelizable program sequences (high data parallelism). This speed advantage can be considerable despite currently available CPU technologies like **Multicore** and **Hyper-Threading** with Intel CPUs!
+Such GPUs are installed on powerful **3D graphics cards**. However, these must be explicitly qualified for the application for AI - not every game-suitable 3D graphics card from any manufacturer can be used. The manufacturer **Nvidia** offers GPUs suitable for AI in its high-performance graphics cards with **CUDA architecture**. [CUDA](https://en.wikipedia.org/wiki/CUDA) stands for "Compute Unified Device Architecture" and is a **programming interface** (API) developed by Nvidia, with which program parts can be processed by the graphics processor (see <cite data-cite="Wiki_CUDA">Wikipedia: CUDA</cite>). The GPU works significantly faster than the CPU, especially with highly parallelizable program sequences (high data parallelism). This speed advantage can be considerable despite currently available CPU technologies like **Multicore** and **Hyper-Threading** with Intel CPUs!
 
-However, it should be mentioned that currently only the manufacturer Nvidia offers 3D graphics cards with CUDA implementation, since CUDA is a **proprietary** framework. In addition, there is also the much less well-known **open source** alternative **[OpenCL](https://en.wikipedia.org/wiki/OpenCL)**, which has now been implemented by a large number of graphics card manufacturers. Since OpenCL is an **open industry standard**, Intel and AMD chips and their GPUs, ATI Radeon cards of the 5, 6, 7 and R9 series as well as various Nvidia GeForce cards are supported, for example.
+However, it should be mentioned that currently only the manufacturer Nvidia offers 3D graphics cards with CUDA implementation, since CUDA is a **proprietary** framework. In addition, there is also the much less well-known **open source** alternative **[OpenCL](https://en.wikipedia.org/wiki/OpenCL)**, which has now been implemented by a large number of graphics card manufacturers (see <cite data-cite="Wiki_OpenCL">Wikipedia: OpenCL</cite>). Since OpenCL is an **open industry standard**, Intel and AMD chips and their GPUs, ATI Radeon cards of the 5, 6, 7 and R9 series as well as various Nvidia GeForce cards are supported, for example.
 
 Nvidia graphics cards with CUDA-supporting GPUs can be found listed by their **compute capability** (the higher the value, the better) here: [CUDA GPUs - Compute Capability](https://developer.nvidia.com/cuda-gpus).
 
@@ -446,7 +444,7 @@ employees_df
 Missing integer or float values can be filled with the mean values of the corresponding column.
 
 **@TODO:**  
-Incorporate section "4.1.3 Fehlende Werte ergänzen" of the book `mitp_Praxishandbuch_Machine_Learning_Python_Scikit-learn_TensorFlow_2018_Anm_bk.pdf`.
+Incorporate section "4.1.3 Fehlende Werte ergänzen" of the book `mitp_Praxishandbuch_Machine_Learning_Python_Scikit-learn_TensorFlow_2018_Anm_bk.pdf` (see <cite data-cite="ML_ScL_2018">Raschka and Mirjalili, 2018</cite>).
 
 <!-- #endregion -->
 
@@ -921,7 +919,7 @@ irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**.
 
 **@TODO:**  
-Incorporate section "Skalieren von Merkmalen" of the book `OReilly_Praxiseinstieg_Machine_Learning_Scikit-Learn_TensorFlow_2018_Anm_bk.pdf`.
+Incorporate section "Skalieren von Merkmalen" of the book `OReilly_Praxiseinstieg_Machine_Learning_Scikit-Learn_TensorFlow_2018_Anm_bk.pdf` (see <cite data-cite="Geron_2018">Geron, 2018</cite>).
 <!-- #endregion -->
 
 ```python tags=[]
