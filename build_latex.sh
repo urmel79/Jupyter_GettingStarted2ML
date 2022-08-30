@@ -6,20 +6,21 @@
 # Author:             Bjoern Kasper
 # Copyright:          GPL v3.0 and later
 # Date:               2022-08-29
-# Changed:            
+# Changed:            2022-08-30
 #
 # Short-Description:  Compile PDF from Jupyter notebook with BibLaTeX references
 #
-# Changelog:
+# Changelog:          2022-08-30: Changed handling of file names
 #
 ###
 
 CMD=$1
-NOTEBOOK_FILE=`basename ${2%.*}`
+NOTEBOOK_FILE=$2
 
 USED_PROGRAMS_ARRAY=(
+    "basename"
     "jupyter"
-    "pdflatex"
+    "xelatex"
     "biber"
     )
 
@@ -34,8 +35,6 @@ LATEX_FILE_EXTENSIONS_TO_CLEAN_ARRAY=(
     ".toc"
     ".synctex.gz"
     )
-
-LATEX_TMP_DIRECTORY_TO_CLEAN=${NOTEBOOK_FILE}_files
 
 #function that checks if dependencies are installed
 function check_software {
@@ -55,7 +54,7 @@ function clean_build_artefacts {
     printf "Cleaning temporary build artefacts ...\n";
     for index in ${!LATEX_FILE_EXTENSIONS_TO_CLEAN_ARRAY[*]}
     do
-        FILE_TO_CLEAN="$NOTEBOOK_FILE${LATEX_FILE_EXTENSIONS_TO_CLEAN_ARRAY[$index]}"
+        FILE_TO_CLEAN="$NOTEBOOK_FILE_BASE${LATEX_FILE_EXTENSIONS_TO_CLEAN_ARRAY[$index]}"
         if [ -f $FILE_TO_CLEAN ]; then
             printf "File to remove: %s\n" "$FILE_TO_CLEAN";
             rm -rf $FILE_TO_CLEAN
@@ -85,15 +84,22 @@ check_software;
 
 case "$CMD" in
     compile)
-        # command "test -n" is buggy! using negated "test -z"!
-        if ! [ -z $NOTEBOOK_FILE.ipynb ]; then
-            jupyter nbconvert $NOTEBOOK_FILE.ipynb --to latex
-            pdflatex $NOTEBOOK_FILE.tex
-            biber $NOTEBOOK_FILE.bcf
-            pdflatex $NOTEBOOK_FILE.tex
-            pdflatex $NOTEBOOK_FILE.tex
+        if ! [ -z $NOTEBOOK_FILE ]; then
+            NOTEBOOK_FILE_BASE=`basename ${NOTEBOOK_FILE%.*}`
+            
+            if ! [ -z $NOTEBOOK_FILE_BASE.ipynb ]; then
+                jupyter nbconvert $NOTEBOOK_FILE_BASE.ipynb --to latex
+                xelatex $NOTEBOOK_FILE_BASE.tex
+                biber $NOTEBOOK_FILE_BASE.bcf
+                xelatex $NOTEBOOK_FILE_BASE.tex
+                xelatex $NOTEBOOK_FILE_BASE.tex
 
-            printf "Compiling was successful.\n";
+                printf "Compiling was successful.\n";
+            else
+                printf "Error: Please provide a valid notebook filename for compiling!\n";
+                usage;
+                exit 1;
+            fi
         else
             printf "Error: Please provide a valid filename for compiling!\n";
             usage;
@@ -104,13 +110,28 @@ case "$CMD" in
         ;;
 
     clean)
-        if [ -f $NOTEBOOK_FILE.ipynb ]; then
-            clean_build_artefacts;
+        if ! [ -z $NOTEBOOK_FILE ]; then
+            NOTEBOOK_FILE_BASE=`basename ${NOTEBOOK_FILE%.*}`
+            LATEX_TMP_DIRECTORY_TO_CLEAN=${NOTEBOOK_FILE_BASE}_files
+            
+            if [ -f $NOTEBOOK_FILE_BASE.ipynb ]; then
+                clean_build_artefacts;
+            else
+                printf "Error: Please provide a valid notebook filename for cleaning!\n";
+                usage;
+                exit 1;
+            fi
         else
             printf "Error: Please provide a valid filename for cleaning!\n";
             usage;
             exit 1;
         fi
+
+        exit 0
+        ;;
+
+    help)
+        usage;
 
         exit 0
         ;;

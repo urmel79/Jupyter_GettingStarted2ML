@@ -175,7 +175,10 @@
 ((* block postdoc *))
     ((* block bibliography *))
     % Use bibliography
-    \printbibliography
+    \printbibheading[heading=bibnumbered]
+    \printbibliography[heading=subbibliography,keyword={URL},title={Online references}]
+    \printbibliography[heading=subbibliography,keyword={book},title={Books, technical reports and others}]
+    %\printbibliography[heading=subbibliography,nottype=online,title={All my non-online references}]
     ((* endblock bibliography *))
 ((* endblock postdoc *))
 
@@ -241,7 +244,7 @@
 ((* macro draw_figure_with_caption(filename, caption, label) -*))
 ((* set filename = filename | posix_path *))
 ((*- block figure scoped -*))
-    \begin{figure}[h!]
+    \begin{figure}[!ht]
         \begin{center}\includegraphics[scale=0.6]{((( filename )))}\end{center}
         \caption{((( caption )))}
         \label{((( label )))}
@@ -253,7 +256,7 @@
 ((* macro draw_widefigure_with_caption(filename, caption, label) -*))
 ((* set filename = filename | posix_path *))
 ((*- block figure_wide scoped -*))
-    \begin{figure}[h!]
+    \begin{figure}[!ht]
         \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{((( filename )))}\end{center}
         \caption{((( caption )))}
         \label{((( label )))}
