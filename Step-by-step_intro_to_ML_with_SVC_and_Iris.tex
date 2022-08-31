@@ -864,11 +864,15 @@ high-performance graphics cards with \textbf{CUDA architecture}.
 \href{https://en.wikipedia.org/wiki/CUDA}{CUDA} stands for ``Compute
 Unified Device Architecture'' and is a \textbf{programming interface}
 (API) developed by Nvidia, with which program parts can be processed by
-the graphics processor (see \cite{Wiki_CUDA}). The GPU works
-significantly faster than the CPU, especially with highly parallelizable
-program sequences (high data parallelism). This speed advantage can be
+the graphics processor (\cite{Wiki_CUDA}). The GPU works significantly
+faster than the CPU, especially with highly parallelizable program
+sequences (high data parallelism). This speed advantage can be
 considerable despite currently available CPU technologies like
 \textbf{Multicore} and \textbf{Hyper-Threading} with Intel CPUs!
+
+Nvidia graphics cards with CUDA-supporting GPUs are ranked based on
+their \textbf{\href{https://developer.nvidia.com/cuda-gpus}{compute
+capability}} (\cite{NVIDIA_CUDA_CAP_2022}).
 
 However, it should be mentioned that currently only the manufacturer
 Nvidia offers 3D graphics cards with CUDA implementation, since CUDA is
@@ -876,26 +880,22 @@ a \textbf{proprietary} framework. In addition, there is also the much
 less well-known \textbf{open source} alternative
 \textbf{\href{https://en.wikipedia.org/wiki/OpenCL}{OpenCL}}, which has
 now been implemented by a large number of graphics card manufacturers
-(see \cite{Wiki_OpenCL}). Since OpenCL is an \textbf{open industry
+(\cite{Wiki_OpenCL}). Since OpenCL is an \textbf{open industry
 standard}, Intel and AMD chips and their GPUs, ATI Radeon cards of the
 5, 6, 7 and R9 series as well as various Nvidia GeForce cards are
 supported, for example.
 
-Nvidia graphics cards with CUDA-supporting GPUs can be found listed by
-their \textbf{compute capability} (the higher the value, the better)
-here: \href{https://developer.nvidia.com/cuda-gpus}{CUDA GPUs - Compute
-Capability}.
-
 Regarding the \textbf{code execution performance} of both alternatives
 in direct comparison, there are different statements in the technical
-literature. While the 2010 paper
-\href{https://arxiv.org/abs/1005.2581}{A Performance Comparison of CUDA
-and OpenCL} sees the CUDA implementation as the clear favorite, more
-recent publications point out the strong dependence of performance on
+literature. The 2011 paper \href{https://arxiv.org/abs/1005.2581}{A
+Performance Comparison of CUDA and OpenCL} sees the CUDA implementation
+as the clear favorite (\cite{CUDA_OpenCL_Perf_2011}). More recent
+publications point out the strong dependence of performance on
 \textbf{code quality}, \textbf{algorithm type} and the \textbf{GPU
-hardware} used, among other things (see e.g.~here:
+hardware} used, among other things - see e.g.~here:
 \href{https://www.incredibuild.com/blog/cuda-vs-opencl-which-to-use-for-gpu-programming}{CUDA
-vs OpenCL: Which to Use for GPU Programming}).
+vs OpenCL: Which to Use for GPU Programming}
+(\cite{CUDA_vs_OpenCL_2021}).
 
 It is therefore recommended that the decision for \textbf{CUDA or
 OpenCL} should depend on the extent to which most of the applications
@@ -909,14 +909,15 @@ the speed advantage of the GPU. In addition to a mainboard suitable for
 one (or more) high-performance 3D graphics cards with a correspondingly
 powerful BUS system (e.g.~PCI Express), the RAM should be as large as
 possible (min. 64 GB) and fast. A large RAM allows, for example, the
-\textbf{virtualization} of several parallel systems (see
-\href{https://en.wikipedia.org/wiki/Virtual_machine}{Virtual machine})
-and thus a significantly better utilization of the available computing
-capacity. The permanent memory should also be as large and fast as
-possible - high-performance \textbf{solid-state drives (SSDs)} should be
-clearly preferred over classic hard disks (HDDs).
+\textbf{virtualization} of several parallel systems in the form of
+\textbf{\href{https://en.wikipedia.org/wiki/Virtual_machine}{virtual
+machines}} and thus a significantly better utilization of the available
+computing capacity (\cite{Wiki_VM}). The permanent memory should also be
+as large and fast as possible - high-performance \textbf{solid-state
+drives (SSDs)} should be clearly preferred over classic hard disks
+(HDDs).
 
-\hypertarget{application-system}{%
+    \hypertarget{application-system}{%
 \subsubsection{Application system}\label{application-system}}
 
 In the \textbf{application phase} of the trained estimator model,
@@ -928,44 +929,46 @@ application-specific \textbf{embedded systems} have only one CPU
 (usually in \textbf{ARM architecture}), comparatively limited RAM
 (e.g.~1 - 8 GB) and usually no GPU. A popular \textbf{embedded computer}
 that is very well supported in terms of ML software is the
-\textbf{\href{https://en.wikipedia.org/wiki/Raspberry_Pi}{Raspberry
-Pi}}. In addition to its ARM CPU, the Raspberry Pi also has a GPU
-installed on the same processor in the so-called \textbf{System on a
-Chip design (SoC)}. However, the SoC manufacturer \textbf{Broadcom} does
-not support the CUDA API.
+\textbf{\href{https://en.wikipedia.org/wiki/Raspberry_Pi}{Raspberry Pi}}
+(\cite{Wiki_Raspi}). In addition to its ARM CPU, the Raspberry Pi also
+has a GPU installed on the same processor in the so-called
+\textbf{System on a Chip design (SoC)}. However, the SoC manufacturer
+\textbf{Broadcom} does not support the CUDA API.
 
 There are references in the technical literature that the open source
 alternative \textbf{OpenCL} can be installed on the Raspberry Pi and
 that the AI framework \textbf{TensorFLow} (see section ``Software'') can
 be compiled with
-\textbf{\href{https://en.wikipedia.org/wiki/SYCL}{SYCL}} support (SYCL
-stands for ``Single Source OpenCL''). However, a first rough review
-gives the impression that support for this approach is still very
-experimental at the moment. Therefore, parallelizing the AI application
-on the GPU of the Raspberry Pi does not seem to be an option (yet).
-
-Here are some links for further reading:
+\textbf{\href{https://en.wikipedia.org/wiki/SYCL}{SYCL}} support, where
+SYCL stands for ``Single Source OpenCL'' (\cite{Wiki_SYCL}). However, a
+first rough review gives the impression that support for this approach
+is still very experimental at the moment. Therefore, parallelizing the
+AI application on the GPU of the Raspberry Pi does not seem to be an
+option (yet). Here are some links for further reading:
 
 \begin{itemize}
 \tightlist
 \item
   \href{https://qengineering.eu/deep-learning-with-raspberry-pi-and-alternatives.html}{Deep
   learning with Raspberry Pi and alternatives in 2022}
+  (\cite{DL_Raspi_2022})
 \item
   \href{https://www.hackster.io/news/benchmarking-machine-learning-on-the-new-raspberry-pi-4-model-b-88db9304ce4}{Benchmarking
   Machine Learning on the New Raspberry Pi 4, Model B}
+  (\cite{ML_Raspi4_2019})
 \item
   \href{https://towardsdatascience.com/portable-computer-vision-tensorflow-2-0-on-a-raspberry-pi-part-1-of-2-84e318798ce9}{Portable
   Computer Vision: TensorFlow 2.0 on a Raspberry Pi}
+  (\cite{TF2_Raspi4_2019})
 \item
   \href{https://qengineering.eu/install-opencl-on-raspberry-pi-3.html}{Install
-  OpenCL on Raspberry Pi 3 B+}
+  OpenCL on Raspberry Pi 3 B+} (\cite{OpenCL_Raspi_2022})
 \item
   \href{https://indiantechwarrior.com/does-tensorflow-support-opencl/}{Does
-  TensorFlow Support OpenCL ?}
+  TensorFlow Support OpenCL?} (\cite{TF_OpenCL_2022})
 \item
   \href{https://www.codeplay.com/portal/blogs/2016/06/01/tensorflow-for-opencl-using-sycl.html}{TensorFlow
-  for OpenCL using SYCL}
+  for OpenCL using SYCL} (\cite{TF_OpenCL_SYCL_2016})
 \end{itemize}
 
     \hypertarget{software}{%
@@ -1111,15 +1114,14 @@ tools would it make sense to examine one's own environment for
 ML-suitable applications and to obtain suitable datasets from them.
 However, this is beyond the scope of this introductory tutorial.
 
-Several details, for example, on the history of the creation of the Iris
-dataset can be found here:
+Several details, for example, on the history of the creation of the
 \href{https://en.wikipedia.org/wiki/Iris_flower_data_set}{Iris flower
-datasets}.
+dataset} can be found e.g.~on Wikipedia (see \cite{Wiki_IrisDS}).
 
 It can be downloaded on
 \href{https://www.kaggle.com/datasets/arshid/iris-flower-dataset}{Kaggle:
-Iris Flower Dataset}. Furthermore, the dataset is available via Python
-in the machine learning package
+Iris Flower Dataset} (\cite{Kaggle_IrisDS}). Furthermore, the dataset is
+available via Python in the machine learning package
 \href{https://scikit-learn.org}{Scikit-learn}, so that users can access
 it without having to find a special source for it.
 
@@ -1218,15 +1220,16 @@ The objectives of the exploration of the dataset are as follows:
 history}}{Clarify the origins history}}\label{clarify-the-origins-history}}
 
 \begin{quote}
-The \textbf{\emph{Iris} flower datasets} is a multivariate dataset
-introduced by the British statistician and biologist \emph{Ronald
-Fisher} in his paper ``The use of multiple measurements in taxonomic
-problems as an example of linear discriminant analysis'' (1936). It is
-sometimes called \emph{Anderson's Iris dataset} because Edgar Anderson
-collected the data to quantify the morphologic variation of Iris flowers
-of three related species (source:
-\href{https://en.wikipedia.org/w/index.php?title=Iris_flower_data_set\&oldid=1090001619}{Iris
-flower dataset}).
+The
+\textbf{\href{https://en.wikipedia.org/wiki/Iris_flower_data_set}{Iris
+flower datasets}} is a multivariate dataset introduced by the British
+statistician and biologist \emph{Ronald Fisher} in his paper
+``\href{https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x}{The
+use of multiple measurements in taxonomic problems}''
+(\cite{Fisher_1936}). It is sometimes called \emph{Anderson's Iris
+dataset} because Edgar Anderson collected the data to quantify the
+morphologic variation of Iris flowers of three related species
+(\cite{Wiki_IrisDS}).
 \end{quote}
 
 The dataset is published in Public Domain with a
@@ -1240,16 +1243,12 @@ vector machines}.
 {[}..{]} measurements of the flowers of fifty plants each of the two
 species \emph{Iris setosa} and \emph{I. versicolor}, found
 \textbf{growing together in the same colony} and measured by Dr E.
-Anderson {[}..{]} (source: R. A. Fisher (1936). ``The use of multiple
-measurements in taxonomic problems''.
-\href{https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x}{Annals
-of Eugenics})
+Anderson (\cite{Fisher_1936})
 \end{quote}
 
 \begin{quote}
 {[}..{]} \emph{Iris virginica}, differs from the two other samples in
-\textbf{not being taken from the same natural colony} {[}..{]} (source:
-ibidem)
+\textbf{not being taken from the same natural colony} (ibidem)
 \end{quote}
 
     \hypertarget{overview-of-the-internal-structure-and-organisation-of-the-data}{%
@@ -1625,7 +1624,7 @@ These also provide information about \textbf{outliers}.
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_28_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_29_0.png}\end{center}
         \caption{Boxplots used to explore the data ranges in the Iris dataset}
         \label{fig:boxplots_iris}
     \end{figure}
@@ -2473,7 +2472,7 @@ variable width. The height of each rectangle then represents the
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_64_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_65_0.png}\end{center}
         \caption{Histogram for frequency distribution of the salary}
         \label{fig:histogram_salary}
     \end{figure}
@@ -2487,7 +2486,7 @@ variable width. The height of each rectangle then represents the
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_65_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_66_0.png}\end{center}
         \caption{Histogram for the frequency distribution of the salary in comparison between men and women}
         \label{fig:histogram_male_female}
     \end{figure}
@@ -2584,7 +2583,7 @@ Choose the color sets from
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_71_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_72_0.png}\end{center}
         \caption{Correlation heatmap to explore coherences between single variables in the iris dataset}
         \label{fig:correlation_heatmap}
     \end{figure}
@@ -2638,7 +2637,7 @@ array([[1., 1., 1., 1., 1.],
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_75_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_76_0.png}\end{center}
         \caption{Correlation heatmap, which was cut at its main diagonal without losing any information}
         \label{fig:correlation_heatmap_triangle}
     \end{figure}
@@ -2686,7 +2685,7 @@ advisable to plot them in a \textbf{scatter plot}.
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_78_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_79_0.png}\end{center}
         \caption{Plotting two individual variables of the iris dataset in the scatterplot to explore the relationships between these two}
         \label{fig:scatter_plot}
     \end{figure}
@@ -2724,7 +2723,7 @@ single row and in the x-axis across a single column.
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_80_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_81_0.png}\end{center}
         \caption{Plot all individual variables of the Iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables}
         \label{fig:pairs_plot}
     \end{figure}
@@ -3442,7 +3441,7 @@ colored confusion matrix.
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_120_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_121_0.png}\end{center}
         \caption{Checking the accuracy of the model by using the confusion matrix for cross-validation}
         \label{fig:confusion_matrix}
     \end{figure}
@@ -3651,25 +3650,25 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_135_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_135_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_135_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_135_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
@@ -3701,31 +3700,31 @@ exactly fit the training dataset. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_137_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_137_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_137_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_137_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_137_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
@@ -3751,7 +3750,7 @@ as the classifier tries to perfectly fit the training data.
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_139_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy}
         \label{fig:plot_vary_gamma}
     \end{figure}
@@ -3782,43 +3781,43 @@ the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_141_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_141_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_141_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_141_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_141_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_141_5.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_5.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_141_6.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_6.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
@@ -3844,7 +3843,7 @@ But be careful: to high \texttt{C} values may lead to
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_143_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_144_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'C' against the prediction accuracy}
         \label{fig:plot_vary_c}
     \end{figure}
@@ -3880,61 +3879,61 @@ training times}.
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_5.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_5.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_6.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_6.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_7.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_7.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_8.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_8.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_9.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_9.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
@@ -3960,7 +3959,7 @@ hyperplane leads to \textbf{overfitting} the training data.
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_147_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_148_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy}
         \label{fig:plot_vary_degree}
     \end{figure}
@@ -4209,7 +4208,7 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_165_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_166_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
@@ -4363,7 +4362,7 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_176_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
@@ -4518,7 +4517,7 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{tcolorbox}
 
     \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_187_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_188_0.png}\end{center}
         \caption{}
         \label{}
     \end{figure}
@@ -4575,7 +4574,7 @@ Iris-versicolor       1.00      0.86      0.92         7
     \printbibheading[heading=bibnumbered]
     \printbibliography[heading=subbibliography,keyword={URL},title={Online references}]
     \printbibliography[heading=subbibliography,keyword={book},title={Books, technical reports and others}]
-    %\printbibliography[heading=subbibliography,nottype=online,title={All my non-online references}]
+    %\printbibliography[heading=subbibliography,title={Others}]
     
 
 \end{document}
