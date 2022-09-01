@@ -124,7 +124,7 @@ When considering hardware requirements, two systems and their use cases must be 
 
 The **training phase** requires a lot of **computational power** and **memory (RAM)**, depending on the **amount of data** to be processed and the **ML algorithm (so-called estimator)** chosen.
 
-Depending on the estimator model, highly parallel processing on a **Graphics Processing Unit (GPU)** can provide significant **speed advantages** over processing on a **Central Processing Unit (CPU)** (e.g., when training deep neural networks in the area of **deep learning**). To take advantage of this speed benefit, the AI application must be suitable in terms of **parallelizability** of the estimator model used as well as **GPU support** through special driver layers (so-called Operating System Abstraction Layer (OSAL)).
+Depending on the estimator model, highly parallel processing on a **Graphics Processing Unit (GPU)** can provide significant **speed advantages** over processing on a **Central Processing Unit (CPU)** (e.g., when training deep neural networks in the area of **deep learning**). To take advantage of this speed benefit, the AI application must be suitable in terms of **parallelizability** of the estimator model used as well as **GPU support** through special driver layers, the so-called [Operating System Abstraction Layer (OSAL)](https://en.wikipedia.org/wiki/Operating_system_abstraction_layer) (<cite data-cite="Wiki_OSAL">Wikipedia: OSAL</cite>).
 
 Such GPUs are installed on powerful **3D graphics cards**. However, these must be explicitly qualified for the application for AI - not every game-suitable 3D graphics card from any manufacturer can be used. The manufacturer **Nvidia** offers GPUs suitable for AI in its high-performance graphics cards with **CUDA architecture**. [CUDA](https://en.wikipedia.org/wiki/CUDA) stands for "Compute Unified Device Architecture" and is a **programming interface** (API) developed by Nvidia, with which program parts can be processed by the graphics processor (<cite data-cite="Wiki_CUDA">Wikipedia: CUDA</cite>). The GPU works significantly faster than the CPU, especially with highly parallelizable program sequences (high data parallelism). This speed advantage can be considerable despite currently available CPU technologies like **Multicore** and **Hyper-Threading** with Intel CPUs!
 
@@ -231,7 +231,7 @@ import seaborn as sns
 
 To allow an ML novice to first familiarize themselves with the ML algorithms, tools, libraries, and programming systems, the ready-made and very beginner-friendly **Iris dataset** is involved in this step. Only after a comprehensive acquaintance with the application of ML tools would it make sense to examine one's own environment for ML-suitable applications and to obtain suitable datasets from them. However, this is beyond the scope of this introductory tutorial.
 
-Several details, for example, on the history of the creation of the [Iris flower dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set) can be found e.g. on Wikipedia (see <cite data-cite="Wiki_IrisDS">Wikipedia: Iris</cite>).
+Several details, for example, on the history of the creation of the [Iris flower dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set) can be found e.g. on Wikipedia (see <cite data-cite="Wiki_IrisDS">Wikipedia: Iris dataset</cite>).
 
 It can be downloaded on [Kaggle: Iris Flower Dataset](https://www.kaggle.com/datasets/arshid/iris-flower-dataset) (<cite data-cite="Kaggle_IrisDS">Srinagar, 2018</cite>). Furthermore, the dataset is available via Python in the machine learning package [Scikit-learn](https://scikit-learn.org), so that users can access it without having to find a special source for it.
 <!-- #endregion -->
@@ -251,29 +251,29 @@ One of the most important steps in the entire ML process is this step, in which 
 The objectives of the exploration of the dataset are as follows:
 
 1. Clarify the **origins history**:
-    - Where did the data come from? => Contact persons and licensing permissions?
-    - Who obtained the data and with which (measurement) methods? => Did systematic errors occur during the acquisition?
-    - What were they originally intended for? => Can they be used for my application?
+    - Where did the data come from? **&rarr;** Contact persons and licensing permissions?
+    - Who obtained the data and with which (measurement) methods? **&rarr;** Did systematic errors occur during the acquisition?
+    - What were they originally intended for? **&rarr;** Can they be used for my application?
 
 2. Overview of the internal **structure and organisation** of the data:
-    - Which columns are there? => With which methods can they be read in (e.g. import of CSV files)?
-    - What do they contain for (physical) measured variables? => Which technical or physical correlations exist?
-    - Which data formats or types are there? => Do they have to be converted?
-    - In which value ranges do the measurement data vary? => Are normalizations necessary?
+    - Which columns are there? **&rarr;** With which methods can they be read in (e.g. import of CSV files)?
+    - What do they contain for (physical) measured variables? **&rarr;** Which technical or physical correlations exist?
+    - Which data formats or types are there? **&rarr;** Do they have to be converted?
+    - In which value ranges do the measurement data vary? **&rarr;** Are normalizations necessary?
 
 3. Identify **anomalies** in the datasets:
-    - Do the data have **gaps** or **duplicates**? => Does the dataset needs to be cleaned?
-    - Are there obvious erroneous entries or measurement outliers? => Does (statistical) filtering have to be carried out?
+    - Do the data have **gaps** or **duplicates**? **&rarr;** Does the dataset needs to be cleaned?
+    - Are there obvious erroneous entries or measurement outliers? **&rarr;** Does (statistical) filtering have to be carried out?
 
 4. Avoidance of **tendencies due to bias**:
-    - Are all possible classes included in the dataset and equally distributed? => Does the dataset need to be enriched with additional data for balance?
+    - Are all possible classes included in the dataset and equally distributed? **&rarr;** Does the dataset need to be enriched with additional data for balance?
 
 5. Find a first rough **idea of which correlations** could be in the dataset
 <!-- #endregion -->
 
 ## Clarify the **origins history**
 
-> The **[Iris flower datasets](https://en.wikipedia.org/wiki/Iris_flower_data_set)** is a multivariate dataset introduced by the British statistician and biologist *Ronald Fisher* in his paper "[The use of multiple measurements in taxonomic problems](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x)" (<cite data-cite="Fisher_1936">Fisher,1936</cite>). It is sometimes called *Anderson's Iris dataset* because Edgar Anderson collected the data to quantify the morphologic variation of Iris flowers of three related species (<cite data-cite="Wiki_IrisDS">Wikipedia: Iris</cite>).
+> The **[Iris flower datasets](https://en.wikipedia.org/wiki/Iris_flower_data_set)** is a multivariate dataset introduced by the British statistician and biologist *Ronald Fisher* in his paper "[The use of multiple measurements in taxonomic problems](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x)" (<cite data-cite="Fisher_1936">Fisher,1936</cite>). It is sometimes called *Anderson's Iris dataset* because Edgar Anderson collected the data to quantify the morphologic variation of Iris flowers of three related species (<cite data-cite="Wiki_IrisDS">Wikipedia: Iris dataset</cite>).
 
 The dataset is published in Public Domain with a [CC0-License](https://creativecommons.org/share-your-work/public-domain/cc0/).
 
@@ -284,10 +284,11 @@ This dataset became a typical test case for many statistical classification tech
 > [..] *Iris virginica*, differs from the two other samples in **not being taken from the same natural colony** (ibidem)
 
 
-## Overview of the internal **structure and organisation** of the data
+## Overview of the internal **structure and organization** of the data
 
-The dataset consists of 50 samples from each of three species of Iris ([*Iris setosa*](https://en.wikipedia.org/wiki/Iris_setosa), [*Iris virginica*](https://en.wikipedia.org/wiki/Iris_virginica) and [*Iris versicolor*](https://en.wikipedia.org/wiki/Iris_versicolor)), so there are 150 total samples. Four features were measured from each sample: the length and the width of the [sepals](https://en.wikipedia.org/wiki/Sepal) and [petals](https://en.wikipedia.org/wiki/Petal), in centimetres.  
-Here is a principle illustration of a flower with sepal and petal:
+The dataset consists of 50 samples from each of three species of Iris: [*Iris setosa*](https://en.wikipedia.org/wiki/Iris_setosa), [*Iris virginica*](https://en.wikipedia.org/wiki/Iris_virginica) and [*Iris versicolor*](https://en.wikipedia.org/wiki/Iris_versicolor), so there are 150 samples in total (<cite data-cite="Wiki_Iris_setosa">Wikipedia: Iris setosa</cite>, <cite data-cite="Wiki_Iris_virginica">Wikipedia: Iris virginica</cite> and <cite data-cite="Wiki_Iris_versicolor">Wikipedia: Iris versicolor</cite>).
+
+Four features were measured from each sample: the length and the width of the **[sepals](https://en.wikipedia.org/wiki/Sepal)** and **[petals](https://en.wikipedia.org/wiki/Petal)**, in centimetres (<cite data-cite="Wiki_Sepal">Wikipedia: Sepal</cite> and <cite data-cite="Wiki_Petal">Wikipedia: Petal</cite>). Here you can see a principle illustration of a flower in which, among other things, the sepals and petals are shown:
 
 <!-- #region caption="" label="fig:flower_sepal_petal" tags=[] widefigure=true -->
 ![Principle illustration of a flower with sepal and petal (source: [Mature_flower_diagram.svg](https://en.wikipedia.org/wiki/File:Mature_flower_diagram.svg), license: public domain)](images/Mature_flower_diagram_1024px.png)

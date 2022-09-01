@@ -853,8 +853,9 @@ Processing Unit (CPU)} (e.g., when training deep neural networks in the
 area of \textbf{deep learning}). To take advantage of this speed
 benefit, the AI application must be suitable in terms of
 \textbf{parallelizability} of the estimator model used as well as
-\textbf{GPU support} through special driver layers (so-called Operating
-System Abstraction Layer (OSAL)).
+\textbf{GPU support} through special driver layers, the so-called
+\href{https://en.wikipedia.org/wiki/Operating_system_abstraction_layer}{Operating
+System Abstraction Layer (OSAL)} (\cite{Wiki_OSAL}).
 
 Such GPUs are installed on powerful \textbf{3D graphics cards}. However,
 these must be explicitly qualified for the application for AI - not
@@ -1160,14 +1161,14 @@ The objectives of the exploration of the dataset are as follows:
   \begin{itemize}
   \tightlist
   \item
-    Where did the data come from? =\textgreater{} Contact persons and
+    Where did the data come from? \textbf{→} Contact persons and
     licensing permissions?
   \item
     Who obtained the data and with which (measurement) methods?
-    =\textgreater{} Did systematic errors occur during the acquisition?
+    \textbf{→} Did systematic errors occur during the acquisition?
   \item
-    What were they originally intended for? =\textgreater{} Can they be
-    used for my application?
+    What were they originally intended for? \textbf{→} Can they be used
+    for my application?
   \end{itemize}
 \item
   Overview of the internal \textbf{structure and organisation} of the
@@ -1176,17 +1177,17 @@ The objectives of the exploration of the dataset are as follows:
   \begin{itemize}
   \tightlist
   \item
-    Which columns are there? =\textgreater{} With which methods can they
-    be read in (e.g.~import of CSV files)?
+    Which columns are there? \textbf{→} With which methods can they be
+    read in (e.g.~import of CSV files)?
   \item
-    What do they contain for (physical) measured variables?
-    =\textgreater{} Which technical or physical correlations exist?
+    What do they contain for (physical) measured variables? \textbf{→}
+    Which technical or physical correlations exist?
   \item
-    Which data formats or types are there? =\textgreater{} Do they have
-    to be converted?
+    Which data formats or types are there? \textbf{→} Do they have to be
+    converted?
   \item
-    In which value ranges do the measurement data vary? =\textgreater{}
-    Are normalizations necessary?
+    In which value ranges do the measurement data vary? \textbf{→} Are
+    normalizations necessary?
   \end{itemize}
 \item
   Identify \textbf{anomalies} in the datasets:
@@ -1194,11 +1195,11 @@ The objectives of the exploration of the dataset are as follows:
   \begin{itemize}
   \tightlist
   \item
-    Do the data have \textbf{gaps} or \textbf{duplicates}?
-    =\textgreater{} Does the dataset needs to be cleaned?
+    Do the data have \textbf{gaps} or \textbf{duplicates}? \textbf{→}
+    Does the dataset needs to be cleaned?
   \item
     Are there obvious erroneous entries or measurement outliers?
-    =\textgreater{} Does (statistical) filtering have to be carried out?
+    \textbf{→} Does (statistical) filtering have to be carried out?
   \end{itemize}
 \item
   Avoidance of \textbf{tendencies due to bias}:
@@ -1207,8 +1208,8 @@ The objectives of the exploration of the dataset are as follows:
   \tightlist
   \item
     Are all possible classes included in the dataset and equally
-    distributed? =\textgreater{} Does the dataset need to be enriched
-    with additional data for balance?
+    distributed? \textbf{→} Does the dataset need to be enriched with
+    additional data for balance?
   \end{itemize}
 \item
   Find a first rough \textbf{idea of which correlations} could be in the
@@ -1251,21 +1252,26 @@ Anderson (\cite{Fisher_1936})
 \textbf{not being taken from the same natural colony} (ibidem)
 \end{quote}
 
-    \hypertarget{overview-of-the-internal-structure-and-organisation-of-the-data}{%
+    \hypertarget{overview-of-the-internal-structure-and-organization-of-the-data}{%
 \subsection{\texorpdfstring{Overview of the internal \textbf{structure
-and organisation} of the
-data}{Overview of the internal structure and organisation of the data}}\label{overview-of-the-internal-structure-and-organisation-of-the-data}}
+and organization} of the
+data}{Overview of the internal structure and organization of the data}}\label{overview-of-the-internal-structure-and-organization-of-the-data}}
 
-The dataset consists of 50 samples from each of three species of Iris
-(\href{https://en.wikipedia.org/wiki/Iris_setosa}{\emph{Iris setosa}},
+The dataset consists of 50 samples from each of three species of Iris:
+\href{https://en.wikipedia.org/wiki/Iris_setosa}{\emph{Iris setosa}},
 \href{https://en.wikipedia.org/wiki/Iris_virginica}{\emph{Iris
 virginica}} and
 \href{https://en.wikipedia.org/wiki/Iris_versicolor}{\emph{Iris
-versicolor}}), so there are 150 total samples. Four features were
-measured from each sample: the length and the width of the
-\href{https://en.wikipedia.org/wiki/Sepal}{sepals} and
-\href{https://en.wikipedia.org/wiki/Petal}{petals}, in centimetres.\\
-Here is a principle illustration of a flower with sepal and petal:
+versicolor}}, so there are 150 samples in total
+(\cite{Wiki_Iris_setosa}, \cite{Wiki_Iris_virginica} and
+\cite{Wiki_Iris_versicolor}).
+
+Four features were measured from each sample: the length and the width
+of the \textbf{\href{https://en.wikipedia.org/wiki/Sepal}{sepals}} and
+\textbf{\href{https://en.wikipedia.org/wiki/Petal}{petals}}, in
+centimetres (\cite{Wiki_Sepal} and \cite{Wiki_Petal}). Here you can see
+a principle illustration of a flower in which, among other things, the
+sepals and petals are shown:
 
     \begin{figure}
 \centering
