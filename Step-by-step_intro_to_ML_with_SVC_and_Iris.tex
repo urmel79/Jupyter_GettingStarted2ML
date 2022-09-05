@@ -470,29 +470,43 @@ subset of \textbf{Artificial Intelligence (AI)}.
 
 Examples of such AI applications in work environments can range from
 comparatively simple \textbf{voice assistance systems} (similar, for
-example, to Siri or Alexa from the private sphere) to partially or even
-\textbf{fully autonomous systems}. However, the distinction between the
-individual \textbf{degrees of autonomy} is relatively vague and
-difficult to define, depending on the technical context and the degree
-of abstraction. Crucial for the classification are the degrees of
-\textbf{self-determination}, \textbf{independence}, and \textbf{freedom
-of decision or action} of a technical system towards \textbf{human
-intervention}.
+example, to Siri or Alexa from the private sphere) to partially or
+\textbf{highly automated systems}. The transition from
+\textbf{automation to autonomy} is currently the subject of much
+controversy among experts and can be viewed in terms of the transition
+of responsibility from humans to technical systems.
+
+By definition, a system is called \textbf{autonomous} only when it can
+achieve a given goal \textbf{independently} and adapted to the situation
+\textbf{without human control} or detailed \textbf{programming}.
+
+However, the distinction between the degree of automation and the
+autonomy of a technical system is relatively vague and difficult to
+define, depending on the technical context and the degree of
+abstraction. Crucial for the classification are the degrees of
+\textbf{self-determination}, \textbf{independence} as well as the
+\textbf{freedom of decision or action} of a technical system towards
+\textbf{human intervention} or preprogrammed behavior patterns.
+
+In contrast to highly automated systems, autonomous systems are only
+able to act autonomously, solve problems, and learn to constantly
+improve in the process through the use of AI algorithms.
 
 For example, \textbf{driverless transport systems (AGVs)} can navigate
 \textbf{autonomously} through larger industrial facilities using
-self-learned or updated maps and avoid obstacles by independently
-finding and optimizing suitable routes. However, at a higher level of
-abstraction, new logistics tasks are given to them by human operators,
-which is why AGVs tend to be \textbf{highly automated systems} from a
-human perspective.
+self-learned self-updated maps shared with other AGVs, and avoid
+location-changing obstacles by independently finding and optimizing
+suitable routes. However, at a higher level of abstraction, new
+logistics tasks are given to them by human operators, which is why AGVs
+tend to be \textbf{highly automated systems} from a human perspective.
 
-In addition to the many very interesting advantages in terms of economic
-efficiency, workload reduction, etc., such autonomous or highly
-automated systems are characterized by a very high level of technical
-complexity. This concerns both their \textbf{operating functions}
-(e.g.~autonomous navigation through complex industrial environments with
-shared use of the roadways by other human-controlled vehicles) and their
+In addition to the many very interesting advantages, e.g.~in terms of
+economic efficiency and workload reduction, such highly automated
+systems and, depending on the point of view, autonomous subsystems are
+characterized by a very high level of technical complexity. This
+concerns both their \textbf{operating functions} (e.g.~autonomous
+navigation through complex industrial environments with shared use of
+the roadways by other human-controlled vehicles) and their
 \textbf{safety functions} (e.g.~evaluation of interlinked imaging and
 non-imaging safety sensors for monitoring the driving space to avoid
 collisions).
@@ -501,14 +515,19 @@ Very high requirements are placed on such autonomous systems and the AI
 algorithms used for this purpose with regard to \textbf{functional
 safety}. However, the requirements for safety evaluability in terms of
 \textbf{transparency} and \textbf{explainability} of decisions made by
-AI are very difficult or impossible to meet, depending on the AI
-algorithms applied. For example, current research projects are
-investigating the transparency and explainability of \textbf{deep neural
-networks}. Furthermore, today's AI algorithms, in terms of their
-\textbf{recognition rates} and thus their \textbf{reliabilities}, very
+AI are currently very difficult or impossible to achieve, especially
+when using AI algorithms from the field of \textbf{deep learning}.
+Therefore, current research projects are investigating the transparency
+and explainability of \textbf{deep neural networks}.
+
+Furthermore, in terms of their \textbf{recognition rates} and thus the
+\textbf{reliability of their decisions}, today's AI algorithms very
 often do not meet the functional safety requirements to achieve higher
-safety levels (e.g.~Performance Level d (PLd) according to ISO 13849),
-even under the most convenient conditions.
+safety levels, even under the most favorable conditions. For example, a
+software-based safety function with a performance level d \((PL_{d})\)
+typically required for machines in accordance with ISO 13849-1 may only
+fail dangerously with a probability of \(10^{-7} - 10^{-6}\) per hour
+during continuous use.
 
 An appropriate assessment or even \textbf{testing} with regard to the
 required functional safety according to uniform and ideally standardized
@@ -520,30 +539,34 @@ previous clear separation between \textbf{placing on the market law}
 (see e.g.~Machinery Directive) and \textbf{occupational safety and
 health law} (see European Framework Directive for Occupational Safety
 and Health and German Ordinance on Occupational Safety and Health) can
-no longer be continued in this way. The reason for this is that the
-\textbf{safety-relevant properties} of the autonomous systems will
-change due to new or \textbf{adapted behaviors} learned during
-operation.
+no longer be continued in this way. The reason for this is that
+\textbf{safety-related properties} will also change, especially of
+systems \textbf{continuously learning} at runtime, due to new or
+\textbf{adapted behaviors} learned during operation. From today's point
+of view, systems based on \textbf{learned-out} and at runtime
+\textbf{invariable models} are not affected by this.
 
 For these reasons, especially the actors of technical occupational
-safety and health who will deal with the evaluation of such adaptive,
-autonomous systems or system components with AI algorithms in the future
-should familiarize themselves with the AI or ML algorithms in depth as
-early as possible. This is the only way to ensure that the rapid
-development of adaptive systems capable of learning can be accompanied
-by OSH and their testing authorities in a constructive, critical and
-technically appropriate manner. If this is omitted, it must be assumed
-on the basis of the experiences of recent years that the OSH system will
-be ruthlessly circumvented or undermined by the economic interests of
-globally operating software giants. This would have the consequence that
-serious or fatal occupational accidents are likely to occur due to
-inadequately designed AI-based work systems.
+safety and health who will deal with the evaluation of such autonomous
+systems capable of learning or system components with AI algorithms in
+the future should familiarize themselves in depth with the software
+structures used for this purpose as early as possible. This is the only
+way to ensure that the rapid development of systems capable of learning
+can be accompanied by OSH and their testing authorities in a
+constructive, critical and technically appropriate manner. If this is
+omitted, it must be assumed on the basis of the experiences of recent
+years that the OSH system will be ruthlessly circumvented or undermined
+by the economic interests of globally operating software giants. This
+would have the consequence that serious or fatal occupational accidents
+are more likely to occur due to inadequately designed AI-based work
+systems.
 
-The safety-related evaluation of such learning-capable systems requires
-a deeper technical entry into the world of \textbf{Artificial
-Intelligence} or \textbf{Machine Learning}. For this purpose, it is
-necessary to deal with the basic operation of typical ML algorithms,
-corresponding software tools, libraries and programming systems.
+However, the safety-related evaluation of such learning-capable systems
+requires a more in-depth technical entry into the world of
+\textbf{machine learning} as a subfield of \textbf{artificial
+intelligence}. For this purpose, it is necessary to deal with the basic
+operation of typical ML algorithms, corresponding software tools,
+libraries and programming systems.
 
 However, someone who opens the door for the first time to this equally
 very exciting as well as arbitrarily complex and, at first glance,
@@ -572,18 +595,18 @@ workshop - quite in contrast to the entry into the world of deep neural
 networks.
 
 The following main sections will demonstrate the typical ML workflow
-step-by-step. In \textbf{Step 0}, specific guidance is provided for
+step-by-step. In \textbf{step 0}, specific guidance is provided for
 selecting hardware and software suitable for machine learning. To allow
 an ML novice to first familiarize themselves with the ML algorithms,
 tools, libraries, and programming systems, the ready-made and very
-beginner-friendly \textbf{Iris dataset} is involved in \textbf{Step 1}.
+beginner-friendly \textbf{Iris dataset} is involved in \textbf{step 1}.
 Only after a comprehensive acquaintance with the application of ML tools
 would it make sense to examine one's own environment for ML-suitable
 applications and to obtain suitable datasets from them. However, this is
 beyond the scope of this introductory tutorial.
 
-One of the most important steps in the entire ML process is \textbf{Step
-2}, in which the dataset included in Step 1 is examined using typical
+One of the most important steps in the entire ML process is \textbf{step
+2}, in which the dataset included in step 1 is examined using typical
 data analysis tools. In addition to exploring the \textbf{data
 structure} and \textbf{internal correlations} in the dataset, errors
 such as gaps, duplications, or obvious misentries must also be found and
@@ -614,7 +637,7 @@ explained in \textbf{step 7} and then their effect on the classification
 result is demonstrated by manually varying the individual
 hyper-parameters.
 
-In the final \textbf{Step 8}, two approaches to systematic
+In the final \textbf{step 8}, two approaches to systematic
 hyper-parameter search are presented: \textbf{Grid Search} and
 \textbf{Randomized Search}. While the former exhaustively considers all
 parameter combinations for given values, the latter selects a number of
@@ -634,47 +657,71 @@ werden.
 
 Beispiele für solche KI-Anwendungen in der Arbeitswelt reichen von
 vergleichsweise einfachen \textbf{Sprachassistenzsystemen} (ähnlich z.
-B. Siri oder Alexa aus dem privaten Umfeld) bis hin zu teil- oder gar
-\textbf{vollautonomen Systemen}. Allerdings ist die Unterscheidung der
-einzelnen \textbf{Autonomiegrade} relativ fließend und je nach
+B. Siri oder Alexa aus dem privaten Umfeld) bis hin zu teil- oder
+\textbf{hochautomatisierten Systemen}. Der Übergang von
+\textbf{Automatisierung zu Autonomie} wird derzeit in der Fachwelt sehr
+kontrovers diskutiert und kann unter dem Aspekt des Übergangs der
+Verantwortung vom Menschen zum technischen System betrachtet werden.
+
+Definitionsgemäß wird ein System erst dann als \textbf{autonom}
+bezeichnet, wenn es \textbf{ohne menschliche Steuerung} oder
+detaillierte \textbf{Programmierung} ein vorgegebenes Ziel
+\textbf{selbstständig} und an die Situation angepasst erreichen kann.
+
+Allerdings ist die Unterscheidung des Grades der Automatisierung bis hin
+zur Autonomie eines technischen Systems relativ fließend und je nach
 fachlichem Kontext und Abstraktionsgrad nur schwer zu definieren.
 Maßgeblich für die Einordnung sind die Grade der
 \textbf{Selbstbestimmtheit}, die \textbf{Unabhängigkeit} sowie die
 \textbf{Entscheidungs- bzw. Handlungsfreiheit} eines technischen Systems
-gegenüber \textbf{menschlichem Eingriff}.
+gegenüber \textbf{menschlichem Eingriff} oder vorprogrammierter
+Verhaltensmuster.
+
+Im Gegensatz zu hochautomatisierten Systemen sind autonome Systeme nur
+durch Einsatz von KI-Algorithmen in der Lage, eigenständig zu agieren,
+Probleme zu lösen und dabei zu lernen, sich ständig zu verbessern.
 
 Beispielsweise können \textbf{fahrerlose Transportsysteme (FTS)} anhand
-selbst erlernter oder aktualisierter Karten \textbf{autonom} durch
-größere Industrieanlagen navigieren und Hindernissen ausweichen, indem
-sie selbstständig geeignete Routen finden und optimieren. Jedoch werden
+selbst erlernter, selbstständig aktualisierter und mit anderen FTS
+geteilter Karten \textbf{autonom} durch größere Industrieanlagen
+navigieren und ortsveränderlichen Hindernissen ausweichen, indem sie
+selbstständig geeignete Routen finden und optimieren. Jedoch werden
 ihnen in einer höheren Abstraktionsebene neue Logistikaufträge durch
 menschliche Bediener vorgegeben, weswegen es sich bei FTS aus
 menschlicher Perspektive eher um \textbf{hochautomatisierte Systeme}
 handelt.
 
-Neben den vielen sehr interessanten Vorteilen bzgl. Wirtschaftlichkeit,
-Arbeitserleichterung usw. kennzeichnet solche autonomen oder
-hochautomatisierten Systeme eine sehr hohe technische Komplexität. Diese
-betrifft sowohl ihre \textbf{Betriebsfunktionen} (z. B. autonome
-Navigation durch komplexe industrielle Umgebungen bei gemeinsamer
-Nutzung der Fahrwege durch andere menschlich gesteuerte Fahrzeuge) als
-auch ihre \textbf{Sicherheitsfunktionen} (z. B. Auswertung miteinander
-verknüpfter bildgebender und nicht-bildgebender Sicherheitssensorik zur
-Überwachung des Fahrraums zur Kollisionsvermeidung).
+Neben den vielen sehr interessanten Vorteilen z. B. bzgl.
+Wirtschaftlichkeit und Arbeitserleichterung kennzeichnet solche
+hochautomatisierten und je nach Betrachtung autonomen Teilsysteme eine
+sehr hohe technische Komplexität. Diese betrifft sowohl ihre
+\textbf{Betriebsfunktionen} (z. B. autonome Navigation durch komplexe
+industrielle Umgebungen bei gemeinsamer Nutzung der Fahrwege durch
+andere menschlich gesteuerte Fahrzeuge) als auch ihre
+\textbf{Sicherheitsfunktionen} (z. B. Auswertung miteinander verknüpfter
+bildgebender und nicht-bildgebender Sicherheitssensorik zur Überwachung
+des Fahrraums zur Kollisionsvermeidung).
 
 An solche autonomen Systeme und die hierfür eingesetzten KI-Algorithmen
 werden sehr hohe Anforderungen hinsichtlich der \textbf{funktionalen
 Sicherheit} gestellt. Jedoch sind die Anforderungen für eine
 sicherheitstechnische Bewertbarkeit bezüglich der \textbf{Transparenz}
-und \textbf{Erklärbarkeit} der durch KI getroffenen Entscheidungen je
-nach verwendeten KI-Algorithmen sehr schwer bis unmöglich erreichbar.
-Beispielsweise werden durch aktuell laufende Forschungsprojekte die
+und \textbf{Erklärbarkeit} der durch KI getroffenen Entscheidungen
+insbesondere bei Einsatz von KI-Algorithmen aus dem Bereich des
+\textbf{Deep Learnings} derzeit nur sehr schwer oder gar nicht
+erreichbar. Deshalb werden durch aktuell laufende Forschungsprojekte die
 Transparenz und Erklärbarkeit von \textbf{tiefen neuronalen Netzen}
-untersucht. Weiterhin erfüllen heutige KI-Algorithmen hinsichtlich ihrer
-\textbf{Erkennungsraten} und damit ihrer \textbf{Zuverlässigkeiten}
-selbst unter günstigsten Bedingungen sehr oft nicht die Anforderungen an
-die funktionale Sicherheit, um höhere Safety-Level (z. B. Performance
-Level d (PLd) nach ISO 13849) zu erreichen.
+untersucht.
+
+Weiterhin erfüllen heutige KI-Algorithmen hinsichtlich ihrer
+\textbf{Erkennungsraten} und damit der \textbf{Zuverlässigkeiten ihrer
+Entscheidungen} selbst unter günstigsten Bedingungen sehr oft nicht die
+Anforderungen an die funktionale Sicherheit, um höhere Safety-Level zu
+erreichen. Beispielsweise darf eine software-gestützte
+Sicherheitsfunktion mit einem für Maschinen typischerweise geforderten
+Performance Level d \((PL_{d})\) nach ISO 13849-1 bei kontinuierlicher
+Nutzung nur mit einer Wahrscheinlichkeit von \(10^{-7} - 10^{-6}\) pro
+Stunde gefährlich ausfallen.
 
 Eine hinsichtlich der geforderten funktionalen Sicherheit angemessene
 Bewertung oder gar \textbf{Prüfung} nach einheitlichen und idealerweise
@@ -687,16 +734,19 @@ wichtiger Punkt, dass die bisherige klare Trennung zwischen
 \textbf{betrieblichem Arbeitsschutzrecht} (siehe
 Arbeitsschutz-Rahmenrichtlinie und Betriebssicherheitsverordnung) so
 nicht mehr aufrechterhalten werden kann. Grund hierfür ist, dass sich
-auch die \textbf{sicherheitsrelevanten Eigenschaften} der autonomen
-Systeme durch während des Betriebs erlernte, neue oder
-\textbf{angepasste Verhaltensweisen} verändern werden.
+auch die \textbf{sicherheitsrelevanten Eigenschaften} insbesondere von
+zur Laufzeit \textbf{weiterlernenden Systemen} durch während des
+Betriebs erlernte, neue oder \textbf{angepasste Verhaltensweisen}
+verändern werden. Systeme auf Basis \textbf{ausgelernter} und zur
+Laufzeit \textbf{unveränderlicher Modelle} sind aus heutiger Sicht
+hiervon nicht betroffen.
 
 Aus diesen Gründen sollten sich insbesondere die Akteure des technischen
-Arbeitsschutzes, die sich zukünftig mit der Prüfung solcher lernfähigen,
-autonomen Systeme oder Systemkomponenten mit KI-Algorithmen befassen
-werden, möglichst frühzeitig mit den KI- bzw. ML-Algorithmen vertieft
-auseinandersetzen. Nur dadurch lässt sich erreichen, dass die stürmische
-Entwicklung lernfähiger, adaptiver Systeme durch den Arbeitsschutz und
+Arbeitsschutzes, die sich zukünftig mit der Prüfung solcher lernfähigen
+Systeme oder Systemkomponenten mit KI-Algorithmen befassen werden,
+möglichst frühzeitig mit den hierfür eingesetzten Software-Strukturen
+vertieft auseinandersetzen. Nur dadurch lässt sich erreichen, dass die
+stürmische Entwicklung lernfähiger Systeme durch den Arbeitsschutz und
 dessen Prüfinstitute konstruktiv, kritisch und fachlich angemessen
 begleitet werden kann. Wird dies versäumt, muss aufgrund der Erfahrungen
 der vergangenen Jahre davon ausgegangen werden, dass das
@@ -704,14 +754,15 @@ Arbeitsschutzsystem durch die wirtschaftlichen Interessen global
 agierender Softwaregiganten skrupellos umgangen oder ausgehebelt werden
 wird. Dies hätte die Folge, dass schwere oder tödliche Arbeitsunfälle
 wegen unzulänglich gestalteter KI-basierter Arbeitssysteme
-wahrscheinlich werden.
+wahrscheinlicher werden.
 
 Allerdings erfordert die sicherheitstechnische Bewertung solcher
 lernfähigen Systeme einen tiefer gehenden fachlichen Einstieg in die
-Welt von \textbf{Künstlicher Intelligenz} bzw. \textbf{Maschinellem
-Lernen}. Hierzu muss sich mit den grundlegenden Funktionsweisen
-typischer ML-Algorithmen, entsprechenden Software-Werkzeugen,
-Bibliotheken und Programmiersystemen auseinander gesetzt werden.
+Welt des \textbf{maschinellen Lernens} als Teilgebiet der
+\textbf{künstlichen Intelligenz}. Hierzu muss sich mit den grundlegenden
+Funktionsweisen typischer ML-Algorithmen, entsprechenden
+Software-Werkzeugen, Bibliotheken und Programmiersystemen auseinander
+gesetzt werden.
 
 Wer jedoch zum ersten Mal die Tür zu dieser ebenso spannenden wie
 beliebig komplexen und auf den ersten Blick verwirrenden Welt öffnet,
@@ -4556,14 +4607,17 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{Verbatim}
 \end{tcolorbox}
         
-    \hypertarget{summary-and-conclusions}{%
-\section{Summary and conclusions}\label{summary-and-conclusions}}
+    \hypertarget{summary-and-outlook}{%
+\section{Summary and outlook}\label{summary-and-outlook}}
 
 \hypertarget{english-summary}{%
 \subsection{English summary}\label{english-summary}}
 
     \hypertarget{german-summary}{%
 \subsection{German summary}\label{german-summary}}
+
+    \hypertarget{acknowledgments}{%
+\section{Acknowledgments}\label{acknowledgments}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
