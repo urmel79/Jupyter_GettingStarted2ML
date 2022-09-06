@@ -474,11 +474,13 @@ example, to Siri or Alexa from the private sphere) to partially or
 \textbf{highly automated systems}. The transition from
 \textbf{automation to autonomy} is currently the subject of much
 controversy among experts and can be viewed in terms of the transition
-of responsibility from humans to technical systems.
+of responsibility from humans to technical systems (\cite{Adler_2021};
+\cite{Adler_2019}).
 
 By definition, a system is called \textbf{autonomous} only when it can
 achieve a given goal \textbf{independently} and adapted to the situation
-\textbf{without human control} or detailed \textbf{programming}.
+\textbf{without human control} or detailed \textbf{programming}
+(\cite{EFI_autSysteme_2018}; \cite{acatech_2017}).
 
 However, the distinction between the degree of automation and the
 autonomy of a technical system is relatively vague and difficult to
@@ -486,11 +488,13 @@ define, depending on the technical context and the degree of
 abstraction. Crucial for the classification are the degrees of
 \textbf{self-determination}, \textbf{independence} as well as the
 \textbf{freedom of decision or action} of a technical system towards
-\textbf{human intervention} or preprogrammed behavior patterns.
+\textbf{human intervention} or preprogrammed behavior patterns (vgl.
+\cite{Wiki_Autonomie}).
 
 In contrast to highly automated systems, autonomous systems are only
 able to act autonomously, solve problems, and learn to constantly
-improve in the process through the use of AI algorithms.
+improve in the process through the use of AI algorithms
+(\cite{acatech_2017}).
 
 For example, \textbf{driverless transport systems (AGVs)} can navigate
 \textbf{autonomously} through larger industrial facilities using
@@ -514,11 +518,24 @@ collisions).
 Very high requirements are placed on such autonomous systems and the AI
 algorithms used for this purpose with regard to \textbf{functional
 safety}. However, the requirements for safety evaluability in terms of
-\textbf{transparency} and \textbf{explainability} of decisions made by
-AI are currently very difficult or impossible to achieve, especially
-when using AI algorithms from the field of \textbf{deep learning}.
-Therefore, current research projects are investigating the transparency
-and explainability of \textbf{deep neural networks}.
+\textbf{transparency} (complete understanding of the system) and
+\textbf{explainability} of decisions made by AI are currently very
+difficult or impossible to achieve, especially when using AI algorithms
+from the field of \textbf{deep learning} (\cite{Liggesmeyer_2019}).
+
+Unlike automated systems, the functionality of AI-powered autonomous
+systems is not fully programmed out before operational use, but is
+created by applying algorithms with learning capabilities to data. This
+results in a model that is merely executed by the software at runtime.
+Due to its \textbf{inherent complexity}, the resulting model is
+generally \textbf{not comprehensible} to humans, which means that the
+\textbf{decisions} of an AI system are often \textbf{not transparent}.
+Although the requirements for the AI system typically cannot be fully
+described, it must still function reliably later at runtime in a very
+large application space (\cite{Schneider_2021}). This pushes today's
+established methods and techniques of systematic software design and
+testing of safety-related software to their limits (cf.~\textbf{V model}
+according to \cite{DIN_EN_61508-3_2011-02}).
 
 Furthermore, in terms of their \textbf{recognition rates} and thus the
 \textbf{reliability of their decisions}, today's AI algorithms very
@@ -527,7 +544,16 @@ safety levels, even under the most favorable conditions. For example, a
 software-based safety function with a performance level d \((PL_{d})\)
 typically required for machines in accordance with ISO 13849-1 may only
 fail dangerously with a probability of \(10^{-7} - 10^{-6}\) per hour
-during continuous use.
+during continuous use (see table K.1 in \cite{DIN_EN_ISO_13849-1_2016}).
+
+Compared to traditional, fully programmed software, the relatively low
+robustness of data-driven algorithms from the field of deep learning is
+another challenge. This can cause \textbf{small changes} in the
+function-determining \textbf{training data} to cause \textbf{large and
+unpredictable changes} in system behavior under some circumstances.
+However, the \textbf{predictability} and \textbf{transparency} of the
+system behavior are elementary for a \textbf{safety verification}
+(\cite{BAuA_Rechtsgutachten_KI_2021}).
 
 An appropriate assessment or even \textbf{testing} with regard to the
 required functional safety according to uniform and ideally standardized
@@ -542,24 +568,25 @@ and Health and German Ordinance on Occupational Safety and Health) can
 no longer be continued in this way. The reason for this is that
 \textbf{safety-related properties} will also change, especially of
 systems \textbf{continuously learning} at runtime, due to new or
-\textbf{adapted behaviors} learned during operation. From today's point
-of view, systems based on \textbf{learned-out} and at runtime
-\textbf{invariable models} are not affected by this.
+\textbf{adapted behaviors} learned during operation
+(\cite{BAuA_Rechtsgutachten_KI_2021}). From today's point of view,
+systems based on \textbf{learned-out} and at runtime \textbf{invariable
+models} are not affected by this.
 
-For these reasons, especially the actors of technical occupational
-safety and health who will deal with the evaluation of such autonomous
-systems capable of learning or system components with AI algorithms in
-the future should familiarize themselves in depth with the software
-structures used for this purpose as early as possible. This is the only
-way to ensure that the rapid development of systems capable of learning
-can be accompanied by OSH and their testing authorities in a
-constructive, critical and technically appropriate manner. If this is
-omitted, it must be assumed on the basis of the experiences of recent
-years that the OSH system will be ruthlessly circumvented or undermined
-by the economic interests of globally operating software giants. This
-would have the consequence that serious or fatal occupational accidents
-are more likely to occur due to inadequately designed AI-based work
-systems.
+For these reasons, especially the actors of \textbf{technical
+occupational safety and health} who will deal with the
+\textbf{evaluation} of such \textbf{systems capable of learning} or
+system components with AI algorithms in the future should familiarize
+themselves in depth with the software structures used for this purpose
+as early as possible. This is the only way to ensure that the rapid
+development of systems capable of learning can be accompanied by OSH and
+their testing authorities in a constructive, critical and technically
+appropriate manner. If this is omitted, it must be assumed on the basis
+of the experiences of recent years that the OSH system will be
+ruthlessly circumvented or undermined by the economic interests of
+globally operating software giants. This would have the consequence that
+serious or fatal \textbf{occupational accidents} are more likely to
+occur \textbf{due to inadequately designed AI-based work systems}.
 
 However, the safety-related evaluation of such learning-capable systems
 requires a more in-depth technical entry into the world of
@@ -661,12 +688,14 @@ B. Siri oder Alexa aus dem privaten Umfeld) bis hin zu teil- oder
 \textbf{hochautomatisierten Systemen}. Der Übergang von
 \textbf{Automatisierung zu Autonomie} wird derzeit in der Fachwelt sehr
 kontrovers diskutiert und kann unter dem Aspekt des Übergangs der
-Verantwortung vom Menschen zum technischen System betrachtet werden.
+Verantwortung vom Menschen zum technischen System betrachtet werden
+(\cite{Adler_2021}; \cite{Adler_2019}).
 
 Definitionsgemäß wird ein System erst dann als \textbf{autonom}
 bezeichnet, wenn es \textbf{ohne menschliche Steuerung} oder
 detaillierte \textbf{Programmierung} ein vorgegebenes Ziel
-\textbf{selbstständig} und an die Situation angepasst erreichen kann.
+\textbf{selbstständig} und an die Situation angepasst erreichen kann
+(\cite{EFI_autSysteme_2018}; \cite{acatech_2017}).
 
 Allerdings ist die Unterscheidung des Grades der Automatisierung bis hin
 zur Autonomie eines technischen Systems relativ fließend und je nach
@@ -675,11 +704,12 @@ Maßgeblich für die Einordnung sind die Grade der
 \textbf{Selbstbestimmtheit}, die \textbf{Unabhängigkeit} sowie die
 \textbf{Entscheidungs- bzw. Handlungsfreiheit} eines technischen Systems
 gegenüber \textbf{menschlichem Eingriff} oder vorprogrammierter
-Verhaltensmuster.
+Verhaltensmuster (vgl. \cite{Wiki_Autonomie}).
 
 Im Gegensatz zu hochautomatisierten Systemen sind autonome Systeme nur
 durch Einsatz von KI-Algorithmen in der Lage, eigenständig zu agieren,
-Probleme zu lösen und dabei zu lernen, sich ständig zu verbessern.
+Probleme zu lösen und dabei zu lernen, sich ständig zu verbessern
+(\cite{acatech_2017}).
 
 Beispielsweise können \textbf{fahrerlose Transportsysteme (FTS)} anhand
 selbst erlernter, selbstständig aktualisierter und mit anderen FTS
@@ -706,22 +736,48 @@ An solche autonomen Systeme und die hierfür eingesetzten KI-Algorithmen
 werden sehr hohe Anforderungen hinsichtlich der \textbf{funktionalen
 Sicherheit} gestellt. Jedoch sind die Anforderungen für eine
 sicherheitstechnische Bewertbarkeit bezüglich der \textbf{Transparenz}
-und \textbf{Erklärbarkeit} der durch KI getroffenen Entscheidungen
-insbesondere bei Einsatz von KI-Algorithmen aus dem Bereich des
-\textbf{Deep Learnings} derzeit nur sehr schwer oder gar nicht
-erreichbar. Deshalb werden durch aktuell laufende Forschungsprojekte die
-Transparenz und Erklärbarkeit von \textbf{tiefen neuronalen Netzen}
-untersucht.
+(vollständiges Systemverständnis) und \textbf{Erklärbarkeit} der durch
+KI getroffenen Entscheidungen insbesondere bei Einsatz von
+KI-Algorithmen aus dem Bereich des \textbf{Deep Learnings} derzeit nur
+sehr schwer oder gar nicht erreichbar (\cite{Liggesmeyer_2019}).
+
+Im Gegensatz zu automatisierten Systemen wird die Funktionalität
+KI-gestützter autonomer Systeme nicht vor der betrieblichen Verwendung
+vollständig ausprogrammiert, sondern durch das Anwenden lernfähiger
+Algorithmen auf Daten erstellt. Dadurch entsteht ein Modell, das von der
+Software zur Laufzeit lediglich ausgeführt wird. Das resultierende
+Modell ist aufgrund seiner \textbf{inhärenten Komplexität} im
+Allgemeinen \textbf{für den Menschen nicht verständlich}, wodurch die
+\textbf{Entscheidungen} eines KI-Systems oft \textbf{nicht transparent}
+sind. Obwohl die Anforderungen an das KI-System typischerweise nicht
+vollständig beschrieben werden können, muss es später zur Laufzeit in
+einem sehr großen Anwendungsraum trotzdem verlässlich funktionieren
+(\cite{Schneider_2021}). Dadurch kommen die heute etablierten Methoden
+und Techniken des systematischen Softwareentwurfes und -testens
+sicherheitsgerichteter Software an ihre Grenzen (vgl. \textbf{V-Modell}
+nach \cite{DIN_EN_61508-3_2011-02}).
 
 Weiterhin erfüllen heutige KI-Algorithmen hinsichtlich ihrer
-\textbf{Erkennungsraten} und damit der \textbf{Zuverlässigkeiten ihrer
-Entscheidungen} selbst unter günstigsten Bedingungen sehr oft nicht die
-Anforderungen an die funktionale Sicherheit, um höhere Safety-Level zu
-erreichen. Beispielsweise darf eine software-gestützte
-Sicherheitsfunktion mit einem für Maschinen typischerweise geforderten
-Performance Level d \((PL_{d})\) nach ISO 13849-1 bei kontinuierlicher
-Nutzung nur mit einer Wahrscheinlichkeit von \(10^{-7} - 10^{-6}\) pro
-Stunde gefährlich ausfallen.
+erreichbaren \textbf{Erkennungsraten} und damit der
+\textbf{Zuverlässigkeiten ihrer Entscheidungen} selbst unter günstigsten
+Bedingungen sehr oft nicht die Anforderungen an die funktionale
+Sicherheit, um höhere Safety-Level zu erreichen. Beispielsweise darf
+eine software-gestützte Sicherheitsfunktion mit einem für Maschinen
+typischerweise geforderten Performance Level d \((PL_{d})\) nach ISO
+13849-1 bei kontinuierlicher Nutzung nur mit einer Wahrscheinlichkeit
+von \(10^{-7} - 10^{-6}\) pro Stunde gefährlich ausfallen (siehe Tabelle
+K.1 in \cite{DIN_EN_ISO_13849-1_2016}).
+
+Im Vergleich zu traditioneller, vollständig ausprogrammierter Software
+ist bei datengetriebenen Algorithmen aus dem Bereich des Deep Learnings
+die verhältnismäßig geringe Robustheit eine weitere Herausforderung.
+Diese kann dazu führen, dass \textbf{kleine Änderungen} in den
+funktionsbestimmenden \textbf{Trainingsdaten} unter Umständen
+\textbf{große und unvorhersehbare Veränderungen} des Systemverhaltens
+bewirken. Jedoch sind die \textbf{Vorhersehbarkeit} und
+\textbf{Nachvollziehbarkeit} des Systemverhaltens für einen
+\textbf{Sicherheitsnachweis} elementar
+(\cite{BAuA_Rechtsgutachten_KI_2021}).
 
 Eine hinsichtlich der geforderten funktionalen Sicherheit angemessene
 Bewertung oder gar \textbf{Prüfung} nach einheitlichen und idealerweise
@@ -737,24 +793,24 @@ nicht mehr aufrechterhalten werden kann. Grund hierfür ist, dass sich
 auch die \textbf{sicherheitsrelevanten Eigenschaften} insbesondere von
 zur Laufzeit \textbf{weiterlernenden Systemen} durch während des
 Betriebs erlernte, neue oder \textbf{angepasste Verhaltensweisen}
-verändern werden. Systeme auf Basis \textbf{ausgelernter} und zur
-Laufzeit \textbf{unveränderlicher Modelle} sind aus heutiger Sicht
-hiervon nicht betroffen.
+verändern werden (\cite{BAuA_Rechtsgutachten_KI_2021}). Systeme auf
+Basis \textbf{ausgelernter} und zur Laufzeit \textbf{unveränderlicher
+Modelle} sind aus heutiger Sicht hiervon nicht betroffen.
 
-Aus diesen Gründen sollten sich insbesondere die Akteure des technischen
-Arbeitsschutzes, die sich zukünftig mit der Prüfung solcher lernfähigen
-Systeme oder Systemkomponenten mit KI-Algorithmen befassen werden,
-möglichst frühzeitig mit den hierfür eingesetzten Software-Strukturen
-vertieft auseinandersetzen. Nur dadurch lässt sich erreichen, dass die
-stürmische Entwicklung lernfähiger Systeme durch den Arbeitsschutz und
-dessen Prüfinstitute konstruktiv, kritisch und fachlich angemessen
-begleitet werden kann. Wird dies versäumt, muss aufgrund der Erfahrungen
-der vergangenen Jahre davon ausgegangen werden, dass das
-Arbeitsschutzsystem durch die wirtschaftlichen Interessen global
-agierender Softwaregiganten skrupellos umgangen oder ausgehebelt werden
-wird. Dies hätte die Folge, dass schwere oder tödliche Arbeitsunfälle
-wegen unzulänglich gestalteter KI-basierter Arbeitssysteme
-wahrscheinlicher werden.
+Aus diesen Gründen sollten sich insbesondere die Akteure des
+\textbf{technischen Arbeitsschutzes}, die sich zukünftig mit der
+\textbf{Prüfung} solcher \textbf{lernfähigen Systeme} oder
+Systemkomponenten mit KI-Algorithmen befassen werden, möglichst
+frühzeitig mit den hierfür eingesetzten Software-Strukturen vertieft
+auseinandersetzen. Nur dadurch lässt sich erreichen, dass die stürmische
+Entwicklung lernfähiger Systeme durch den Arbeitsschutz und dessen
+Prüfinstitute konstruktiv, kritisch und fachlich angemessen begleitet
+werden kann. Wird dies versäumt, muss aufgrund der Erfahrungen der
+vergangenen Jahre davon ausgegangen werden, dass das Arbeitsschutzsystem
+durch die wirtschaftlichen Interessen global agierender Softwaregiganten
+skrupellos umgangen oder ausgehebelt werden wird. Dies hätte die Folge,
+dass schwere oder tödliche \textbf{Arbeitsunfälle wegen unzulänglich
+gestalteter KI-basierter Arbeitssysteme} wahrscheinlicher werden.
 
 Allerdings erfordert die sicherheitstechnische Bewertung solcher
 lernfähigen Systeme einen tiefer gehenden fachlichen Einstieg in die
@@ -910,17 +966,19 @@ System Abstraction Layer (OSAL)} (\cite{Wiki_OSAL}).
 
 Such GPUs are installed on powerful \textbf{3D graphics cards}. However,
 these must be explicitly qualified for the application for AI - not
-every game-suitable 3D graphics card from any manufacturer can be used.
-The manufacturer \textbf{Nvidia} offers GPUs suitable for AI in its
+every game-suitable graphics card from any manufacturer can be used. The
+manufacturer \textbf{Nvidia} offers GPUs suitable for AI in its
 high-performance graphics cards with \textbf{CUDA architecture}.
 \href{https://en.wikipedia.org/wiki/CUDA}{CUDA} stands for ``Compute
 Unified Device Architecture'' and is a \textbf{programming interface}
 (API) developed by Nvidia, with which program parts can be processed by
-the graphics processor (\cite{Wiki_CUDA}). The GPU works significantly
-faster than the CPU, especially with highly parallelizable program
-sequences (high data parallelism). This speed advantage can be
-considerable despite currently available CPU technologies like
-\textbf{Multicore} and \textbf{Hyper-Threading} with Intel CPUs!
+the graphics processor (\cite{Wiki_CUDA}). A GPU with its several tens
+of thousands of threads can process highly parallelizable tasks that
+require only little data communication between the memory areas
+significantly more performantly than conventional CPUs. This speed
+advantage can be considerable despite currently available CPU
+technologies like \textbf{Multicore} with \textbf{Hyper-Threading} with
+Intel CPUs!
 
 Nvidia graphics cards with CUDA-supporting GPUs are ranked based on
 their \textbf{\href{https://developer.nvidia.com/cuda-gpus}{compute
@@ -958,7 +1016,7 @@ The \textbf{state of the art} should be also taken into account when
 selecting the rest of the training system's hardware. Otherwise,
 seemingly (price-wise) inexpensive components could very quickly nullify
 the speed advantage of the GPU. In addition to a mainboard suitable for
-one (or more) high-performance 3D graphics cards with a correspondingly
+one (or more) high-performance graphics cards with a correspondingly
 powerful BUS system (e.g.~PCI Express), the RAM should be as large as
 possible (min. 64 GB) and fast. A large RAM allows, for example, the
 \textbf{virtualization} of several parallel systems in the form of
@@ -1139,7 +1197,7 @@ data analysis and ML, such as \texttt{Pandas}, \texttt{NumPY},
 \texttt{matplotlib} and \texttt{Scikit-Learn}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{16}{\boxspacing}
+\prompt{In}{incolor}{2}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{time}
 
@@ -1153,6 +1211,13 @@ data analysis and ML, such as \texttt{Pandas}, \texttt{NumPY},
 \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
 \end{Verbatim}
 \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/bk/anaconda3/envs/PyLab/lib/python3.9/site-packages/scipy/\_\_init\_\_.py:146:
+UserWarning: A NumPy version >=1.16.5 and <1.23.0 is required for this version
+of SciPy (detected version 1.23.1
+  warnings.warn(f"A NumPy version >=\{np\_minversion\} and <\{np\_maxversion\}"
+    \end{Verbatim}
 
     \hypertarget{step-1-acquire-the-ml-dataset}{%
 \section{STEP 1: Acquire the ML
@@ -1178,7 +1243,7 @@ available via Python in the machine learning package
 it without having to find a special source for it.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{2}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} import Iris dataset for exploration}
 \PY{n}{irisdata\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -1354,17 +1419,17 @@ license: CC-SA 2.0)}
 \subsubsection{\texorpdfstring{Inspect \textbf{structure of
 dataframe}}{Inspect structure of dataframe}}\label{inspect-structure-of-dataframe}}
 
-Print first or last 5 rows of dataframe:
+Print first or last 10 rows of dataframe:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{3}{\boxspacing}
+\prompt{In}{incolor}{4}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{3}{\boxspacing}
+\prompt{Out}{outcolor}{4}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
    sepal\_length  sepal\_width  petal\_length  petal\_width      species
 0           5.1          3.5           1.4          0.2  Iris-setosa
@@ -1381,14 +1446,14 @@ Print first or last 5 rows of dataframe:
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{4}{\boxspacing}
+\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{tail}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{4}{\boxspacing}
+\prompt{Out}{outcolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      sepal\_length  sepal\_width  petal\_length  petal\_width         species
 145           6.7          3.0           5.2          2.3  Iris-virginica
@@ -1405,14 +1470,14 @@ Default setting in the pandas library makes it to display only 5 lines
 from head and from tail.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{5}{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{5}{\boxspacing}
+\prompt{Out}{outcolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      sepal\_length  sepal\_width  petal\_length  petal\_width         species
 0             5.1          3.5           1.4          0.2     Iris-setosa
@@ -1435,7 +1500,7 @@ from head and from tail.
 has to set to \texttt{None} in pandas:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{92}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.max\PYZus{}rows}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
 \PY{n}{irisdata\PYZus{}df}
@@ -1443,7 +1508,7 @@ has to set to \texttt{None} in pandas:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{6}{\boxspacing}
+\prompt{Out}{outcolor}{92}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      sepal\_length  sepal\_width  petal\_length  petal\_width          species
 0             5.1          3.5           1.4          0.2      Iris-setosa
@@ -1603,7 +1668,7 @@ has to set to \texttt{None} in pandas:
 \subsubsection{Get data types}\label{get-data-types}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{96}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
@@ -1625,14 +1690,14 @@ memory usage: 6.0+ KB
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
+\prompt{In}{incolor}{97}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{8}{\boxspacing}
+\prompt{Out}{outcolor}{97}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        sepal\_length  sepal\_width  petal\_length  petal\_width
 count    150.000000   150.000000    150.000000   150.000000
@@ -1646,15 +1711,59 @@ max        7.900000     4.400000      6.900000     2.500000
 \end{Verbatim}
 \end{tcolorbox}
         
-    \hypertarget{get-data-ranges-with-boxplots}{%
-\subsubsection{Get data ranges with
-Boxplots}\label{get-data-ranges-with-boxplots}}
+    \hypertarget{get-data-ranges-and-distribution}{%
+\subsubsection{Get data ranges and
+distribution}\label{get-data-ranges-and-distribution}}
 
-\textbf{Boxplots} can be used to explore the data ranges in the dataset.
-These also provide information about \textbf{outliers}.
+    \hypertarget{histograms}{%
+\paragraph{Histograms}\label{histograms}}
+
+\textbf{Histograms} are useful to explore the frequency distribution for
+each feature in univariate plots:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{98}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}context}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{notebook}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{font\PYZus{}scale}\PY{o}{=}\PY{l+m+mf}{1.3}\PY{p}{,} \PY{n}{rc}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lines.linewidth}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mf}{2.0}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{whitegrid}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+m+mi}{10}
+\PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{)}\PY{p}{;}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{)}\PY{p}{;}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{)}\PY{p}{;}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{)}\PY{p}{;}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+
+\PY{c+c1}{\PYZsh{} add some spacing between subplots}
+\PY{n}{fig}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{n}{pad}\PY{o}{=}\PY{l+m+mf}{2.0}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_30_0.png}\end{center}
+        \caption{Histograms used to explore the frequency distribution of the 4 features in the Iris dataset}
+        \label{fig:histogram_iris}
+    \end{figure}
+    
+    \hypertarget{boxplots}{%
+\paragraph{Boxplots}\label{boxplots}}
+
+\textbf{Boxplots} can be used to explore the \textbf{data ranges} in the
+dataset. These also provide information about \textbf{outliers}.
+
+In the following code example, the 4 variables of the Iris dataset are
+displayed side-by-side in individual boxplots:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{99}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}context}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{notebook}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{font\PYZus{}scale}\PY{o}{=}\PY{l+m+mf}{1.3}\PY{p}{,} \PY{n}{rc}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lines.linewidth}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mf}{2.0}\PY{p}{\PYZcb{}}\PY{p}{)}
 \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{whitegrid}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -1662,8 +1771,12 @@ These also provide information about \textbf{outliers}.
 
 \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
 
-\PY{n}{fn} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \PY{n}{cn} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iris\PYZhy{}setosa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iris\PYZhy{}versicolor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iris\PYZhy{}virginica}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} x, y: names of variables in data or vector data}
+\PY{c+c1}{\PYZsh{} data: dataset for plotting}
+\PY{c+c1}{\PYZsh{} order: order to plot the categorical levels in}
+\PY{c+c1}{\PYZsh{} ax: assignment of the plot to the matplotlib subplot}
 \PY{n}{box1} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
                    \PY{n}{data} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{p}{,} \PY{n}{order} \PY{o}{=} \PY{n}{cn}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
 \PY{n}{box2} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
@@ -1680,10 +1793,48 @@ These also provide information about \textbf{outliers}.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_29_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_32_0.png}\end{center}
         \caption{Boxplots used to explore the data ranges in the Iris dataset}
         \label{fig:boxplots_iris}
+    \end{figure}
+    
+    \hypertarget{violin-plots}{%
+\paragraph{Violin plots}\label{violin-plots}}
+
+Another type of visualization is the \textbf{violin plot}, which
+\textbf{combines} the advantages of both the \textbf{histogram} and the
+\textbf{box plot}:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{100}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}context}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{notebook}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{font\PYZus{}scale}\PY{o}{=}\PY{l+m+mf}{1.3}\PY{p}{,} \PY{n}{rc}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lines.linewidth}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mf}{2.0}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{whitegrid}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{cn} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iris\PYZhy{}setosa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iris\PYZhy{}versicolor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iris\PYZhy{}virginica}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+
+\PY{n}{violin1} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{violinplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                         \PY{n}{data}\PY{o}{=}\PY{n}{irisdata\PYZus{}df}\PY{p}{,} \PY{n}{order} \PY{o}{=} \PY{n}{cn}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\PY{n}{violin2} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{violinplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                         \PY{n}{data}\PY{o}{=}\PY{n}{irisdata\PYZus{}df}\PY{p}{,} \PY{n}{order} \PY{o}{=} \PY{n}{cn}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+\PY{n}{violin3} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{violinplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                         \PY{n}{data}\PY{o}{=}\PY{n}{irisdata\PYZus{}df}\PY{p}{,} \PY{n}{order} \PY{o}{=} \PY{n}{cn}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\PY{n}{violin4} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{violinplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                         \PY{n}{data}\PY{o}{=}\PY{n}{irisdata\PYZus{}df}\PY{p}{,} \PY{n}{order} \PY{o}{=} \PY{n}{cn}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} add some spacing between subplots}
+\PY{n}{fig}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{n}{pad}\PY{o}{=}\PY{l+m+mf}{2.0}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_34_0.png}\end{center}
+        \caption{Violin plots combine histograms and box plots}
+        \label{fig:violinplots_iris}
     \end{figure}
     
     \hypertarget{identify-anomalies-in-the-datasets}{%
@@ -1707,7 +1858,7 @@ function \texttt{isnull()}. This function returns a dataframe of Boolean
 values which are True for \textbf{NaN values}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{10}{\boxspacing}
+\prompt{In}{incolor}{101}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.max\PYZus{}rows}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{40}\PY{p}{)}
 \PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.min\PYZus{}rows}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{)}
@@ -1715,14 +1866,14 @@ values which are True for \textbf{NaN values}.
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{11}{\boxspacing}
+\prompt{In}{incolor}{102}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{11}{\boxspacing}
+\prompt{Out}{outcolor}{102}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      sepal\_length  sepal\_width  petal\_length  petal\_width  species
 0           False        False         False        False    False
@@ -1764,7 +1915,7 @@ values which are True for \textbf{NaN values}.
     Show only the gaps:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{12}{\boxspacing}
+\prompt{In}{incolor}{103}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
 \PY{n}{irisdata\PYZus{}df\PYZus{}gaps}
@@ -1772,7 +1923,7 @@ values which are True for \textbf{NaN values}.
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{12}{\boxspacing}
+\prompt{Out}{outcolor}{103}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 Empty DataFrame
 Columns: [sepal\_length, sepal\_width, petal\_length, petal\_width, species]
@@ -1786,21 +1937,26 @@ So let's look for something else for exercise:
 \href{https://media.geeksforgeeks.org/wp-content/uploads/employees.csv}{employes.csv}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{13}{\boxspacing}
+\prompt{In}{incolor}{145}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} import data to dataframe from csv file}
 \PY{n}{employees\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{./datasets/employees\PYZus{}edit.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 
-\PY{c+c1}{\PYZsh{} highlight cells with nan values}
-\PY{c+c1}{\PYZsh{}employees\PYZus{}df\PYZus{}hl = employees\PYZus{}df.style.highlight\PYZus{}null(\PYZsq{}yellow\PYZsq{})}
-\PY{c+c1}{\PYZsh{}employees\PYZus{}df\PYZus{}hl}
+\PY{c+c1}{\PYZsh{} highlight cells with NaN values}
+\PY{c+c1}{\PYZsh{} HINT: Set to \PYZsq{}False\PYZsq{} when compiling to PDF!}
+\PY{n}{highlight} \PY{o}{=} \PY{k+kc}{False}
 
-\PY{n}{employees\PYZus{}df}
+\PY{n}{employees\PYZus{}df\PYZus{}hl} \PY{o}{=} \PY{n}{employees\PYZus{}df}
+
+\PY{k}{if} \PY{n}{highlight}\PY{p}{:}
+    \PY{n}{employees\PYZus{}df\PYZus{}hl} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{highlight\PYZus{}null}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{employees\PYZus{}df\PYZus{}hl}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{13}{\boxspacing}
+\prompt{Out}{outcolor}{145}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      First Name  Gender  Start Date Last Login Time  Salary   Bonus \%  \textbackslash{}
 0       Douglas    Male    8/6/1993        12:42 PM   97308   6945.00
@@ -1875,19 +2031,23 @@ So let's look for something else for exercise:
     Show only the gaps from this gappy dataset again:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{14}{\boxspacing}
+\prompt{In}{incolor}{146}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{employees\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
 
-\PY{c+c1}{\PYZsh{} highlight cells with nan values}
-\PY{c+c1}{\PYZsh{}employees\PYZus{}df\PYZus{}gaps = employees\PYZus{}df\PYZus{}gaps.style.highlight\PYZus{}null(\PYZsq{}yellow\PYZsq{})}
+\PY{c+c1}{\PYZsh{} highlight cells with NaN values}
+\PY{c+c1}{\PYZsh{} HINT: Set to \PYZsq{}False\PYZsq{} when compiling to PDF!}
+\PY{n}{highlight} \PY{o}{=} \PY{k+kc}{False}
+
+\PY{k}{if} \PY{n}{highlight}\PY{p}{:}
+    \PY{n}{employees\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}gaps}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{highlight\PYZus{}null}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
 \PY{n}{employees\PYZus{}df\PYZus{}gaps}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{14}{\boxspacing}
+\prompt{Out}{outcolor}{146}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
     First Name  Gender  Start Date Last Login Time  Salary   Bonus \%  \textbackslash{}
 1       Thomas    Male   3/31/1996         6:53 AM   61933      4.17
@@ -1970,21 +2130,31 @@ String are filled with \emph{``No gender''}.
 \texttt{inplace\ =\ True} - we don't make a deep copy!
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{15}{\boxspacing}
+\prompt{In}{incolor}{147}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} filling a null values using fillna()}
 \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Gender}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{No Gender}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
 
-\PY{c+c1}{\PYZsh{} highlight cells by condition}
-\PY{c+c1}{\PYZsh{}employees\PYZus{}df\PYZus{}hl = employees\PYZus{}df.style.apply(lambda x: [\PYZdq{}background: yellow\PYZdq{} if v == \PYZsq{}No Gender\PYZsq{} else \PYZdq{}\PYZdq{} for v in x], axis = 1)}
-\PY{c+c1}{\PYZsh{}employees\PYZus{}df\PYZus{}hl}
+\PY{c+c1}{\PYZsh{} switch to apply highlight style to dataframe}
+\PY{c+c1}{\PYZsh{} HINT: Set to \PYZsq{}False\PYZsq{} when compiling to PDF!}
+\PY{n}{highlight} \PY{o}{=} \PY{k+kc}{False}
 
-\PY{n}{employees\PYZus{}df}
+\PY{n}{employees\PYZus{}df\PYZus{}filled} \PY{o}{=} \PY{n}{employees\PYZus{}df}
+
+\PY{k}{if} \PY{n}{highlight}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{} highlight cells by condition}
+    \PY{n}{employees\PYZus{}df\PYZus{}filled} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} 
+                                                   \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{background: yellow}\PY{l+s+s2}{\PYZdq{}} 
+                                                    \PY{k}{if} \PY{n}{v} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{No Gender}\PY{l+s+s1}{\PYZsq{}} 
+                                                    \PY{k}{else} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}} \PY{k}{for} \PY{n}{v} \PY{o+ow}{in} \PY{n}{x}\PY{p}{]}\PY{p}{,} 
+                                                   \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+
+\PY{n}{employees\PYZus{}df\PYZus{}filled}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{15}{\boxspacing}
+\prompt{Out}{outcolor}{147}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      First Name     Gender  Start Date Last Login Time  Salary   Bonus \%  \textbackslash{}
 0       Douglas       Male    8/6/1993        12:42 PM   97308   6945.00
@@ -2056,18 +2226,26 @@ String are filled with \emph{``No gender''}.
 \end{Verbatim}
 \end{tcolorbox}
         
-    \hypertarget{fill-in-missing-numerical-values-with-mean-values}{%
+    \hypertarget{fill-in-missing-numerical-values-with-median-values}{%
 \paragraph{\texorpdfstring{Fill in missing \emph{numerical} values with
-mean
-values}{Fill in missing numerical values with mean values}}\label{fill-in-missing-numerical-values-with-mean-values}}
+median
+values}{Fill in missing numerical values with median values}}\label{fill-in-missing-numerical-values-with-median-values}}
 
-Missing integer or float values can be filled with the mean values of
-the corresponding column.
+Missing integer or float values can be filled with the \textbf{median
+values of the corresponding column}.
 
 \textbf{@TODO:}\\
 Incorporate section ``4.1.3 Fehlende Werte ergänzen'' of the book
 \texttt{mitp\_Praxishandbuch\_Machine\_Learning\_Python\_Scikit-learn\_TensorFlow\_2018\_Anm\_bk.pdf}
 (see \cite{ML_ScL_2018}).
+
+\begin{itemize}
+\tightlist
+\item
+  https://www.statology.org/pandas-fillna-with-median/
+\item
+  https://stackoverflow.com/questions/18689823/pandas-dataframe-replace-nan-values-with-average-of-columns
+\end{itemize}
 
     \hypertarget{drop-missing-values-using-dropna}{%
 \paragraph{\texorpdfstring{Drop missing values using
@@ -2528,8 +2706,8 @@ variable width. The height of each rectangle then represents the
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_65_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_70_0.png}\end{center}
         \caption{Histogram for frequency distribution of the salary}
         \label{fig:histogram_salary}
     \end{figure}
@@ -2542,8 +2720,8 @@ variable width. The height of each rectangle then represents the
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_66_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_71_0.png}\end{center}
         \caption{Histogram for the frequency distribution of the salary in comparison between men and women}
         \label{fig:histogram_male_female}
     \end{figure}
@@ -2639,8 +2817,8 @@ Choose the color sets from
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_72_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_77_0.png}\end{center}
         \caption{Correlation heatmap to explore coherences between single variables in the iris dataset}
         \label{fig:correlation_heatmap}
     \end{figure}
@@ -2693,8 +2871,8 @@ array([[1., 1., 1., 1., 1.],
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_76_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_81_0.png}\end{center}
         \caption{Correlation heatmap, which was cut at its main diagonal without losing any information}
         \label{fig:correlation_heatmap_triangle}
     \end{figure}
@@ -2741,8 +2919,8 @@ advisable to plot them in a \textbf{scatter plot}.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_79_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_84_0.png}\end{center}
         \caption{Plotting two individual variables of the iris dataset in the scatterplot to explore the relationships between these two}
         \label{fig:scatter_plot}
     \end{figure}
@@ -2779,8 +2957,8 @@ single row and in the x-axis across a single column.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_81_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_86_0.png}\end{center}
         \caption{Plot all individual variables of the Iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables}
         \label{fig:pairs_plot}
     \end{figure}
@@ -3497,8 +3675,8 @@ colored confusion matrix.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_121_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_126_0.png}\end{center}
         \caption{Checking the accuracy of the model by using the confusion matrix for cross-validation}
         \label{fig:confusion_matrix}
     \end{figure}
@@ -3706,26 +3884,26 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_141_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_1.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_141_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_2.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_141_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_136_3.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_141_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
@@ -3756,32 +3934,32 @@ exactly fit the training dataset. The \textbf{default} is
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_143_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_1.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_143_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_2.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_143_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_3.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_143_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_4.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_143_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
@@ -3806,8 +3984,8 @@ as the classifier tries to perfectly fit the training data.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy}
         \label{fig:plot_vary_gamma}
     \end{figure}
@@ -3837,44 +4015,44 @@ the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_147_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_1.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_147_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_2.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_147_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_3.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_147_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_4.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_147_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_5.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_147_5.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_6.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_147_6.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
@@ -3899,8 +4077,8 @@ But be careful: to high \texttt{C} values may lead to
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_144_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_149_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'C' against the prediction accuracy}
         \label{fig:plot_vary_c}
     \end{figure}
@@ -3935,62 +4113,62 @@ training times}.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_151_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_1.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_151_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_2.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_151_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_3.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_151_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_4.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_151_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_5.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_151_5.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_6.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_151_6.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_7.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_151_7.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_8.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_151_8.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_9.png}\end{center}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_151_9.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
@@ -4015,8 +4193,8 @@ hyperplane leads to \textbf{overfitting} the training data.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_148_0.png}\end{center}
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_153_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy}
         \label{fig:plot_vary_degree}
     \end{figure}
@@ -4264,10 +4442,10 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_166_0.png}\end{center}
-        \caption{}
-        \label{}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_171_0.png}\end{center}
+        \caption{Confusion matrix for cross-validation of the baseline}
+        \label{fig:cm_baseline}
     \end{figure}
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -4299,10 +4477,10 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{tcolorbox}
         
     \hypertarget{grid-search}{%
-\subsection{Grid Search}\label{grid-search}}
+\subsection{Grid search}\label{grid-search}}
 
     Initialize the SVC model and define the \textbf{space of the
-hyperparameters} to perform the \textbf{grid-search} over:
+hyperparameters} to perform the \textbf{grid search} over:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{45}{\boxspacing}
@@ -4321,8 +4499,8 @@ hyperparameters} to perform the \textbf{grid-search} over:
 \end{Verbatim}
 \end{tcolorbox}
 
-    Initialize a \textbf{cross-validation fold} and \textbf{perform a
-grid-search} to tune the hyperparameters:
+    Initialize a \textbf{cross-validation fold} and \textbf{perform a grid
+search} to tune the hyperparameters:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{59}{\boxspacing}
@@ -4418,10 +4596,10 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_0.png}\end{center}
-        \caption{}
-        \label{}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_182_0.png}\end{center}
+        \caption{Confusion matrix for cross-validation after the grid search has been performed}
+        \label{fig:cm_grid_search}
     \end{figure}
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -4453,10 +4631,10 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{tcolorbox}
         
     \hypertarget{randomized-search}{%
-\subsection{Randomized Search}\label{randomized-search}}
+\subsection{Randomized search}\label{randomized-search}}
 
     Initialize the SVC model and define the \textbf{space of the
-hyperparameters} to perform the \textbf{randomized-search} over:
+hyperparameters} to perform the \textbf{randomized search} over:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{72}{\boxspacing}
@@ -4476,7 +4654,7 @@ hyperparameters} to perform the \textbf{randomized-search} over:
 \end{tcolorbox}
 
     Initialize a \textbf{cross-validation fold} and \textbf{perform a
-randomized-search} to tune the hyperparameters:
+randomized search} to tune the hyperparameters:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{73}{\boxspacing}
@@ -4573,10 +4751,10 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{figure}[!ht]
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_188_0.png}\end{center}
-        \caption{}
-        \label{}
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_193_0.png}\end{center}
+        \caption{Confusion matrix for cross-validation after the randomized search has been performed}
+        \label{fig:cm_random_search}
     \end{figure}
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -4618,13 +4796,6 @@ Iris-versicolor       1.00      0.86      0.92         7
 
     \hypertarget{acknowledgments}{%
 \section{Acknowledgments}\label{acknowledgments}}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-
-\end{Verbatim}
-\end{tcolorbox}
 
 
     % Add a bibliography block to the postdoc

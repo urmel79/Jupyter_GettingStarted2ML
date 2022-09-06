@@ -22,25 +22,29 @@ jupyter:
 
 In the **digitized work environment**, there is an increasing demand for **Work equipment** to be able to adapt independently and in a task-related manner to changing work situations. Depending on the strength of the degree of flexibility, this **situational adaptivity** can often only be realized by applying mathematical models and algorithms from the field of **Machine Learning (ML)** as a subset of **Artificial Intelligence (AI)**.
 
-Examples of such AI applications in work environments can range from comparatively simple **voice assistance systems** (similar, for example, to Siri or Alexa from the private sphere) to partially or **highly automated systems**. The transition from **automation to autonomy** is currently the subject of much controversy among experts and can be viewed in terms of the transition of responsibility from humans to technical systems.
+Examples of such AI applications in work environments can range from comparatively simple **voice assistance systems** (similar, for example, to Siri or Alexa from the private sphere) to partially or **highly automated systems**. The transition from **automation to autonomy** is currently the subject of much controversy among experts and can be viewed in terms of the transition of responsibility from humans to technical systems (<cite data-cite="Adler_2021">Adler, 2021</cite>; <cite data-cite="Adler_2019">Adler, 2019</cite>).
 
-By definition, a system is called **autonomous** only when it can achieve a given goal **independently** and adapted to the situation **without human control** or detailed **programming**.
+By definition, a system is called **autonomous** only when it can achieve a given goal **independently** and adapted to the situation **without human control** or detailed **programming** (<cite data-cite="EFI_autSysteme_2018">EFI Report, 2018</cite>; <cite data-cite="acatech_2017">acatech, 2017</cite>).
 
- However, the distinction between the  degree of automation and the autonomy of a technical system is relatively vague and difficult to define, depending on the technical context and the degree of abstraction. Crucial for the classification are the degrees of **self-determination**, **independence** as well as the **freedom of decision or action** of a technical system towards **human intervention** or preprogrammed behavior patterns.
+However, the distinction between the  degree of automation and the autonomy of a technical system is relatively vague and difficult to define, depending on the technical context and the degree of abstraction. Crucial for the classification are the degrees of **self-determination**, **independence** as well as the **freedom of decision or action** of a technical system towards **human intervention** or preprogrammed behavior patterns (vgl. <cite data-cite="Wiki_Autonomie">Wikipedia: Autonomie</cite>).
 
-In contrast to highly automated systems, autonomous systems are only able to act autonomously, solve problems, and learn to constantly improve in the process through the use of AI algorithms.
+In contrast to highly automated systems, autonomous systems are only able to act autonomously, solve problems, and learn to constantly improve in the process through the use of AI algorithms (<cite data-cite="acatech_2017">acatech, 2017</cite>).
 
 For example, **driverless transport systems (AGVs)** can navigate **autonomously** through larger industrial facilities using self-learned self-updated maps shared with other AGVs, and avoid location-changing obstacles by independently finding and optimizing suitable routes. However, at a higher level of abstraction, new logistics tasks are given to them by human operators, which is why AGVs tend to be **highly automated systems** from a human perspective.
 
 In addition to the many very interesting advantages, e.g. in terms of economic efficiency and workload reduction, such highly automated systems and, depending on the point of view, autonomous subsystems are characterized by a very high level of technical complexity. This concerns both their **operating functions** (e.g. autonomous navigation through complex industrial environments with shared use of the roadways by other human-controlled vehicles) and their **safety functions** (e.g. evaluation of interlinked imaging and non-imaging safety sensors for monitoring the driving space to avoid collisions).
 
-Very high requirements are placed on such autonomous systems and the AI algorithms used for this purpose with regard to **functional safety**. However, the requirements for safety evaluability in terms of **transparency** and **explainability** of decisions made by AI are currently very difficult or impossible to achieve, especially when using AI algorithms from the field of **deep learning**. Therefore, current research projects are investigating the transparency and explainability of **deep neural networks**.
+Very high requirements are placed on such autonomous systems and the AI algorithms used for this purpose with regard to **functional safety**. However, the requirements for safety evaluability in terms of **transparency** (complete understanding of the system) and **explainability** of decisions made by AI are currently very difficult or impossible to achieve, especially when using AI algorithms from the field of **deep learning** (<cite data-cite="Liggesmeyer_2019">Liggesmeyer und Kuhn, 2019</cite>).
 
-Furthermore, in terms of their **recognition rates** and thus the **reliability of their decisions**, today's AI algorithms very often do not meet the functional safety requirements to achieve higher safety levels, even under the most favorable conditions. For example, a software-based safety function with a performance level d $(PL_{d})$ typically required for machines in accordance with ISO 13849-1 may only fail dangerously with a probability of $10^{-7} - 10^{-6}$ per hour during continuous use.
+Unlike automated systems, the functionality of AI-powered autonomous systems is not fully programmed out before operational use, but is created by applying algorithms with learning capabilities to data. This results in a model that is merely executed by the software at runtime. Due to its **inherent complexity**, the resulting model is generally **not comprehensible** to humans, which means that the **decisions** of an AI system are often **not transparent**. Although the requirements for the AI system typically cannot be fully described, it must still function reliably later at runtime in a very large application space (<cite data-cite="Schneider_2021">Heidrich et al., 2021</cite>). This pushes today's established methods and techniques of systematic software design and testing of safety-related software to their limits (cf. **V model** according to <cite data-cite="DIN_EN_61508-3_2011-02">DIN EN 61508-3:2011-02</cite>).
 
-An appropriate assessment or even **testing** with regard to the required functional safety according to uniform and ideally standardized criteria has numerous consequences for the future orientation and organization of technical **occupational safety and health (OSH)** in Germany and in Europe. In addition to the currently still very difficult safety-related assessability, an important point is that the previous clear separation between **placing on the market law** (see e.g. Machinery Directive) and **occupational safety and health law** (see European Framework Directive for Occupational Safety and Health and German Ordinance on Occupational Safety and Health) can no longer be continued in this way. The reason for this is that **safety-related properties** will also change, especially of systems **continuously learning** at runtime, due to new or **adapted behaviors** learned during operation. From today's point of view, systems based on **learned-out** and at runtime **invariable models** are not affected by this.
+Furthermore, in terms of their **recognition rates** and thus the **reliability of their decisions**, today's AI algorithms very often do not meet the functional safety requirements to achieve higher safety levels, even under the most favorable conditions. For example, a software-based safety function with a performance level d $(PL_{d})$ typically required for machines in accordance with ISO 13849-1 may only fail dangerously with a probability of $10^{-7} - 10^{-6}$ per hour during continuous use (see table K.1 in <cite data-cite="DIN_EN_ISO_13849-1_2016">DIN EN ISO 13849-1:2016-06</cite>).
 
-For these reasons, especially the actors of technical occupational safety and health who will deal with the evaluation of such autonomous systems capable of learning or system components with AI algorithms in the future should familiarize themselves in depth with the software structures used for this purpose as early as possible. This is the only way to ensure that the rapid development of systems capable of learning can be accompanied by OSH and their testing authorities in a constructive, critical and technically appropriate manner. If this is omitted, it must be assumed on the basis of the experiences of recent years that the OSH system will be ruthlessly circumvented or undermined by the economic interests of globally operating software giants. This would have the consequence that serious or fatal occupational accidents are more likely to occur due to inadequately designed AI-based work systems.
+Compared to traditional, fully programmed software, the relatively low robustness of data-driven algorithms from the field of deep learning is another challenge. This can cause **small changes** in the function-determining **training data** to cause **large and unpredictable changes** in system behavior under some circumstances. However, the **predictability** and **transparency** of the system behavior are elementary for a **safety verification** (<cite data-cite="BAuA_Rechtsgutachten_KI_2021">BAuA-Rechtsgutachten KI-Systeme, 2021</cite>).
+
+An appropriate assessment or even **testing** with regard to the required functional safety according to uniform and ideally standardized criteria has numerous consequences for the future orientation and organization of technical **occupational safety and health (OSH)** in Germany and in Europe. In addition to the currently still very difficult safety-related assessability, an important point is that the previous clear separation between **placing on the market law** (see e.g. Machinery Directive) and **occupational safety and health law** (see European Framework Directive for Occupational Safety and Health and German Ordinance on Occupational Safety and Health) can no longer be continued in this way. The reason for this is that **safety-related properties** will also change, especially of systems **continuously learning** at runtime, due to new or **adapted behaviors** learned during operation (<cite data-cite="BAuA_Rechtsgutachten_KI_2021">BAuA-Rechtsgutachten KI-Systeme, 2021</cite>). From today's point of view, systems based on **learned-out** and at runtime **invariable models** are not affected by this.
+
+For these reasons, especially the actors of **technical occupational safety and health** who will deal with the **evaluation** of such **systems capable of learning** or system components with AI algorithms in the future should familiarize themselves in depth with the software structures used for this purpose as early as possible. This is the only way to ensure that the rapid development of systems capable of learning can be accompanied by OSH and their testing authorities in a constructive, critical and technically appropriate manner. If this is omitted, it must be assumed on the basis of the experiences of recent years that the OSH system will be ruthlessly circumvented or undermined by the economic interests of globally operating software giants. This would have the consequence that serious or fatal **occupational accidents** are more likely to occur **due to inadequately designed AI-based work systems**.
 
 However, the safety-related evaluation of such learning-capable systems requires a more in-depth technical entry into the world of **machine learning** as a subfield of **artificial intelligence**. For this purpose, it is necessary to deal with the basic operation of typical ML algorithms, corresponding software tools, libraries and programming systems.
 
@@ -70,25 +74,29 @@ In the final **step 8**, two approaches to systematic hyper-parameter search are
 
 Von den **Arbeitsmitteln** in der **digitalisierten Arbeitswelt** wird immer stärker gefordert, dass sie sich selbstständig und aufgabenbezogen an sich ändernde Arbeitssituationen anpassen können. Diese **situative Adaptivität** kann je nach Stärke des Flexibilisierungsgrades oft nur durch die Anwendung mathematischer Modelle und Algorithmen aus dem Bereich des **Maschinellen Lernens (ML)** als Teilmenge der **Künstlichen Intelligenz (KI)** realisiert werden.
 
-Beispiele für solche KI-Anwendungen in der Arbeitswelt reichen von vergleichsweise einfachen **Sprachassistenzsystemen** (ähnlich z. B. Siri oder Alexa aus dem privaten Umfeld) bis hin zu teil- oder **hochautomatisierten Systemen**. Der Übergang von **Automatisierung zu Autonomie** wird derzeit in der Fachwelt sehr kontrovers diskutiert und kann unter dem Aspekt des Übergangs der Verantwortung vom Menschen zum technischen System betrachtet werden.
+Beispiele für solche KI-Anwendungen in der Arbeitswelt reichen von vergleichsweise einfachen **Sprachassistenzsystemen** (ähnlich z. B. Siri oder Alexa aus dem privaten Umfeld) bis hin zu teil- oder **hochautomatisierten Systemen**. Der Übergang von **Automatisierung zu Autonomie** wird derzeit in der Fachwelt sehr kontrovers diskutiert und kann unter dem Aspekt des Übergangs der Verantwortung vom Menschen zum technischen System betrachtet werden (<cite data-cite="Adler_2021">Adler, 2021</cite>; <cite data-cite="Adler_2019">Adler, 2019</cite>).
 
-Definitionsgemäß wird ein System erst dann als **autonom** bezeichnet, wenn es **ohne menschliche Steuerung** oder detaillierte **Programmierung** ein vorgegebenes Ziel **selbstständig** und an die Situation angepasst erreichen kann.
+Definitionsgemäß wird ein System erst dann als **autonom** bezeichnet, wenn es **ohne menschliche Steuerung** oder detaillierte **Programmierung** ein vorgegebenes Ziel **selbstständig** und an die Situation angepasst erreichen kann (<cite data-cite="EFI_autSysteme_2018">EFI Report, 2018</cite>; <cite data-cite="acatech_2017">acatech, 2017</cite>).
 
-Allerdings ist die Unterscheidung des Grades der Automatisierung bis hin zur Autonomie eines technischen Systems relativ fließend und je nach fachlichem Kontext und Abstraktionsgrad nur schwer zu definieren. Maßgeblich für die Einordnung sind die Grade der **Selbstbestimmtheit**, die **Unabhängigkeit** sowie die **Entscheidungs- bzw. Handlungsfreiheit** eines technischen Systems gegenüber **menschlichem Eingriff** oder vorprogrammierter Verhaltensmuster.
+Allerdings ist die Unterscheidung des Grades der Automatisierung bis hin zur Autonomie eines technischen Systems relativ fließend und je nach fachlichem Kontext und Abstraktionsgrad nur schwer zu definieren. Maßgeblich für die Einordnung sind die Grade der **Selbstbestimmtheit**, die **Unabhängigkeit** sowie die **Entscheidungs- bzw. Handlungsfreiheit** eines technischen Systems gegenüber **menschlichem Eingriff** oder vorprogrammierter Verhaltensmuster (vgl. <cite data-cite="Wiki_Autonomie">Wikipedia: Autonomie</cite>).
 
-Im Gegensatz zu hochautomatisierten Systemen sind autonome Systeme nur durch Einsatz von KI-Algorithmen in der Lage, eigenständig zu agieren, Probleme zu lösen und dabei zu lernen, sich ständig zu verbessern.
+Im Gegensatz zu hochautomatisierten Systemen sind autonome Systeme nur durch Einsatz von KI-Algorithmen in der Lage, eigenständig zu agieren, Probleme zu lösen und dabei zu lernen, sich ständig zu verbessern (<cite data-cite="acatech_2017">acatech, 2017</cite>).
 
 Beispielsweise können **fahrerlose Transportsysteme (FTS)** anhand selbst erlernter, selbstständig aktualisierter und mit anderen FTS geteilter Karten **autonom** durch größere Industrieanlagen navigieren und ortsveränderlichen Hindernissen ausweichen, indem sie selbstständig geeignete Routen finden und optimieren. Jedoch werden ihnen in einer höheren Abstraktionsebene neue Logistikaufträge durch menschliche Bediener vorgegeben, weswegen es sich bei FTS aus menschlicher Perspektive eher um **hochautomatisierte Systeme** handelt.
 
 Neben den vielen sehr interessanten Vorteilen z. B. bzgl. Wirtschaftlichkeit und Arbeitserleichterung kennzeichnet solche hochautomatisierten und je nach Betrachtung autonomen Teilsysteme eine sehr hohe technische Komplexität. Diese betrifft sowohl ihre **Betriebsfunktionen** (z. B. autonome Navigation durch komplexe industrielle Umgebungen bei gemeinsamer Nutzung der Fahrwege durch andere menschlich gesteuerte Fahrzeuge) als auch ihre **Sicherheitsfunktionen** (z. B. Auswertung miteinander verknüpfter bildgebender und nicht-bildgebender Sicherheitssensorik zur Überwachung des Fahrraums zur Kollisionsvermeidung).
 
-An solche autonomen Systeme und die hierfür eingesetzten KI-Algorithmen werden sehr hohe Anforderungen hinsichtlich der **funktionalen Sicherheit** gestellt. Jedoch sind die Anforderungen für eine sicherheitstechnische Bewertbarkeit bezüglich der **Transparenz** und **Erklärbarkeit** der durch KI getroffenen Entscheidungen insbesondere bei Einsatz von KI-Algorithmen aus dem Bereich des **Deep Learnings** derzeit nur sehr schwer oder gar nicht erreichbar. Deshalb werden durch aktuell laufende Forschungsprojekte die Transparenz und Erklärbarkeit von **tiefen neuronalen Netzen** untersucht.
+An solche autonomen Systeme und die hierfür eingesetzten KI-Algorithmen werden sehr hohe Anforderungen hinsichtlich der **funktionalen Sicherheit** gestellt. Jedoch sind die Anforderungen für eine sicherheitstechnische Bewertbarkeit bezüglich der **Transparenz** (vollständiges Systemverständnis) und **Erklärbarkeit** der durch KI getroffenen Entscheidungen insbesondere bei Einsatz von KI-Algorithmen aus dem Bereich des **Deep Learnings** derzeit nur sehr schwer oder gar nicht erreichbar (<cite data-cite="Liggesmeyer_2019">Liggesmeyer und Kuhn, 2019</cite>). 
 
-Weiterhin erfüllen heutige KI-Algorithmen hinsichtlich ihrer **Erkennungsraten** und damit der **Zuverlässigkeiten ihrer Entscheidungen** selbst unter günstigsten Bedingungen sehr oft nicht die Anforderungen an die funktionale Sicherheit, um höhere Safety-Level zu erreichen. Beispielsweise darf eine software-gestützte Sicherheitsfunktion mit einem für Maschinen typischerweise geforderten Performance Level d $(PL_{d})$ nach ISO 13849-1 bei kontinuierlicher Nutzung nur mit einer Wahrscheinlichkeit von $10^{-7} - 10^{-6}$ pro Stunde gefährlich ausfallen.
+Im Gegensatz zu automatisierten Systemen wird die Funktionalität KI-gestützter autonomer Systeme nicht vor der betrieblichen Verwendung vollständig ausprogrammiert, sondern durch das Anwenden lernfähiger Algorithmen auf Daten erstellt. Dadurch entsteht ein Modell, das von der Software zur Laufzeit lediglich ausgeführt wird. Das resultierende Modell ist aufgrund seiner **inhärenten Komplexität** im Allgemeinen **für den Menschen nicht verständlich**, wodurch die **Entscheidungen** eines KI-Systems oft **nicht transparent** sind. Obwohl die Anforderungen an das KI-System typischerweise nicht vollständig beschrieben werden können, muss es später zur Laufzeit in einem sehr großen Anwendungsraum trotzdem verlässlich funktionieren (<cite data-cite="Schneider_2021">Heidrich et al., 2021</cite>). Dadurch kommen die heute etablierten Methoden und Techniken des systematischen Softwareentwurfes und -testens sicherheitsgerichteter Software an ihre Grenzen (vgl. **V-Modell** nach <cite data-cite="DIN_EN_61508-3_2011-02">DIN EN 61508-3:2011-02</cite>).
 
-Eine hinsichtlich der geforderten funktionalen Sicherheit angemessene Bewertung oder gar **Prüfung** nach einheitlichen und idealerweise genormten Maßstäben hat viele Konsequenzen für die zukünftige Ausrichtung und Gestaltung des **technischen Arbeitsschutzes** in Deutschland und in Europa. Neben der derzeit noch sehr schwierigen sicherheitstechnischen Bewertbarkeit von KI-Algorithmen ist ein wichtiger Punkt, dass die bisherige klare Trennung zwischen **Inverkehrbringensrecht** (siehe z. B. Maschinenrichtlinie) und **betrieblichem Arbeitsschutzrecht** (siehe Arbeitsschutz-Rahmenrichtlinie und Betriebssicherheitsverordnung) so nicht mehr aufrechterhalten werden kann. Grund hierfür ist, dass sich auch die **sicherheitsrelevanten Eigenschaften** insbesondere von zur Laufzeit **weiterlernenden Systemen** durch während des Betriebs erlernte, neue oder **angepasste Verhaltensweisen** verändern werden. Systeme auf Basis **ausgelernter** und zur Laufzeit **unveränderlicher Modelle** sind aus heutiger Sicht hiervon nicht betroffen.
+Weiterhin erfüllen heutige KI-Algorithmen hinsichtlich ihrer erreichbaren **Erkennungsraten** und damit der **Zuverlässigkeiten ihrer Entscheidungen** selbst unter günstigsten Bedingungen sehr oft nicht die Anforderungen an die funktionale Sicherheit, um höhere Safety-Level zu erreichen. Beispielsweise darf eine software-gestützte Sicherheitsfunktion mit einem für Maschinen typischerweise geforderten Performance Level d $(PL_{d})$ nach ISO 13849-1 bei kontinuierlicher Nutzung nur mit einer Wahrscheinlichkeit von $10^{-7} - 10^{-6}$ pro Stunde gefährlich ausfallen (siehe Tabelle K.1 in <cite data-cite="DIN_EN_ISO_13849-1_2016">DIN EN ISO 13849-1:2016-06</cite>).
 
-Aus diesen Gründen sollten sich insbesondere die Akteure des technischen Arbeitsschutzes, die sich zukünftig mit der Prüfung solcher lernfähigen Systeme oder Systemkomponenten mit KI-Algorithmen befassen werden, möglichst frühzeitig mit den hierfür eingesetzten Software-Strukturen vertieft auseinandersetzen. Nur dadurch lässt sich erreichen, dass die stürmische Entwicklung lernfähiger Systeme durch den Arbeitsschutz und dessen Prüfinstitute konstruktiv, kritisch und fachlich angemessen begleitet werden kann. Wird dies versäumt, muss aufgrund der Erfahrungen der vergangenen Jahre davon ausgegangen werden, dass das Arbeitsschutzsystem durch die wirtschaftlichen Interessen global agierender Softwaregiganten skrupellos umgangen oder ausgehebelt werden wird. Dies hätte die Folge, dass schwere oder tödliche Arbeitsunfälle wegen unzulänglich gestalteter KI-basierter Arbeitssysteme wahrscheinlicher werden.
+Im Vergleich zu traditioneller, vollständig ausprogrammierter Software ist bei datengetriebenen Algorithmen aus dem Bereich des Deep Learnings die verhältnismäßig geringe Robustheit eine weitere Herausforderung. Diese kann dazu führen, dass **kleine Änderungen** in den funktionsbestimmenden **Trainingsdaten** unter Umständen **große und unvorhersehbare Veränderungen** des Systemverhaltens bewirken. Jedoch sind die **Vorhersehbarkeit** und **Nachvollziehbarkeit** des Systemverhaltens für einen **Sicherheitsnachweis** elementar (<cite data-cite="BAuA_Rechtsgutachten_KI_2021">BAuA-Rechtsgutachten KI-Systeme, 2021</cite>).
+
+Eine hinsichtlich der geforderten funktionalen Sicherheit angemessene Bewertung oder gar **Prüfung** nach einheitlichen und idealerweise genormten Maßstäben hat viele Konsequenzen für die zukünftige Ausrichtung und Gestaltung des **technischen Arbeitsschutzes** in Deutschland und in Europa. Neben der derzeit noch sehr schwierigen sicherheitstechnischen Bewertbarkeit von KI-Algorithmen ist ein wichtiger Punkt, dass die bisherige klare Trennung zwischen **Inverkehrbringensrecht** (siehe z. B. Maschinenrichtlinie) und **betrieblichem Arbeitsschutzrecht** (siehe Arbeitsschutz-Rahmenrichtlinie und Betriebssicherheitsverordnung) so nicht mehr aufrechterhalten werden kann. Grund hierfür ist, dass sich auch die **sicherheitsrelevanten Eigenschaften** insbesondere von zur Laufzeit **weiterlernenden Systemen** durch während des Betriebs erlernte, neue oder **angepasste Verhaltensweisen** verändern werden (<cite data-cite="BAuA_Rechtsgutachten_KI_2021">BAuA-Rechtsgutachten KI-Systeme, 2021</cite>). Systeme auf Basis **ausgelernter** und zur Laufzeit **unveränderlicher Modelle** sind aus heutiger Sicht hiervon nicht betroffen.
+
+Aus diesen Gründen sollten sich insbesondere die Akteure des **technischen Arbeitsschutzes**, die sich zukünftig mit der **Prüfung** solcher **lernfähigen Systeme** oder Systemkomponenten mit KI-Algorithmen befassen werden, möglichst frühzeitig mit den hierfür eingesetzten Software-Strukturen vertieft auseinandersetzen. Nur dadurch lässt sich erreichen, dass die stürmische Entwicklung lernfähiger Systeme durch den Arbeitsschutz und dessen Prüfinstitute konstruktiv, kritisch und fachlich angemessen begleitet werden kann. Wird dies versäumt, muss aufgrund der Erfahrungen der vergangenen Jahre davon ausgegangen werden, dass das Arbeitsschutzsystem durch die wirtschaftlichen Interessen global agierender Softwaregiganten skrupellos umgangen oder ausgehebelt werden wird. Dies hätte die Folge, dass schwere oder tödliche **Arbeitsunfälle wegen unzulänglich gestalteter KI-basierter Arbeitssysteme** wahrscheinlicher werden.
 
 Allerdings erfordert die sicherheitstechnische Bewertung solcher lernfähigen Systeme einen tiefer gehenden fachlichen Einstieg in die Welt des **maschinellen Lernens** als Teilgebiet der **künstlichen Intelligenz**. Hierzu muss sich mit den grundlegenden Funktionsweisen typischer ML-Algorithmen, entsprechenden Software-Werkzeugen, Bibliotheken und Programmiersystemen auseinander gesetzt werden.
 
@@ -142,7 +150,7 @@ The **training phase** requires a lot of **computational power** and **memory (R
 
 Depending on the estimator model, highly parallel processing on a **Graphics Processing Unit (GPU)** can provide significant **speed advantages** over processing on a **Central Processing Unit (CPU)** (e.g., when training deep neural networks in the area of **deep learning**). To take advantage of this speed benefit, the AI application must be suitable in terms of **parallelizability** of the estimator model used as well as **GPU support** through special driver layers, the so-called [Operating System Abstraction Layer (OSAL)](https://en.wikipedia.org/wiki/Operating_system_abstraction_layer) (<cite data-cite="Wiki_OSAL">Wikipedia: OSAL</cite>).
 
-Such GPUs are installed on powerful **3D graphics cards**. However, these must be explicitly qualified for the application for AI - not every game-suitable 3D graphics card from any manufacturer can be used. The manufacturer **Nvidia** offers GPUs suitable for AI in its high-performance graphics cards with **CUDA architecture**. [CUDA](https://en.wikipedia.org/wiki/CUDA) stands for "Compute Unified Device Architecture" and is a **programming interface** (API) developed by Nvidia, with which program parts can be processed by the graphics processor (<cite data-cite="Wiki_CUDA">Wikipedia: CUDA</cite>). The GPU works significantly faster than the CPU, especially with highly parallelizable program sequences (high data parallelism). This speed advantage can be considerable despite currently available CPU technologies like **Multicore** and **Hyper-Threading** with Intel CPUs!
+Such GPUs are installed on powerful **3D graphics cards**. However, these must be explicitly qualified for the application for AI - not every game-suitable graphics card from any manufacturer can be used. The manufacturer **Nvidia** offers GPUs suitable for AI in its high-performance graphics cards with **CUDA architecture**. [CUDA](https://en.wikipedia.org/wiki/CUDA) stands for "Compute Unified Device Architecture" and is a **programming interface** (API) developed by Nvidia, with which program parts can be processed by the graphics processor (<cite data-cite="Wiki_CUDA">Wikipedia: CUDA</cite>). A GPU with its several tens of thousands of threads can process highly parallelizable tasks that require only little data communication between the memory areas significantly more performantly than conventional CPUs. This speed advantage can be considerable despite currently available CPU technologies like **Multicore** with **Hyper-Threading** with Intel CPUs!
 
 Nvidia graphics cards with CUDA-supporting GPUs are ranked based on their **[compute capability](https://developer.nvidia.com/cuda-gpus)** (<cite data-cite="NVIDIA_CUDA_CAP_2022">NVIDIA: CUDA Compute Capability, 2022</cite>).
 
@@ -152,7 +160,7 @@ Regarding the **code execution performance** of both alternatives in direct comp
 
 It is therefore recommended that the decision for **CUDA or OpenCL** should depend on the extent to which most of the applications employed and the GPU hardware used are better supported by one of the two approaches in each case.
 
-The **state of the art** should be also taken into account when selecting the rest of the training system's hardware. Otherwise, seemingly (price-wise) inexpensive components could very quickly nullify the speed advantage of the GPU. In addition to a mainboard suitable for one (or more) high-performance 3D graphics cards with a correspondingly powerful BUS system (e.g. PCI Express), the RAM should be as large as possible (min. 64 GB) and fast. A large RAM allows, for example, the **virtualization** of several parallel systems in the form of **[virtual machines](https://en.wikipedia.org/wiki/Virtual_machine)** and thus a significantly better utilization of the available computing capacity (<cite data-cite="Wiki_VM">Wikipedia: VM</cite>). The permanent memory should also be as large and fast as possible - high-performance **solid-state drives (SSDs)** should be clearly preferred over classic hard disks (HDDs).
+The **state of the art** should be also taken into account when selecting the rest of the training system's hardware. Otherwise, seemingly (price-wise) inexpensive components could very quickly nullify the speed advantage of the GPU. In addition to a mainboard suitable for one (or more) high-performance graphics cards with a correspondingly powerful BUS system (e.g. PCI Express), the RAM should be as large as possible (min. 64 GB) and fast. A large RAM allows, for example, the **virtualization** of several parallel systems in the form of **[virtual machines](https://en.wikipedia.org/wiki/Virtual_machine)** and thus a significantly better utilization of the available computing capacity (<cite data-cite="Wiki_VM">Wikipedia: VM</cite>). The permanent memory should also be as large and fast as possible - high-performance **solid-state drives (SSDs)** should be clearly preferred over classic hard disks (HDDs).
 <!-- #endregion -->
 
 ### Application system
@@ -321,7 +329,7 @@ Here are pictures of the three different Iris species (*Iris setosa*, *Iris virg
 
 ### Inspect **structure of dataframe**
 
-Print first or last 5 rows of dataframe:
+Print first or last 10 rows of dataframe:
 
 ```python
 irisdata_df.head(10)
@@ -355,9 +363,41 @@ irisdata_df.info()
 irisdata_df.describe()
 ```
 
-### Get data ranges with Boxplots
+### Get data ranges and distribution
 
-**Boxplots** can be used to explore the data ranges in the dataset. These also provide information about **outliers**.
+
+#### Histograms
+
+**Histograms** are useful to explore the frequency distribution for each feature in univariate plots:
+
+```python caption="Histograms used to explore the frequency distribution of the 4 features in the Iris dataset" tags=[] label="fig:histogram_iris" widefigure=true
+sns.set_context("notebook", font_scale=1.3, rc={"lines.linewidth": 2.0})
+sns.set_style("whitegrid")
+
+n_bins = 10
+fig, axs = plt.subplots(2, 2, figsize=(8, 6))
+
+axs[0,0].hist(irisdata_df['sepal_length'], bins = n_bins);
+axs[0,0].set_title('Sepal Length');
+
+axs[0,1].hist(irisdata_df['sepal_width'], bins = n_bins);
+axs[0,1].set_title('Sepal Width');
+
+axs[1,0].hist(irisdata_df['petal_length'], bins = n_bins);
+axs[1,0].set_title('Petal Length');
+
+axs[1,1].hist(irisdata_df['petal_width'], bins = n_bins);
+axs[1,1].set_title('Petal Width');
+
+# add some spacing between subplots
+fig.tight_layout(pad=2.0);
+```
+
+#### Boxplots
+
+**Boxplots** can be used to explore the **data ranges** in the dataset. These also provide information about **outliers**.
+
+In the following code example, the 4 variables of the Iris dataset are displayed side-by-side in individual boxplots:
 
 ```python caption="Boxplots used to explore the data ranges in the Iris dataset" label="fig:boxplots_iris" tags=[] widefigure=true
 sns.set_context("notebook", font_scale=1.3, rc={"lines.linewidth": 2.0})
@@ -366,8 +406,12 @@ sns.set_style("whitegrid")
 
 fig, axs = plt.subplots(2, 2, figsize=(12, 10))
 
-fn = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 cn = ['Iris-setosa', 'Iris-versicolor', 'Iris-virginica']
+
+# x, y: names of variables in data or vector data
+# data: dataset for plotting
+# order: order to plot the categorical levels in
+# ax: assignment of the plot to the matplotlib subplot
 box1 = sns.boxplot(x = 'species', y = 'sepal_length', 
                    data = irisdata_df, order = cn, ax = axs[0,0])
 box2 = sns.boxplot(x = 'species', y = 'sepal_width', 
@@ -377,6 +421,32 @@ box3 = sns.boxplot(x = 'species', y = 'petal_length',
 box4 = sns.boxplot(x = 'species', y = 'petal_width', 
                    data = irisdata_df,  order = cn, ax = axs[1,1])
 
+# add some spacing between subplots
+fig.tight_layout(pad=2.0)
+
+plt.show()
+```
+
+#### Violin plots
+
+Another type of visualization is the **violin plot**, which **combines** the advantages of both the **histogram** and the **box plot**:
+
+```python caption="Violin plots combine histograms and box plots" tags=[] label="fig:violinplots_iris" widefigure=true
+sns.set_context("notebook", font_scale=1.3, rc={"lines.linewidth": 2.0})
+sns.set_style("whitegrid")
+
+fig, axs = plt.subplots(2, 2, figsize=(12, 10))
+
+cn = ['Iris-setosa', 'Iris-versicolor', 'Iris-virginica']
+
+violin1 = sns.violinplot(x='species', y='sepal_length', 
+                         data=irisdata_df, order = cn, ax = axs[0,0])
+violin2 = sns.violinplot(x='species', y='sepal_width', 
+                         data=irisdata_df, order = cn, ax = axs[0,1])
+violin3 = sns.violinplot(x='species', y='petal_length', 
+                         data=irisdata_df, order = cn, ax = axs[1,0])
+violin4 = sns.violinplot(x='species', y='petal_width', 
+                         data=irisdata_df, order = cn, ax = axs[1,1])
 # add some spacing between subplots
 fig.tight_layout(pad=2.0)
 
@@ -419,11 +489,16 @@ So let's look for something else for exercise: [employes.csv](https://media.geek
 # import data to dataframe from csv file
 employees_df = pd.read_csv("./datasets/employees_edit.csv")
 
-# highlight cells with nan values
-#employees_df_hl = employees_df.style.highlight_null('yellow')
-#employees_df_hl
+# highlight cells with NaN values
+# HINT: Set to 'False' when compiling to PDF!
+highlight = False
 
-employees_df
+employees_df_hl = employees_df
+
+if highlight:
+    employees_df_hl = employees_df.style.highlight_null('yellow')
+
+employees_df_hl
 ```
 
 Show only the gaps from this gappy dataset again:
@@ -431,45 +506,65 @@ Show only the gaps from this gappy dataset again:
 ```python tags=[]
 employees_df_gaps = employees_df[employees_df.isnull().any(axis=1)]
 
-# highlight cells with nan values
-#employees_df_gaps = employees_df_gaps.style.highlight_null('yellow')
+# highlight cells with NaN values
+# HINT: Set to 'False' when compiling to PDF!
+highlight = False
+
+if highlight:
+    employees_df_gaps = employees_df_gaps.style.highlight_null('yellow')
 
 employees_df_gaps
 ```
 
+<!-- #region tags=[] -->
 #### Fill in missing *string* values with `fillna()`
 
 Now all null values (NaN) in the column "Gender" of the data type String are filled with *"No gender "*.
 
 **Warning:** We are doing that directly in this dataframe with `inplace = True` - we don't make a deep copy!
+<!-- #endregion -->
 
 ```python tags=[]
 # filling a null values using fillna()
 employees_df["Gender"].fillna("No Gender", inplace = True)
 
-# highlight cells by condition
-#employees_df_hl = employees_df.style.apply(lambda x: ["background: yellow" if v == 'No Gender' else "" for v in x], axis = 1)
-#employees_df_hl
+# switch to apply highlight style to dataframe
+# HINT: Set to 'False' when compiling to PDF!
+highlight = False
 
-employees_df
+employees_df_filled = employees_df
+
+if highlight:
+    # highlight cells by condition
+    employees_df_filled = employees_df.style.apply(lambda x: 
+                                                   ["background: yellow" 
+                                                    if v == 'No Gender' 
+                                                    else "" for v in x], 
+                                                   axis = 1)
+
+employees_df_filled
 ```
 
 <!-- #region tags=["TODO_Step_2_1"] -->
-#### Fill in missing *numerical* values with mean values
+#### Fill in missing *numerical* values with median values
 
-Missing integer or float values can be filled with the mean values of the corresponding column.
+Missing integer or float values can be filled with the **median values of the corresponding column**.
 
 **@TODO:**  
 Incorporate section "4.1.3 Fehlende Werte ergänzen" of the book `mitp_Praxishandbuch_Machine_Learning_Python_Scikit-learn_TensorFlow_2018_Anm_bk.pdf` (see <cite data-cite="ML_ScL_2018">Raschka and Mirjalili, 2018</cite>).
 
+- https://www.statology.org/pandas-fillna-with-median/
+- https://stackoverflow.com/questions/18689823/pandas-dataframe-replace-nan-values-with-average-of-columns
 <!-- #endregion -->
 
+<!-- #region tags=[] -->
 #### Drop missing values using `dropna()`
 
 In order to drop null values from a dataframe, we use `dropna()` function. This function drops rows or columns of datasets with NaN values in different ways.
 
 Default is to drop rows with at least 1 null value (NaN).
 Giving the parameter `how = 'all'` the function drops rows with all data missing or contain null values (NaN).
+<!-- #endregion -->
 
 ```python tags=[]
 # making a new dataframe with dropped NaN values
@@ -1474,7 +1569,7 @@ print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
 print(classification_report(y_test, y_pred))
 ```
 
-```python
+```python caption="Confusion matrix for cross-validation of the baseline" tags=[] label="fig:cm_baseline" widefigure=false
 sns.set_style("white")
 
 # print colored confusion matrix
@@ -1494,10 +1589,10 @@ plt.show()
 classifier.get_params()
 ```
 
-## Grid Search
+## Grid search
 
 
-Initialize the SVC model and define the **space of the hyperparameters** to perform the **grid-search** over:
+Initialize the SVC model and define the **space of the hyperparameters** to perform the **grid search** over:
 
 ```python
 classifier = svm.SVC()
@@ -1513,7 +1608,7 @@ degrees = [1, 2, 3, 4, 5]
 grid = dict(kernel=kernels, gamma=gammas, C=cs, degree=degrees)
 ```
 
-Initialize a **cross-validation fold** and **perform a grid-search** to tune the hyperparameters:
+Initialize a **cross-validation fold** and **perform a grid search** to tune the hyperparameters:
 
 ```python tags=[]
 cvFold = RepeatedKFold(n_splits=10, n_repeats=3, random_state=1)
@@ -1556,7 +1651,7 @@ from sklearn.metrics import classification_report
 print(classification_report(y_test, y_pred))
 ```
 
-```python
+```python caption="Confusion matrix for cross-validation after the grid search has been performed" tags=[] label="fig:cm_grid_search" widefigure=false
 sns.set_style("white")
 
 # print colored confusion matrix
@@ -1576,10 +1671,10 @@ plt.show()
 bestModel.get_params()
 ```
 
-## Randomized Search
+## Randomized search
 
 
-Initialize the SVC model and define the **space of the hyperparameters** to perform the **randomized-search** over:
+Initialize the SVC model and define the **space of the hyperparameters** to perform the **randomized search** over:
 
 ```python
 classifier = svm.SVC()
@@ -1595,7 +1690,7 @@ degrees = [1, 2, 3, 4, 5]
 grid = dict(kernel=kernels, gamma=gammas, C=cs, degree=degrees)
 ```
 
-Initialize a **cross-validation fold** and **perform a randomized-search** to tune the hyperparameters:
+Initialize a **cross-validation fold** and **perform a randomized search** to tune the hyperparameters:
 
 ```python tags=[]
 cvFold = RepeatedKFold(n_splits=10, n_repeats=3, random_state=1)
@@ -1639,7 +1734,7 @@ from sklearn.metrics import classification_report
 print(classification_report(y_test, y_pred))
 ```
 
-```python
+```python caption="Confusion matrix for cross-validation after the randomized search has been performed" tags=[] label="fig:cm_random_search" widefigure=false
 sns.set_style("white")
 
 # print colored confusion matrix
@@ -1670,7 +1765,3 @@ bestModel.get_params()
 # Acknowledgments
 
 
-
-```python
-
-```
