@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -216,18 +216,24 @@ Following trend chart shows how the [popularity of selected programming language
 
 Following trend chart shows how the [popularity of selected IDEs](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code) suitable for ML programming languages has evolved since 2008:
 
-![Trend chart shows popularity of selected IDEs for ML programming languages (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_IDEs_wide.svg)
+![Trend chart shows popularity of selected IDEs for ML programming languages (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_IDEs_wide.png)
 
 #### Visual Studio Code
 
+![Screenshot of IDE *Visual Studio Code* (source: Kasper, license: CC BY-SA)](images/Screenshot_VSC.png)
 
 #### JupyterLab
 
+![Screenshot of IDE *JupyterLab* (source: Kasper, license: CC BY-SA)](images/Screenshot_JupyterLab.png)
+
+#### RStudio
+
+![Screenshot of IDE *RStudio* (source: Kasper, license: CC BY-SA)](images/Screenshot_RStudio.png)
 
 
-#### RStudio (based on R language)
+#### GNU Octave (GUI)
 
-
+![Screenshot of IDE *GNU Octave* (source: Kasper, license: CC BY-SA)](images/Screenshot_GNU_Octave.png)
 
 
 <!-- #endregion -->
@@ -237,7 +243,7 @@ Following trend chart shows how the [popularity of selected IDEs](https://insigh
 
 Following trend chart shows how the [popularity of selected python packages](https://insights.stackoverflow.com/trends?tags=pandas%2Ctensorflow%2Cnumpy%2Ckeras%2Cscikit-learn%2Cmatplotlib) suitable for **data analysis**, **data visualization** and **machine learning** has evolved since 2008:
 
-![Trend chart shows popularity of selected python packages for data analysis, data visualization and machine learning (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=pandas%2Ctensorflow%2Cnumpy%2Ckeras%2Cscikit-learn%2Cmatplotlib), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_MLPythonPackages_wide.svg)
+![Trend chart shows popularity of selected python packages for data analysis, data visualization and machine learning (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=pandas%2Ctensorflow%2Cnumpy%2Ckeras%2Cscikit-learn%2Cmatplotlib), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_MLPythonPackages_wide.png)
 
 
 
@@ -273,7 +279,7 @@ Following trend chart shows how the [popularity of selected python packages](htt
 
 Following trend chart shows how the [popularity of selected operating systems](https://insights.stackoverflow.com/trends?tags=windows%2Clinux%2Cmacos) used by **data analysts** and **ML developers** has evolved since 2008:
 
-![Trend chart shows popularity of selected operating systems used by **data analysts** and **ML developers** (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=windows%2Clinux%2Cmacos), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_OperatingSystems_wide.svg)
+![Trend chart shows popularity of selected operating systems used by **data analysts** and **ML developers** (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=windows%2Clinux%2Cmacos), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_OperatingSystems_wide.png)
 
 These are general requirements to the operating system suitable for software development:
 
