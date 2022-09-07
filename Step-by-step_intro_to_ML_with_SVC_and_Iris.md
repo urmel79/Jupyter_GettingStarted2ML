@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -180,28 +180,68 @@ Here are some links for further reading:
 <!-- #region tags=["TODO_Step_0"] -->
 ## Software
 
-### Operating system
+<!-- #endregion -->
 
-**@TODO:** Rephrase and translate!!
+<!-- #region -->
+### Programming languages
 
-These are general requirements to the operating system:
+This section was inspired by:
 
-- Offenheit (Verfügbarkeit sehr guter Schnittstellen-Dokumentation und idealerweise quelloffener Software)
-- Verfügbarkeit (Installations- und Konfigurationsrechte)
-- Kommunikation (ungefilterte und bidirektionale Kommunikation im lokalen Netzwerk sowie ins Internet auf allen notwendigen Protokollen)
-- leichte Erweiterbarkeit
-    - SW-Installation + Updates über zentrale Paketmanagementsysteme wie z. B. `apt`, `pip` oder `conda`
-    - Einbindung zusätzlicher SW-Bibliotheken oder externer HW-Sensoren
+- [What Is the Best Language for Machine Learning?](https://www.springboard.com/blog/data-science/best-language-for-machine-learning/)
+- [Is Octave Good for Machine Learning?](https://datasciencenerd.com/is-octave-good-for-machine-learning/)
 
+Following trend chart shows how the [popularity of selected programming languages](https://insights.stackoverflow.com/trends?tags=python%2Cr%2Coctave%2Cjava%2Cc%2B%2B) suitable for machine learning has evolved since 2008:
+
+![Trend chart shows popularity of programming languages for ML (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=python%2Cr%2Coctave%2Cjava%2Cc%2B%2B), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_ProgrammingLanguages.svg)
+
+#### Python
+
+
+#### R
+
+
+#### Java and JavaScript
+
+
+#### GNU Octave
+
+
+
+<!-- #endregion -->
+
+<!-- #region -->
 ### Programming IDEs
+
+**[Integrated development environments (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment)** are software applications that provide comprehensive features to computer programmers for **software development**. An IDE typically consists of a **source code editor**, automated **build tools** for compiling or an **interpreter** for scripting languages, a front end to the **version control system** like e.g. [Git](https://en.wikipedia.org/wiki/Git) and a **debugger**.
+
+Following trend chart shows how the [popularity of selected IDEs](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code) suitable for ML programming languages has evolved since 2008:
+
+![Trend chart shows popularity of selected IDEs for ML programming languages (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_IDEs.svg)
+
+#### Visual Studio Code
+
+
+#### JupyterLab
+
+
 
 #### RStudio (based on R language)
 
-#### JupyterLab (Python language used)
 
-### Packages for data analytics and libraries for ML (Python only)
 
-#### Data analytics
+
+<!-- #endregion -->
+
+<!-- #region -->
+### Python packages
+
+Following trend chart shows how the [popularity of selected python packages](https://insights.stackoverflow.com/trends?tags=pandas%2Ctensorflow%2Cnumpy%2Ckeras%2Cscikit-learn%2Cmatplotlib) suitable for **data analysis**, **data visualization** and **machine learning** has evolved since 2008:
+
+![Trend chart shows popularity of selected python packages for data analysis, data visualization and machine learning (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=pandas%2Ctensorflow%2Cnumpy%2Ckeras%2Cscikit-learn%2Cmatplotlib), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_MLPythonPackages.svg)
+
+
+
+#### Data analysis
 
 ##### `NumPy`
 
@@ -217,9 +257,62 @@ These are general requirements to the operating system:
 
 ##### `Scikit-Learn`
 
-##### `TensorFlow`, `Keras`, `CUDA Toolkit`
+##### `TensorFlow`
 
 The package `TensorFlow` offers, among other things, the possibility to create and train **artificial neural networks (ANN)** based on Google AI. However, the installation and application is very much beyond the scope of this beginner tutorial. Further information can be found here: [https://www.tensorflow.org](https://www.tensorflow.org).
+
+##### `Keras`
+
+
+##### `CUDA Toolkit`
+
+
+
+<!-- #endregion -->
+
+<!-- #region -->
+### Operating systems
+
+Following trend chart shows how the [popularity of selected operating systems](https://insights.stackoverflow.com/trends?tags=windows%2Clinux%2Cmacos) used by **data analysts** and **ML developers** has evolved since 2008:
+
+![Trend chart shows popularity of selected operating systems used by **data analysts** and **ML developers** (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=windows%2Clinux%2Cmacos), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_OperatingSystems.svg)
+
+These are general requirements to the operating system suitable for software development:
+
+- **Openness**: availability of very good interface documentation and ideally open source software
+- **Self-administration**: user has full installation and configuration rights
+- **Communication capability**: unfiltered and bidirectional communication in the local network as well as to the Internet on all necessary protocols possible
+- extensibility**:
+    - automated software installation and update management via central package management systems such as `apt`, `pip` or `conda`
+    - possible integration of additional software libraries or external sensor hardware
+
+#### Linux
+
+
+#### Windows
+
+
+#### Virtual machine vs. separate lab computer
+
+For security reasons, the IT departments of many employers massively restrict **installation and configuration rights**. Furthermore, very restrictive firewall settings severely **restrict** unfiltered and bidirectional **communication** in the local network and to the Internet. Automated **software installations** via package manager are often **not possible** or only possible with difficulty due to blocked protocols.
+
+##### Virtual machine
+
+To be able to install, configure and update the required software (IDEs, programming languages and ML packages) independently, the use of a [Virtual Machine (VM)](https://en.wikipedia.org/wiki/Virtual_machine) would be a possible alternative.
+
+However, there are also significant disadvantages here:
+
+- the **communication problem** is **not solved**, because the VM shares the access to the internet with the host system
+- the **access to 3D graphics cards** is usually **not possible** due to virtualization
+- only **low application performance**, as regular business computers are often only very sparsely equipped in terms of RAM and processor performance for cost reasons
+
+##### Separate lab computer
+
+All the problems mentioned in the previous section can only be solved satisfactorily by acquiring a **separate laboratory computer** with **its own internet access** (e.g. via an **LTE-capable WLAN router**).
+
+This laboratory computer can be configured according to your own requirements, depending on the available budget in terms of hardware and software. 
+
+However, it should be noted here that the IT departments of many employers do not offer any support. You are usually responsible for installation, maintenance and troubleshooting yourself!
 <!-- #endregion -->
 
 ## Community Support
