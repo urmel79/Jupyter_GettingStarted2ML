@@ -182,61 +182,146 @@ Here are some links for further reading:
 
 <!-- #endregion -->
 
-<!-- #region -->
 ### Programming languages
 
-This section was inspired by:
+**@TODO:**  
+Rework section **Programming languages**!!
 
-- [What Is the Best Language for Machine Learning?](https://www.springboard.com/blog/data-science/best-language-for-machine-learning/)
-- [Is Octave Good for Machine Learning?](https://datasciencenerd.com/is-octave-good-for-machine-learning/)
+The comparison of **advantages and disadvantages** of the various programming languages suitable for ML was inspired by the following articles, among others:
+
+- [What Is the Best Language for Machine Learning?](https://www.springboard.com/blog/data-science/best-language-for-machine-learning/) (<cite data-cite="ML_bestLanguage_2021">Gupta, 2021</cite>)
+- [Is Octave Good for Machine Learning?](https://datasciencenerd.com/is-octave-good-for-machine-learning/) (<cite data-cite="Octave_for_ML_2021">Adhikari, 2021</cite>)
+
+There is no best language for machine learning, each is good where it fits best. Yes, there is no single machine learning language as the best language for machine learning. However, there are definitely some programming languages that are more appropriate for machine learning tasks than others (<cite data-cite="ML_bestLanguage_2021">Gupta, 2021</cite>).
+
+The math behind machine learning is usually complicated and unobvious. Thus, code readability is extremely important to successfully implement complicated machine learning algorithms and versatile workflows (<cite data-cite="ML_bestLanguage_2021">Gupta, 2021</cite>).
+
+All programming languages presented below are **open source**.
 
 Following trend chart shows how the [popularity of selected programming languages](https://insights.stackoverflow.com/trends?tags=python%2Cr%2Coctave%2Cjava%2Cc%2B%2B) suitable for machine learning has evolved since 2008:
 
 ![Trend chart shows popularity of programming languages for ML (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=python%2Cr%2Coctave%2Cjava%2Cc%2B%2B), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_ProgrammingLanguages_wide.png)
 
-#### Python
+<!-- #region -->
+#### [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+
+It is a high-level, **general-purpose** programming language where its design philosophy emphasizes **code readability**. The **variable types** in Python are **dynamic** and **memory** is **automatically managed** to create and delete data objects (see [garbage collection](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science))).
+
+Pros:
+
+- Python offers simple, concise, and **readable code**. Its simplicity allows you to write robust and reliable programs (<cite data-cite="Octave_for_ML_2021">Adhikari, 2021</cite>).
+- lets you focus on solving the ML problem instead of getting lost in the language’s technical nuances.
+- Python has extensive libraries for ML. It has a library for virtually everything related to ML. Scikit-learn, Pandas, TensorFlow, Keras, etc., have become standard libraries for various ML tasks.
+- Python has been around for decades. It has developed a large and helpful community. Extensive documentation is available online.
+- Thousands of question-answers and community guides for different functionalities of the language (this is also very good reflected by the trend chart on popularity of programming languages).
+
+Cons:
+
+- (unknown drawbacks so far ...)
+
+#### [R](https://en.wikipedia.org/wiki/R_(programming_language))
+
+It is a programming language for statistical computing and graphics supported by the R Core Team and the R Foundation for Statistical Computing. Created by statisticians Ross Ihaka and Robert Gentleman, R is used among data miners, bioinformaticians and statisticians for data analysis and developing statistical software.
+
+Pros:
+
+- After Python, R is the recommended ML programming language (<cite data-cite="Octave_for_ML_2021">Adhikari, 2021</cite>).
+- R is excellent for data visualization and statistics. It is often the preferred language for applications with a lot of statistical data.
+- R is a flexible language offering cross-platform compatibility.
+- It also has a growing, helpful community to help you if you get stuck.
+- R is an incredible programming language for machine learning written by a statistician for statisticians. R is the preferred choice for machine learning applications that use a lot of statistical data.
+- R is considered a powerful choice for machine learning because of the breadth of machine learning techniques it provides, e.g. data visualization, data sampling, data analysis, model evaluation and supervised/unsupervised machine learning.
+- R is highly flexible and also offers cross-platform compatibility.
+
+Cons:
+
+- However, R is often reported to be laggier and slower as compared to Python when dealing with large-scale data products.
+- R has a significantly lower community support when answering questions or giving guidance compared to Python (see trend chart on popularity of programming languages).
 
 
-#### R
+#### [Java](https://en.wikipedia.org/wiki/Java_(programming_language))
 
+It is a high-level, **class-based**, **object-oriented** programming language that is designed to have **as few implementation dependencies** as possible. It is a **general-purpose** programming language intended that compiled Java code can run on all platforms that support Java without the need to recompile. 
 
-#### Java and JavaScript
+Pros:
 
+- Java is quickly gaining popularity among ML enthusiasts who come from a Java background. Using Java for machine learning removes the burden of learning another programming language like Python or R (<cite data-cite="Octave_for_ML_2021">Adhikari, 2021</cite>).
+- Like Python and R, Java also has several libraries for machine learning.
+- Java has plenty of third party libraries for machine learning. JavaML is an in-built machine learning library that provides a collection of machine learning algorithms implemented in Java (<cite data-cite="ML_bestLanguage_2021">Gupta, 2021</cite>).
+- Scalability is an important feature that every machine learning engineer must consider before beginning a project. Java makes application scaling easier for machine learning engineers.
+- [Java Virtual Machine (JVM)](https://en.wikipedia.org/wiki/Java_virtual_machine) is one of the best platforms for machine learning as engineers can write the same code on multiple platforms.
+- Java works best for speed-critical machine learning projects as it is fast executing.
 
-#### GNU Octave
+Cons:
 
+- Java has a much lower community support in answering questions or giving guidance compared to Python - but a better one than R (see trend chart on popularity of programming languages).
+
+#### [GNU Octave](https://en.wikipedia.org/wiki/GNU_Octave)
+
+It is a high-level programming language that’s designed for numerical computations (<cite data-cite="Octave_for_ML_2021">Adhikari, 2021</cite>).
+
+Pros:
+
+- You can quickly solve linear and non-linear numerical problems and perform other experiments numerically.
+- Octave is quite similar and mostly compatible with MATLAB. If a code runs on MATLAB without using any functions that Octave doesn’t have, it will also run on Octave. It even has several language features and syntax variety that MATLAB lacks.
+
+Cons:
+
+- However, Octave is not a good programming language for machine learning in a production environment.
+- It doesn’t have the same functionality as other languages used for ML
+- It doesn’t have libraries and frameworks to speed up ML tasks.
+- It’s not as flexible, simple, and feature-rich as other programming languages.
+- Compared to Python, R and Java, Octave has almost no community support when it comes to answering questions or providing guidance (compare trend chart on popularity of programming languages).
 
 
 <!-- #endregion -->
 
-<!-- #region -->
 ### Programming IDEs
 
-**[Integrated development environments (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment)** are software applications that provide comprehensive features to computer programmers for **software development**. An IDE typically consists of a **source code editor**, automated **build tools** for compiling or an **interpreter** for scripting languages, a front end to the **version control system** like e.g. [Git](https://en.wikipedia.org/wiki/Git) and a **debugger**.
+**[Integrated development environments (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment)** are software applications that provide comprehensive features to computer programmers for **software development**. An IDE typically consists of a **source code editor**, automated **build tools** for compiling or an **interpreter** for scripting languages, a front end to the **version control system** like e.g. [Git](https://en.wikipedia.org/wiki/Git) and a **debugger** (<cite data-cite="Wiki_IDE">Wikipedia: IDE</cite>).
 
 Following trend chart shows how the [popularity of selected IDEs](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code) suitable for ML programming languages has evolved since 2008:
 
 ![Trend chart shows popularity of selected IDEs for ML programming languages (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_IDEs_wide.png)
 
-#### Visual Studio Code
+
+
+#### [Visual Studio Code (VSC)](https://en.wikipedia.org/wiki/Visual_Studio_Code)
+
+It is an IDE made by **Microsoft** for **Windows**, **Linux** and **macOS**. Features include support for **debugging**, **syntax highlighting** for many different programming languages, intelligent **code completion** and embedded **version control system** Git. Users can change the theme, keyboard shortcuts, preferences, and install **extensions** from a huge repository that add additional functionality. Despite of its platform independence, VSC is **not open source** - in fact it is released under a traditional [Microsoft product license](https://code.visualstudio.com/License/).
 
 ![Screenshot of IDE *Visual Studio Code* (source: Kasper, license: CC BY-SA)](images/Screenshot_VSC.png)
 
-#### JupyterLab
+
+#### [JupyterLab](https://en.wikipedia.org/wiki/Project_Jupyter#Jupyter_Notebook)
+
+It is the successor product for the web-based interactive environment **Jupyter Notebook**. Within this IDE, Jupyter Notebook documents can be created, edited, and executed interactively. The notebooks consist of **input and output cells**, each of which can contain program code, formatted text in **Markdown** format, and live plots generated from the code.
+
+Jupyter is a new **open-source** alternative to the proprietary numerical software [Mathematica](https://en.wikipedia.org/wiki/Wolfram_Mathematica) from **Wolfram Research** that is well on the way to becoming a **standard for exchanging research results** (<cite data-cite="Scientific_Paper_obsolete_2018">Somers, 2018</cite>; <cite data-cite="Future_of_Research_Paper_2018">Romer, 2018</cite>).
+
+Originally Jupyter was intended as an IDE for the programming languages **Julia** and **Python**. Besides that it is also possible to install other interpreter kernels, such as the **[IRkernel](https://irkernel.github.io/installation/)** for R. This can be interesting if the IDE **RStudio Desktop** is not available on the target platform used. For example, it is very difficult to install RStudio on the ARM-based embedded computer **Raspberry Pi** due to many technical dependencies. In contrast, using the R kernel in JupyterLab on the Raspberry Pi works very well and performant.
 
 ![Screenshot of IDE *JupyterLab* (source: Kasper, license: CC BY-SA)](images/Screenshot_JupyterLab.png)
 
-#### RStudio
+
+#### [RStudio](https://en.wikipedia.org/wiki/RStudio)
+
+It is an IDE and graphical user interface for the statistical programming language **R** offered by **RStudio, Inc.** and is made available in two formats. **RStudio Desktop** is a regular desktop application while **RStudio Server** runs on a remote server and allows accessing RStudio using a web browser. Both software products are available in **open source** and **commercial** versions, each with different functionalities.
+
+The program editor in RStudio allows **autocompletion**, **automatic indentation**, **syntax highlighting**, **code folding** as well as **integrated help** and information about functions and objects in the working environment. There is the ability to view and edit the contents of variables and datasets. To facilitate collaboration, scripts, data and other files can be combined into projects (.Rproj) and versioned with **Git**.
 
 ![Screenshot of IDE *RStudio* (source: Kasper, license: CC BY-SA)](images/Screenshot_RStudio.png)
 
 
-#### GNU Octave (GUI)
+#### [GNU Octave (GUI)](https://en.wikipedia.org/wiki/GNU_Octave#User_interfaces)
+
+It is the official graphical user interface for the **GNU Octave** programming language and is available for Windows, macOS, Linux and BSD under **Open Source** licensing.
+
+If the command line interpreter (CLI) starts instead of the graphical user interface (GUI) when `octave` is called, this can be forced via the `octave --gui` option.
 
 ![Screenshot of IDE *GNU Octave* (source: Kasper, license: CC BY-SA)](images/Screenshot_GNU_Octave.png)
 
 
-<!-- #endregion -->
 
 <!-- #region -->
 ### Python packages
@@ -286,7 +371,7 @@ These are general requirements to the operating system suitable for software dev
 - **Openness**: availability of very good interface documentation and ideally open source software
 - **Self-administration**: user has full installation and configuration rights
 - **Communication capability**: unfiltered and bidirectional communication in the local network as well as to the Internet on all necessary protocols possible
-- extensibility**:
+- **Extensibility**:
     - automated software installation and update management via central package management systems such as `apt`, `pip` or `conda`
     - possible integration of additional software libraries or external sensor hardware
 
@@ -1086,7 +1171,7 @@ But the most important reason is that it is **easy to understand** how it works 
 
 > Support Vector Classifiers (SVC) try to **find the best hyperplane to separate** the different classes by maximizing the distance between sample points and the hyperplane (source: [In Depth: Parameter tuning for SVC](https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769)).
 
-The figure \ref{fig:Svm_separating_hyperplanes} shows the operating principal of the SVC algorithm: the hyperplanes *H1* till *H4* (left graphic) do separate the classes. A good separation is achieved by the hyperplane that has the largest distance to the nearest training-data point of any class (so-called functional margin), since in general the larger the margin, the lower the generalization error of the classifier (source: [Support-vector machine](https://en.wikipedia.org/wiki/Support-vector_machine)).
+The following figure shows the operating principal of the SVC algorithm: the hyperplanes *H1* till *H4* (left graphic) do separate the classes. A good separation is achieved by the hyperplane that has the largest distance to the nearest training-data point of any class (so-called functional margin), since in general the larger the margin, the lower the generalization error of the classifier (source: [Support-vector machine](https://en.wikipedia.org/wiki/Support-vector_machine)).
 
 The right graphic shows the optimal hyperplane characterized by maximizing the margin between the classes. The perpendicular distance of the closest data points to the hyperplane determines their position and orientation. These perpendicular distances are the **support vectors** of the hyperplane - this is how the algorithm got its name.
 
