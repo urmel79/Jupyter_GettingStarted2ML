@@ -1087,12 +1087,9 @@ option (yet). Here are some links for further reading:
     \hypertarget{programming-languages}{%
 \subsubsection{Programming languages}\label{programming-languages}}
 
-\textbf{@TODO:}\\
-Rework section \textbf{Programming languages}!!
-
 The comparison of \textbf{advantages and disadvantages} of the various
-programming languages suitable for ML was inspired by the following
-articles, among others:
+programming languages and the evaluation of their suitability for ML was
+inspired by the following articles, among others:
 
 \begin{itemize}
 \tightlist
@@ -1105,18 +1102,26 @@ articles, among others:
   Octave Good for Machine Learning?} (\cite{Octave_for_ML_2021})
 \end{itemize}
 
-There is no best language for machine learning, each is good where it
-fits best. Yes, there is no single machine learning language as the best
-language for machine learning. However, there are definitely some
-programming languages that are more appropriate for machine learning
-tasks than others (\cite{ML_bestLanguage_2021}).
+In summary, there is \textbf{no best language for machine learning},
+each is good where it fits best.
 
-The math behind machine learning is usually complicated and unobvious.
-Thus, code readability is extremely important to successfully implement
-complicated machine learning algorithms and versatile workflows
-(\cite{ML_bestLanguage_2021}).
+However, there are definitely some programming languages that are better
+suited for machine learning tasks than others
+(\cite{ML_bestLanguage_2021}). On the one hand, this is due to whether
+the programming language is fundamentally well suited to
+\textbf{implement complex mathematical and statistical tasks} in
+efficient algorithms.
 
-All programming languages presented below are \textbf{open source}.
+On the other hand, when deciding for or against a programming language,
+it should definitely also be taken into account whether it contains
+sufficient \textbf{basic functionalities for data analysis and its
+processing}, as well as very diverse \textbf{extension libraries}
+(so-called \textbf{packages}) that are well supported by the community
+are available. By using these libraries, it is possible to concentrate
+on the concrete task when creating an ML application and not have to
+constantly solve the same trivial problems anew in every new application
+(e.g.~the efficient \textbf{handling of datasets} or the execution of
+\textbf{matrices calculations}).
 
 Following trend chart shows how the
 \href{https://insights.stackoverflow.com/trends?tags=python\%2Cr\%2Coctave\%2Cjava\%2Cc\%2B\%2B}{popularity
@@ -1143,31 +1148,31 @@ data objects (see
 \href{https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)}{garbage
 collection}).
 
-Pros:
+\textbf{Pros:}
 
 \begin{itemize}
 \tightlist
 \item
-  Python offers simple, concise, and \textbf{readable code}. Its
-  simplicity allows you to write robust and reliable programs
-  (\cite{Octave_for_ML_2021}).
+  Python offers simple, concise, and \textbf{readable code} for allowing
+  to write robust and reliable programs.
 \item
-  lets you focus on solving the ML problem instead of getting lost in
+  It lets you focus on solving the ML problem instead of getting lost in
   the language's technical nuances.
 \item
-  Python has extensive libraries for ML. It has a library for virtually
-  everything related to ML. Scikit-learn, Pandas, TensorFlow, Keras,
-  etc., have become standard libraries for various ML tasks.
+  Python has \textbf{extensive libraries for ML},
+  e.g.~\texttt{Scikit-learn}, \texttt{Pandas}, \texttt{TensorFlow} or
+  \texttt{Keras} have become standard libraries for various ML tasks.
 \item
-  Python has been around for decades. It has developed a large and
-  helpful community. Extensive documentation is available online.
+  The language has been around for decades and has developed a large and
+  helpful community.
 \item
-  Thousands of question-answers and community guides for different
-  functionalities of the language (this is also very good reflected by
-  the trend chart on popularity of programming languages).
+  Besides extensive online documentation, there are thousands of
+  question-answers and community guides for various functionalities of
+  the language (this is also very well reflected in the trend graph on
+  the popularity of programming languages).
 \end{itemize}
 
-Cons:
+\textbf{Cons:}
 
 \begin{itemize}
 \tightlist
@@ -1175,56 +1180,55 @@ Cons:
   (unknown drawbacks so far \ldots)
 \end{itemize}
 
-\hypertarget{r}{%
+    \hypertarget{r}{%
 \paragraph{\texorpdfstring{\href{https://en.wikipedia.org/wiki/R_(programming_language)}{R}}{R}}\label{r}}
 
-It is a programming language for statistical computing and graphics
-supported by the R Core Team and the R Foundation for Statistical
-Computing. Created by statisticians Ross Ihaka and Robert Gentleman, R
-is used among data miners, bioinformaticians and statisticians for data
-analysis and developing statistical software.
+It is a programming language for \textbf{statistical computing} and
+\textbf{graphics} supported by the \textbf{R Core Team} and the
+\textbf{R Foundation for Statistical Computing}. Created by
+statisticians Ross Ihaka and Robert Gentleman, R is used among data
+miners, bioinformaticians and statisticians for data analysis and
+developing statistical software.
 
-Pros:
-
-\begin{itemize}
-\tightlist
-\item
-  After Python, R is the recommended ML programming language
-  (\cite{Octave_for_ML_2021}).
-\item
-  R is excellent for data visualization and statistics. It is often the
-  preferred language for applications with a lot of statistical data.
-\item
-  R is a flexible language offering cross-platform compatibility.
-\item
-  It also has a growing, helpful community to help you if you get stuck.
-\item
-  R is an incredible programming language for machine learning written
-  by a statistician for statisticians. R is the preferred choice for
-  machine learning applications that use a lot of statistical data.
-\item
-  R is considered a powerful choice for machine learning because of the
-  breadth of machine learning techniques it provides, e.g.~data
-  visualization, data sampling, data analysis, model evaluation and
-  supervised/unsupervised machine learning.
-\item
-  R is highly flexible and also offers cross-platform compatibility.
-\end{itemize}
-
-Cons:
+\textbf{Pros:}
 
 \begin{itemize}
 \tightlist
 \item
-  However, R is often reported to be laggier and slower as compared to
-  Python when dealing with large-scale data products.
+  After Python, R is the recommended ML programming language.
 \item
-  R has a significantly lower community support when answering questions
-  or giving guidance compared to Python (see trend chart on popularity
-  of programming languages).
+  R is a flexible and cross-platform compatible language.
+\item
+  It has a growing, supportive community.
+\item
+  R is well suited for data visualization and \textbf{statistics}, often
+  making it the language of choice for applications with a large amount
+  of statistical data.
+\item
+  It is considered a powerful choice for \textbf{machine learning},
+  offering a variety of machine learning techniques (e.g., data
+  visualization, data sampling, data analysis and supervised and
+  unsupervised machine learning models) via post-installable libraries.
 \end{itemize}
 
-\hypertarget{java}{%
+\textbf{Cons:}
+
+\begin{itemize}
+\tightlist
+\item
+  R is often reported to be laggier and slower as compared to Python
+  when dealing with large-scale datasets.
+\item
+  It has a \textbf{significantly lower community} support when answering
+  questions or giving guidance \textbf{compared to Python} (see trend
+  chart on popularity of programming languages).
+\item
+  The \textbf{learning curve} for the basic entry into R and the
+  application in more complex projects for data analysis or machine
+  learning is significantly \textbf{steeper than with Python}.
+\end{itemize}
+
+    \hypertarget{java}{%
 \paragraph{\texorpdfstring{\href{https://en.wikipedia.org/wiki/Java_(programming_language)}{Java}}{Java}}\label{java}}
 
 It is a high-level, \textbf{class-based}, \textbf{object-oriented}
@@ -1234,37 +1238,30 @@ implementation dependencies} as possible. It is a
 Java code can run on all platforms that support Java without the need to
 recompile.
 
-Pros:
+\textbf{Pros:}
 
 \begin{itemize}
 \tightlist
 \item
-  Java is quickly gaining popularity among ML enthusiasts who come from
-  a Java background. Using Java for machine learning removes the burden
-  of learning another programming language like Python or R
-  (\cite{Octave_for_ML_2021}).
+  Using Java for machine learning is especially popular among developers
+  with a Java background, as it skips the need to learn another
+  programming language such as Python or R.
 \item
-  Like Python and R, Java also has several libraries for machine
-  learning.
+  Like Python and R, Java also has a variety of third-party machine
+  learning libraries, e.g.~\textbf{JavaML} is a built-in library with a
+  collection of algorithms implemented in Java for ML.
 \item
-  Java has plenty of third party libraries for machine learning. JavaML
-  is an in-built machine learning library that provides a collection of
-  machine learning algorithms implemented in Java
-  (\cite{ML_bestLanguage_2021}).
-\item
-  Scalability is an important feature that every machine learning
-  engineer must consider before beginning a project. Java makes
-  application scaling easier for machine learning engineers.
+  Scalability is an important feature for many ML projects, which is
+  well supported by Java.
 \item
   \href{https://en.wikipedia.org/wiki/Java_virtual_machine}{Java Virtual
-  Machine (JVM)} is one of the best platforms for machine learning as
-  engineers can write the same code on multiple platforms.
+  Machine (JVM)} enables the development of ML applications for multiple
+  platforms.
 \item
-  Java works best for speed-critical machine learning projects as it is
-  fast executing.
+  Java is very well suited for speed-critical ML projects.
 \end{itemize}
 
-Cons:
+\textbf{Cons:}
 
 \begin{itemize}
 \tightlist
@@ -1274,28 +1271,29 @@ Cons:
   trend chart on popularity of programming languages).
 \end{itemize}
 
-\hypertarget{gnu-octave}{%
+    \hypertarget{gnu-octave}{%
 \paragraph{\texorpdfstring{\href{https://en.wikipedia.org/wiki/GNU_Octave}{GNU
 Octave}}{GNU Octave}}\label{gnu-octave}}
 
-It is a high-level programming language that's designed for numerical
-computations (\cite{Octave_for_ML_2021}).
+It is a high-level programming language that's \textbf{designed for
+numerical computations} (\cite{Octave_for_ML_2021}).
 
-Pros:
+\textbf{Pros:}
 
 \begin{itemize}
 \tightlist
 \item
-  You can quickly solve linear and non-linear numerical problems and
-  perform other experiments numerically.
+  With Octave, \textbf{linear and non-linear numerical problems} can be
+  solved quickly.
 \item
-  Octave is quite similar and mostly compatible with MATLAB. If a code
-  runs on MATLAB without using any functions that Octave doesn't have,
-  it will also run on Octave. It even has several language features and
-  syntax variety that MATLAB lacks.
+  Octave is syntactically very similar to
+  \href{https://en.wikipedia.org/wiki/MATLAB}{MATLAB} and mostly
+  \textbf{compatible with MATLAB}. If no MATLAB-specific functions are
+  used, the program code also runs in Octave. In addition, Octave even
+  has some language functions and a syntax diversity that MATLAB lacks.
 \end{itemize}
 
-Cons:
+\textbf{Cons:}
 
 \begin{itemize}
 \tightlist
@@ -1303,16 +1301,147 @@ Cons:
   However, Octave is not a good programming language for machine
   learning in a production environment.
 \item
-  It doesn't have the same functionality as other languages used for ML
-\item
-  It doesn't have libraries and frameworks to speed up ML tasks.
+  It doesn't have the same functionality as other languages used for ML,
+  due to \textbf{missing libraries} and frameworks to speed up ML tasks.
 \item
   It's not as flexible, simple, and feature-rich as other programming
   languages.
 \item
-  Compared to Python, R and Java, Octave has almost no community support
-  when it comes to answering questions or providing guidance (compare
-  trend chart on popularity of programming languages).
+  Compared to Python, R and Java, Octave has almost \textbf{no community
+  support} when it comes to answering questions or providing guidance
+  (compare trend chart on popularity of programming languages).
+\end{itemize}
+
+    \hypertarget{python-packages}{%
+\subsubsection{Python packages}\label{python-packages}}
+
+The \textbf{mathematics} and the \textbf{numerical implementation} of
+various algorithms for data analysis and machine learning are usually
+\textbf{very complex} and often only comprehensible for ML experts
+(\cite{ML_bestLanguage_2021}). For a broad and praxis-oriented
+\textbf{usability}, better \textbf{reusability of code} and a successful
+\textbf{integration} into a concrete ML application, the functional
+relationships should be \textbf{encapsulated in libraries} (so-called
+``packages'').
+
+From the user's point of view, when selecting libraries for the
+respective task, attention should be paid not only to functionality but
+also to the \textbf{comprehensibility of the user interface supported by
+good documentation}. Furthermore, the \textbf{size of the community}
+behind the library, consisting of active developers as well as technical
+experts for supporting the users in the event of questions or problems
+arising, should be decisive in the selection.
+
+Following trend chart shows how the
+\href{https://insights.stackoverflow.com/trends?tags=pandas\%2Ctensorflow\%2Cnumpy\%2Ckeras\%2Cscikit-learn\%2Cmatplotlib}{popularity
+of selected python packages} suitable for \textbf{data analysis},
+\textbf{data visualization} and \textbf{machine learning} has evolved
+since 2008:
+
+\begin{figure}
+\centering
+\includegraphics{images/2022-09-07_StackOverflowTrends_MLPythonPackages_wide.png}
+\caption{Trend chart shows popularity of selected python packages for
+data analysis, data visualization and machine learning (source:
+\href{https://insights.stackoverflow.com/trends?tags=pandas\%2Ctensorflow\%2Cnumpy\%2Ckeras\%2Cscikit-learn\%2Cmatplotlib}{Stack
+Overflow Trends}, license: CC BY-SA)}
+\end{figure}
+
+In the scientific research and systematic improvement of ML algorithms,
+a very dynamic progression can be observed in recent years. The latest
+scientific findings are regularly compared with each other in
+\textbf{``Machine Learning Competitions''} using known and
+\textbf{freely available datasets} (see benchmarking competitions of ML
+algorithms on platforms such as
+\url{https://www.kaggle.com/competitions}). At the same time, the
+corresponding ML libraries are revised, extended and made available to
+general users by the scientific community. Therefore, this
+\textbf{scientific transfer} ideally takes place in the context of
+\textbf{open source developments}.
+
+Due to the superior advantages of \textbf{Python} (see previous
+section), a selection of \textbf{open source} packages available for
+this programming language usable for \textbf{data analysis},
+\textbf{data visualization} and \textbf{machine learning} are presented
+in this section.
+
+    \hypertarget{data-analysis}{%
+\paragraph{Data analysis}\label{data-analysis}}
+
+\begin{itemize}
+\item
+  \href{https://numpy.org/devdocs/user/whatisnumpy.html}{NumPy} is a
+  Python library that provides a \textbf{multidimensional array object},
+  various derived objects (such as masked arrays and \textbf{matrices}),
+  and an assortment of routines for \textbf{fast operations on arrays},
+  including mathematical, logical, shape manipulation, sorting,
+  selecting, discrete Fourier transformations, basic linear algebra,
+  basic statistical operations, random simulation and much more.
+\item
+  \href{https://pandas.pydata.org/docs/getting_started/overview.html}{Pandas}
+  is a Python package providing fast, flexible and expressive data
+  structures designed to work with \textbf{relational} or
+  \textbf{labeled} datasets. It provides two primary data structures:
+  \texttt{pandas.Series} (1-dimensional time series) and
+  \texttt{pandas.DataFrame} (2-dimensional spreadsheets). The data
+  structure \texttt{pandas.DataFrame} offers the same functionality as
+  the structure \texttt{data.frame} known from the programming language
+  R and much more.
+\end{itemize}
+
+    \hypertarget{data-visualization}{%
+\paragraph{Data visualization}\label{data-visualization}}
+
+\begin{itemize}
+\item
+  \href{https://matplotlib.org}{Matplotlib} is a library for making
+  \textbf{2D plots of arrays} in Python. Although it has its origins in
+  \textbf{emulating the MATLAB graphics commands}, it is independent of
+  MATLAB, and can be used in a Pythonic, object oriented way. Although
+  Matplotlib is written primarily in pure Python, it makes heavy use of
+  NumPy and other extension code to provide good performance even for
+  large arrays (\cite{Hunter_matplotlib_2007}).
+\item
+  \href{https://seaborn.pydata.org/}{Seaborn} is a library for making
+  \textbf{statistical graphics} in Python. It builds \textbf{on top of
+  matplotlib} and integrates closely with \textbf{pandas data
+  structures}. Seaborn helps to explore and understand the data. Its
+  plotting functions operate on \textbf{dataframes} and \textbf{arrays}
+  containing whole datasets and internally perform the necessary
+  semantic mapping and statistical aggregation to produce informative
+  plots (\cite{Waskom_seaborn_2021}).
+\end{itemize}
+
+    \hypertarget{machine-learning}{%
+\paragraph{Machine learning}\label{machine-learning}}
+
+\begin{itemize}
+\item
+  \href{https://scikit-learn.org/stable/}{Scikit-Learn} is a
+  \textbf{free software machine learning library} for \textbf{Python}.
+  It features various \textbf{classification}, \textbf{regression} and
+  \textbf{clustering} algorithms including \textbf{support-vector
+  machines}, \textbf{random forests}, \textbf{gradient boosting} and
+  \textbf{k-means}. It is designed to interoperate with the Python
+  numerical and scientific libraries \textbf{NumPy} and \textbf{SciPy}.
+  Scikit-Learn will be used in the next steps of this of this getting
+  started tutorial.
+\item
+  \href{https://www.tensorflow.org}{TensorFlow} offers, among other
+  things, the possibility to create and train \textbf{artificial neural
+  networks (ANN)} based on \textbf{Google AI}. it is an open source
+  software library for \textbf{machine learning} and \textbf{artificial
+  intelligence}. It can be used across a range of tasks but has a
+  particular focus on training and inference of \textbf{deep neural
+  networks}. However, the installation and usage is very much beyond the
+  scope of this beginner tutorial.
+\item
+  \href{https://keras.io/about/}{Keras} is an open source software
+  library for \textbf{deep learning} that provides a Python interface
+  for \textbf{ANNs}. Keras acts as an \textbf{general interface} for
+  several \textbf{backends}, such as \textbf{TensorFlow},
+  \textbf{Microsoft Cognitive Toolkit} and \textbf{Theano}. Keras will
+  also not be used in this beginner tutorial.
 \end{itemize}
 
     \hypertarget{programming-ides}{%
@@ -1373,10 +1502,10 @@ It is the successor product for the web-based interactive environment
 \textbf{Jupyter Notebook}. Within this IDE, Jupyter Notebook documents
 can be created, edited, and executed interactively. The notebooks
 consist of \textbf{input and output cells}, each of which can contain
-program code, formatted text in \textbf{Markdown} format, and live plots
+program code, formatted text in \textbf{Markdown} format and live plots
 generated from the code.
 
-Jupyter is a new \textbf{open-source} alternative to the proprietary
+Jupyter is a new \textbf{open source} alternative to the proprietary
 numerical software
 \href{https://en.wikipedia.org/wiki/Wolfram_Mathematica}{Mathematica}
 from \textbf{Wolfram Research} that is well on the way to becoming a
@@ -1446,81 +1575,19 @@ via the \texttt{octave\ -\/-gui} option.
 CC BY-SA)}
 \end{figure}
 
-    \hypertarget{python-packages}{%
-\subsubsection{Python packages}\label{python-packages}}
-
-Following trend chart shows how the
-\href{https://insights.stackoverflow.com/trends?tags=pandas\%2Ctensorflow\%2Cnumpy\%2Ckeras\%2Cscikit-learn\%2Cmatplotlib}{popularity
-of selected python packages} suitable for \textbf{data analysis},
-\textbf{data visualization} and \textbf{machine learning} has evolved
-since 2008:
-
-\begin{figure}
-\centering
-\includegraphics{images/2022-09-07_StackOverflowTrends_MLPythonPackages_wide.png}
-\caption{Trend chart shows popularity of selected python packages for
-data analysis, data visualization and machine learning (source:
-\href{https://insights.stackoverflow.com/trends?tags=pandas\%2Ctensorflow\%2Cnumpy\%2Ckeras\%2Cscikit-learn\%2Cmatplotlib}{Stack
-Overflow Trends}, license: CC BY-SA)}
-\end{figure}
-
-\hypertarget{data-analysis}{%
-\paragraph{Data analysis}\label{data-analysis}}
-
-\begin{itemize}
-\item
-  \texttt{NumPy}
-\item
-  \texttt{Pandas}
-\end{itemize}
-
-\hypertarget{data-visualization}{%
-\paragraph{Data visualization}\label{data-visualization}}
-
-\begin{itemize}
-\item
-  \texttt{matplotlib}
-\item
-  \texttt{seaborn}
-\end{itemize}
-
-\hypertarget{machine-learning}{%
-\paragraph{Machine learning}\label{machine-learning}}
-
-\begin{itemize}
-\item
-  \texttt{Scikit-Learn}
-\item
-  \texttt{TensorFlow}: This package offers, among other things, the
-  possibility to create and train \textbf{artificial neural networks
-  (ANN)} based on Google AI. However, the installation and application
-  is very much beyond the scope of this beginner tutorial. Further
-  information can be found here: \url{https://www.tensorflow.org}.
-\item
-  \texttt{Keras}
-\item
-  \texttt{CUDA\ Toolkit}
-\end{itemize}
-
     \hypertarget{operating-systems}{%
 \subsubsection{Operating systems}\label{operating-systems}}
 
-Following trend chart shows how the
-\href{https://insights.stackoverflow.com/trends?tags=windows\%2Clinux\%2Cmacos}{popularity
-of selected operating systems} used by \textbf{data analysts} and
-\textbf{ML developers} has evolved since 2008:
+The \textbf{programming languages}, \textbf{Python libraries} and
+\textbf{development environments} presented in the previous sections are
+available for different operating systems, such as \textbf{Linux},
+\textbf{Windows} and \textbf{macOS}. Therefore, the decision for or
+against an operating system may \textbf{depend on the technical
+background} of the ML developer.
 
-\begin{figure}
-\centering
-\includegraphics{images/2022-09-07_StackOverflowTrends_OperatingSystems_wide.png}
-\caption{Trend chart shows popularity of selected operating systems used
-by \textbf{data analysts} and \textbf{ML developers} (source:
-\href{https://insights.stackoverflow.com/trends?tags=windows\%2Clinux\%2Cmacos}{Stack
-Overflow Trends}, license: CC BY-SA)}
-\end{figure}
-
-These are general requirements to the operating system suitable for
-software development:
+Nevertheless, the following general \textbf{requirements} can be
+specified for an operating system \textbf{suitable for software
+development}:
 
 \begin{itemize}
 \tightlist
@@ -1549,59 +1616,71 @@ software development:
   \end{itemize}
 \end{itemize}
 
-For security reasons, the IT departments of many employers massively
-restrict \textbf{installation and configuration rights}. Furthermore,
-very restrictive firewall settings severely \textbf{restrict} unfiltered
-and bidirectional \textbf{communication} in the local network and to the
-Internet. Automated \textbf{software installations} via package manager
-are often \textbf{not possible} or only possible with difficulty due to
-blocked protocols.
+Following trend chart shows how the
+\href{https://insights.stackoverflow.com/trends?tags=windows\%2Clinux\%2Cmacos}{popularity
+of selected operating systems} used by \textbf{data analysts} and
+\textbf{ML developers} has evolved since 2008:
 
-\hypertarget{virtual-machine}{%
+\begin{figure}
+\centering
+\includegraphics{images/2022-09-07_StackOverflowTrends_OperatingSystems_wide.png}
+\caption{Trend chart shows popularity of selected operating systems used
+by \textbf{data analysts} and \textbf{ML developers} (source:
+\href{https://insights.stackoverflow.com/trends?tags=windows\%2Clinux\%2Cmacos}{Stack
+Overflow Trends}, license: CC BY-SA)}
+\end{figure}
+
+For \textbf{security} reasons, the \textbf{IT departments} of many
+employers massively \textbf{restrict installation and configuration
+rights}. Furthermore, very restrictive firewall settings severely
+\textbf{restrict} unfiltered and bidirectional \textbf{communication} in
+the local network and to the Internet. Automated \textbf{software
+installations} via package managers are often \textbf{not possible} or
+only possible with difficulty due to blocked protocols.
+
+To deal with these challenges, two possible solutions are presented
+below.
+
+    \hypertarget{virtual-machine}{%
 \paragraph{Virtual machine}\label{virtual-machine}}
 
 To be able to install, configure and update the required software (IDEs,
 programming languages and ML packages) independently, the use of a
 \href{https://en.wikipedia.org/wiki/Virtual_machine}{Virtual Machine
-(VM)} would be a possible alternative.
+(VM)} could be a possible alternative.
 
 However, there are also significant disadvantages here:
 
 \begin{itemize}
 \tightlist
 \item
-  the \textbf{communication problem} is \textbf{not solved}, because the
-  VM shares the access to the internet with the host system
+  The \textbf{communication problem} is \textbf{not solved}, because the
+  VM shares the access to the internet with the host system.
 \item
-  the \textbf{access to 3D graphics cards} is usually \textbf{not
-  possible} due to virtualization
+  The \textbf{access to 3D graphics cards} is usually \textbf{not
+  possible} due to virtualization.
 \item
-  only \textbf{low application performance}, as regular business
-  computers are often only very sparsely equipped in terms of RAM and
-  processor performance for cost reasons
+  This solution has only \textbf{low application performance}, as
+  regular business computers are often only very sparsely equipped in
+  terms of RAM and processor performance for cost reasons.
 \end{itemize}
 
-\hypertarget{separate-lab-computer}{%
+    \hypertarget{separate-lab-computer}{%
 \paragraph{Separate lab computer}\label{separate-lab-computer}}
 
 All the problems mentioned in the previous section can only be solved
 satisfactorily by acquiring a \textbf{separate laboratory computer} with
-\textbf{its own internet access} (e.g.~via an \textbf{LTE-capable WLAN
+\textbf{its own internet access} (e.g.~via an \textbf{LTE-capable Wifi
 router}).
 
 This laboratory computer can be configured according to your own
 requirements, depending on the available budget in terms of hardware and
 software.
 
-However, it should be noted here that the IT departments of many
-employers do not offer any support. You are usually responsible for
-installation, maintenance and troubleshooting yourself!
-
-\hypertarget{linux}{%
-\paragraph{Linux}\label{linux}}
-
-\hypertarget{windows}{%
-\paragraph{Windows}\label{windows}}
+However, it should be noted here that the \textbf{IT departments} of
+many employers do \textbf{not offer any support} for this solution. You
+are usually responsible for software installation, maintenance and
+troubleshooting yourself!
 
     \hypertarget{community-support}{%
 \subsection{Community Support}\label{community-support}}
@@ -1626,8 +1705,9 @@ company's internal \textbf{closed source} domain.
 Without the support of an active community, you are (almost) on your own
 when it comes to questions or problems. Progress in the development and
 maintenance of an AI application is therefore very difficult! The clear
-recommendation is therefore: Go for the (technically, price-wise)
-\textbf{second-best alternative} with an even bigger \textbf{community}.
+recommendation is therefore: Go for the (technically, price-wise, etc.)
+\textbf{second-best alternative} but with an even bigger
+\textbf{community}.
 
     \hypertarget{import-python-packages}{%
 \subsection{Import Python packages}\label{import-python-packages}}
@@ -2188,7 +2268,7 @@ each feature in univariate plots:
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_39_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_47_0.png}\end{center}
         \caption{Histograms used to explore the frequency distribution of the 4 features in the Iris dataset}
         \label{fig:histogram_iris}
     \end{figure}
@@ -2234,7 +2314,7 @@ displayed side-by-side in individual boxplots:
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_41_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_49_0.png}\end{center}
         \caption{Boxplots used to explore the data ranges in the Iris dataset}
         \label{fig:boxplots_iris}
     \end{figure}
@@ -2272,7 +2352,7 @@ Another type of visualization is the \textbf{violin plot}, which
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_43_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_51_0.png}\end{center}
         \caption{Violin plots combine histograms and box plots}
         \label{fig:violinplots_iris}
     \end{figure}
@@ -3147,7 +3227,7 @@ variable width. The height of each rectangle then represents the
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_79_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_87_0.png}\end{center}
         \caption{Histogram for frequency distribution of the salary}
         \label{fig:histogram_salary}
     \end{figure}
@@ -3161,7 +3241,7 @@ variable width. The height of each rectangle then represents the
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_80_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_88_0.png}\end{center}
         \caption{Histogram for the frequency distribution of the salary in comparison between men and women}
         \label{fig:histogram_male_female}
     \end{figure}
@@ -3258,7 +3338,7 @@ Choose the color sets from
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_86_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_94_0.png}\end{center}
         \caption{Correlation heatmap to explore coherences between single variables in the iris dataset}
         \label{fig:correlation_heatmap}
     \end{figure}
@@ -3312,7 +3392,7 @@ array([[1., 1., 1., 1., 1.],
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_90_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_98_0.png}\end{center}
         \caption{Correlation heatmap, which was cut at its main diagonal without losing any information}
         \label{fig:correlation_heatmap_triangle}
     \end{figure}
@@ -3360,7 +3440,7 @@ advisable to plot them in a \textbf{scatter plot}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_93_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_101_0.png}\end{center}
         \caption{Plotting two individual variables of the iris dataset in the scatterplot to explore the relationships between these two}
         \label{fig:scatter_plot}
     \end{figure}
@@ -3398,7 +3478,7 @@ single row and in the x-axis across a single column.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_95_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_103_0.png}\end{center}
         \caption{Plot all individual variables of the Iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables}
         \label{fig:pairs_plot}
     \end{figure}
@@ -4115,7 +4195,7 @@ colored confusion matrix.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_135_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_143_0.png}\end{center}
         \caption{Checking the accuracy of the model by using the confusion matrix for cross-validation}
         \label{fig:confusion_matrix}
     \end{figure}
@@ -4324,25 +4404,25 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_150_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_158_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_150_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_158_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_150_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_158_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_150_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_158_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
@@ -4374,31 +4454,31 @@ exactly fit the training dataset. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_152_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_152_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_152_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_152_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_152_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
@@ -4424,7 +4504,7 @@ as the classifier tries to perfectly fit the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_154_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_162_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy}
         \label{fig:plot_vary_gamma}
     \end{figure}
@@ -4455,43 +4535,43 @@ the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_156_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_164_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_156_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_164_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_156_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_164_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_156_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_164_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_156_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_164_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_156_5.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_164_5.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_156_6.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_164_6.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
@@ -4517,7 +4597,7 @@ But be careful: to high \texttt{C} values may lead to
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_158_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_166_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'C' against the prediction accuracy}
         \label{fig:plot_vary_c}
     \end{figure}
@@ -4553,61 +4633,61 @@ training times}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_168_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_168_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_168_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_168_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_168_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_5.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_168_5.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_6.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_168_6.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_7.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_168_7.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_8.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_168_8.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_9.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_168_9.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
@@ -4633,7 +4713,7 @@ hyperplane leads to \textbf{overfitting} the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_162_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_170_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy}
         \label{fig:plot_vary_degree}
     \end{figure}
@@ -4882,7 +4962,7 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_180_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_188_0.png}\end{center}
         \caption{Confusion matrix for cross-validation of the baseline}
         \label{fig:cm_baseline}
     \end{figure}
@@ -5036,7 +5116,7 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_191_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_199_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the grid search has been performed}
         \label{fig:cm_grid_search}
     \end{figure}
@@ -5191,7 +5271,7 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_202_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_210_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the randomized search has been performed}
         \label{fig:cm_random_search}
     \end{figure}

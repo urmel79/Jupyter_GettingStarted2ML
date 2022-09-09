@@ -184,97 +184,131 @@ Here are some links for further reading:
 
 ### Programming languages
 
-**@TODO:**  
-Rework section **Programming languages**!!
-
-The comparison of **advantages and disadvantages** of the various programming languages suitable for ML was inspired by the following articles, among others:
+The comparison of **advantages and disadvantages** of the various programming languages and the evaluation of their suitability for ML was inspired by the following articles, among others:
 
 - [What Is the Best Language for Machine Learning?](https://www.springboard.com/blog/data-science/best-language-for-machine-learning/) (<cite data-cite="ML_bestLanguage_2021">Gupta, 2021</cite>)
 - [Is Octave Good for Machine Learning?](https://datasciencenerd.com/is-octave-good-for-machine-learning/) (<cite data-cite="Octave_for_ML_2021">Adhikari, 2021</cite>)
 
-There is no best language for machine learning, each is good where it fits best. Yes, there is no single machine learning language as the best language for machine learning. However, there are definitely some programming languages that are more appropriate for machine learning tasks than others (<cite data-cite="ML_bestLanguage_2021">Gupta, 2021</cite>).
+In summary, there is **no best language for machine learning**, each is good where it fits best.
 
-The math behind machine learning is usually complicated and unobvious. Thus, code readability is extremely important to successfully implement complicated machine learning algorithms and versatile workflows (<cite data-cite="ML_bestLanguage_2021">Gupta, 2021</cite>).
+However, there are definitely some programming languages that are better suited for machine learning tasks than others (<cite data-cite="ML_bestLanguage_2021">Gupta, 2021</cite>). On the one hand, this is due to whether the programming language is fundamentally well suited to **implement complex mathematical and statistical tasks** in efficient algorithms.
 
-All programming languages presented below are **open source**.
+On the other hand, when deciding for or against a programming language, it should definitely also be taken into account whether it contains sufficient **basic functionalities for data analysis and its processing**, as well as very diverse **extension libraries** (so-called **packages**) that are well supported by the community are available. By using these libraries, it is possible to concentrate on the concrete task when creating an ML application and not have to constantly solve the same trivial problems anew in every new application (e.g. the efficient **handling of datasets** or the execution of **matrices calculations**).
 
 Following trend chart shows how the [popularity of selected programming languages](https://insights.stackoverflow.com/trends?tags=python%2Cr%2Coctave%2Cjava%2Cc%2B%2B) suitable for machine learning has evolved since 2008:
 
 ![Trend chart shows popularity of programming languages for ML (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=python%2Cr%2Coctave%2Cjava%2Cc%2B%2B), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_ProgrammingLanguages_wide.png)
 
-<!-- #region -->
+<!-- #region tags=[] -->
 #### [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
 
 It is a high-level, **general-purpose** programming language where its design philosophy emphasizes **code readability**. The **variable types** in Python are **dynamic** and **memory** is **automatically managed** to create and delete data objects (see [garbage collection](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science))).
 
-Pros:
+**Pros:**
 
-- Python offers simple, concise, and **readable code**. Its simplicity allows you to write robust and reliable programs (<cite data-cite="Octave_for_ML_2021">Adhikari, 2021</cite>).
-- lets you focus on solving the ML problem instead of getting lost in the language’s technical nuances.
-- Python has extensive libraries for ML. It has a library for virtually everything related to ML. Scikit-learn, Pandas, TensorFlow, Keras, etc., have become standard libraries for various ML tasks.
-- Python has been around for decades. It has developed a large and helpful community. Extensive documentation is available online.
-- Thousands of question-answers and community guides for different functionalities of the language (this is also very good reflected by the trend chart on popularity of programming languages).
+- Python offers simple, concise, and **readable code** for allowing to write robust and reliable programs.
+- It lets you focus on solving the ML problem instead of getting lost in the language’s technical nuances.
+- Python has **extensive libraries for ML**, e.g. `Scikit-learn`, `Pandas`, `TensorFlow` or `Keras` have become standard libraries for various ML tasks.
+- The language has been around for decades and has developed a large and helpful community.
+- Besides extensive online documentation, there are thousands of question-answers and community guides for various functionalities of the language (this is also very well reflected in the trend graph on the popularity of programming languages).
 
-Cons:
+**Cons:**
 
 - (unknown drawbacks so far ...)
+<!-- #endregion -->
 
+<!-- #region jp-MarkdownHeadingCollapsed=true tags=[] -->
 #### [R](https://en.wikipedia.org/wiki/R_(programming_language))
 
-It is a programming language for statistical computing and graphics supported by the R Core Team and the R Foundation for Statistical Computing. Created by statisticians Ross Ihaka and Robert Gentleman, R is used among data miners, bioinformaticians and statisticians for data analysis and developing statistical software.
+It is a programming language for **statistical computing** and **graphics** supported by the **R Core Team** and the **R Foundation for Statistical Computing**. Created by statisticians Ross Ihaka and Robert Gentleman, R is used among data miners, bioinformaticians and statisticians for data analysis and developing statistical software.
 
-Pros:
+**Pros:**
 
-- After Python, R is the recommended ML programming language (<cite data-cite="Octave_for_ML_2021">Adhikari, 2021</cite>).
-- R is excellent for data visualization and statistics. It is often the preferred language for applications with a lot of statistical data.
-- R is a flexible language offering cross-platform compatibility.
-- It also has a growing, helpful community to help you if you get stuck.
-- R is an incredible programming language for machine learning written by a statistician for statisticians. R is the preferred choice for machine learning applications that use a lot of statistical data.
-- R is considered a powerful choice for machine learning because of the breadth of machine learning techniques it provides, e.g. data visualization, data sampling, data analysis, model evaluation and supervised/unsupervised machine learning.
-- R is highly flexible and also offers cross-platform compatibility.
+- After Python, R is the recommended ML programming language.
+- R is a flexible and cross-platform compatible language.
+- It has a growing, supportive community.
+- R is well suited for data visualization and **statistics**, often making it the language of choice for applications with a large amount of statistical data.
+- It is considered a powerful choice for **machine learning**, offering a variety of machine learning techniques (e.g., data visualization, data sampling, data analysis and supervised and unsupervised machine learning models) via post-installable libraries.
 
-Cons:
+**Cons:**
 
-- However, R is often reported to be laggier and slower as compared to Python when dealing with large-scale data products.
-- R has a significantly lower community support when answering questions or giving guidance compared to Python (see trend chart on popularity of programming languages).
-
+- R is often reported to be laggier and slower as compared to Python when dealing with large-scale datasets.
+- It has a **significantly lower community** support when answering questions or giving guidance **compared to Python** (see trend chart on popularity of programming languages).
+- The **learning curve** for the basic entry into R and the application in more complex projects for data analysis or machine learning is significantly **steeper than with Python**.
+<!-- #endregion -->
 
 #### [Java](https://en.wikipedia.org/wiki/Java_(programming_language))
 
-It is a high-level, **class-based**, **object-oriented** programming language that is designed to have **as few implementation dependencies** as possible. It is a **general-purpose** programming language intended that compiled Java code can run on all platforms that support Java without the need to recompile. 
+It is a high-level, **class-based**, **object-oriented** programming language that is designed to have **as few implementation dependencies** as possible. It is a **general-purpose** programming language intended that compiled Java code can run on all platforms that support Java without the need to recompile.
 
-Pros:
+**Pros:**
 
-- Java is quickly gaining popularity among ML enthusiasts who come from a Java background. Using Java for machine learning removes the burden of learning another programming language like Python or R (<cite data-cite="Octave_for_ML_2021">Adhikari, 2021</cite>).
-- Like Python and R, Java also has several libraries for machine learning.
-- Java has plenty of third party libraries for machine learning. JavaML is an in-built machine learning library that provides a collection of machine learning algorithms implemented in Java (<cite data-cite="ML_bestLanguage_2021">Gupta, 2021</cite>).
-- Scalability is an important feature that every machine learning engineer must consider before beginning a project. Java makes application scaling easier for machine learning engineers.
-- [Java Virtual Machine (JVM)](https://en.wikipedia.org/wiki/Java_virtual_machine) is one of the best platforms for machine learning as engineers can write the same code on multiple platforms.
-- Java works best for speed-critical machine learning projects as it is fast executing.
+- Using Java for machine learning is especially popular among developers with a Java background, as it skips the need to learn another programming language such as Python or R.
+- Like Python and R, Java also has a variety of third-party machine learning libraries, e.g. **JavaML** is a built-in library with a collection of algorithms implemented in Java for ML.
+- Scalability is an important feature for many ML projects, which is well supported by Java.
+- [Java Virtual Machine (JVM)](https://en.wikipedia.org/wiki/Java_virtual_machine) enables the development of ML applications for multiple platforms.
+- Java is very well suited for speed-critical ML projects.
 
-Cons:
+**Cons:**
 
 - Java has a much lower community support in answering questions or giving guidance compared to Python - but a better one than R (see trend chart on popularity of programming languages).
 
+
 #### [GNU Octave](https://en.wikipedia.org/wiki/GNU_Octave)
 
-It is a high-level programming language that’s designed for numerical computations (<cite data-cite="Octave_for_ML_2021">Adhikari, 2021</cite>).
+It is a high-level programming language that’s **designed for numerical computations** (<cite data-cite="Octave_for_ML_2021">Adhikari, 2021</cite>).
 
-Pros:
+**Pros:**
 
-- You can quickly solve linear and non-linear numerical problems and perform other experiments numerically.
-- Octave is quite similar and mostly compatible with MATLAB. If a code runs on MATLAB without using any functions that Octave doesn’t have, it will also run on Octave. It even has several language features and syntax variety that MATLAB lacks.
+- With Octave, **linear and non-linear numerical problems** can be solved quickly.
+- Octave is syntactically very similar to [MATLAB](https://en.wikipedia.org/wiki/MATLAB) and mostly **compatible with MATLAB**. If no MATLAB-specific functions are used, the program code also runs in Octave. In addition, Octave even has some language functions and a syntax diversity that MATLAB lacks.
 
-Cons:
+**Cons:**
 
 - However, Octave is not a good programming language for machine learning in a production environment.
-- It doesn’t have the same functionality as other languages used for ML
-- It doesn’t have libraries and frameworks to speed up ML tasks.
+- It doesn’t have the same functionality as other languages used for ML, due to **missing libraries** and frameworks to speed up ML tasks.
 - It’s not as flexible, simple, and feature-rich as other programming languages.
-- Compared to Python, R and Java, Octave has almost no community support when it comes to answering questions or providing guidance (compare trend chart on popularity of programming languages).
+- Compared to Python, R and Java, Octave has almost **no community support** when it comes to answering questions or providing guidance (compare trend chart on popularity of programming languages).
 
 
-<!-- #endregion -->
+
+### Python packages
+
+The **mathematics** and the **numerical implementation** of various algorithms for data analysis and machine learning are usually **very complex** and often only comprehensible for ML experts (<cite data-cite="ML_bestLanguage_2021">Gupta, 2021</cite>). For a broad and praxis-oriented **usability**, better **reusability of code** and a successful **integration** into a concrete ML application, the functional relationships should be **encapsulated in libraries** (so-called "packages").
+
+From the user's point of view, when selecting libraries for the respective task, attention should be paid not only to functionality but also to the **comprehensibility of the user interface supported by good documentation**. Furthermore, the **size of the community** behind the library, consisting of active developers as well as technical experts for supporting the users in the event of questions or problems arising, should be decisive in the selection.
+
+Following trend chart shows how the [popularity of selected python packages](https://insights.stackoverflow.com/trends?tags=pandas%2Ctensorflow%2Cnumpy%2Ckeras%2Cscikit-learn%2Cmatplotlib) suitable for **data analysis**, **data visualization** and **machine learning** has evolved since 2008:
+
+![Trend chart shows popularity of selected python packages for data analysis, data visualization and machine learning (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=pandas%2Ctensorflow%2Cnumpy%2Ckeras%2Cscikit-learn%2Cmatplotlib), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_MLPythonPackages_wide.png)
+
+In the scientific research and systematic improvement of ML algorithms, a very dynamic progression can be observed in recent years. The latest scientific findings are regularly compared with each other in **"Machine Learning Competitions"** using known and **freely available datasets** (see benchmarking competitions of ML algorithms on platforms such as [https://www.kaggle.com/competitions](https://www.kaggle.com/competitions)). At the same time, the corresponding ML libraries are revised, extended and made available to general users by the scientific community. Therefore, this **scientific transfer** ideally takes place in the context of **open source developments**.
+
+Due to the superior advantages of **Python** (see previous section), a selection of **open source** packages available for this programming language usable for **data analysis**, **data visualization** and **machine learning** are presented in this section.
+
+
+#### Data analysis
+
+- [NumPy](https://numpy.org/devdocs/user/whatisnumpy.html) is a Python library that provides a **multidimensional array object**, various derived objects (such as masked arrays and **matrices**), and an assortment of routines for **fast operations on arrays**, including mathematical, logical, shape manipulation, sorting, selecting, discrete Fourier transformations, basic linear algebra, basic statistical operations, random simulation and much more.
+
+- [Pandas](https://pandas.pydata.org/docs/getting_started/overview.html) is a Python package providing fast, flexible and expressive data structures designed to work with **relational** or **labeled** datasets. It provides two primary data structures: `pandas.Series` (1-dimensional time series) and `pandas.DataFrame` (2-dimensional spreadsheets). The data structure `pandas.DataFrame` offers the same functionality as the structure `data.frame` known from the programming language R and much more.
+
+
+#### Data visualization
+
+- [Matplotlib](https://matplotlib.org) is a library for making **2D plots of arrays** in Python. Although it has its origins in **emulating the MATLAB graphics commands**, it is independent of MATLAB, and can be used in a Pythonic, object oriented way. Although Matplotlib is written primarily in pure Python, it makes heavy use of NumPy and other extension code to provide good performance even for large arrays (<cite data-cite="Hunter_matplotlib_2007">Hunter, 2007</cite>).
+
+- [Seaborn](https://seaborn.pydata.org/) is a library for making **statistical graphics** in Python. It builds **on top of matplotlib** and integrates closely with **pandas data structures**. Seaborn helps to explore and understand the data. Its plotting functions operate on **dataframes** and **arrays** containing whole datasets and internally perform the necessary semantic mapping and statistical aggregation to produce informative plots  (<cite data-cite="Waskom_seaborn_2021">Wascom, 2021</cite>).
+
+
+#### Machine learning
+
+- [Scikit-Learn](https://scikit-learn.org/stable/) is a **free software machine learning library** for **Python**. It features various **classification**, **regression** and **clustering** algorithms including **support-vector machines**, **random forests**, **gradient boosting** and **k-means**. It is designed to interoperate with the Python numerical and scientific libraries **NumPy** and **SciPy**. Scikit-Learn will be used  in the next steps of this of this getting started tutorial.
+
+- [TensorFlow](https://www.tensorflow.org) offers, among other things, the possibility to create and train **artificial neural networks (ANN)** based on **Google AI**. it is an open source software library for **machine learning** and **artificial intelligence**. It can be used across a range of tasks but has a particular focus on training and inference of **deep neural networks**. However, the installation and usage is very much beyond the scope of this beginner tutorial.
+
+- [Keras](https://keras.io/about/) is an open source software library for **deep learning** that provides a Python interface for **ANNs**. Keras acts as an **general interface** for several **backends**, such as **TensorFlow**, **Microsoft Cognitive Toolkit** and **Theano**. Keras will also not be used in this beginner tutorial.
+
 
 ### Programming IDEs
 
@@ -295,9 +329,9 @@ It is an IDE made by **Microsoft** for **Windows**, **Linux** and **macOS**. Fea
 
 #### [JupyterLab](https://en.wikipedia.org/wiki/Project_Jupyter#Jupyter_Notebook)
 
-It is the successor product for the web-based interactive environment **Jupyter Notebook**. Within this IDE, Jupyter Notebook documents can be created, edited, and executed interactively. The notebooks consist of **input and output cells**, each of which can contain program code, formatted text in **Markdown** format, and live plots generated from the code.
+It is the successor product for the web-based interactive environment **Jupyter Notebook**. Within this IDE, Jupyter Notebook documents can be created, edited, and executed interactively. The notebooks consist of **input and output cells**, each of which can contain program code, formatted text in **Markdown** format and live plots generated from the code.
 
-Jupyter is a new **open-source** alternative to the proprietary numerical software [Mathematica](https://en.wikipedia.org/wiki/Wolfram_Mathematica) from **Wolfram Research** that is well on the way to becoming a **standard for exchanging research results** (<cite data-cite="Scientific_Paper_obsolete_2018">Somers, 2018</cite>; <cite data-cite="Future_of_Research_Paper_2018">Romer, 2018</cite>).
+Jupyter is a new **open source** alternative to the proprietary numerical software [Mathematica](https://en.wikipedia.org/wiki/Wolfram_Mathematica) from **Wolfram Research** that is well on the way to becoming a **standard for exchanging research results** (<cite data-cite="Scientific_Paper_obsolete_2018">Somers, 2018</cite>; <cite data-cite="Future_of_Research_Paper_2018">Romer, 2018</cite>).
 
 Originally Jupyter was intended as an IDE for the programming languages **Julia** and **Python**. Besides that it is also possible to install other interpreter kernels, such as the **[IRkernel](https://irkernel.github.io/installation/)** for R. This can be interesting if the IDE **RStudio Desktop** is not available on the target platform used. For example, it is very difficult to install RStudio on the ARM-based embedded computer **Raspberry Pi** due to many technical dependencies. In contrast, using the R kernel in JupyterLab on the Raspberry Pi works very well and performant.
 
@@ -323,50 +357,12 @@ If the command line interpreter (CLI) starts instead of the graphical user inter
 
 
 
-<!-- #region -->
-### Python packages
 
-Following trend chart shows how the [popularity of selected python packages](https://insights.stackoverflow.com/trends?tags=pandas%2Ctensorflow%2Cnumpy%2Ckeras%2Cscikit-learn%2Cmatplotlib) suitable for **data analysis**, **data visualization** and **machine learning** has evolved since 2008:
-
-![Trend chart shows popularity of selected python packages for data analysis, data visualization and machine learning (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=pandas%2Ctensorflow%2Cnumpy%2Ckeras%2Cscikit-learn%2Cmatplotlib), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_MLPythonPackages_wide.png)
-
-
-
-#### Data analysis
-
-- `NumPy`
-
-- `Pandas`
-
-#### Data visualization
-
-- `matplotlib`
-
-- `seaborn`
-
-#### Machine learning
-
-- `Scikit-Learn`
-
-- `TensorFlow`: This package offers, among other things, the possibility to create and train **artificial neural networks (ANN)** based on Google AI. However, the installation and application is very much beyond the scope of this beginner tutorial. Further information can be found here: [https://www.tensorflow.org](https://www.tensorflow.org).
-
-- `Keras`
-
-
-- `CUDA Toolkit`
-
-
-
-<!-- #endregion -->
-
-<!-- #region -->
 ### Operating systems
 
-Following trend chart shows how the [popularity of selected operating systems](https://insights.stackoverflow.com/trends?tags=windows%2Clinux%2Cmacos) used by **data analysts** and **ML developers** has evolved since 2008:
+The **programming languages**, **Python libraries** and **development environments** presented in the previous sections are available for different operating systems, such as **Linux**, **Windows** and **macOS**. Therefore, the decision for or against an operating system may **depend on the technical background** of the ML developer.
 
-![Trend chart shows popularity of selected operating systems used by **data analysts** and **ML developers** (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=windows%2Clinux%2Cmacos), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_OperatingSystems_wide.png)
-
-These are general requirements to the operating system suitable for software development:
+Nevertheless, the following general **requirements** can be specified for an operating system **suitable for software development**:
 
 - **Openness**: availability of very good interface documentation and ideally open source software
 - **Self-administration**: user has full installation and configuration rights
@@ -375,33 +371,34 @@ These are general requirements to the operating system suitable for software dev
     - automated software installation and update management via central package management systems such as `apt`, `pip` or `conda`
     - possible integration of additional software libraries or external sensor hardware
 
-For security reasons, the IT departments of many employers massively restrict **installation and configuration rights**. Furthermore, very restrictive firewall settings severely **restrict** unfiltered and bidirectional **communication** in the local network and to the Internet. Automated **software installations** via package manager are often **not possible** or only possible with difficulty due to blocked protocols.
+Following trend chart shows how the [popularity of selected operating systems](https://insights.stackoverflow.com/trends?tags=windows%2Clinux%2Cmacos) used by **data analysts** and **ML developers** has evolved since 2008:
+
+![Trend chart shows popularity of selected operating systems used by **data analysts** and **ML developers** (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=windows%2Clinux%2Cmacos), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_OperatingSystems_wide.png)
+
+For **security** reasons, the **IT departments** of many employers massively **restrict installation and configuration rights**. Furthermore, very restrictive firewall settings severely **restrict** unfiltered and bidirectional **communication** in the local network and to the Internet. Automated **software installations** via package managers are often **not possible** or only possible with difficulty due to blocked protocols.
+
+To deal with these challenges, two possible solutions are presented below.
+
 
 #### Virtual machine
 
-To be able to install, configure and update the required software (IDEs, programming languages and ML packages) independently, the use of a [Virtual Machine (VM)](https://en.wikipedia.org/wiki/Virtual_machine) would be a possible alternative.
+To be able to install, configure and update the required software (IDEs, programming languages and ML packages) independently, the use of a [Virtual Machine (VM)](https://en.wikipedia.org/wiki/Virtual_machine) could be a possible alternative.
 
 However, there are also significant disadvantages here:
 
-- the **communication problem** is **not solved**, because the VM shares the access to the internet with the host system
-- the **access to 3D graphics cards** is usually **not possible** due to virtualization
-- only **low application performance**, as regular business computers are often only very sparsely equipped in terms of RAM and processor performance for cost reasons
+- The **communication problem** is **not solved**, because the VM shares the access to the internet with the host system.
+- The **access to 3D graphics cards** is usually **not possible** due to virtualization.
+- This solution has only **low application performance**, as regular business computers are often only very sparsely equipped in terms of RAM and processor performance for cost reasons.
+
 
 #### Separate lab computer
 
-All the problems mentioned in the previous section can only be solved satisfactorily by acquiring a **separate laboratory computer** with **its own internet access** (e.g. via an **LTE-capable WLAN router**).
+All the problems mentioned in the previous section can only be solved satisfactorily by acquiring a **separate laboratory computer** with **its own internet access** (e.g. via an **LTE-capable Wifi router**).
 
 This laboratory computer can be configured according to your own requirements, depending on the available budget in terms of hardware and software. 
 
-However, it should be noted here that the IT departments of many employers do not offer any support. You are usually responsible for installation, maintenance and troubleshooting yourself!
+However, it should be noted here that the **IT departments** of many employers do **not offer any support** for this solution. You are usually responsible for software installation, maintenance and troubleshooting yourself!
 
-#### Linux
-
-
-#### Windows
-
-
-<!-- #endregion -->
 
 ## Community Support
 
@@ -410,7 +407,7 @@ When selecting and deciding for or against the use of certain hardware and softw
 The author's many years of development experience show that the technically best hardware or software component is worthless if you are (apparently) the only user. This impression arises either because the component is actually very exotic and has only a few users or because the development takes place "behind closed doors", i.e. in the company's internal **closed source** domain.
 
 Without the support of an active community, you are (almost) on your own when it comes to questions or problems. Progress in the development and maintenance of an AI application is therefore very difficult!
-The clear recommendation is therefore: Go for the (technically, price-wise) **second-best alternative** with an even bigger **community**.
+The clear recommendation is therefore: Go for the (technically, price-wise, etc.) **second-best alternative** but with an even bigger **community**.
 
 <!-- #region tags=[] -->
 ## Import Python packages
