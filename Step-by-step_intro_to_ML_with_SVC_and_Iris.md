@@ -177,7 +177,7 @@ Here are some links for further reading:
 - [Does TensorFlow Support OpenCL?](https://indiantechwarrior.com/does-tensorflow-support-opencl/) (<cite data-cite="TF_OpenCL_2022">IndianTechWarrior, 2022</cite>)
 - [TensorFlow for OpenCL using SYCL](https://www.codeplay.com/portal/blogs/2016/06/01/tensorflow-for-opencl-using-sycl.html) (<cite data-cite="TF_OpenCL_SYCL_2016">Iwanski, 2016</cite>)
 
-<!-- #region tags=["TODO_Step_0"] -->
+<!-- #region tags=[] -->
 ## Software
 
 <!-- #endregion -->
