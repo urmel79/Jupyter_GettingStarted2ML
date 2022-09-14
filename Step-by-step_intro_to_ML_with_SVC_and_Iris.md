@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -298,7 +298,7 @@ Due to the superior advantages of **Python** (see previous section), a selection
 
 - [Matplotlib](https://matplotlib.org) is a library for making **2D plots of arrays** in Python. Although it has its origins in **emulating the MATLAB graphics commands**, it is independent of MATLAB, and can be used in a Pythonic, object oriented way. Although Matplotlib is written primarily in pure Python, it makes heavy use of NumPy and other extension code to provide good performance even for large arrays (<cite data-cite="Hunter_matplotlib_2007">Hunter, 2007</cite>).
 
-- [Seaborn](https://seaborn.pydata.org/) is a library for making **statistical graphics** in Python. It builds **on top of matplotlib** and integrates closely with **pandas data structures**. Seaborn helps to explore and understand the data. Its plotting functions operate on **dataframes** and **arrays** containing whole datasets and internally perform the necessary semantic mapping and statistical aggregation to produce informative plots  (<cite data-cite="Waskom_seaborn_2021">Wascom, 2021</cite>).
+- [Seaborn](https://seaborn.pydata.org/) is a library for making **statistical graphics** in Python. It builds **on top of matplotlib** and integrates closely with **pandas data structures**. Seaborn helps to explore and understand the data. Its plotting functions operate on **dataframes** and **arrays** containing whole datasets and internally perform the necessary semantic mapping and statistical aggregation to produce informative plots (<cite data-cite="Waskom_seaborn_2021">Wascom, 2021</cite>).
 
 
 #### Machine learning
@@ -356,6 +356,46 @@ If the command line interpreter (CLI) starts instead of the graphical user inter
 ![Screenshot of IDE *GNU Octave* (source: Kasper, license: CC BY-SA)](images/Screenshot_GNU_Octave.png)
 
 
+
+
+### Cloud-hosted IDEs
+
+A very interesting alternative to own, local and for the ML application adequately powerful and thus price-intensive hardware resources can be **cloud-hosted Jupyter environments**. These offer features such as cloud storage, model training and deployment capabilities, version control, and much more.
+
+Since the entire hardware and backend configurations are hosted in the cloud by the various providers, the user can concentrate on creating his ML application. The cloud provider takes care of purchasing the hardware and the sometimes time-consuming installation and configuration of the programming environment (<cite data-cite="Colab_Alternatives_2021">Rapp, 2021</cite>).
+
+The cloud environments briefly presented here can be used freely after registration - on condition that own projects remain accessible to other researchers. Even in the free variant, GPUs and [Tensor Processing Units (TPUs)](https://en.wikipedia.org/wiki/Tensor_Processing_Unit) can be selected in the project for hardware acceleration. This is particularly interesting for training deep neural networks.
+
+In the premium versions, for example, more powerful GPUs and TPUs as well as more memory can be accessed. Additionally, there is the option to keep the projects private and thus prevent accessibility for other researchers.
+
+However, with all the advantages, **data protection aspects** should definitely be considered. Before using a cloud environment, it should be clarified whether and to what extent, for example, **own datasets with personal data** may be uploaded to the cloud projects. If there are uncertainties here, local and self-hosted ML resources should be used in any case!
+
+
+#### [Google Colaboratory](https://colab.research.google.com/)
+
+In recent years, **Google Colaboratory** (**Colab** for short) has become a popular choice for cloud-based Jupyter notebooks. Thanks to its free-to-use GPUs and cloud storage linked to Google Drive, it is used by many users in the ML and data science community (<cite data-cite="Colab_Alternatives_2021">Rapp, 2021</cite>).
+
+Due to the similarity of the web interface to Jupyter, Python developers can write and run arbitrary Python program codes. Colab is a cloud-hosted version of Jupyter Notebook that provides free access to compute infrastructure such as memory, storage, processing capacity, GPUs and TPUs (<cite data-cite="Colab_about_2022">Das, 2022</cite>).
+
+Furthermore, commonly used libraries such as **PyTorch**, **TensorFlow** and **Keras** can be used to develop deep learning applications (<cite data-cite="Colab_5_Alternatives_2021">Misal, 2021</cite>).
+
+![Screenshot of IDE *Google Colaboratory* (source: Kasper, license: CC BY-SA)](images/Screenshot_google_Colab.png)
+
+
+#### [Google Kaggle](https://www.kaggle.com)
+
+This is another Google product with similar functionality to Colab. Like Colab, **Kaggle** also offers free browser-based Jupyter notebooks and the use of GPUs. Kaggle also has many **Python packages pre-installed**, which lowers the barrier to entry for many users (<cite data-cite="Colab_Alternatives_2021">Rapp, 2021</cite>).
+
+Kaggle and Colab have a number of similarities - among other things, most of the keyboard shortcuts are the same as in Jupyter notebooks. Furthermore, many datasets can be imported. Kaggle has a large user community to learn and improve Data Science skills (<cite data-cite="Colab_5_Alternatives_2021">Misal, 2021</cite>).
+
+![Screenshot of IDE *Google Kaggle* (source: Kasper, license: CC BY-SA)](images/Screenshot_google_Kaggle.png)
+
+
+#### [Paperspace Gradient](https://www.paperspace.com/gradient/notebooks)
+
+Unlike Colab, **Paperspace Gradient** can implement entire **ML workflows** from data pre-processing to training models to deploying the trained models. Furthermore, Gradient has features like a CLI tool, more control over the GPU, and simpler data management services. Due to the variety of functions, one must first become familiar with the operation of the significantly more complex user interface (<cite data-cite="Free_GPUs_for_ML_2020">Siow, 2020</cite>).
+
+![Screenshot of IDE *Paperspace Gradient* (source: Kasper, license: CC BY-SA)](images/Screenshot_Paperspace_Gradient.png)
 
 
 ### Operating systems
