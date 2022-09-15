@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -139,6 +139,17 @@ The following **steps of the systematic ML process** are covered in the next mai
 # STEP 0: Select hardware and software suitable for ML
 
 In this step, specific guidance is provided for selecting hardware and software suitable for machine learning.
+<!-- #endregion -->
+
+## Community Support
+
+When selecting and deciding for or against the use of certain hardware and software components, in addition to purely technical or financial characteristics, significant attention should be paid to broad **support from a well-networked community**. This community should consist of a balanced share of **manufacturers** of hardware components (e.g. GPU suppliers, manufacturers of embedded systems or sensors), **software developers** ideally from the **open source** ecosystem, and an active **user community** (e.g. for reporting hardware and software bugs or providing help in forums).
+
+The author's many years of development experience show that the technically best hardware or software component is worthless if you are (apparently) the only user. This impression arises either because the component is actually very exotic and has only a few users or because the development takes place "behind closed doors", i.e. in the company's internal **closed source** domain.
+
+Without the support of an active community, you are (almost) on your own when it comes to questions or problems. Progress in the development and maintenance of an AI application is therefore very difficult!
+The clear recommendation is therefore: Go for the (technically, price-wise, etc.) **second-best alternative** but with an even bigger **community**.
+
 
 ## Hardware
 
@@ -161,7 +172,7 @@ Regarding the **code execution performance** of both alternatives in direct comp
 It is therefore recommended that the decision for **CUDA or OpenCL** should depend on the extent to which most of the applications employed and the GPU hardware used are better supported by one of the two approaches in each case.
 
 The **state of the art** should be also taken into account when selecting the rest of the training system's hardware. Otherwise, seemingly (price-wise) inexpensive components could very quickly nullify the speed advantage of the GPU. In addition to a mainboard suitable for one (or more) high-performance graphics cards with a correspondingly powerful BUS system (e.g. PCI Express), the RAM should be as large as possible (min. 64 GB) and fast. A large RAM allows, for example, the **virtualization** of several parallel systems in the form of **[virtual machines](https://en.wikipedia.org/wiki/Virtual_machine)** and thus a significantly better utilization of the available computing capacity (<cite data-cite="Wiki_VM">Wikipedia: VM</cite>). The permanent memory should also be as large and fast as possible - high-performance **solid-state drives (SSDs)** should be clearly preferred over classic hard disks (HDDs).
-<!-- #endregion -->
+
 
 ### Application system
 
@@ -197,7 +208,7 @@ On the other hand, when deciding for or against a programming language, it shoul
 
 Following trend chart shows how the [popularity of selected programming languages](https://insights.stackoverflow.com/trends?tags=python%2Cr%2Coctave%2Cjava%2Cc%2B%2B) suitable for machine learning has evolved since 2008:
 
-![Trend chart shows popularity of programming languages for ML (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=python%2Cr%2Coctave%2Cjava%2Cc%2B%2B), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_ProgrammingLanguages_wide.png)
+![Trend chart shows popularity of programming languages for ML (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=python%2Cr%2Coctave%2Cjava%2Cc%2B%2B), license: CC BY-SA 4.0)](images/2022-09-07_StackOverflowTrends_ProgrammingLanguages_wide.png)
 
 <!-- #region tags=[] -->
 #### [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
@@ -280,7 +291,7 @@ From the user's point of view, when selecting libraries for the respective task,
 
 Following trend chart shows how the [popularity of selected python packages](https://insights.stackoverflow.com/trends?tags=pandas%2Ctensorflow%2Cnumpy%2Ckeras%2Cscikit-learn%2Cmatplotlib) suitable for **data analysis**, **data visualization** and **machine learning** has evolved since 2008:
 
-![Trend chart shows popularity of selected python packages for data analysis, data visualization and machine learning (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=pandas%2Ctensorflow%2Cnumpy%2Ckeras%2Cscikit-learn%2Cmatplotlib), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_MLPythonPackages_wide.png)
+![Trend chart shows popularity of selected python packages for data analysis, data visualization and machine learning (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=pandas%2Ctensorflow%2Cnumpy%2Ckeras%2Cscikit-learn%2Cmatplotlib), license: CC BY-SA 4.0)](images/2022-09-07_StackOverflowTrends_MLPythonPackages_wide.png)
 
 In the scientific research and systematic improvement of ML algorithms, a very dynamic progression can be observed in recent years. The latest scientific findings are regularly compared with each other in **"Machine Learning Competitions"** using known and **freely available datasets** (see benchmarking competitions of ML algorithms on platforms such as [https://www.kaggle.com/competitions](https://www.kaggle.com/competitions)). At the same time, the corresponding ML libraries are revised, extended and made available to general users by the scientific community. Therefore, this **scientific transfer** ideally takes place in the context of **open source developments**.
 
@@ -309,148 +320,8 @@ Due to the superior advantages of **Python** (see previous section), a selection
 
 - [Keras](https://keras.io/about/) is an open source software library for **deep learning** that provides a Python interface for **ANNs**. Keras acts as an **general interface** for several **backends**, such as **TensorFlow**, **Microsoft Cognitive Toolkit** and **Theano**. Keras will also not be used in this beginner tutorial.
 
-
-### Programming IDEs
-
-**[Integrated development environments (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment)** are software applications that provide comprehensive features to computer programmers for **software development**. An IDE typically consists of a **source code editor**, automated **build tools** for compiling or an **interpreter** for scripting languages, a front end to the **version control system** like e.g. [Git](https://en.wikipedia.org/wiki/Git) and a **debugger** (<cite data-cite="Wiki_IDE">Wikipedia: IDE</cite>).
-
-Following trend chart shows how the [popularity of selected IDEs](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code) suitable for ML programming languages has evolved since 2008:
-
-![Trend chart shows popularity of selected IDEs for ML programming languages (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_IDEs_wide.png)
-
-
-
-#### [Visual Studio Code (VSC)](https://en.wikipedia.org/wiki/Visual_Studio_Code)
-
-It is an IDE made by **Microsoft** for **Windows**, **Linux** and **macOS**. Features include support for **debugging**, **syntax highlighting** for many different programming languages, intelligent **code completion** and embedded **version control system** Git. Users can change the theme, keyboard shortcuts, preferences, and install **extensions** from a huge repository that add additional functionality. Despite of its platform independence, VSC is **not open source** - in fact it is released under a traditional [Microsoft product license](https://code.visualstudio.com/License/).
-
-![Screenshot of IDE *Visual Studio Code* (source: Kasper, license: CC BY-SA)](images/Screenshot_VSC.png)
-
-
-#### [JupyterLab](https://en.wikipedia.org/wiki/Project_Jupyter#Jupyter_Notebook)
-
-It is the successor product for the web-based interactive environment **Jupyter Notebook**. Within this IDE, Jupyter Notebook documents can be created, edited, and executed interactively. The notebooks consist of **input and output cells**, each of which can contain program code, formatted text in **Markdown** format and live plots generated from the code.
-
-Jupyter is a new **open source** alternative to the proprietary numerical software [Mathematica](https://en.wikipedia.org/wiki/Wolfram_Mathematica) from **Wolfram Research** that is well on the way to becoming a **standard for exchanging research results** (<cite data-cite="Scientific_Paper_obsolete_2018">Somers, 2018</cite>; <cite data-cite="Future_of_Research_Paper_2018">Romer, 2018</cite>).
-
-Originally Jupyter was intended as an IDE for the programming languages **Julia** and **Python**. Besides that it is also possible to install other interpreter kernels, such as the **[IRkernel](https://irkernel.github.io/installation/)** for R. This can be interesting if the IDE **RStudio Desktop** is not available on the target platform used. For example, it is very difficult to install RStudio on the ARM-based embedded computer **Raspberry Pi** due to many technical dependencies. In contrast, using the R kernel in JupyterLab on the Raspberry Pi works very well and performant.
-
-![Screenshot of IDE *JupyterLab* (source: Kasper, license: CC BY-SA)](images/Screenshot_JupyterLab.png)
-
-
-#### [RStudio](https://en.wikipedia.org/wiki/RStudio)
-
-It is an IDE and graphical user interface for the statistical programming language **R** offered by **RStudio, Inc.** and is made available in two formats. **RStudio Desktop** is a regular desktop application while **RStudio Server** runs on a remote server and allows accessing RStudio using a web browser. Both software products are available in **open source** and **commercial** versions, each with different functionalities.
-
-The program editor in RStudio allows **autocompletion**, **automatic indentation**, **syntax highlighting**, **code folding** as well as **integrated help** and information about functions and objects in the working environment. There is the ability to view and edit the contents of variables and datasets. To facilitate collaboration, scripts, data and other files can be combined into projects (.Rproj) and versioned with **Git**.
-
-![Screenshot of IDE *RStudio* (source: Kasper, license: CC BY-SA)](images/Screenshot_RStudio.png)
-
-
-#### [GNU Octave (GUI)](https://en.wikipedia.org/wiki/GNU_Octave#User_interfaces)
-
-It is the official graphical user interface for the **GNU Octave** programming language and is available for Windows, macOS, Linux and BSD under **Open Source** licensing.
-
-If the command line interpreter (CLI) starts instead of the graphical user interface (GUI) when `octave` is called, this can be forced via the `octave --gui` option.
-
-![Screenshot of IDE *GNU Octave* (source: Kasper, license: CC BY-SA)](images/Screenshot_GNU_Octave.png)
-
-
-
-
-### Cloud-hosted IDEs
-
-A very interesting alternative to own, local and for the ML application adequately powerful and thus price-intensive hardware resources can be **cloud-hosted Jupyter environments**. These offer features such as cloud storage, model training and deployment capabilities, version control, and much more.
-
-Since the entire hardware and backend configurations are hosted in the cloud by the various providers, the user can concentrate on creating his ML application. The cloud provider takes care of purchasing the hardware and the sometimes time-consuming installation and configuration of the programming environment (<cite data-cite="Colab_Alternatives_2021">Rapp, 2021</cite>).
-
-The cloud environments briefly presented here can be used freely after registration - on condition that own projects remain accessible to other researchers. Even in the free variant, GPUs and [Tensor Processing Units (TPUs)](https://en.wikipedia.org/wiki/Tensor_Processing_Unit) can be selected in the project for hardware acceleration. This is particularly interesting for training deep neural networks.
-
-In the premium versions, for example, more powerful GPUs and TPUs as well as more memory can be accessed. Additionally, there is the option to keep the projects private and thus prevent accessibility for other researchers.
-
-However, with all the advantages, **data protection aspects** should definitely be considered. Before using a cloud environment, it should be clarified whether and to what extent, for example, **own datasets with personal data** may be uploaded to the cloud projects. If there are uncertainties here, local and self-hosted ML resources should be used in any case!
-
-
-#### [Google Colaboratory](https://colab.research.google.com/)
-
-In recent years, **Google Colaboratory** (**Colab** for short) has become a popular choice for cloud-based Jupyter notebooks. Thanks to its free-to-use GPUs and cloud storage linked to Google Drive, it is used by many users in the ML and data science community (<cite data-cite="Colab_Alternatives_2021">Rapp, 2021</cite>).
-
-Due to the similarity of the web interface to Jupyter, Python developers can write and run arbitrary Python program codes. Colab is a cloud-hosted version of Jupyter Notebook that provides free access to compute infrastructure such as memory, storage, processing capacity, GPUs and TPUs (<cite data-cite="Colab_about_2022">Das, 2022</cite>).
-
-Furthermore, commonly used libraries such as **PyTorch**, **TensorFlow** and **Keras** can be used to develop deep learning applications (<cite data-cite="Colab_5_Alternatives_2021">Misal, 2021</cite>).
-
-![Screenshot of IDE *Google Colaboratory* (source: Kasper, license: CC BY-SA)](images/Screenshot_google_Colab.png)
-
-
-#### [Google Kaggle](https://www.kaggle.com)
-
-This is another Google product with similar functionality to Colab. Like Colab, **Kaggle** also offers free browser-based Jupyter notebooks and the use of GPUs. Kaggle also has many **Python packages pre-installed**, which lowers the barrier to entry for many users (<cite data-cite="Colab_Alternatives_2021">Rapp, 2021</cite>).
-
-Kaggle and Colab have a number of similarities - among other things, most of the keyboard shortcuts are the same as in Jupyter notebooks. Furthermore, many datasets can be imported. Kaggle has a large user community to learn and improve Data Science skills (<cite data-cite="Colab_5_Alternatives_2021">Misal, 2021</cite>).
-
-![Screenshot of IDE *Google Kaggle* (source: Kasper, license: CC BY-SA)](images/Screenshot_google_Kaggle.png)
-
-
-#### [Paperspace Gradient](https://www.paperspace.com/gradient/notebooks)
-
-Unlike Colab, **Paperspace Gradient** can implement entire **ML workflows** from data pre-processing to training models to deploying the trained models. Furthermore, Gradient has features like a CLI tool, more control over the GPU, and simpler data management services. Due to the variety of functions, one must first become familiar with the operation of the significantly more complex user interface (<cite data-cite="Free_GPUs_for_ML_2020">Siow, 2020</cite>).
-
-![Screenshot of IDE *Paperspace Gradient* (source: Kasper, license: CC BY-SA)](images/Screenshot_Paperspace_Gradient.png)
-
-
-### Operating systems
-
-The **programming languages**, **Python libraries** and **development environments** presented in the previous sections are available for different operating systems, such as **Linux**, **Windows** and **macOS**. Therefore, the decision for or against an operating system may **depend on the technical background** of the ML developer.
-
-Nevertheless, the following general **requirements** can be specified for an operating system **suitable for software development**:
-
-- **Openness**: availability of very good interface documentation and ideally open source software
-- **Self-administration**: user has full installation and configuration rights
-- **Communication capability**: unfiltered and bidirectional communication in the local network as well as to the Internet on all necessary protocols possible
-- **Extensibility**:
-    - automated software installation and update management via central package management systems such as `apt`, `pip` or `conda`
-    - possible integration of additional software libraries or external sensor hardware
-
-Following trend chart shows how the [popularity of selected operating systems](https://insights.stackoverflow.com/trends?tags=windows%2Clinux%2Cmacos) used by **data analysts** and **ML developers** has evolved since 2008:
-
-![Trend chart shows popularity of selected operating systems used by **data analysts** and **ML developers** (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=windows%2Clinux%2Cmacos), license: CC BY-SA)](images/2022-09-07_StackOverflowTrends_OperatingSystems_wide.png)
-
-For **security** reasons, the **IT departments** of many employers massively **restrict installation and configuration rights**. Furthermore, very restrictive firewall settings severely **restrict** unfiltered and bidirectional **communication** in the local network and to the Internet. Automated **software installations** via package managers are often **not possible** or only possible with difficulty due to blocked protocols.
-
-To deal with these challenges, two possible solutions are presented below.
-
-
-#### Virtual machine
-
-To be able to install, configure and update the required software (IDEs, programming languages and ML packages) independently, the use of a [Virtual Machine (VM)](https://en.wikipedia.org/wiki/Virtual_machine) could be a possible alternative.
-
-However, there are also significant disadvantages here:
-
-- The **communication problem** is **not solved**, because the VM shares the access to the internet with the host system.
-- The **access to 3D graphics cards** is usually **not possible** due to virtualization.
-- This solution has only **low application performance**, as regular business computers are often only very sparsely equipped in terms of RAM and processor performance for cost reasons.
-
-
-#### Separate lab computer
-
-All the problems mentioned in the previous section can only be solved satisfactorily by acquiring a **separate laboratory computer** with **its own internet access** (e.g. via an **LTE-capable Wifi router**).
-
-This laboratory computer can be configured according to your own requirements, depending on the available budget in terms of hardware and software. 
-
-However, it should be noted here that the **IT departments** of many employers do **not offer any support** for this solution. You are usually responsible for software installation, maintenance and troubleshooting yourself!
-
-
-## Community Support
-
-When selecting and deciding for or against the use of certain hardware and software components, in addition to purely technical or financial characteristics, significant attention should be paid to broad **support from a well-networked community**. This community should consist of a balanced share of **manufacturers** of hardware components (e.g. GPU suppliers, manufacturers of embedded systems or sensors), **software developers** ideally from the **open source** ecosystem, and an active **user community** (e.g. for reporting hardware and software bugs or providing help in forums).
-
-The author's many years of development experience show that the technically best hardware or software component is worthless if you are (apparently) the only user. This impression arises either because the component is actually very exotic and has only a few users or because the development takes place "behind closed doors", i.e. in the company's internal **closed source** domain.
-
-Without the support of an active community, you are (almost) on your own when it comes to questions or problems. Progress in the development and maintenance of an AI application is therefore very difficult!
-The clear recommendation is therefore: Go for the (technically, price-wise, etc.) **second-best alternative** but with an even bigger **community**.
-
 <!-- #region tags=[] -->
-## Import Python packages
+### Import Python packages globally
 
 The aim of this section is to import globally used Python packages for data analysis and ML, such as `Pandas`, `NumPY`, `matplotlib` and `Scikit-Learn`.
 <!-- #endregion -->
@@ -467,6 +338,136 @@ from sklearn import svm, metrics
 import seaborn as sns
 %matplotlib inline
 ```
+
+### Programming IDEs
+
+**[Integrated development environments (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment)** are software applications that provide comprehensive features to computer programmers for **software development**. An IDE typically consists of a **source code editor**, automated **build tools** for compiling or an **interpreter** for scripting languages, a front end to the **version control system** like e.g. [Git](https://en.wikipedia.org/wiki/Git) and a **debugger** (<cite data-cite="Wiki_IDE">Wikipedia: IDE</cite>).
+
+Following trend chart shows how the [popularity of selected IDEs](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code) suitable for ML programming languages has evolved since 2008:
+
+![Trend chart shows popularity of selected IDEs for ML programming languages (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code), license: CC BY-SA 4.0)](images/2022-09-07_StackOverflowTrends_IDEs_wide.png)
+
+
+
+#### [Visual Studio Code (VSC)](https://en.wikipedia.org/wiki/Visual_Studio_Code)
+
+It is an IDE made by **Microsoft** for **Windows**, **Linux** and **macOS**. Features include support for **debugging**, **syntax highlighting** for many different programming languages, intelligent **code completion** and embedded **version control system** Git. Users can change the theme, keyboard shortcuts, preferences, and install **extensions** from a huge repository that add additional functionality. Despite of its platform independence, VSC is **not open source** - in fact it is released under a traditional [Microsoft product license](https://code.visualstudio.com/License/).
+
+![Screenshot of IDE *Visual Studio Code* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_VSC.png)
+
+
+#### [JupyterLab](https://en.wikipedia.org/wiki/Project_Jupyter#Jupyter_Notebook)
+
+It is the successor product for the web-based interactive environment **Jupyter Notebook**. Within this IDE, Jupyter Notebook documents can be created, edited, and executed interactively. The notebooks consist of **input and output cells**, each of which can contain program code, formatted text in **Markdown** format and live plots generated from the code.
+
+Jupyter is a new **open source** alternative to the proprietary numerical software [Mathematica](https://en.wikipedia.org/wiki/Wolfram_Mathematica) from **Wolfram Research** that is well on the way to becoming a **standard for exchanging research results** (<cite data-cite="Scientific_Paper_obsolete_2018">Somers, 2018</cite>; <cite data-cite="Future_of_Research_Paper_2018">Romer, 2018</cite>).
+
+Originally Jupyter was intended as an IDE for the programming languages **Julia** and **Python**. Besides that it is also possible to install other interpreter kernels, such as the **[IRkernel](https://irkernel.github.io/installation/)** for R. This can be interesting if the IDE **RStudio Desktop** is not available on the target platform used. For example, it is very difficult to install RStudio on the ARM-based embedded computer **Raspberry Pi** due to many technical dependencies. In contrast, using the R kernel in JupyterLab on the Raspberry Pi works very well and performant.
+
+![Screenshot of IDE *JupyterLab* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_JupyterLab.png)
+
+
+#### [RStudio](https://en.wikipedia.org/wiki/RStudio)
+
+It is an IDE and graphical user interface for the statistical programming language **R** offered by **RStudio, Inc.** and is made available in two formats. **RStudio Desktop** is a regular desktop application while **RStudio Server** runs on a remote server and allows accessing RStudio using a web browser. Both software products are available in **open source** and **commercial** versions, each with different functionalities.
+
+The program editor in RStudio allows **autocompletion**, **automatic indentation**, **syntax highlighting**, **code folding** as well as **integrated help** and information about functions and objects in the working environment. There is the ability to view and edit the contents of variables and datasets. To facilitate collaboration, scripts, data and other files can be combined into projects (.Rproj) and versioned with **Git**.
+
+![Screenshot of IDE *RStudio* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_RStudio.png)
+
+
+#### [GNU Octave (GUI)](https://en.wikipedia.org/wiki/GNU_Octave#User_interfaces)
+
+It is the official graphical user interface for the **GNU Octave** programming language and is available for Windows, macOS, Linux and BSD under **Open Source** licensing.
+
+If the command line interpreter (CLI) starts instead of the graphical user interface (GUI) when `octave` is called, this can be forced via the `octave --gui` option.
+
+![Screenshot of IDE *GNU Octave* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_GNU_Octave.png)
+
+
+
+
+### Cloud-hosted IDEs
+
+A very interesting alternative to own, local and for the ML application adequately powerful and thus price-intensive hardware resources can be **cloud-hosted Jupyter environments**. These offer features such as cloud storage, model training and deployment capabilities, version control and much more.
+
+Since the entire hardware and backend configurations are hosted in the cloud by the various providers, the user can concentrate on creating his ML application. The cloud provider takes care of purchasing the hardware and the sometimes time-consuming installation and configuration of the programming environment (<cite data-cite="Colab_Alternatives_2021">Rapp, 2021</cite>).
+
+The cloud environments briefly presented here can be used freely after registration - on condition that own projects remain accessible to other researchers. Even in the free variant, GPUs and [Tensor Processing Units (TPUs)](https://en.wikipedia.org/wiki/Tensor_Processing_Unit) can be selected in the project for hardware acceleration. This is particularly interesting for training deep neural networks.
+
+In the premium versions, for example, more powerful GPUs and TPUs as well as more memory can be accessed. Additionally, there is the option to keep the projects private and thus prevent accessibility for other researchers.
+
+However, with all the advantages, **data protection aspects** should definitely be considered. Before using a cloud environment, it should be clarified whether and to what extent, for example, **own datasets with personal data** may be uploaded to the cloud projects. If there are uncertainties here, local and self-hosted ML resources should be used in any case!
+
+
+#### [Google Colaboratory](https://colab.research.google.com/)
+
+In recent years, **Google Colaboratory** (**Colab** for short) has become a popular choice for cloud-based Jupyter notebooks. Thanks to its free-to-use GPUs and cloud storage linked to Google Drive, it is used by many researchers in the ML and data science community (<cite data-cite="Colab_Alternatives_2021">Rapp, 2021</cite>).
+
+Due to the similarity of the web interface to Jupyter, Python developers can write and run arbitrary Python program codes. Colab is a cloud-hosted version of Jupyter Notebook that provides free access to compute infrastructure such as memory, storage, processing capacity, GPUs and TPUs (<cite data-cite="Colab_about_2022">Das, 2022</cite>).
+
+Furthermore, commonly used libraries such as **PyTorch**, **TensorFlow** and **Keras** can be used to develop deep learning applications (<cite data-cite="Colab_5_Alternatives_2021">Misal, 2021</cite>).
+
+![Screenshot of IDE *Google Colaboratory* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_google_Colab.png)
+
+
+#### [Google Kaggle](https://www.kaggle.com)
+
+This is another Google product with similar functionality to Colab. Like Colab, **Kaggle** also offers free browser-based Jupyter notebooks and the use of GPUs. Kaggle also has many **Python packages pre-installed**, which lowers the barrier to entry for many users (<cite data-cite="Colab_Alternatives_2021">Rapp, 2021</cite>).
+
+Kaggle and Colab have a number of similarities - among other things, most of the keyboard shortcuts are the same as in Jupyter notebooks. Furthermore, many datasets can be imported. Kaggle has a large user community to learn and improve data science skills (<cite data-cite="Colab_5_Alternatives_2021">Misal, 2021</cite>).
+
+![Screenshot of IDE *Google Kaggle* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_google_Kaggle.png)
+
+
+#### [Paperspace Gradient](https://www.paperspace.com/gradient/notebooks)
+
+Unlike Colab, **Paperspace Gradient** can implement entire **ML workflows** from data pre-processing to training models to deploying the trained models. Furthermore, Gradient has features like a CLI tool, more control over the GPU  and simpler data management services. Due to the variety of functions, one must first become familiar with the operation of the significantly more complex user interface (<cite data-cite="Free_GPUs_for_ML_2020">Siow, 2020</cite>).
+
+![Screenshot of IDE *Paperspace Gradient* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_Paperspace_Gradient.png)
+
+
+### Operating systems
+
+The **programming languages**, **Python libraries** and **development environments** presented in the previous sections are available for different operating systems, such as **Linux**, **Windows** and **macOS**. Therefore, the decision for or against an operating system may **depend on the technical background** of the ML developer.
+
+Nevertheless, the following general **requirements** can be specified for an operating system **suitable for software development**:
+
+- **Openness**: availability of very good interface documentation and ideally open source software
+- **Self-administration**: user has full installation and configuration rights
+- **Communication capability**: unfiltered and bidirectional communication in the local network as well as to the internet on all necessary protocols possible
+- **Extensibility**:
+    - automated software installation and update management via central package management systems such as `apt`, `pip` or `conda`
+    - possible integration of additional software libraries or external sensor hardware
+
+Following trend chart shows how the [popularity of selected operating systems](https://insights.stackoverflow.com/trends?tags=windows%2Clinux%2Cmacos) used by **data analysts** and **ML developers** has evolved since 2008:
+
+![Trend chart shows popularity of selected operating systems used by **data analysts** and **ML developers** (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=windows%2Clinux%2Cmacos), license: CC BY-SA 4.0)](images/2022-09-07_StackOverflowTrends_OperatingSystems_wide.png)
+
+For **security** reasons, the **IT departments** of many employers massively **restrict installation and configuration rights**. Furthermore, very restrictive firewall settings severely **restrict** unfiltered and bidirectional **communication** in the local network and to the internet. Automated **software installations** via package managers are often **not possible** or only possible with difficulty due to blocked protocols.
+
+To deal with these challenges, two possible solutions are presented below.
+
+
+#### Virtual machine
+
+To be able to install, configure and update the required software (IDEs, programming languages and ML packages) independently, the use of a [Virtual Machine (VM)](https://en.wikipedia.org/wiki/Virtual_machine) could be a possible alternative.
+
+However, there are also significant disadvantages here:
+
+- The **communication problem** is **not solved**, because the VM shares the access to the internet with the host system.
+- The **access to 3D graphics cards** is usually **not possible** due to virtualization.
+- This solution has only **low application performance**, as regular business computers are often only very sparsely equipped in terms of RAM and processor performance for cost reasons.
+
+<!-- #region tags=[] -->
+#### Separate lab computer
+
+All the problems mentioned in the previous section can only be solved satisfactorily by acquiring a **separate laboratory computer** with **its own internet access** (e.g. via an **LTE-capable wifi router**).
+
+This laboratory computer can be configured according to your own requirements, depending on the available budget in terms of hardware and software. 
+
+However, it should be noted here that the **IT departments** of many employers do **not offer any support** for this solution. You are usually responsible for software installation, maintenance and troubleshooting yourself!
+<!-- #endregion -->
 
 <!-- #region tags=[] -->
 # STEP 1: Acquire the ML dataset
@@ -541,7 +542,7 @@ Here are pictures of the three different Iris species (*Iris setosa*, *Iris virg
 <!-- #endregion -->
 
 <!-- #region caption="" label="fig:Iris_setosa_virginica_versicolor" tags=[] widefigure=true -->
-![Left: *Iris setosa* (source: [Irissetosa1.jpg](https://commons.wikimedia.org/wiki/File:Irissetosa1.jpg), license: public domain); middle: *Iris versicolor* (source: [Iris_versicolor_3.jpg](https://en.wikipedia.org/wiki/File:Iris_versicolor_3.jpg), license: CC-SA 3.0); right: *Iris virginica* (source: [Iris_virginica.jpg](https://en.wikipedia.org/wiki/File:Iris_virginica.jpg), license: CC-SA 2.0)
+![Left: *Iris setosa* (source: [Irissetosa1.jpg](https://commons.wikimedia.org/wiki/File:Irissetosa1.jpg), license: public domain); middle: *Iris versicolor* (source: [Iris_versicolor_3.jpg](https://en.wikipedia.org/wiki/File:Iris_versicolor_3.jpg), license: CC SA 3.0); right: *Iris virginica* (source: [Iris_virginica.jpg](https://en.wikipedia.org/wiki/File:Iris_virginica.jpg), license: CC SA 2.0)
 ](images/Iris_images.png)
 <!-- #endregion -->
 
@@ -1109,7 +1110,7 @@ The following Venn diagram shows the relationship between Artificial Intelligenc
 <!-- #endregion -->
 
 <!-- #region caption="" label="fig:AI_ML_venn_diagram" tags=[] widefigure=false -->
-![Venn diagram showing the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies (source: Kasper, adapted from [Emerging technologies based on artificial intelligence to assess quality and consumer preference of beverages](https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages), license: CC-BY-SA 4.0)](images/AI_ML_venn_diagram_wide.png)
+![Venn diagram showing the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies (source: Kasper, adapted from [Emerging technologies based on artificial intelligence to assess quality and consumer preference of beverages](https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages), license: CC BY-SA 4.0)](images/AI_ML_venn_diagram_wide.png)
 <!-- #endregion -->
 
 <!-- #region tags=[] -->
@@ -1213,7 +1214,7 @@ The following figure shows the operating principal of the SVC algorithm: the hyp
 The right graphic shows the optimal hyperplane characterized by maximizing the margin between the classes. The perpendicular distance of the closest data points to the hyperplane determines their position and orientation. These perpendicular distances are the **support vectors** of the hyperplane - this is how the algorithm got its name.
 
 <!-- #region caption="" label="fig:Svm_separating_hyperplanes" tags=[] widefigure=true -->
-![Support Vector Classifiers (SVC) separate the data points in classes by finding the best hyperplane by maximizing the margin to its support vectors (source: Kasper, license: CC-BY-SA 4.0)](images/SVC_operatingPrinciple.png)
+![Support Vector Classifiers (SVC) separate the data points in classes by finding the best hyperplane by maximizing the margin to its support vectors (source: Kasper, license: CC BY-SA 4.0)](images/SVC_operatingPrinciple.png)
 <!-- #endregion -->
 
 ## Create the SVC model
