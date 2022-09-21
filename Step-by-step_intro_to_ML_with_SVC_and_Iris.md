@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -1082,8 +1082,9 @@ After exploring the dataset, in this step one has to decide on a specific ML alg
 
 However, since the AI or ML world is so huge and impossible for a ML novice to overlook, a brief description of the **relationship between AI and ML** is given in the following sections. Furthermore, a **taxonomy** of the different **learning types** is presented by also providing some example algorithms.
 
-## Short overview of the AI world and its ML algorithms
+## Short overview of the AI world
 
+<!--
 ### Relationship between AI, ML and others
 
 **@TODO:**
@@ -1094,27 +1095,54 @@ Include in this section the presentation `IFA_Steimers_KI_Grundlagen_Neuronaler_
 In the **science world**, the term **artificial intelligence (AI)** refers to machines and systems that are capable of performing tasks that are characteristic of human intelligence.
 
 In the **business world**, on the other hand, AI typically refers to mechanisms that perceive environmental factors and take autonomous actions. This is seen as an opportunity to achieve **predefined goals** with maximum success - without human intervention. Ultimately, this view is a mapping of **input information** to controlled **output actions** of a system. This expectation of AI-driven systems is thus hardly higher than what can be expected from today's modern automation systems.
+-->
 
-**Machine Learning (ML)**, on the other hand, addresses the mathematical models and algorithms that enable a computer system to recognize (new) correlations in huge amounts of sample data from various sources by inferring them independently. For scientists, machine learning is a subset of AI.
+Die Geschichte der Künstlichen Intelligenz (KI) mit der [Dartmouth Conference](https://en.wikipedia.org/wiki/Dartmouth_workshop) im Sommer 1956 als ihre Geburtsstunde ist durch mehrere aufeinanderfolgende Hype- und Tiefphasen (sog. [KI-Winter](https://de.wikipedia.org/wiki/KI-Winter)) geprägt. In den Hype-Phasen konnten durch die KI-Forscher viele neue Erkenntnisse gewonnen und interessante Anwendungsgebiete erschlossen werden. Allerdings gab es immer wieder Zeiten, in denen die nachweisbaren Erfolge weit hinter den vorher erweckten (überzogenen) Erwartungen zurückblieben. Die Folge waren ein nachlassendes Interesse an KI-Forschung und damit einhergehende drastische Kürzungen der Forschungsbudgets. Als potentielle Ursache für die oftmals kursierenden überzogenen Erwartungen an KI-Technologien können die hohe mediale Aufmerksamkeit in Kombination mit oftmals vagen und wenig trennscharfen Definitionen von Künstliche Intelligenz gesehen werden.
 
-The umbrella term AI covers a very large research area. It includes a number of techniques that enable computers to learn independently and solve complex problems:
+Durch den Erkenntniszuwachs aus der KI-Forschung sowie dem Erschließen neuer Anwendungsgebiete sind die Begriffe und insbesondere Definitionen in den letzten Jahrzehnten einer ständigen Änderung unterworfen.
 
+Die aktuell veröffentlichte Norm [ISO/IEC 22989:2022-07](https://webstore.iec.ch/publication/77839) wurde KI durch das SC 42 -Artificial Intelligence des JTC1 wie folgt definiert <cite data-cite="ISO_IEC_22989_2022-07">ISO/IEC 22989:2022-07</cite>
+
+Der Hauptteil der Definition beschreibt, was KI machen (soll):
+
+> [An **artificial intelligence system** is an] engineered system that generates outputs such as content, forecasts, recommendations or decisions for a given set of human-defined objectives.
+
+In einer Anmerkung werden die dafür notwendigen Techniken beschrieben:
+
+> [..] The engineered system can use various techniques and approaches related to artificial intelligence to develop a **model** to represent data, **knowledge**, processes, etc. which can be used to conduct **tasks**.
+
+knowledge: abstracted information about objects, events, concepts or rules, their relationships and properties, organized for goal-oriented systematic use
+
+model: physical, mathematical or otherwise logical representation of a system, entity, phenomenon, process or data
+
+task: action required to achieve a specific goal
+
+
+**Machine Learning (ML)** as a subset of AI, on the other hand, addresses the mathematical models and algorithms that enable a computer system to recognize (new) correlations in huge amounts of sample data from various sources by inferring them independently.
+
+The umbrella term AI covers a very large research area. It includes a number of techniques, like:
+
+- Supervised and Unsupervised Learning,
+- Reinforcement Learning and
+- Genetic Algorithms
+
+that enable computers to learn independently and solve complex problems in the field of, e.g.:
+ 
 - Computer-Vision (CV)
-- Supervised and Unsupervised Learning
-- Reinforcement Learning and Genetic Algorithms
-- Computational Linguistics
+- Computational Linguistics (CL)
 - Robotics
-- etc.
 
-The following Venn diagram shows the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies. The quantities that do not belong to the main category represent techniques that can function as stand-alone techniques and do not necessarily fall into the artificial intelligence group in all cases (for further details see [Emerging technologies based on artificial intelligence to assess quality and consumer preference of beverages](https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages)).
+The following Venn diagram shows the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies. The quantities that do not belong to the main category represent techniques that can function as stand-alone techniques and do not necessarily fall into the artificial intelligence group in all cases (<cite data-cite="AI_beverages_2019">Gonzalez Viejo et al. 2019</cite>).
+
+Beispielsweise können einfache robotische Verhaltensmuster über fest vorprogrammierte **if-then-else-Entscheidungen** realisiert werden. Die [Erkennung von Objektkanten](https://en.wikipedia.org/wiki/Edge_detection) in Bildern kann klassischerweise durch die Anwendung z.B. von [Sobel-](https://en.wikipedia.org/wiki/Sobel_operator) oder [Laplace-Filtern](https://en.wikipedia.org/wiki/Laplace_operator) erfolgen. Daher wurde das Venn-Diagramm entsprechend angepasst.
 <!-- #endregion -->
 
 <!-- #region caption="" label="fig:AI_ML_venn_diagram" tags=[] widefigure=false -->
-![Venn diagram showing the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies (source: Kasper, adapted from [Emerging technologies based on artificial intelligence to assess quality and consumer preference of beverages](https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages), license: CC BY-SA 4.0)](images/AI_ML_venn_diagram_wide.png)
+![Venn diagram showing the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies (source: Kasper, adapted from <cite data-cite="AI_beverages_2019">Gonzalez Viejo et al. 2019</cite>, license: CC BY-SA 4.0)](images/AI_ML_venn_diagram_wide.png)
 <!-- #endregion -->
 
 <!-- #region tags=[] -->
-### Taxonomy of machine learning
+## Taxonomy of machine learning algorithms
 
 The field of machine learning can be divided into the following **types of learning**:
 
@@ -1132,7 +1160,7 @@ Here are some further sources:
 - [Machine Learning Map](https://github.com/trekhleb/homemade-machine-learning#machine-learning-map)
 <!-- #endregion -->
 
-#### Supervised learning
+### Supervised learning
 
 The goal of **supervised learning (SL)** is to learn a **function** that maps a **input to an output**, based on example input-output pairs. This involves inferring a relationship describable by a mathematical function from **labeled training data** consisting of a set of training examples (see [Supervised Learning](https://en.wikipedia.org/wiki/Supervised_learning)).
 
@@ -1147,7 +1175,7 @@ A few well-known algorithms from the field of **supervised learning** are mentio
 - Random Forests
 
 
-#### Unsupervised learning
+### Unsupervised learning
 
 The algorithms of this category look for internal structures in the data of a dataset, such as **grouping** or **clustering of data points**. These algorithms can thus learn relationships from test data that have not been labeled, classified, or categorized. Rather than responding to feedback (as in supervised learning), unsupervised learning algorithms detect **commonalities in the data** and respond based on the presence or absence of such commonalities in each new dataset (see [Unsupervised learning](https://en.wikipedia.org/wiki/Machine_learning#Unsupervised_learning)).
 
@@ -1159,12 +1187,12 @@ Here are some algorithms from the field of **unsupervised learning**:
 - Principal Component Analysis (PCA)
 
 
-#### Semi-supervised learning
+### Semi-supervised learning
 
 This type of learning falls between **unsupervised** learning (without any labeled training data) and **supervised** learning (with completely labeled training data). Some of the training examples are missing training labels, yet many machine-learning researchers have found that unlabeled data, when used in conjunction with a small amount of labeled data, can produce a considerable improvement in learning accuracy (source: [Semi-supervised learning](https://en.wikipedia.org/wiki/Machine_learning#Semi-supervised_learning)).
 
 
-#### Reinforcement learning
+### Reinforcement learning
 
 This is an area of machine learning concerned with how **intelligent agents** ought to **take actions in an environment** in order to maximize the notion of cumulative **reward**. Due to its generality, the field is studied in many other disciplines, such as **game theory** and **control theory**.
 
