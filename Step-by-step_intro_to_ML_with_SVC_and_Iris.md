@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -1083,19 +1083,6 @@ After exploring the dataset, in this step one has to decide on a specific ML alg
 However, since the AI or ML world is so huge and impossible for a ML novice to overlook, a brief description of the **relationship between AI and ML** is given in the following sections. Furthermore, a **taxonomy** of the different **learning types** is presented by also providing some example algorithms.
 
 ## Short overview of the AI world
-
-<!--
-### Relationship between AI, ML and others
-
-**@TODO:**
-Include in this section the presentation `IFA_Steimers_KI_Grundlagen_Neuronaler_Netze_2021-03-22.pdf` by Prof. Steimers (IFA):
-- slides 6-7 "Definition of KI"
-- slides 10-12 "ML: Categories based on the data, task and algorithms"
-
-In the **science world**, the term **artificial intelligence (AI)** refers to machines and systems that are capable of performing tasks that are characteristic of human intelligence.
-
-In the **business world**, on the other hand, AI typically refers to mechanisms that perceive environmental factors and take autonomous actions. This is seen as an opportunity to achieve **predefined goals** with maximum success - without human intervention. Ultimately, this view is a mapping of **input information** to controlled **output actions** of a system. This expectation of AI-driven systems is thus hardly higher than what can be expected from today's modern automation systems.
--->
 
 The history of **Artificial Intelligence (AI)** with the [Dartmouth Conference](https://en.wikipedia.org/wiki/Dartmouth_workshop) in the summer of 1956 as its birth is characterized by several successive hype and low phases (so-called [AI Winter](https://de.wikipedia.org/wiki/KI-Winter)). During the hype phases, many **new insights** were gathered by AI researchers and interesting **application areas** were explored. However, there were always times when the verifiable successes fell far short of the previously awakened (inflated) expectations. The consequence was then a decreasing interest in AI research and accompanying drastic cuts in research budgets. The **high media attention** in combination with often **vague and not very clear definitions** of AI can be seen as a potential reason for the often circulating inflated expectations of AI technologies.
 
