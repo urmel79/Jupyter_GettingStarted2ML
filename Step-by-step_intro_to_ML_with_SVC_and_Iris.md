@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -1075,7 +1075,7 @@ g.fig.suptitle('Pairs plot of the Iris dataset', y=1.05)
 plt.show()
 ```
 
-<!-- #region toc-hr-collapsed=true tags=["TODO_Step_3"] -->
+<!-- #region tags=[] -->
 # STEP 3: Choose and create the ML model
 
 After exploring the dataset, in this step one has to decide on a specific ML algorithm based on certain selection criteria.
@@ -1099,7 +1099,7 @@ In the **business world**, on the other hand, AI typically refers to mechanisms 
 
 The history of **Artificial Intelligence (AI)** with the [Dartmouth Conference](https://en.wikipedia.org/wiki/Dartmouth_workshop) in the summer of 1956 as its birth is characterized by several successive hype and low phases (so-called [AI Winter](https://de.wikipedia.org/wiki/KI-Winter)). During the hype phases, many **new insights** were gathered by AI researchers and interesting **application areas** were explored. However, there were always times when the verifiable successes fell far short of the previously awakened (inflated) expectations. The consequence was then a decreasing interest in AI research and accompanying drastic cuts in research budgets. The **high media attention** in combination with often **vague and not very clear definitions** of AI can be seen as a potential reason for the often circulating inflated expectations of AI technologies.
 
-Due to the increase in knowledge from AI research as well as the exploration of new application areas, the technical terms and especially the AI definitions have been subject to constant change over the past decades. In the currently published standard [ISO/IEC 22989:2022-07](https://webstore.iec.ch/publication/77839), **AI systems** have been defined by **Subcommittee 42 - 'Artificial Intelligence' (SC 42)** of the **ISO/IEC Joint Technical Committee (JTC 1)** as follows <cite data-cite="ISO_IEC_22989_2022-07">ISO/IEC 22989:2022-07</cite>.
+Due to the increase in knowledge from AI research as well as the exploration of new application areas, the technical terms and especially the AI definitions have been subject to constant change over the past decades. In the currently published standard [ISO/IEC 22989:2022-07](https://webstore.iec.ch/publication/77839), **AI systems** have been defined by the **Subcommittee 42 - 'Artificial Intelligence' (SC 42)** of the **ISO/IEC Joint Technical Committee (JTC 1)** as follows (see definition 3.1.4 in <cite data-cite="ISO_IEC_22989_2022-07">ISO/IEC 22989:2022-07</cite>).
 
 The main part of the **definition** describes what an AI system (should) do:
 
@@ -1109,7 +1109,7 @@ A **Note** to the definition describes the techniques necessary to achieve this:
 
 > [..] The engineered system can use various techniques and approaches related to artificial intelligence to develop a **model** to represent data, **knowledge**, processes, etc. which can be used to conduct **tasks**.
 
-The **knowledge** acquires itself from abstracted information about objects, events, concepts or rules as well as their properties and relations to each other. It is organized for purposeful systematic use. The **model** is represented by a physical, mathematical, or otherwise logical representation of a system. Whereas the **task** consists of the action required to achieve a specific goal.
+The **knowledge** acquires itself from abstracted information about objects, events, concepts or rules as well as their properties and relations to each other. It is organized for purposeful systematic use. The **model** is represented by a physical, mathematical, or otherwise logical representation of a system. Whereas the **task** consists of a set of actions required to achieve a specific goal.
 
 **Machine Learning (ML)** as a subset of AI, on the other hand, addresses the mathematical models and algorithms that enable a computer system to recognize (new) correlations in huge amounts of sample data from various sources by inferring them independently.
 
@@ -1119,19 +1119,19 @@ The umbrella term AI covers a very large research area. It includes a number of 
 - Reinforcement Learning and
 - Genetic Algorithms
 
-that enable computers to learn independently and solve complex problems in the field of, e.g.:
+that enable computers to learn independently and solve complex problems in the fields of, e.g.:
  
-- Computer-Vision (CV)
-- Computational Linguistics (CL)
-- Robotics
+- Computer-Vision (CV),
+- Computational Linguistics (CL) or
+- Robotics.
 
-The following Venn diagram shows the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies. The quantities that do not belong to the main category represent techniques that can function as stand-alone techniques and do not necessarily fall into the artificial intelligence group in all cases (<cite data-cite="AI_beverages_2019">Gonzalez Viejo et al. 2019</cite>).
+The following **Venn diagram** shows the relationship between AI, machine learning and other integrated technologies. The quantities that do not belong to the main category represent techniques that can function as stand-alone techniques and do not necessarily fall into the artificial intelligence group in all cases (<cite data-cite="AI_beverages_2019">Gonzalez Viejo et al. 2019</cite>).
 
 For example, simple **robotic behaviors** can be realized via fixed pre-programmed **if-then-else decisions**. In images, objects can be identified by [edge detection](https://en.wikipedia.org/wiki/Edge_detection) by applying, for example, [Sobel](https://en.wikipedia.org/wiki/Sobel_operator) or [Laplace filters](https://en.wikipedia.org/wiki/Laplace_operator). In both examples, no learnable algorithms are needed, therefore the Venn diagram was adapted accordingly.
 <!-- #endregion -->
 
 <!-- #region caption="" label="fig:AI_ML_venn_diagram" tags=[] widefigure=false -->
-![Venn diagram showing the relationship between Artificial Intelligence (AI), Machine Learning (ML) and other integrated technologies (source: Kasper, adapted from <cite data-cite="AI_beverages_2019">Gonzalez Viejo et al. 2019</cite>, license: CC BY-SA 4.0)](images/AI_ML_venn_diagram_wide.png)
+![Venn diagram showing the relationship between AI, machine learning and other integrated technologies (source: Kasper, adapted from <cite data-cite="AI_beverages_2019">Gonzalez Viejo et al. 2019</cite>, license: CC BY-SA 4.0)](images/AI_ML_venn_diagram_wide.png)
 <!-- #endregion -->
 
 <!-- #region tags=[] -->
@@ -1219,11 +1219,11 @@ Among other ML algorithms suitable for the Iris dataset (such as the decision-tr
 
 The following **reasons** led to the decision for the **Support Vector Classifier (SVC)**:
 
-- the aim is to predict the species using unlabeled test data, so the task is to **classify**
-- the iris dataset is **fully labeled** (by designating the iris species)
-- the dataset contains significantly **less than 100k samples**
+- The aim is to predict the species using unlabeled test data, so the task is to **classify**.
+- The iris dataset is **fully labeled** (by designating the iris species).
+- The dataset contains significantly **less than 100k samples**.
 
-But the most important reason is that it is **easy to understand** how it works - so it is exactly suitable for a beginner tutorial ;)
+But the most important reason is that it is **easy to understand** how it works - so it is exactly suitable for a beginner tutorial.
 
 
 ## Operating principal of SVC

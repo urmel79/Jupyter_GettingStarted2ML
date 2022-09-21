@@ -3594,82 +3594,119 @@ between AI and ML} is given in the following sections. Furthermore, a
 \textbf{taxonomy} of the different \textbf{learning types} is presented
 by also providing some example algorithms.
 
-\hypertarget{short-overview-of-the-ai-world-and-its-ml-algorithms}{%
-\subsection{Short overview of the AI world and its ML
-algorithms}\label{short-overview-of-the-ai-world-and-its-ml-algorithms}}
+\hypertarget{short-overview-of-the-ai-world}{%
+\subsection{Short overview of the AI
+world}\label{short-overview-of-the-ai-world}}
 
-\hypertarget{relationship-between-ai-ml-and-others}{%
-\subsubsection{Relationship between AI, ML and
-others}\label{relationship-between-ai-ml-and-others}}
+The history of \textbf{Artificial Intelligence (AI)} with the
+\href{https://en.wikipedia.org/wiki/Dartmouth_workshop}{Dartmouth
+Conference} in the summer of 1956 as its birth is characterized by
+several successive hype and low phases (so-called
+\href{https://de.wikipedia.org/wiki/KI-Winter}{AI Winter}). During the
+hype phases, many \textbf{new insights} were gathered by AI researchers
+and interesting \textbf{application areas} were explored. However, there
+were always times when the verifiable successes fell far short of the
+previously awakened (inflated) expectations. The consequence was then a
+decreasing interest in AI research and accompanying drastic cuts in
+research budgets. The \textbf{high media attention} in combination with
+often \textbf{vague and not very clear definitions} of AI can be seen as
+a potential reason for the often circulating inflated expectations of AI
+technologies.
 
-\textbf{@TODO:} Include in this section the presentation
-\texttt{IFA\_Steimers\_KI\_Grundlagen\_Neuronaler\_Netze\_2021-03-22.pdf}
-by Prof.~Steimers (IFA): - slides 6-7 ``Definition of KI'' - slides
-10-12 ``ML: Categories based on the data, task and algorithms''
+Due to the increase in knowledge from AI research as well as the
+exploration of new application areas, the technical terms and especially
+the AI definitions have been subject to constant change over the past
+decades. In the currently published standard
+\href{https://webstore.iec.ch/publication/77839}{ISO/IEC 22989:2022-07},
+\textbf{AI systems} have been defined by the \textbf{Subcommittee 42 -
+`Artificial Intelligence' (SC 42)} of the \textbf{ISO/IEC Joint
+Technical Committee (JTC 1)} as follows (see definition 3.1.4 in
+\cite{ISO_IEC_22989_2022-07}).
 
-In the \textbf{science world}, the term \textbf{artificial intelligence
-(AI)} refers to machines and systems that are capable of performing
-tasks that are characteristic of human intelligence.
+The main part of the \textbf{definition} describes what an AI system
+(should) do:
 
-In the \textbf{business world}, on the other hand, AI typically refers
-to mechanisms that perceive environmental factors and take autonomous
-actions. This is seen as an opportunity to achieve \textbf{predefined
-goals} with maximum success - without human intervention. Ultimately,
-this view is a mapping of \textbf{input information} to controlled
-\textbf{output actions} of a system. This expectation of AI-driven
-systems is thus hardly higher than what can be expected from today's
-modern automation systems.
+\begin{quote}
+{[}An \textbf{artificial intelligence system} is an{]} engineered system
+that generates outputs such as content, forecasts, recommendations or
+decisions for a given set of human-defined objectives.
+\end{quote}
 
-\textbf{Machine Learning (ML)}, on the other hand, addresses the
-mathematical models and algorithms that enable a computer system to
-recognize (new) correlations in huge amounts of sample data from various
-sources by inferring them independently. For scientists, machine
-learning is a subset of AI.
+A \textbf{Note} to the definition describes the techniques necessary to
+achieve this:
+
+\begin{quote}
+{[}..{]} The engineered system can use various techniques and approaches
+related to artificial intelligence to develop a \textbf{model} to
+represent data, \textbf{knowledge}, processes, etc. which can be used to
+conduct \textbf{tasks}.
+\end{quote}
+
+The \textbf{knowledge} acquires itself from abstracted information about
+objects, events, concepts or rules as well as their properties and
+relations to each other. It is organized for purposeful systematic use.
+The \textbf{model} is represented by a physical, mathematical, or
+otherwise logical representation of a system. Whereas the \textbf{task}
+consists of a set of actions required to achieve a specific goal.
+
+\textbf{Machine Learning (ML)} as a subset of AI, on the other hand,
+addresses the mathematical models and algorithms that enable a computer
+system to recognize (new) correlations in huge amounts of sample data
+from various sources by inferring them independently.
 
 The umbrella term AI covers a very large research area. It includes a
-number of techniques that enable computers to learn independently and
-solve complex problems:
+number of techniques, like:
 
 \begin{itemize}
 \tightlist
 \item
-  Computer-Vision (CV)
+  Supervised and Unsupervised Learning,
 \item
-  Supervised and Unsupervised Learning
+  Reinforcement Learning and
 \item
-  Reinforcement Learning and Genetic Algorithms
-\item
-  Computational Linguistics
-\item
-  Robotics
-\item
-  etc.
+  Genetic Algorithms
 \end{itemize}
 
-The following Venn diagram shows the relationship between Artificial
-Intelligence (AI), Machine Learning (ML) and other integrated
-technologies. The quantities that do not belong to the main category
-represent techniques that can function as stand-alone techniques and do
-not necessarily fall into the artificial intelligence group in all cases
-(for further details see
-\href{https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages}{Emerging
-technologies based on artificial intelligence to assess quality and
-consumer preference of beverages}).
+that enable computers to learn independently and solve complex problems
+in the fields of, e.g.:
+
+\begin{itemize}
+\tightlist
+\item
+  Computer-Vision (CV),
+\item
+  Computational Linguistics (CL) or
+\item
+  Robotics.
+\end{itemize}
+
+The following \textbf{Venn diagram} shows the relationship between AI,
+machine learning and other integrated technologies. The quantities that
+do not belong to the main category represent techniques that can
+function as stand-alone techniques and do not necessarily fall into the
+artificial intelligence group in all cases (\cite{AI_beverages_2019}).
+
+For example, simple \textbf{robotic behaviors} can be realized via fixed
+pre-programmed \textbf{if-then-else decisions}. In images, objects can
+be identified by
+\href{https://en.wikipedia.org/wiki/Edge_detection}{edge detection} by
+applying, for example,
+\href{https://en.wikipedia.org/wiki/Sobel_operator}{Sobel} or
+\href{https://en.wikipedia.org/wiki/Laplace_operator}{Laplace filters}.
+In both examples, no learnable algorithms are needed, therefore the Venn
+diagram was adapted accordingly.
 
     \begin{figure}
 \centering
 \includegraphics{images/AI_ML_venn_diagram_wide.png}
-\caption{Venn diagram showing the relationship between Artificial
-Intelligence (AI), Machine Learning (ML) and other integrated
-technologies (source: Kasper, adapted from
-\href{https://www.researchgate.net/publication/336375517_Emerging_technologies_based_on_artificial_intelligence_to_assess_quality_and_consumer_preference_of_beverages}{Emerging
-technologies based on artificial intelligence to assess quality and
-consumer preference of beverages}, license: CC BY-SA 4.0)}
+\caption{Venn diagram showing the relationship between AI, machine
+learning and other integrated technologies (source: Kasper, adapted from
+\cite{AI_beverages_2019}, license: CC BY-SA 4.0)}
 \end{figure}
 
-    \hypertarget{taxonomy-of-machine-learning}{%
-\subsubsection{Taxonomy of machine
-learning}\label{taxonomy-of-machine-learning}}
+    \hypertarget{taxonomy-of-machine-learning-algorithms}{%
+\subsection{Taxonomy of machine learning
+algorithms}\label{taxonomy-of-machine-learning-algorithms}}
 
 The field of machine learning can be divided into the following
 \textbf{types of learning}:
@@ -3709,7 +3746,7 @@ Here are some further sources:
 \end{itemize}
 
     \hypertarget{supervised-learning}{%
-\paragraph{Supervised learning}\label{supervised-learning}}
+\subsubsection{Supervised learning}\label{supervised-learning}}
 
 The goal of \textbf{supervised learning (SL)} is to learn a
 \textbf{function} that maps a \textbf{input to an output}, based on
@@ -3741,7 +3778,7 @@ learning} are mentioned here:
 \end{itemize}
 
     \hypertarget{unsupervised-learning}{%
-\paragraph{Unsupervised learning}\label{unsupervised-learning}}
+\subsubsection{Unsupervised learning}\label{unsupervised-learning}}
 
 The algorithms of this category look for internal structures in the data
 of a dataset, such as \textbf{grouping} or \textbf{clustering of data
@@ -3770,7 +3807,8 @@ learning}:
 \end{itemize}
 
     \hypertarget{semi-supervised-learning}{%
-\paragraph{Semi-supervised learning}\label{semi-supervised-learning}}
+\subsubsection{Semi-supervised
+learning}\label{semi-supervised-learning}}
 
 This type of learning falls between \textbf{unsupervised} learning
 (without any labeled training data) and \textbf{supervised} learning
@@ -3783,7 +3821,7 @@ accuracy (source:
 learning}).
 
     \hypertarget{reinforcement-learning}{%
-\paragraph{Reinforcement learning}\label{reinforcement-learning}}
+\subsubsection{Reinforcement learning}\label{reinforcement-learning}}
 
 This is an area of machine learning concerned with how
 \textbf{intelligent agents} ought to \textbf{take actions in an
@@ -3864,17 +3902,17 @@ The following \textbf{reasons} led to the decision for the
 \begin{itemize}
 \tightlist
 \item
-  the aim is to predict the species using unlabeled test data, so the
-  task is to \textbf{classify}
+  The aim is to predict the species using unlabeled test data, so the
+  task is to \textbf{classify}.
 \item
-  the iris dataset is \textbf{fully labeled} (by designating the iris
-  species)
+  The iris dataset is \textbf{fully labeled} (by designating the iris
+  species).
 \item
-  the dataset contains significantly \textbf{less than 100k samples}
+  The dataset contains significantly \textbf{less than 100k samples}.
 \end{itemize}
 
 But the most important reason is that it is \textbf{easy to understand}
-how it works - so it is exactly suitable for a beginner tutorial ;)
+how it works - so it is exactly suitable for a beginner tutorial.
 
     \hypertarget{operating-principal-of-svc}{%
 \subsection{Operating principal of
