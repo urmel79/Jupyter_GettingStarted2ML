@@ -1142,7 +1142,7 @@ Here are some further sources:
 
 ### Supervised learning
 
-The goal of **supervised learning (SL)** is to learn a **function** that maps a **input to an output**, based on example input-output pairs. This involves inferring a relationship describable by a mathematical function from **labeled training data** consisting of a set of training examples (see [Supervised Learning](https://en.wikipedia.org/wiki/Supervised_learning)).
+The goal of [supervised learning](https://en.wikipedia.org/wiki/Supervised_learning) is to learn a **function** that maps a **input to an output**, based on example input-output pairs. This involves inferring a relationship describable by a mathematical function from **labeled training data** consisting of a set of training examples (<cite data-cite="Wiki_Supervised_learning">Wikipedia: Supervised learning</cite>).
 
 A few well-known algorithms from the field of **supervised learning** are mentioned here:
 
@@ -1157,7 +1157,7 @@ A few well-known algorithms from the field of **supervised learning** are mentio
 
 ### Unsupervised learning
 
-The algorithms of this category look for internal structures in the data of a dataset, such as **grouping** or **clustering of data points**. These algorithms can thus learn relationships from test data that have not been labeled, classified, or categorized. Rather than responding to feedback (as in supervised learning), unsupervised learning algorithms detect **commonalities in the data** and respond based on the presence or absence of such commonalities in each new dataset (see [Unsupervised learning](https://en.wikipedia.org/wiki/Machine_learning#Unsupervised_learning)).
+The algorithms of [unsupervised learning](https://en.wikipedia.org/wiki/Unsupervised_learning) look for internal structures in the data of a dataset, such as **grouping** or **clustering of data points**. These algorithms can thus learn relationships from test data that have not been labeled, classified, or categorized. Rather than responding to feedback (as in supervised learning), unsupervised learning algorithms detect **commonalities in the data** and respond based on the presence or absence of such commonalities in each new dataset (<cite data-cite="Wiki_Unsupervised_learning">Wikipedia: Unsupervised learning</cite>).
 
 Here are some algorithms from the field of **unsupervised learning**:
 
@@ -1169,14 +1169,14 @@ Here are some algorithms from the field of **unsupervised learning**:
 
 ### Semi-supervised learning
 
-This type of learning falls between **unsupervised** learning (without any labeled training data) and **supervised** learning (with completely labeled training data). Some of the training examples are missing training labels, yet many machine-learning researchers have found that unlabeled data, when used in conjunction with a small amount of labeled data, can produce a considerable improvement in learning accuracy (source: [Semi-supervised learning](https://en.wikipedia.org/wiki/Machine_learning#Semi-supervised_learning)).
+The [semi-supervised learning](https://en.wikipedia.org/wiki/Semi-supervised_learning) falls between **unsupervised** learning (without any labeled training data) and **supervised** learning (with completely labeled training data). Some of the training examples are missing training labels, yet many machine-learning researchers have found that unlabeled data, when used in conjunction with a small amount of labeled data, can produce a considerable improvement in learning accuracy (<cite data-cite="Wiki_Semi-supervised_learning">Wikipedia: Semi-supervised learning</cite>).
 
 
 ### Reinforcement learning
 
 This is an area of machine learning concerned with how **intelligent agents** ought to **take actions in an environment** in order to maximize the notion of cumulative **reward**. Due to its generality, the field is studied in many other disciplines, such as **game theory** and **control theory**.
 
-Reinforcement learning differs from supervised learning in **not needing labeled input/output pairs** be presented, and in not needing sub-optimal actions to be explicitly corrected. Instead the focus is on **finding a balance** between **exploration** (of uncharted territory) and **exploitation** (of current knowledge) (source: [Reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning)).
+[Reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) differs from supervised learning in **not needing labeled input/output pairs** be presented and in not needing sub-optimal actions to be explicitly corrected. Instead the focus is on **finding a balance** between **exploration** of uncharted territory and **exploitation** of current knowledge (<cite data-cite="Wiki_Reinforcement_learning">Wikipedia: Reinforcement learning</cite>).
 
 Here are some algorithms from the field of **reinforcement learning**:
 
@@ -1215,9 +1215,13 @@ But the most important reason is that it is **easy to understand** how it works 
 
 ## Operating principal of SVC
 
-> Support Vector Classifiers (SVC) try to **find the best hyperplane to separate** the different classes by maximizing the distance between sample points and the hyperplane (source: [In Depth: Parameter tuning for SVC](https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769)).
+[Support-vector machines (SVMs)](https://en.wikipedia.org/wiki/Support-vector_machine) are **supervised learning** models with associated learning algorithms that analyze data for **classification** and **regression** analysis (<cite data-cite="Wiki_SVM">Wikipedia: SVM</cite>).
 
-The following figure shows the operating principal of the SVC algorithm: the hyperplanes *H1* till *H4* (left graphic) do separate the classes. A good separation is achieved by the hyperplane that has the largest distance to the nearest training-data point of any class (so-called functional margin), since in general the larger the margin, the lower the generalization error of the classifier (source: [Support-vector machine](https://en.wikipedia.org/wiki/Support-vector_machine)).
+Since a **classifier** is needed for the current task, the following description of the operating principle focuses on the **Support Vector Classifier (SVC)**.
+
+> Support Vector Classifiers (SVC) try to **find the best hyperplane to separate** the different classes by maximizing the distance between sample points and the hyperplane (<cite data-cite="Parameter_tuning_SVC">Mohtadi Ben Fraj, 2018</cite>).
+
+The following figure shows the operating principal of the SVC algorithm: the hyperplanes *H1* till *H4* (left graphic) do separate the classes. A good separation is achieved by the hyperplane that has the largest distance to the nearest training-data point of any class (so-called functional margin), since in general the larger the margin, the lower the generalization error of the classifier.
 
 The right graphic shows the optimal hyperplane characterized by maximizing the margin between the classes. The perpendicular distance of the closest data points to the hyperplane determines their position and orientation. These perpendicular distances are the **support vectors** of the hyperplane - this is how the algorithm got its name.
 
