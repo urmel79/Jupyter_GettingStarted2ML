@@ -1219,15 +1219,41 @@ But the most important reason is that it is **easy to understand** how it works 
 
 Since a **classifier** is needed for the current task, the following description of the operating principle focuses on the **Support Vector Classifier (SVC)**.
 
-> Support Vector Classifiers (SVC) try to **find the best hyperplane to separate** the different classes by maximizing the distance between sample points and the hyperplane (<cite data-cite="Parameter_tuning_SVC">Mohtadi Ben Fraj, 2018</cite>).
 
-The following figure shows the operating principal of the SVC algorithm: the hyperplanes *H1* till *H4* (left graphic) do separate the classes. A good separation is achieved by the hyperplane that has the largest distance to the nearest training-data point of any class (so-called functional margin), since in general the larger the margin, the lower the generalization error of the classifier.
+### Support Vectors and hyperplane
 
-The right graphic shows the optimal hyperplane characterized by maximizing the margin between the classes. The perpendicular distance of the closest data points to the hyperplane determines their position and orientation. These perpendicular distances are the **support vectors** of the hyperplane - this is how the algorithm got its name.
+The SVC algorithm plots the training data in an **n-dimensional space**. The number of dimensions results from the **number of variables** or features. For the Iris dataset with its 4 features, this would result in a 4-dimensional space. For better understanding, the following explanation is limited to the **2-dimensional space**.
+
+The SVC algorithm now tries to draw a **boundary with the largest possible distance** to the next sample from the training data. This boundary is actually a **hyperplane** whose **dimension is 1 smaller** than that of the training data (<cite data-cite="SVM_Python_2019">Lell, 2019</cite>). For example, in 3-dimensional space, the hyperplane would be a 2-dimensional non-curved plane. In 2-dimensional space, a hyperplane would simply be a straight line.
+
+The following figure shows the principle of operation of the SVC algorithm in 2-dimensional space: the hyperplanes *H1* to *H4* (left figure) separate the classes. A good separation of the classes is achieved by the hyperplane that has the **largest distance to the nearest training data point** of a class (so-called **functional margin**). The larger the margin, the better the classifier can later separate test data which are unknown to it. This is called minimization of the **generalization error**.
+
+The right graph shows the **optimal hyperplane** characterized by **maximizing the margin** between classes (<cite data-cite="Parameter_tuning_SVC">Fraj, 2018</cite>). The perpendicular distance of the data points closest to the hyperplane determines their position and orientation. These perpendicular distances are the **support vectors** of the hyperplane - hence the algorithm got it's name.
+
+Interestingly, the vectors that are more distant from the boundary are not important for the calculation. Therefore, they do not need to be loaded into the main memory, which makes the SVC very memory efficient.
 
 <!-- #region caption="" label="fig:Svm_separating_hyperplanes" tags=[] widefigure=true -->
 ![Support Vector Classifiers (SVC) separate the data points in classes by finding the best hyperplane by maximizing the margin to its support vectors (source: Kasper, license: CC BY-SA 4.0)](images/SVC_operatingPrinciple.png)
 <!-- #endregion -->
+
+### Non-linear transformations
+
+https://towardsdatascience.com/the-kernel-trick-c98cdbcaeb3f
+
+In der Praxis sind die Daten jedoch oft weit davon entfernt, linear trennbar zu sein, und wir müssen die Daten in einen höherdimensionalen Raum transformieren, um einen Support-Vector-Klassifikator anzupassen.
+
+Wenn die Daten im ursprünglichen Raum oder im Eingaberaum nicht linear trennbar sind, wenden wir Transformationen auf die Daten an, die die Daten vom ursprünglichen Raum in einen höherdimensionalen Merkmalsraum abbilden. Ziel ist es, dass die Klassen nach der Transformation in den höherdimensionalen Raum nun in diesem höherdimensionalen Merkmalsraum linear trennbar sind. Wir können dann eine Entscheidungsgrenze festlegen, um die Klassen zu trennen und Vorhersagen zu treffen. Bei der Entscheidungsgrenze handelt es sich um eine Hyperebene in diesem höherdimensionalen Raum.
+
+In diesem Beispiel zeigt das Bild auf der linken Seite unsere ursprünglichen Datenpunkte. In der ersten Dimension sind diese Daten nicht linear trennbar, aber nach Anwendung der Transformation ϕ(x) = x² und Hinzufügen dieser zweiten Dimension zu unserem Merkmalsraum werden die Klassen linear trennbar.
+
+
+![Transformation of 1-dimensional data into 2-dimensional space in order to separate the data by a linear hyperplane. (source: Kasper, license: CC BY-SA 4.0)](images/SVC_transformation.png)
+
+
+### Kernel trick
+
+
+
 
 ## Create the SVC model
 
