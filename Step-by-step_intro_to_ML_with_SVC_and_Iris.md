@@ -1249,11 +1249,23 @@ In diesem Beispiel zeigt das Bild auf der linken Seite unsere ursprünglichen Da
 
 ![Transformation of 1-dimensional data into 2-dimensional space in order to separate the data by a linear hyperplane. (source: Kasper, license: CC BY-SA 4.0)](images/SVC_transformation.png)
 
-
+<!-- #region -->
 ### Kernel trick
 
+https://towardsdatascience.com/the-kernel-trick-c98cdbcaeb3f
+
+Wir haben gesehen, wie höherdimensionale Transformationen es uns ermöglichen, Daten zu trennen, um Klassifikationsvorhersagen zu treffen. Um einen Support-Vektor-Klassifikator zu trainieren und unsere Zielfunktion zu optimieren, müssten wir Operationen mit den höherdimensionalen Vektoren im transformierten Merkmalsraum durchführen. In realen Anwendungen kann es viele Merkmale in den Daten geben und die Anwendung von Transformationen, die viele Polynomkombinationen dieser Merkmale beinhalten, führt zu extrem hohen und unpraktischen Rechenkosten.
+
+Der Kernel-Trick bietet eine Lösung für dieses Problem. Der "Trick" besteht darin, dass Kernel-Methoden die Daten nur durch eine Reihe paarweiser Ähnlichkeitsvergleiche zwischen den ursprünglichen Datenbeobachtungen x (mit den ursprünglichen Koordinaten im niedrigdimensionalen Raum) darstellen, anstatt explizit die Transformationen ϕ(x) anzuwenden und die Daten durch diese transformierten Koordinaten im höherdimensionalen Merkmalsraum darzustellen.
 
 
+Folgende **Kernel-Typen** stellt das Paket `scikit-learn` zur Verfügung:
+
+- linear
+- rbf
+- polynomial
+- sigmoid
+<!-- #endregion -->
 
 ## Create the SVC model
 
