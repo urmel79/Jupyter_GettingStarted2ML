@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -1190,9 +1190,9 @@ Here are some algorithms from the field of **reinforcement learning**:
 
 ## Decision graph for selecting an suitable algorithm
 
-Now that the iris dataset has been analyzed in terms of its data structure and internal correlations, the most difficult task on the way to solving a problem using machine learning arises: finding the "right" ML algorithm (also called **estimator**).
+Now that the Iris dataset has been analyzed in terms of its data structure and internal correlations, the most difficult task on the way to solving a problem using machine learning arises: finding the "right" ML algorithm (also called **estimator**).
 
-The diverse estimators available are more or less well qualified for the respective problems with their partly very different data types. The good news is that the ML software package **Scikit-Learn** provides the following **flowchart** as a rough **guide** in choosing the right estimator for the particular task (see: [Choosing the right estimator](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)).
+The diverse estimators available are more or less well qualified for the respective problems with their partly very different data types. The good news is that the ML software package `Scikit-Learn` provides the following **flowchart** as a rough **guide** in choosing the right estimator for the particular task (see: [Choosing the right estimator](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)).
 
 However, it must also be emphasized that a considerable **level of experience** through systematic trial and error is crucial to be successful in finding an "optimal" estimator.
 
@@ -1245,7 +1245,7 @@ If the data are not linearly separable in the original space, **transformations*
 In the following example, the figure on the left shows the original data points in 1-dimensional space. In the first dimension, these data are not linearly separable. After applying the transformation $\Phi(X) = X^2$ and adding this second dimension to our feature space, the classes in the right figure become linearly separable (<cite data-cite="Kernel_trick_2018">Wilimitis, 2018</cite>).
 
 
-![Transformation of 1-dimensional data into 2-dimensional space in order to separate the data by a linear hyperplane. (source: Kasper, license: CC BY-SA 4.0)](images/SVC_transformation.png)
+![Transformation of 1-dimensional data into 2-dimensional space in order to separate the data by a linear hyperplane (source: Kasper, license: CC BY-SA 4.0)](images/SVC_transformation.png)
 
 
 ### Kernel trick

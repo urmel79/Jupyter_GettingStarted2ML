@@ -3748,13 +3748,13 @@ Here are some further sources:
     \hypertarget{supervised-learning}{%
 \subsubsection{Supervised learning}\label{supervised-learning}}
 
-The goal of \textbf{supervised learning (SL)} is to learn a
-\textbf{function} that maps a \textbf{input to an output}, based on
-example input-output pairs. This involves inferring a relationship
-describable by a mathematical function from \textbf{labeled training
-data} consisting of a set of training examples (see
-\href{https://en.wikipedia.org/wiki/Supervised_learning}{Supervised
-Learning}).
+The goal of
+\href{https://en.wikipedia.org/wiki/Supervised_learning}{supervised
+learning} is to learn a \textbf{function} that maps a \textbf{input to
+an output}, based on example input-output pairs. This involves inferring
+a relationship describable by a mathematical function from
+\textbf{labeled training data} consisting of a set of training examples
+(\cite{Wiki_Supervised_learning}).
 
 A few well-known algorithms from the field of \textbf{supervised
 learning} are mentioned here:
@@ -3780,16 +3780,16 @@ learning} are mentioned here:
     \hypertarget{unsupervised-learning}{%
 \subsubsection{Unsupervised learning}\label{unsupervised-learning}}
 
-The algorithms of this category look for internal structures in the data
-of a dataset, such as \textbf{grouping} or \textbf{clustering of data
-points}. These algorithms can thus learn relationships from test data
-that have not been labeled, classified, or categorized. Rather than
-responding to feedback (as in supervised learning), unsupervised
-learning algorithms detect \textbf{commonalities in the data} and
-respond based on the presence or absence of such commonalities in each
-new dataset (see
-\href{https://en.wikipedia.org/wiki/Machine_learning\#Unsupervised_learning}{Unsupervised
-learning}).
+The algorithms of
+\href{https://en.wikipedia.org/wiki/Unsupervised_learning}{unsupervised
+learning} look for internal structures in the data of a dataset, such as
+\textbf{grouping} or \textbf{clustering of data points}. These
+algorithms can thus learn relationships from test data that have not
+been labeled, classified, or categorized. Rather than responding to
+feedback (as in supervised learning), unsupervised learning algorithms
+detect \textbf{commonalities in the data} and respond based on the
+presence or absence of such commonalities in each new dataset
+(\cite{Wiki_Unsupervised_learning}).
 
 Here are some algorithms from the field of \textbf{unsupervised
 learning}:
@@ -3810,15 +3810,15 @@ learning}:
 \subsubsection{Semi-supervised
 learning}\label{semi-supervised-learning}}
 
-This type of learning falls between \textbf{unsupervised} learning
-(without any labeled training data) and \textbf{supervised} learning
-(with completely labeled training data). Some of the training examples
-are missing training labels, yet many machine-learning researchers have
-found that unlabeled data, when used in conjunction with a small amount
-of labeled data, can produce a considerable improvement in learning
-accuracy (source:
-\href{https://en.wikipedia.org/wiki/Machine_learning\#Semi-supervised_learning}{Semi-supervised
-learning}).
+The
+\href{https://en.wikipedia.org/wiki/Semi-supervised_learning}{semi-supervised
+learning} falls between \textbf{unsupervised} learning (without any
+labeled training data) and \textbf{supervised} learning (with completely
+labeled training data). Some of the training examples are missing
+training labels, yet many machine-learning researchers have found that
+unlabeled data, when used in conjunction with a small amount of labeled
+data, can produce a considerable improvement in learning accuracy
+(\cite{Wiki_Semi-supervised_learning}).
 
     \hypertarget{reinforcement-learning}{%
 \subsubsection{Reinforcement learning}\label{reinforcement-learning}}
@@ -3830,13 +3830,13 @@ environment} in order to maximize the notion of cumulative
 other disciplines, such as \textbf{game theory} and \textbf{control
 theory}.
 
-Reinforcement learning differs from supervised learning in \textbf{not
-needing labeled input/output pairs} be presented, and in not needing
-sub-optimal actions to be explicitly corrected. Instead the focus is on
-\textbf{finding a balance} between \textbf{exploration} (of uncharted
-territory) and \textbf{exploitation} (of current knowledge) (source:
 \href{https://en.wikipedia.org/wiki/Reinforcement_learning}{Reinforcement
-learning}).
+learning} differs from supervised learning in \textbf{not needing
+labeled input/output pairs} be presented and in not needing sub-optimal
+actions to be explicitly corrected. Instead the focus is on
+\textbf{finding a balance} between \textbf{exploration} of uncharted
+territory and \textbf{exploitation} of current knowledge
+(\cite{Wiki_Reinforcement_learning}).
 
 Here are some algorithms from the field of \textbf{reinforcement
 learning}:
@@ -3861,14 +3861,14 @@ learning}:
 \subsection{Decision graph for selecting an suitable
 algorithm}\label{decision-graph-for-selecting-an-suitable-algorithm}}
 
-Now that the iris dataset has been analyzed in terms of its data
+Now that the Iris dataset has been analyzed in terms of its data
 structure and internal correlations, the most difficult task on the way
 to solving a problem using machine learning arises: finding the
 ``right'' ML algorithm (also called \textbf{estimator}).
 
 The diverse estimators available are more or less well qualified for the
 respective problems with their partly very different data types. The
-good news is that the ML software package \textbf{Scikit-Learn} provides
+good news is that the ML software package \texttt{Scikit-Learn} provides
 the following \textbf{flowchart} as a rough \textbf{guide} in choosing
 the right estimator for the particular task (see:
 \href{https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html}{Choosing
@@ -3918,28 +3918,52 @@ how it works - so it is exactly suitable for a beginner tutorial.
 \subsection{Operating principal of
 SVC}\label{operating-principal-of-svc}}
 
-\begin{quote}
-Support Vector Classifiers (SVC) try to \textbf{find the best hyperplane
-to separate} the different classes by maximizing the distance between
-sample points and the hyperplane (source:
-\href{https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769}{In
-Depth: Parameter tuning for SVC}).
-\end{quote}
-
-The following figure shows the operating principal of the SVC algorithm:
-the hyperplanes \emph{H1} till \emph{H4} (left graphic) do separate the
-classes. A good separation is achieved by the hyperplane that has the
-largest distance to the nearest training-data point of any class
-(so-called functional margin), since in general the larger the margin,
-the lower the generalization error of the classifier (source:
 \href{https://en.wikipedia.org/wiki/Support-vector_machine}{Support-vector
-machine}).
+machines (SVMs)} are \textbf{supervised learning} models with associated
+learning algorithms that analyze data for \textbf{classification} and
+\textbf{regression} analysis (\cite{Wiki_SVM}).
 
-The right graphic shows the optimal hyperplane characterized by
-maximizing the margin between the classes. The perpendicular distance of
-the closest data points to the hyperplane determines their position and
+Since a \textbf{classifier} is needed for the current task to classify
+the Iris dataset, the following description of the operating principle
+focuses on the \textbf{Support Vector Classifier (SVC)}.
+
+    \hypertarget{support-vectors-and-hyperplane}{%
+\subsubsection{Support Vectors and
+hyperplane}\label{support-vectors-and-hyperplane}}
+
+The SVC algorithm plots the training data in an \textbf{n-dimensional
+space}. The number of dimensions results from the \textbf{number of
+variables} or features. For the Iris dataset with its 4 features, this
+would result in a 4-dimensional space. For better understanding, the
+following explanation is limited to the \textbf{2-dimensional space}.
+
+The SVC algorithm now tries to draw a \textbf{boundary with the largest
+possible distance} to the next sample from the training data. This
+boundary is actually a \textbf{hyperplane} whose \textbf{dimension is 1
+smaller} than that of the training data (\cite{SVM_Python_2019}). For
+example, in 3-dimensional space, the hyperplane would be a 2-dimensional
+non-curved plane. In 2-dimensional space, a hyperplane would simply be a
+straight line.
+
+The following figure shows the principle of operation of the SVC
+algorithm in 2-dimensional space with 2 classes to separate: the
+hyperplanes \emph{H1} to \emph{H4} (left figure) separate the classes. A
+good separation of the classes is achieved by the hyperplane that has
+the \textbf{largest distance to the nearest training data point} of a
+class (so-called \textbf{functional margin}). The larger the margin, the
+better the classifier can later separate test data which are unknown to
+it. This is called minimization of the \textbf{generalization error}.
+
+The right graph shows the \textbf{optimal hyperplane} characterized by
+\textbf{maximizing the margin} between classes
+(\cite{Parameter_tuning_SVC}). The perpendicular distance of the data
+points closest to the hyperplane determines their position and
 orientation. These perpendicular distances are the \textbf{support
-vectors} of the hyperplane - this is how the algorithm got its name.
+vectors} of the hyperplane - hence the algorithm got it's name.
+
+Interestingly, the vectors that are more distant from the boundary are
+not important for the calculation. Therefore, they do not need to be
+loaded into the main memory, which makes the SVC very memory efficient.
 
     \begin{figure}
 \centering
@@ -3948,6 +3972,81 @@ vectors} of the hyperplane - this is how the algorithm got its name.
 classes by finding the best hyperplane by maximizing the margin to its
 support vectors (source: Kasper, license: CC BY-SA 4.0)}
 \end{figure}
+
+    \hypertarget{non-linear-transformations}{%
+\subsubsection{Non-linear
+transformations}\label{non-linear-transformations}}
+
+The previous example assumes that the \textbf{data is linearly
+separable}. For most real cases in practice this is unfortunately not
+true and the SVC can only work with hyper\textbf{planes}.
+
+If the data are not linearly separable in the original space,
+\textbf{transformations} can be applied to the data. For this purpose,
+the data are transferred into a \textbf{higher-dimensional feature
+space} where the objects are linearly separable by a hyperplane.
+However, during \textbf{backtransformation} this hyperplane becomes
+\textbf{nonlinear} and often also non-continuous
+(\cite{SVM_Python_2019}).
+
+In the following example, the figure on the left shows the original data
+points in 1-dimensional space. In the first dimension, these data are
+not linearly separable. After applying the transformation
+\(\Phi(X) = X^2\) and adding this second dimension to our feature space,
+the classes in the right figure become linearly separable
+(\cite{Kernel_trick_2018}).
+
+    \begin{figure}
+\centering
+\includegraphics{images/SVC_transformation.png}
+\caption{Transformation of 1-dimensional data into 2-dimensional space
+in order to separate the data by a linear hyperplane (source: Kasper,
+license: CC BY-SA 4.0)}
+\end{figure}
+
+    \hypertarget{kernel-trick}{%
+\subsubsection{Kernel trick}\label{kernel-trick}}
+
+In the previous example, it was shown how a transformation to a higher
+dimensional feature space allows the data to be separated. In order to
+train an SVC and make classification predictions, mathematical
+operations would need to be performed on the higher dimensional vectors
+in the transformed feature space. However, in real-world applications,
+there may be many features in the data. The application of
+transformations involve many polynomial combinations of these features.
+This leads to \textbf{extremely high computational costs}
+(\cite{Kernel_trick_2018}).
+
+The \textbf{kernel trick} provides a solution to this problem. The
+``trick'' is that \textbf{kernel methods} represent the data only by a
+series of \textbf{pairwise similarity comparisons} between the original
+data observations \(X\) (with the original coordinates in
+low-dimensional space). This allows to work in the original feature
+space instead of explicitly applying the transformations \(\Phi(X)\) and
+representing the data by these transformed coordinates in the higher
+dimensional feature space (\cite{Kernel_trick_2018};
+\cite{Kernel_trick_2018_2}).
+
+The following \textbf{kernel types} are provided by the Python package
+\texttt{scikit-learn}:
+
+\begin{itemize}
+\tightlist
+\item
+  linear
+\item
+  radial basis function (RBF)
+\item
+  polynomial
+\item
+  sigmoid
+\end{itemize}
+
+The most well-known are the
+\href{https://en.wikipedia.org/wiki/Polynomial_kernel}{polynomial
+kernel} and the
+\href{https://en.wikipedia.org/wiki/Radial_basis_function_kernel}{radial
+basis function (RBF) kernel}, which is also called the Gaussian kernel.
 
     \hypertarget{create-the-svc-model}{%
 \subsection{Create the SVC model}\label{create-the-svc-model}}
@@ -4331,7 +4430,7 @@ colored confusion matrix.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_148_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_152_0.png}\end{center}
         \caption{Checking the accuracy of the model by using the confusion matrix for cross-validation}
         \label{fig:confusion_matrix}
     \end{figure}
@@ -4540,25 +4639,25 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_163_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_167_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_163_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_167_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_163_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_167_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_163_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_167_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
@@ -4590,31 +4689,31 @@ exactly fit the training dataset. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_165_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_169_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_165_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_169_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_165_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_169_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_165_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_169_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_165_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_169_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
@@ -4640,7 +4739,7 @@ as the classifier tries to perfectly fit the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_167_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_171_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy}
         \label{fig:plot_vary_gamma}
     \end{figure}
@@ -4671,43 +4770,43 @@ the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_169_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_169_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_169_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_169_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_169_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_169_5.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_5.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_169_6.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_6.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
@@ -4733,7 +4832,7 @@ But be careful: to high \texttt{C} values may lead to
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_171_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_175_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'C' against the prediction accuracy}
         \label{fig:plot_vary_c}
     \end{figure}
@@ -4769,61 +4868,61 @@ training times}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_1.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_1.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_2.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_2.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_3.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_3.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_4.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_4.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_5.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_5.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_6.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_6.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_7.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_7.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_8.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_8.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
     
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_9.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_9.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
@@ -4849,7 +4948,7 @@ hyperplane leads to \textbf{overfitting} the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_175_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_179_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy}
         \label{fig:plot_vary_degree}
     \end{figure}
@@ -5098,7 +5197,7 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_193_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_197_0.png}\end{center}
         \caption{Confusion matrix for cross-validation of the baseline}
         \label{fig:cm_baseline}
     \end{figure}
@@ -5252,7 +5351,7 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_204_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_208_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the grid search has been performed}
         \label{fig:cm_grid_search}
     \end{figure}
@@ -5407,7 +5506,7 @@ Iris-versicolor       1.00      0.86      0.92         7
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_215_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_219_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the randomized search has been performed}
         \label{fig:cm_random_search}
     \end{figure}
