@@ -1217,7 +1217,7 @@ But the most important reason is that it is **easy to understand** how it works 
 
 [Support-vector machines (SVMs)](https://en.wikipedia.org/wiki/Support-vector_machine) are **supervised learning** models with associated learning algorithms that analyze data for **classification** and **regression** analysis (<cite data-cite="Wiki_SVM">Wikipedia: SVM</cite>).
 
-Since a **classifier** is needed for the current task, the following description of the operating principle focuses on the **Support Vector Classifier (SVC)**.
+Since a **classifier** is needed for the current task to classify the Iris dataset, the following description of the operating principle focuses on the **Support Vector Classifier (SVC)**.
 
 
 ### Support Vectors and hyperplane
@@ -1226,7 +1226,7 @@ The SVC algorithm plots the training data in an **n-dimensional space**. The num
 
 The SVC algorithm now tries to draw a **boundary with the largest possible distance** to the next sample from the training data. This boundary is actually a **hyperplane** whose **dimension is 1 smaller** than that of the training data (<cite data-cite="SVM_Python_2019">Lell, 2019</cite>). For example, in 3-dimensional space, the hyperplane would be a 2-dimensional non-curved plane. In 2-dimensional space, a hyperplane would simply be a straight line.
 
-The following figure shows the principle of operation of the SVC algorithm in 2-dimensional space: the hyperplanes *H1* to *H4* (left figure) separate the classes. A good separation of the classes is achieved by the hyperplane that has the **largest distance to the nearest training data point** of a class (so-called **functional margin**). The larger the margin, the better the classifier can later separate test data which are unknown to it. This is called minimization of the **generalization error**.
+The following figure shows the principle of operation of the SVC algorithm in 2-dimensional space with 2 classes to separate: the hyperplanes *H1* to *H4* (left figure) separate the classes. A good separation of the classes is achieved by the hyperplane that has the **largest distance to the nearest training data point** of a class (so-called **functional margin**). The larger the margin, the better the classifier can later separate test data which are unknown to it. This is called minimization of the **generalization error**.
 
 The right graph shows the **optimal hyperplane** characterized by **maximizing the margin** between classes (<cite data-cite="Parameter_tuning_SVC">Fraj, 2018</cite>). The perpendicular distance of the data points closest to the hyperplane determines their position and orientation. These perpendicular distances are the **support vectors** of the hyperplane - hence the algorithm got it's name.
 
@@ -1238,34 +1238,31 @@ Interestingly, the vectors that are more distant from the boundary are not impor
 
 ### Non-linear transformations
 
-https://towardsdatascience.com/the-kernel-trick-c98cdbcaeb3f
+The previous example assumes that the **data is linearly separable**. For most real cases in practice this is unfortunately not true and the SVC can only work with hyper**planes**.
 
-In der Praxis sind die Daten jedoch oft weit davon entfernt, linear trennbar zu sein, und wir müssen die Daten in einen höherdimensionalen Raum transformieren, um einen Support-Vector-Klassifikator anzupassen.
+If the data are not linearly separable in the original space, **transformations** can be applied to the data. For this purpose, the data are transferred into a **higher-dimensional feature space** where the objects are linearly separable by a hyperplane. However, during **backtransformation** this hyperplane becomes **nonlinear** and often also non-continuous (<cite data-cite="SVM_Python_2019">Lell, 2019</cite>).
 
-Wenn die Daten im ursprünglichen Raum oder im Eingaberaum nicht linear trennbar sind, wenden wir Transformationen auf die Daten an, die die Daten vom ursprünglichen Raum in einen höherdimensionalen Merkmalsraum abbilden. Ziel ist es, dass die Klassen nach der Transformation in den höherdimensionalen Raum nun in diesem höherdimensionalen Merkmalsraum linear trennbar sind. Wir können dann eine Entscheidungsgrenze festlegen, um die Klassen zu trennen und Vorhersagen zu treffen. Bei der Entscheidungsgrenze handelt es sich um eine Hyperebene in diesem höherdimensionalen Raum.
-
-In diesem Beispiel zeigt das Bild auf der linken Seite unsere ursprünglichen Datenpunkte. In der ersten Dimension sind diese Daten nicht linear trennbar, aber nach Anwendung der Transformation ϕ(x) = x² und Hinzufügen dieser zweiten Dimension zu unserem Merkmalsraum werden die Klassen linear trennbar.
+In the following example, the figure on the left shows the original data points in 1-dimensional space. In the first dimension, these data are not linearly separable. After applying the transformation $\Phi(X) = X^2$ and adding this second dimension to our feature space, the classes in the right figure become linearly separable (<cite data-cite="Kernel_trick_2018">Wilimitis, 2018</cite>).
 
 
 ![Transformation of 1-dimensional data into 2-dimensional space in order to separate the data by a linear hyperplane. (source: Kasper, license: CC BY-SA 4.0)](images/SVC_transformation.png)
 
-<!-- #region -->
+
 ### Kernel trick
 
-https://towardsdatascience.com/the-kernel-trick-c98cdbcaeb3f
+In the previous example, it was shown how a transformation to a higher dimensional feature space allows the data to be separated. In order to train an SVC and make classification predictions, mathematical operations would need to be performed on the higher dimensional vectors in the transformed feature space. However, in real-world applications, there may be many features in the data. The application of transformations involve many polynomial combinations of these features. This leads to **extremely high computational costs** (<cite data-cite="Kernel_trick_2018">Wilimitis, 2018</cite>).
 
-Wir haben gesehen, wie höherdimensionale Transformationen es uns ermöglichen, Daten zu trennen, um Klassifikationsvorhersagen zu treffen. Um einen Support-Vektor-Klassifikator zu trainieren und unsere Zielfunktion zu optimieren, müssten wir Operationen mit den höherdimensionalen Vektoren im transformierten Merkmalsraum durchführen. In realen Anwendungen kann es viele Merkmale in den Daten geben und die Anwendung von Transformationen, die viele Polynomkombinationen dieser Merkmale beinhalten, führt zu extrem hohen und unpraktischen Rechenkosten.
+The **kernel trick** provides a solution to this problem. The "trick" is that **kernel methods** represent the data only by a series of **pairwise similarity comparisons** between the original data observations $X$ (with the original coordinates in low-dimensional space). This allows to work in the original feature space instead of explicitly applying the transformations $\Phi(X)$ and representing the data by these transformed coordinates in the higher dimensional feature space (<cite data-cite="Kernel_trick_2018">Wilimitis, 2018</cite>; <cite data-cite="Kernel_trick_2018_2">Zhang, 2018</cite>).
 
-Der Kernel-Trick bietet eine Lösung für dieses Problem. Der "Trick" besteht darin, dass Kernel-Methoden die Daten nur durch eine Reihe paarweiser Ähnlichkeitsvergleiche zwischen den ursprünglichen Datenbeobachtungen x (mit den ursprünglichen Koordinaten im niedrigdimensionalen Raum) darstellen, anstatt explizit die Transformationen ϕ(x) anzuwenden und die Daten durch diese transformierten Koordinaten im höherdimensionalen Merkmalsraum darzustellen.
-
-
-Folgende **Kernel-Typen** stellt das Paket `scikit-learn` zur Verfügung:
+The following **kernel types** are provided by the Python package `scikit-learn`:
 
 - linear
-- rbf
+- radial basis function (RBF)
 - polynomial
 - sigmoid
-<!-- #endregion -->
+
+The most well-known are the [polynomial kernel](https://en.wikipedia.org/wiki/Polynomial_kernel) and the [radial basis function (RBF) kernel](https://en.wikipedia.org/wiki/Radial_basis_function_kernel), which is also called the Gaussian kernel.
+
 
 ## Create the SVC model
 
