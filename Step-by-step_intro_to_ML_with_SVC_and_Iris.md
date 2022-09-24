@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -337,6 +337,16 @@ import matplotlib.pyplot as plt
 from sklearn import svm, metrics
 import seaborn as sns
 %matplotlib inline
+
+# Set font sizes of figure title, axes and labels 
+# globally via a rcParams dictionary
+import matplotlib.pylab as pylab
+params = {'legend.fontsize': 'x-large',
+         'axes.labelsize': 'x-large',
+         'axes.titlesize':'xx-large',
+         'xtick.labelsize':'large',
+         'ytick.labelsize':'large'}
+pylab.rcParams.update(params)
 ```
 
 ### Programming IDEs
@@ -1526,7 +1536,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, shuf
 This function helps to visualize the modifications by varying the individual SVC parameters:
 
 ```python
-def plotSVC(title, svc, X, y, xlabel, ylabel):
+def plotSVC(title, svc, X, y, xlabel, ylabel, subplot):
     # create a mesh to plot in
     x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
     y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
@@ -1538,17 +1548,18 @@ def plotSVC(title, svc, X, y, xlabel, ylabel):
     h = (x_max / x_min)/1000
     xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
     
-    plt.subplot(1, 1, 1)
+    #plt.subplot(1, 1, 1)
     Z = svc.predict(np.c_[xx.ravel(), yy.ravel()])
     Z = Z.reshape(xx.shape)
     
-    plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.6)
-    plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Paired)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.xlim(xx.min(), xx.max())
-    plt.title(title)
-    plt.show()
+    ax = subplot
+    
+    ax.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.6)
+    ax.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Paired)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.set_xlim(xx.min(), xx.max())
+    ax.set_title(title)
 ```
 
 This function cares for cross validation:
@@ -1596,11 +1607,19 @@ kernels = ['linear', 'rbf', 'poly', 'sigmoid']
 xlabel = 'Petal length'
 ylabel = 'Petal width'
 
-for kernel in kernels:
+# Setup 2x2 grid for plotting
+fig, subplots = plt.subplots(2, 2, figsize=(16, 12))
+# Set margins between subplots
+plt.subplots_adjust(wspace=0.3, hspace=0.3)
+
+# Make subplots iterable via 'subplots.flatten()'
+for kernel, subplot in zip(kernels, subplots.flatten()):
     svc_plot = svm.SVC(kernel=kernel).fit(X_plot, y_plot)
     accuracy = crossValSVC(X_train, y_train, kernel=kernel)
     title_str = 'kernel: \''+str(kernel)+'\', '+'Acc. prediction: {:.2f}%'.format(accuracy)
-    plotSVC(title_str, svc_plot, X_plot, y_plot, xlabel, ylabel)
+    plotSVC(title_str, svc_plot, X_plot, y_plot, xlabel, ylabel, subplot)
+
+plt.show()
 ```
 
 ## Vary `gamma` parameter
@@ -1608,17 +1627,25 @@ for kernel in kernels:
 The `gamma` parameter is used for **non linear hyperplanes**. The higher the `gamma` float value it tries to exactly fit the training dataset. The **default** is `gamma='scale'`.
 
 ```python caption="This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel" label="fig:vary_gamma_parameter" tags=[] widefigure=false
-gammas = [0.1, 1, 10, 100, 200]
+gammas = [0.1, 0.3, 0.5, 1, 10, 100]
 
 xlabel = 'Petal length'
 ylabel = 'Petal width'
 
-for gamma in gammas:
+# Setup 2x3 grid for plotting
+fig, subplots = plt.subplots(3, 2, figsize=(16, 19))
+# Set margins between subplots
+plt.subplots_adjust(wspace=0.3, hspace=0.3)
+
+# Make subplots iterable via 'subplots.flatten()'
+for gamma, subplot in zip(gammas, subplots.flatten()):
     svc_plot = svm.SVC(kernel='rbf', gamma=gamma).fit(X_plot, y_plot)
     accuracy = crossValSVC(X_train, y_train, kernel='rbf', gamma=gamma)
     title_str = 'gamma: \''+str(gamma)+'\', ' \
                 +'Acc. prediction: {:.2f}%'.format(accuracy)
-    plotSVC(title_str, svc_plot, X_plot, y_plot, xlabel, ylabel)
+    plotSVC(title_str, svc_plot, X_plot, y_plot, xlabel, ylabel, subplot)
+
+plt.show()
 ```
 
 Show the variation of the SVC parameter `gamma` against the **prediction accuracy**.
@@ -1641,17 +1668,25 @@ plotParamsAcc(gammas, accuracy_list, 'gamma', log_scale=True)
 The `C` parameter is the **penalty** of the error term. It controls the trade off between smooth decision boundary and classifying the training points correctly. The **default** is `C=1.0`.
 
 ```python caption="This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel" label="fig:vary_c_parameter" tags=[] widefigure=false
-cs = [0.1, 1, 5, 10, 100, 1000, 10000]
+cs = [0.1, 1, 5, 10, 100, 1000]
 
 xlabel = 'Petal length'
 ylabel = 'Petal width'
 
-for c in cs:
+# Setup 2x3 grid for plotting
+fig, subplots = plt.subplots(3, 2, figsize=(16, 19))
+# Set margins between subplots
+plt.subplots_adjust(wspace=0.3, hspace=0.3)
+
+# Make subplots iterable via 'subplots.flatten()'
+for c, subplot in zip(cs, subplots.flatten()):
     svc_plot = svm.SVC(kernel='rbf', C=c).fit(X_plot, y_plot)
     accuracy = crossValSVC(X_train, y_train, kernel='rbf', C=c)
     title_str = 'C: \''+str(c)+'\', ' \
                  +'Acc. prediction: {:.2f}%'.format(accuracy)
-    plotSVC(title_str, svc_plot, X_plot, y_plot, xlabel, ylabel)
+    plotSVC(title_str, svc_plot, X_plot, y_plot, xlabel, ylabel, subplot)
+
+plt.show()
 ```
 
 Show the variation of the SVC parameter `C` against the **prediction accuracy**.
@@ -1676,17 +1711,25 @@ The `degree` parameter is used when the `kernel` is set to `poly` and is ignored
 Using `degree = 1` is the same as using a `linear` kernel. Also, increasing this parameters leads to **higher training times**.
 
 ```python caption="This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel" label="fig:vary_degree_parameter" tags=[] widefigure=false
-degrees = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+degrees = [1, 2, 3, 4, 5, 6]
 
 xlabel = 'Petal length'
 ylabel = 'Petal width'
 
-for degree in degrees:
+# Setup 2x3 grid for plotting
+fig, subplots = plt.subplots(3, 2, figsize=(16, 19))
+# Set margins between subplots
+plt.subplots_adjust(wspace=0.3, hspace=0.3)
+
+# Make subplots iterable via 'subplots.flatten()'
+for degree, subplot in zip(degrees, subplots.flatten()):
     svc_plot = svm.SVC(kernel='poly', degree=degree).fit(X_plot, y_plot)
     accuracy = crossValSVC(X_train, y_train, kernel='poly', degree=degree)
     title_str = 'degree: \''+str(degree)+'\', ' \
                  +'Acc. prediction: {:.2f}%'.format(accuracy)
-    plotSVC(title_str, svc_plot, X_plot, y_plot, xlabel, ylabel)
+    plotSVC(title_str, svc_plot, X_plot, y_plot, xlabel, ylabel, subplot)
+
+plt.show()
 ```
 
 Show the variation of the SVC parameter `degree` against the **prediction accuracy**.
