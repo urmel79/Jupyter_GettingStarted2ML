@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -604,7 +604,7 @@ sns.set_context("notebook", font_scale=1.3, rc={"lines.linewidth": 2.0})
 sns.set_style("whitegrid")
 
 n_bins = 10
-fig, axs = plt.subplots(2, 2, figsize=(8, 6))
+fig, axs = plt.subplots(2, 2, figsize=(12, 10))
 
 axs[0,0].hist(irisdata_df['sepal_length'], bins = n_bins);
 axs[0,0].set_title('Sepal Length');
@@ -1548,7 +1548,6 @@ def plotSVC(title, svc, X, y, xlabel, ylabel, subplot):
     h = (x_max / x_min)/1000
     xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
     
-    #plt.subplot(1, 1, 1)
     Z = svc.predict(np.c_[xx.ravel(), yy.ravel()])
     Z = Z.reshape(xx.shape)
     
@@ -1583,7 +1582,7 @@ This function plots the variation of the SVC parameters against the prediction a
 
 ```python
 def plotParamsAcc(param_list, acc_list, param_name, log_scale=False):
-    fig, ax = plt.subplots(figsize=(10,6))
+    fig, ax = plt.subplots(figsize=(16, 6))
     title_str = 'Variation of {} parameter '.format(param_name) \
                 +'and its effect to prediction accuracy'
     plt.title(title_str)
@@ -1601,7 +1600,7 @@ def plotParamsAcc(param_list, acc_list, param_name, log_scale=False):
 
 The `kernel` parameter selects the type of hyperplane that is used to separate the data. Using `linear` ([linear classifier](https://en.wikipedia.org/wiki/Linear_classifier)) kernel will use a linear hyperplane (a line in the case of 2D data). The `rbf` ([radial basis function kernel](https://en.wikipedia.org/wiki/Radial_basis_function_kernel)) and `poly` ([polynomial kernel](https://en.wikipedia.org/wiki/Polynomial_kernel)) kernel use non linear hyperplanes. The **default** is `kernel=rbf`.
 
-```python caption="This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')" label="fig:vary_kernels" tags=[] widefigure=false
+```python caption="This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')" label="fig:vary_kernels" tags=[] widefigure=true
 kernels = ['linear', 'rbf', 'poly', 'sigmoid']
 
 xlabel = 'Petal length'
@@ -1626,7 +1625,7 @@ plt.show()
 
 The `gamma` parameter is used for **non linear hyperplanes**. The higher the `gamma` float value it tries to exactly fit the training dataset. The **default** is `gamma='scale'`.
 
-```python caption="This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel" label="fig:vary_gamma_parameter" tags=[] widefigure=false
+```python caption="This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel" label="fig:vary_gamma_parameter" tags=[] widefigure=true
 gammas = [0.1, 0.3, 0.5, 1, 10, 100]
 
 xlabel = 'Petal length'
@@ -1667,7 +1666,7 @@ plotParamsAcc(gammas, accuracy_list, 'gamma', log_scale=True)
 
 The `C` parameter is the **penalty** of the error term. It controls the trade off between smooth decision boundary and classifying the training points correctly. The **default** is `C=1.0`.
 
-```python caption="This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel" label="fig:vary_c_parameter" tags=[] widefigure=false
+```python caption="This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel" label="fig:vary_c_parameter" tags=[] widefigure=true
 cs = [0.1, 1, 5, 10, 100, 1000]
 
 xlabel = 'Petal length'
@@ -1710,7 +1709,7 @@ The `degree` parameter is used when the `kernel` is set to `poly` and is ignored
 
 Using `degree = 1` is the same as using a `linear` kernel. Also, increasing this parameters leads to **higher training times**.
 
-```python caption="This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel" label="fig:vary_degree_parameter" tags=[] widefigure=false
+```python caption="This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel" label="fig:vary_degree_parameter" tags=[] widefigure=true
 degrees = [1, 2, 3, 4, 5, 6]
 
 xlabel = 'Petal length'
