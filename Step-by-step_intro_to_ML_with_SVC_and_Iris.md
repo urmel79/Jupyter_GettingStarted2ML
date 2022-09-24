@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -342,10 +342,11 @@ import seaborn as sns
 # globally via a rcParams dictionary
 import matplotlib.pylab as pylab
 params = {'legend.fontsize': 'x-large',
-         'axes.labelsize': 'x-large',
-         'axes.titlesize':'xx-large',
-         'xtick.labelsize':'large',
-         'ytick.labelsize':'large'}
+         'axes.labelsize':   'x-large',
+         'axes.titlesize':   'xx-large',
+         'xtick.labelsize':  'large',
+         'ytick.labelsize':  'large',
+         'axes.edgecolor':   '#ff0000'}
 pylab.rcParams.update(params)
 ```
 
@@ -1489,12 +1490,23 @@ from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
 import numpy as np
 
+# Set font sizes of figure title, axes and labels 
+# globally via a rcParams dictionary
+import matplotlib.pylab as pylab
+params = {'legend.fontsize': 'large',
+         'axes.labelsize':   'large',
+         'axes.titlesize':   'x-large',
+         'xtick.labelsize':  'medium',
+         'ytick.labelsize':  'medium',
+         'axes.edgecolor':   '#000000'}
+pylab.rcParams.update(params)
+
 # import iris dataset again
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 
 # encode the class column from class strings to integer equivalents
 irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":0,
-                                                    "Iris-versicolor":1, 
+                                                    "Iris-versicolor":1,
                                                     "Iris-virginica":2}})
 #irisdata_df_enc
 ```
@@ -1559,6 +1571,7 @@ def plotSVC(title, svc, X, y, xlabel, ylabel, subplot):
     ax.set_ylabel(ylabel)
     ax.set_xlim(xx.min(), xx.max())
     ax.set_title(title)
+    ax.grid(visible=False)
 ```
 
 This function cares for cross validation:
@@ -1592,7 +1605,7 @@ def plotParamsAcc(param_list, acc_list, param_name, log_scale=False):
         ax.set_xscale('log')
     plt.xlabel(param_name)
     plt.ylabel('accuracy [%]')
-    plt.grid()
+    plt.grid(visible=True)
     plt.show()
 ```
 
