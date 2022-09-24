@@ -341,11 +341,11 @@ import seaborn as sns
 # Set font sizes of figure title, axes and labels 
 # globally via a rcParams dictionary
 import matplotlib.pylab as pylab
-params = {'legend.fontsize': 'large',
-         'axes.labelsize':   'large',
-         'axes.titlesize':   'x-large',
-         'xtick.labelsize':  'medium',
-         'ytick.labelsize':  'medium',
+params = {'legend.fontsize': 'x-large',
+         'axes.labelsize':   'x-large',
+         'axes.titlesize':   'xx-large',
+         'xtick.labelsize':  'large',
+         'ytick.labelsize':  'large',
          'axes.edgecolor':   '#000000'}
 pylab.rcParams.update(params)
 ```
@@ -1529,17 +1529,6 @@ from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
 import numpy as np
-
-# Set font sizes of figure title, axes and labels 
-# globally via a rcParams dictionary
-import matplotlib.pylab as pylab
-params = {'legend.fontsize': 'large',
-         'axes.labelsize':   'large',
-         'axes.titlesize':   'x-large',
-         'xtick.labelsize':  'medium',
-         'ytick.labelsize':  'medium',
-         'axes.edgecolor':   '#000000'}
-pylab.rcParams.update(params)
 
 # import iris dataset again
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
