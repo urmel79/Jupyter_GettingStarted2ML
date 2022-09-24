@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -341,12 +341,12 @@ import seaborn as sns
 # Set font sizes of figure title, axes and labels 
 # globally via a rcParams dictionary
 import matplotlib.pylab as pylab
-params = {'legend.fontsize': 'x-large',
-         'axes.labelsize':   'x-large',
-         'axes.titlesize':   'xx-large',
-         'xtick.labelsize':  'large',
-         'ytick.labelsize':  'large',
-         'axes.edgecolor':   '#ff0000'}
+params = {'legend.fontsize': 'large',
+         'axes.labelsize':   'large',
+         'axes.titlesize':   'x-large',
+         'xtick.labelsize':  'medium',
+         'ytick.labelsize':  'medium',
+         'axes.edgecolor':   '#000000'}
 pylab.rcParams.update(params)
 ```
 
@@ -595,91 +595,131 @@ irisdata_df.describe()
 
 ### Get data ranges and distribution
 
-
+<!-- #region tags=[] -->
 #### Histograms
 
-**Histograms** are useful to explore the frequency distribution for each feature in univariate plots:
+This type of visualization is useful to explore the frequency distribution for each feature in univariate plots. Each feature of the Iris dataset is displayed in its own **histogram**.
 
-```python caption="Histograms used to explore the frequency distribution of the 4 features in the Iris dataset" tags=[] label="fig:histogram_iris" widefigure=true
-sns.set_context("notebook", font_scale=1.3, rc={"lines.linewidth": 2.0})
-sns.set_style("whitegrid")
+To illustrate the principle, the histogram subplots are first presented in a **not very elegant code** with many repetitions:
+<!-- #endregion -->
 
+```python caption="Histograms used to explore the frequency distribution of the 4 features in the Iris dataset" tags=[] label="fig:histogram_iris_simple" widefigure=true
+# Number of bins for the histogram
 n_bins = 10
 fig, axs = plt.subplots(2, 2, figsize=(12, 10))
+# Set margins between subplots
+plt.subplots_adjust(wspace=0.3, hspace=0.3)
 
-axs[0,0].hist(irisdata_df['sepal_length'], bins = n_bins);
-axs[0,0].set_title('Sepal Length');
+axs[0,0].hist(irisdata_df['sepal_length'], bins = n_bins, rwidth=0.95)
+axs[0,0].set_title('Sepal Length')
+# Show grid
+axs[0,0].grid(visible=True)
+# Hide grid behind the bars
+axs[0,0].set_axisbelow(True)
 
-axs[0,1].hist(irisdata_df['sepal_width'], bins = n_bins);
-axs[0,1].set_title('Sepal Width');
+axs[0,1].hist(irisdata_df['sepal_width'], bins = n_bins, rwidth=0.95)
+axs[0,1].set_title('Sepal Width')
+# Show grid
+axs[0,1].grid(visible=True)
+# Hide grid behind the bars
+axs[0,1].set_axisbelow(True)
 
-axs[1,0].hist(irisdata_df['petal_length'], bins = n_bins);
-axs[1,0].set_title('Petal Length');
+axs[1,0].hist(irisdata_df['petal_length'], bins = n_bins, rwidth=0.95)
+axs[1,0].set_title('Petal Length')
+# Show grid
+axs[1,0].grid(visible=True)
+# Hide grid behind the bars
+axs[1,0].set_axisbelow(True)
 
-axs[1,1].hist(irisdata_df['petal_width'], bins = n_bins);
-axs[1,1].set_title('Petal Width');
+axs[1,1].hist(irisdata_df['petal_width'], bins = n_bins, rwidth=0.95)
+axs[1,1].set_title('Petal Width')
+# Show grid
+axs[1,1].grid(visible=True)
+# Hide grid behind the bars
+axs[1,1].set_axisbelow(True)
 
-# add some spacing between subplots
-fig.tight_layout(pad=2.0);
+plt.show()
+```
+
+To improve the code, the function `subplots.flatten()` converts the subplot array to an iterable list. Afterwards, a loop allows to iterate through the subplots - this **saves many repetitions** in the code.
+
+```python caption="Histograms used to explore the frequency distribution of the 4 features in the Iris dataset (with improved code)" tags=[] label="fig:histogram_iris_elegant" widefigure=true
+features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
+titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
+
+# Number of bins for the histogram
+n_bins = 10
+fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
+# Set margins between subplots
+plt.subplots_adjust(wspace=0.3, hspace=0.3)
+
+# Make subplots iterable via 'subplots.flatten()'
+for feature, title, subplot in zip(features, titles, subplots.flatten()):
+    subplot.hist(irisdata_df[feature], bins = n_bins, rwidth=0.95)
+    subplot.set_title(title)
+    # Show grid
+    subplot.grid(visible=True)
+    # Hide grid behind the bars
+    subplot.set_axisbelow(True)
+
+plt.show()
 ```
 
 #### Boxplots
 
-**Boxplots** can be used to explore the **data ranges** in the dataset. These also provide information about **outliers**.
+This type of visualization can be used to explore the **data ranges** in the dataset. **Boxplots** also provide information about **outliers**.
 
-In the following code example, the 4 variables of the Iris dataset are displayed side-by-side in individual boxplots:
+In the following code example, the 4 variables of the Iris dataset are displayed side-by-side in individual boxplots. As in the previous histogram example, a loop is used to iterate through the subplots, which saves a lot of repetition in the code.
 
-```python caption="Boxplots used to explore the data ranges in the Iris dataset" label="fig:boxplots_iris" tags=[] widefigure=true
-sns.set_context("notebook", font_scale=1.3, rc={"lines.linewidth": 2.0})
-sns.set_style("whitegrid")
-#sns.set_style("white")
+```python caption="Boxplots used to explore the data ranges in the Iris dataset" tags=[] label="fig:boxplots_iris" widefigure=true
+fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
+# Set margins between subplots
+plt.subplots_adjust(wspace=0.3, hspace=0.3)
 
-fig, axs = plt.subplots(2, 2, figsize=(12, 10))
+class_names = ['Iris-setosa', 'Iris-versicolor', 'Iris-virginica']
+features =    ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 
-cn = ['Iris-setosa', 'Iris-versicolor', 'Iris-virginica']
-
-# x, y: names of variables in data or vector data
-# data: dataset for plotting
-# order: order to plot the categorical levels in
-# ax: assignment of the plot to the matplotlib subplot
-box1 = sns.boxplot(x = 'species', y = 'sepal_length', 
-                   data = irisdata_df, order = cn, ax = axs[0,0])
-box2 = sns.boxplot(x = 'species', y = 'sepal_width', 
-                   data = irisdata_df, order = cn, ax = axs[0,1])
-box3 = sns.boxplot(x = 'species', y = 'petal_length', 
-                   data = irisdata_df, order = cn, ax = axs[1,0])
-box4 = sns.boxplot(x = 'species', y = 'petal_width', 
-                   data = irisdata_df,  order = cn, ax = axs[1,1])
-
-# add some spacing between subplots
-fig.tight_layout(pad=2.0)
-
+# Make subplots iterable via 'subplots.flatten()'
+for feature, subplot in zip(features, subplots.flatten()):
+    # x, y: names of features in dataset
+    # data: dataset for plotting
+    # order: order to plot the class names in
+    # ax: assignment of the plot to the subplot
+    sns.boxplot(x = 'species', y = feature, 
+                data = irisdata_df, order = class_names, ax = subplot)
+    # Show grid
+    subplot.grid(axis='y')
+    # Hide grid behind the bars
+    subplot.set_axisbelow(True)
+    
 plt.show()
 ```
 
 #### Violin plots
 
-Another type of visualization is the **violin plot**, which **combines** the advantages of both the **histogram** and the **box plot**:
+Another type of visualization is the **violin plot**, which **combines** the advantages of both the **histogram** and the **box plot**. As in the two previous examples, a loop is used to iterate through the subplots, which saves a lot of repetition in the code.
 
-```python caption="Violin plots combine histograms and box plots" tags=[] label="fig:violinplots_iris" widefigure=true
-sns.set_context("notebook", font_scale=1.3, rc={"lines.linewidth": 2.0})
-sns.set_style("whitegrid")
+```python tags=[] caption="Violin plots combine histograms and box plots" label="fig:violinplots_iris" widefigure=true
+fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
+# Set margins between subplots
+plt.subplots_adjust(wspace=0.3, hspace=0.3)
 
-fig, axs = plt.subplots(2, 2, figsize=(12, 10))
+class_names = ['Iris-setosa', 'Iris-versicolor', 'Iris-virginica']
+features =    ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 
-cn = ['Iris-setosa', 'Iris-versicolor', 'Iris-virginica']
-
-violin1 = sns.violinplot(x='species', y='sepal_length', 
-                         data=irisdata_df, order = cn, ax = axs[0,0])
-violin2 = sns.violinplot(x='species', y='sepal_width', 
-                         data=irisdata_df, order = cn, ax = axs[0,1])
-violin3 = sns.violinplot(x='species', y='petal_length', 
-                         data=irisdata_df, order = cn, ax = axs[1,0])
-violin4 = sns.violinplot(x='species', y='petal_width', 
-                         data=irisdata_df, order = cn, ax = axs[1,1])
-# add some spacing between subplots
-fig.tight_layout(pad=2.0)
-
+# Make subplots iterable via 'subplots.flatten()'
+for feature, subplot in zip(features, subplots.flatten()):
+    # x, y: names of features in dataset
+    # data: dataset for plotting
+    # order: order to plot the class names in
+    # ax: assignment of the plot to the subplot
+    sns.violinplot(x = 'species', y = feature, 
+                   data = irisdata_df, order = class_names, ax = subplot)
+    # Show grid
+    subplot.grid(axis='y')
+    # Hide grid behind the bars
+    subplot.set_axisbelow(True)
+    
 plt.show()
 ```
 
