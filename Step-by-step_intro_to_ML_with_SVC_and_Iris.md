@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -1838,10 +1838,10 @@ Set path and columns of the Iris dataset for import:
 
 ```python
 # Path of the ORIGINAL Iris dataset for classification
-CSV_PATH = "./datasets/IRIS_flower_dataset_kaggle.csv"
+#CSV_PATH = "./datasets/IRIS_flower_dataset_kaggle.csv"
 
 # Path of the NOISED Iris dataset for classification
-#CSV_PATH = "./datasets/IRIS_flower_dataset_kaggle_noised.csv"
+CSV_PATH = "./datasets/IRIS_flower_dataset_kaggle_noised.csv"
 ```
 
 Load dataset and split it into subsets for training and testing in the ratio 80% to 20%:
@@ -1945,6 +1945,99 @@ plt.show()
 classifier.get_params()
 ```
 
+## Add Gaussian noise to Iris dataset
+
+Recording **datasets from real applications** is always associated with several problems. Real measured values are always subject to a certain **level of measurement noise**. Furthermore, when recording the measured values, there may be sporadic dropouts of the measurement sensors, which leads to **gaps in the dataset**. And finally, **doubles**, i.e. several identical measurements, can occur when merging several measurement series from different experiments.
+
+These problems from the real measuring everyday life are to be shown by the example of the Iris dataset. Unfortunately, this dataset is a little "too perfect". To simulate **real measurement values**, some **Gaussian noise** with a defined **standard deviation $\sigma$** is added to the features of the Iris dataset. To simulate an **offset** due to **imperfectly calibrated measurement devices**, for example, the mean value could additionally be shifted. However, because this has **no influence on the classifiability**, it is omitted here.
+
+```python
+# Import Iris dataset for adding noise
+irisdata_df_orig = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
+```
+
+First, determine the shape of the iris dataset. The last column with the class names is omitted to get only the feature columns.
+
+```python
+# Get number of rows of the dataset
+n_rows = irisdata_df_orig.shape[0]
+
+# Get number of columns of the dataset
+# Omit last column with the class names
+n_cols = irisdata_df_orig.shape[1] - 1
+```
+
+Now a `numpy` array in the shape of the Iris dataset is generated. This contains **normally distributed random values** according to the **Gaussian curve** with a defined **standard deviation $\sigma$**. The **mean** of the Gaussian curve remains unchanged and is **not shifted**.
+
+```python tags=[]
+# mean: "centre" of the distribution
+# sigma: standard deviation (spread or “width”) of the distribution
+mean, sigma = 0, 0.2
+
+# Create noise with the same dimension as the dataset
+# Set 'seed' to something, to make the output of the random generator reproducible
+np.random.seed(42)
+irisdata_np_noise = np.random.normal(mean, sigma, (n_rows, n_cols))
+```
+
+The first 4 columns of the dataframe containing the original Iris dataset are converted to a `numpy` array.
+
+```python tags=[]
+# Select columns 1-4 with all rows
+# and convert it to numpy array
+irisdata_np_orig = irisdata_df_orig.iloc[:, 0:4].to_numpy()
+```
+
+The array with the normally distributed random values is added to this.
+
+```python tags=[]
+# Add noise to original values
+irisdata_np_noised = irisdata_np_orig + irisdata_np_noise
+```
+
+Finally, a deep copy of the original dataframe is created. In the copy, the first 4 columns are replaced with the noisy features.
+
+```python
+# Make a deep copy of original dataframe
+irisdata_df_noised = irisdata_df_orig.copy(deep=True)
+
+# Replace values of dataframe with noisy values from array 
+irisdata_df_noised.iloc[:, 0:4] = irisdata_np_noised
+
+irisdata_df_noised
+```
+
+To compare the original Iris dataset with its noisy copy, both dataframes are visualized in pairs plots.
+
+```python
+# Define a function to visualize data as pairs plots
+def plotPairs(df, title):
+    g = sns.pairplot(df, diag_kind="kde", hue='species', 
+                     palette='Dark2', height=2.5)
+
+    g.map_lower(sns.kdeplot, levels=4, color=".2")
+    # y .. padding between title and plot
+    g.fig.suptitle(title, y=1.05)
+    plt.show()
+```
+
+```python caption="Pairs plot of the original Iris dataset" tags=[] label="fig:pairs_plot_orig_Iris" widefigure=true
+title = 'Pairs plot of the ORIGINAL Iris dataset'
+plotPairs(irisdata_df_orig, title)
+```
+
+```python caption="Pairs plot of the noised Iris dataset" tags=[] label="fig:pairs_plot_noised_Iris" widefigure=true
+title = 'Pairs plot of the NOISED Iris dataset'
+plotPairs(irisdata_df_noised, title)
+```
+
+Finally, the noisy iris dataset is saved in its own CSV file.
+
+```python
+# Save noised Iris dataset to CSV file without index
+irisdata_df_noised.to_csv('./datasets/IRIS_flower_dataset_kaggle_noised.csv', sep=',', index=False)
+```
+
 ## Grid search
 
 
@@ -1953,13 +2046,15 @@ Initialize the SVC model and define the **space of the hyperparameters** to perf
 ```python
 classifier = svm.SVC()
 
-kernels = ["linear", "rbf", "sigmoid", "poly"]
+#kernels = ["linear", "rbf", "sigmoid", "poly"]
+kernels = ["rbf", "poly"]
 gammas = [0.1, 1, 10, 100, 200]
-cs = [0.1, 1, 5, 10, 100, 1000, 10000]
+cs = [0.1, 1, 5, 10, 100, 1000]
 
 # reduce the possible polynomial degrees to reasonable values,
 # since with higher degrees the calculation time increases exponentially
-degrees = [1, 2, 3, 4, 5]
+#degrees = [1, 2, 3, 4, 5]
+degrees = [1, 2, 3]
 
 grid = dict(kernel=kernels, gamma=gammas, C=cs, degree=degrees)
 ```
@@ -1978,8 +2073,11 @@ execTime.start()
 
 searchResults = gridSearch.fit(X_train, y_train)
 
-# print time delta
-print('Execution time: {:.2f} s'.format(execTime.stop()/1000))
+# Print execution time delta
+execTime_sec = execTime.stop()/1000
+execTime_str = time.strftime('%H h, %M min, %S sec', time.gmtime(execTime_sec))
+#print('Execution time: {:.3f} s'.format(execTime_sec))
+print('Execution time: {}'.format(execTime_str))
 ```
 
 Extract the best model and evaluate it:
@@ -2063,8 +2161,11 @@ execTime.start()
 
 searchResults = randomSearch.fit(X_train, y_train)
 
-# print time delta
-print('Execution time: {:.3f} s'.format(execTime.stop()/1000))
+# Print execution time delta
+execTime_sec = execTime.stop()/1000
+execTime_str = time.strftime('%H h, %M min, %S sec', time.gmtime(execTime_sec))
+#print('Execution time: {:.3f} s'.format(execTime_sec))
+print('Execution time: {}'.format(execTime_str))
 ```
 
 Extract the best model and evaluate it:
