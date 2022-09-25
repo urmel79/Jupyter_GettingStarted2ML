@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -491,7 +491,7 @@ It can be downloaded on [Kaggle: Iris Flower Dataset](https://www.kaggle.com/dat
 <!-- #endregion -->
 
 ```python
-# import Iris dataset for exploration
+# Import Iris dataset for exploration
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 ```
 
@@ -1337,8 +1337,11 @@ For further details about **Standarization** and **Normalization** read here: [W
 <!-- #endregion -->
 
 ```python
-# import Iris dataset for exploration (again)
-irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
+# Import ORIGINAL Iris dataset for classification
+#irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
+
+# Import NOISED Iris dataset for classification
+irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle_noised.csv')
 ```
 
 <!-- #region tags=["TODO_Step_4"] -->
@@ -1406,9 +1409,9 @@ Otherwise, the result of the prediction would be significantly worse. Maybe this
 
 ```python
 # DO NOT USE THIS!!
-X_train, X_test, y_train, y_test = train_test_split(X[['sepal_length', 
-                                                       'sepal_width']], 
-                                                    y, test_size = 0.20)
+#X_train, X_test, y_train, y_test = train_test_split(X[['sepal_length', 
+#                                                       'sepal_width']], 
+#                                                    y, test_size = 0.20)
 ```
 
 ## Train the SVC
@@ -1834,8 +1837,11 @@ from MeasExecTimeOfProgram_class import MeasExecTimeOfProgram
 Set path and columns of the Iris dataset for import:
 
 ```python
-# specify the path of the dataset
+# Path of the ORIGINAL Iris dataset for classification
 CSV_PATH = "./datasets/IRIS_flower_dataset_kaggle.csv"
+
+# Path of the NOISED Iris dataset for classification
+#CSV_PATH = "./datasets/IRIS_flower_dataset_kaggle_noised.csv"
 ```
 
 Load dataset and split it into subsets for training and testing in the ratio 80% to 20%:
@@ -2029,13 +2035,15 @@ Initialize the SVC model and define the **space of the hyperparameters** to perf
 ```python
 classifier = svm.SVC()
 
-kernels = ["linear", "rbf", "sigmoid", "poly"]
+#kernels = ["linear", "rbf", "sigmoid", "poly"]
+kernels = ["rbf", "poly"]
 gammas = [0.1, 1, 10, 100, 200]
-cs = [0.1, 1, 5, 10, 100, 1000, 10000]
+cs = [0.1, 1, 5, 10, 100, 1000]
 
 # reduce the possible polynomial degrees to reasonable values,
 # since with higher degrees the calculation time increases exponentially
-degrees = [1, 2, 3, 4, 5]
+#degrees = [1, 2, 3, 4, 5]
+degrees = [1, 2, 3]
 
 grid = dict(kernel=kernels, gamma=gammas, C=cs, degree=degrees)
 ```
