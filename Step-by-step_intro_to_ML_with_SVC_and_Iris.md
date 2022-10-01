@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -2213,14 +2213,24 @@ plt.show()
 bestModel.get_params()
 ```
 
+<!-- #region tags=["TODO_Summary"] -->
 # Summary and outlook
 
-## English summary
+**@TODO:**
+Add english and german summary and outlook (e.g. substitute Iris dataset by Penguin dataset for didactical reasons).
 
+## English summary
+<!-- #endregion -->
 
 ## German summary
 
-
+<!-- #region tags=["TODO_acknowledgments"] -->
 # Acknowledgments
 
+**@TODO:**
+Add acknowledgments to colleagues at the testing lab, Prof. Steimers, and my family.
+<!-- #endregion -->
 
+```python
+
+```
