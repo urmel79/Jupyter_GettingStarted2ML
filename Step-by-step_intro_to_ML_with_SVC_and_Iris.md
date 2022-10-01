@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.7
+      jupytext_version: 1.14.1
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -116,7 +116,7 @@ Nach der Erkundung des Datensatzes muss man sich im **Schritt 3** anhand bestimm
 
 Im **Schritt 4** wird der Datensatz für die eigentliche Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus sowie der Datenstruktur kann es erforderlich sein, dass die Daten vor dem Training aufbereitet werden müssen (z. B. durch Standardisierung, Normalisierung oder Binärisierung anhand von Schwellwerten). Nach der Aufteilung des Datensatzes in einen Trainings- und Testdatensatz, wird das SVC-Modell im **Schritt 5** mit dem Trainingsdatensatz trainiert. Anschließend werden mit dem trainierten SVC-Modell anhand der Testdaten Klassifikationsvorhersagen getroffen. Im **Schritt 6** wird die Güte des Klassifikationsergebnisses anhand bekannter **Metriken** wie z. B. der **Konfusionsmatrix** evaluiert.
 
-Da die Klassifikation im Schritt 5 zunächst mit Standard-Parametern (den sogenannte **Hyper-Parametern**) durchgeführt wurde, wird ihre Bedeutung im **Schritt 7** erklärt und danach ihr Einfluss auf das Klassifikationsergebnis durch manuelle Variation der einzelnen Hyper-Parameter demonstriert.
+Da die Klassifikation im Schritt 5 zunächst mit Standard-Parametern (den sogenannten **Hyper-Parametern**) durchgeführt wurde, wird ihre Bedeutung im **Schritt 7** erklärt und danach ihr Einfluss auf das Klassifikationsergebnis durch manuelle Variation der einzelnen Hyper-Parameter demonstriert.
 
 Im abschließenden **Schritt 8** werden zwei Ansätze zur systematischen Hyper-Parameter-Suche vorgestellt: **Grid Search** und **Randomized Search**. Während bei ersterer für gegebene Werte erschöpfend alle Parameterkombinationen betrachtet werden, wird beim zweiten Ansatz eine Anzahl von Kandidaten aus einem Parameterraum mit einer bestimmten zufälligen Verteilung ausgewählt.
 <!-- #endregion -->
@@ -1366,6 +1366,9 @@ irisdata_df
 
 ## Normalization
 
+
+## Binarization
+
 <!-- #region toc-hr-collapsed=true tags=[] -->
 # STEP 5: Carry out training, prediction and testing
 
@@ -2223,6 +2226,37 @@ Add english and german summary and outlook (e.g. substitute Iris dataset by Peng
 <!-- #endregion -->
 
 ## German summary
+
+Das vorliegende Getting-Started-Tutorial wird im Rahmen eines Workshops auf der **Fachtagung "Künstliche Intelligenz"**, ausgerichtet durch die Deutsche Gesetzliche Unfallversicherung (DGUV), voraussichtlich im November 2022 in Dresden vorgestellt. Der Workshop richtet sich an interessierte ML-Neulinge im technischen Arbeitsschutz der gesetzlichen Unfallversicherungsträger.
+
+Im Tutorial wurde systematisch und Schritt-für-Schritt der **typische Arbeitsablauf** beim **maschinellen Lernen (ML)** anhand des sehr bekannten **Iris-Datensatzes** demonstriert. Im Tutorial wurde auf einen fertigen Datensatz zurückgegriffen, damit sich ein ML-Neuling zunächst mit den ML-Algorithmen, Werkzeugen, Bibliotheken und Programmiersystemen vertraut machen kann. Zur Klassifikation des Datensatzes kam der sehr leistungsfähige **Support Vector Classifier (SVC)** zum Einsatz. Obwohl es eine sehr reichhaltige Auswahl anderer leistungsfähiger und für die Klassifikation geeigneter ML-Algorithmen gibt, wurde für einen verständlichen Einstieg bewusst der SVC-Algorithmus für die Zielgruppe gewählt.
+
+Die Hauptabschnitte des Tutorials stellen die einzelnen Schritte im ML-Arbeitsablauf dar. Im **Schritt 0** wurden konkrete Hinweise für die Auswahl der für das maschinelle Lernen geeigneten Hardware und Software gegeben. Nach einführenden Hinweisen hinsichtlich des zu beachtenden Community Supports wurde bei der Hardware-Auswahl zwischen Trainings- und Applikationssystem unterschieden. Softwareseitig wurden die bei ML-Entwicklern beliebten Programmiersprachen und Programmierumgebungen (sog. IDEs) vorgestellt. Darüber hinaus wurden Cloud-gehostete IDEs gezeigt, die die Anschaffung geeigneter Hardware und die Installation der notwendigen Software-Pakete bis zu einem gewissen Grad überflüssig machen.
+
+Wie oben erklärt, wurde im **Schritt 1** der fertige und sehr einsteigerfreundliche **Iris-Datensatz** hinzugezogen. 
+
+Mit der wichtigste und umfangreichste Schritt im gesamten ML-Prozess war **Schritt 2**. In diesem wurde der in Schritt 1 einbezogene Datensatz mit Hilfe typischer Datenanalyse-Werkzeuge untersucht. Neben der Erkundung der **Datenstruktur** sowie der **inneren Zusammenhänge** im Datensatz mussten auch Fehler wie z. B. Lücken, Dopplungen oder offensichtliche Fehleingaben gefunden und nach Möglichkeit behoben werden. Dies war enorm wichtig, damit die Klassifikation später plausible Ergebnisse liefern konnte.
+
+Im **Schritt 3** wurde zunächst eine sehr kurze Einführung in die Welt der künstlichen Intelligenz und des maschinellen Lernens gegeben. Unterstützt wurde die Einführung durch eine Taxonomie der verschiedenen Lernarten und der Nennung ausgewählter Algorithmen. Anhand eines Entscheidungsgraphes wurde die Wahl des Support Vector Classifiers (SVC) für die vorliegende Klassifikationsaufgabe begründet. Danach wurde das grundsätzliche Funktionsprinzip des SVC sowie der sog. "Kernel-Trick" erläutert. Abschließend wurde ein entsprechendes SVC-Modell implementiert.
+
+Im **Schritt 4** wurde der Datensatz für die eigentliche Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus sowie der Datenstruktur kann es erforderlich sein, dass die Daten vor dem Training aufbereitet werden müssen (z. B. durch Standardisierung, Normalisierung oder Binärisierung anhand von Schwellwerten). Für den verwendeten Iris-Datensatz genügte eine Standardisierung.
+
+Nach der Aufteilung des Datensatzes in einen Trainings- und Testdatensatz, wurde das SVC-Modell im **Schritt 5** mit dem Trainingsdatensatz trainiert. Anschließend wurden mit dem trainierten SVC-Modell anhand der Testdaten Klassifikationsvorhersagen getroffen.
+
+Im **Schritt 6** wurde die Güte des Klassifikationsergebnisses anhand bekannter **Metriken** wie z. B. dem **Kreuzvalidierungskennwert** und der **Konfusionsmatrix** evaluiert.
+
+Die Klassifikation im Schritt 5 wurde zunächst mit Standardwerten für die sogenannten **Hyper-Parametern** durchgeführt. Daher wurde im **Schritt 7** zunächst die Bedeutung der Parameter erklärt. Danach wurde ihr Einfluss auf das Klassifikationsergebnis durch manuelle Variation der einzelnen Hyper-Parameter demonstriert.
+
+Im abschließenden **Schritt 8** wurden zwei Ansätze zur systematischen Hyper-Parameter-Suche vorgestellt: **Grid Search** und **Randomized Search**. Während bei ersterer für gegebene Werte erschöpfend alle Parameterkombinationen betrachtet wurden, wurde beim zweiten Ansatz eine Anzahl von Kandidaten aus einem Parameterraum mit einer bestimmten zufälligen Verteilung ausgewählt.
+
+**TODOs**:  
+- Beobachtungen und Ergebnisse im Schritt 8 ergänzen:
+    - Basislinie als Grundlage zur Bewertung, ob die systematischen Parameter-Suchen Verbesserungen gebracht haben
+    - Zufallssuche: lokale Optima mit stets anderen Ergebnissen (Durchlaufzeit, gefundene Parameter und Klassifikationsergebnisse) - dafür aber deutlich schneller als Gittersuche
+    - Iris-Datensatz zu perfekt für Klassifikation => Hinzufügen von Gaußschem Rauschen, um Messrauschen zu simulieren
+- Ausblick zur Erweiterung des Tutorial:
+    - aus didaktischen Gründen könnte im Tutorial der Iris-Datensatz gegen den viel neueren Pinguin-Datensatz ausgetauscht werden (ist ähnlich aufgebaut, hat aber Lücken und lässt sich nicht ganz so einfach klassifizieren)
+    - in einem weiteren Schritt könnten konkrete Hinweise gegeben werden, wie eine eigene reale ML-Applikation aufgebaut und ein geeigneter Datensatz für eine Klassifikation erzeugt werden kann
 
 <!-- #region tags=["TODO_acknowledgments"] -->
 # Acknowledgments
