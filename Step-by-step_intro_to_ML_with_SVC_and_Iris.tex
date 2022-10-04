@@ -890,7 +890,7 @@ wird die Güte des Klassifikationsergebnisses anhand bekannter
 \textbf{Metriken} wie z. B. der \textbf{Konfusionsmatrix} evaluiert.
 
 Da die Klassifikation im Schritt 5 zunächst mit Standard-Parametern (den
-sogenannte \textbf{Hyper-Parametern}) durchgeführt wurde, wird ihre
+sogenannten \textbf{Hyper-Parametern}) durchgeführt wurde, wird ihre
 Bedeutung im \textbf{Schritt 7} erklärt und danach ihr Einfluss auf das
 Klassifikationsergebnis durch manuelle Variation der einzelnen
 Hyper-Parameter demonstriert.
@@ -4219,6 +4219,9 @@ Incorporate section ``Skalieren von Merkmalen'' of the book
     \hypertarget{normalization}{%
 \subsection{Normalization}\label{normalization}}
 
+    \hypertarget{binarization}{%
+\subsection{Binarization}\label{binarization}}
+
     \hypertarget{step-5-carry-out-training-prediction-and-testing}{%
 \section{STEP 5: Carry out training, prediction and
 testing}\label{step-5-carry-out-training-prediction-and-testing}}
@@ -4500,7 +4503,7 @@ colored confusion matrix.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_154_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_155_0.png}\end{center}
         \caption{Checking the accuracy of the model by using the confusion matrix for cross-validation}
         \label{fig:confusion_matrix}
     \end{figure}
@@ -4718,7 +4721,7 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_169_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_170_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
@@ -4758,7 +4761,7 @@ exactly fit the training dataset. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_171_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_172_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
@@ -4784,7 +4787,7 @@ as the classifier tries to perfectly fit the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_173_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_174_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy}
         \label{fig:plot_vary_gamma}
     \end{figure}
@@ -4823,7 +4826,7 @@ the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_175_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_176_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
@@ -4849,7 +4852,7 @@ But be careful: to high \texttt{C} values may lead to
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_178_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'C' against the prediction accuracy}
         \label{fig:plot_vary_c}
     \end{figure}
@@ -4893,7 +4896,7 @@ training times}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_179_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_180_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
@@ -4919,7 +4922,7 @@ hyperplane leads to \textbf{overfitting} the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_181_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_182_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy}
         \label{fig:plot_vary_degree}
     \end{figure}
@@ -5171,7 +5174,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_199_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_200_0.png}\end{center}
         \caption{Confusion matrix for cross-validation of the baseline}
         \label{fig:cm_baseline}
     \end{figure}
@@ -5354,7 +5357,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_215_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_216_0.png}\end{center}
         \caption{Pairs plot of the original Iris dataset}
         \label{fig:pairs_plot_orig_Iris}
     \end{figure}
@@ -5368,7 +5371,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_216_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_217_0.png}\end{center}
         \caption{Pairs plot of the noised Iris dataset}
         \label{fig:pairs_plot_noised_Iris}
     \end{figure}
@@ -5509,7 +5512,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_228_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_229_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the grid search has been performed}
         \label{fig:cm_grid_search}
     \end{figure}
@@ -5669,7 +5672,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_239_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_240_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the randomized search has been performed}
         \label{fig:cm_random_search}
     \end{figure}
@@ -5708,11 +5711,290 @@ Iris-versicolor       0.90      1.00      0.95         9
 \hypertarget{english-summary}{%
 \subsection{English summary}\label{english-summary}}
 
+In November 2022, the German Social Accident Insurance (DGUV) will be
+hosting the \textbf{Artificial Intelligence Symposium} in Dresden. The
+present tutorial is to be presented to interested ML novices in the
+technical occupational safety and health of the social accident
+insurance institutions as part of a separate \textbf{Getting Started
+Workshop}.
+
+In the tutorial, the \textbf{typical workflow} in \textbf{machine
+learning (ML)} was demonstrated systematically and step-by-step using
+the very familiar \textbf{Iris dataset}. Therefore, a ready-made dataset
+was used so that an ML novice could first become familiar with ML
+algorithms, data analysis tools and software libraries as well as
+programming systems. The task was to distinguish, i.e.~classify, three
+different iris species based on the dimensions (width and length) of
+their \textbf{petals and sepals}. The dataset contains \textbf{50
+measured individuals} per species.
+
+For the classification of the dataset the very powerful \textbf{Support
+Vector Classifier (SVC)} was used. Although there is a very rich
+selection of other powerful ML algorithms suitable for the
+classification task at hand here, the SVC algorithm was deliberately
+chosen for the target group of the workshop for a comprehensible
+introduction.
+
+The main sections of the tutorial represent the individual steps in a
+typical ML workflow. In \textbf{Step 0}, specific guidance was given on
+the selection of hardware and software suitable for machine learning.
+After introductory notes regarding \textbf{community support} to be
+considered, a distinction was made between training and application
+systems in the explanations of \textbf{hardware selection}. \textbf{On
+the software side}, the programming languages and programming
+environments (so-called IDEs) popular with ML developers were introduced
+and advantages and disadvantages were mentioned in each case. In
+addition, cloud-hosted IDEs were shown, which eliminate the need to
+purchase suitable hardware and install the necessary software packages
+to a certain extent.
+
+As stated above, in \textbf{Step 1} the ready-made and very
+beginner-friendly \textbf{Iris dataset} was used. One of the most
+important and extensive steps in the entire ML process was \textbf{Step
+2}. In this, the dataset included in Step 1 was explored using typical
+data analysis tools. In addition to exploring the \textbf{data
+structure} as well as the \textbf{inner correlations} in the dataset,
+errors such as gaps, duplications, or obvious misentries had to be found
+and corrected if possible. This was enormously important so that the
+classification could later provide plausible results. Since the Iris
+dataset had no gaps or duplications, another alternative dataset was
+used to demonstrate the tools.
+
+In \textbf{Step 3}, a very brief introduction to the world of artificial
+intelligence and machine learning was first given. The introduction was
+supported by a \textbf{taxonomy of different types of learning} and the
+listing of selected ML algorithms. A \textbf{decision graph} was used to
+justify the choice of the Support Vector Classifier (SVC) for the
+classification task at hand. Afterwards, the basic working principle of
+the SVC including the so-called \textbf{kernel trick} was explained.
+Finally, a corresponding SVC model was implemented.
+
+In \textbf{Step 4} the dataset was prepared for the actual
+classification by SVC. Depending on the selected ML algorithm as well as
+the data structure, it could be necessary to prepare the data before
+training, e.g., by standardization, normalization, or binarization based
+on threshold values. For the Iris dataset used, standardization was
+sufficient to align the value ranges of the features.
+
+After splitting the dataset into a \textbf{training and test dataset},
+the SVC model was trained with the training dataset in \textbf{step 5}.
+Subsequently, \textbf{classification predictions} were made with the
+trained SVC model using the test data.
+
+In \textbf{Step 6}, the quality of the classification result was
+evaluated using known \textbf{metrics} such as the \textbf{cross
+validation score} and the \textbf{confusion matrix}.
+
+The classification in step 5 was performed with default values for the
+so-called \textbf{hyper parameters} of the SVC. Therefore, in
+\textbf{step 7} the meaning of the parameters was first explained. Then,
+their influence on the classification result was demonstrated by
+\textbf{manually varying} the individual hyper-parameters.
+
+In the final \textbf{Step 8}, two approaches to systematic
+hyper-parameter search were presented: \textbf{grid search} and
+\textbf{randomized search}. While the former considered exhaustively all
+parameter combinations for given values, the latter approach selected a
+number of candidates from a parameter space with a particular random
+distribution. In order to be able to evaluate whether the two search
+methods led to improved results, classification was first carried out
+using default values for the hyper-parameters. The so-called
+\textbf{baseline} was determined. It turned out that the Iris dataset
+already gave much too good results at default values (recognition rates
+around 100\%) to expect significant improvements by systematic parameter
+search. Therefore, \textbf{Gaussian noise} was added to the dataset in a
+second step, which allowed to simulate \textbf{measurement noise} of
+real ML applications at the same time.
+
+Using a custom Python class, the \textbf{run times} for the two search
+methods were determined. As expected, the grid search took by far the
+longest time compared to the randomized search. However, only local
+optima for the hyper-parameters were always identified for the
+randomized search, which also led to different results for each run. The
+quality of the classification in terms of recognition rate was again
+determined using the metrics presented in step 6. While the grid search
+always produced better results compared to the baseline, these varied
+for the randomized search and were each slightly better or worse than
+those of the baseline.
+
+As an outlook, the current tutorial could be extended by replacing the
+Iris dataset with the much more modern
+\textbf{\href{https://github.com/mcnakhaee/palmerpenguins}{Penguin
+dataset}} (original package for \textbf{R}: \cite{palmerpenguins_R_2020}
+as well as adapted package for \textbf{Python}:
+\cite{palmerpenguins_Python_2020}). However, this would mean a
+fundamental reworking of all the steps in this tutorial.
+
+As explained above, the tutorial so far is limited to the introduction
+of the ML algorithms, the tools for data analysis, and the Python
+libraries and programming systems. In a further step, concrete hints
+could be given on how to build an own \textbf{real ML application} and
+how to generate a suitable dataset for classification.
+
     \hypertarget{german-summary}{%
 \subsection{German summary}\label{german-summary}}
 
+Im November 2022 wird die Deutsche Gesetzliche Unfallversicherung (DGUV)
+die \textbf{Fachtagung ``Künstliche Intelligenz''} in Dresden
+ausrichten. Dabei soll das vorliegende Tutorial interessierten
+ML-Neulingen im technischen Arbeitsschutz der gesetzlichen
+Unfallversicherungsträger im Rahmen eines eigenen
+\textbf{Getting-Started-Workshop} präsentiert werden.
+
+Im Tutorial wurde systematisch und Schritt-für-Schritt der
+\textbf{typische Arbeitsablauf} beim \textbf{maschinellen Lernen (ML)}
+anhand des sehr bekannten \textbf{Iris-Datensatzes} demonstriert. Es
+wurde deshalb auf einen fertigen Datensatz zurückgegriffen, damit sich
+ein ML-Neuling zunächst mit den ML-Algorithmen, den Werkzeugen zur
+Datenanalyse sowie den Software-Bibliotheken und Programmiersystemen
+vertraut machen kann. Die Aufgabe bestand darin, drei verschiedene
+Iris-Arten anhand der Abmessungen (Breite und Länge) ihrer \textbf{Kron-
+und Kelchblätter} zu unterscheiden, d.~h. zu klassifizieren. Der
+Datensatz enthält jeweils \textbf{50 vermessene Individuen} pro Art.
+
+Zur Klassifikation des Datensatzes kam der sehr leistungsfähige
+\textbf{Support Vector Classifier (SVC)} zum Einsatz. Obwohl es eine
+sehr reichhaltige Auswahl anderer leistungsfähiger und für die hier
+vorliegende Klassifikationsaufgabe geeignete ML-Algorithmen gibt, wurde
+für einen verständlichen Einstieg bewusst der SVC-Algorithmus für die
+Zielgruppe des Workshops gewählt.
+
+Die Hauptabschnitte des Tutorials stellen die einzelnen Schritte in
+einem typischen ML-Arbeitsablauf dar. Im \textbf{Schritt 0} wurden
+konkrete Hinweise für die Auswahl der für das maschinelle Lernen
+geeigneten Hardware und Software gegeben. Nach einführenden Hinweisen
+hinsichtlich des zu berücksichtigenden \textbf{Community Supports} wurde
+bei den Ausführungen zur \textbf{Hardware-Auswahl} zwischen Trainings-
+und Applikationssystem unterschieden. \textbf{Software-seitig} wurden
+die bei ML-Entwicklern beliebten Programmiersprachen und
+Programmierumgebungen (sog. IDEs) vorgestellt und jeweils Vor- und
+Nachteile genannt. Darüber hinaus wurden Cloud-gehostete IDEs gezeigt,
+die die Anschaffung geeigneter Hardware und die Installation der
+notwendigen Software-Pakete bis zu einem gewissen Grad überflüssig
+machen.
+
+Wie oben begründet, wurde im \textbf{Schritt 1} der fertige und sehr
+einsteigerfreundliche \textbf{Iris-Datensatz} hinzugezogen. Mit der
+wichtigste und umfangreichste Schritt im gesamten ML-Prozess war
+\textbf{Schritt 2}. In diesem wurde der in Schritt 1 einbezogene
+Datensatz mit Hilfe typischer Datenanalyse-Werkzeuge untersucht. Neben
+der Erkundung der \textbf{Datenstruktur} sowie der \textbf{inneren
+Zusammenhänge} im Datensatz mussten auch Fehler wie z. B. Lücken,
+Dopplungen oder offensichtliche Fehleingaben gefunden und nach
+Möglichkeit behoben werden. Dies war enorm wichtig, damit die
+Klassifikation später plausible Ergebnisse liefern konnte. Da der
+Iris-Datensatz keine Lücken und Dopplungen aufwies, wurde zur
+Demonstration der Werkzeuge auf einen anderen alternativen Datensatz
+ausgewichen.
+
+Im \textbf{Schritt 3} wurde zunächst eine sehr kurze Einführung in die
+Welt der künstlichen Intelligenz und des maschinellen Lernens gegeben.
+Unterstützt wurde die Einführung durch eine \textbf{Taxonomie der
+verschiedenen Lernarten} und der Nennung ausgewählter ML-Algorithmen.
+Anhand eines \textbf{Entscheidungsgraphes} wurde die Wahl des Support
+Vector Classifiers (SVC) für die vorliegende Klassifikationsaufgabe
+begründet. Danach wurde das grundsätzliche Funktionsprinzip des SVC
+einschließlich des sog. \textbf{Kernel-Tricks} erläutert. Abschließend
+wurde ein entsprechendes SVC-Modell implementiert.
+
+Im \textbf{Schritt 4} wurde der Datensatz für die eigentliche
+Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus
+sowie der Datenstruktur konnte es erforderlich sein, dass die Daten vor
+dem Training aufbereitet werden mussten, z. B. durch Standardisierung,
+Normalisierung oder Binärisierung anhand von Schwellwerten. Für den
+verwendeten Iris-Datensatz genügte eine Standardisierung, um die
+Wertebereiche der Features aneinander anzugleichen.
+
+Nach der Aufteilung des Datensatzes in einen \textbf{Trainings- und
+Testdatensatz}, wurde das SVC-Modell im \textbf{Schritt 5} mit dem
+Trainingsdatensatz trainiert. Anschließend wurden mit dem trainierten
+SVC-Modell anhand der Testdaten \textbf{Klassifikationsvorhersagen}
+getroffen.
+
+Im \textbf{Schritt 6} wurde die Güte des Klassifikationsergebnisses
+unter Verwendung bekannter \textbf{Metriken} wie z. B. dem
+\textbf{Kreuzvalidierungskennwert (eng. Cross Validation Score)} und der
+\textbf{Konfusionsmatrix} evaluiert.
+
+Die Klassifikation im Schritt 5 wurde mit Standardwerten für die
+sogenannten \textbf{Hyper-Parameter} des SVC durchgeführt. Daher wurde
+im \textbf{Schritt 7} zunächst die Bedeutung der Parameter erklärt.
+Danach wurde ihr Einfluss auf das Klassifikationsergebnis durch
+\textbf{manuelle Variation} der einzelnen Hyper-Parameter demonstriert.
+
+Im abschließenden \textbf{Schritt 8} wurden zwei Ansätze zur
+systematischen Hyper-Parameter-Suche vorgestellt: \textbf{Rastersuche
+(eng. Grid Search)} und \textbf{Zufallssuche (eng. Randomized Search)}.
+Während bei ersterer für gegebene Werte alle Parameterkombinationen
+erschöpfend betrachtet wurden, wurde beim zweiten Ansatz eine Anzahl von
+Kandidaten aus einem Parameterraum mit einer bestimmten zufälligen
+Verteilung ausgewählt. Um bewerten zu können, ob die beiden Suchmethoden
+zu verbesserten Ergebnissen führten, wurde zuerst mit Standardwerten für
+die Hyper-Parameter klassifiziert. Es wurde hierbei die sogenannte
+\textbf{Basislinie} ermittelt. Dabei zeigte sich, dass der
+Iris-Datensatz schon bei Standardwerten viel zu gute Ergebnisse lieferte
+(Erkennungsraten um 100\%), um durch systematische Parameter-Suche
+deutliche Verbesserungen zu erwarten. Daher wurde dem Datensatz in einem
+zweiten Schritt \textbf{Gaußsches Rauschen} hinzugefügt, wodurch
+gleichzeitig \textbf{Messrauschen} realer ML-Anwendungen simuliert
+werden konnte.
+
+Unter Verwendung einer eigenen Python-Klasse wurden die
+\textbf{Durchlaufzeiten} für die beiden Suchmethoden ermittelt.
+Erwartungsgemäß dauerte die Rastersuche mit deutlichem Abstand am
+längsten gegenüber der Zufallssuche. Allerdings wurden bei der
+Zufallssuche stets nur lokale Optima für die Hyper-Parameter ermittelt,
+die auch bei jedem Durchlauf zu anderen Ergebnissen führten. Die Güte
+der Klassifikation hinsichtlich der Erkennungsrate wurde wieder mit
+Hilfe der in Schritt 6 vorgestellten Metriken ermittelt. Während die
+Rastersuche stets bessere Ergebnisse im Vergleich zur Basislinie
+lieferte, schwankten diese bei der Zufallssuche und waren jeweils
+geringfügig besser oder schlechter als die der Basislinie.
+
+Ausblickend könnte das vorliegende Tutorial erweitert werden, indem der
+Iris-Datensatz gegen den deutlich moderneren
+\textbf{\href{https://github.com/mcnakhaee/palmerpenguins}{Pinguin-Datensatz}}
+ausgetauscht wird (originales Paket für \textbf{R}:
+\cite{palmerpenguins_R_2020} sowie adaptiertes Paket für
+\textbf{Python}: \cite{palmerpenguins_Python_2020}). Dies würde
+allerdings eine grundsätzliche Überarbeitung sämtlicher Schritte des
+Tutorials bedeuten.
+
+Wie oben erläutert, beschränkt sich das Tutorial bisher auf die
+Vorstellung der ML-Algorithmen, die Werkzeuge zur Datenanalyse sowie die
+Python-Bibliotheken und Programmiersysteme. In einem weiteren Schritt
+könnten konkrete Hinweise gegeben werden, wie eine eigene \textbf{reale
+ML-Applikation} aufgebaut und ein geeigneter Datensatz für eine
+Klassifikation erzeugt werden kann.
+
     \hypertarget{acknowledgments}{%
 \section{Acknowledgments}\label{acknowledgments}}
+
+Vor einem reichlichen Jahr wurde ich eingeladen, im Vorbereitungskomitee
+für die DGUV-Fachtagung ``Künstliche Intelligenz'' mitwirken zu dürfen.
+Mein Vorschlag, einen eigenen Getting-Started-Workshop für interessierte
+ML-Neulinge zu gestalten, wurde sehr positiv aufgenommen. Das hat mich
+für die Ausarbeitung des vorliegenden Tutorials sehr motiviert.
+
+Mein besonderer Dank gilt Herrn Prof.~André Steimers, der mit langen und
+sehr interessanten Fachgesprächen, dem Lesen von Rohfassungen und seiner
+konstruktiven Kritik viel Zeit investierte.
+
+Weiterhin danke ich meinen Kollegen des Dresdener Prüflabors dafür, dass
+sie sich jederzeit trotz sehr hohem Prüfaufkommen Zeit für meine
+themenbezogene Fachsimpelei genommen haben. Insbesondere konnte ich
+während dieser Gespräche meine Gedankengänge und Formulierungen auf
+Verständlichkeit und Nachvollziehbarkeit prüfen.
+
+Abschließend möchte ich meiner Lebensgefährtin danken, dass sie erste
+Textentwürfe kritisch Korrektur gelesen hat und mir ansonsten den Rücken
+freigehalten hat - auch wenn ich nach Feierabend oder an den Wochenenden
+programmiert und geschrieben habe. Meinem zweijährigen Sohn danke ich
+für seine Geduld mit Papa. Er hätte sicherlich das ein oder andere Mal
+lieber ``Die Sendung mit der Maus'' statt seltsamer Graifken mit mir auf
+dem Rechner angeschaut.
+
+Dresden, 04.10.2022
 
 
     % Add a bibliography block to the postdoc

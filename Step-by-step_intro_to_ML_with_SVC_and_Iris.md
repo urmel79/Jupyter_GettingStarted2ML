@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.1
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -2216,7 +2216,7 @@ plt.show()
 bestModel.get_params()
 ```
 
-<!-- #region tags=["TODO_Summary"] -->
+<!-- #region tags=[] -->
 # Summary and outlook
 
 ## English summary
@@ -2239,11 +2239,11 @@ After splitting the dataset into a **training and test dataset**, the SVC model 
 
 In **Step 6**, the quality of the classification result was evaluated using known **metrics** such as the **cross validation score** and the **confusion matrix**.
 
-The classification in step 5 was initially performed with default values for the so-called **hyper parameters** of the SVC. Therefore, in **step 7** the meaning of the parameters was first explained. Then, their influence on the classification result was demonstrated by **manually varying** the individual hyper-parameters.
+The classification in step 5 was performed with default values for the so-called **hyper parameters** of the SVC. Therefore, in **step 7** the meaning of the parameters was first explained. Then, their influence on the classification result was demonstrated by **manually varying** the individual hyper-parameters.
 
-In the final **Step 8**, two approaches to systematic hyper-parameter search were presented: **grid search** and **randomized search**. While the former considered exhaustively all parameter combinations for given values, the latter approach selected a number of candidates from a parameter space with a particular random distribution. In order to be able to evaluate whether the two search methods led to improved results, classification was first carried out using standard values for the hyper-parameters. The so-called **baseline** was determined. It turned out that the Iris dataset already gave much too good results at default values (recognition rates around 100%) to expect significant improvements by systematic parameter search. Therefore, **Gaussian noise** was added to the dataset in a second step, which allowed to simulate **measurement noise** of real ML applications at the same time.
+In the final **Step 8**, two approaches to systematic hyper-parameter search were presented: **grid search** and **randomized search**. While the former considered exhaustively all parameter combinations for given values, the latter approach selected a number of candidates from a parameter space with a particular random distribution. In order to be able to evaluate whether the two search methods led to improved results, classification was first carried out using default values for the hyper-parameters. The so-called **baseline** was determined. It turned out that the Iris dataset already gave much too good results at default values (recognition rates around 100%) to expect significant improvements by systematic parameter search. Therefore, **Gaussian noise** was added to the dataset in a second step, which allowed to simulate **measurement noise** of real ML applications at the same time.
 
-Using a custom Python class, the **run times** for the two search methods were determined. As expected, the grid search took by far the longest time compared to the randomized search. However, only local optima for the hyper-parameters were always identified for the randomized search, which also led to different results for each run. The quality of the classification results was again determined using the metrics presented in step 6. While the grid search always produced better results compared to the baseline, these varied for the randomized search and were each slightly better or worse than those of the baseline.
+Using a custom Python class, the **run times** for the two search methods were determined. As expected, the grid search took by far the longest time compared to the randomized search. However, only local optima for the hyper-parameters were always identified for the randomized search, which also led to different results for each run. The quality of the classification in terms of recognition rate was again determined using the metrics presented in step 6. While the grid search always produced better results compared to the baseline, these varied for the randomized search and were each slightly better or worse than those of the baseline.
 
 As an outlook, the current tutorial could be extended by replacing the Iris dataset with the much more modern **[Penguin dataset](https://github.com/mcnakhaee/palmerpenguins)** (original package for **R**: <cite data-cite="palmerpenguins_R_2020">Allison et al., 2020</cite> as well as adapted package for **Python**: <cite data-cite="palmerpenguins_Python_2020">Nakhaee, 2021</cite>). However, this would mean a fundamental reworking of all the steps in this tutorial.
 
@@ -2252,7 +2252,7 @@ As explained above, the tutorial so far is limited to the introduction of the ML
 
 ## German summary
 
-Im November 2022 richtet die Deutsche Gesetzliche Unfallversicherung (DGUV) die **Fachtagung "Künstliche Intelligenz"** in Dresden aus. Dabei soll das vorliegende Tutorial interessierten ML-Neulingen im technischen Arbeitsschutz der gesetzlichen Unfallversicherungsträger im Rahmen eines eigenen **Getting-Started-Workshop** präsentiert werden.
+Im November 2022 wird die Deutsche Gesetzliche Unfallversicherung (DGUV) die **Fachtagung "Künstliche Intelligenz"** in Dresden ausrichten. Dabei soll das vorliegende Tutorial interessierten ML-Neulingen im technischen Arbeitsschutz der gesetzlichen Unfallversicherungsträger im Rahmen eines eigenen **Getting-Started-Workshop** präsentiert werden.
 
 Im Tutorial wurde systematisch und Schritt-für-Schritt der **typische Arbeitsablauf** beim **maschinellen Lernen (ML)** anhand des sehr bekannten **Iris-Datensatzes** demonstriert. Es wurde deshalb auf einen fertigen Datensatz zurückgegriffen, damit sich ein ML-Neuling zunächst mit den ML-Algorithmen, den Werkzeugen zur Datenanalyse sowie den Software-Bibliotheken und Programmiersystemen vertraut machen kann. Die Aufgabe bestand darin, drei verschiedene Iris-Arten anhand der Abmessungen (Breite und Länge) ihrer **Kron- und Kelchblätter** zu unterscheiden, d. h. zu klassifizieren. Der Datensatz enthält jeweils **50 vermessene Individuen** pro Art.
 
@@ -2270,23 +2270,26 @@ Nach der Aufteilung des Datensatzes in einen **Trainings- und Testdatensatz**, w
 
 Im **Schritt 6** wurde die Güte des Klassifikationsergebnisses unter Verwendung bekannter **Metriken** wie z. B. dem **Kreuzvalidierungskennwert (eng. Cross Validation Score)** und der **Konfusionsmatrix** evaluiert.
 
-Die Klassifikation im Schritt 5 wurde zunächst mit Standardwerten für die sogenannten **Hyper-Parameter** des SVC durchgeführt. Daher wurde im **Schritt 7** zunächst die Bedeutung der Parameter erklärt. Danach wurde ihr Einfluss auf das Klassifikationsergebnis durch **manuelle Variation** der einzelnen Hyper-Parameter demonstriert.
+Die Klassifikation im Schritt 5 wurde mit Standardwerten für die sogenannten **Hyper-Parameter** des SVC durchgeführt. Daher wurde im **Schritt 7** zunächst die Bedeutung der Parameter erklärt. Danach wurde ihr Einfluss auf das Klassifikationsergebnis durch **manuelle Variation** der einzelnen Hyper-Parameter demonstriert.
 
 Im abschließenden **Schritt 8** wurden zwei Ansätze zur systematischen Hyper-Parameter-Suche vorgestellt: **Rastersuche (eng. Grid Search)** und **Zufallssuche (eng. Randomized Search)**. Während bei ersterer für gegebene Werte alle Parameterkombinationen erschöpfend betrachtet wurden, wurde beim zweiten Ansatz eine Anzahl von Kandidaten aus einem Parameterraum mit einer bestimmten zufälligen Verteilung ausgewählt. Um bewerten zu können, ob die beiden Suchmethoden zu verbesserten Ergebnissen führten, wurde zuerst mit Standardwerten für die Hyper-Parameter klassifiziert. Es wurde hierbei die sogenannte **Basislinie** ermittelt. Dabei zeigte sich, dass der Iris-Datensatz schon bei Standardwerten viel zu gute Ergebnisse lieferte (Erkennungsraten um 100%), um durch systematische Parameter-Suche deutliche Verbesserungen zu erwarten. Daher wurde dem Datensatz in einem zweiten Schritt **Gaußsches Rauschen** hinzugefügt, wodurch gleichzeitig **Messrauschen** realer ML-Anwendungen simuliert werden konnte.
 
-Unter Verwendung einer eigenen Python-Klasse wurden die **Durchlaufzeiten** für die beiden Suchmethoden ermittelt. Erwartungsgemäß dauerte die Rastersuche mit deutlichem Abstand am längsten gegenüber der Zufallssuche. Allerdings wurden bei der Zufallssuche stets nur lokale Optima für die Hyper-Parameter ermittelt, die auch bei jedem Durchlauf zu anderen Ergebnissen führten. Die Güte der Klassifikationsergebnisse wurde wieder mit Hilfe der in Schritt 6 vorgestellten Metriken festgestellt. Während die Rastersuche stets bessere Ergebnisse im Vergleich zur Basislinie lieferte, schwankten diese bei der Zufallssuche und waren jeweils geringfügig besser oder schlechter als die der Basislinie.
+Unter Verwendung einer eigenen Python-Klasse wurden die **Durchlaufzeiten** für die beiden Suchmethoden ermittelt. Erwartungsgemäß dauerte die Rastersuche mit deutlichem Abstand am längsten gegenüber der Zufallssuche. Allerdings wurden bei der Zufallssuche stets nur lokale Optima für die Hyper-Parameter ermittelt, die auch bei jedem Durchlauf zu anderen Ergebnissen führten. Die Güte der Klassifikation hinsichtlich der Erkennungsrate wurde wieder mit Hilfe der in Schritt 6 vorgestellten Metriken ermittelt. Während die Rastersuche stets bessere Ergebnisse im Vergleich zur Basislinie lieferte, schwankten diese bei der Zufallssuche und waren jeweils geringfügig besser oder schlechter als die der Basislinie.
 
 Ausblickend könnte das vorliegende Tutorial erweitert werden, indem der Iris-Datensatz gegen den deutlich moderneren **[Pinguin-Datensatz](https://github.com/mcnakhaee/palmerpenguins)** ausgetauscht wird (originales Paket für **R**: <cite data-cite="palmerpenguins_R_2020">Allison et al., 2020</cite> sowie adaptiertes Paket für **Python**: <cite data-cite="palmerpenguins_Python_2020">Nakhaee, 2021</cite>). Dies würde allerdings eine grundsätzliche Überarbeitung sämtlicher Schritte des Tutorials bedeuten.
 
 Wie oben erläutert, beschränkt sich das Tutorial bisher auf die Vorstellung der ML-Algorithmen, die Werkzeuge zur Datenanalyse sowie die Python-Bibliotheken und Programmiersysteme. In einem weiteren Schritt könnten konkrete Hinweise gegeben werden, wie eine eigene **reale ML-Applikation** aufgebaut und ein geeigneter Datensatz für eine Klassifikation erzeugt werden kann.
 
-<!-- #region tags=["TODO_acknowledgments"] -->
+<!-- #region tags=[] -->
 # Acknowledgments
 
-**@TODO:**
-Add acknowledgments to colleagues at the testing lab, Prof. Steimers, and my family.
+Vor einem reichlichen Jahr wurde ich eingeladen, im Vorbereitungskomitee für die DGUV-Fachtagung "Künstliche Intelligenz" mitwirken zu dürfen. Mein Vorschlag, einen eigenen Getting-Started-Workshop für interessierte ML-Neulinge zu gestalten, wurde sehr positiv aufgenommen. Das hat mich für die Ausarbeitung des vorliegenden Tutorials sehr motiviert.
+
+Mein besonderer Dank gilt Herrn Prof. André Steimers, der mit langen und sehr interessanten Fachgesprächen, dem Lesen von Rohfassungen und seiner konstruktiven Kritik viel Zeit investierte.
+
+Weiterhin danke ich meinen Kollegen des Dresdener Prüflabors dafür, dass sie sich jederzeit trotz sehr hohem Prüfaufkommen Zeit für meine themenbezogene Fachsimpelei genommen haben. Insbesondere konnte ich während dieser Gespräche meine Gedankengänge und Formulierungen auf Verständlichkeit und Nachvollziehbarkeit prüfen.
+
+Abschließend möchte ich meiner Lebensgefährtin danken, dass sie erste Textentwürfe kritisch Korrektur gelesen hat und mir ansonsten den Rücken freigehalten hat - auch wenn ich nach Feierabend oder an den Wochenenden programmiert und geschrieben habe. Meinem zweijährigen Sohn danke ich für seine Geduld mit Papa. Er hätte sicherlich das ein oder andere Mal lieber "Die Sendung mit der Maus" statt seltsamer Graifken mit mir auf dem Rechner angeschaut.
+
+Dresden, 04.10.2022
 <!-- #endregion -->
-
-```python
-
-```
