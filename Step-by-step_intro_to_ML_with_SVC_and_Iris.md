@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.14.1
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -643,20 +643,40 @@ plt.show()
 
 To improve the code, the function `subplots.flatten()` converts the subplot array to an iterable list. Afterwards, a loop allows to iterate through the subplots - this **saves many repetitions** in the code.
 
+In addition, **probability density functions (PDF)** were overlaid on the histograms, whose hyper-parameters **mean** and **standard deviation** were previously identified using the features of the dataset. This makes it possible to estimate whether the data is normally distributed.
+
 ```python caption="Histograms used to explore the frequency distribution of the 4 features in the Iris dataset (with improved code)" tags=[] label="fig:histogram_iris_elegant" widefigure=true
+from scipy.stats import norm
+
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
 # Number of bins for the histogram
-n_bins = 10
+# - if bins is an integer, it defines the number of equal-width bins in the range
+# - if bins is a string, it is one of the binning strategies:
+#   'auto', 'fd', 'doane', 'scott', 'stone', 'rice', 'sturges', or 'sqrt'.
+n_bins = 'auto'
 fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
 # Set margins between subplots
 plt.subplots_adjust(wspace=0.3, hspace=0.3)
 
 # Make subplots iterable via 'subplots.flatten()'
 for feature, title, subplot in zip(features, titles, subplots.flatten()):
-    subplot.hist(irisdata_df[feature], bins = n_bins, rwidth=0.95)
-    subplot.set_title(title)
+    subplot.hist(irisdata_df[feature], bins = n_bins, rwidth=0.95, 
+                 density=True, alpha=0.8, color='b')
+    
+    # Fit a normal distribution to the data
+    # with mean and standard deviation
+    mu, std = norm.fit(irisdata_df[feature])
+    
+    # Plot the probability density function (PDF)
+    xmin, xmax = subplot.get_xlim()
+    x = np.linspace(xmin, xmax, 100)
+    p = norm.pdf(x, mu, std)
+    subplot.plot(x, p, 'k', linewidth=2)
+    
+    title_concat = "{} (Mean: {:.2f}, Std. deviation: {:.2f})".format(title, mu, std)
+    subplot.set_title(title_concat)
     # Show grid
     subplot.grid(visible=True)
     # Hide grid behind the bars
@@ -1333,7 +1353,16 @@ Through the intensive exploration of the data in ([STEP 2: Explore the ML datase
 
 Furthermore, we know that the **classes** are very **evenly distributed** and thus bias tendencies should be avoided.
 
-For further details about **Standarization** and **Normalization** read here: [What are standarization and normalization? Test with iris data set in Scikit-learn](http://techflare.blog/what-are-standarization-and-normalization-test-with-iris-data-set-in-scikit-learn/).
+For further details about **Standarization** and **Normalization** read here:
+
+- [What are standarization and normalization? Test with iris data set in Scikit-learn](http://techflare.blog/what-are-standarization-and-normalization-test-with-iris-data-set-in-scikit-learn/)
+- [Feature Scaling for Machine Learning: Understanding the Difference Between Normalization vs. Standardization](https://www.analyticsvidhya.com/blog/2020/04/feature-scaling-machine-learning-normalization-standardization/?)
+- [Feature scaling](https://en.wikipedia.org/wiki/Feature_scaling)
+- [Normalization (statistics)](https://en.wikipedia.org/wiki/Normalization_(statistics))
+- [Standard score](https://en.wikipedia.org/wiki/Standard_score)
+
+**@TODO:**  
+Incorporate section "Skalieren von Merkmalen" of the book `OReilly_Praxiseinstieg_Machine_Learning_Scikit-Learn_TensorFlow_2018_Anm_bk.pdf` (see <cite data-cite="Geron_2018">Géron, 2018</cite>).
 <!-- #endregion -->
 
 ```python
@@ -1344,28 +1373,141 @@ For further details about **Standarization** and **Normalization** read here: [W
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle_noised.csv')
 ```
 
+## Normalization
+
+```python tags=[]
+from sklearn.preprocessing import MinMaxScaler
+
+# Fit the MinMax scaler on raw input dataframe
+# by selecting columns 1-4 with all feature rows
+norm_scaler = MinMaxScaler().fit(irisdata_df.iloc[:, 0:4])
+
+# Transform the raw dateframe with fitted scaler
+# and convert it to numpy array
+irisdata_np_norm = norm_scaler.transform(irisdata_df.iloc[:, 0:4])
+```
+
+```python
+# Make a deep copy of original dataframe
+irisdata_df_norm = irisdata_df.copy(deep=True)
+
+# Replace values of dataframe with normalized values from array
+irisdata_df_norm.iloc[:, 0:4] = irisdata_np_norm
+```
+
+```python
+irisdata_df_norm.describe()
+```
+
+```python
+from scipy.stats import norm
+
+features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
+titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
+
+# Number of bins for the histogram
+# - if bins is an integer, it defines the number of equal-width bins in the range
+# - if bins is a string, it is one of the binning strategies:
+#   'auto', 'fd', 'doane', 'scott', 'stone', 'rice', 'sturges', or 'sqrt'.
+n_bins = 'auto'
+fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
+# Set margins between subplots
+plt.subplots_adjust(wspace=0.3, hspace=0.3)
+
+# Make subplots iterable via 'subplots.flatten()'
+for feature, title, subplot in zip(features, titles, subplots.flatten()):
+    subplot.hist(irisdata_df_norm[feature], bins = n_bins, rwidth=0.95, 
+                 density=True, alpha=0.8, color='b')
+    
+    # Fit a normal distribution to the data
+    # with mean and standard deviation
+    mu, std = norm.fit(irisdata_df_norm[feature])
+    
+    # Plot the probability density function (PDF)
+    xmin, xmax = subplot.get_xlim()
+    x = np.linspace(xmin, xmax, 100)
+    p = norm.pdf(x, mu, std)
+    subplot.plot(x, p, 'k', linewidth=2)
+    
+    title_concat = "{} (Mean: {:.2f}, Std. deviation: {:.2f})".format(title, mu, std)
+    subplot.set_title(title_concat)
+    # Show grid
+    subplot.grid(visible=True)
+    # Hide grid behind the bars
+    subplot.set_axisbelow(True)
+
+plt.show()
+```
+
 <!-- #region tags=["TODO_Step_4"] -->
 ## Standarization
 
 Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**.
-
-**@TODO:**  
-Incorporate section "Skalieren von Merkmalen" of the book `OReilly_Praxiseinstieg_Machine_Learning_Scikit-Learn_TensorFlow_2018_Anm_bk.pdf` (see <cite data-cite="Geron_2018">Geron, 2018</cite>).
 <!-- #endregion -->
 
 ```python tags=[]
 from sklearn.preprocessing import StandardScaler
 
-#scaler = StandardScaler()
-#X_train = scaler.fit_transform(X_train)
-#X_test = scaler.transform(X_test)
-irisdata_df
+# Fit the standard scaler on raw input dataframe
+# by selecting columns 1-4 with all feature rows
+std_scaler = StandardScaler().fit(irisdata_df.iloc[:, 0:4])
 
-#X_train
+# Transform the raw dateframe with fitted scaler
+# and convert it to numpy array
+irisdata_np_std = std_scaler.transform(irisdata_df.iloc[:, 0:4])
 ```
 
-## Normalization
+```python
+# Make a deep copy of original dataframe
+irisdata_df_std = irisdata_df.copy(deep=True)
 
+# Replace values of dataframe with standardized values from array
+irisdata_df_std.iloc[:, 0:4] = irisdata_np_std
+```
+
+```python
+irisdata_df_std.describe()
+```
+
+```python
+from scipy.stats import norm
+
+features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
+titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
+
+# Number of bins for the histogram
+# - if bins is an integer, it defines the number of equal-width bins in the range
+# - if bins is a string, it is one of the binning strategies:
+#   'auto', 'fd', 'doane', 'scott', 'stone', 'rice', 'sturges', or 'sqrt'.
+n_bins = 'auto'
+fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
+# Set margins between subplots
+plt.subplots_adjust(wspace=0.3, hspace=0.3)
+
+# Make subplots iterable via 'subplots.flatten()'
+for feature, title, subplot in zip(features, titles, subplots.flatten()):
+    subplot.hist(irisdata_df_std[feature], bins = n_bins, rwidth=0.95, 
+                 density=True, alpha=0.8, color='b')
+    
+    # Fit a normal distribution to the data
+    # with mean and standard deviation
+    mu, std = norm.fit(irisdata_df_std[feature])
+    
+    # Plot the probability density function (PDF)
+    xmin, xmax = subplot.get_xlim()
+    x = np.linspace(xmin, xmax, 100)
+    p = norm.pdf(x, mu, std)
+    subplot.plot(x, p, 'k', linewidth=2)
+    
+    title_concat = "{} (Mean: {:.2f}, Std. deviation: {:.2f})".format(title, mu, std)
+    subplot.set_title(title_concat)
+    # Show grid
+    subplot.grid(visible=True)
+    # Hide grid behind the bars
+    subplot.set_axisbelow(True)
+
+plt.show()
+```
 
 ## Binarization
 
@@ -2283,13 +2425,17 @@ Wie oben erläutert, beschränkt sich das Tutorial bisher auf die Vorstellung de
 <!-- #region tags=[] -->
 # Acknowledgments
 
-Vor einem reichlichen Jahr wurde ich eingeladen, im Vorbereitungskomitee für die DGUV-Fachtagung "Künstliche Intelligenz" mitwirken zu dürfen. Mein Vorschlag, einen eigenen Getting-Started-Workshop für interessierte ML-Neulinge zu gestalten, wurde sehr positiv aufgenommen. Das hat mich für die Ausarbeitung des vorliegenden Tutorials sehr motiviert.
+Vor einem reichlichen Jahr wurde ich eingeladen, im Vorbereitungskomitee für die DGUV-Fachtagung "Künstliche Intelligenz" mitwirken zu dürfen. Mein Vorschlag, einen eigenen Getting-Started-Workshop für interessierte ML-Neulinge zu gestalten, wurde dort sehr positiv aufgenommen. Das hat mich für die Ausarbeitung des vorliegenden Tutorials sehr motiviert.
 
 Mein besonderer Dank gilt Herrn Prof. André Steimers, der mit langen und sehr interessanten Fachgesprächen, dem Lesen von Rohfassungen und seiner konstruktiven Kritik viel Zeit investierte.
 
 Weiterhin danke ich meinen Kollegen des Dresdener Prüflabors dafür, dass sie sich jederzeit trotz sehr hohem Prüfaufkommen Zeit für meine themenbezogene Fachsimpelei genommen haben. Insbesondere konnte ich während dieser Gespräche meine Gedankengänge und Formulierungen auf Verständlichkeit und Nachvollziehbarkeit prüfen.
 
-Abschließend möchte ich meiner Lebensgefährtin danken, dass sie erste Textentwürfe kritisch Korrektur gelesen hat und mir ansonsten den Rücken freigehalten hat - auch wenn ich nach Feierabend oder an den Wochenenden programmiert und geschrieben habe. Meinem zweijährigen Sohn danke ich für seine Geduld mit Papa. Er hätte sicherlich das ein oder andere Mal lieber "Die Sendung mit der Maus" statt seltsamer Graifken mit mir auf dem Rechner angeschaut.
+Abschließend möchte ich meiner Lebensgefährtin danken, dass sie erste Textentwürfe kritisch Korrektur gelesen hat und mir ansonsten den Rücken freigehalten hat - auch wenn ich nach Feierabend oder an den Wochenenden programmiert und geschrieben habe. Unserem zweijährigen Sohn danke ich für seine Geduld mit Papa. Er hätte sicherlich das ein oder andere Mal lieber "Die Sendung mit der Maus" statt seltsamer Grafiken mit mir auf dem Rechner angeschaut.
 
 Dresden, 04.10.2022
 <!-- #endregion -->
+
+```python
+
+```
