@@ -650,12 +650,12 @@ classifier}. A dedicated SVC model is now being implemented.
 In \textbf{step 4} the dataset is prepared for the actual classification
 by SVC. Depending on the selected ML algorithm as well as the data
 structure, it may be necessary to prepare the data before training
-(e.g., by standardization, normalization, or binarization based on
-thresholds). After splitting the dataset into a training and test
-dataset, the SVC model is trained with the training dataset in
-\textbf{step 5}. Subsequently, classification predictions are made with
-the trained SVC model based on the test data. In \textbf{step 6}, the
-quality of the classification result is evaluated using known
+(e.g., by standardization, normalization, or discretization to cluster
+the data based on thresholds). After splitting the dataset into a
+training and test dataset, the SVC model is trained with the training
+dataset in \textbf{step 5}. Subsequently, classification predictions are
+made with the trained SVC model based on the test data. In \textbf{step
+6}, the quality of the classification result is evaluated using known
 \textbf{metrics} such as the \textbf{confusion matrix}.
 
 Since the classification in step 5 was initially performed with standard
@@ -881,13 +881,14 @@ Im \textbf{Schritt 4} wird der Datensatz für die eigentliche
 Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus
 sowie der Datenstruktur kann es erforderlich sein, dass die Daten vor
 dem Training aufbereitet werden müssen (z. B. durch Standardisierung,
-Normalisierung oder Binärisierung anhand von Schwellwerten). Nach der
-Aufteilung des Datensatzes in einen Trainings- und Testdatensatz, wird
-das SVC-Modell im \textbf{Schritt 5} mit dem Trainingsdatensatz
-trainiert. Anschließend werden mit dem trainierten SVC-Modell anhand der
-Testdaten Klassifikationsvorhersagen getroffen. Im \textbf{Schritt 6}
-wird die Güte des Klassifikationsergebnisses anhand bekannter
-\textbf{Metriken} wie z. B. der \textbf{Konfusionsmatrix} evaluiert.
+Normalisierung oder \textbf{Diskretisierung}, um die Daten anhand von
+Schwellenwerten zu gruppieren). Nach der Aufteilung des Datensatzes in
+einen Trainings- und Testdatensatz, wird das SVC-Modell im
+\textbf{Schritt 5} mit dem Trainingsdatensatz trainiert. Anschließend
+werden mit dem trainierten SVC-Modell anhand der Testdaten
+Klassifikationsvorhersagen getroffen. Im \textbf{Schritt 6} wird die
+Güte des Klassifikationsergebnisses anhand bekannter \textbf{Metriken}
+wie z. B. der \textbf{Konfusionsmatrix} evaluiert.
 
 Da die Klassifikation im Schritt 5 zunächst mit Standard-Parametern (den
 sogenannten \textbf{Hyper-Parametern}) durchgeführt wurde, wird ihre
@@ -1480,7 +1481,7 @@ data analysis and ML, such as \texttt{Pandas}, \texttt{NumPY},
 \texttt{matplotlib} and \texttt{Scikit-Learn}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{2}{\boxspacing}
+\prompt{In}{incolor}{1}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{time}
 
@@ -2355,7 +2356,7 @@ To illustrate the principle, the histogram subplots are first presented
 in a \textbf{not very elegant code} with many repetitions:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{3}{\boxspacing}
+\prompt{In}{incolor}{101}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Number of bins for the histogram}
 \PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+m+mi}{10}
@@ -2396,7 +2397,7 @@ in a \textbf{not very elegant code} with many repetitions:
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_52_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_52_0.png}\end{center}
         \caption{Histograms used to explore the frequency distribution of the 4 features in the Iris dataset}
         \label{fig:histogram_iris_simple}
     \end{figure}
@@ -2410,55 +2411,69 @@ In addition, \textbf{probability density functions (PDF)} were overlaid
 on the histograms, whose hyper-parameters \textbf{mean} and
 \textbf{standard deviation} were previously identified using the
 features of the dataset. This makes it possible to estimate whether the
-data is normally distributed.
+data is normally distributed. In order to be able to reuse the code
+later, it was implemented as the \textbf{function}
+\texttt{func\_plot\_histograms\_with\_PDF()}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{90}{\boxspacing}
+\prompt{In}{incolor}{138}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k+kn}{import} \PY{n}{norm}
 
+\PY{k}{def} \PY{n+nf}{func\PYZus{}plot\PYZus{}histograms\PYZus{}with\PYZus{}PDF}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{)}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{} Number of bins for the histogram}
+    \PY{c+c1}{\PYZsh{} \PYZhy{} bins=\PYZlt{}integer\PYZgt{}: defines the number of equal\PYZhy{}width bins in the range}
+    \PY{c+c1}{\PYZsh{} \PYZhy{} bins=\PYZlt{}string\PYZgt{}: one of the binning strategies is used:}
+    \PY{c+c1}{\PYZsh{}   \PYZsq{}auto\PYZsq{}, \PYZsq{}fd\PYZsq{}, \PYZsq{}doane\PYZsq{}, \PYZsq{}scott\PYZsq{}, \PYZsq{}stone\PYZsq{}, \PYZsq{}rice\PYZsq{}, \PYZsq{}sturges\PYZsq{}, or \PYZsq{}sqrt\PYZsq{}}
+    \PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}
+    \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Set margins between subplots}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} Make subplots iterable via \PYZsq{}subplots.flatten()\PYZsq{}}
+    \PY{k}{for} \PY{n}{feature}\PY{p}{,} \PY{n}{title}\PY{p}{,} \PY{n}{subplot} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{,} \PY{n}{subplots}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,}
+                     \PY{n}{density}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{)}
+
+        \PY{c+c1}{\PYZsh{} Fit a normal distribution to the data}
+        \PY{c+c1}{\PYZsh{} with mean and standard deviation}
+        \PY{n}{mu}\PY{p}{,} \PY{n}{std} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{)}
+
+        \PY{c+c1}{\PYZsh{} Plot the probability density function (PDF)}
+        \PY{n}{xmin}\PY{p}{,} \PY{n}{xmax} \PY{o}{=} \PY{n}{subplot}\PY{o}{.}\PY{n}{get\PYZus{}xlim}\PY{p}{(}\PY{p}{)}
+        \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{xmin}\PY{p}{,} \PY{n}{xmax}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+
+        \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ (Mean: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZdq{}} \PYZbs{}
+                       \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Std. deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Show grid}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+
+    \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Call the new function to plot the \textbf{histograms} with overlaid
+\textbf{probability density functions}:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{135}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{features} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \PY{n}{titles} \PY{o}{=}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 
-\PY{c+c1}{\PYZsh{} Number of bins for the histogram}
-\PY{c+c1}{\PYZsh{} \PYZhy{} if bins is an integer, it defines the number of equal\PYZhy{}width bins in the range}
-\PY{c+c1}{\PYZsh{} \PYZhy{} if bins is a string, it is one of the binning strategies:}
-\PY{c+c1}{\PYZsh{}   \PYZsq{}auto\PYZsq{}, \PYZsq{}fd\PYZsq{}, \PYZsq{}doane\PYZsq{}, \PYZsq{}scott\PYZsq{}, \PYZsq{}stone\PYZsq{}, \PYZsq{}rice\PYZsq{}, \PYZsq{}sturges\PYZsq{}, or \PYZsq{}sqrt\PYZsq{}.}
-\PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}
-\PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
-\PY{c+c1}{\PYZsh{} Set margins between subplots}
-\PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
-
-\PY{c+c1}{\PYZsh{} Make subplots iterable via \PYZsq{}subplots.flatten()\PYZsq{}}
-\PY{k}{for} \PY{n}{feature}\PY{p}{,} \PY{n}{title}\PY{p}{,} \PY{n}{subplot} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{,} \PY{n}{subplots}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,} 
-                 \PY{n}{density}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-    
-    \PY{c+c1}{\PYZsh{} Fit a normal distribution to the data}
-    \PY{c+c1}{\PYZsh{} with mean and standard deviation}
-    \PY{n}{mu}\PY{p}{,} \PY{n}{std} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{)}
-    
-    \PY{c+c1}{\PYZsh{} Plot the probability density function (PDF)}
-    \PY{n}{xmin}\PY{p}{,} \PY{n}{xmax} \PY{o}{=} \PY{n}{subplot}\PY{o}{.}\PY{n}{get\PYZus{}xlim}\PY{p}{(}\PY{p}{)}
-    \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{xmin}\PY{p}{,} \PY{n}{xmax}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
-    \PY{n}{p} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
-    
-    \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ (Mean: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, Std. deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{} Show grid}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
-
-\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\PY{n}{func\PYZus{}plot\PYZus{}histograms\PYZus{}with\PYZus{}PDF}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{,} \PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_54_0.png}\end{center}
-        \caption{Histograms used to explore the frequency distribution of the 4 features in the Iris dataset (with improved code)}
-        \label{fig:histogram_iris_elegant}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_56_0.png}\end{center}
+        \caption{Histograms used to explore the frequency distribution of the 4 features in the Iris dataset (with improved code and overlaid probability density functions (PDF))}
+        \label{fig:histogram_iris_with_PDF}
     \end{figure}
     
     \hypertarget{boxplots}{%
@@ -2474,7 +2489,7 @@ histogram example, a loop is used to iterate through the subplots, which
 saves a lot of repetition in the code.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{5}{\boxspacing}
+\prompt{In}{incolor}{123}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Set margins between subplots}
@@ -2501,7 +2516,7 @@ saves a lot of repetition in the code.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_56_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_58_0.png}\end{center}
         \caption{Boxplots used to explore the data ranges in the Iris dataset}
         \label{fig:boxplots_iris}
     \end{figure}
@@ -2516,7 +2531,7 @@ iterate through the subplots, which saves a lot of repetition in the
 code.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{124}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Set margins between subplots}
@@ -2543,7 +2558,7 @@ code.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_58_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_60_0.png}\end{center}
         \caption{Violin plots combine histograms and box plots}
         \label{fig:violinplots_iris}
     \end{figure}
@@ -2956,6 +2971,8 @@ Incorporate section ``4.1.3 Fehlende Werte ergänzen'' of the book
   https://www.statology.org/pandas-fillna-with-median/
 \item
   https://stackoverflow.com/questions/18689823/pandas-dataframe-replace-nan-values-with-average-of-columns
+\item
+  https://scikit-learn.org/stable/modules/impute.html
 \end{itemize}
 
     \hypertarget{drop-missing-values-using-dropna}{%
@@ -3418,7 +3435,7 @@ variable width. The height of each rectangle then represents the
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_94_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_96_0.png}\end{center}
         \caption{Histogram for frequency distribution of the salary}
         \label{fig:histogram_salary}
     \end{figure}
@@ -3432,7 +3449,7 @@ variable width. The height of each rectangle then represents the
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_95_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_97_0.png}\end{center}
         \caption{Histogram for the frequency distribution of the salary in comparison between men and women}
         \label{fig:histogram_male_female}
     \end{figure}
@@ -3529,7 +3546,7 @@ Choose the color sets from
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_101_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_103_0.png}\end{center}
         \caption{Correlation heatmap to explore coherences between single variables in the iris dataset}
         \label{fig:correlation_heatmap}
     \end{figure}
@@ -3583,7 +3600,7 @@ array([[1., 1., 1., 1., 1.],
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_105_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_107_0.png}\end{center}
         \caption{Correlation heatmap, which was cut at its main diagonal without losing any information}
         \label{fig:correlation_heatmap_triangle}
     \end{figure}
@@ -3631,7 +3648,7 @@ advisable to plot them in a \textbf{scatter plot}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_108_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_110_0.png}\end{center}
         \caption{Plotting two individual variables of the iris dataset in the scatterplot to explore the relationships between these two}
         \label{fig:scatter_plot}
     \end{figure}
@@ -3669,7 +3686,7 @@ single row and in the x-axis across a single column.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_110_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_112_0.png}\end{center}
         \caption{Plot all individual variables of the Iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables}
         \label{fig:pairs_plot}
     \end{figure}
@@ -4163,41 +4180,45 @@ In this step the dataset is prepared for the actual classification by
 SVC. Depending on the selected ML algorithm as well as the data
 structure, it may be necessary to prepare the data before training
 (e.g., by \textbf{standardization}, \textbf{normalization}, or
-\textbf{binarization} based on thresholds). Furthermore, errors in the
-dataset (e.g.~\textbf{data gaps}, \textbf{duplicates} or obvious
-\textbf{misentries}) should be corrected now at the latest.
+\textbf{discretization} to bin the data based on thresholds).
+Furthermore, errors in the dataset (e.g.~\textbf{data gaps},
+\textbf{duplicates} or obvious \textbf{misentries}) should be corrected
+now at the latest.
+
+\hypertarget{heal-the-dataset}{%
+\subsection{Heal the dataset}\label{heal-the-dataset}}
 
 Through the intensive exploration of the data in
 (\hyperref[step-2-explore-the-ml-dataset]{STEP 2: Explore the ML dataset}),
 we know that special \textbf{preparation} of the data is \textbf{not
-necessary}. The values are complete and without gaps and there are no
-duplicates. The values are in similar ranges, which \textbf{does not
-require normalization} of the data.
+necessary}. The values are \textbf{complete and without gaps} and there
+are no duplicates.
 
-Furthermore, we know that the \textbf{classes} are very \textbf{evenly
-distributed} and thus bias tendencies should be avoided.
+    \hypertarget{transform-the-dataset}{%
+\subsection{Transform the dataset}\label{transform-the-dataset}}
 
 For further details about \textbf{Standarization} and
 \textbf{Normalization} read here:
 
-\begin{itemize}
-\tightlist
-\item
-  \href{http://techflare.blog/what-are-standarization-and-normalization-test-with-iris-data-set-in-scikit-learn/}{What
-  are standarization and normalization? Test with iris data set in
-  Scikit-learn}
-\item
-  \href{https://www.analyticsvidhya.com/blog/2020/04/feature-scaling-machine-learning-normalization-standardization/?}{Feature
-  Scaling for Machine Learning: Understanding the Difference Between
-  Normalization vs.~Standardization}
-\item
-  \href{https://en.wikipedia.org/wiki/Feature_scaling}{Feature scaling}
-\item
-  \href{https://en.wikipedia.org/wiki/Normalization_(statistics)}{Normalization
-  (statistics)}
-\item
-  \href{https://en.wikipedia.org/wiki/Standard_score}{Standard score}
-\end{itemize}
+scikit-learn:\\
+-
+\href{https://scikit-learn.org/stable/modules/preprocessing.html}{Preprocessing
+data} -
+\href{https://scikit-learn.org/stable/auto_examples/preprocessing/plot_all_scaling.html\#sphx-glr-auto-examples-preprocessing-plot-all-scaling-py}{Compare
+the effect of different scalers on data with outliers}
+
+Others:\\
+-
+\href{http://techflare.blog/what-are-standarization-and-normalization-test-with-iris-data-set-in-scikit-learn/}{What
+are standarization and normalization? Test with iris data set in
+Scikit-learn} -
+\href{https://www.analyticsvidhya.com/blog/2020/04/feature-scaling-machine-learning-normalization-standardization/?}{Feature
+Scaling for Machine Learning: Understanding the Difference Between
+Normalization vs.~Standardization} -
+\href{https://en.wikipedia.org/wiki/Feature_scaling}{Feature scaling} -
+\href{https://en.wikipedia.org/wiki/Normalization_(statistics)}{Normalization
+(statistics)} -
+\href{https://en.wikipedia.org/wiki/Standard_score}{Standard score}
 
 \textbf{@TODO:}\\
 Incorporate section ``Skalieren von Merkmalen'' of the book
@@ -4216,43 +4237,55 @@ Incorporate section ``Skalieren von Merkmalen'' of the book
 \end{tcolorbox}
 
     \hypertarget{normalization}{%
-\subsection{Normalization}\label{normalization}}
+\subsubsection{Normalization}\label{normalization}}
+
+See
+\href{https://scikit-learn.org/stable/modules/preprocessing.html\#normalization}{scikit-learn:
+Normalization}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{96}{\boxspacing}
+\prompt{In}{incolor}{103}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{MinMaxScaler}
 
 \PY{c+c1}{\PYZsh{} Fit the MinMax scaler on raw input dataframe}
 \PY{c+c1}{\PYZsh{} by selecting columns 1\PYZhy{}4 with all feature rows}
-\PY{n}{norm\PYZus{}scaler} \PY{o}{=} \PY{n}{MinMaxScaler}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}norm\PYZus{}scaler = MinMaxScaler().fit(irisdata\PYZus{}df.iloc[:, 0:4])}
+\PY{c+c1}{\PYZsh{} by ommitting the last column with class names}
+\PY{n}{norm\PYZus{}scaler} \PY{o}{=} \PY{n}{MinMaxScaler}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} Transform the raw dateframe with fitted scaler}
 \PY{c+c1}{\PYZsh{} and convert it to numpy array}
-\PY{n}{irisdata\PYZus{}np\PYZus{}norm} \PY{o}{=} \PY{n}{norm\PYZus{}scaler}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}irisdata\PYZus{}np\PYZus{}norm = norm\PYZus{}scaler.transform(irisdata\PYZus{}df.iloc[:, 0:4])}
+\PY{n}{irisdata\PYZus{}np\PYZus{}norm} \PY{o}{=} \PY{n}{norm\PYZus{}scaler}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}irisdata\PYZus{}np\PYZus{}norm}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{97}{\boxspacing}
+\prompt{In}{incolor}{104}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Make a deep copy of original dataframe}
 \PY{n}{irisdata\PYZus{}df\PYZus{}norm} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} Replace values of dataframe with normalized values from array}
+\PY{c+c1}{\PYZsh{} by writing in the first 4 columns (ommit last column with class names)}
 \PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]} \PY{o}{=} \PY{n}{irisdata\PYZus{}np\PYZus{}norm}
+
+\PY{c+c1}{\PYZsh{}irisdata\PYZus{}df\PYZus{}norm}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{99}{\boxspacing}
+\prompt{In}{incolor}{105}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{99}{\boxspacing}
+\prompt{Out}{outcolor}{105}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        sepal\_length  sepal\_width  petal\_length  petal\_width
 count    150.000000   150.000000    150.000000   150.000000
@@ -4266,167 +4299,146 @@ max        1.000000     1.000000      1.000000     1.000000
 \end{Verbatim}
 \end{tcolorbox}
         
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{105}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k+kn}{import} \PY{n}{norm}
+    Call the function \texttt{func\_plot\_histograms\_with\_PDF()} to plot
+the \textbf{histograms} with overlaid \textbf{probability density
+functions} implemented in subsection \hyperref[histograms]{Histograms}:
 
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{136}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{features} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \PY{n}{titles} \PY{o}{=}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 
-\PY{c+c1}{\PYZsh{} Number of bins for the histogram}
-\PY{c+c1}{\PYZsh{} \PYZhy{} if bins is an integer, it defines the number of equal\PYZhy{}width bins in the range}
-\PY{c+c1}{\PYZsh{} \PYZhy{} if bins is a string, it is one of the binning strategies:}
-\PY{c+c1}{\PYZsh{}   \PYZsq{}auto\PYZsq{}, \PYZsq{}fd\PYZsq{}, \PYZsq{}doane\PYZsq{}, \PYZsq{}scott\PYZsq{}, \PYZsq{}stone\PYZsq{}, \PYZsq{}rice\PYZsq{}, \PYZsq{}sturges\PYZsq{}, or \PYZsq{}sqrt\PYZsq{}.}
-\PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}
-\PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
-\PY{c+c1}{\PYZsh{} Set margins between subplots}
-\PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
-
-\PY{c+c1}{\PYZsh{} Make subplots iterable via \PYZsq{}subplots.flatten()\PYZsq{}}
-\PY{k}{for} \PY{n}{feature}\PY{p}{,} \PY{n}{title}\PY{p}{,} \PY{n}{subplot} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{,} \PY{n}{subplots}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,} 
-                 \PY{n}{density}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-    
-    \PY{c+c1}{\PYZsh{} Fit a normal distribution to the data}
-    \PY{c+c1}{\PYZsh{} with mean and standard deviation}
-    \PY{n}{mu}\PY{p}{,} \PY{n}{std} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{)}
-    
-    \PY{c+c1}{\PYZsh{} Plot the probability density function (PDF)}
-    \PY{n}{xmin}\PY{p}{,} \PY{n}{xmax} \PY{o}{=} \PY{n}{subplot}\PY{o}{.}\PY{n}{get\PYZus{}xlim}\PY{p}{(}\PY{p}{)}
-    \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{xmin}\PY{p}{,} \PY{n}{xmax}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
-    \PY{n}{p} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
-    
-    \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ (Mean: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, Std. deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{} Show grid}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
-
-\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\PY{n}{func\PYZus{}plot\PYZus{}histograms\PYZus{}with\PYZus{}PDF}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{p}{,} \PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_135_0.png}\end{center}
-        \caption{}
-        \label{}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_139_0.png}\end{center}
+        \caption{Histograms with overlaid probability density functions (PDF) after normalization}
+        \label{fig:histogram_iris_with_PDF_norm}
     \end{figure}
     
-    \hypertarget{standarization}{%
-\subsection{Standarization}\label{standarization}}
+    \hypertarget{standardization}{%
+\subsubsection{Standardization}\label{standardization}}
 
 Standardize the feature values by computing the \textbf{mean},
 subtracting the mean from the data points, and then dividing by the
 \textbf{standard deviation}.
 
+See
+\href{https://scikit-learn.org/stable/modules/preprocessing.html\#standardization-or-mean-removal-and-variance-scaling}{scikit-learn:
+Standardization, or mean removal and variance scaling}.
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{100}{\boxspacing}
+\prompt{In}{incolor}{115}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{StandardScaler}
 
 \PY{c+c1}{\PYZsh{} Fit the standard scaler on raw input dataframe}
 \PY{c+c1}{\PYZsh{} by selecting columns 1\PYZhy{}4 with all feature rows}
-\PY{n}{std\PYZus{}scaler} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}std\PYZus{}scaler = StandardScaler().fit(irisdata\PYZus{}df.iloc[:, 0:4])}
+\PY{c+c1}{\PYZsh{} by ommitting the last column with class names}
+\PY{n}{std\PYZus{}scaler} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} Transform the raw dateframe with fitted scaler}
 \PY{c+c1}{\PYZsh{} and convert it to numpy array}
-\PY{n}{irisdata\PYZus{}np\PYZus{}std} \PY{o}{=} \PY{n}{std\PYZus{}scaler}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}irisdata\PYZus{}np\PYZus{}std = std\PYZus{}scaler.transform(irisdata\PYZus{}df.iloc[:, 0:4])}
+\PY{n}{irisdata\PYZus{}np\PYZus{}std} \PY{o}{=} \PY{n}{std\PYZus{}scaler}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}irisdata\PYZus{}np\PYZus{}std}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{101}{\boxspacing}
+\prompt{In}{incolor}{117}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Make a deep copy of original dataframe}
 \PY{n}{irisdata\PYZus{}df\PYZus{}std} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} Replace values of dataframe with standardized values from array}
 \PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]} \PY{o}{=} \PY{n}{irisdata\PYZus{}np\PYZus{}std}
+
+\PY{c+c1}{\PYZsh{}irisdata\PYZus{}df\PYZus{}std}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{103}{\boxspacing}
+\prompt{In}{incolor}{118}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{103}{\boxspacing}
+\prompt{Out}{outcolor}{118}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-       sepal\_length   sepal\_width  petal\_length  petal\_width
-count  1.500000e+02  1.500000e+02  1.500000e+02   150.000000
-mean  -4.736952e-17 -1.373716e-15 -1.421085e-16     0.000000
-std    1.003350e+00  1.003350e+00  1.003350e+00     1.003350
-min   -1.935104e+00 -2.269588e+00 -1.616094e+00    -1.748009
-25\%   -8.197073e-01 -6.601747e-01 -1.194055e+00    -1.037286
-50\%   -7.490796e-02 -1.723030e-01  3.293038e-01     0.233101
-75\%    7.238294e-01  6.725982e-01  7.623925e-01     0.768348
-max    2.534237e+00  2.784252e+00  1.950237e+00     2.024539
+       sepal\_length   sepal\_width  petal\_length   petal\_width
+count  1.500000e+02  1.500000e+02  1.500000e+02  1.500000e+02
+mean  -2.602201e-16 -1.373716e-15 -1.998401e-17  2.390680e-16
+std    1.003350e+00  1.003350e+00  1.003350e+00  1.003350e+00
+min   -1.935104e+00 -2.269588e+00 -1.616094e+00 -1.748009e+00
+25\%   -8.197073e-01 -6.601747e-01 -1.194055e+00 -1.037286e+00
+50\%   -7.490796e-02 -1.723030e-01  3.293038e-01  2.331012e-01
+75\%    7.238294e-01  6.725982e-01  7.623925e-01  7.683478e-01
+max    2.534237e+00  2.784252e+00  1.950237e+00  2.024539e+00
 \end{Verbatim}
 \end{tcolorbox}
         
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{104}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k+kn}{import} \PY{n}{norm}
+    Call the function \texttt{func\_plot\_histograms\_with\_PDF()} to plot
+the \textbf{histograms} with overlaid \textbf{probability density
+functions} implemented in subsection \hyperref[histograms]{Histograms}:
 
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{137}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{features} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \PY{n}{titles} \PY{o}{=}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 
-\PY{c+c1}{\PYZsh{} Number of bins for the histogram}
-\PY{c+c1}{\PYZsh{} \PYZhy{} if bins is an integer, it defines the number of equal\PYZhy{}width bins in the range}
-\PY{c+c1}{\PYZsh{} \PYZhy{} if bins is a string, it is one of the binning strategies:}
-\PY{c+c1}{\PYZsh{}   \PYZsq{}auto\PYZsq{}, \PYZsq{}fd\PYZsq{}, \PYZsq{}doane\PYZsq{}, \PYZsq{}scott\PYZsq{}, \PYZsq{}stone\PYZsq{}, \PYZsq{}rice\PYZsq{}, \PYZsq{}sturges\PYZsq{}, or \PYZsq{}sqrt\PYZsq{}.}
-\PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}
-\PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
-\PY{c+c1}{\PYZsh{} Set margins between subplots}
-\PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
-
-\PY{c+c1}{\PYZsh{} Make subplots iterable via \PYZsq{}subplots.flatten()\PYZsq{}}
-\PY{k}{for} \PY{n}{feature}\PY{p}{,} \PY{n}{title}\PY{p}{,} \PY{n}{subplot} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{,} \PY{n}{subplots}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,} 
-                 \PY{n}{density}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-    
-    \PY{c+c1}{\PYZsh{} Fit a normal distribution to the data}
-    \PY{c+c1}{\PYZsh{} with mean and standard deviation}
-    \PY{n}{mu}\PY{p}{,} \PY{n}{std} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{)}
-    
-    \PY{c+c1}{\PYZsh{} Plot the probability density function (PDF)}
-    \PY{n}{xmin}\PY{p}{,} \PY{n}{xmax} \PY{o}{=} \PY{n}{subplot}\PY{o}{.}\PY{n}{get\PYZus{}xlim}\PY{p}{(}\PY{p}{)}
-    \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{xmin}\PY{p}{,} \PY{n}{xmax}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
-    \PY{n}{p} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
-    
-    \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ (Mean: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, Std. deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{} Show grid}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
-
-\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\PY{n}{func\PYZus{}plot\PYZus{}histograms\PYZus{}with\PYZus{}PDF}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{p}{,} \PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_0.png}\end{center}
-        \caption{}
-        \label{}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_0.png}\end{center}
+        \caption{Histograms with overlaid probability density functions (PDF) after standarization}
+        \label{fig:histogram_iris_with_PDF_std}
     \end{figure}
     
-    \hypertarget{binarization}{%
-\subsection{Binarization}\label{binarization}}
+    \hypertarget{discretization-clustering}{%
+\subsubsection{Discretization
+(clustering)}\label{discretization-clustering}}
+
+See
+\href{https://scikit-learn.org/stable/modules/preprocessing.html\#discretization}{scikit-learn:
+Discretization}.
+
+    \hypertarget{encoding-categorical-features}{%
+\subsubsection{Encoding categorical
+features}\label{encoding-categorical-features}}
+
+See
+\href{https://scikit-learn.org/stable/modules/preprocessing.html\#encoding-categorical-features}{scikit-learn:
+Encoding categorical features}.
 
     \hypertarget{step-5-carry-out-training-prediction-and-testing}{%
 \section{STEP 5: Carry out training, prediction and
 testing}\label{step-5-carry-out-training-prediction-and-testing}}
 
-\hypertarget{split-the-dataset}{%
+To avoid errors, the Iris dataset is imported again:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Import ORIGINAL Iris dataset for classification}
+\PY{n}{irisdata\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Import NOISED Iris dataset for classification}
+\PY{c+c1}{\PYZsh{}irisdata\PYZus{}df = pd.read\PYZus{}csv(\PYZsq{}./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle\PYZus{}noised.csv\PYZsq{})}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{split-the-dataset}{%
 \subsection{Split the dataset}\label{split-the-dataset}}
 
 In the next very important step, the dataset is split into \textbf{2
@@ -4440,13 +4452,13 @@ training dataset - after all, these are to be predicted.
 Typically, the \textbf{test dataset} should contain about \textbf{20\%}
 of the entire dataset.
 
-In particular, to \textbf{avoid bias} in the sorted iris dataset due to
+In particular, to \textbf{avoid bias} in the sorted Iris dataset due to
 splitting, the \textbf{order} of the data rows must be
 \textbf{randomized}. This is done with the parameter
 \texttt{shuffle=True}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{52}{\boxspacing}
+\prompt{In}{incolor}{4}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
 
@@ -4464,7 +4476,7 @@ For this test, the previously separated labels \texttt{y\_train} must be
 added back to the training dataset \texttt{X\_train}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{53}{\boxspacing}
+\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} make a deep copy of \PYZsq{}X\PYZus{}train\PYZsq{}}
 \PY{n}{X\PYZus{}train\PYZus{}bias\PYZus{}test\PYZus{}df} \PY{o}{=} \PY{n}{X\PYZus{}train}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
@@ -4479,11 +4491,11 @@ added back to the training dataset \texttt{X\_train}.
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{53}{\boxspacing}
+\prompt{Out}{outcolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-Iris-setosa        0.366667
 Iris-virginica     0.341667
-Iris-versicolor    0.291667
+Iris-setosa        0.341667
+Iris-versicolor    0.316667
 Name: species, dtype: float64
 \end{Verbatim}
 \end{tcolorbox}
@@ -4505,6 +4517,26 @@ model.
 \end{Verbatim}
 \end{tcolorbox}
 
+    \hypertarget{standardize-the-datasets}{%
+\subsection{Standardize the datasets}\label{standardize-the-datasets}}
+
+Standardize the feature values by computing the \textbf{mean},
+subtracting the mean from the data points, and then dividing by the
+\textbf{standard deviation}:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{20}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{StandardScaler}
+
+\PY{n}{std\PYZus{}scaler} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}
+\PY{n}{X\PYZus{}train} \PY{o}{=} \PY{n}{std\PYZus{}scaler}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{)}
+\PY{n}{X\PYZus{}test} \PY{o}{=} \PY{n}{std\PYZus{}scaler}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}X\PYZus{}train}
+\end{Verbatim}
+\end{tcolorbox}
+
     \hypertarget{train-the-svc}{%
 \subsection{Train the SVC}\label{train-the-svc}}
 
@@ -4512,7 +4544,7 @@ In this step the SVC is trained with the training data. Training means
 to \textbf{fit} the SVC to the \textbf{training data}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{55}{\boxspacing}
+\prompt{In}{incolor}{11}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} fit the model for the data}
 \PY{n}{classifier}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
@@ -4520,7 +4552,7 @@ to \textbf{fit} the SVC to the \textbf{training data}.
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{55}{\boxspacing}
+\prompt{Out}{outcolor}{11}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 SVC(kernel='linear', random\_state=0)
 \end{Verbatim}
@@ -4533,7 +4565,7 @@ In this step the aim is to \textbf{predict the species} using unlabeled
 test data.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{56}{\boxspacing}
+\prompt{In}{incolor}{12}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{classifier}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
 \PY{c+c1}{\PYZsh{}X\PYZus{}test}
@@ -4560,7 +4592,7 @@ further details see
 \href{https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html\#sklearn.metrics.accuracy_score}{sklearn.metrics.accuracy\_score}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{57}{\boxspacing}
+\prompt{In}{incolor}{13}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k+kn}{import} \PY{n}{accuracy\PYZus{}score}
 
@@ -4571,7 +4603,7 @@ further details see
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Accuracy score: 66.67 \%
+Accuracy score: 96.67 \%
     \end{Verbatim}
 
     \hypertarget{classification-report}{%
@@ -4585,7 +4617,7 @@ can mask functional weaknesses in one class of a multiclass problem (see
 Report}).
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{58}{\boxspacing}
+\prompt{In}{incolor}{14}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k+kn}{import} \PY{n}{classification\PYZus{}report}
 
@@ -4596,13 +4628,13 @@ Report}).
     \begin{Verbatim}[commandchars=\\\{\}]
                  precision    recall  f1-score   support
 
-    Iris-setosa       0.75      1.00      0.86         6
-Iris-versicolor       0.86      0.40      0.55        15
- Iris-virginica       0.53      0.89      0.67         9
+    Iris-setosa       1.00      1.00      1.00         9
+Iris-versicolor       1.00      0.92      0.96        12
+ Iris-virginica       0.90      1.00      0.95         9
 
-       accuracy                           0.67        30
-      macro avg       0.71      0.76      0.69        30
-   weighted avg       0.74      0.67      0.64        30
+       accuracy                           0.97        30
+      macro avg       0.97      0.97      0.97        30
+   weighted avg       0.97      0.97      0.97        30
 
     \end{Verbatim}
 
@@ -4623,7 +4655,7 @@ the book
 \texttt{OReilly\_Praxiseinstieg\_Machine\_Learning\_Scikit-Learn\_TensorFlow\_2018\_Anm\_bk.pdf}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{59}{\boxspacing}
+\prompt{In}{incolor}{15}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{cross\PYZus{}val\PYZus{}score}
 
@@ -4636,8 +4668,8 @@ the book
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Cross-validation score: 77.50 \%
-Standard Deviation: 12.94 \%
+Cross-validation score: 98.33 \%
+Standard Deviation: 3.33 \%
     \end{Verbatim}
 
     \hypertarget{confusion-matrix}{%
@@ -4657,11 +4689,11 @@ For checking the accuracy of the model, the \textbf{confusion matrix}
 can be used for the \textbf{cross validation}.
 
 By using the function \texttt{sklearn.metrics.confusion\_matrix()} a
-confusion matrix of the true iris class labels versus the predicted
+confusion matrix of the true Iris class labels versus the predicted
 class labels is plotted.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{60}{\boxspacing}
+\prompt{In}{incolor}{16}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{cm} \PY{o}{=} \PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{cm}\PY{p}{)}
@@ -4669,9 +4701,9 @@ class labels is plotted.
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[[6 0 0]
- [2 6 7]
- [0 1 8]]
+[[ 9  0  0]
+ [ 0 11  1]
+ [ 0  0  9]]
     \end{Verbatim}
 
     \hypertarget{colored-confusion-matrix}{%
@@ -4682,7 +4714,7 @@ The function \texttt{sklearn.metrics.ConfusionMatrixDisplay()} plots a
 colored confusion matrix.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{61}{\boxspacing}
+\prompt{In}{incolor}{17}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{white}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 
@@ -4703,7 +4735,7 @@ colored confusion matrix.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_162_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_172_0.png}\end{center}
         \caption{Checking the accuracy of the model by using the confusion matrix for cross-validation}
         \label{fig:confusion_matrix}
     \end{figure}
@@ -4730,17 +4762,36 @@ SVC.
 \subsection{Prepare dataset}\label{prepare-dataset}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{22}{\boxspacing}
+\prompt{In}{incolor}{100}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Import packages}
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{svm} \PY{k+kn}{import} \PY{n}{SVC}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{StandardScaler}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{MinMaxScaler}
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{cross\PYZus{}val\PYZus{}score}
 \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\end{Verbatim}
+\end{tcolorbox}
 
-\PY{c+c1}{\PYZsh{} import iris dataset again}
-\PY{n}{irisdata\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    To avoid errors, the Iris dataset is imported again:
 
-\PY{c+c1}{\PYZsh{} encode the class column from class strings to integer equivalents}
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{224}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Import ORIGINAL Iris dataset for classification}
+\PY{c+c1}{\PYZsh{}irisdata\PYZus{}df = pd.read\PYZus{}csv(\PYZsq{}./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv\PYZsq{})}
+
+\PY{c+c1}{\PYZsh{} Import NOISED Iris dataset for classification}
+\PY{n}{irisdata\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle\PYZus{}noised.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Encode the class column from class strings to integer equivalents:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{225}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df\PYZus{}enc} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{species}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}  \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Iris\PYZhy{}setosa}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{0}\PY{p}{,}
                                                     \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Iris\PYZhy{}versicolor}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,}
                                                     \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Iris\PYZhy{}virginica}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{\PYZcb{}}\PY{p}{\PYZcb{}}\PY{p}{)}
@@ -4754,7 +4805,7 @@ plotting}\label{prepare-datasets-for-parameter-variation-and-plotting}}
 
 These datasets will be used for parameter variation and plotting only.
 In particular, for later \textbf{2D plotting} of the effects of
-parameter variation, only \textbf{2 variables} of the iris dataset can
+parameter variation, only \textbf{2 variables} of the Iris dataset can
 be used.
 
 However, as seen in the previous section, this selection is very much at
@@ -4763,9 +4814,9 @@ predictions with this subset of data - it is not necessary to divide it
 into a training and a test dataset.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
+\prompt{In}{incolor}{226}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} copy only 2 feature columns}
+\PY{c+c1}{\PYZsh{} Copy only 2 feature columns}
 \PY{c+c1}{\PYZsh{} and convert pandas dataframe to numpy array}
 \PY{n}{X\PYZus{}plot} \PY{o}{=} \PY{n}{irisdata\PYZus{}df\PYZus{}enc}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{to\PYZus{}numpy}\PY{p}{(}\PY{n}{copy}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 \PY{c+c1}{\PYZsh{}X\PYZus{}plot = irisdata\PYZus{}df\PYZus{}enc[[\PYZsq{}sepal\PYZus{}length\PYZsq{}, \PYZsq{}sepal\PYZus{}width\PYZsq{}]].to\PYZus{}numpy(copy=True)}
@@ -4774,9 +4825,9 @@ into a training and a test dataset.
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{227}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} convert pandas dataframe to numpy array}
+\PY{c+c1}{\PYZsh{} Convert pandas dataframe to numpy array}
 \PY{c+c1}{\PYZsh{} and get a flat 1D copy of 2D numpy array}
 \PY{n}{y\PYZus{}plot} \PY{o}{=} \PY{n}{irisdata\PYZus{}df\PYZus{}enc}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{to\PYZus{}numpy}\PY{p}{(}\PY{n}{copy}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
 \PY{c+c1}{\PYZsh{}y\PYZus{}plot}
@@ -4788,17 +4839,31 @@ into a training and a test dataset.
 evaluation}\label{prepare-dataset-for-prediction-and-evaluation}}
 
 To \textbf{evaluate the recognition accuracy} by parameter variation,
-the complete iris dataset with all variables must be used. To make
+the complete Iris dataset with all variables must be used. To make
 predictions with test data, the dataset is again divided into a training
 and a test dataset.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{10}{\boxspacing}
+\prompt{In}{incolor}{228}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{X} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
 \PY{n}{y} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 
 \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{test\PYZus{}size} \PY{o}{=} \PY{l+m+mf}{0.20}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}X\PYZus{}train}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \textbf{Normalize} the feature values for \textbf{prediction and
+evaluation}. Normalisation is deliberately used here to avoid
+visualisation problems due to negative values.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{230}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{norm\PYZus{}scaler\PYZus{}pred} \PY{o}{=} \PY{n}{MinMaxScaler}\PY{p}{(}\PY{p}{)}
+\PY{n}{X\PYZus{}train} \PY{o}{=} \PY{n}{norm\PYZus{}scaler\PYZus{}pred}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{)}
+\PY{n}{X\PYZus{}test} \PY{o}{=} \PY{n}{norm\PYZus{}scaler\PYZus{}pred}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -4809,7 +4874,7 @@ This function helps to visualize the modifications by varying the
 individual SVC parameters:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{11}{\boxspacing}
+\prompt{In}{incolor}{231}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{plotSVC}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{svc}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{xlabel}\PY{p}{,} \PY{n}{ylabel}\PY{p}{,} \PY{n}{subplot}\PY{p}{)}\PY{p}{:}
     \PY{c+c1}{\PYZsh{} create a mesh to plot in}
@@ -4841,7 +4906,7 @@ individual SVC parameters:
     This function cares for cross validation:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{12}{\boxspacing}
+\prompt{In}{incolor}{232}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{crossValSVC}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{kernel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rbf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{gamma}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{C}\PY{o}{=}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{n}{degree}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{:}
     \PY{c+c1}{\PYZsh{} train the SVC}
@@ -4863,7 +4928,7 @@ prediction accuracy to show the effect of variation and its limits
 regarding the phenomenon \textbf{overfitting}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{13}{\boxspacing}
+\prompt{In}{incolor}{233}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{plotParamsAcc}\PY{p}{(}\PY{n}{param\PYZus{}list}\PY{p}{,} \PY{n}{acc\PYZus{}list}\PY{p}{,} \PY{n}{param\PYZus{}name}\PY{p}{,} \PY{n}{log\PYZus{}scale}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{:}
     \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
@@ -4897,7 +4962,7 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \texttt{kernel=rbf}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{14}{\boxspacing}
+\prompt{In}{incolor}{234}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{kernels} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{linear}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rbf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{poly}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sigmoid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 
@@ -4921,7 +4986,7 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_193_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
@@ -4936,7 +5001,7 @@ exactly fit the training dataset. The \textbf{default} is
 \texttt{gamma=\textquotesingle{}scale\textquotesingle{}}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{15}{\boxspacing}
+\prompt{In}{incolor}{235}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{gammas} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{]}
 
@@ -4961,7 +5026,7 @@ exactly fit the training dataset. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_179_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_195_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
@@ -4973,7 +5038,7 @@ As we can see, increasing \texttt{gamma} leads to \textbf{overfitting}
 as the classifier tries to perfectly fit the training data.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{16}{\boxspacing}
+\prompt{In}{incolor}{236}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{gammas} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mf}{0.4}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.6}\PY{p}{,} \PY{l+m+mf}{0.7}\PY{p}{,} \PY{l+m+mf}{0.8}\PY{p}{,} \PY{l+m+mf}{0.9}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{]}
 
@@ -4987,7 +5052,7 @@ as the classifier tries to perfectly fit the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_181_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_197_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy}
         \label{fig:plot_vary_gamma}
     \end{figure}
@@ -5001,7 +5066,7 @@ controls the trade off between smooth decision boundary and classifying
 the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{17}{\boxspacing}
+\prompt{In}{incolor}{237}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{cs} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{]}
 
@@ -5026,7 +5091,7 @@ the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_183_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_199_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
@@ -5038,7 +5103,7 @@ But be careful: to high \texttt{C} values may lead to
 \textbf{overfitting} the training data.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{18}{\boxspacing}
+\prompt{In}{incolor}{238}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{cs} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{]}
 
@@ -5052,7 +5117,7 @@ But be careful: to high \texttt{C} values may lead to
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_185_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_201_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'C' against the prediction accuracy}
         \label{fig:plot_vary_c}
     \end{figure}
@@ -5071,7 +5136,7 @@ kernel. Also, increasing this parameters leads to \textbf{higher
 training times}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{21}{\boxspacing}
+\prompt{In}{incolor}{239}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{degrees} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{]}
 
@@ -5096,7 +5161,7 @@ training times}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_187_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_203_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
@@ -5108,7 +5173,7 @@ As we can see, increasing the \texttt{degree} of the polynomial
 hyperplane leads to \textbf{overfitting} the training data.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{20}{\boxspacing}
+\prompt{In}{incolor}{240}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{degrees} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}
 
@@ -5122,7 +5187,7 @@ hyperplane leads to \textbf{overfitting} the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_189_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_205_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy}
         \label{fig:plot_vary_degree}
     \end{figure}
@@ -5374,7 +5439,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_207_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_223_0.png}\end{center}
         \caption{Confusion matrix for cross-validation of the baseline}
         \label{fig:cm_baseline}
     \end{figure}
@@ -5430,18 +5495,18 @@ However, because this has \textbf{no influence on the classifiability},
 it is omitted here.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{76}{\boxspacing}
+\prompt{In}{incolor}{104}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Import Iris dataset for adding noise}
 \PY{n}{irisdata\PYZus{}df\PYZus{}orig} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
-    First, determine the shape of the iris dataset. The last column with the
+    First, determine the shape of the Iris dataset. The last column with the
 class names is omitted to get only the feature columns.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{77}{\boxspacing}
+\prompt{In}{incolor}{105}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Get number of rows of the dataset}
 \PY{n}{n\PYZus{}rows} \PY{o}{=} \PY{n}{irisdata\PYZus{}df\PYZus{}orig}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
@@ -5456,10 +5521,10 @@ class names is omitted to get only the feature columns.
 generated. This contains \textbf{normally distributed random values}
 according to the \textbf{Gaussian curve} with a defined \textbf{standard
 deviation \(\sigma\)}. The \textbf{mean} of the Gaussian curve remains
-unchanged and is \textbf{not shifted}.
+unchanged and is \textbf{not shifted} in the first place.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{131}{\boxspacing}
+\prompt{In}{incolor}{206}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} mean: \PYZdq{}centre\PYZdq{} of the distribution}
 \PY{c+c1}{\PYZsh{} sigma: standard deviation (spread or “width”) of the distribution}
@@ -5476,7 +5541,7 @@ unchanged and is \textbf{not shifted}.
 dataset are converted to a \texttt{numpy} array.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{87}{\boxspacing}
+\prompt{In}{incolor}{207}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Select columns 1\PYZhy{}4 with all rows}
 \PY{c+c1}{\PYZsh{} and convert it to numpy array}
@@ -5487,10 +5552,55 @@ dataset are converted to a \texttt{numpy} array.
     The array with the normally distributed random values is added to this.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{88}{\boxspacing}
+\prompt{In}{incolor}{208}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Add noise to original values}
 \PY{n}{irisdata\PYZus{}np\PYZus{}noised} \PY{o}{=} \PY{n}{irisdata\PYZus{}np\PYZus{}orig} \PY{o}{+} \PY{n}{irisdata\PYZus{}np\PYZus{}noise}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \textbf{Negative measured values} do \textbf{not make sense} for this
+dataset and should therefore be avoided. Therefore, the \textbf{minimum
+value} over the entire array is first retrieved with the function
+\texttt{numpy.amin()}. If this is negative, an \textbf{integer offset}
+for shifting the data into the positive range is calculated from the
+rounded up amount of the minimum value. The function
+\texttt{math.ceil()} is used for this.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{209}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{math}
+
+\PY{n}{min\PYZus{}val} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{amin}\PY{p}{(}\PY{n}{irisdata\PYZus{}np\PYZus{}noised}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Minimal value of noised array: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{min\PYZus{}val}\PY{p}{)}\PY{p}{)}
+
+\PY{k}{if} \PY{p}{(}\PY{n}{min\PYZus{}val} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+    \PY{n}{min\PYZus{}val\PYZus{}abs} \PY{o}{=} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{min\PYZus{}val}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} Round the min\PYZus{}val\PYZus{}abs upward to its nearest integer}
+    \PY{n}{offset} \PY{o}{=} \PY{n}{math}\PY{o}{.}\PY{n}{ceil}\PY{p}{(}\PY{n}{min\PYZus{}val\PYZus{}abs}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+    \PY{n}{offset} \PY{o}{=} \PY{l+m+mi}{0}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Offset for array shifting: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{offset}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Minimal value of noised array: -0.14617286328679105
+Offset for array shifting: 1
+    \end{Verbatim}
+
+    The calculated \textbf{offset} is \textbf{added} to the array with the
+noisy measurements to \textbf{shift} the data into the \textbf{positive
+range}.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{210}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{irisdata\PYZus{}np\PYZus{}noised\PYZus{}shifted} \PY{o}{=} \PY{n}{irisdata\PYZus{}np\PYZus{}noised} \PY{o}{+} \PY{n}{offset}
+\PY{c+c1}{\PYZsh{}irisdata\PYZus{}np\PYZus{}noised\PYZus{}shifted}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -5498,35 +5608,30 @@ dataset are converted to a \texttt{numpy} array.
 the first 4 columns are replaced with the noisy features.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{89}{\boxspacing}
+\prompt{In}{incolor}{211}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Make a deep copy of original dataframe}
 \PY{n}{irisdata\PYZus{}df\PYZus{}noised} \PY{o}{=} \PY{n}{irisdata\PYZus{}df\PYZus{}orig}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 
-\PY{c+c1}{\PYZsh{} Replace values of dataframe with noisy values from array }
-\PY{n}{irisdata\PYZus{}df\PYZus{}noised}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]} \PY{o}{=} \PY{n}{irisdata\PYZus{}np\PYZus{}noised}
+\PY{c+c1}{\PYZsh{} Replace values of dataframe with noisy values from array}
+\PY{n}{irisdata\PYZus{}df\PYZus{}noised}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]} \PY{o}{=} \PY{n}{irisdata\PYZus{}np\PYZus{}noised\PYZus{}shifted}
 
-\PY{n}{irisdata\PYZus{}df\PYZus{}noised}
+\PY{n}{irisdata\PYZus{}df\PYZus{}noised}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{89}{\boxspacing}
+\prompt{Out}{outcolor}{211}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-     sepal\_length  sepal\_width  petal\_length  petal\_width         species
-0        5.199343     3.472347      1.529538     0.504606     Iris-setosa
-1        4.853169     2.953173      1.715843     0.353487     Iris-setosa
-2        4.606105     3.308512      1.207316     0.106854     Iris-setosa
-3        4.648392     2.717344      1.155016     0.087542     Iris-setosa
-4        4.797434     3.662849      1.218395    -0.082461     Iris-setosa
-..            {\ldots}          {\ldots}           {\ldots}          {\ldots}             {\ldots}
-145      6.767699     2.916942      5.326556     2.754139  Iris-virginica
-146      6.336373     2.549644      4.908128     1.730031  Iris-virginica
-147      6.666067     2.828783      5.214313     1.904469  Iris-virginica
-148      6.295796     3.466732      5.607508     2.197997  Iris-virginica
-149      5.846025     2.804247      5.011141     1.875460  Iris-virginica
-
-[150 rows x 5 columns]
+       sepal\_length  sepal\_width  petal\_length  petal\_width
+count    150.000000   150.000000    150.000000   150.000000
+mean       6.841439     4.048479      4.756247     2.197686
+std        0.869432     0.473661      1.786644     0.771369
+min        5.164616     2.977053      1.878503     0.853827
+25\%        6.131139     3.736824      2.630018     1.400227
+50\%        6.776529     3.967138      5.342632     2.376893
+75\%        7.468658     4.365999      6.113823     2.788387
+max        9.037428     5.362868      8.228994     3.754139
 \end{Verbatim}
 \end{tcolorbox}
         
@@ -5534,7 +5639,7 @@ the first 4 columns are replaced with the noisy features.
 dataframes are visualized in pairs plots.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{90}{\boxspacing}
+\prompt{In}{incolor}{212}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Define a function to visualize data as pairs plots}
 \PY{k}{def} \PY{n+nf}{plotPairs}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{title}\PY{p}{)}\PY{p}{:}
@@ -5549,7 +5654,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{91}{\boxspacing}
+\prompt{In}{incolor}{213}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{title} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pairs plot of the ORIGINAL Iris dataset}\PY{l+s+s1}{\PYZsq{}}
 \PY{n}{plotPairs}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}orig}\PY{p}{,} \PY{n}{title}\PY{p}{)}
@@ -5557,13 +5662,13 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_223_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_243_0.png}\end{center}
         \caption{Pairs plot of the original Iris dataset}
         \label{fig:pairs_plot_orig_Iris}
     \end{figure}
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{92}{\boxspacing}
+\prompt{In}{incolor}{214}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{title} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pairs plot of the NOISED Iris dataset}\PY{l+s+s1}{\PYZsq{}}
 \PY{n}{plotPairs}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}noised}\PY{p}{,} \PY{n}{title}\PY{p}{)}
@@ -5571,15 +5676,15 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_224_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_244_0.png}\end{center}
         \caption{Pairs plot of the noised Iris dataset}
         \label{fig:pairs_plot_noised_Iris}
     \end{figure}
     
-    Finally, the noisy iris dataset is saved in its own CSV file.
+    Finally, the noisy Iris dataset is saved in its own CSV file.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{93}{\boxspacing}
+\prompt{In}{incolor}{215}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Save noised Iris dataset to CSV file without index}
 \PY{n}{irisdata\PYZus{}df\PYZus{}noised}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle\PYZus{}noised.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
@@ -5712,7 +5817,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_236_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_256_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the grid search has been performed}
         \label{fig:cm_grid_search}
     \end{figure}
@@ -5872,7 +5977,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_247_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_267_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the randomized search has been performed}
         \label{fig:cm_random_search}
     \end{figure}
@@ -5924,7 +6029,7 @@ step-by-step using the very familiar \textbf{Iris dataset}. The reasons
 for choosing a ready-made dataset are that an ML novice could first
 become familiar with ML algorithms, data analysis tools and software
 libraries as well as programming systems. The task was to distinguish,
-i.e.~classify, three different iris species based on the
+i.e.~classify, three different Iris species based on the
 \textbf{dimensions} (width and length) of their \textbf{petals and
 sepals}. The dataset contains \textbf{50 measured individuals per
 species}.
@@ -5976,9 +6081,9 @@ In \textbf{Step 4} the dataset was prepared for the actual
 classification by SVC. Depending on the selected ML algorithm as well as
 the data structure, it could be necessary to prepare the data before
 training, e.g., by \textbf{standardization}, \textbf{normalization}, or
-\textbf{binarization} based on threshold values. For the Iris dataset
-used, standardization was sufficient to align the value ranges of the
-features.
+\textbf{discretization} to cluster the data based on thresholds. For the
+Iris dataset used, standardization was sufficient to align the value
+ranges of the features.
 
 After splitting the dataset into a \textbf{training and test dataset},
 the SVC model was trained with the training dataset in \textbf{step 5}.
@@ -6111,9 +6216,10 @@ Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus
 sowie der Datenstruktur konnte es erforderlich sein, dass die Daten vor
 dem Training aufbereitet werden mussten, z. B. durch
 \textbf{Standardisierung}, \textbf{Normalisierung} oder
-\textbf{Binärisierung} anhand von Schwellwerten. Für den verwendeten
-Iris-Datensatz genügte eine Standardisierung, um die Wertebereiche der
-Features aneinander anzugleichen.
+\textbf{Diskretisierung}, um die Daten anhand von Schwellenwerten zu
+gruppieren. Für den verwendeten Iris-Datensatz genügte eine
+Standardisierung, um die Wertebereiche der Features aneinander
+anzugleichen.
 
 Nach der Aufteilung des Datensatzes in einen \textbf{Trainings- und
 Testdatensatz}, wurde das SVC-Modell im \textbf{Schritt 5} mit dem

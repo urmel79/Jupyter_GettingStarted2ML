@@ -62,7 +62,7 @@ One of the most important steps in the entire ML process is **step 2**, in which
 
 After exploring the dataset, in **step 3** one has to decide on a specific ML algorithm based on certain selection criteria. Among other ML algorithms suitable for the Iris dataset (such as the decision-tree-based **random-forests classifier**), the reasoned choice here in the tutorial falls on the **support vector classifier**. A dedicated SVC model is now being implemented.
 
-In **step 4** the dataset is prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by standardization, normalization, or binarization based on thresholds). After splitting the dataset into a training and test dataset, the SVC model is trained with the training dataset in **step 5**. Subsequently, classification predictions are made with the trained SVC model based on the test data. In **step 6**, the quality of the classification result is evaluated using known **metrics** such as the **confusion matrix**.
+In **step 4** the dataset is prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by standardization, normalization, or discretization to cluster the data based on thresholds). After splitting the dataset into a training and test dataset, the SVC model is trained with the training dataset in **step 5**. Subsequently, classification predictions are made with the trained SVC model based on the test data. In **step 6**, the quality of the classification result is evaluated using known **metrics** such as the **confusion matrix**.
 
 Since the classification in step 5 was initially performed with standard parameters (so-called **hyper-parameters**), their meaning is explained in **step 7** and then their effect on the classification result is demonstrated by manually varying the individual hyper-parameters.
 
@@ -114,7 +114,7 @@ Mit der wichtigste Schritt im gesamten ML-Prozess ist **Schritt 2**, in dem der 
 
 Nach der Erkundung des Datensatzes muss man sich im **Schritt 3** anhand bestimmter Auswahlkriterien für einen konkreten ML-Algorithmus entscheiden. Neben anderen für den Iris-Datensatz passenden ML-Algorithmen (wie z. B. der entscheidungsbaum-basierte **Random-forests-Classifier**) fällt die begründete Auswahl hier im Tutorial auf den **Support-Vector-Classifier**. Ein entsprechendes SVC-Modell wird nun implementiert.
 
-Im **Schritt 4** wird der Datensatz für die eigentliche Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus sowie der Datenstruktur kann es erforderlich sein, dass die Daten vor dem Training aufbereitet werden müssen (z. B. durch Standardisierung, Normalisierung oder Binärisierung anhand von Schwellwerten). Nach der Aufteilung des Datensatzes in einen Trainings- und Testdatensatz, wird das SVC-Modell im **Schritt 5** mit dem Trainingsdatensatz trainiert. Anschließend werden mit dem trainierten SVC-Modell anhand der Testdaten Klassifikationsvorhersagen getroffen. Im **Schritt 6** wird die Güte des Klassifikationsergebnisses anhand bekannter **Metriken** wie z. B. der **Konfusionsmatrix** evaluiert.
+Im **Schritt 4** wird der Datensatz für die eigentliche Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus sowie der Datenstruktur kann es erforderlich sein, dass die Daten vor dem Training aufbereitet werden müssen (z. B. durch Standardisierung, Normalisierung oder **Diskretisierung**, um die Daten anhand von Schwellenwerten zu gruppieren). Nach der Aufteilung des Datensatzes in einen Trainings- und Testdatensatz, wird das SVC-Modell im **Schritt 5** mit dem Trainingsdatensatz trainiert. Anschließend werden mit dem trainierten SVC-Modell anhand der Testdaten Klassifikationsvorhersagen getroffen. Im **Schritt 6** wird die Güte des Klassifikationsergebnisses anhand bekannter **Metriken** wie z. B. der **Konfusionsmatrix** evaluiert.
 
 Da die Klassifikation im Schritt 5 zunächst mit Standard-Parametern (den sogenannten **Hyper-Parametern**) durchgeführt wurde, wird ihre Bedeutung im **Schritt 7** erklärt und danach ihr Einfluss auf das Klassifikationsergebnis durch manuelle Variation der einzelnen Hyper-Parameter demonstriert.
 
@@ -643,46 +643,54 @@ plt.show()
 
 To improve the code, the function `subplots.flatten()` converts the subplot array to an iterable list. Afterwards, a loop allows to iterate through the subplots - this **saves many repetitions** in the code.
 
-In addition, **probability density functions (PDF)** were overlaid on the histograms, whose hyper-parameters **mean** and **standard deviation** were previously identified using the features of the dataset. This makes it possible to estimate whether the data is normally distributed.
+In addition, **probability density functions (PDF)** were overlaid on the histograms, whose hyper-parameters **mean** and **standard deviation** were previously identified using the features of the dataset. This makes it possible to estimate whether the data is normally distributed. In order to be able to reuse the code later, it was implemented as the **function** `func_plot_histograms_with_PDF()`.
 
-```python caption="Histograms used to explore the frequency distribution of the 4 features in the Iris dataset (with improved code)" tags=[] label="fig:histogram_iris_elegant" widefigure=true
+```python tags=[]
 from scipy.stats import norm
 
+def func_plot_histograms_with_PDF(df, features, titles):
+    # Number of bins for the histogram
+    # - bins=<integer>: defines the number of equal-width bins in the range
+    # - bins=<string>: one of the binning strategies is used:
+    #   'auto', 'fd', 'doane', 'scott', 'stone', 'rice', 'sturges', or 'sqrt'
+    n_bins = 'auto'
+    fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
+    # Set margins between subplots
+    plt.subplots_adjust(wspace=0.3, hspace=0.3)
+
+    # Make subplots iterable via 'subplots.flatten()'
+    for feature, title, subplot in zip(features, titles, subplots.flatten()):
+        subplot.hist(df[feature], bins = n_bins, rwidth=0.95,
+                     density=True, alpha=0.8)
+
+        # Fit a normal distribution to the data
+        # with mean and standard deviation
+        mu, std = norm.fit(df[feature])
+
+        # Plot the probability density function (PDF)
+        xmin, xmax = subplot.get_xlim()
+        x = np.linspace(xmin, xmax, 100)
+        p = norm.pdf(x, mu, std)
+        subplot.plot(x, p, 'k', linewidth=2)
+
+        title_concat = "{} (Mean: {:.2f}, " \
+                       "Std. deviation: {:.2f})".format(title, mu, std)
+        subplot.set_title(title_concat)
+        # Show grid
+        subplot.grid(visible=True)
+        # Hide grid behind the bars
+        subplot.set_axisbelow(True)
+
+    plt.show()
+```
+
+Call the new function to plot the **histograms** with overlaid **probability density functions**:
+
+```python caption="Histograms used to explore the frequency distribution of the 4 features in the Iris dataset (with improved code and overlaid probability density functions (PDF))" tags=[] label="fig:histogram_iris_with_PDF" widefigure=true
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
-# Number of bins for the histogram
-# - if bins is an integer, it defines the number of equal-width bins in the range
-# - if bins is a string, it is one of the binning strategies:
-#   'auto', 'fd', 'doane', 'scott', 'stone', 'rice', 'sturges', or 'sqrt'.
-n_bins = 'auto'
-fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
-# Set margins between subplots
-plt.subplots_adjust(wspace=0.3, hspace=0.3)
-
-# Make subplots iterable via 'subplots.flatten()'
-for feature, title, subplot in zip(features, titles, subplots.flatten()):
-    subplot.hist(irisdata_df[feature], bins = n_bins, rwidth=0.95, 
-                 density=True, alpha=0.8, color='b')
-    
-    # Fit a normal distribution to the data
-    # with mean and standard deviation
-    mu, std = norm.fit(irisdata_df[feature])
-    
-    # Plot the probability density function (PDF)
-    xmin, xmax = subplot.get_xlim()
-    x = np.linspace(xmin, xmax, 100)
-    p = norm.pdf(x, mu, std)
-    subplot.plot(x, p, 'k', linewidth=2)
-    
-    title_concat = "{} (Mean: {:.2f}, Std. deviation: {:.2f})".format(title, mu, std)
-    subplot.set_title(title_concat)
-    # Show grid
-    subplot.grid(visible=True)
-    # Hide grid behind the bars
-    subplot.set_axisbelow(True)
-
-plt.show()
+func_plot_histograms_with_PDF(irisdata_df, features, titles)
 ```
 
 #### Boxplots
@@ -845,6 +853,7 @@ Incorporate section "4.1.3 Fehlende Werte ergänzen" of the book `mitp_Praxishan
 
 - https://www.statology.org/pandas-fillna-with-median/
 - https://stackoverflow.com/questions/18689823/pandas-dataframe-replace-nan-values-with-average-of-columns
+- https://scikit-learn.org/stable/modules/impute.html
 <!-- #endregion -->
 
 <!-- #region tags=[] -->
@@ -1347,14 +1356,22 @@ classifier = SVC(kernel = 'linear', random_state = 0)
 <!-- #region tags=[] -->
 # STEP 4: Prepare the dataset for training
 
-In this step the dataset is prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by **standardization**, **normalization**, or **binarization** based on thresholds). Furthermore, errors in the dataset (e.g. **data gaps**, **duplicates** or obvious **misentries**) should be corrected now at the latest.
+In this step the dataset is prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by **standardization**, **normalization**, or **discretization** to bin the data based on thresholds). Furthermore, errors in the dataset (e.g. **data gaps**, **duplicates** or obvious **misentries**) should be corrected now at the latest.
 
-Through the intensive exploration of the data in ([STEP 2: Explore the ML dataset](#STEP-2:-Explore-the-ML-dataset)), we know that special **preparation** of the data is **not necessary**. The values are complete and without gaps and there are no duplicates. The values are in similar ranges, which **does not require normalization** of the data.
+## Heal the dataset
 
-Furthermore, we know that the **classes** are very **evenly distributed** and thus bias tendencies should be avoided.
+Through the intensive exploration of the data in ([STEP 2: Explore the ML dataset](#STEP-2:-Explore-the-ML-dataset)), we know that special **preparation** of the data is **not necessary**. The values are **complete and without gaps** and there are no duplicates.
+<!-- #endregion -->
+
+## Transform the dataset
 
 For further details about **Standarization** and **Normalization** read here:
 
+scikit-learn:  
+- [Preprocessing data](https://scikit-learn.org/stable/modules/preprocessing.html)
+- [Compare the effect of different scalers on data with outliers](https://scikit-learn.org/stable/auto_examples/preprocessing/plot_all_scaling.html#sphx-glr-auto-examples-preprocessing-plot-all-scaling-py)
+
+Others:  
 - [What are standarization and normalization? Test with iris data set in Scikit-learn](http://techflare.blog/what-are-standarization-and-normalization-test-with-iris-data-set-in-scikit-learn/)
 - [Feature Scaling for Machine Learning: Understanding the Difference Between Normalization vs. Standardization](https://www.analyticsvidhya.com/blog/2020/04/feature-scaling-machine-learning-normalization-standardization/?)
 - [Feature scaling](https://en.wikipedia.org/wiki/Feature_scaling)
@@ -1363,7 +1380,6 @@ For further details about **Standarization** and **Normalization** read here:
 
 **@TODO:**  
 Incorporate section "Skalieren von Merkmalen" of the book `OReilly_Praxiseinstieg_Machine_Learning_Scikit-Learn_TensorFlow_2018_Anm_bk.pdf` (see <cite data-cite="Geron_2018">Géron, 2018</cite>).
-<!-- #endregion -->
 
 ```python
 # Import ORIGINAL Iris dataset for classification
@@ -1373,18 +1389,25 @@ Incorporate section "Skalieren von Merkmalen" of the book `OReilly_Praxiseinstie
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle_noised.csv')
 ```
 
-## Normalization
+### Normalization
+
+See [scikit-learn: Normalization](https://scikit-learn.org/stable/modules/preprocessing.html#normalization).
 
 ```python tags=[]
 from sklearn.preprocessing import MinMaxScaler
 
 # Fit the MinMax scaler on raw input dataframe
 # by selecting columns 1-4 with all feature rows
-norm_scaler = MinMaxScaler().fit(irisdata_df.iloc[:, 0:4])
+#norm_scaler = MinMaxScaler().fit(irisdata_df.iloc[:, 0:4])
+# by ommitting the last column with class names
+norm_scaler = MinMaxScaler().fit(irisdata_df.drop('species', axis=1))
 
 # Transform the raw dateframe with fitted scaler
 # and convert it to numpy array
-irisdata_np_norm = norm_scaler.transform(irisdata_df.iloc[:, 0:4])
+#irisdata_np_norm = norm_scaler.transform(irisdata_df.iloc[:, 0:4])
+irisdata_np_norm = norm_scaler.transform(irisdata_df.drop('species', axis=1))
+
+#irisdata_np_norm
 ```
 
 ```python
@@ -1392,57 +1415,31 @@ irisdata_np_norm = norm_scaler.transform(irisdata_df.iloc[:, 0:4])
 irisdata_df_norm = irisdata_df.copy(deep=True)
 
 # Replace values of dataframe with normalized values from array
+# by writing in the first 4 columns (ommit last column with class names)
 irisdata_df_norm.iloc[:, 0:4] = irisdata_np_norm
+
+#irisdata_df_norm
 ```
 
 ```python
 irisdata_df_norm.describe()
 ```
 
-```python
-from scipy.stats import norm
+Call the function `func_plot_histograms_with_PDF()` to plot the **histograms** with overlaid **probability density functions** implemented in subsection [Histograms](#Histograms):
 
+```python caption="Histograms with overlaid probability density functions (PDF) after normalization" tags=[] label="fig:histogram_iris_with_PDF_norm" widefigure=true
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
-# Number of bins for the histogram
-# - if bins is an integer, it defines the number of equal-width bins in the range
-# - if bins is a string, it is one of the binning strategies:
-#   'auto', 'fd', 'doane', 'scott', 'stone', 'rice', 'sturges', or 'sqrt'.
-n_bins = 'auto'
-fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
-# Set margins between subplots
-plt.subplots_adjust(wspace=0.3, hspace=0.3)
-
-# Make subplots iterable via 'subplots.flatten()'
-for feature, title, subplot in zip(features, titles, subplots.flatten()):
-    subplot.hist(irisdata_df_norm[feature], bins = n_bins, rwidth=0.95, 
-                 density=True, alpha=0.8, color='b')
-    
-    # Fit a normal distribution to the data
-    # with mean and standard deviation
-    mu, std = norm.fit(irisdata_df_norm[feature])
-    
-    # Plot the probability density function (PDF)
-    xmin, xmax = subplot.get_xlim()
-    x = np.linspace(xmin, xmax, 100)
-    p = norm.pdf(x, mu, std)
-    subplot.plot(x, p, 'k', linewidth=2)
-    
-    title_concat = "{} (Mean: {:.2f}, Std. deviation: {:.2f})".format(title, mu, std)
-    subplot.set_title(title_concat)
-    # Show grid
-    subplot.grid(visible=True)
-    # Hide grid behind the bars
-    subplot.set_axisbelow(True)
-
-plt.show()
+func_plot_histograms_with_PDF(irisdata_df_norm, features, titles)
 ```
 
 <!-- #region tags=["TODO_Step_4"] -->
-## Standarization
+### Standardization
 
 Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**.
+
+See [scikit-learn: Standardization, or mean removal and variance scaling](https://scikit-learn.org/stable/modules/preprocessing.html#standardization-or-mean-removal-and-variance-scaling).
 <!-- #endregion -->
 
 ```python tags=[]
@@ -1450,11 +1447,16 @@ from sklearn.preprocessing import StandardScaler
 
 # Fit the standard scaler on raw input dataframe
 # by selecting columns 1-4 with all feature rows
-std_scaler = StandardScaler().fit(irisdata_df.iloc[:, 0:4])
+#std_scaler = StandardScaler().fit(irisdata_df.iloc[:, 0:4])
+# by ommitting the last column with class names
+std_scaler = StandardScaler().fit(irisdata_df.drop('species', axis=1))
 
 # Transform the raw dateframe with fitted scaler
 # and convert it to numpy array
-irisdata_np_std = std_scaler.transform(irisdata_df.iloc[:, 0:4])
+#irisdata_np_std = std_scaler.transform(irisdata_df.iloc[:, 0:4])
+irisdata_np_std = std_scaler.transform(irisdata_df.drop('species', axis=1))
+
+#irisdata_np_std
 ```
 
 ```python
@@ -1463,56 +1465,45 @@ irisdata_df_std = irisdata_df.copy(deep=True)
 
 # Replace values of dataframe with standardized values from array
 irisdata_df_std.iloc[:, 0:4] = irisdata_np_std
+
+#irisdata_df_std
 ```
 
 ```python
 irisdata_df_std.describe()
 ```
 
-```python
-from scipy.stats import norm
+Call the function `func_plot_histograms_with_PDF()` to plot the **histograms** with overlaid **probability density functions** implemented in subsection [Histograms](#Histograms):
 
+```python caption="Histograms with overlaid probability density functions (PDF) after standarization" tags=[] label="fig:histogram_iris_with_PDF_std" widefigure=true
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
-# Number of bins for the histogram
-# - if bins is an integer, it defines the number of equal-width bins in the range
-# - if bins is a string, it is one of the binning strategies:
-#   'auto', 'fd', 'doane', 'scott', 'stone', 'rice', 'sturges', or 'sqrt'.
-n_bins = 'auto'
-fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
-# Set margins between subplots
-plt.subplots_adjust(wspace=0.3, hspace=0.3)
-
-# Make subplots iterable via 'subplots.flatten()'
-for feature, title, subplot in zip(features, titles, subplots.flatten()):
-    subplot.hist(irisdata_df_std[feature], bins = n_bins, rwidth=0.95, 
-                 density=True, alpha=0.8, color='b')
-    
-    # Fit a normal distribution to the data
-    # with mean and standard deviation
-    mu, std = norm.fit(irisdata_df_std[feature])
-    
-    # Plot the probability density function (PDF)
-    xmin, xmax = subplot.get_xlim()
-    x = np.linspace(xmin, xmax, 100)
-    p = norm.pdf(x, mu, std)
-    subplot.plot(x, p, 'k', linewidth=2)
-    
-    title_concat = "{} (Mean: {:.2f}, Std. deviation: {:.2f})".format(title, mu, std)
-    subplot.set_title(title_concat)
-    # Show grid
-    subplot.grid(visible=True)
-    # Hide grid behind the bars
-    subplot.set_axisbelow(True)
-
-plt.show()
+func_plot_histograms_with_PDF(irisdata_df_std, features, titles)
 ```
 
-## Binarization
+### Discretization (clustering)
+
+See [scikit-learn: Discretization](https://scikit-learn.org/stable/modules/preprocessing.html#discretization).
+
+
+### Encoding categorical features
+
+See [scikit-learn: Encoding categorical features](https://scikit-learn.org/stable/modules/preprocessing.html#encoding-categorical-features).
 
 <!-- #region toc-hr-collapsed=true tags=[] -->
 # STEP 5: Carry out training, prediction and testing
+
+To avoid errors, the Iris dataset is imported again:
+<!-- #endregion -->
+
+```python
+# Import ORIGINAL Iris dataset for classification
+irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
+
+# Import NOISED Iris dataset for classification
+#irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle_noised.csv')
+```
 
 ## Split the dataset
 
@@ -1520,8 +1511,7 @@ In the next very important step, the dataset is split into **2 subsets**: a **tr
 
 Typically, the **test dataset** should contain about **20%** of the entire dataset.
 
-In particular, to **avoid bias** in the sorted iris dataset due to splitting, the **order** of the data rows must be **randomized**. This is done with the parameter `shuffle=True`.
-<!-- #endregion -->
+In particular, to **avoid bias** in the sorted Iris dataset due to splitting, the **order** of the data rows must be **randomized**. This is done with the parameter `shuffle=True`.
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -1557,6 +1547,20 @@ Otherwise, the result of the prediction would be significantly worse. Maybe this
 #X_train, X_test, y_train, y_test = train_test_split(X[['sepal_length', 
 #                                                       'sepal_width']], 
 #                                                    y, test_size = 0.20)
+```
+
+## Standardize the datasets
+
+Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**:
+
+```python tags=[]
+from sklearn.preprocessing import StandardScaler
+
+std_scaler = StandardScaler()
+X_train = std_scaler.fit_transform(X_train)
+X_test = std_scaler.transform(X_test)
+
+#X_train
 ```
 
 ## Train the SVC
@@ -1631,7 +1635,7 @@ The **confusion matrix** measures the quality of predictions from a classificati
 
 For checking the accuracy of the model, the **confusion matrix** can be used for the **cross validation**.
 
-By using the function `sklearn.metrics.confusion_matrix()` a confusion matrix of the true iris class labels versus the predicted class labels is plotted.
+By using the function `sklearn.metrics.confusion_matrix()` a confusion matrix of the true Iris class labels versus the predicted class labels is plotted.
 
 ```python
 cm = metrics.confusion_matrix(y_test, y_pred)
@@ -1673,15 +1677,30 @@ In this section, the 4 SVC parameters `kernel`, `gamma`, `C` and `degree` will b
 <!-- #endregion -->
 
 ```python tags=[]
+# Import packages
 from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
 import numpy as np
+```
 
-# import iris dataset again
-irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
+<!-- #region toc-hr-collapsed=true tags=[] -->
+To avoid errors, the Iris dataset is imported again:
+<!-- #endregion -->
 
-# encode the class column from class strings to integer equivalents
+```python
+# Import ORIGINAL Iris dataset for classification
+#irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
+
+# Import NOISED Iris dataset for classification
+irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle_noised.csv')
+```
+
+Encode the class column from class strings to integer equivalents:
+
+```python
 irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":0,
                                                     "Iris-versicolor":1,
                                                     "Iris-virginica":2}})
@@ -1690,12 +1709,12 @@ irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":0,
 
 ### Prepare datasets for parameter variation and plotting
 
-These datasets will  be used for parameter variation and plotting only. In particular, for later **2D plotting** of the effects of parameter variation, only **2 variables** of the iris dataset can be used.
+These datasets will  be used for parameter variation and plotting only. In particular, for later **2D plotting** of the effects of parameter variation, only **2 variables** of the Iris dataset can be used.
 
 However, as seen in the previous section, this selection is very much at the expense of detection accuracy. Therefore, it is not useful to make predictions with this subset of data - it is not necessary to divide it into a training and a test dataset.
 
 ```python tags=[]
-# copy only 2 feature columns
+# Copy only 2 feature columns
 # and convert pandas dataframe to numpy array
 X_plot = irisdata_df_enc[['petal_length', 'petal_width']].to_numpy(copy=True)
 #X_plot = irisdata_df_enc[['sepal_length', 'sepal_width']].to_numpy(copy=True)
@@ -1703,7 +1722,7 @@ X_plot = irisdata_df_enc[['petal_length', 'petal_width']].to_numpy(copy=True)
 ```
 
 ```python
-# convert pandas dataframe to numpy array
+# Convert pandas dataframe to numpy array
 # and get a flat 1D copy of 2D numpy array
 y_plot = irisdata_df_enc[['species']].to_numpy(copy=True).flatten()
 #y_plot
@@ -1711,13 +1730,22 @@ y_plot = irisdata_df_enc[['species']].to_numpy(copy=True).flatten()
 
 ### Prepare dataset for prediction and evaluation
 
-To **evaluate the recognition accuracy** by parameter variation, the complete iris dataset with all variables must be used. To make predictions with test data, the dataset is again divided into a training and a test dataset.
+To **evaluate the recognition accuracy** by parameter variation, the complete Iris dataset with all variables must be used. To make predictions with test data, the dataset is again divided into a training and a test dataset.
 
 ```python
 X = irisdata_df.drop('species', axis=1)
 y = irisdata_df['species']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, shuffle=True)
+#X_train
+```
+
+**Normalize** the feature values for **prediction and evaluation**. Normalisation is deliberately used here to avoid visualisation problems due to negative values.
+
+```python tags=[]
+norm_scaler_pred = MinMaxScaler()
+X_train = norm_scaler_pred.fit_transform(X_train)
+X_test = norm_scaler_pred.transform(X_test)
 ```
 
 ## Plotting functions
@@ -2101,7 +2129,7 @@ These problems from the real measuring everyday life are to be shown by the exam
 irisdata_df_orig = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 ```
 
-First, determine the shape of the iris dataset. The last column with the class names is omitted to get only the feature columns.
+First, determine the shape of the Iris dataset. The last column with the class names is omitted to get only the feature columns.
 
 ```python
 # Get number of rows of the dataset
@@ -2112,7 +2140,7 @@ n_rows = irisdata_df_orig.shape[0]
 n_cols = irisdata_df_orig.shape[1] - 1
 ```
 
-Now a `numpy` array in the shape of the Iris dataset is generated. This contains **normally distributed random values** according to the **Gaussian curve** with a defined **standard deviation $\sigma$**. The **mean** of the Gaussian curve remains unchanged and is **not shifted**.
+Now a `numpy` array in the shape of the Iris dataset is generated. This contains **normally distributed random values** according to the **Gaussian curve** with a defined **standard deviation $\sigma$**. The **mean** of the Gaussian curve remains unchanged and is **not shifted** in the first place.
 
 ```python tags=[]
 # mean: "centre" of the distribution
@@ -2140,16 +2168,42 @@ The array with the normally distributed random values is added to this.
 irisdata_np_noised = irisdata_np_orig + irisdata_np_noise
 ```
 
+**Negative measured values** do **not make sense** for this dataset and should therefore be avoided. Therefore, the **minimum value** over the entire array is first retrieved with the function `numpy.amin()`. If this is negative, an **integer offset** for shifting the data into the positive range is calculated from the rounded up amount of the minimum value. The function `math.ceil()` is used for this.
+
+```python tags=[]
+import math
+
+min_val = np.amin(irisdata_np_noised)
+print("Minimal value of noised array: {}".format(min_val))
+
+if (min_val < 0):
+    min_val_abs = abs(min_val)
+
+    # Round the min_val_abs upward to its nearest integer
+    offset = math.ceil(min_val_abs)
+else:
+    offset = 0
+
+print("Offset for array shifting: {}".format(offset))
+```
+
+The calculated **offset** is **added** to the array with the noisy measurements to **shift** the data into the **positive range**.
+
+```python tags=[]
+irisdata_np_noised_shifted = irisdata_np_noised + offset
+#irisdata_np_noised_shifted
+```
+
 Finally, a deep copy of the original dataframe is created. In the copy, the first 4 columns are replaced with the noisy features.
 
 ```python
 # Make a deep copy of original dataframe
 irisdata_df_noised = irisdata_df_orig.copy(deep=True)
 
-# Replace values of dataframe with noisy values from array 
-irisdata_df_noised.iloc[:, 0:4] = irisdata_np_noised
+# Replace values of dataframe with noisy values from array
+irisdata_df_noised.iloc[:, 0:4] = irisdata_np_noised_shifted
 
-irisdata_df_noised
+irisdata_df_noised.describe()
 ```
 
 To compare the original Iris dataset with its noisy copy, both dataframes are visualized in pairs plots.
@@ -2176,7 +2230,7 @@ title = 'Pairs plot of the NOISED Iris dataset'
 plotPairs(irisdata_df_noised, title)
 ```
 
-Finally, the noisy iris dataset is saved in its own CSV file.
+Finally, the noisy Iris dataset is saved in its own CSV file.
 
 ```python
 # Save noised Iris dataset to CSV file without index
@@ -2365,7 +2419,7 @@ bestModel.get_params()
 
 In November 2022, the **Artificial Intelligence Conference** will be hosted by the German Social Accident Insurance (DGUV) in Dresden. The present tutorial is to be presented to interested ML novices in the technical occupational safety and health of the social accident insurance institutions as part of a separate **Getting Started Workshop**.
 
-In the **tutorial**, the **typical workflow** in **machine learning (ML)** was demonstrated systematically and step-by-step using the very familiar **Iris dataset**. The reasons for choosing a ready-made dataset are that an ML novice could first become familiar with ML algorithms, data analysis tools and software libraries as well as programming systems. The task was to distinguish, i.e. classify, three different iris species based on the **dimensions** (width and length) of their **petals and sepals**. The dataset contains **50 measured individuals per species**.
+In the **tutorial**, the **typical workflow** in **machine learning (ML)** was demonstrated systematically and step-by-step using the very familiar **Iris dataset**. The reasons for choosing a ready-made dataset are that an ML novice could first become familiar with ML algorithms, data analysis tools and software libraries as well as programming systems. The task was to distinguish, i.e. classify, three different Iris species based on the **dimensions** (width and length) of their **petals and sepals**. The dataset contains **50 measured individuals per species**.
 
 For the classification of the dataset the very powerful **Support Vector Classifier (SVC)** was used. Although there is a very rich selection of other powerful ML algorithms suitable for the classification task at hand here, the SVC algorithm was deliberately chosen for the target group of the workshop for a comprehensible introduction. Its working principle is easily understandable for ML newcomers as well as in the time frame given for the workshop.
 
@@ -2375,7 +2429,7 @@ As stated above, in **Step 1** the ready-made and very beginner-friendly **Iris 
 
 In **Step 3**, a very brief introduction to the world of artificial intelligence and machine learning was given. The introduction was supported by a **taxonomy of different types of learning** and the listing of selected ML algorithms. A **decision graph** was used to justify the choice of the Support Vector Classifier (SVC) for the classification task at hand. Afterwards, the basic working principle of the SVC including the so-called **kernel trick** was explained. Finally, a corresponding SVC model was implemented.
 
-In **Step 4** the dataset was prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it could be necessary to prepare the data before training, e.g., by **standardization**, **normalization**, or **binarization** based on threshold values. For the Iris dataset used, standardization was sufficient to align the value ranges of the features.
+In **Step 4** the dataset was prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it could be necessary to prepare the data before training, e.g., by **standardization**, **normalization**, or **discretization** to cluster the data based on thresholds. For the Iris dataset used, standardization was sufficient to align the value ranges of the features.
 
 After splitting the dataset into a **training and test dataset**, the SVC model was trained with the training dataset in **step 5**. Subsequently, **classification predictions** were made with the trained SVC model using the test data.
 
@@ -2406,7 +2460,7 @@ Wie oben begründet, wurde im **Schritt 1** der fertige und sehr einsteigerfreun
 
 Im **Schritt 3** wurde zunächst eine sehr kurze Einführung in die Welt der künstlichen Intelligenz und des maschinellen Lernens gegeben. Unterstützt wurde die Einführung durch eine **Taxonomie der verschiedenen Lernarten** und der Nennung ausgewählter ML-Algorithmen. Anhand eines **Entscheidungsgraphes** wurde die Wahl des Support Vector Classifiers (SVC) für die vorliegende Klassifikationsaufgabe begründet. Danach wurde das grundsätzliche Funktionsprinzip des SVC einschließlich des sog. **Kernel-Tricks** erläutert. Abschließend wurde ein entsprechendes SVC-Modell implementiert.
 
-Im **Schritt 4** wurde der Datensatz für die eigentliche Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus sowie der Datenstruktur konnte es erforderlich sein, dass die Daten vor dem Training aufbereitet werden mussten, z. B. durch **Standardisierung**, **Normalisierung** oder **Binärisierung** anhand von Schwellwerten. Für den verwendeten Iris-Datensatz genügte eine Standardisierung, um die Wertebereiche der Features aneinander anzugleichen.
+Im **Schritt 4** wurde der Datensatz für die eigentliche Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus sowie der Datenstruktur konnte es erforderlich sein, dass die Daten vor dem Training aufbereitet werden mussten, z. B. durch **Standardisierung**, **Normalisierung** oder **Diskretisierung**, um die Daten anhand von Schwellenwerten zu gruppieren. Für den verwendeten Iris-Datensatz genügte eine Standardisierung, um die Wertebereiche der Features aneinander anzugleichen.
 
 Nach der Aufteilung des Datensatzes in einen **Trainings- und Testdatensatz**, wurde das SVC-Modell im **Schritt 5** mit dem Trainingsdatensatz trainiert. Anschließend wurden mit dem trainierten SVC-Modell anhand der Testdaten **Klassifikationsvorhersagen** getroffen.
 
