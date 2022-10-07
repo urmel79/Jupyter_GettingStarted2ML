@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.14.1
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -341,11 +341,11 @@ import seaborn as sns
 # Set font sizes of figure title, axes and labels 
 # globally via a rcParams dictionary
 import matplotlib.pylab as pylab
-params = {'legend.fontsize': 'x-large',
-         'axes.labelsize':   'x-large',
-         'axes.titlesize':   'xx-large',
-         'xtick.labelsize':  'large',
-         'ytick.labelsize':  'large',
+params = {'legend.fontsize': 'large',
+         'axes.labelsize':   'large',
+         'axes.titlesize':   'x-large',
+         'xtick.labelsize':  'medium',
+         'ytick.labelsize':  'medium',
          'axes.edgecolor':   '#000000'}
 pylab.rcParams.update(params)
 ```
@@ -1679,7 +1679,7 @@ In this section, the 4 SVC parameters `kernel`, `gamma`, `C` and `degree` will b
 ```python tags=[]
 # Import packages
 from sklearn.svm import SVC
-from sklearn.preprocessing import StandardScaler
+#from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
