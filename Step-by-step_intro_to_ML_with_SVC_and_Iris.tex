@@ -1480,7 +1480,7 @@ data analysis and ML, such as \texttt{Pandas}, \texttt{NumPY},
 \texttt{matplotlib} and \texttt{Scikit-Learn}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{1}{\boxspacing}
+\prompt{In}{incolor}{2}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{time}
 
@@ -2396,7 +2396,7 @@ in a \textbf{not very elegant code} with many repetitions:
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_52_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_52_0.png}\end{center}
         \caption{Histograms used to explore the frequency distribution of the 4 features in the Iris dataset}
         \label{fig:histogram_iris_simple}
     \end{figure}
@@ -2406,22 +2406,46 @@ the subplot array to an iterable list. Afterwards, a loop allows to
 iterate through the subplots - this \textbf{saves many repetitions} in
 the code.
 
+In addition, \textbf{probability density functions (PDF)} were overlaid
+on the histograms, whose hyper-parameters \textbf{mean} and
+\textbf{standard deviation} were previously identified using the
+features of the dataset. This makes it possible to estimate whether the
+data is normally distributed.
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{4}{\boxspacing}
+\prompt{In}{incolor}{90}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k+kn}{import} \PY{n}{norm}
+
 \PY{n}{features} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \PY{n}{titles} \PY{o}{=}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 
 \PY{c+c1}{\PYZsh{} Number of bins for the histogram}
-\PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+m+mi}{10}
+\PY{c+c1}{\PYZsh{} \PYZhy{} if bins is an integer, it defines the number of equal\PYZhy{}width bins in the range}
+\PY{c+c1}{\PYZsh{} \PYZhy{} if bins is a string, it is one of the binning strategies:}
+\PY{c+c1}{\PYZsh{}   \PYZsq{}auto\PYZsq{}, \PYZsq{}fd\PYZsq{}, \PYZsq{}doane\PYZsq{}, \PYZsq{}scott\PYZsq{}, \PYZsq{}stone\PYZsq{}, \PYZsq{}rice\PYZsq{}, \PYZsq{}sturges\PYZsq{}, or \PYZsq{}sqrt\PYZsq{}.}
+\PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}
 \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Set margins between subplots}
 \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} Make subplots iterable via \PYZsq{}subplots.flatten()\PYZsq{}}
 \PY{k}{for} \PY{n}{feature}\PY{p}{,} \PY{n}{title}\PY{p}{,} \PY{n}{subplot} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{,} \PY{n}{subplots}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{)}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title}\PY{p}{)}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,} 
+                 \PY{n}{density}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+    \PY{c+c1}{\PYZsh{} Fit a normal distribution to the data}
+    \PY{c+c1}{\PYZsh{} with mean and standard deviation}
+    \PY{n}{mu}\PY{p}{,} \PY{n}{std} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{)}
+    
+    \PY{c+c1}{\PYZsh{} Plot the probability density function (PDF)}
+    \PY{n}{xmin}\PY{p}{,} \PY{n}{xmax} \PY{o}{=} \PY{n}{subplot}\PY{o}{.}\PY{n}{get\PYZus{}xlim}\PY{p}{(}\PY{p}{)}
+    \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{xmin}\PY{p}{,} \PY{n}{xmax}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+    \PY{n}{p} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+    
+    \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ (Mean: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, Std. deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
     \PY{c+c1}{\PYZsh{} Show grid}
     \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
     \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
@@ -2432,7 +2456,7 @@ the code.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_54_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_54_0.png}\end{center}
         \caption{Histograms used to explore the frequency distribution of the 4 features in the Iris dataset (with improved code)}
         \label{fig:histogram_iris_elegant}
     \end{figure}
@@ -2477,7 +2501,7 @@ saves a lot of repetition in the code.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_56_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_56_0.png}\end{center}
         \caption{Boxplots used to explore the data ranges in the Iris dataset}
         \label{fig:boxplots_iris}
     \end{figure}
@@ -2519,7 +2543,7 @@ code.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_58_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_58_0.png}\end{center}
         \caption{Violin plots combine histograms and box plots}
         \label{fig:violinplots_iris}
     \end{figure}
@@ -3505,7 +3529,7 @@ Choose the color sets from
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_101_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_101_0.png}\end{center}
         \caption{Correlation heatmap to explore coherences between single variables in the iris dataset}
         \label{fig:correlation_heatmap}
     \end{figure}
@@ -3559,7 +3583,7 @@ array([[1., 1., 1., 1., 1.],
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_105_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_105_0.png}\end{center}
         \caption{Correlation heatmap, which was cut at its main diagonal without losing any information}
         \label{fig:correlation_heatmap_triangle}
     \end{figure}
@@ -3607,7 +3631,7 @@ advisable to plot them in a \textbf{scatter plot}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_108_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_108_0.png}\end{center}
         \caption{Plotting two individual variables of the iris dataset in the scatterplot to explore the relationships between these two}
         \label{fig:scatter_plot}
     \end{figure}
@@ -3645,7 +3669,7 @@ single row and in the x-axis across a single column.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_110_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_110_0.png}\end{center}
         \caption{Plot all individual variables of the Iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables}
         \label{fig:pairs_plot}
     \end{figure}
@@ -4155,12 +4179,33 @@ distributed} and thus bias tendencies should be avoided.
 
 For further details about \textbf{Standarization} and
 \textbf{Normalization} read here:
-\href{http://techflare.blog/what-are-standarization-and-normalization-test-with-iris-data-set-in-scikit-learn/}{What
-are standarization and normalization? Test with iris data set in
-Scikit-learn}.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://techflare.blog/what-are-standarization-and-normalization-test-with-iris-data-set-in-scikit-learn/}{What
+  are standarization and normalization? Test with iris data set in
+  Scikit-learn}
+\item
+  \href{https://www.analyticsvidhya.com/blog/2020/04/feature-scaling-machine-learning-normalization-standardization/?}{Feature
+  Scaling for Machine Learning: Understanding the Difference Between
+  Normalization vs.~Standardization}
+\item
+  \href{https://en.wikipedia.org/wiki/Feature_scaling}{Feature scaling}
+\item
+  \href{https://en.wikipedia.org/wiki/Normalization_(statistics)}{Normalization
+  (statistics)}
+\item
+  \href{https://en.wikipedia.org/wiki/Standard_score}{Standard score}
+\end{itemize}
+
+\textbf{@TODO:}\\
+Incorporate section ``Skalieren von Merkmalen'' of the book
+\texttt{OReilly\_Praxiseinstieg\_Machine\_Learning\_Scikit-Learn\_TensorFlow\_2018\_Anm\_bk.pdf}
+(see \cite{Geron_2018}).
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{50}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Import ORIGINAL Iris dataset for classification}
 \PY{c+c1}{\PYZsh{}irisdata\PYZus{}df = pd.read\PYZus{}csv(\PYZsq{}./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv\PYZsq{})}
@@ -4170,6 +4215,106 @@ Scikit-learn}.
 \end{Verbatim}
 \end{tcolorbox}
 
+    \hypertarget{normalization}{%
+\subsection{Normalization}\label{normalization}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{96}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{MinMaxScaler}
+
+\PY{c+c1}{\PYZsh{} Fit the MinMax scaler on raw input dataframe}
+\PY{c+c1}{\PYZsh{} by selecting columns 1\PYZhy{}4 with all feature rows}
+\PY{n}{norm\PYZus{}scaler} \PY{o}{=} \PY{n}{MinMaxScaler}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Transform the raw dateframe with fitted scaler}
+\PY{c+c1}{\PYZsh{} and convert it to numpy array}
+\PY{n}{irisdata\PYZus{}np\PYZus{}norm} \PY{o}{=} \PY{n}{norm\PYZus{}scaler}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{97}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Make a deep copy of original dataframe}
+\PY{n}{irisdata\PYZus{}df\PYZus{}norm} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Replace values of dataframe with normalized values from array}
+\PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]} \PY{o}{=} \PY{n}{irisdata\PYZus{}np\PYZus{}norm}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{99}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{99}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+       sepal\_length  sepal\_width  petal\_length  petal\_width
+count    150.000000   150.000000    150.000000   150.000000
+mean       0.432973     0.449082      0.453153     0.463350
+std        0.224496     0.198532      0.281340     0.265961
+min        0.000000     0.000000      0.000000     0.000000
+25\%        0.249566     0.318454      0.118340     0.188394
+50\%        0.416213     0.414988      0.545490     0.525139
+75\%        0.594927     0.582168      0.666928     0.667018
+max        1.000000     1.000000      1.000000     1.000000
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{105}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k+kn}{import} \PY{n}{norm}
+
+\PY{n}{features} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\PY{n}{titles} \PY{o}{=}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} Number of bins for the histogram}
+\PY{c+c1}{\PYZsh{} \PYZhy{} if bins is an integer, it defines the number of equal\PYZhy{}width bins in the range}
+\PY{c+c1}{\PYZsh{} \PYZhy{} if bins is a string, it is one of the binning strategies:}
+\PY{c+c1}{\PYZsh{}   \PYZsq{}auto\PYZsq{}, \PYZsq{}fd\PYZsq{}, \PYZsq{}doane\PYZsq{}, \PYZsq{}scott\PYZsq{}, \PYZsq{}stone\PYZsq{}, \PYZsq{}rice\PYZsq{}, \PYZsq{}sturges\PYZsq{}, or \PYZsq{}sqrt\PYZsq{}.}
+\PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} Set margins between subplots}
+\PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Make subplots iterable via \PYZsq{}subplots.flatten()\PYZsq{}}
+\PY{k}{for} \PY{n}{feature}\PY{p}{,} \PY{n}{title}\PY{p}{,} \PY{n}{subplot} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{,} \PY{n}{subplots}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,} 
+                 \PY{n}{density}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+    \PY{c+c1}{\PYZsh{} Fit a normal distribution to the data}
+    \PY{c+c1}{\PYZsh{} with mean and standard deviation}
+    \PY{n}{mu}\PY{p}{,} \PY{n}{std} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{)}
+    
+    \PY{c+c1}{\PYZsh{} Plot the probability density function (PDF)}
+    \PY{n}{xmin}\PY{p}{,} \PY{n}{xmax} \PY{o}{=} \PY{n}{subplot}\PY{o}{.}\PY{n}{get\PYZus{}xlim}\PY{p}{(}\PY{p}{)}
+    \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{xmin}\PY{p}{,} \PY{n}{xmax}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+    \PY{n}{p} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+    
+    \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ (Mean: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, Std. deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Show grid}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_135_0.png}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    
     \hypertarget{standarization}{%
 \subsection{Standarization}\label{standarization}}
 
@@ -4177,48 +4322,103 @@ Standardize the feature values by computing the \textbf{mean},
 subtracting the mean from the data points, and then dividing by the
 \textbf{standard deviation}.
 
-\textbf{@TODO:}\\
-Incorporate section ``Skalieren von Merkmalen'' of the book
-\texttt{OReilly\_Praxiseinstieg\_Machine\_Learning\_Scikit-Learn\_TensorFlow\_2018\_Anm\_bk.pdf}
-(see \cite{Geron_2018}).
-
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{51}{\boxspacing}
+\prompt{In}{incolor}{100}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{StandardScaler}
 
-\PY{c+c1}{\PYZsh{}scaler = StandardScaler()}
-\PY{c+c1}{\PYZsh{}X\PYZus{}train = scaler.fit\PYZus{}transform(X\PYZus{}train)}
-\PY{c+c1}{\PYZsh{}X\PYZus{}test = scaler.transform(X\PYZus{}test)}
-\PY{n}{irisdata\PYZus{}df}
+\PY{c+c1}{\PYZsh{} Fit the standard scaler on raw input dataframe}
+\PY{c+c1}{\PYZsh{} by selecting columns 1\PYZhy{}4 with all feature rows}
+\PY{n}{std\PYZus{}scaler} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
 
-\PY{c+c1}{\PYZsh{}X\PYZus{}train}
+\PY{c+c1}{\PYZsh{} Transform the raw dateframe with fitted scaler}
+\PY{c+c1}{\PYZsh{} and convert it to numpy array}
+\PY{n}{irisdata\PYZus{}np\PYZus{}std} \PY{o}{=} \PY{n}{std\PYZus{}scaler}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{101}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Make a deep copy of original dataframe}
+\PY{n}{irisdata\PYZus{}df\PYZus{}std} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Replace values of dataframe with standardized values from array}
+\PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]} \PY{o}{=} \PY{n}{irisdata\PYZus{}np\PYZus{}std}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{103}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{51}{\boxspacing}
+\prompt{Out}{outcolor}{103}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-     sepal\_length  sepal\_width  petal\_length  petal\_width         species
-0        5.547043     3.375562      1.982920     1.570727     Iris-setosa
-1        4.689262     2.789277      2.821292     0.890691     Iris-setosa
-2        4.277473     3.688304      0.882924    -0.219157     Iris-setosa
-3        4.817766     1.378048     -0.052426    -0.306059     Iris-setosa
-4        4.088452     3.882823      0.582778    -1.071073     Iris-setosa
-..            {\ldots}          {\ldots}           {\ldots}          {\ldots}             {\ldots}
-145      7.004647     2.626241      5.769504     4.343624  Iris-virginica
-146      6.463680     2.723399      4.586575     1.135140  Iris-virginica
-147      7.247302     2.229525      5.264410     1.570108  Iris-virginica
-148      6.631082     3.700296      6.333786     1.840985  Iris-virginica
-149      5.657113     2.119113      4.700136     2.139570  Iris-virginica
-
-[150 rows x 5 columns]
+       sepal\_length   sepal\_width  petal\_length  petal\_width
+count  1.500000e+02  1.500000e+02  1.500000e+02   150.000000
+mean  -4.736952e-17 -1.373716e-15 -1.421085e-16     0.000000
+std    1.003350e+00  1.003350e+00  1.003350e+00     1.003350
+min   -1.935104e+00 -2.269588e+00 -1.616094e+00    -1.748009
+25\%   -8.197073e-01 -6.601747e-01 -1.194055e+00    -1.037286
+50\%   -7.490796e-02 -1.723030e-01  3.293038e-01     0.233101
+75\%    7.238294e-01  6.725982e-01  7.623925e-01     0.768348
+max    2.534237e+00  2.784252e+00  1.950237e+00     2.024539
 \end{Verbatim}
 \end{tcolorbox}
         
-    \hypertarget{normalization}{%
-\subsection{Normalization}\label{normalization}}
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{104}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k+kn}{import} \PY{n}{norm}
 
+\PY{n}{features} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\PY{n}{titles} \PY{o}{=}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} Number of bins for the histogram}
+\PY{c+c1}{\PYZsh{} \PYZhy{} if bins is an integer, it defines the number of equal\PYZhy{}width bins in the range}
+\PY{c+c1}{\PYZsh{} \PYZhy{} if bins is a string, it is one of the binning strategies:}
+\PY{c+c1}{\PYZsh{}   \PYZsq{}auto\PYZsq{}, \PYZsq{}fd\PYZsq{}, \PYZsq{}doane\PYZsq{}, \PYZsq{}scott\PYZsq{}, \PYZsq{}stone\PYZsq{}, \PYZsq{}rice\PYZsq{}, \PYZsq{}sturges\PYZsq{}, or \PYZsq{}sqrt\PYZsq{}.}
+\PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} Set margins between subplots}
+\PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Make subplots iterable via \PYZsq{}subplots.flatten()\PYZsq{}}
+\PY{k}{for} \PY{n}{feature}\PY{p}{,} \PY{n}{title}\PY{p}{,} \PY{n}{subplot} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{,} \PY{n}{subplots}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,} 
+                 \PY{n}{density}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+    \PY{c+c1}{\PYZsh{} Fit a normal distribution to the data}
+    \PY{c+c1}{\PYZsh{} with mean and standard deviation}
+    \PY{n}{mu}\PY{p}{,} \PY{n}{std} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{)}
+    
+    \PY{c+c1}{\PYZsh{} Plot the probability density function (PDF)}
+    \PY{n}{xmin}\PY{p}{,} \PY{n}{xmax} \PY{o}{=} \PY{n}{subplot}\PY{o}{.}\PY{n}{get\PYZus{}xlim}\PY{p}{(}\PY{p}{)}
+    \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{xmin}\PY{p}{,} \PY{n}{xmax}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+    \PY{n}{p} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+    
+    \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ (Mean: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, Std. deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Show grid}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{figure}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_0.png}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    
     \hypertarget{binarization}{%
 \subsection{Binarization}\label{binarization}}
 
@@ -4503,7 +4703,7 @@ colored confusion matrix.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_155_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_162_0.png}\end{center}
         \caption{Checking the accuracy of the model by using the confusion matrix for cross-validation}
         \label{fig:confusion_matrix}
     \end{figure}
@@ -4721,7 +4921,7 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_170_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
@@ -4761,7 +4961,7 @@ exactly fit the training dataset. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_172_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_179_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
@@ -4787,7 +4987,7 @@ as the classifier tries to perfectly fit the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_174_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_181_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy}
         \label{fig:plot_vary_gamma}
     \end{figure}
@@ -4826,7 +5026,7 @@ the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_176_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_183_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
@@ -4852,7 +5052,7 @@ But be careful: to high \texttt{C} values may lead to
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_178_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_185_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'C' against the prediction accuracy}
         \label{fig:plot_vary_c}
     \end{figure}
@@ -4896,7 +5096,7 @@ training times}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_180_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_187_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
@@ -4922,7 +5122,7 @@ hyperplane leads to \textbf{overfitting} the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_182_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_189_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy}
         \label{fig:plot_vary_degree}
     \end{figure}
@@ -5174,7 +5374,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_200_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_207_0.png}\end{center}
         \caption{Confusion matrix for cross-validation of the baseline}
         \label{fig:cm_baseline}
     \end{figure}
@@ -5357,7 +5557,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_216_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_223_0.png}\end{center}
         \caption{Pairs plot of the original Iris dataset}
         \label{fig:pairs_plot_orig_Iris}
     \end{figure}
@@ -5371,7 +5571,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_217_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_224_0.png}\end{center}
         \caption{Pairs plot of the noised Iris dataset}
         \label{fig:pairs_plot_noised_Iris}
     \end{figure}
@@ -5512,7 +5712,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_229_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_236_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the grid search has been performed}
         \label{fig:cm_grid_search}
     \end{figure}
@@ -5672,7 +5872,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_240_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_247_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the randomized search has been performed}
         \label{fig:cm_random_search}
     \end{figure}
@@ -5711,57 +5911,60 @@ Iris-versicolor       0.90      1.00      0.95         9
 \hypertarget{english-summary}{%
 \subsection{English summary}\label{english-summary}}
 
-In November 2022, the German Social Accident Insurance (DGUV) will be
-hosting the \textbf{Artificial Intelligence Symposium} in Dresden. The
+In November 2022, the \textbf{Artificial Intelligence Conference} will
+be hosted by the German Social Accident Insurance (DGUV) in Dresden. The
 present tutorial is to be presented to interested ML novices in the
 technical occupational safety and health of the social accident
 insurance institutions as part of a separate \textbf{Getting Started
 Workshop}.
 
-In the tutorial, the \textbf{typical workflow} in \textbf{machine
-learning (ML)} was demonstrated systematically and step-by-step using
-the very familiar \textbf{Iris dataset}. Therefore, a ready-made dataset
-was used so that an ML novice could first become familiar with ML
-algorithms, data analysis tools and software libraries as well as
-programming systems. The task was to distinguish, i.e.~classify, three
-different iris species based on the dimensions (width and length) of
-their \textbf{petals and sepals}. The dataset contains \textbf{50
-measured individuals} per species.
+In the \textbf{tutorial}, the \textbf{typical workflow} in
+\textbf{machine learning (ML)} was demonstrated systematically and
+step-by-step using the very familiar \textbf{Iris dataset}. The reasons
+for choosing a ready-made dataset are that an ML novice could first
+become familiar with ML algorithms, data analysis tools and software
+libraries as well as programming systems. The task was to distinguish,
+i.e.~classify, three different iris species based on the
+\textbf{dimensions} (width and length) of their \textbf{petals and
+sepals}. The dataset contains \textbf{50 measured individuals per
+species}.
 
 For the classification of the dataset the very powerful \textbf{Support
 Vector Classifier (SVC)} was used. Although there is a very rich
 selection of other powerful ML algorithms suitable for the
 classification task at hand here, the SVC algorithm was deliberately
 chosen for the target group of the workshop for a comprehensible
-introduction.
+introduction. Its working principle is easily understandable for ML
+newcomers as well as in the time frame given for the workshop.
 
 The main sections of the tutorial represent the individual steps in a
 typical ML workflow. In \textbf{Step 0}, specific guidance was given on
 the selection of hardware and software suitable for machine learning.
 After introductory notes regarding \textbf{community support} to be
 considered, a distinction was made between training and application
-systems in the explanations of \textbf{hardware selection}. \textbf{On
-the software side}, the programming languages and programming
-environments (so-called IDEs) popular with ML developers were introduced
-and advantages and disadvantages were mentioned in each case. In
-addition, cloud-hosted IDEs were shown, which eliminate the need to
-purchase suitable hardware and install the necessary software packages
-to a certain extent.
+systems in the explanations of \textbf{hardware selection}. Regarding
+the \textbf{software selection}, the programming languages and
+programming environments (so-called IDEs) popular with ML developers
+were introduced and advantages and disadvantages were mentioned in each
+case. In addition, cloud-hosted IDEs were shown, which eliminate the
+need to purchase suitable hardware and install the necessary software
+packages to a certain extent.
 
 As stated above, in \textbf{Step 1} the ready-made and very
-beginner-friendly \textbf{Iris dataset} was used. One of the most
-important and extensive steps in the entire ML process was \textbf{Step
-2}. In this, the dataset included in Step 1 was explored using typical
-data analysis tools. In addition to exploring the \textbf{data
-structure} as well as the \textbf{inner correlations} in the dataset,
-errors such as gaps, duplications, or obvious misentries had to be found
-and corrected if possible. This was enormously important so that the
-classification could later provide plausible results. Since the Iris
-dataset had no gaps or duplications, another alternative dataset was
-used to demonstrate the tools.
+beginner-friendly \textbf{Iris dataset} was imported into Python, citing
+the sources of acquisition. One of the most important and extensive
+steps in the entire ML process was \textbf{Step 2}. In this, the dataset
+imported in Step 1 was explored using typical data analysis tools. In
+addition to \textbf{exploring} the \textbf{data structure} as well as
+the \textbf{inner correlations} in the dataset, \textbf{errors} such as
+gaps, duplications, or obvious misentries had to be found and corrected
+if possible. This was enormously important so that the classification
+could later provide plausible results. Since the Iris dataset had no
+gaps or duplications, another alternative dataset was used to
+demonstrate the tools.
 
 In \textbf{Step 3}, a very brief introduction to the world of artificial
-intelligence and machine learning was first given. The introduction was
+intelligence and machine learning was given. The introduction was
 supported by a \textbf{taxonomy of different types of learning} and the
 listing of selected ML algorithms. A \textbf{decision graph} was used to
 justify the choice of the Support Vector Classifier (SVC) for the
@@ -5772,9 +5975,10 @@ Finally, a corresponding SVC model was implemented.
 In \textbf{Step 4} the dataset was prepared for the actual
 classification by SVC. Depending on the selected ML algorithm as well as
 the data structure, it could be necessary to prepare the data before
-training, e.g., by standardization, normalization, or binarization based
-on threshold values. For the Iris dataset used, standardization was
-sufficient to align the value ranges of the features.
+training, e.g., by \textbf{standardization}, \textbf{normalization}, or
+\textbf{binarization} based on threshold values. For the Iris dataset
+used, standardization was sufficient to align the value ranges of the
+features.
 
 After splitting the dataset into a \textbf{training and test dataset},
 the SVC model was trained with the training dataset in \textbf{step 5}.
@@ -5785,11 +5989,12 @@ In \textbf{Step 6}, the quality of the classification result was
 evaluated using known \textbf{metrics} such as the \textbf{cross
 validation score} and the \textbf{confusion matrix}.
 
-The classification in step 5 was performed with default values for the
-so-called \textbf{hyper parameters} of the SVC. Therefore, in
-\textbf{step 7} the meaning of the parameters was first explained. Then,
-their influence on the classification result was demonstrated by
-\textbf{manually varying} the individual hyper-parameters.
+The classification in step 5 was initially carried out with default
+values for the so-called \textbf{hyper parameters} of the SVC.
+Therefore, in \textbf{step 7} the meaning of the different parameters
+was explained. Then, their influence on the classification result was
+demonstrated by \textbf{manually varying} the individual
+hyper-parameters.
 
 In the final \textbf{Step 8}, two approaches to systematic
 hyper-parameter search were presented: \textbf{grid search} and
@@ -5834,53 +6039,57 @@ how to generate a suitable dataset for classification.
     \hypertarget{german-summary}{%
 \subsection{German summary}\label{german-summary}}
 
-Im November 2022 wird die Deutsche Gesetzliche Unfallversicherung (DGUV)
-die \textbf{Fachtagung ``Künstliche Intelligenz''} in Dresden
-ausrichten. Dabei soll das vorliegende Tutorial interessierten
+Im November 2022 wird die \textbf{Fachtagung ``Künstliche Intelligenz''}
+durch die Deutsche Gesetzliche Unfallversicherung (DGUV) in Dresden
+ausgerichtet. Dabei soll das vorliegende Tutorial interessierten
 ML-Neulingen im technischen Arbeitsschutz der gesetzlichen
 Unfallversicherungsträger im Rahmen eines eigenen
 \textbf{Getting-Started-Workshop} präsentiert werden.
 
-Im Tutorial wurde systematisch und Schritt-für-Schritt der
+Im \textbf{Tutorial} wurde systematisch und Schritt-für-Schritt der
 \textbf{typische Arbeitsablauf} beim \textbf{maschinellen Lernen (ML)}
 anhand des sehr bekannten \textbf{Iris-Datensatzes} demonstriert. Es
 wurde deshalb auf einen fertigen Datensatz zurückgegriffen, damit sich
 ein ML-Neuling zunächst mit den ML-Algorithmen, den Werkzeugen zur
 Datenanalyse sowie den Software-Bibliotheken und Programmiersystemen
 vertraut machen kann. Die Aufgabe bestand darin, drei verschiedene
-Iris-Arten anhand der Abmessungen (Breite und Länge) ihrer \textbf{Kron-
-und Kelchblätter} zu unterscheiden, d.~h. zu klassifizieren. Der
-Datensatz enthält jeweils \textbf{50 vermessene Individuen} pro Art.
+Iris-Arten anhand der \textbf{Abmessungen} (Breite und Länge) ihrer
+\textbf{Kron- und Kelchblätter} zu unterscheiden, d.~h. zu
+klassifizieren. Der Datensatz enthält jeweils \textbf{50 vermessene
+Individuen pro Art}.
 
 Zur Klassifikation des Datensatzes kam der sehr leistungsfähige
 \textbf{Support Vector Classifier (SVC)} zum Einsatz. Obwohl es eine
 sehr reichhaltige Auswahl anderer leistungsfähiger und für die hier
-vorliegende Klassifikationsaufgabe geeignete ML-Algorithmen gibt, wurde
+vorliegende Klassifikationsaufgabe geeigneter ML-Algorithmen gibt, wurde
 für einen verständlichen Einstieg bewusst der SVC-Algorithmus für die
-Zielgruppe des Workshops gewählt.
+Zielgruppe des Workshops gewählt. Dessen Arbeitsweise ist sowohl für
+ML-Neulinge als auch in dem für den Workshop vorgegebenen Zeitrahmen
+leicht vermittelbar.
 
-Die Hauptabschnitte des Tutorials stellen die einzelnen Schritte in
-einem typischen ML-Arbeitsablauf dar. Im \textbf{Schritt 0} wurden
+Die Hauptabschnitte des Tutorials repräsentieren die einzelnen Schritte
+in einem typischen ML-Arbeitsablauf. Im \textbf{Schritt 0} wurden
 konkrete Hinweise für die Auswahl der für das maschinelle Lernen
 geeigneten Hardware und Software gegeben. Nach einführenden Hinweisen
 hinsichtlich des zu berücksichtigenden \textbf{Community Supports} wurde
 bei den Ausführungen zur \textbf{Hardware-Auswahl} zwischen Trainings-
-und Applikationssystem unterschieden. \textbf{Software-seitig} wurden
-die bei ML-Entwicklern beliebten Programmiersprachen und
-Programmierumgebungen (sog. IDEs) vorgestellt und jeweils Vor- und
-Nachteile genannt. Darüber hinaus wurden Cloud-gehostete IDEs gezeigt,
-die die Anschaffung geeigneter Hardware und die Installation der
-notwendigen Software-Pakete bis zu einem gewissen Grad überflüssig
-machen.
+und Applikationssystem unterschieden. Hinsichtlich der
+\textbf{Software-Auswahl} wurden die bei ML-Entwicklern beliebten
+Programmiersprachen und Programmierumgebungen (sog. IDEs) vorgestellt
+und jeweils Vor- und Nachteile genannt. Darüber hinaus wurden
+Cloud-gehostete IDEs gezeigt, die die Anschaffung geeigneter Hardware
+und die Installation der notwendigen Software-Pakete bis zu einem
+gewissen Grad überflüssig machen.
 
 Wie oben begründet, wurde im \textbf{Schritt 1} der fertige und sehr
-einsteigerfreundliche \textbf{Iris-Datensatz} hinzugezogen. Mit der
-wichtigste und umfangreichste Schritt im gesamten ML-Prozess war
-\textbf{Schritt 2}. In diesem wurde der in Schritt 1 einbezogene
-Datensatz mit Hilfe typischer Datenanalyse-Werkzeuge untersucht. Neben
-der Erkundung der \textbf{Datenstruktur} sowie der \textbf{inneren
-Zusammenhänge} im Datensatz mussten auch Fehler wie z. B. Lücken,
-Dopplungen oder offensichtliche Fehleingaben gefunden und nach
+einsteigerfreundliche \textbf{Iris-Datensatz} in Python importiert unter
+Nennung der Bezugsquellen. Mit der wichtigste und umfangreichste Schritt
+im gesamten ML-Prozess ist \textbf{Schritt 2}. In diesem wurde der in
+Schritt 1 importierte Datensatz mit Hilfe typischer
+Datenanalyse-Werkzeuge untersucht. Neben der \textbf{Erkundung} der
+\textbf{Datenstruktur} sowie der \textbf{inneren Zusammenhänge (sog.
+Korrelationen)} im Datensatz mussten auch \textbf{Fehler} wie z. B.
+Lücken, Dopplungen oder offensichtliche Fehleingaben gefunden und nach
 Möglichkeit behoben werden. Dies war enorm wichtig, damit die
 Klassifikation später plausible Ergebnisse liefern konnte. Da der
 Iris-Datensatz keine Lücken und Dopplungen aufwies, wurde zur
@@ -5900,10 +6109,11 @@ wurde ein entsprechendes SVC-Modell implementiert.
 Im \textbf{Schritt 4} wurde der Datensatz für die eigentliche
 Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus
 sowie der Datenstruktur konnte es erforderlich sein, dass die Daten vor
-dem Training aufbereitet werden mussten, z. B. durch Standardisierung,
-Normalisierung oder Binärisierung anhand von Schwellwerten. Für den
-verwendeten Iris-Datensatz genügte eine Standardisierung, um die
-Wertebereiche der Features aneinander anzugleichen.
+dem Training aufbereitet werden mussten, z. B. durch
+\textbf{Standardisierung}, \textbf{Normalisierung} oder
+\textbf{Binärisierung} anhand von Schwellwerten. Für den verwendeten
+Iris-Datensatz genügte eine Standardisierung, um die Wertebereiche der
+Features aneinander anzugleichen.
 
 Nach der Aufteilung des Datensatzes in einen \textbf{Trainings- und
 Testdatensatz}, wurde das SVC-Modell im \textbf{Schritt 5} mit dem
@@ -5916,10 +6126,10 @@ unter Verwendung bekannter \textbf{Metriken} wie z. B. dem
 \textbf{Kreuzvalidierungskennwert (eng. Cross Validation Score)} und der
 \textbf{Konfusionsmatrix} evaluiert.
 
-Die Klassifikation im Schritt 5 wurde mit Standardwerten für die
-sogenannten \textbf{Hyper-Parameter} des SVC durchgeführt. Daher wurde
-im \textbf{Schritt 7} zunächst die Bedeutung der Parameter erklärt.
-Danach wurde ihr Einfluss auf das Klassifikationsergebnis durch
+Die Klassifikation im Schritt 5 wurde zunächst mit Standardwerten für
+die sogenannten \textbf{Hyper-Parameter} des SVC durchgeführt. Daher
+wurde im \textbf{Schritt 7} die Bedeutung der verschiedenen Parameter
+erklärt. Danach wurde ihr Einfluss auf das Klassifikationsergebnis durch
 \textbf{manuelle Variation} der einzelnen Hyper-Parameter demonstriert.
 
 Im abschließenden \textbf{Schritt 8} wurden zwei Ansätze zur
@@ -5973,8 +6183,8 @@ Klassifikation erzeugt werden kann.
 Vor einem reichlichen Jahr wurde ich eingeladen, im Vorbereitungskomitee
 für die DGUV-Fachtagung ``Künstliche Intelligenz'' mitwirken zu dürfen.
 Mein Vorschlag, einen eigenen Getting-Started-Workshop für interessierte
-ML-Neulinge zu gestalten, wurde sehr positiv aufgenommen. Das hat mich
-für die Ausarbeitung des vorliegenden Tutorials sehr motiviert.
+ML-Neulinge zu gestalten, wurde dort sehr positiv aufgenommen. Das hat
+mich für die Ausarbeitung des vorliegenden Tutorials sehr motiviert.
 
 Mein besonderer Dank gilt Herrn Prof.~André Steimers, der mit langen und
 sehr interessanten Fachgesprächen, dem Lesen von Rohfassungen und seiner
@@ -5989,12 +6199,12 @@ Verständlichkeit und Nachvollziehbarkeit prüfen.
 Abschließend möchte ich meiner Lebensgefährtin danken, dass sie erste
 Textentwürfe kritisch Korrektur gelesen hat und mir ansonsten den Rücken
 freigehalten hat - auch wenn ich nach Feierabend oder an den Wochenenden
-programmiert und geschrieben habe. Meinem zweijährigen Sohn danke ich
+programmiert und geschrieben habe. Unserem zweijährigen Sohn danke ich
 für seine Geduld mit Papa. Er hätte sicherlich das ein oder andere Mal
-lieber ``Die Sendung mit der Maus'' statt seltsamer Graifken mit mir auf
+lieber ``Die Sendung mit der Maus'' statt seltsamer Grafiken mit mir auf
 dem Rechner angeschaut.
 
-Dresden, 04.10.2022
+Dresden, 07.10.2022
 
 
     % Add a bibliography block to the postdoc
