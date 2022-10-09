@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.1
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -1356,11 +1356,11 @@ classifier = SVC(kernel = 'linear', random_state = 0)
 <!-- #region tags=[] -->
 # STEP 4: Preprocess the dataset for training
 
-In this step the dataset is prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by **standardization**, **normalization**, or **discretization** to bin the data based on thresholds). Furthermore, errors in the dataset (e.g. **data gaps**, **duplicates** or obvious **misentries**) should be corrected now at the latest.
+In this step the dataset is prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by **standardization**, **normalization**, or **discretization** to cluster the data based on thresholds). Furthermore, errors in the dataset (e.g. **data gaps**, **duplicates** or obvious **misentries**) should be corrected now at the latest.
 
 ## Heal the dataset
 
-Through the intensive exploration of the data in ([STEP 2: Explore the ML dataset](#STEP-2:-Explore-the-ML-dataset)), we know that special **preparation** of the data is **not necessary**. The values are **complete and without gaps** and there are **no duplicates**.
+Through the intensive exploration of the data (see [STEP 2: Explore the ML dataset](#STEP-2:-Explore-the-ML-dataset)), we know that special **preparation** of the data is **not necessary**. The values of the dataset are **complete and without gaps** and there are **no duplicates**.
 <!-- #endregion -->
 
 <!-- #region tags=[] -->
@@ -1370,9 +1370,9 @@ Some machine learning algorithms are very sensitive to feature scaling, while ot
 
 **Distance-based algorithms** such as the **Support Vector Classifier (SVC)** explained in [STEP 3](#STEP-3:-Choose-and-create-the-ML-model), or others such as [K-Nearest Neighbors (KNN)](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) and [K-means clustering](https://en.wikipedia.org/wiki/K-means_clustering) are most affected by the **bandwidth of features**. This is because **distances between data points** are used in the algorithm to determine their **similarity** (see <cite data-cite="feature_scaling_2020">Bhandari, 2020</cite>).
 
-If **features** in the dataset have very **different magnitudes (scales)**, the features with the larger scale could be **weighted** more prominently by the ML algorithm. This **tendency** would lead to **bias** in training, which negatively affects **generizability** in classifying test data (see <cite data-cite="techflare_2020">techflare, 2020</cite>). Therefore, the **features** in the dataset should be **scaled** before distance-based ML algorithms are used. Only by **adjusting the data ranges** is it possible to ensure that **all features contribute equally** to the classification result.
+If **features** in the dataset have very **different ranges (scales)**, the features with the larger scale could be **weighted** more prominently by the ML algorithm. This **tendency** would lead to **bias** in training, which negatively affects **generizability** in classifying test data. Therefore, the **features** in the dataset should be **scaled** before distance-based ML algorithms are used. Only by **adjusting the data ranges** it is possible to ensure that **all features contribute equally** to the classification result.
 
-The following two subsections explain the two main methods for scaling **Normalization** and **Standardization**. The question often arises as to when one or the other should be used, so here are a few hints:
+The following two subsections explain the two main methods for scaling: **Normalization** and **Standardization**. The question often arises as to when one or the other should be used, so here are a few hints:
 
 - **Normalization** is useful when the distribution of the data **does not** follow a **Gaussian normal distribution**. This can be helpful for algorithms that do not assume normally distributed data, such as K-Nearest Neighbors and neural networks. However, **outliers** in the data have **major influence** on the **mean** (not to be mistaken with the median) used for calculation. Therefore, normalization is significantly **more vulnerable to outliers** than standardization.
 - The **standardization**, on the other hand, can be helpful in cases where the data follow a **Gaussian normal distribution**. However, this does not necessarily have to be true. Also, unlike normalization, standardization does not have a limited range of values. However, standardization is significantly **less prone to outliers** in the data than normalization.
@@ -1385,11 +1385,13 @@ At this point, an **important note** that is repeatedly mentioned in the literat
 
 For further details about **Standardization** and **Normalization** read here:
 
-scikit-learn:  
+scikit-learn:
+
 - [Preprocessing data](https://scikit-learn.org/stable/modules/preprocessing.html)
 - [Compare the effect of different scalers on data with outliers](https://scikit-learn.org/stable/auto_examples/preprocessing/plot_all_scaling.html#sphx-glr-auto-examples-preprocessing-plot-all-scaling-py)
 
-Others:  
+Others:
+
 - [What are standarization and normalization? Test with iris data set in Scikit-learn](http://techflare.blog/what-are-standarization-and-normalization-test-with-iris-data-set-in-scikit-learn/)
 - [Feature Scaling for Machine Learning: Understanding the Difference Between Normalization vs. Standardization](https://www.analyticsvidhya.com/blog/2020/04/feature-scaling-machine-learning-normalization-standardization/?)
 - [Feature scaling](https://en.wikipedia.org/wiki/Feature_scaling)
@@ -1413,7 +1415,7 @@ The **normalization** is calculated following this **formula**:
 
 $$X' = \frac{X - X_{min}}{X_{max} - X_{min}}$$
 
-Thereby $X_{max}$ and $X_{min}$ are the maximum and the minimum value of the feature, respectively.
+Thereby $X_{max}$ and $X_{min}$ are the maximum and the minimum values of the feature, respectively.
 
 - If the value of $X$ is the **minimum value** of the feature, the numerator in the fraction becomes 0. Thus, $X' = 0$.
 - If the value of $X$ is the **maximum value** of the feature, the numerator becomes equal to the denominator of the fraction. Then the value of $X' = 1$.
