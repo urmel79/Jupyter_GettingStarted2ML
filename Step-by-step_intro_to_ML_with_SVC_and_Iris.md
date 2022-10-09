@@ -62,7 +62,7 @@ One of the most important steps in the entire ML process is **step 2**, in which
 
 After exploring the dataset, in **step 3** one has to decide on a specific ML algorithm based on certain selection criteria. Among other ML algorithms suitable for the Iris dataset (such as the decision-tree-based **random-forests classifier**), the reasoned choice here in the tutorial falls on the **support vector classifier**. A dedicated SVC model is now being implemented.
 
-In **step 4** the dataset is prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by standardization, normalization, or discretization to cluster the data based on thresholds). After splitting the dataset into a training and test dataset, the SVC model is trained with the training dataset in **step 5**. Subsequently, classification predictions are made with the trained SVC model based on the test data. In **step 6**, the quality of the classification result is evaluated using known **metrics** such as the **confusion matrix**.
+In **step 4** the dataset is preprocessed for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by standardization, normalization, or discretization to cluster the data based on thresholds). After splitting the dataset into a training and test dataset, the SVC model is trained with the training dataset in **step 5**. Subsequently, classification predictions are made with the trained SVC model based on the test data. In **step 6**, the quality of the classification result is evaluated using known **metrics** such as the **confusion matrix**.
 
 Since the classification in step 5 was initially performed with standard parameters (so-called **hyper-parameters**), their meaning is explained in **step 7** and then their effect on the classification result is demonstrated by manually varying the individual hyper-parameters.
 
@@ -129,7 +129,7 @@ The following **steps of the systematic ML process** are covered in the next mai
 - [STEP 1: Acquire the ML dataset](#STEP-1:-Acquire-the-ML-dataset)
 - [STEP 2: Explore the ML dataset](#STEP-2:-Explore-the-ML-dataset)
 - [STEP 3: Choose and create the ML model](#STEP-3:-Choose-and-create-the-ML-model)
-- [STEP 4: Prepare the dataset for training](#STEP-4:-Prepare-the-dataset-for-training)
+- [STEP 4: Preprocess the dataset for training](#STEP-4:-Preprocess-the-dataset-for-training)
 - [STEP 5: Carry out training, prediction and testing](#STEP-5:-Carry-out-training,-prediction-and-testing)
 - [STEP 6: Evaluate model's performance](#STEP-6:-Evaluate-model's-performance)
 - [STEP 7: Vary parameters of the ML model manually](#STEP-7:-Vary-parameters-of-the-ML-model-manually)
@@ -1354,18 +1354,36 @@ classifier = SVC(kernel = 'linear', random_state = 0)
 ```
 
 <!-- #region tags=[] -->
-# STEP 4: Prepare the dataset for training
+# STEP 4: Preprocess the dataset for training
 
 In this step the dataset is prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by **standardization**, **normalization**, or **discretization** to bin the data based on thresholds). Furthermore, errors in the dataset (e.g. **data gaps**, **duplicates** or obvious **misentries**) should be corrected now at the latest.
 
 ## Heal the dataset
 
-Through the intensive exploration of the data in ([STEP 2: Explore the ML dataset](#STEP-2:-Explore-the-ML-dataset)), we know that special **preparation** of the data is **not necessary**. The values are **complete and without gaps** and there are no duplicates.
+Through the intensive exploration of the data in ([STEP 2: Explore the ML dataset](#STEP-2:-Explore-the-ML-dataset)), we know that special **preparation** of the data is **not necessary**. The values are **complete and without gaps** and there are **no duplicates**.
 <!-- #endregion -->
 
-## Transform the dataset
+<!-- #region tags=[] -->
+## Transform the dataset (feature scaling)
 
-For further details about **Standarization** and **Normalization** read here:
+Some machine learning algorithms are very sensitive to feature scaling, while others are virtually unaffected.
+
+**Distance-based algorithms** such as the **Support Vector Classifier (SVC)** explained in [STEP 3](#STEP-3:-Choose-and-create-the-ML-model), or others such as [K-Nearest Neighbors (KNN)](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) and [K-means clustering](https://en.wikipedia.org/wiki/K-means_clustering) are most affected by the **bandwidth of features**. This is because **distances between data points** are used in the algorithm to determine their **similarity** (see <cite data-cite="feature_scaling_2020">Bhandari, 2020</cite>).
+
+If **features** in the dataset have very **different magnitudes (scales)**, the features with the larger scale could be **weighted** more prominently by the ML algorithm. This **tendency** would lead to **bias** in training, which negatively affects **generizability** in classifying test data (see <cite data-cite="techflare_2020">techflare, 2020</cite>). Therefore, the **features** in the dataset should be **scaled** before distance-based ML algorithms are used. Only by **adjusting the data ranges** is it possible to ensure that **all features contribute equally** to the classification result.
+
+The following two subsections explain the two main methods for scaling **Normalization** and **Standardization**. The question often arises as to when one or the other should be used, so here are a few hints:
+
+- **Normalization** is useful when the distribution of the data **does not** follow a **Gaussian normal distribution**. This can be helpful for algorithms that do not assume normally distributed data, such as K-Nearest Neighbors and neural networks. However, **outliers** in the data have **major influence** on the **mean** (not to be mistaken with the median) used for calculation. Therefore, normalization is significantly **more vulnerable to outliers** than standardization.
+- The **standardization**, on the other hand, can be helpful in cases where the data follow a **Gaussian normal distribution**. However, this does not necessarily have to be true. Also, unlike normalization, standardization does not have a limited range of values. However, standardization is significantly **less prone to outliers** in the data than normalization.
+
+Finally, the **decision for normalization or standardization** depends on the concrete **task**, the **data** and the **ML algorithm** used. It is recommended to train the ML model first with the raw data and then with the normalized or standardized data. A subsequent comparison of the classification results (e.g., using the [cross-validation](https://en.wikipedia.org/wiki/Cross-validation_(statistics)) or the [root-mean-square error (RMSE)](https://en.wikipedia.org/wiki/Root-mean-square_deviation)) provides guidance on which scaling should be used (see <cite data-cite="feature_scaling_2020">Bhandari, 2020</cite>).
+
+At this point, an **important note** that is repeatedly mentioned in the literature when talking about scaling (see <cite data-cite="feature_scaling_2020">Bhandari, 2020</cite>; <cite data-cite="Geron_2018">Géron, 2018</cite>):
+
+> It is a good practice to **fit the scaler** on the **training data** and then use it to **transform the testing data**. This would avoid any data leakage during the model testing process. Also, the scaling of target values is generally not required.
+
+For further details about **Standardization** and **Normalization** read here:
 
 scikit-learn:  
 - [Preprocessing data](https://scikit-learn.org/stable/modules/preprocessing.html)
@@ -1377,9 +1395,7 @@ Others:
 - [Feature scaling](https://en.wikipedia.org/wiki/Feature_scaling)
 - [Normalization (statistics)](https://en.wikipedia.org/wiki/Normalization_(statistics))
 - [Standard score](https://en.wikipedia.org/wiki/Standard_score)
-
-**@TODO:**  
-Incorporate section "Skalieren von Merkmalen" of the book `OReilly_Praxiseinstieg_Machine_Learning_Scikit-Learn_TensorFlow_2018_Anm_bk.pdf` (see <cite data-cite="Geron_2018">Géron, 2018</cite>).
+<!-- #endregion -->
 
 ```python
 # Import ORIGINAL Iris dataset for classification
@@ -1391,7 +1407,19 @@ irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle_noised.csv')
 
 ### Normalization
 
-See [scikit-learn: Normalization](https://scikit-learn.org/stable/modules/preprocessing.html#normalization).
+When scaling by **normalization**, the values are shifted and rescaled so that they range **between 0 and 1**. It is also known in the literature as **min-max scaling** (see <cite data-cite="feature_scaling_2020">Bhandari, 2020</cite>).
+
+The **normalization** is calculated following this **formula**:
+
+$$X' = \frac{X - X_{min}}{X_{max} - X_{min}}$$
+
+Thereby $X_{max}$ and $X_{min}$ are the maximum and the minimum value of the feature, respectively.
+
+- If the value of $X$ is the **minimum value** of the feature, the numerator in the fraction becomes 0. Thus, $X' = 0$.
+- If the value of $X$ is the **maximum value** of the feature, the numerator becomes equal to the denominator of the fraction. Then the value of $X' = 1$.
+- If the value of $X$ is between the minimum and maximum values, the value of $X'$ is between 0 and 1.
+
+For further details read here: [scikit-learn: Normalization](https://scikit-learn.org/stable/modules/preprocessing.html#normalization).
 
 ```python tags=[]
 from sklearn.preprocessing import MinMaxScaler
@@ -1437,9 +1465,18 @@ func_plot_histograms_with_PDF(irisdata_df_norm, features, titles)
 <!-- #region tags=["TODO_Step_4"] -->
 ### Standardization
 
-Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**.
+**Standardization** is another scaling technique in which **values are centered around the mean** with a **unit standard deviation**. That is, the **mean** of the feature **becomes zero** and the resulting **distribution** has a **unit standard deviation** (see <cite data-cite="feature_scaling_2020">Bhandari, 2020</cite>).
 
-See [scikit-learn: Standardization, or mean removal and variance scaling](https://scikit-learn.org/stable/modules/preprocessing.html#standardization-or-mean-removal-and-variance-scaling).
+The **standardization** is calculated following this **formula**:
+
+$$X' = \frac{X - \mu}{\sigma}$$
+
+- $\mu$ is the **mean** of the feature values and
+- $\sigma$ is the **standard deviation** of the feature values.
+
+It should be noted that the values after standardization are not limited to a certain range (unlike normalization).
+
+For further details read here: [scikit-learn: Standardization, or mean removal and variance scaling](https://scikit-learn.org/stable/modules/preprocessing.html#standardization-or-mean-removal-and-variance-scaling).
 <!-- #endregion -->
 
 ```python tags=[]
@@ -1615,7 +1652,7 @@ print(classification_report(y_test, y_pred))
 The function `cross_val_score()` from the Scikit-learn package **trains and tests a model over multiple folds** of your dataset. This cross validation method gives a better **understanding of model performance** over the whole dataset instead of just a single train/test split (see [Using cross_val_score in sklearn, simply explained](https://stephenallwright.com/cross_val_score-sklearn/)).
 
 **@TODO:**  
-Incorporate section "Bessere Auswertung mittels Kreuzvalidierung" of the book `OReilly_Praxiseinstieg_Machine_Learning_Scikit-Learn_TensorFlow_2018_Anm_bk.pdf`.
+Incorporate section "Bessere Auswertung mittels Kreuzvalidierung" p71 ff. of the book `OReilly_Praxiseinstieg_Machine_Learning_Scikit-Learn_TensorFlow_2018_Anm_bk.pdf` (see <cite data-cite="Geron_2018">Géron, 2018</cite>).
 
 ```python
 from sklearn.model_selection import cross_val_score
@@ -2429,7 +2466,7 @@ As stated above, in **Step 1** the ready-made and very beginner-friendly **Iris 
 
 In **Step 3**, a very brief introduction to the world of artificial intelligence and machine learning was given. The introduction was supported by a **taxonomy of different types of learning** and the listing of selected ML algorithms. A **decision graph** was used to justify the choice of the Support Vector Classifier (SVC) for the classification task at hand. Afterwards, the basic working principle of the SVC including the so-called **kernel trick** was explained. Finally, a corresponding SVC model was implemented.
 
-In **Step 4** the dataset was prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it could be necessary to prepare the data before training, e.g., by **standardization**, **normalization**, or **discretization** to cluster the data based on thresholds. For the Iris dataset used, standardization was sufficient to align the value ranges of the features.
+In **Step 4** the dataset was preprocessed for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it could be necessary to prepare the data before training, e.g., by **standardization**, **normalization**, or **discretization** to cluster the data based on thresholds. For the Iris dataset used, standardization was sufficient to align the value ranges of the features.
 
 After splitting the dataset into a **training and test dataset**, the SVC model was trained with the training dataset in **step 5**. Subsequently, **classification predictions** were made with the trained SVC model using the test data.
 
