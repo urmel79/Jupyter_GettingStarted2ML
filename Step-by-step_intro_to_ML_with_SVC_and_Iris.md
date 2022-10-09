@@ -1455,13 +1455,48 @@ irisdata_df_norm.iloc[:, 0:4] = irisdata_np_norm
 irisdata_df_norm.describe()
 ```
 
-Call the function `func_plot_histograms_with_PDF()` to plot the **histograms** with overlaid **probability density functions** implemented in subsection [Histograms](#Histograms):
+The function `func_plot_histograms_with_PDF()` is called to plot the **histograms** with overlaid **probability density functions** implemented in the subsection [Histograms](#Histograms):
 
 ```python caption="Histograms with overlaid probability density functions (PDF) after normalization" tags=[] label="fig:histogram_iris_with_PDF_norm" widefigure=true
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
 func_plot_histograms_with_PDF(irisdata_df_norm, features, titles)
+```
+
+To display the **original data** with the **scaled data** side-by-side as **boxplots** with all **features in one scale**, the function `func_boxplots_comp_scaling()` is implemented.
+
+```python tags=[]
+def func_boxplots_comp_scaling(dataframes, titles):
+    fig, subplots = plt.subplots(1, 2, figsize=(12, 5))
+    # Set margins between subplots
+    plt.subplots_adjust(wspace=0.3, hspace=0.3)
+
+    # Make subplots iterable via 'subplots.flatten()'
+    for title, df, subplot in zip(titles, dataframes, subplots.flatten()):
+
+        # To create multiple boxplots in seaborn,
+        # we must first melt the pandas DataFrame into a long format:
+        df_melted = pd.melt(df.drop('species', axis=1))
+        # Rename column to 'features'
+        df_melted.rename(columns={'variable': 'features'}, inplace=True)
+
+        sns.boxplot(x='features', y='value', data=df_melted, ax = subplot)
+        # Show grid
+        subplot.grid(axis='y')
+        # Hide grid behind the bars
+        subplot.set_axisbelow(True)
+        title_concat = "{} data".format(title)
+        subplot.set_title(title_concat)
+
+    plt.show()
+```
+
+```python caption="Boxplots comparing the original data with the normalized data with all features in one scale" tags=[] label="fig:boxplots_comp_orig_norm" widefigure=true
+titles     = ['Original', 'Normalized']
+dataframes = [irisdata_df, irisdata_df_norm]
+
+func_boxplots_comp_scaling(dataframes, titles)
 ```
 
 <!-- #region tags=["TODO_Step_4"] -->
@@ -1512,13 +1547,22 @@ irisdata_df_std.iloc[:, 0:4] = irisdata_np_std
 irisdata_df_std.describe()
 ```
 
-Call the function `func_plot_histograms_with_PDF()` to plot the **histograms** with overlaid **probability density functions** implemented in subsection [Histograms](#Histograms):
+The function `func_plot_histograms_with_PDF()` is called to plot the **histograms** with overlaid **probability density functions** implemented in the subsection [Histograms](#Histograms):
 
 ```python caption="Histograms with overlaid probability density functions (PDF) after standarization" tags=[] label="fig:histogram_iris_with_PDF_std" widefigure=true
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
 func_plot_histograms_with_PDF(irisdata_df_std, features, titles)
+```
+
+As in the previous section, the **original** and the **standardized data** are plotted as side-by-side **boxplots** with all **features at one scale**.
+
+```python caption="Boxplots comparing the original data with the standardized data with all features in one scale" tags=[] label="fig:boxplots_comp_orig_std" widefigure=true
+titles     = ['Original', 'Standardized']
+dataframes = [irisdata_df, irisdata_df_std]
+
+func_boxplots_comp_scaling(dataframes, titles)
 ```
 
 ### Discretization (clustering)

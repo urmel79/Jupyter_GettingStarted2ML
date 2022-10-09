@@ -1873,7 +1873,7 @@ available via Python in the machine learning package
 it without having to find a special source for it.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{2}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Import Iris dataset for exploration}
 \PY{n}{irisdata\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -2356,7 +2356,7 @@ To illustrate the principle, the histogram subplots are first presented
 in a \textbf{not very elegant code} with many repetitions:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{4}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Number of bins for the histogram}
 \PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+m+mi}{10}
@@ -2416,7 +2416,7 @@ later, it was implemented as the \textbf{function}
 \texttt{func\_plot\_histograms\_with\_PDF()}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
+\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k+kn}{import} \PY{n}{norm}
 
@@ -2461,7 +2461,7 @@ later, it was implemented as the \textbf{function}
 \textbf{probability density functions}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{features} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \PY{n}{titles} \PY{o}{=}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -2489,7 +2489,7 @@ histogram example, a loop is used to iterate through the subplots, which
 saves a lot of repetition in the code.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{10}{\boxspacing}
+\prompt{In}{incolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Set margins between subplots}
@@ -4332,7 +4332,7 @@ The \textbf{normalization} is calculated following this
 \[X' = \frac{X - X_{min}}{X_{max} - X_{min}}\]
 
 Thereby \(X_{max}\) and \(X_{min}\) are the maximum and the minimum
-value of the feature, respectively.
+values of the feature, respectively.
 
 \begin{itemize}
 \tightlist
@@ -4353,7 +4353,7 @@ For further details read here:
 Normalization}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{4}{\boxspacing}
+\prompt{In}{incolor}{43}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{MinMaxScaler}
 
@@ -4373,7 +4373,7 @@ Normalization}.
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{5}{\boxspacing}
+\prompt{In}{incolor}{44}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Make a deep copy of original dataframe}
 \PY{n}{irisdata\PYZus{}df\PYZus{}norm} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
@@ -4387,33 +4387,34 @@ Normalization}.
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{45}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{6}{\boxspacing}
+\prompt{Out}{outcolor}{45}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        sepal\_length  sepal\_width  petal\_length  petal\_width
 count    150.000000   150.000000    150.000000   150.000000
-mean       0.432973     0.449082      0.453153     0.463350
-std        0.224496     0.198532      0.281340     0.265961
+mean       0.428704     0.439167      0.467571     0.457778
+std        0.230018     0.180664      0.299054     0.317984
 min        0.000000     0.000000      0.000000     0.000000
-25\%        0.249566     0.318454      0.118340     0.188394
-50\%        0.416213     0.414988      0.545490     0.525139
-75\%        0.594927     0.582168      0.666928     0.667018
+25\%        0.222222     0.333333      0.101695     0.083333
+50\%        0.416667     0.416667      0.567797     0.500000
+75\%        0.583333     0.541667      0.694915     0.708333
 max        1.000000     1.000000      1.000000     1.000000
 \end{Verbatim}
 \end{tcolorbox}
         
-    Call the function \texttt{func\_plot\_histograms\_with\_PDF()} to plot
-the \textbf{histograms} with overlaid \textbf{probability density
-functions} implemented in subsection \hyperref[histograms]{Histograms}:
+    The function \texttt{func\_plot\_histograms\_with\_PDF()} is called to
+plot the \textbf{histograms} with overlaid \textbf{probability density
+functions} implemented in the subsection
+\hyperref[histograms]{Histograms}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{12}{\boxspacing}
+\prompt{In}{incolor}{42}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{features} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \PY{n}{titles} \PY{o}{=}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -4426,6 +4427,56 @@ functions} implemented in subsection \hyperref[histograms]{Histograms}:
         \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_139_0.png}\end{center}
         \caption{Histograms with overlaid probability density functions (PDF) after normalization}
         \label{fig:histogram_iris_with_PDF_norm}
+    \end{figure}
+    
+    To display the \textbf{original data} with the \textbf{scaled data}
+side-by-side as \textbf{boxplots} with all \textbf{features in one
+scale}, the function \texttt{func\_boxplots\_comp\_scaling()} is
+implemented.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{77}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{func\PYZus{}boxplots\PYZus{}comp\PYZus{}scaling}\PY{p}{(}\PY{n}{dataframes}\PY{p}{,} \PY{n}{titles}\PY{p}{)}\PY{p}{:}
+    \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Set margins between subplots}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} Make subplots iterable via \PYZsq{}subplots.flatten()\PYZsq{}}
+    \PY{k}{for} \PY{n}{title}\PY{p}{,} \PY{n}{df}\PY{p}{,} \PY{n}{subplot} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{titles}\PY{p}{,} \PY{n}{dataframes}\PY{p}{,} \PY{n}{subplots}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+
+        \PY{c+c1}{\PYZsh{} To create multiple boxplots in seaborn,}
+        \PY{c+c1}{\PYZsh{} we must first melt the pandas DataFrame into a long format:}
+        \PY{n}{df\PYZus{}melted} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{melt}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Rename column to \PYZsq{}features\PYZsq{}}
+        \PY{n}{df\PYZus{}melted}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{variable}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{features}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+
+        \PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{features}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{df\PYZus{}melted}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{subplot}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Show grid}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ data}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{)}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
+
+    \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{79}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{titles}     \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Normalized}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\PY{n}{dataframes} \PY{o}{=} \PY{p}{[}\PY{n}{irisdata\PYZus{}df}\PY{p}{,} \PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{p}{]}
+
+\PY{n}{func\PYZus{}boxplots\PYZus{}comp\PYZus{}scaling}\PY{p}{(}\PY{n}{dataframes}\PY{p}{,} \PY{n}{titles}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_0.png}\end{center}
+        \caption{Boxplots comparing the original data with the normalized data with all features in one scale}
+        \label{fig:boxplots_comp_orig_norm}
     \end{figure}
     
     \hypertarget{standardization}{%
@@ -4458,7 +4509,7 @@ For further details read here:
 Standardization, or mean removal and variance scaling}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{13}{\boxspacing}
+\prompt{In}{incolor}{81}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{StandardScaler}
 
@@ -4478,7 +4529,7 @@ Standardization, or mean removal and variance scaling}.
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{14}{\boxspacing}
+\prompt{In}{incolor}{82}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Make a deep copy of original dataframe}
 \PY{n}{irisdata\PYZus{}df\PYZus{}std} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
@@ -4491,33 +4542,34 @@ Standardization, or mean removal and variance scaling}.
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{15}{\boxspacing}
+\prompt{In}{incolor}{83}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{15}{\boxspacing}
+\prompt{Out}{outcolor}{83}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        sepal\_length   sepal\_width  petal\_length   petal\_width
 count  1.500000e+02  1.500000e+02  1.500000e+02  1.500000e+02
-mean   9.473903e-16  4.736952e-16 -3.789561e-16  3.315866e-16
+mean  -4.736952e-16 -6.631732e-16  3.315866e-16 -2.842171e-16
 std    1.003350e+00  1.003350e+00  1.003350e+00  1.003350e+00
-min   -1.935104e+00 -2.269588e+00 -1.616094e+00 -1.748009e+00
-25\%   -8.197073e-01 -6.601747e-01 -1.194055e+00 -1.037286e+00
-50\%   -7.490796e-02 -1.723030e-01  3.293038e-01  2.331012e-01
-75\%    7.238294e-01  6.725982e-01  7.623925e-01  7.683478e-01
-max    2.534237e+00  2.784252e+00  1.950237e+00  2.024539e+00
+min   -1.870024e+00 -2.438987e+00 -1.568735e+00 -1.444450e+00
+25\%   -9.006812e-01 -5.877635e-01 -1.227541e+00 -1.181504e+00
+50\%   -5.250608e-02 -1.249576e-01  3.362659e-01  1.332259e-01
+75\%    6.745011e-01  5.692513e-01  7.627586e-01  7.905908e-01
+max    2.492019e+00  3.114684e+00  1.786341e+00  1.710902e+00
 \end{Verbatim}
 \end{tcolorbox}
         
-    Call the function \texttt{func\_plot\_histograms\_with\_PDF()} to plot
-the \textbf{histograms} with overlaid \textbf{probability density
-functions} implemented in subsection \hyperref[histograms]{Histograms}:
+    The function \texttt{func\_plot\_histograms\_with\_PDF()} is called to
+plot the \textbf{histograms} with overlaid \textbf{probability density
+functions} implemented in the subsection
+\hyperref[histograms]{Histograms}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{16}{\boxspacing}
+\prompt{In}{incolor}{84}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{features} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \PY{n}{titles} \PY{o}{=}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -4527,9 +4579,29 @@ functions} implemented in subsection \hyperref[histograms]{Histograms}:
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_148_0.png}\end{center}
         \caption{Histograms with overlaid probability density functions (PDF) after standarization}
         \label{fig:histogram_iris_with_PDF_std}
+    \end{figure}
+    
+    As in the previous section, the \textbf{original} and the
+\textbf{standardized data} are plotted as side-by-side \textbf{boxplots}
+with all \textbf{features at one scale}.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{85}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{titles}     \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Standardized}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\PY{n}{dataframes} \PY{o}{=} \PY{p}{[}\PY{n}{irisdata\PYZus{}df}\PY{p}{,} \PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{p}{]}
+
+\PY{n}{func\PYZus{}boxplots\PYZus{}comp\PYZus{}scaling}\PY{p}{(}\PY{n}{dataframes}\PY{p}{,} \PY{n}{titles}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_150_0.png}\end{center}
+        \caption{Boxplots comparing the original data with the standardized data with all features in one scale}
+        \label{fig:boxplots_comp_orig_std}
     \end{figure}
     
     \hypertarget{discretization-clustering}{%
@@ -4863,7 +4935,7 @@ colored confusion matrix.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_172_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_0.png}\end{center}
         \caption{Checking the accuracy of the model by using the confusion matrix for cross-validation}
         \label{fig:confusion_matrix}
     \end{figure}
@@ -5114,7 +5186,7 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_193_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_198_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
@@ -5154,7 +5226,7 @@ exactly fit the training dataset. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_195_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_200_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
@@ -5180,7 +5252,7 @@ as the classifier tries to perfectly fit the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_197_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_202_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy}
         \label{fig:plot_vary_gamma}
     \end{figure}
@@ -5219,7 +5291,7 @@ the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_199_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_204_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
@@ -5245,7 +5317,7 @@ But be careful: to high \texttt{C} values may lead to
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_201_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_206_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'C' against the prediction accuracy}
         \label{fig:plot_vary_c}
     \end{figure}
@@ -5289,7 +5361,7 @@ training times}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_203_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_208_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
@@ -5315,7 +5387,7 @@ hyperplane leads to \textbf{overfitting} the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_205_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_210_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy}
         \label{fig:plot_vary_degree}
     \end{figure}
@@ -5567,7 +5639,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_223_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_228_0.png}\end{center}
         \caption{Confusion matrix for cross-validation of the baseline}
         \label{fig:cm_baseline}
     \end{figure}
@@ -5790,7 +5862,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_243_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_248_0.png}\end{center}
         \caption{Pairs plot of the original Iris dataset}
         \label{fig:pairs_plot_orig_Iris}
     \end{figure}
@@ -5804,7 +5876,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_244_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_249_0.png}\end{center}
         \caption{Pairs plot of the noised Iris dataset}
         \label{fig:pairs_plot_noised_Iris}
     \end{figure}
@@ -5945,7 +6017,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_256_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_261_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the grid search has been performed}
         \label{fig:cm_grid_search}
     \end{figure}
@@ -6105,7 +6177,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_267_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_272_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the randomized search has been performed}
         \label{fig:cm_random_search}
     \end{figure}
