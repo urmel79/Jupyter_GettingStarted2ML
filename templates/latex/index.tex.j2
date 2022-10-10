@@ -106,7 +106,13 @@
 ((*- endif *))
 ((*- endif *))
 
-\date{\today} 
+((*- if nb.metadata["latex_metadata"]: -*))
+((*- if nb.metadata["latex_metadata"]["release_version"]: -*))
+    \date{\today; ((( nb.metadata["latex_metadata"]["release_version"] )))}
+((*- else -*))
+    \date{\today}
+((*- endif *))
+((*- endif *))
 
 ((* endblock title *))
 
