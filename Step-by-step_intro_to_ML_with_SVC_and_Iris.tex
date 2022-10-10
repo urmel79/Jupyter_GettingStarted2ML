@@ -650,13 +650,13 @@ classifier}. A dedicated SVC model is now being implemented.
 In \textbf{step 4} the dataset is preprocessed for the actual
 classification by SVC. Depending on the selected ML algorithm as well as
 the data structure, it may be necessary to prepare the data before
-training (e.g., by standardization, normalization, or discretization to
-cluster the data based on thresholds). After splitting the dataset into
-a training and test dataset, the SVC model is trained with the training
-dataset in \textbf{step 5}. Subsequently, classification predictions are
-made with the trained SVC model based on the test data. In \textbf{step
-6}, the quality of the classification result is evaluated using known
-\textbf{metrics} such as the \textbf{confusion matrix}.
+training (e.g., by standardization or normalization). After splitting
+the dataset into a training and test dataset, the SVC model is trained
+with the training dataset in \textbf{step 5}. Subsequently,
+classification predictions are made with the trained SVC model based on
+the test data. In \textbf{step 6}, the quality of the classification
+result is evaluated using known \textbf{metrics} such as the
+\textbf{confusion matrix}.
 
 Since the classification in step 5 was initially performed with standard
 parameters (so-called \textbf{hyper-parameters}), their meaning is
@@ -880,15 +880,14 @@ SVC-Modell wird nun implementiert.
 Im \textbf{Schritt 4} wird der Datensatz für die eigentliche
 Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus
 sowie der Datenstruktur kann es erforderlich sein, dass die Daten vor
-dem Training aufbereitet werden müssen (z. B. durch Standardisierung,
-Normalisierung oder \textbf{Diskretisierung}, um die Daten anhand von
-Schwellenwerten zu gruppieren). Nach der Aufteilung des Datensatzes in
-einen Trainings- und Testdatensatz, wird das SVC-Modell im
-\textbf{Schritt 5} mit dem Trainingsdatensatz trainiert. Anschließend
-werden mit dem trainierten SVC-Modell anhand der Testdaten
-Klassifikationsvorhersagen getroffen. Im \textbf{Schritt 6} wird die
-Güte des Klassifikationsergebnisses anhand bekannter \textbf{Metriken}
-wie z. B. der \textbf{Konfusionsmatrix} evaluiert.
+dem Training aufbereitet werden müssen (z. B. durch Standardisierung
+oder Normalisierung). Nach der Aufteilung des Datensatzes in einen
+Trainings- und Testdatensatz, wird das SVC-Modell im \textbf{Schritt 5}
+mit dem Trainingsdatensatz trainiert. Anschließend werden mit dem
+trainierten SVC-Modell anhand der Testdaten Klassifikationsvorhersagen
+getroffen. Im \textbf{Schritt 6} wird die Güte des
+Klassifikationsergebnisses anhand bekannter \textbf{Metriken} wie z. B.
+der \textbf{Konfusionsmatrix} evaluiert.
 
 Da die Klassifikation im Schritt 5 zunächst mit Standard-Parametern (den
 sogenannten \textbf{Hyper-Parametern}) durchgeführt wurde, wird ihre
@@ -1481,7 +1480,7 @@ data analysis and ML, such as \texttt{Pandas}, \texttt{NumPY},
 \texttt{matplotlib} and \texttt{Scikit-Learn}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{2}{\boxspacing}
+\prompt{In}{incolor}{1}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{time}
 
@@ -2356,7 +2355,7 @@ To illustrate the principle, the histogram subplots are first presented
 in a \textbf{not very elegant code} with many repetitions:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{4}{\boxspacing}
+\prompt{In}{incolor}{134}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Number of bins for the histogram}
 \PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+m+mi}{10}
@@ -2370,6 +2369,9 @@ in a \textbf{not very elegant code} with many repetitions:
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{)}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -2377,6 +2379,9 @@ in a \textbf{not very elegant code} with many repetitions:
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{)}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -2384,6 +2389,9 @@ in a \textbf{not very elegant code} with many repetitions:
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{)}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -2391,6 +2399,9 @@ in a \textbf{not very elegant code} with many repetitions:
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
 \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
@@ -2416,7 +2427,7 @@ later, it was implemented as the \textbf{function}
 \texttt{func\_plot\_histograms\_with\_PDF()}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{5}{\boxspacing}
+\prompt{In}{incolor}{131}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k+kn}{import} \PY{n}{norm}
 
@@ -2452,6 +2463,9 @@ later, it was implemented as the \textbf{function}
         \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
         \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
     \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
@@ -2461,7 +2475,7 @@ later, it was implemented as the \textbf{function}
 \textbf{probability density functions}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{132}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{features} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \PY{n}{titles} \PY{o}{=}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -2489,7 +2503,7 @@ histogram example, a loop is used to iterate through the subplots, which
 saves a lot of repetition in the code.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{137}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Set margins between subplots}
@@ -2510,6 +2524,10 @@ saves a lot of repetition in the code.
     \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
     \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Set title of subplot}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Feature: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{feature}\PY{p}{)}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Label y\PYZhy{}axis}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     
 \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
@@ -2531,7 +2549,7 @@ iterate through the subplots, which saves a lot of repetition in the
 code.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{11}{\boxspacing}
+\prompt{In}{incolor}{138}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Set margins between subplots}
@@ -2552,6 +2570,10 @@ code.
     \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
     \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Set title of subplot}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Feature: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{feature}\PY{p}{)}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Label y\PYZhy{}axis}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     
 \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
@@ -3626,7 +3648,7 @@ To investigate whether there are dependencies (e.g.~correlations) in
 advisable to plot them in a \textbf{scatter plot}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{29}{\boxspacing}
+\prompt{In}{incolor}{141}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} There are five preset seaborn themes: darkgrid, whitegrid, dark, white, and ticks.}
 \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{whitegrid}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -3643,6 +3665,8 @@ advisable to plot them in a \textbf{scatter plot}.
 
 
 \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Scatterplot of petal length and width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal width [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal length [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
@@ -3670,7 +3694,7 @@ variable} in \texttt{irisdata\_df} will by shared in the y-axis across a
 single row and in the x-axis across a single column.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{30}{\boxspacing}
+\prompt{In}{incolor}{142}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{font\PYZus{}scale}\PY{o}{=}\PY{l+m+mf}{1.0}\PY{p}{)}
 \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{white}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -4194,9 +4218,9 @@ we know that special \textbf{preparation} of the data is \textbf{not
 necessary}. The values of the dataset are \textbf{complete and without
 gaps} and there are \textbf{no duplicates}.
 
-    \hypertarget{transform-the-dataset-feature-scaling}{%
-\subsection{Transform the dataset (feature
-scaling)}\label{transform-the-dataset-feature-scaling}}
+    \hypertarget{transform-the-dataset-by-feature-scaling}{%
+\subsection{Transform the dataset by feature
+scaling}\label{transform-the-dataset-by-feature-scaling}}
 
 Some machine learning algorithms are very sensitive to feature scaling,
 while others are virtually unaffected.
@@ -4308,7 +4332,7 @@ Others:
 \end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{3}{\boxspacing}
+\prompt{In}{incolor}{2}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Import ORIGINAL Iris dataset for classification}
 \PY{c+c1}{\PYZsh{}irisdata\PYZus{}df = pd.read\PYZus{}csv(\PYZsq{}./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv\PYZsq{})}
@@ -4353,7 +4377,7 @@ For further details read here:
 Normalization}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{43}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{MinMaxScaler}
 
@@ -4373,7 +4397,7 @@ Normalization}.
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{44}{\boxspacing}
+\prompt{In}{incolor}{4}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Make a deep copy of original dataframe}
 \PY{n}{irisdata\PYZus{}df\PYZus{}norm} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
@@ -4387,55 +4411,34 @@ Normalization}.
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{45}{\boxspacing}
+\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{45}{\boxspacing}
+\prompt{Out}{outcolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        sepal\_length  sepal\_width  petal\_length  petal\_width
 count    150.000000   150.000000    150.000000   150.000000
-mean       0.428704     0.439167      0.467571     0.457778
-std        0.230018     0.180664      0.299054     0.317984
+mean       0.432973     0.449082      0.453153     0.463350
+std        0.224496     0.198532      0.281340     0.265961
 min        0.000000     0.000000      0.000000     0.000000
-25\%        0.222222     0.333333      0.101695     0.083333
-50\%        0.416667     0.416667      0.567797     0.500000
-75\%        0.583333     0.541667      0.694915     0.708333
+25\%        0.249566     0.318454      0.118340     0.188394
+50\%        0.416213     0.414988      0.545490     0.525139
+75\%        0.594927     0.582168      0.666928     0.667018
 max        1.000000     1.000000      1.000000     1.000000
 \end{Verbatim}
 \end{tcolorbox}
         
-    The function \texttt{func\_plot\_histograms\_with\_PDF()} is called to
-plot the \textbf{histograms} with overlaid \textbf{probability density
-functions} implemented in the subsection
-\hyperref[histograms]{Histograms}:
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{42}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{features} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-\PY{n}{titles} \PY{o}{=}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-
-\PY{n}{func\PYZus{}plot\PYZus{}histograms\PYZus{}with\PYZus{}PDF}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{p}{,} \PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{)}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_139_0.png}\end{center}
-        \caption{Histograms with overlaid probability density functions (PDF) after normalization}
-        \label{fig:histogram_iris_with_PDF_norm}
-    \end{figure}
-    
     To display the \textbf{original data} with the \textbf{scaled data}
 side-by-side as \textbf{boxplots} with all \textbf{features in one
 scale}, the function \texttt{func\_boxplots\_comp\_scaling()} is
 implemented.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{77}{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{def} \PY{n+nf}{func\PYZus{}boxplots\PYZus{}comp\PYZus{}scaling}\PY{p}{(}\PY{n}{dataframes}\PY{p}{,} \PY{n}{titles}\PY{p}{)}\PY{p}{:}
     \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
@@ -4456,15 +4459,19 @@ implemented.
         \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
         \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
-        \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ data}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{)}
-        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ data}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{)}\PY{p}{)}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
     \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
+    Call the new function \texttt{func\_boxplots\_comp\_scaling()} to create
+the \textbf{boxplots} comparing \textbf{original data} with the
+\textbf{scaled data} side-by-side:
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{79}{\boxspacing}
+\prompt{In}{incolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{titles}     \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Normalized}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \PY{n}{dataframes} \PY{o}{=} \PY{p}{[}\PY{n}{irisdata\PYZus{}df}\PY{p}{,} \PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{p}{]}
@@ -4474,9 +4481,121 @@ implemented.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_141_0.png}\end{center}
         \caption{Boxplots comparing the original data with the normalized data with all features in one scale}
         \label{fig:boxplots_comp_orig_norm}
+    \end{figure}
+    
+    To compare the \textbf{original data} with the \textbf{scaled data}
+side-by-side as \textbf{histograms} with overlaid \textbf{probability
+density functions}, the function
+\texttt{func\_histograms\_comp\_scaling()} is implemented.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k+kn}{import} \PY{n}{norm}
+
+\PY{k}{def} \PY{n+nf}{func\PYZus{}histograms\PYZus{}comp\PYZus{}scaling}\PY{p}{(}\PY{n}{df\PYZus{}orig}\PY{p}{,} \PY{n}{df\PYZus{}scaled}\PY{p}{,} \PY{n}{features}\PY{p}{,}
+                                 \PY{n}{titles}\PY{p}{,} \PY{n}{scaling\PYZus{}type}\PY{p}{)}\PY{p}{:}
+
+    \PY{c+c1}{\PYZsh{} Number of bins for the histogram}
+    \PY{c+c1}{\PYZsh{} \PYZhy{} bins=\PYZlt{}integer\PYZgt{}: defines the number of equal\PYZhy{}width bins in the range}
+    \PY{c+c1}{\PYZsh{} \PYZhy{} bins=\PYZlt{}string\PYZgt{}: one of the binning strategies is used:}
+    \PY{c+c1}{\PYZsh{}   \PYZsq{}auto\PYZsq{}, \PYZsq{}fd\PYZsq{}, \PYZsq{}doane\PYZsq{}, \PYZsq{}scott\PYZsq{}, \PYZsq{}stone\PYZsq{}, \PYZsq{}rice\PYZsq{}, \PYZsq{}sturges\PYZsq{}, or \PYZsq{}sqrt\PYZsq{}}
+    \PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}
+    \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Set margins between subplots}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.4}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} Make subplots iterable via \PYZsq{}subplots.flatten()\PYZsq{}}
+    \PY{n}{subplot\PYZus{}list} \PY{o}{=} \PY{n}{subplots}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
+
+    \PY{n}{subplots\PYZus{}orig}   \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{]}
+    \PY{n}{subplots\PYZus{}scaled} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{]}
+
+    \PY{c+c1}{\PYZsh{} Show histograms with ORIGINAL data,}
+    \PY{c+c1}{\PYZsh{} so loop through list of subplots with EVEN indexes}
+    \PY{k}{for} \PY{n}{feature}\PY{p}{,} \PY{n}{title}\PY{p}{,} \PY{n}{index\PYZus{}subplt} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{,} \PY{n}{subplots\PYZus{}orig}\PY{p}{)}\PY{p}{:}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{df\PYZus{}orig}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{,}
+                                        \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,}
+                                        \PY{n}{density}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{)}
+
+        \PY{c+c1}{\PYZsh{} Fit a normal distribution to the data}
+        \PY{c+c1}{\PYZsh{} with mean and standard deviation}
+        \PY{n}{mu}\PY{p}{,} \PY{n}{std} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{df\PYZus{}orig}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{)}
+
+        \PY{c+c1}{\PYZsh{} Plot the probability density function (PDF)}
+        \PY{n}{xmin}\PY{p}{,} \PY{n}{xmax} \PY{o}{=} \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{get\PYZus{}xlim}\PY{p}{(}\PY{p}{)}
+        \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{xmin}\PY{p}{,} \PY{n}{xmax}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+
+        \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ (Mean: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZdq{}} \PYZbs{}
+                       \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Std. deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Show grid}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{original value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+
+    \PY{c+c1}{\PYZsh{} Show histograms with SCALED data,}
+    \PY{c+c1}{\PYZsh{} so loop through list of subplots with ODD indexes}
+    \PY{k}{for} \PY{n}{feature}\PY{p}{,} \PY{n}{title}\PY{p}{,} \PY{n}{index\PYZus{}subplt} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{,} \PY{n}{subplots\PYZus{}scaled}\PY{p}{)}\PY{p}{:}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{df\PYZus{}scaled}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{,}
+                                        \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,}
+                                        \PY{n}{density}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{)}
+
+        \PY{c+c1}{\PYZsh{} Fit a normal distribution to the data}
+        \PY{c+c1}{\PYZsh{} with mean and standard deviation}
+        \PY{n}{mu}\PY{p}{,} \PY{n}{std} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{df\PYZus{}scaled}\PY{p}{[}\PY{n}{feature}\PY{p}{]}\PY{p}{)}
+
+        \PY{c+c1}{\PYZsh{} Plot the probability density function (PDF)}
+        \PY{n}{xmin}\PY{p}{,} \PY{n}{xmax} \PY{o}{=} \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{get\PYZus{}xlim}\PY{p}{(}\PY{p}{)}
+        \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{xmin}\PY{p}{,} \PY{n}{xmax}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{norm}\PY{o}{.}\PY{n}{pdf}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+
+        \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ (Mean: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZdq{}} \PYZbs{}
+                       \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Std. deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Show grid}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ value range [cm]}\PY{l+s+s1}{\PYZsq{}}
+                                              \PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{scaling\PYZus{}type}\PY{p}{)}\PY{p}{)}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+    \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Call the new function \texttt{func\_histograms\_comp\_scaling()} to
+create the \textbf{histograms} with overlaid \textbf{probability density
+functions} comparing \textbf{original data} with the \textbf{normalized
+data} side-by-side:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{features} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\PY{n}{titles} \PY{o}{=}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+
+\PY{n}{func\PYZus{}histograms\PYZus{}comp\PYZus{}scaling}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{,} \PY{n}{irisdata\PYZus{}df\PYZus{}norm}\PY{p}{,}
+                             \PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{normalized}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_0.png}\end{center}
+        \caption{Histograms with overlaid probability density functions comparing original data with the normalized data}
+        \label{fig:histograms_comp_orig_norm}
     \end{figure}
     
     \hypertarget{standardization}{%
@@ -4509,7 +4628,7 @@ For further details read here:
 Standardization, or mean removal and variance scaling}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{81}{\boxspacing}
+\prompt{In}{incolor}{10}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{StandardScaler}
 
@@ -4529,7 +4648,7 @@ Standardization, or mean removal and variance scaling}.
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{82}{\boxspacing}
+\prompt{In}{incolor}{11}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Make a deep copy of original dataframe}
 \PY{n}{irisdata\PYZus{}df\PYZus{}std} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
@@ -4542,54 +4661,33 @@ Standardization, or mean removal and variance scaling}.
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{83}{\boxspacing}
+\prompt{In}{incolor}{12}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{83}{\boxspacing}
+\prompt{Out}{outcolor}{12}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        sepal\_length   sepal\_width  petal\_length   petal\_width
 count  1.500000e+02  1.500000e+02  1.500000e+02  1.500000e+02
-mean  -4.736952e-16 -6.631732e-16  3.315866e-16 -2.842171e-16
+mean   6.540370e-16  4.707346e-16 -3.841372e-16  6.550316e-16
 std    1.003350e+00  1.003350e+00  1.003350e+00  1.003350e+00
-min   -1.870024e+00 -2.438987e+00 -1.568735e+00 -1.444450e+00
-25\%   -9.006812e-01 -5.877635e-01 -1.227541e+00 -1.181504e+00
-50\%   -5.250608e-02 -1.249576e-01  3.362659e-01  1.332259e-01
-75\%    6.745011e-01  5.692513e-01  7.627586e-01  7.905908e-01
-max    2.492019e+00  3.114684e+00  1.786341e+00  1.710902e+00
+min   -1.935104e+00 -2.269588e+00 -1.616094e+00 -1.748009e+00
+25\%   -8.197073e-01 -6.601747e-01 -1.194055e+00 -1.037286e+00
+50\%   -7.490796e-02 -1.723030e-01  3.293038e-01  2.331012e-01
+75\%    7.238294e-01  6.725982e-01  7.623925e-01  7.683478e-01
+max    2.534237e+00  2.784252e+00  1.950237e+00  2.024539e+00
 \end{Verbatim}
 \end{tcolorbox}
         
-    The function \texttt{func\_plot\_histograms\_with\_PDF()} is called to
-plot the \textbf{histograms} with overlaid \textbf{probability density
-functions} implemented in the subsection
-\hyperref[histograms]{Histograms}:
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{84}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{features} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-\PY{n}{titles} \PY{o}{=}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-
-\PY{n}{func\PYZus{}plot\PYZus{}histograms\PYZus{}with\PYZus{}PDF}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{p}{,} \PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{)}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_148_0.png}\end{center}
-        \caption{Histograms with overlaid probability density functions (PDF) after standarization}
-        \label{fig:histogram_iris_with_PDF_std}
-    \end{figure}
-    
     As in the previous section, the \textbf{original} and the
 \textbf{standardized data} are plotted as side-by-side \textbf{boxplots}
 with all \textbf{features at one scale}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{85}{\boxspacing}
+\prompt{In}{incolor}{13}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{titles}     \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Standardized}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \PY{n}{dataframes} \PY{o}{=} \PY{p}{[}\PY{n}{irisdata\PYZus{}df}\PY{p}{,} \PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{p}{]}
@@ -4599,27 +4697,33 @@ with all \textbf{features at one scale}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_150_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_151_0.png}\end{center}
         \caption{Boxplots comparing the original data with the standardized data with all features in one scale}
         \label{fig:boxplots_comp_orig_std}
     \end{figure}
     
-    \hypertarget{discretization-clustering}{%
-\subsubsection{Discretization
-(clustering)}\label{discretization-clustering}}
+    As in the previous section, the \textbf{original} and the
+\textbf{standardized data} are plotted as side-by-side
+\textbf{histograms} with overlaid \textbf{probability density
+functions}.
 
-See
-\href{https://scikit-learn.org/stable/modules/preprocessing.html\#discretization}{scikit-learn:
-Discretization}.
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{14}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{features} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\PY{n}{titles} \PY{o}{=}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 
-    \hypertarget{encoding-categorical-features}{%
-\subsubsection{Encoding categorical
-features}\label{encoding-categorical-features}}
+\PY{n}{func\PYZus{}histograms\PYZus{}comp\PYZus{}scaling}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{,} \PY{n}{irisdata\PYZus{}df\PYZus{}std}\PY{p}{,}
+                             \PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{standardized}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
 
-See
-\href{https://scikit-learn.org/stable/modules/preprocessing.html\#encoding-categorical-features}{scikit-learn:
-Encoding categorical features}.
-
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_153_0.png}\end{center}
+        \caption{Histograms with overlaid probability density functions comparing original data with the standardized data}
+        \label{fig:histograms_comp_orig_std}
+    \end{figure}
+    
     \hypertarget{step-5-carry-out-training-prediction-and-testing}{%
 \section{STEP 5: Carry out training, prediction and
 testing}\label{step-5-carry-out-training-prediction-and-testing}}
@@ -4935,7 +5039,7 @@ colored confusion matrix.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_177_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_178_0.png}\end{center}
         \caption{Checking the accuracy of the model by using the confusion matrix for cross-validation}
         \label{fig:confusion_matrix}
     \end{figure}
@@ -5186,7 +5290,7 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_198_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_199_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
@@ -5226,7 +5330,7 @@ exactly fit the training dataset. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_200_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_201_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
@@ -5252,7 +5356,7 @@ as the classifier tries to perfectly fit the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_202_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_203_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy}
         \label{fig:plot_vary_gamma}
     \end{figure}
@@ -5291,7 +5395,7 @@ the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_204_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_205_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
@@ -5317,7 +5421,7 @@ But be careful: to high \texttt{C} values may lead to
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_206_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_207_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'C' against the prediction accuracy}
         \label{fig:plot_vary_c}
     \end{figure}
@@ -5361,7 +5465,7 @@ training times}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_208_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_209_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
@@ -5387,7 +5491,7 @@ hyperplane leads to \textbf{overfitting} the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_210_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_211_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy}
         \label{fig:plot_vary_degree}
     \end{figure}
@@ -5639,7 +5743,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_228_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_229_0.png}\end{center}
         \caption{Confusion matrix for cross-validation of the baseline}
         \label{fig:cm_baseline}
     \end{figure}
@@ -5862,7 +5966,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_248_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_249_0.png}\end{center}
         \caption{Pairs plot of the original Iris dataset}
         \label{fig:pairs_plot_orig_Iris}
     \end{figure}
@@ -5876,7 +5980,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_249_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_250_0.png}\end{center}
         \caption{Pairs plot of the noised Iris dataset}
         \label{fig:pairs_plot_noised_Iris}
     \end{figure}
@@ -6017,7 +6121,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_261_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_262_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the grid search has been performed}
         \label{fig:cm_grid_search}
     \end{figure}
@@ -6177,7 +6281,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_272_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_273_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the randomized search has been performed}
         \label{fig:cm_random_search}
     \end{figure}
@@ -6280,10 +6384,9 @@ Finally, a corresponding SVC model was implemented.
 In \textbf{Step 4} the dataset was preprocessed for the actual
 classification by SVC. Depending on the selected ML algorithm as well as
 the data structure, it could be necessary to prepare the data before
-training, e.g., by \textbf{standardization}, \textbf{normalization}, or
-\textbf{discretization} to cluster the data based on thresholds. For the
-Iris dataset used, standardization was sufficient to align the value
-ranges of the features.
+training, e.g., by \textbf{standardization} or \textbf{normalization}.
+For the Iris dataset used, standardization was sufficient to align the
+value ranges of the features.
 
 After splitting the dataset into a \textbf{training and test dataset},
 the SVC model was trained with the training dataset in \textbf{step 5}.
@@ -6415,11 +6518,9 @@ Im \textbf{Schritt 4} wurde der Datensatz für die eigentliche
 Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus
 sowie der Datenstruktur konnte es erforderlich sein, dass die Daten vor
 dem Training aufbereitet werden mussten, z. B. durch
-\textbf{Standardisierung}, \textbf{Normalisierung} oder
-\textbf{Diskretisierung}, um die Daten anhand von Schwellenwerten zu
-gruppieren. Für den verwendeten Iris-Datensatz genügte eine
-Standardisierung, um die Wertebereiche der Features aneinander
-anzugleichen.
+\textbf{Standardisierung} oder \textbf{Normalisierung}. Für den
+verwendeten Iris-Datensatz genügte eine Standardisierung, um die
+Wertebereiche der Features aneinander anzugleichen.
 
 Nach der Aufteilung des Datensatzes in einen \textbf{Trainings- und
 Testdatensatz}, wurde das SVC-Modell im \textbf{Schritt 5} mit dem
@@ -6492,7 +6593,7 @@ Mein Vorschlag, einen eigenen Getting-Started-Workshop für interessierte
 ML-Neulinge zu gestalten, wurde dort sehr positiv aufgenommen. Das hat
 mich für die Ausarbeitung des vorliegenden Tutorials sehr motiviert.
 
-Mein besonderer Dank gilt Herrn Prof.~André Steimers, der mit langen und
+Mein besonderer Dank gilt Herrn Prof.~Andre Steimers, der mit langen und
 sehr interessanten Fachgesprächen, dem Lesen von Rohfassungen und seiner
 konstruktiven Kritik viel Zeit investierte.
 
@@ -6510,7 +6611,7 @@ für seine Geduld mit Papa. Er hätte sicherlich das ein oder andere Mal
 lieber ``Die Sendung mit der Maus'' statt seltsamer Grafiken mit mir auf
 dem Rechner angeschaut.
 
-Dresden, 07.10.2022
+Dresden, 10.10.2022
 
 
     % Add a bibliography block to the postdoc

@@ -62,7 +62,7 @@ One of the most important steps in the entire ML process is **step 2**, in which
 
 After exploring the dataset, in **step 3** one has to decide on a specific ML algorithm based on certain selection criteria. Among other ML algorithms suitable for the Iris dataset (such as the decision-tree-based **random-forests classifier**), the reasoned choice here in the tutorial falls on the **support vector classifier**. A dedicated SVC model is now being implemented.
 
-In **step 4** the dataset is preprocessed for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by standardization, normalization, or discretization to cluster the data based on thresholds). After splitting the dataset into a training and test dataset, the SVC model is trained with the training dataset in **step 5**. Subsequently, classification predictions are made with the trained SVC model based on the test data. In **step 6**, the quality of the classification result is evaluated using known **metrics** such as the **confusion matrix**.
+In **step 4** the dataset is preprocessed for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by standardization or normalization). After splitting the dataset into a training and test dataset, the SVC model is trained with the training dataset in **step 5**. Subsequently, classification predictions are made with the trained SVC model based on the test data. In **step 6**, the quality of the classification result is evaluated using known **metrics** such as the **confusion matrix**.
 
 Since the classification in step 5 was initially performed with standard parameters (so-called **hyper-parameters**), their meaning is explained in **step 7** and then their effect on the classification result is demonstrated by manually varying the individual hyper-parameters.
 
@@ -114,7 +114,7 @@ Mit der wichtigste Schritt im gesamten ML-Prozess ist **Schritt 2**, in dem der 
 
 Nach der Erkundung des Datensatzes muss man sich im **Schritt 3** anhand bestimmter Auswahlkriterien für einen konkreten ML-Algorithmus entscheiden. Neben anderen für den Iris-Datensatz passenden ML-Algorithmen (wie z. B. der entscheidungsbaum-basierte **Random-forests-Classifier**) fällt die begründete Auswahl hier im Tutorial auf den **Support-Vector-Classifier**. Ein entsprechendes SVC-Modell wird nun implementiert.
 
-Im **Schritt 4** wird der Datensatz für die eigentliche Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus sowie der Datenstruktur kann es erforderlich sein, dass die Daten vor dem Training aufbereitet werden müssen (z. B. durch Standardisierung, Normalisierung oder **Diskretisierung**, um die Daten anhand von Schwellenwerten zu gruppieren). Nach der Aufteilung des Datensatzes in einen Trainings- und Testdatensatz, wird das SVC-Modell im **Schritt 5** mit dem Trainingsdatensatz trainiert. Anschließend werden mit dem trainierten SVC-Modell anhand der Testdaten Klassifikationsvorhersagen getroffen. Im **Schritt 6** wird die Güte des Klassifikationsergebnisses anhand bekannter **Metriken** wie z. B. der **Konfusionsmatrix** evaluiert.
+Im **Schritt 4** wird der Datensatz für die eigentliche Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus sowie der Datenstruktur kann es erforderlich sein, dass die Daten vor dem Training aufbereitet werden müssen (z. B. durch Standardisierung oder Normalisierung). Nach der Aufteilung des Datensatzes in einen Trainings- und Testdatensatz, wird das SVC-Modell im **Schritt 5** mit dem Trainingsdatensatz trainiert. Anschließend werden mit dem trainierten SVC-Modell anhand der Testdaten Klassifikationsvorhersagen getroffen. Im **Schritt 6** wird die Güte des Klassifikationsergebnisses anhand bekannter **Metriken** wie z. B. der **Konfusionsmatrix** evaluiert.
 
 Da die Klassifikation im Schritt 5 zunächst mit Standard-Parametern (den sogenannten **Hyper-Parametern**) durchgeführt wurde, wird ihre Bedeutung im **Schritt 7** erklärt und danach ihr Einfluss auf das Klassifikationsergebnis durch manuelle Variation der einzelnen Hyper-Parameter demonstriert.
 
@@ -616,6 +616,9 @@ axs[0,0].set_title('Sepal Length')
 axs[0,0].grid(visible=True)
 # Hide grid behind the bars
 axs[0,0].set_axisbelow(True)
+# Label x and y-axis
+axs[0,0].set_xlabel('value range [cm]')
+axs[0,0].set_ylabel('frequency density')
 
 axs[0,1].hist(irisdata_df['sepal_width'], bins = n_bins, rwidth=0.95)
 axs[0,1].set_title('Sepal Width')
@@ -623,6 +626,9 @@ axs[0,1].set_title('Sepal Width')
 axs[0,1].grid(visible=True)
 # Hide grid behind the bars
 axs[0,1].set_axisbelow(True)
+# Label x and y-axis
+axs[0,1].set_xlabel('value range [cm]')
+axs[0,1].set_ylabel('frequency density')
 
 axs[1,0].hist(irisdata_df['petal_length'], bins = n_bins, rwidth=0.95)
 axs[1,0].set_title('Petal Length')
@@ -630,6 +636,9 @@ axs[1,0].set_title('Petal Length')
 axs[1,0].grid(visible=True)
 # Hide grid behind the bars
 axs[1,0].set_axisbelow(True)
+# Label x and y-axis
+axs[1,0].set_xlabel('value range [cm]')
+axs[1,0].set_ylabel('frequency density')
 
 axs[1,1].hist(irisdata_df['petal_width'], bins = n_bins, rwidth=0.95)
 axs[1,1].set_title('Petal Width')
@@ -637,6 +646,9 @@ axs[1,1].set_title('Petal Width')
 axs[1,1].grid(visible=True)
 # Hide grid behind the bars
 axs[1,1].set_axisbelow(True)
+# Label x and y-axis
+axs[1,1].set_xlabel('value range [cm]')
+axs[1,1].set_ylabel('frequency density')
 
 plt.show()
 ```
@@ -680,6 +692,9 @@ def func_plot_histograms_with_PDF(df, features, titles):
         subplot.grid(visible=True)
         # Hide grid behind the bars
         subplot.set_axisbelow(True)
+        # Label x and y-axis
+        subplot.set_xlabel('value range [cm]')
+        subplot.set_ylabel('frequency density')
 
     plt.show()
 ```
@@ -719,6 +734,10 @@ for feature, subplot in zip(features, subplots.flatten()):
     subplot.grid(axis='y')
     # Hide grid behind the bars
     subplot.set_axisbelow(True)
+    # Set title of subplot
+    subplot.set_title('Feature: {}'.format(feature))
+    # Label y-axis
+    subplot.set_ylabel('value range [cm]')
     
 plt.show()
 ```
@@ -747,6 +766,10 @@ for feature, subplot in zip(features, subplots.flatten()):
     subplot.grid(axis='y')
     # Hide grid behind the bars
     subplot.set_axisbelow(True)
+    # Set title of subplot
+    subplot.set_title('Feature: {}'.format(feature))
+    # Label y-axis
+    subplot.set_ylabel('value range [cm]')
     
 plt.show()
 ```
@@ -1131,6 +1154,8 @@ sns.FacetGrid(irisdata_df, hue ="species",
 
 
 plt.title('Scatterplot of petal length and width')
+plt.xlabel('petal width [cm]')
+plt.ylabel('petal length [cm]')
 plt.show()
 ```
 
@@ -1364,7 +1389,7 @@ Through the intensive exploration of the data (see [STEP 2: Explore the ML datas
 <!-- #endregion -->
 
 <!-- #region tags=[] -->
-## Transform the dataset (feature scaling)
+## Transform the dataset by feature scaling
 
 Some machine learning algorithms are very sensitive to feature scaling, while others are virtually unaffected.
 
@@ -1455,15 +1480,6 @@ irisdata_df_norm.iloc[:, 0:4] = irisdata_np_norm
 irisdata_df_norm.describe()
 ```
 
-The function `func_plot_histograms_with_PDF()` is called to plot the **histograms** with overlaid **probability density functions** implemented in the subsection [Histograms](#Histograms):
-
-```python caption="Histograms with overlaid probability density functions (PDF) after normalization" tags=[] label="fig:histogram_iris_with_PDF_norm" widefigure=true
-features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
-titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
-
-func_plot_histograms_with_PDF(irisdata_df_norm, features, titles)
-```
-
 To display the **original data** with the **scaled data** side-by-side as **boxplots** with all **features in one scale**, the function `func_boxplots_comp_scaling()` is implemented.
 
 ```python tags=[]
@@ -1486,11 +1502,13 @@ def func_boxplots_comp_scaling(dataframes, titles):
         subplot.grid(axis='y')
         # Hide grid behind the bars
         subplot.set_axisbelow(True)
-        title_concat = "{} data".format(title)
-        subplot.set_title(title_concat)
+        subplot.set_title('{} data'.format(title))
+        subplot.set_ylabel('value range [cm]')
 
     plt.show()
 ```
+
+Call the new function `func_boxplots_comp_scaling()` to create the **boxplots** comparing **original data** with the **scaled data** side-by-side:
 
 ```python caption="Boxplots comparing the original data with the normalized data with all features in one scale" tags=[] label="fig:boxplots_comp_orig_norm" widefigure=true
 titles     = ['Original', 'Normalized']
@@ -1499,7 +1517,101 @@ dataframes = [irisdata_df, irisdata_df_norm]
 func_boxplots_comp_scaling(dataframes, titles)
 ```
 
-<!-- #region tags=["TODO_Step_4"] -->
+To compare the **original data** with the **scaled data** side-by-side as **histograms** with overlaid **probability density functions**, the function `func_histograms_comp_scaling()` is implemented.
+
+```python
+from scipy.stats import norm
+
+def func_histograms_comp_scaling(df_orig, df_scaled, features,
+                                 titles, scaling_type):
+
+    # Number of bins for the histogram
+    # - bins=<integer>: defines the number of equal-width bins in the range
+    # - bins=<string>: one of the binning strategies is used:
+    #   'auto', 'fd', 'doane', 'scott', 'stone', 'rice', 'sturges', or 'sqrt'
+    n_bins = 'auto'
+    fig, subplots = plt.subplots(4, 2, figsize=(12, 16))
+    # Set margins between subplots
+    plt.subplots_adjust(wspace=0.3, hspace=0.4)
+
+    # Make subplots iterable via 'subplots.flatten()'
+    subplot_list = subplots.flatten()
+
+    subplots_orig   = [0, 2, 4, 6]
+    subplots_scaled = [1, 3, 5, 7]
+
+    # Show histograms with ORIGINAL data,
+    # so loop through list of subplots with EVEN indexes
+    for feature, title, index_subplt in zip(features, titles, subplots_orig):
+        subplot_list[index_subplt].hist(df_orig[feature],
+                                        bins = n_bins, rwidth=0.95,
+                                        density=True, alpha=0.8)
+
+        # Fit a normal distribution to the data
+        # with mean and standard deviation
+        mu, std = norm.fit(df_orig[feature])
+
+        # Plot the probability density function (PDF)
+        xmin, xmax = subplot_list[index_subplt].get_xlim()
+        x = np.linspace(xmin, xmax, 100)
+        p = norm.pdf(x, mu, std)
+        subplot_list[index_subplt].plot(x, p, 'k', linewidth=2)
+
+        title_concat = "{} (Mean: {:.2f}, " \
+                       "Std. deviation: {:.2f})".format(title, mu, std)
+        subplot_list[index_subplt].set_title(title_concat)
+        # Show grid
+        subplot_list[index_subplt].grid(visible=True)
+        # Hide grid behind the bars
+        subplot_list[index_subplt].set_axisbelow(True)
+        # Label x and y-axis
+        subplot_list[index_subplt].set_xlabel('original value range [cm]')
+        subplot_list[index_subplt].set_ylabel('frequency density')
+
+
+    # Show histograms with SCALED data,
+    # so loop through list of subplots with ODD indexes
+    for feature, title, index_subplt in zip(features, titles, subplots_scaled):
+        subplot_list[index_subplt].hist(df_scaled[feature],
+                                        bins = n_bins, rwidth=0.95,
+                                        density=True, alpha=0.8)
+
+        # Fit a normal distribution to the data
+        # with mean and standard deviation
+        mu, std = norm.fit(df_scaled[feature])
+
+        # Plot the probability density function (PDF)
+        xmin, xmax = subplot_list[index_subplt].get_xlim()
+        x = np.linspace(xmin, xmax, 100)
+        p = norm.pdf(x, mu, std)
+        subplot_list[index_subplt].plot(x, p, 'k', linewidth=2)
+
+        title_concat = "{} (Mean: {:.2f}, " \
+                       "Std. deviation: {:.2f})".format(title, mu, std)
+        subplot_list[index_subplt].set_title(title_concat)
+        # Show grid
+        subplot_list[index_subplt].grid(visible=True)
+        # Hide grid behind the bars
+        subplot_list[index_subplt].set_axisbelow(True)
+        # Label x and y-axis
+        subplot_list[index_subplt].set_xlabel('{} value range [cm]'
+                                              .format(scaling_type))
+        subplot_list[index_subplt].set_ylabel('frequency density')
+
+    plt.show()
+```
+
+Call the new function `func_histograms_comp_scaling()` to create the **histograms** with overlaid **probability density functions** comparing **original data** with the **normalized data** side-by-side:
+
+```python caption="Histograms with overlaid probability density functions comparing original data with the normalized data" tags=[] label="fig:histograms_comp_orig_norm" widefigure=true
+features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
+titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
+
+func_histograms_comp_scaling(irisdata_df, irisdata_df_norm,
+                             features, titles, 'normalized')
+```
+
+<!-- #region tags=[] -->
 ### Standardization
 
 **Standardization** is another scaling technique in which **values are centered around the mean** with a **unit standard deviation**. That is, the **mean** of the feature **becomes zero** and the resulting **distribution** has a **unit standard deviation** (see <cite data-cite="feature_scaling_2020">Bhandari, 2020</cite>).
@@ -1547,15 +1659,6 @@ irisdata_df_std.iloc[:, 0:4] = irisdata_np_std
 irisdata_df_std.describe()
 ```
 
-The function `func_plot_histograms_with_PDF()` is called to plot the **histograms** with overlaid **probability density functions** implemented in the subsection [Histograms](#Histograms):
-
-```python caption="Histograms with overlaid probability density functions (PDF) after standarization" tags=[] label="fig:histogram_iris_with_PDF_std" widefigure=true
-features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
-titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
-
-func_plot_histograms_with_PDF(irisdata_df_std, features, titles)
-```
-
 As in the previous section, the **original** and the **standardized data** are plotted as side-by-side **boxplots** with all **features at one scale**.
 
 ```python caption="Boxplots comparing the original data with the standardized data with all features in one scale" tags=[] label="fig:boxplots_comp_orig_std" widefigure=true
@@ -1565,14 +1668,15 @@ dataframes = [irisdata_df, irisdata_df_std]
 func_boxplots_comp_scaling(dataframes, titles)
 ```
 
-### Discretization (clustering)
+As in the previous section, the **original** and the **standardized data** are plotted as side-by-side **histograms** with overlaid **probability density functions**.
 
-See [scikit-learn: Discretization](https://scikit-learn.org/stable/modules/preprocessing.html#discretization).
+```python caption="Histograms with overlaid probability density functions comparing original data with the standardized data" tags=[] label="fig:histograms_comp_orig_std" widefigure=true
+features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
+titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
-
-### Encoding categorical features
-
-See [scikit-learn: Encoding categorical features](https://scikit-learn.org/stable/modules/preprocessing.html#encoding-categorical-features).
+func_histograms_comp_scaling(irisdata_df, irisdata_df_std,
+                             features, titles, 'standardized')
+```
 
 <!-- #region toc-hr-collapsed=true tags=[] -->
 # STEP 5: Carry out training, prediction and testing
@@ -2512,7 +2616,7 @@ As stated above, in **Step 1** the ready-made and very beginner-friendly **Iris 
 
 In **Step 3**, a very brief introduction to the world of artificial intelligence and machine learning was given. The introduction was supported by a **taxonomy of different types of learning** and the listing of selected ML algorithms. A **decision graph** was used to justify the choice of the Support Vector Classifier (SVC) for the classification task at hand. Afterwards, the basic working principle of the SVC including the so-called **kernel trick** was explained. Finally, a corresponding SVC model was implemented.
 
-In **Step 4** the dataset was preprocessed for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it could be necessary to prepare the data before training, e.g., by **standardization**, **normalization**, or **discretization** to cluster the data based on thresholds. For the Iris dataset used, standardization was sufficient to align the value ranges of the features.
+In **Step 4** the dataset was preprocessed for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it could be necessary to prepare the data before training, e.g., by **standardization** or **normalization**. For the Iris dataset used, standardization was sufficient to align the value ranges of the features.
 
 After splitting the dataset into a **training and test dataset**, the SVC model was trained with the training dataset in **step 5**. Subsequently, **classification predictions** were made with the trained SVC model using the test data.
 
@@ -2543,7 +2647,7 @@ Wie oben begründet, wurde im **Schritt 1** der fertige und sehr einsteigerfreun
 
 Im **Schritt 3** wurde zunächst eine sehr kurze Einführung in die Welt der künstlichen Intelligenz und des maschinellen Lernens gegeben. Unterstützt wurde die Einführung durch eine **Taxonomie der verschiedenen Lernarten** und der Nennung ausgewählter ML-Algorithmen. Anhand eines **Entscheidungsgraphes** wurde die Wahl des Support Vector Classifiers (SVC) für die vorliegende Klassifikationsaufgabe begründet. Danach wurde das grundsätzliche Funktionsprinzip des SVC einschließlich des sog. **Kernel-Tricks** erläutert. Abschließend wurde ein entsprechendes SVC-Modell implementiert.
 
-Im **Schritt 4** wurde der Datensatz für die eigentliche Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus sowie der Datenstruktur konnte es erforderlich sein, dass die Daten vor dem Training aufbereitet werden mussten, z. B. durch **Standardisierung**, **Normalisierung** oder **Diskretisierung**, um die Daten anhand von Schwellenwerten zu gruppieren. Für den verwendeten Iris-Datensatz genügte eine Standardisierung, um die Wertebereiche der Features aneinander anzugleichen.
+Im **Schritt 4** wurde der Datensatz für die eigentliche Klassifikation per SVC vorbereitet. Je nach gewähltem ML-Algorithmus sowie der Datenstruktur konnte es erforderlich sein, dass die Daten vor dem Training aufbereitet werden mussten, z. B. durch **Standardisierung** oder **Normalisierung**. Für den verwendeten Iris-Datensatz genügte eine Standardisierung, um die Wertebereiche der Features aneinander anzugleichen.
 
 Nach der Aufteilung des Datensatzes in einen **Trainings- und Testdatensatz**, wurde das SVC-Modell im **Schritt 5** mit dem Trainingsdatensatz trainiert. Anschließend wurden mit dem trainierten SVC-Modell anhand der Testdaten **Klassifikationsvorhersagen** getroffen.
 
@@ -2564,11 +2668,11 @@ Wie oben erläutert, beschränkt sich das Tutorial bisher auf die Vorstellung de
 
 Vor einem reichlichen Jahr wurde ich eingeladen, im Vorbereitungskomitee für die DGUV-Fachtagung "Künstliche Intelligenz" mitwirken zu dürfen. Mein Vorschlag, einen eigenen Getting-Started-Workshop für interessierte ML-Neulinge zu gestalten, wurde dort sehr positiv aufgenommen. Das hat mich für die Ausarbeitung des vorliegenden Tutorials sehr motiviert.
 
-Mein besonderer Dank gilt Herrn Prof. André Steimers, der mit langen und sehr interessanten Fachgesprächen, dem Lesen von Rohfassungen und seiner konstruktiven Kritik viel Zeit investierte.
+Mein besonderer Dank gilt Herrn Prof. Andre Steimers, der mit langen und sehr interessanten Fachgesprächen, dem Lesen von Rohfassungen und seiner konstruktiven Kritik viel Zeit investierte.
 
 Weiterhin danke ich meinen Kollegen des Dresdener Prüflabors dafür, dass sie sich jederzeit trotz sehr hohem Prüfaufkommen Zeit für meine themenbezogene Fachsimpelei genommen haben. Insbesondere konnte ich während dieser Gespräche meine Gedankengänge und Formulierungen auf Verständlichkeit und Nachvollziehbarkeit prüfen.
 
 Abschließend möchte ich meiner Lebensgefährtin danken, dass sie erste Textentwürfe kritisch Korrektur gelesen hat und mir ansonsten den Rücken freigehalten hat - auch wenn ich nach Feierabend oder an den Wochenenden programmiert und geschrieben habe. Unserem zweijährigen Sohn danke ich für seine Geduld mit Papa. Er hätte sicherlich das ein oder andere Mal lieber "Die Sendung mit der Maus" statt seltsamer Grafiken mit mir auf dem Rechner angeschaut.
 
-Dresden, 07.10.2022
+Dresden, 10.10.2022
 <!-- #endregion -->
