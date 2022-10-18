@@ -783,7 +783,7 @@ This section was inspired by [Working with Missing Data in Pandas](https://www.g
 
 #### Check for missing values using `isnull()`
 
-In order to check for missing values in Pandas DataFrame, we use the function `isnull()`. This function returns a dataframe of Boolean values which are True for **NaN values**.
+In order to check for missing values in a Pandas DataFrame, the function `isnull()` is used here. This function returns a dataframe of boolean values which are `True` for **NaN values**.
 <!-- #endregion -->
 
 ```python
@@ -802,15 +802,17 @@ irisdata_df_gaps = irisdata_df[irisdata_df.isnull().any(axis=1)]
 irisdata_df_gaps
 ```
 
-Fine - this dataset seems to be complete :)
+Fine - the **Iris dataset** seems to be **complete** :)
 
-So let's look for something else for exercise: [employes.csv](https://media.geeksforgeeks.org/wp-content/uploads/employees.csv)
+So let's look for **something else for exercise**. The original [employes](https://media.geeksforgeeks.org/wp-content/uploads/employees.csv) dataset used in the next subsections was slightly modified.
+
+```python
+# Import data to dataframe from csv file
+employees_df = pd.read_csv("./datasets/employees_edit.csv")
+```
 
 ```python tags=[]
-# import data to dataframe from csv file
-employees_df = pd.read_csv("./datasets/employees_edit.csv")
-
-# highlight cells with NaN values
+# Highlight cells with NaN values
 # HINT: Set to 'False' when compiling to PDF!
 highlight = False
 
@@ -822,12 +824,12 @@ if highlight:
 employees_df_hl
 ```
 
-Show only the gaps from this gappy dataset again:
+Show only the **gaps** (NaN values) from this incomplete dataset again:
 
 ```python tags=[]
 employees_df_gaps = employees_df[employees_df.isnull().any(axis=1)]
 
-# highlight cells with NaN values
+# Highlight cells with NaN values
 # HINT: Set to 'False' when compiling to PDF!
 highlight = False
 
@@ -842,42 +844,65 @@ employees_df_gaps
 
 Now all null values (NaN) in the column "Gender" of the data type String are filled with *"No gender "*.
 
-**Warning:** We are doing that directly in this dataframe with `inplace = True` - we don't make a deep copy!
+**Warning:** The following example replaces the strings directly in the original dataframe with `inplace = True` - no deep copy is made!
 <!-- #endregion -->
 
 ```python tags=[]
-# filling a null values using fillna()
-employees_df["Gender"].fillna("No Gender", inplace = True)
+# Fill all null values in column 'Gender' using fillna()
+employees_df['Gender'].fillna('No Gender', inplace = True)
 
-# switch to apply highlight style to dataframe
+# Switch to apply highlight style to dataframe
 # HINT: Set to 'False' when compiling to PDF!
 highlight = False
 
-employees_df_filled = employees_df
+# Show only rows with subtituted 'Gender' column
+employees_df_filled_gender = employees_df[employees_df['Gender'] == 'No Gender']
 
 if highlight:
-    # highlight cells by condition
-    employees_df_filled = employees_df.style.apply(lambda x: 
-                                                   ["background: yellow" 
+    # Highlight cells by condition
+    employees_df_filled_gender = employees_df_filled_gender.style.apply(lambda x: 
+                                                   ['background: yellow' 
                                                     if v == 'No Gender' 
                                                     else "" for v in x], 
                                                    axis = 1)
 
-employees_df_filled
+employees_df_filled_gender
 ```
 
-<!-- #region tags=["TODO_Step_2_1"] -->
+<!-- #region tags=[] -->
 #### Fill in missing *numerical* values with median values
 
-Missing integer or float values can be filled with the **median values of the corresponding column**.
+Missing integer or float values can be filled with the **mean** or **median values** of the corresponding feature column.
 
-**@TODO:**  
-Incorporate section "4.1.3 Fehlende Werte ergänzen" of the book `mitp_Praxishandbuch_Machine_Learning_Python_Scikit-learn_TensorFlow_2018_Anm_bk.pdf` (see <cite data-cite="ML_ScL_2018">Raschka and Mirjalili, 2018</cite>).
+Often, **removing individual rows** in the dataset or even entire feature columns is **impractical** because too much valuable data would be lost. In this case, various **interpolation procedures** can be used to estimate the missing values based on the other values present in the data set. The most common interpolation methods are **mean** and **median imputation**, where missing values are replaced by the **mean** or **median** of the entire feature column (see <cite data-cite="ML_ScL_2018">Raschka and Mirjalili, 2018</cite>).
 
-- https://www.statology.org/pandas-fillna-with-median/
-- https://stackoverflow.com/questions/18689823/pandas-dataframe-replace-nan-values-with-average-of-columns
-- https://scikit-learn.org/stable/modules/impute.html
+Further information on the subject of **imputation** can be found here, among other places:
+
+- [Pandas: How to Fill NaN Values with Median (3 Examples)](https://www.statology.org/pandas-fillna-with-median)
+- [pandas DataFrame: replace nan values with average of columns](https://stackoverflow.com/questions/18689823/pandas-dataframe-replace-nan-values-with-average-of-columns)
+- [scikit-learn: Imputation of missing values](https://scikit-learn.org/stable/modules/impute.html)
 <!-- #endregion -->
+
+```python tags=[]
+# Show rows with missing salary only
+employees_df_gaps = employees_df[employees_df['Salary'].isnull()]
+employees_df_gaps
+```
+
+```python
+# Get indices of incomplete rows
+employees_df_gaps.index.to_list()
+```
+
+```python
+# Fill missing values with the median of the 'salary' column
+# and replace NaN values in the original dataframe
+employees_df['Salary'] = employees_df['Salary'] \
+                         .fillna(employees_df['Salary'].median())
+
+# Show rows with replaced 'salary' by index and its direct neighbours
+employees_df.iloc[[16, 17, 18, 62, 63, 64, 75, 76, 77]]
+```
 
 <!-- #region tags=[] -->
 #### Drop missing values using `dropna()`
@@ -889,7 +914,7 @@ Giving the parameter `how = 'all'` the function drops rows with all data missing
 <!-- #endregion -->
 
 ```python tags=[]
-# making a new dataframe with dropped NaN values
+# Make a new dataframe with dropped NaN values
 employees_df_dropped = employees_df.dropna(axis = 0, how ='any')
 employees_df_dropped
 ```
@@ -906,6 +931,7 @@ print("Number of rows with at least 1 NaN value: ",
 ### Find and remove duplicates in dataset
 
 This section was inspired by:
+
 - [How to Find Duplicates in Pandas DataFrame (With Examples)](https://www.statology.org/pandas-find-duplicates/)
 - [How to Drop Duplicate Rows in a Pandas DataFrame](https://www.statology.org/pandas-drop-duplicates/)
 
@@ -913,24 +939,20 @@ This section was inspired by:
 #### Check for duplicate values using `duplicated()`
 
 In order to check for duplicate values in Pandas DataFrame, we use a function `duplicated()`. This function can be used in two ways:
-- find duplicate rows across **all columns** with `duplicateRows = df[df.duplicated()]`
-- find duplicate rows across **specific columns** `duplicateRows = df[df.duplicated(subset=['col1', 'col2'])]`
+
+- find duplicate rows across **all columns** with `df.duplicated()`
+- find duplicate rows across **specific columns** with `df.duplicated(subset=['col1', 'col2'])`
 
 Find duplicate rows across **all columns**:
 
 ```python
-# import (again) data to dataframe from csv file
-employees_df = pd.read_csv("./datasets/employees_edit.csv")
-```
-
-```python
-# find duplicate rows across all columns
+# Find duplicate rows across all columns
 duplicateRows = employees_df[employees_df.duplicated()]
 duplicateRows
 ```
 
 ```python
-# argument keep=’last’ displays the first duplicate rows instead of the last
+# Argument keep=’last’ displays the first duplicate rows instead of the last
 duplicateRows = employees_df[employees_df.duplicated(keep='last')]
 duplicateRows
 ```
@@ -938,14 +960,14 @@ duplicateRows
 Find duplicate rows across **specific columns**:
 
 ```python
-# identify duplicate rows across 'First Name' and 'Last Login Time' columns
+# Identify duplicate rows across 'First Name' and 'Last Login Time' columns
 duplicateRows = employees_df[employees_df.duplicated(
                     subset=['First Name', 'Last Login Time'])]
 duplicateRows
 ```
 
 ```python tags=[]
-# argument keep=’last’ displays the first duplicate rows instead of the last
+# The argument keep=’last’ displays the first duplicate rows instead of the last
 duplicateRows = employees_df[employees_df.duplicated(
                     subset=['First Name', 'Last Login Time'], keep='last')]
 duplicateRows
@@ -957,16 +979,17 @@ duplicateRows
 In order to drop duplicate values from a dataframe, we use `drop_duplicates()` function.
 
 This function can be used in two ways:
-- remove duplicate rows across **all columns** with `df.drop_duplicates()`
-- find duplicate rows across **specific columns** `df.drop_duplicates(subset=['col1', 'col2'])`
 
-**Warning:** We are doing that directly in this dataframe with `inplace = True` - we don't make a deep copy!
+- remove duplicate rows across **all columns** with `df.drop_duplicates()`
+- remove duplicate rows across **specific columns** with `df.drop_duplicates(subset=['col1', 'col2'])`
+
+**Warning:** The following example replaces the strings directly in the original dataframe with `inplace = True` - no deep copy is made!
 
 Remove duplicate rows across **all columns**:
 <!-- #endregion -->
 
 ```python tags=[]
-# remove duplicate rows across all columns
+# Remove duplicate rows across all columns
 employees_df.drop_duplicates(inplace=True)
 employees_df
 ```
@@ -974,7 +997,7 @@ employees_df
 Remove duplicate rows across **specific columns**:
 
 ```python tags=[]
-# remove duplicate rows across 'First Name' and 'Last Login Time' columns
+# Remove duplicate rows across 'First Name' and 'Last Login Time' columns
 employees_df.drop_duplicates(
     subset=['First Name', 'Last Login Time'], keep='last', inplace=True)
 employees_df
@@ -985,17 +1008,23 @@ employees_df
 
 **@TODO:**  
 Incorporate following sources:
+
 - [Compare two DataFrames and output their differences side-by-side](https://stackoverflow.com/questions/17095101/compare-two-dataframes-and-output-their-differences-side-by-side/47112033#47112033)
 - [pandas compare two data frames and highlight the differences](https://stackoverflow.com/questions/71604701/pandas-compare-two-data-frames-and-highlight-the-differences/71617662#71617662)
 - [How to Compare Two Pandas DataFrames and Get Differences](https://datascientyst.com/compare-two-pandas-dataframes-get-differences/)
 <!-- #endregion -->
 
-<!-- #region tags=["TODO_Step_2_3"] -->
+<!-- #region tags=[] -->
 ### Save edited dataset to new CSV file
 
-**@TODO:**  
-Add explanation and python code here.
+After the anomalies in the dataset have been found - and repaired where appropriate - it can be saved as a new CSV file for later use.
 <!-- #endregion -->
+
+```python
+csv_filepath = r'./datasets/employees_edit_repaired.csv'
+
+employees_df.to_csv(csv_filepath, sep =',', index = False, header=True)
+```
 
 <!-- #region tags=[] -->
 ## Avoidance of **tendencies due to bias**
@@ -1772,12 +1801,12 @@ y_pred = classifier.predict(X_test)
 <!-- #region toc-hr-collapsed=true tags=[] -->
 # STEP 6: Evaluate model's performance
 
-Subsequently to the training of the SVC model and the classification predictions made based on the test data, this step evaluates the **quality of the classification result** using known **metrics** such as the **accuracy score** as well as the **confusion matrix**.
+Subsequently to the training of the SVC model and the classification predictions made based on the test data, this step evaluates the **quality of the classification result** using known **metrics** such as the **accuracy score**, the **cross-validation score** as well as the **confusion matrix**.
 <!-- #endregion -->
 
 ## Accuracy Score
 
-In a multilabel classification (such as the Iris dataset), this **Accuracy classification score** computes the subset accuracy. For further details see [sklearn.metrics.accuracy_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html#sklearn.metrics.accuracy_score).
+In a multilabel classification (such as the Iris dataset), this **accuracy classification score** computes the subset accuracy. It means, that the set of **labels predicted** in `y_pred` for a sample must exactly match the corresponding set of **true labels** in `y_test`. For further details see [sklearn.metrics.accuracy_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html#sklearn.metrics.accuracy_score).
 
 ```python
 from sklearn.metrics import accuracy_score
@@ -1787,9 +1816,21 @@ acc_score = accuracy_score(y_test, y_pred)
 print("Accuracy score: {:.2f} %".format(acc_score.mean()*100))
 ```
 
+<!-- #region tags=[] -->
 ## Classification Report
 
-The classification report shows a representation of the main **classification metrics on a per-class basis**. This gives a deeper intuition of the classifier behavior over global accuracy which can mask functional weaknesses in one class of a multiclass problem (see [Classification Report](https://www.scikit-yb.org/en/latest/api/classifier/classification_report.html)). 
+The **classification report** shows a representation of the most important **classification metrics** on a **class-by-class basis**. This gives a **better understanding** of the behaviour of the classifier than **global accuracy**, which can mask functional weaknesses in one class of a multi-class problem (see [Classification Report] (https://www.scikit-yb.org/en/latest/api/classifier/classification_report.html)).
+
+The metrics are defined in the form of **true/false positives** and **true/false negatives** as follows:
+
+- **precision:** is the metric for the **accuracy** of a classifier. For each class, it is defined as the **ratio** of **true positives** to the **sum of true and false positives**.
+
+- **recall:** is a metric for the **completeness** of the classifier, i.e. the ability of a classifier to find **all positive instances correctly**. For each class, it is defined as the **ratio** of **true positives** to the **sum of true positives and false negatives**.
+
+- **f1-score:** is a **weighted harmonic mean of precision and recall**, with the best value being 1.0 and the worst 0.0.
+
+- **support:** is the **number of actual occurrences of the class** in the specified data set. This metric is an indication of the **balance of the class distribution** in the test dataset.
+<!-- #endregion -->
 
 ```python
 from sklearn.metrics import classification_report
@@ -1799,16 +1840,22 @@ print(classification_report(y_test, y_pred))
 
 ## Cross-validation score
 
-The function `cross_val_score()` from the Scikit-learn package **trains and tests a model over multiple folds** of your dataset. This cross validation method gives a better **understanding of model performance** over the whole dataset instead of just a single train/test split (see [Using cross_val_score in sklearn, simply explained](https://stephenallwright.com/cross_val_score-sklearn/)).
+The previous evaluations by the **accuracy classification score** and the **classification report** were carried out after a **manual classification**. For this purpose, the complete Iris dataset was first split into a larger **training dataset** and a much smaller **test dataset** with the function `train_test_split()`. Then the **SVC model** was **trained** with the training dataset and **validated** with the test dataset.
 
-**@TODO:**  
-Incorporate section "Bessere Auswertung mittels Kreuzvalidierung" p71 ff. of the book `OReilly_Praxiseinstieg_Machine_Learning_Scikit-Learn_TensorFlow_2018_Anm_bk.pdf` (see <cite data-cite="Geron_2018">Géron, 2018</cite>).
+For **automatic classification** with subsequent **validation** Scikit-learn provides the function `cross_val_score()`. This performs **n-times cross-validation**. First, the Iris dataset is randomly split into several different **subsets** (called *folds*). The number of subsets is determined by the parameter `cv` ( here e.g. `cv = 10`). Subsequently, the **SVC model** is **trained** and **evaluated** several times in succession according to the number of subsets (here 10 times). In each run, always a different subset (fold) is used for validation, while training is performed on the remaining (here nine) folds. The **result** is an **array with ten scores** from the **evaluation**. (see <cite data-cite="Geron_2018">Géron, 2018</cite>).
+
+The **cross-validation** method **trains** and **validates** a model over **multiple runs** according to the number of subsets. This leads to a better **understanding of model performance** over the **entire dataset** rather than just a single train/test split (see <cite data-cite="cross_val_score_2022">Allwright, 2022</cite>).
+
+In the following code example, the cross validation is determined over 10 runs (`cv = 10`). From the 10 resulting scores in the array a **mean** is formed and additionally the **standard deviation** is given.
 
 ```python
 from sklearn.model_selection import cross_val_score
 
-accuracies = cross_val_score(estimator = classifier, X = X_train, 
-                             y = y_train, cv = 10)
+irisdata_df_wo_labels = irisdata_df.drop('species', axis=1)
+irisdata_labels = irisdata_df['species']
+
+accuracies = cross_val_score(estimator = classifier, X = irisdata_df_wo_labels, 
+                             y = irisdata_labels, cv = 10)
 
 print("Cross-validation score: {:.2f} %".format(accuracies.mean()*100))
 print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
@@ -1816,13 +1863,15 @@ print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
 
 ## Confusion matrix
 
-The **confusion matrix** measures the quality of predictions from a classification model by looking at how many **predictions** are **True** and how many are **False** (see [What the Confusion Matrix Measures?](https://www.jcchouinard.com/confusion-matrix-in-scikit-learn/).
+The **confusion matrix** measures the **quality of predictions** from a classification model by looking at how many **predictions** are **True** and how many are **False** (see [What the Confusion Matrix Measures?](https://www.jcchouinard.com/confusion-matrix-in-scikit-learn/)).
+
+The confusion matrix (also called error matrix) is a special table layout that visualizes the performance of a classification algorithm. Each **row** of the matrix represents the instances in a **true class**, while each **column** represents the instances in a **predicted class**, or vice versa - both variants can be found in the literature. Using this matrix, it is easy to see if there has been confusion between classes during classification - which is where the name comes from.
 
 ### Textual confusion matrix
 
 For checking the accuracy of the model, the **confusion matrix** can be used for the **cross validation**.
 
-By using the function `sklearn.metrics.confusion_matrix()` a confusion matrix of the true Iris class labels versus the predicted class labels is plotted.
+By using the function `sklearn.metrics.confusion_matrix()` a **confusion matrix** of the **true Iris class labels** versus the **predicted class labels** is plotted.
 
 ```python
 cm = metrics.confusion_matrix(y_test, y_pred)
@@ -2668,7 +2717,7 @@ Wie oben erläutert, beschränkt sich das Tutorial bisher auf die Vorstellung de
 
 Vor einem reichlichen Jahr wurde ich eingeladen, im Vorbereitungskomitee für die DGUV-Fachtagung "Künstliche Intelligenz" mitwirken zu dürfen. Mein Vorschlag, einen eigenen Getting-Started-Workshop für interessierte ML-Neulinge zu gestalten, wurde dort sehr positiv aufgenommen. Das hat mich für die Ausarbeitung des vorliegenden Tutorials sehr motiviert.
 
-Mein besonderer Dank gilt Herrn Prof. Andre Steimers, der mit langen und sehr interessanten Fachgesprächen, dem Lesen von Rohfassungen und seiner konstruktiven Kritik viel Zeit investierte.
+Mein besonderer Dank gilt Herrn Prof. André Steimers, der mit langen und sehr interessanten Fachgesprächen, dem Lesen von Rohfassungen und seiner konstruktiven Kritik viel Zeit investierte.
 
 Weiterhin danke ich meinen Kollegen des Dresdener Prüflabors dafür, dass sie sich jederzeit trotz sehr hohem Prüfaufkommen Zeit für meine themenbezogene Fachsimpelei genommen haben. Insbesondere konnte ich während dieser Gespräche meine Gedankengänge und Formulierungen auf Verständlichkeit und Nachvollziehbarkeit prüfen.
 

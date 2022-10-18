@@ -16,7 +16,7 @@ Gary,Male,1/27/2008,11:40 PM,109831,5831,false,Sales
 Kimberly,Female,1/14/1999,7:13 AM,41426,14543,true,Finance
 Lillian,Female,6/5/2016,6:09 AM,59414,1256,false,Product
 Jeremy,Male,9/21/2010,5:56 AM,90370,7369,false,Human Resources
-Shawn,Male,12/7/1986,7:45 PM,111737,6414,false,Product
+Shawn,Male,12/7/1986,7:45 PM,,6414,false,Product
 Diana,Female,10/23/1981,10:27 AM,132940,19082,false,Client Services
 Donna,Female,7/22/2010,3:48 AM,81014,1894,false,Product
 Lois,,4/22/1995,7:18 PM,64714,4934,true,Legal
@@ -62,7 +62,7 @@ Irene,Female,5/7/1997,9:32 AM,66851,11279,false,Engineering
 Paula,,11/23/2005,2:01 PM,48866,4271,false,Distribution
 Denise,Female,11/6/2001,12:03 PM,106862,3699,false,Business Development
 ,Female,6/12/2007,5:25 PM,58112,19414,,Marketing
-Matthew,Male,1/2/2013,10:33 PM,35203,18.04,false,Human Resources
+Matthew,Male,1/2/2013,10:33 PM,,18.04,false,Human Resources
 Kathleen,,4/11/1990,6:46 PM,77834,18771,false,Business Development
 Steve,Male,11/11/2009,11:44 PM,61310,12428,true,Distribution
 Nancy,Female,12/15/2012,11:57 PM,125250,2672,true,Business Development
@@ -75,7 +75,7 @@ Bobby,Male,5/7/2007,10:01 AM,54043,3833,false,Product
 Frances,Female,4/4/1999,4:19 PM,90582,4709,true,Sales
 Thomas,Male,6/4/1995,2:24 PM,62096,17029,false,Marketing
 Bonnie,Female,7/2/1991,1:27 AM,104897,5118,true,Human Resources
-Margaret,Female,9/10/1988,12:42 PM,131604,7353,true,Distribution
+Margaret,Female,9/10/1988,12:42 PM,,7353,true,Distribution
 Charles,Male,9/14/2004,8:13 PM,107391,1.26,true,Marketing
 Robin,Female,6/4/1983,3:15 PM,114797,5965,true,Sales
 Bonnie,Female,11/13/1988,3:30 PM,115814,4.99,false,Product
