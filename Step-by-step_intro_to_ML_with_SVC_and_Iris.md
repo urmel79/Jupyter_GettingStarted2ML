@@ -1414,8 +1414,28 @@ In this step the dataset is prepared for the actual classification by SVC. Depen
 
 ## Heal the dataset
 
-Through the intensive exploration of the data (see [STEP 2: Explore the ML dataset](#STEP-2:-Explore-the-ML-dataset)), we know that special **preparation** of the data is **not necessary**. The values of the dataset are **complete and without gaps** and there are **no duplicates**.
+Through the intensive exploration of the data (see [STEP 2: Explore the ML dataset](#STEP-2:-Explore-the-ML-dataset)), we know that special **preparation** of the data is **not necessary**. The values of the Iris dataset are **complete and without gaps**.
 <!-- #endregion -->
+
+```python
+# Import ORIGINAL Iris dataset for classification
+irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
+
+# Import NOISED Iris dataset for classification
+#irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle_noised.csv')
+```
+
+Are there any **duplicates**?
+
+```python
+# Find duplicate rows across all columns
+irisdata_duplicateRows = irisdata_df[irisdata_df.duplicated()]
+irisdata_duplicateRows
+```
+
+Interestingly, there are indeed duplicates in the original Iris dataset. However, since there is **one duplicate record** in each class, their existence should have **no effect** on the **classification result**. Therefore, the duplicates will not be removed.
+
+If (as described in subsection [Add Gaussian noise to Iris dataset](#Add-Gaussian-noise-to-Iris-dataset)) the **noisy data** is used, these **duplicates** will **no longer exist**.
 
 <!-- #region tags=[] -->
 ## Transform the dataset by feature scaling
@@ -1452,14 +1472,6 @@ Others:
 - [Normalization (statistics)](https://en.wikipedia.org/wiki/Normalization_(statistics))
 - [Standard score](https://en.wikipedia.org/wiki/Standard_score)
 <!-- #endregion -->
-
-```python
-# Import ORIGINAL Iris dataset for classification
-#irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
-
-# Import NOISED Iris dataset for classification
-irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle_noised.csv')
-```
 
 ### Normalization
 
@@ -1539,7 +1551,7 @@ def func_boxplots_comp_scaling(dataframes, titles):
 
 Call the new function `func_boxplots_comp_scaling()` to create the **boxplots** comparing **original data** with the **scaled data** side-by-side:
 
-```python caption="Boxplots comparing the original data with the normalized data with all features in one scale" tags=[] label="fig:boxplots_comp_orig_norm" widefigure=true
+```python caption="Boxplots comparing the original data (left) with the normalized data (right) with all features in one scale" tags=[] label="fig:boxplots_comp_orig_norm" widefigure=true
 titles     = ['Original', 'Normalized']
 dataframes = [irisdata_df, irisdata_df_norm]
 
@@ -1632,7 +1644,7 @@ def func_histograms_comp_scaling(df_orig, df_scaled, features,
 
 Call the new function `func_histograms_comp_scaling()` to create the **histograms** with overlaid **probability density functions** comparing **original data** with the **normalized data** side-by-side:
 
-```python caption="Histograms with overlaid probability density functions comparing original data with the normalized data" tags=[] label="fig:histograms_comp_orig_norm" widefigure=true
+```python caption="Histograms with overlaid probability density functions comparing original data (left) with the normalized data (right)" tags=[] label="fig:histograms_comp_orig_norm" widefigure=true
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
@@ -1690,7 +1702,7 @@ irisdata_df_std.describe()
 
 As in the previous section, the **original** and the **standardized data** are plotted as side-by-side **boxplots** with all **features at one scale**.
 
-```python caption="Boxplots comparing the original data with the standardized data with all features in one scale" tags=[] label="fig:boxplots_comp_orig_std" widefigure=true
+```python caption="Boxplots comparing the original data (left) with the standardized data (right) with all features in one scale" tags=[] label="fig:boxplots_comp_orig_std" widefigure=true
 titles     = ['Original', 'Standardized']
 dataframes = [irisdata_df, irisdata_df_std]
 
@@ -1699,7 +1711,7 @@ func_boxplots_comp_scaling(dataframes, titles)
 
 As in the previous section, the **original** and the **standardized data** are plotted as side-by-side **histograms** with overlaid **probability density functions**.
 
-```python caption="Histograms with overlaid probability density functions comparing original data with the standardized data" tags=[] label="fig:histograms_comp_orig_std" widefigure=true
+```python caption="Histograms with overlaid probability density functions comparing original data (left) with the standardized data (right)" tags=[] label="fig:histograms_comp_orig_std" widefigure=true
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
@@ -2470,7 +2482,8 @@ Finally, the noisy Iris dataset is saved in its own CSV file.
 
 ```python
 # Save noised Iris dataset to CSV file without index
-irisdata_df_noised.to_csv('./datasets/IRIS_flower_dataset_kaggle_noised.csv', sep=',', index=False)
+csv_filepath = r'./datasets/IRIS_flower_dataset_kaggle_noised.csv'
+irisdata_df_noised.to_csv(csv_filepath, sep=',', index=False)
 ```
 
 ## Grid search
@@ -2723,5 +2736,5 @@ Weiterhin danke ich meinen Kollegen des Dresdener Prüflabors dafür, dass sie s
 
 Abschließend möchte ich meiner Lebensgefährtin danken, dass sie erste Textentwürfe kritisch Korrektur gelesen hat und mir ansonsten den Rücken freigehalten hat - auch wenn ich nach Feierabend oder an den Wochenenden programmiert und geschrieben habe. Unserem zweijährigen Sohn danke ich für seine Geduld mit Papa. Er hätte sicherlich das ein oder andere Mal lieber "Die Sendung mit der Maus" statt seltsamer Grafiken mit mir auf dem Rechner angeschaut.
 
-Dresden, 10.10.2022
+Dresden, 18.10.2022
 <!-- #endregion -->

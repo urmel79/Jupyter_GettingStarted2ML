@@ -4219,8 +4219,51 @@ now at the latest.
 Through the intensive exploration of the data (see
 \hyperref[step-2-explore-the-ml-dataset]{STEP 2: Explore the ML dataset}),
 we know that special \textbf{preparation} of the data is \textbf{not
-necessary}. The values of the dataset are \textbf{complete and without
-gaps} and there are \textbf{no duplicates}.
+necessary}. The values of the Iris dataset are \textbf{complete and
+without gaps}.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{172}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Import ORIGINAL Iris dataset for classification}
+\PY{n}{irisdata\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Import NOISED Iris dataset for classification}
+\PY{c+c1}{\PYZsh{}irisdata\PYZus{}df = pd.read\PYZus{}csv(\PYZsq{}./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle\PYZus{}noised.csv\PYZsq{})}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Are there any \textbf{duplicates}?
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{173}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Find duplicate rows across all columns}
+\PY{n}{irisdata\PYZus{}duplicateRows} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+\PY{n}{irisdata\PYZus{}duplicateRows}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{173}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+     sepal\_length  sepal\_width  petal\_length  petal\_width         species
+34            4.9          3.1           1.5          0.1     Iris-setosa
+37            4.9          3.1           1.5          0.1     Iris-setosa
+142           5.8          2.7           5.1          1.9  Iris-virginica
+\end{Verbatim}
+\end{tcolorbox}
+        
+    Interestingly, there are indeed duplicates in the original Iris dataset.
+However, since there is \textbf{one duplicate record} in each class,
+their existence should have \textbf{no effect} on the
+\textbf{classification result}. Therefore, the duplicates will not be
+removed.
+
+If (as described in subsection
+\hyperref[add-gaussian-noise-to-iris-dataset]{Add Gaussian noise to Iris dataset})
+the \textbf{noisy data} is used, these \textbf{duplicates} will
+\textbf{no longer exist}.
 
     \hypertarget{transform-the-dataset-by-feature-scaling}{%
 \subsection{Transform the dataset by feature
@@ -4334,17 +4377,6 @@ Others:
 \item
   \href{https://en.wikipedia.org/wiki/Standard_score}{Standard score}
 \end{itemize}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{2}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Import ORIGINAL Iris dataset for classification}
-\PY{c+c1}{\PYZsh{}irisdata\PYZus{}df = pd.read\PYZus{}csv(\PYZsq{}./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv\PYZsq{})}
-
-\PY{c+c1}{\PYZsh{} Import NOISED Iris dataset for classification}
-\PY{n}{irisdata\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle\PYZus{}noised.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-\end{tcolorbox}
 
     \hypertarget{normalization}{%
 \subsubsection{Normalization}\label{normalization}}
@@ -4485,8 +4517,8 @@ the \textbf{boxplots} comparing \textbf{original data} with the
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_0.png}\end{center}
-        \caption{Boxplots comparing the original data with the normalized data with all features in one scale}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_148_0.png}\end{center}
+        \caption{Boxplots comparing the original data (left) with the normalized data (right) with all features in one scale}
         \label{fig:boxplots_comp_orig_norm}
     \end{figure}
     
@@ -4597,8 +4629,8 @@ data} side-by-side:
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_149_0.png}\end{center}
-        \caption{Histograms with overlaid probability density functions comparing original data with the normalized data}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_152_0.png}\end{center}
+        \caption{Histograms with overlaid probability density functions comparing original data (left) with the normalized data (right)}
         \label{fig:histograms_comp_orig_norm}
     \end{figure}
     
@@ -4701,8 +4733,8 @@ with all \textbf{features at one scale}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_155_0.png}\end{center}
-        \caption{Boxplots comparing the original data with the standardized data with all features in one scale}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_158_0.png}\end{center}
+        \caption{Boxplots comparing the original data (left) with the standardized data (right) with all features in one scale}
         \label{fig:boxplots_comp_orig_std}
     \end{figure}
     
@@ -4723,8 +4755,8 @@ functions}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_157_0.png}\end{center}
-        \caption{Histograms with overlaid probability density functions comparing original data with the standardized data}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_160_0.png}\end{center}
+        \caption{Histograms with overlaid probability density functions comparing original data (left) with the standardized data (right)}
         \label{fig:histograms_comp_orig_std}
     \end{figure}
     
@@ -5104,7 +5136,7 @@ colored confusion matrix.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_182_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_185_0.png}\end{center}
         \caption{Checking the accuracy of the model by using the confusion matrix for cross-validation}
         \label{fig:confusion_matrix}
     \end{figure}
@@ -5355,7 +5387,7 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_203_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_206_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
@@ -5395,7 +5427,7 @@ exactly fit the training dataset. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_205_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_208_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
@@ -5421,7 +5453,7 @@ as the classifier tries to perfectly fit the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_207_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_210_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy}
         \label{fig:plot_vary_gamma}
     \end{figure}
@@ -5460,7 +5492,7 @@ the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_209_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_212_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
@@ -5486,7 +5518,7 @@ But be careful: to high \texttt{C} values may lead to
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_211_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_214_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'C' against the prediction accuracy}
         \label{fig:plot_vary_c}
     \end{figure}
@@ -5530,7 +5562,7 @@ training times}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_213_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_216_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
@@ -5556,7 +5588,7 @@ hyperplane leads to \textbf{overfitting} the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_215_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_218_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy}
         \label{fig:plot_vary_degree}
     \end{figure}
@@ -5808,7 +5840,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_233_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_236_0.png}\end{center}
         \caption{Confusion matrix for cross-validation of the baseline}
         \label{fig:cm_baseline}
     \end{figure}
@@ -5864,7 +5896,7 @@ However, because this has \textbf{no influence on the classifiability},
 it is omitted here.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{104}{\boxspacing}
+\prompt{In}{incolor}{175}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Import Iris dataset for adding noise}
 \PY{n}{irisdata\PYZus{}df\PYZus{}orig} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -5875,7 +5907,7 @@ it is omitted here.
 class names is omitted to get only the feature columns.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{105}{\boxspacing}
+\prompt{In}{incolor}{176}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Get number of rows of the dataset}
 \PY{n}{n\PYZus{}rows} \PY{o}{=} \PY{n}{irisdata\PYZus{}df\PYZus{}orig}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
@@ -5893,7 +5925,7 @@ deviation \(\sigma\)}. The \textbf{mean} of the Gaussian curve remains
 unchanged and is \textbf{not shifted} in the first place.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{206}{\boxspacing}
+\prompt{In}{incolor}{177}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} mean: \PYZdq{}centre\PYZdq{} of the distribution}
 \PY{c+c1}{\PYZsh{} sigma: standard deviation (spread or “width”) of the distribution}
@@ -5910,7 +5942,7 @@ unchanged and is \textbf{not shifted} in the first place.
 dataset are converted to a \texttt{numpy} array.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{207}{\boxspacing}
+\prompt{In}{incolor}{178}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Select columns 1\PYZhy{}4 with all rows}
 \PY{c+c1}{\PYZsh{} and convert it to numpy array}
@@ -5921,7 +5953,7 @@ dataset are converted to a \texttt{numpy} array.
     The array with the normally distributed random values is added to this.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{208}{\boxspacing}
+\prompt{In}{incolor}{179}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Add noise to original values}
 \PY{n}{irisdata\PYZus{}np\PYZus{}noised} \PY{o}{=} \PY{n}{irisdata\PYZus{}np\PYZus{}orig} \PY{o}{+} \PY{n}{irisdata\PYZus{}np\PYZus{}noise}
@@ -5937,7 +5969,7 @@ rounded up amount of the minimum value. The function
 \texttt{math.ceil()} is used for this.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{209}{\boxspacing}
+\prompt{In}{incolor}{180}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{math}
 
@@ -5966,7 +5998,7 @@ noisy measurements to \textbf{shift} the data into the \textbf{positive
 range}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{210}{\boxspacing}
+\prompt{In}{incolor}{181}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}np\PYZus{}noised\PYZus{}shifted} \PY{o}{=} \PY{n}{irisdata\PYZus{}np\PYZus{}noised} \PY{o}{+} \PY{n}{offset}
 \PY{c+c1}{\PYZsh{}irisdata\PYZus{}np\PYZus{}noised\PYZus{}shifted}
@@ -5977,7 +6009,7 @@ range}.
 the first 4 columns are replaced with the noisy features.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{211}{\boxspacing}
+\prompt{In}{incolor}{182}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Make a deep copy of original dataframe}
 \PY{n}{irisdata\PYZus{}df\PYZus{}noised} \PY{o}{=} \PY{n}{irisdata\PYZus{}df\PYZus{}orig}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
@@ -5990,7 +6022,7 @@ the first 4 columns are replaced with the noisy features.
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{211}{\boxspacing}
+\prompt{Out}{outcolor}{182}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        sepal\_length  sepal\_width  petal\_length  petal\_width
 count    150.000000   150.000000    150.000000   150.000000
@@ -6008,7 +6040,7 @@ max        9.037428     5.362868      8.228994     3.754139
 dataframes are visualized in pairs plots.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{212}{\boxspacing}
+\prompt{In}{incolor}{183}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Define a function to visualize data as pairs plots}
 \PY{k}{def} \PY{n+nf}{plotPairs}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{title}\PY{p}{)}\PY{p}{:}
@@ -6023,7 +6055,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{213}{\boxspacing}
+\prompt{In}{incolor}{184}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{title} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pairs plot of the ORIGINAL Iris dataset}\PY{l+s+s1}{\PYZsq{}}
 \PY{n}{plotPairs}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}orig}\PY{p}{,} \PY{n}{title}\PY{p}{)}
@@ -6031,13 +6063,13 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_253_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_256_0.png}\end{center}
         \caption{Pairs plot of the original Iris dataset}
         \label{fig:pairs_plot_orig_Iris}
     \end{figure}
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{214}{\boxspacing}
+\prompt{In}{incolor}{185}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{title} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pairs plot of the NOISED Iris dataset}\PY{l+s+s1}{\PYZsq{}}
 \PY{n}{plotPairs}\PY{p}{(}\PY{n}{irisdata\PYZus{}df\PYZus{}noised}\PY{p}{,} \PY{n}{title}\PY{p}{)}
@@ -6045,7 +6077,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_254_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_257_0.png}\end{center}
         \caption{Pairs plot of the noised Iris dataset}
         \label{fig:pairs_plot_noised_Iris}
     \end{figure}
@@ -6053,10 +6085,11 @@ dataframes are visualized in pairs plots.
     Finally, the noisy Iris dataset is saved in its own CSV file.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{215}{\boxspacing}
+\prompt{In}{incolor}{186}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Save noised Iris dataset to CSV file without index}
-\PY{n}{irisdata\PYZus{}df\PYZus{}noised}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle\PYZus{}noised.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\PY{n}{csv\PYZus{}filepath} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle\PYZus{}noised.csv}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{irisdata\PYZus{}df\PYZus{}noised}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{n}{csv\PYZus{}filepath}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -6186,7 +6219,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_266_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_269_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the grid search has been performed}
         \label{fig:cm_grid_search}
     \end{figure}
@@ -6346,7 +6379,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_277_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_280_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the randomized search has been performed}
         \label{fig:cm_random_search}
     \end{figure}
@@ -6676,7 +6709,7 @@ für seine Geduld mit Papa. Er hätte sicherlich das ein oder andere Mal
 lieber ``Die Sendung mit der Maus'' statt seltsamer Grafiken mit mir auf
 dem Rechner angeschaut.
 
-Dresden, 10.10.2022
+Dresden, 18.10.2022
 
 
     % Add a bibliography block to the postdoc
