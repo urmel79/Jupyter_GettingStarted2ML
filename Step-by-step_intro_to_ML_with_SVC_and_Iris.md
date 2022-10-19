@@ -804,11 +804,14 @@ irisdata_df_gaps
 
 Fine - the **Iris dataset** seems to be **complete** :)
 
-So let's look for **something else for exercise**. The original [employes](https://media.geeksforgeeks.org/wp-content/uploads/employees.csv) dataset used in the next subsections was slightly modified.
+So let's look for **something else for exercise**. The original [employes dataset](https://media.geeksforgeeks.org/wp-content/uploads/employees.csv) used in the next subsections was slightly modified.
 
 ```python
 # Import data to dataframe from csv file
 employees_df = pd.read_csv("./datasets/employees_edit.csv")
+
+# Make a deep copy to keep the original dataframe
+employees_df_orig = employees_df.copy(deep=True)
 ```
 
 ```python tags=[]
@@ -911,21 +914,23 @@ In order to drop null values from a dataframe, we use `dropna()` function. This 
 
 Default is to drop rows with at least 1 null value (NaN).
 Giving the parameter `how = 'all'` the function drops rows with all data missing or contain null values (NaN).
+
+**Warning:** The following example drops rows with missing values (NaN) directly in the original dataframe with `inplace = True` - no deep copy is made!
 <!-- #endregion -->
 
 ```python tags=[]
-# Make a new dataframe with dropped NaN values
-employees_df_dropped = employees_df.dropna(axis = 0, how ='any')
-employees_df_dropped
+# Drop rows with missing values directly in the original dataframe
+employees_df.dropna(axis = 0, how ='any', inplace = True)
+employees_df
 ```
 
 Finally we compare the sizes of dataframes so that we learn how many rows had at least 1 Null value.
 
 ```python
-print("Old data frame length:", len(employees_df))
-print("New data frame length:", len(employees_df_dropped))
+print("Original dataframe length:", len(employees_df_orig))
+print("New dataframe length:", len(employees_df))
 print("Number of rows with at least 1 NaN value: ", 
-      (len(employees_df)-len(employees_df_dropped)))
+      (len(employees_df_orig)-len(employees_df)))
 ```
 
 ### Find and remove duplicates in dataset
@@ -983,7 +988,7 @@ In order to drop duplicate values from a dataframe, we use `drop_duplicates()` f
 This function can be used in two ways:
 
 - remove duplicate rows across **all columns** with `df.drop_duplicates()`
-- remove duplicate rows across **specific columns** with `df.drop_duplicates(subset=['col1', 'col2'])`
+- remove duplicate rows across **specific columns** with parameter `subset=['col1', 'col2']`
 
 **Warning:** The following example replaces the strings directly in the original dataframe with `inplace = True` - no deep copy is made!
 
@@ -1014,7 +1019,50 @@ Incorporate following sources:
 - [Compare two DataFrames and output their differences side-by-side](https://stackoverflow.com/questions/17095101/compare-two-dataframes-and-output-their-differences-side-by-side/47112033#47112033)
 - [pandas compare two data frames and highlight the differences](https://stackoverflow.com/questions/71604701/pandas-compare-two-data-frames-and-highlight-the-differences/71617662#71617662)
 - [How to Compare Two Pandas DataFrames and Get Differences](https://datascientyst.com/compare-two-pandas-dataframes-get-differences/)
+- [pandas.DataFrame.compare](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.compare.html)
 <!-- #endregion -->
+
+```python tags=[] jupyter={"outputs_hidden": true}
+pd.set_option('display.max_rows', 1100)
+pd.set_option('display.min_rows', 100)
+
+# Does not work with dropped rows in one dataframe!
+employees_df_orig.compare(employees_df, keep_shape=False, keep_equal=True)
+```
+
+```python
+# Fill all null values with string 'NaN' using fillna()
+df1 = employees_df_orig.fillna('NaN')
+#df1
+
+df2 = employees_df.fillna('NaN')
+#df2
+```
+
+```python tags=[]
+employees_df_combined = pd.concat([df1, df2], 
+                   axis='columns', keys=['Original', 'Cleaned'])
+employees_df_combined
+```
+
+```python tags=[]
+df_final = employees_df_combined.swaplevel(axis='columns')[df1.columns[1:]]
+df_final
+```
+
+```python
+# Define function to highlight differences in dataframes
+def highlight_diff(data, color='yellow'):
+    attr = 'background-color: {}'.format(color)
+    other = data.xs('Original', axis='columns', level=-1)
+    return pd.DataFrame(np.where(data.ne(other, level=0), attr, ''),
+                        index=data.index, columns=data.columns)
+```
+
+```python
+# Apply style using function
+df_final.style.apply(highlight_diff, axis=None)
+```
 
 <!-- #region tags=[] -->
 ### Save edited dataset to new CSV file
