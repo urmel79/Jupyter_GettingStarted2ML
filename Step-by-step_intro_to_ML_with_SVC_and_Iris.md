@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.14.1
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -941,7 +941,10 @@ This section was inspired by:
 In order to check for duplicate values in Pandas DataFrame, we use a function `duplicated()`. This function can be used in two ways:
 
 - find duplicate rows across **all columns** with `df.duplicated()`
-- find duplicate rows across **specific columns** with `df.duplicated(subset=['col1', 'col2'])`
+- find duplicate rows across **specific columns** with parameter `subset=['col1', 'col2']`
+- mark last duplicates for removing and **keep the first occurrences** with parameter `keep='first'`
+- mark first duplicates for removing and **keep the last occurrences** with parameter `keep='last'`
+- **mark all duplicates** for removing with parameter `keep=False`
 
 Find duplicate rows across **all columns**:
 
@@ -951,26 +954,25 @@ duplicateRows = employees_df[employees_df.duplicated()]
 duplicateRows
 ```
 
-```python
-# Argument keep=’last’ displays the first duplicate rows instead of the last
-duplicateRows = employees_df[employees_df.duplicated(keep='last')]
-duplicateRows
-```
-
-Find duplicate rows across **specific columns**:
+Find **all completely identical duplicates** (first and last occurrences). The resulting dataframe is **sorted by column** `'First Name'` to get the **duplicates grouped**:
 
 ```python
-# Identify duplicate rows across 'First Name' and 'Last Login Time' columns
-duplicateRows = employees_df[employees_df.duplicated(
-                    subset=['First Name', 'Last Login Time'])]
-duplicateRows
+# Parameter 'keep=False' displays all duplicate rows
+duplicateRows = employees_df[employees_df.duplicated(keep=False)]
+
+# Sort rows by column 'First Name' to get the duplicates grouped
+duplicateRows.sort_values('First Name')
 ```
+
+Find **all duplicates** (first and last occurrences) across **specific columns**. The resulting dataframe is **sorted by multiple columns** `'First Name'` and `'Last Login Time'` to get the **duplicates grouped**:
 
 ```python tags=[]
-# The argument keep=’last’ displays the first duplicate rows instead of the last
+# Parameter 'keep=False' displays all duplicate rows
 duplicateRows = employees_df[employees_df.duplicated(
-                    subset=['First Name', 'Last Login Time'], keep='last')]
-duplicateRows
+                    subset=['First Name', 'Last Login Time'], keep=False)]
+
+# Sort rows by column 'First Name' to get the duplicates grouped
+duplicateRows.sort_values(['First Name', 'Last Login Time'])
 ```
 
 <!-- #region tags=[] -->
@@ -1038,24 +1040,25 @@ But how to prove it?
 To prove whether all possible classes included in the dataset and equally distributed, you can use the function `df.value_counts`.
 
 Following parameters can be used for fine tuning:
+
+- `ascending=False`: sort resulting classes descending
 - `dropna=False` causes that NaN values are included
 - `normalize=True`: relative frequencies of the unique values are returned
-- `ascending=False`: sort resulting classes descending
 <!-- #endregion -->
 
 ```python
-# import (again) data to dataframe from csv file
+# Count unique values without missing values in a column,
+# ordered descending and normalized
+irisdata_df['species'].value_counts(ascending=False, dropna=False, normalize=False)
+```
+
+```python
+# Import (again) data to dataframe from csv file
 employees_df = pd.read_csv("./datasets/employees_edit.csv")
 ```
 
 ```python
-# count unique values without missing values in a column, 
-# ordered descending and normalized
-irisdata_df['species'].value_counts(ascending=False, dropna=False, normalize=True)
-```
-
-```python
-# count unique values and missing values in a column, 
+# Count unique values and missing values in a column,
 # ordered descending and not absolute values
 employees_df['Team'].value_counts(ascending=False, dropna=False, normalize=False)
 ```
@@ -1425,17 +1428,43 @@ irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 #irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle_noised.csv')
 ```
 
-Are there any **duplicates**?
+Find **all completely identical duplicates** (first and last occurrences). The resulting dataframe is **sorted by column** `'species'` to get the **duplicates grouped**:
 
 ```python
-# Find duplicate rows across all columns
-irisdata_duplicateRows = irisdata_df[irisdata_df.duplicated()]
-irisdata_duplicateRows
+# Parameter 'keep=False' displays all duplicate rows
+irisdata_duplicateRows = irisdata_df[irisdata_df.duplicated(keep=False)]
+
+# Sort rows by column 'First Name' to get the duplicates grouped
+irisdata_duplicateRows.sort_values('species')
 ```
 
-Interestingly, there are indeed duplicates in the original Iris dataset. However, since there is **one duplicate record** in each class, their existence should have **no effect** on the **classification result**. Therefore, the duplicates will not be removed.
+Interestingly, there are indeed **duplicates** in the original **Iris dataset**.
 
-If (as described in subsection [Add Gaussian noise to Iris dataset](#Add-Gaussian-noise-to-Iris-dataset)) the **noisy data** is used, these **duplicates** will **no longer exist**.
+The duplicates occur **imbalanced** across the classes:
+
+- class **Iris-setosa** has **3** identical duplicates
+- class **Iris-virginica** has **2** identical duplicates
+- class **Iris-versicolor** has **none** duplicates
+
+This **imbalance** could cause **tendencies** and have a (negative) effect on the **classification result**. Therefore, the duplicates are removed and the **cleaned Iris dataset** is **saved** as a new CSV file.
+
+```python tags=[]
+# Remove duplicate rows across all columns
+irisdata_df.drop_duplicates(inplace=True)
+irisdata_df
+```
+
+```python
+# Count unique values without missing values in a column,
+# ordered ascending and not normalized
+irisdata_df['species'].value_counts(ascending=True, dropna=False, normalize=False)
+```
+
+```python
+csv_filepath = r'./datasets/IRIS_flower_dataset_kaggle_cleaned.csv'
+
+irisdata_df.to_csv(csv_filepath, sep =',', index = False, header=True)
+```
 
 <!-- #region tags=[] -->
 ## Transform the dataset by feature scaling
@@ -1727,7 +1756,10 @@ To avoid errors, the Iris dataset is imported again:
 
 ```python
 # Import ORIGINAL Iris dataset for classification
-irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
+#irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
+
+# Import CLEANED Iris dataset for classification (removed duplicates)
+irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle_cleaned.csv')
 
 # Import NOISED Iris dataset for classification
 #irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle_noised.csv')
@@ -1755,15 +1787,15 @@ Check that the split datasets are still balanced and that no **bias** has been c
 For this test, the previously separated labels `y_train` must be added back to the training dataset `X_train`.
 
 ```python tags=[]
-# make a deep copy of 'X_train'
+# Make a deep copy of 'X_train'
 X_train_bias_test_df = X_train.copy(deep=True)
 
-# add list of labels to test dataframe
+# Add list of labels to test dataframe
 X_train_bias_test_df['species'] = y_train
 
-# count unique values without missing values in a column, 
-# ordered descending and normalized
-X_train_bias_test_df['species'].value_counts(ascending=False, dropna=False, normalize=True)
+# Count unique values without missing values in a column,
+# ordered descending and not normalized
+X_train_bias_test_df['species'].value_counts(ascending=True, dropna=False, normalize=False)
 ```
 
 For training, do not use only the variables that correlate best with each other, but all of them. 
@@ -1854,7 +1886,7 @@ print(classification_report(y_test, y_pred))
 
 The previous evaluations by the **accuracy classification score** and the **classification report** were carried out after a **manual classification**. For this purpose, the complete Iris dataset was first split into a larger **training dataset** and a much smaller **test dataset** with the function `train_test_split()`. Then the **SVC model** was **trained** with the training dataset and **validated** with the test dataset.
 
-For **automatic classification** with subsequent **validation** Scikit-learn provides the function `cross_val_score()`. This performs **n-times cross-validation**. First, the Iris dataset is randomly split into several different **subsets** (called *folds*). The number of subsets is determined by the parameter `cv` ( here e.g. `cv = 10`). Subsequently, the **SVC model** is **trained** and **evaluated** several times in succession according to the number of subsets (here 10 times). In each run, always a different subset (fold) is used for validation, while training is performed on the remaining (here nine) folds. The **result** is an **array with ten scores** from the **evaluation**. (see <cite data-cite="Geron_2018">Géron, 2018</cite>).
+For **automatic classification** with subsequent **validation** Scikit-learn provides the function `cross_val_score()`. This performs **n-times cross-validation**. First, the Iris dataset is randomly split into several different **subsets** (called *folds*). The number of subsets is determined by the parameter `cv` (here e.g. `cv = 10`). Subsequently, the **SVC model** is **trained** and **evaluated** several times in succession according to the number of subsets (here 10 times). In each run, always a different subset (fold) is used for validation, while training is performed on the remaining (here nine) folds. The **result** is an **array with ten scores** from the **evaluation**. (see <cite data-cite="Geron_2018">Géron, 2018</cite>).
 
 The **cross-validation** method **trains** and **validates** a model over **multiple runs** according to the number of subsets. This leads to a better **understanding of model performance** over the **entire dataset** rather than just a single train/test split (see <cite data-cite="cross_val_score_2022">Allwright, 2022</cite>).
 
