@@ -343,7 +343,7 @@ import seaborn as sns
 import matplotlib.pylab as pylab
 params = {'legend.fontsize': 'large',
          'axes.labelsize':   'large',
-         'axes.titlesize':   'x-large',
+         'axes.titlesize':   'large',
          'xtick.labelsize':  'medium',
          'ytick.labelsize':  'medium',
          'axes.edgecolor':   '#000000'}
@@ -1152,12 +1152,12 @@ Incorporate following sources:
 - [pandas.DataFrame.compare](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.compare.html)
 <!-- #endregion -->
 
-```python tags=[] jupyter={"outputs_hidden": true}
+```python tags=[]
 #pd.set_option('display.max_rows', 1100)
 #pd.set_option('display.min_rows', 100)
 
 # Does not work with dropped rows in one dataframe!
-employees_df_orig.compare(employees_df, keep_shape=False, keep_equal=True)
+#employees_df_orig.compare(employees_df, keep_shape=False, keep_equal=True)
 ```
 
 ```python
@@ -1241,6 +1241,7 @@ employees_df = pd.read_csv("./datasets/employees_edit.csv")
 employees_df['Team'].value_counts(ascending=False, dropna=False, normalize=False)
 ```
 
+<!-- #region caption="Histograms used to explore the frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))" tags=[] label="fig:histogram_salary_with_PDF" widefigure=true -->
 ### Display Histogram
 
 This section was inspired by: [Pandas Histogram – DataFrame.hist()](https://dataindependent.com/pandas/pandas-histogram-dataframe-hist/).
@@ -1248,15 +1249,83 @@ This section was inspired by: [Pandas Histogram – DataFrame.hist()](https://da
 **Histograms** represent **frequency distributions** graphically. This requires the separation of the data into classes (so-called **bins**).
 
 These classes are represented in the histogram as rectangles of equal or variable width. The height of each rectangle then represents the (relative or absolute) **frequency density**.
+<!-- #endregion -->
 
 ```python caption="Histogram for frequency distribution of the salary" label="fig:histogram_salary" tags=[] widefigure=false
-employees_df.hist(column=['Salary'])
+employees_df.hist(column=['Salary'], bins = 'auto', density=True, rwidth=0.95, 
+                  zorder=2, alpha=0.8)
+plt.title('Salary distribution over all gender')
+plt.xlabel('salary')
+plt.ylabel('frequency density')
+plt.grid(True, zorder=-1.0)
 plt.show()
 ```
 
-```python caption="Histogram for the frequency distribution of the salary in comparison between men and women" label="fig:histogram_male_female" tags=[] widefigure=false
-employees_df.hist(column='Salary', by='Gender')
-plt.show()
+Apart from the not very appealing **standard formatting of the histogram** above, there is also **no breakdown of salaries** by **gender** here.
+
+The following function allows a **gender-specific presentation** of salaries with significantly **more information content** in the individual subplots.
+
+```python
+from scipy.stats import norm
+
+def func_plot_histograms_from_list_with_PDF(df_list, column, titles, y_max):
+    # Number of bins for the histogram
+    # - bins=<integer>: defines the number of equal-width bins in the range
+    # - bins=<string>: one of the binning strategies is used:
+    #   'auto', 'fd', 'doane', 'scott', 'stone', 'rice', 'sturges', or 'sqrt'
+    n_bins = 'auto'
+    subplot_columns = len(df_list)
+    fig, subplots = plt.subplots(1, subplot_columns, figsize=(14, 4))
+    # Set margins between subplots
+    plt.subplots_adjust(wspace=0.3, hspace=0.3)
+
+    # Make subplots iterable via 'subplots.flatten()'
+    for df, title, subplot in zip(df_list, titles, subplots.flatten()):
+
+        subplot.hist(df[column], bins = n_bins, density=True, 
+                     rwidth=0.95, alpha=0.8)
+
+        # Fit a normal distribution to the data
+        # with mean and standard deviation
+        mu, std = norm.fit(df[column])
+
+        # Plot the probability density function (PDF)
+        xmin, xmax = subplot.get_xlim()
+
+        x = np.linspace(xmin, xmax, 100)
+        p = norm.pdf(x, mu, std)
+
+        subplot.plot(x, p, 'k', linewidth=2)
+
+        title_concat = "Salary of {} (Mean: {:.2f}, \n" \
+                               "Std. deviation: {:.2f})".format(title, mu, std)
+        subplot.set_title(title_concat)
+        # Show grid
+        subplot.grid(visible=True)
+        # Hide grid behind the bars
+        subplot.set_axisbelow(True)
+        # Label x and y-axis
+        subplot.set_xlabel('salary')
+        subplot.set_ylabel('frequency density')
+        # Rotate x-ticks by -45°
+        subplot.tick_params('x', labelrotation=-45)
+
+    # Set all y-axes to the same range for comparison
+    plt.setp(subplots, ylim=subplots[2].get_ylim())
+    plt.show()
+```
+
+```python caption="Histograms used to explore the frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))" tags=[] label="fig:histogram_salary_with_PDF" widefigure=true
+genders = ['Male', 'Female', 'No Gender']
+
+# Create list for storing the dataframes
+li_employees_df = list()
+
+# Filter employees by gender
+for gender in genders:
+    li_employees_df.append(employees_df.loc[(employees_df['Gender'] == gender)])
+
+func_plot_histograms_from_list_with_PDF(li_employees_df, 'Salary', genders, 1.4)
 ```
 
 ## First **idea of correlations** in dataset
@@ -1778,6 +1847,7 @@ def func_histograms_comp_scaling(df_orig, df_scaled, features,
     # - bins=<string>: one of the binning strategies is used:
     #   'auto', 'fd', 'doane', 'scott', 'stone', 'rice', 'sturges', or 'sqrt'
     n_bins = 'auto'
+    #n_bins = 10
     fig, subplots = plt.subplots(4, 2, figsize=(12, 16))
     # Set margins between subplots
     plt.subplots_adjust(wspace=0.3, hspace=0.4)
