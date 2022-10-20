@@ -13,7 +13,7 @@ Gary,Male,1/27/2008,11:40 PM,109831.0,5831.0,False,Sales
 Kimberly,Female,1/14/1999,7:13 AM,41426.0,14543.0,True,Finance
 Lillian,Female,6/5/2016,6:09 AM,59414.0,1256.0,False,Product
 Jeremy,Male,9/21/2010,5:56 AM,90370.0,7369.0,False,Human Resources
-Shawn,Male,12/7/1986,7:45 PM,90556.0,6414.0,False,Product
+Shawn,Male,12/7/1986,7:45 PM,90370.0,6414.0,False,Product
 Diana,Female,10/23/1981,10:27 AM,132940.0,19082.0,False,Client Services
 Donna,Female,7/22/2010,3:48 AM,81014.0,1894.0,False,Product
 Lois,No Gender,4/22/1995,7:18 PM,64714.0,4934.0,True,Legal
@@ -52,7 +52,7 @@ Theresa,Female,4/11/2010,7:18 AM,72670.0,1481.0,True,Engineering
 Irene,Female,5/7/1997,9:32 AM,66851.0,11279.0,False,Engineering
 Paula,No Gender,11/23/2005,2:01 PM,48866.0,4271.0,False,Distribution
 Denise,Female,11/6/2001,12:03 PM,106862.0,3699.0,False,Business Development
-Matthew,Male,1/2/2013,10:33 PM,90556.0,18.04,False,Human Resources
+Matthew,Male,1/2/2013,10:33 PM,90370.0,18.04,False,Human Resources
 Kathleen,No Gender,4/11/1990,6:46 PM,77834.0,18771.0,False,Business Development
 Steve,Male,11/11/2009,11:44 PM,61310.0,12428.0,True,Distribution
 Rachel,Female,8/16/1999,6:53 AM,51178.0,9735.0,True,Finance
@@ -64,7 +64,7 @@ Bobby,Male,5/7/2007,10:01 AM,54043.0,3833.0,False,Product
 Frances,Female,4/4/1999,4:19 PM,90582.0,4709.0,True,Sales
 Thomas,Male,6/4/1995,2:24 PM,62096.0,17029.0,False,Marketing
 Bonnie,Female,7/2/1991,1:27 AM,104897.0,5118.0,True,Human Resources
-Margaret,Female,9/10/1988,12:42 PM,90556.0,7353.0,True,Distribution
+Margaret,Female,9/10/1988,12:42 PM,90032.5,7353.0,True,Distribution
 Charles,Male,9/14/2004,8:13 PM,107391.0,1.26,True,Marketing
 Robin,Female,6/4/1983,3:15 PM,114797.0,5965.0,True,Sales
 Bonnie,Female,11/13/1988,3:30 PM,115814.0,4.99,False,Product

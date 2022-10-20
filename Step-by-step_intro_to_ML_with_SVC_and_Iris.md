@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.1
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -804,13 +804,16 @@ irisdata_df_gaps
 
 Fine - the **Iris dataset** seems to be **complete** :)
 
-So let's look for **something else for exercise**. The original [employes dataset](https://media.geeksforgeeks.org/wp-content/uploads/employees.csv) used in the next subsections was slightly modified.
+So let's look for **another dataset to exercise**. For this purpose, the original [employes dataset](https://media.geeksforgeeks.org/wp-content/uploads/employees.csv), which will be used in the next subsections, has been **slightly modified**.
 
 ```python
-# Import data to dataframe from csv file
+# Import data to dataframe from CSV file
 employees_df = pd.read_csv("./datasets/employees_edit.csv")
+```
 
-# Make a deep copy to keep the original dataframe
+Create a deep copy to preserve the original data frame for later before-and-after comparison:
+
+```python
 employees_df_orig = employees_df.copy(deep=True)
 ```
 
@@ -886,25 +889,152 @@ Further information on the subject of **imputation** can be found here, among ot
 - [scikit-learn: Imputation of missing values](https://scikit-learn.org/stable/modules/impute.html)
 <!-- #endregion -->
 
+Show rows with missing salary only:
+
 ```python tags=[]
-# Show rows with missing salary only
 employees_df_gaps = employees_df[employees_df['Salary'].isnull()]
 employees_df_gaps
 ```
 
+As will be shown later in the section [Display Histogram](#Display-Histogram), the **salary structure depends** very much **on gender**. In order **not to distort the dataset** too much, the **median salaries** are determined **gender-specifically**.
+
+First, the **male** and **female employees** with missing salary records are filtered:
+
 ```python
+# Filter MALE employees with missing salary records
+employees_df_gaps = employees_df.loc[(employees_df['Gender'] == 'Male') \
+                                     & employees_df['Salary'].isnull()]
+
 # Get indices of incomplete rows
-employees_df_gaps.index.to_list()
+index_list_male_salary_nan = employees_df_gaps.index.to_list()
+index_list_male_salary_nan
 ```
 
 ```python
-# Fill missing values with the median of the 'salary' column
-# and replace NaN values in the original dataframe
-employees_df['Salary'] = employees_df['Salary'] \
-                         .fillna(employees_df['Salary'].median())
+# Filter FEMALE employees with missing salary records
+employees_df_gaps = employees_df.loc[(employees_df['Gender'] == 'Female') \
+                                     & employees_df['Salary'].isnull()]
 
-# Show rows with replaced 'salary' by index and its direct neighbours
-employees_df.iloc[[16, 17, 18, 62, 63, 64, 75, 76, 77]]
+# Get indices of incomplete rows
+index_list_female_salary_nan = employees_df_gaps.index.to_list()
+index_list_female_salary_nan
+```
+
+Get **median salaries** gender-specifically:
+
+```python
+# Get median salary for MALE employees
+employees_df_male = employees_df.loc[employees_df['Gender'] == 'Male']
+
+salary_median_male = employees_df_male['Salary'].median()
+salary_median_male
+```
+
+```python
+# Get median salary for FEMALE employees
+employees_df_female = employees_df.loc[employees_df['Gender'] == 'Female']
+
+salary_median_female = employees_df_female['Salary'].median()
+salary_median_female
+```
+
+Fill missing salary records with the **gender-specifically median** of the salary column and replace NaN values in the original dataframe:
+
+```python
+# Fill missing salary records by MALE indices
+employees_df.loc[index_list_male_salary_nan, 'Salary'] = salary_median_male
+
+employees_df.loc[index_list_male_salary_nan]
+```
+
+```python
+# Fill missing salary records by FEMALE indices
+employees_df.loc[index_list_female_salary_nan, 'Salary'] = salary_median_female
+
+employees_df.loc[index_list_female_salary_nan]
+```
+
+**Merge** male and female index lists and **extend** the indices by its direct **neighbors** for later **before-and-after comparison**:
+
+```python
+# Function for retrieving the indices of previous and next rows of a dataframe
+def get_previous_and_next_rows_from_df(df, search_idx):
+    # Get list of indices of dataframe rows
+    index_list = df.index.to_list()
+    
+    li_elem_df_prev = 0
+    li_elem_df_next = 0
+    b_element_found = False
+    
+    # Cycle over list of indices of given dataframe
+    for li_idx_df, li_elem_df in enumerate(index_list):
+        # Check index bounds
+        if (li_idx_df+1 < len(index_list) and li_idx_df-1 >= 0):
+            
+            # Get previous and successing list elements
+            if li_elem_df == search_idx:
+                b_element_found = True
+                li_elem_df_prev = index_list[li_idx_df-1]
+                li_elem_df_next = index_list[li_idx_df+1]
+
+    if b_element_found:
+        #print(li_elem_df_prev, search_idx, li_elem_df_next)
+        return [li_elem_df_prev, search_idx, li_elem_df_next]
+    else:
+        print('Element was not found :(')
+        return []
+```
+
+Generate a **combined index list** of males and females with the missing salary records as well as their respective direct **gender neighbors** for comparison:
+
+```python
+# Merge MALE and FEMALE index lists
+index_list_merged = []
+
+# Filter MALE employees
+employees_df_male = employees_df.loc[(employees_df['Gender'] == 'Male')]
+
+# Cycle over list of MALE employees with missing salary records
+for li_idx_salary_nan in index_list_male_salary_nan:
+    li_neighbors_male = get_previous_and_next_rows_from_df(employees_df_male, 
+                                                           li_idx_salary_nan)
+    index_list_merged.extend(li_neighbors_male)
+
+# Filter FEMALE employees
+employees_df_female = employees_df.loc[(employees_df['Gender'] == 'Female')]
+
+# Cycle over list of FEMALE employees with missing salary records
+for li_idx_salary_nan in index_list_female_salary_nan:
+    li_neighbors_female = get_previous_and_next_rows_from_df(employees_df_female, 
+                                                           li_idx_salary_nan)
+    index_list_merged.extend(li_neighbors_female)
+    
+index_list_merged
+```
+
+Show rows with replaced `salary` by extended index list for both genders (including the direct neighbors) for **before-and-after comparison**.
+
+By pure coincidence, the **predecessor** of `Shawn` with the missing salary record has the **median male salary** of the entire dataset. Therefore, this value is also highlighted.
+
+```python
+# Switch to apply highlight style to dataframe
+# HINT: Set to 'False' when compiling to PDF!
+highlight = False
+
+# Show rows with replaced 'salary' by index and its direct neighbors
+employees_df_filled_salary = employees_df.iloc[index_list_merged]
+
+if highlight:
+    # Highlight cells by condition
+    employees_df_filled_salary = employees_df_filled_salary \
+                                    .style.apply(lambda x: 
+                                       ['background: yellow' 
+                                        if (v == salary_median_male 
+                                            or v == salary_median_female) 
+                                        else "" for v in x], 
+                                       axis = 1)
+
+employees_df_filled_salary
 ```
 
 <!-- #region tags=[] -->
@@ -921,7 +1051,7 @@ Giving the parameter `how = 'all'` the function drops rows with all data missing
 ```python tags=[]
 # Drop rows with missing values directly in the original dataframe
 employees_df.dropna(axis = 0, how ='any', inplace = True)
-employees_df
+#employees_df
 ```
 
 Finally we compare the sizes of dataframes so that we learn how many rows had at least 1 Null value.
@@ -1023,8 +1153,8 @@ Incorporate following sources:
 <!-- #endregion -->
 
 ```python tags=[] jupyter={"outputs_hidden": true}
-pd.set_option('display.max_rows', 1100)
-pd.set_option('display.min_rows', 100)
+#pd.set_option('display.max_rows', 1100)
+#pd.set_option('display.min_rows', 100)
 
 # Does not work with dropped rows in one dataframe!
 employees_df_orig.compare(employees_df, keep_shape=False, keep_equal=True)
@@ -1059,7 +1189,7 @@ def highlight_diff(data, color='yellow'):
                         index=data.index, columns=data.columns)
 ```
 
-```python
+```python tags=[]
 # Apply style using function
 df_final.style.apply(highlight_diff, axis=None)
 ```
