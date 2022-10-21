@@ -811,7 +811,21 @@ So let's look for **another dataset to exercise**. For this purpose, the origina
 employees_df = pd.read_csv("./datasets/employees_edit.csv")
 ```
 
-Create a deep copy to preserve the original data frame for later before-and-after comparison:
+For the **before-and-after comparison**, the **edited** and the **original data frames** are connected with each other (so-called **merging**). This merging **requires unique identifiers** for the individual data records (rows of the data frame). Using the **index** of the data frame for this is far too **unreliable**, since it can **change constantly** due to reordering or the deletion and addition of rows.
+
+Therefore, directly after importing the dataset from the CSV file, the dataframe **index** is **transferred to a new column** as a permanent and stable **records identifier**.
+
+```python
+# Retrieve indices of all rows into a temporary list
+li_idx = employees_df.index
+
+# Insert indices as a new index column at the first position with 'loc=0'
+employees_df.insert(loc=0, column='idx', value=li_idx)
+
+employees_df
+```
+
+Now a **deep copy** is created to preserve the **original data frame** for later **before-and-after comparison** - including the new index column to uniquely identify the records.
 
 ```python
 employees_df_orig = employees_df.copy(deep=True)
@@ -1085,7 +1099,9 @@ Find duplicate rows across **all columns**:
 
 ```python
 # Find duplicate rows across all columns
-duplicateRows = employees_df[employees_df.duplicated()]
+# The column 'idx' has to be ignored
+column_subset = employees_df.columns.difference(['idx'])
+duplicateRows = employees_df[employees_df.duplicated(subset=column_subset)]
 duplicateRows
 ```
 
@@ -1093,7 +1109,7 @@ Find **all completely identical duplicates** (first and last occurrences). The r
 
 ```python
 # Parameter 'keep=False' displays all duplicate rows
-duplicateRows = employees_df[employees_df.duplicated(keep=False)]
+duplicateRows = employees_df[employees_df.duplicated(keep=False, subset=column_subset)]
 
 # Sort rows by column 'First Name' to get the duplicates grouped
 duplicateRows.sort_values('First Name')
@@ -1127,7 +1143,9 @@ Remove duplicate rows across **all columns**:
 
 ```python tags=[]
 # Remove duplicate rows across all columns
-employees_df.drop_duplicates(inplace=True)
+# The column 'idx' has to be ignored
+column_subset = employees_df.columns.difference(['idx'])
+employees_df.drop_duplicates(inplace=True, subset=column_subset)
 employees_df
 ```
 
@@ -1175,6 +1193,166 @@ employees_df_combined = pd.concat([df1, df2],
 employees_df_combined
 ```
 
+```python
+employees_df_merged = pd.merge(df1, df2, how='left', on=['idx'])
+employees_df_merged
+```
+
+```python
+# Rename suffixes '_x' and '_y' by using lambda inline functions
+employees_df_merged.rename(columns=lambda x: x.replace('_x', '_o'), inplace=True)
+employees_df_merged.rename(columns=lambda x: x.replace('_y', '_e'), inplace=True)
+employees_df_merged
+```
+
+```python
+# Create column list with new order
+# with the goal that the columns of the original and the edited data frame are directly next to each other for a better comparison
+li_reordered_cols = ['idx']
+
+# Iterate over columns
+for column in employees_df_orig.columns:
+    if column != 'idx':
+        li_reordered_cols.append(column + '_o')
+        li_reordered_cols.append(column + '_e')
+
+li_reordered_cols
+```
+
+```python
+# Reorder columns of the dataframe based on the new column list
+employees_df_merged = employees_df_merged.reindex(columns=li_reordered_cols)
+employees_df_merged
+```
+
+```python
+# Define function to highlight differences in dataframes
+def highlight_diff_merged(data, color='yellow'):
+    attr = 'background-color: {}'.format(color)
+    #print(data.columns)
+    other = data.xs('First Name_orig', axis='columns', level=-1)
+    #print(other)
+    mask_df = pd.DataFrame(np.where(data.ne(other, level=0), attr, ''),
+                        index=data.index, columns=data.columns)
+    return mask_df
+```
+
+```python jupyter={"outputs_hidden": true} tags=[]
+employees_df_merged.style.apply(highlight_diff_merged, axis=None)
+```
+
+```python
+# Iterate over rows
+for row in employees_df_merged.itertuples():
+    # Iterate over columns
+    for column in row.index:
+        print(column)
+```
+
+```python
+# Create data frame of the same shape as the merged data frame to get a mask for highlighting
+employees_df_merged_mask_diffs = pd.DataFrame().reindex_like(employees_df_merged)
+# Fill all NaN values using fillna()
+employees_df_merged_mask_diffs.fillna('', inplace = True)
+```
+
+```python
+# Fill all null values with string 'NaN' using fillna()
+employees_df_merged.fillna('NaN', inplace = True)
+```
+
+```python tags=[]
+# Initiate pandas styler object
+styler = employees_df_merged.style.applymap(lambda x: "background-color: white", subset=(0, 'idx'))
+
+# Iterate over rows
+for rowIndex, row in employees_df_merged.iterrows():
+#for row in employees_df_merged.itertuples():
+    # Iterate over columns
+    #print(rowIndex)
+    for column, value in row.items():
+        # Omit index column for comparison
+        if column == 'idx':
+            continue
+        #print(f"Index : {index}, Value : {value}")
+        #print(type(column))
+        if column.endswith('_o'):
+            value_orig = value
+        elif column.endswith('_e'):
+            value_edit = value
+            if value_orig != value_edit:
+                # Write value in defined cell
+                #employees_df_merged_mask_diffs[column][3] = 'background-color: yellow'
+                subsets_hl = pd.IndexSlice[rowIndex, column]
+                #print(subsets_hl)
+                #styler = employees_df_merged.style.applymap(lambda x: "background-color: yellow", subset=subsets_hl)
+                styler.applymap(lambda x: "background-color: yellow", subset=subsets_hl)
+    #print(type(row))
+    #for columnIndex, value in row.items():
+     #   print(columnIndex, end="\t")
+    #print('###################')
+
+#subsets_hl = (1, 'First Name_edit')
+#type(subsets_hl)
+#employees_df_merged.style.applymap(lambda x: "background-color: yellow", subset=subsets_hl)
+```
+
+```python
+employees_df_merged['Salary_o'] = employees_df_merged['Salary_o'].astype(float)
+employees_df_merged['Salary_e'] = employees_df_merged['Salary_e'].astype(float)
+employees_df_merged['Bonus %_o'] = employees_df_merged['Bonus %_o'].astype(float)
+employees_df_merged['Bonus %_e'] = employees_df_merged['Bonus %_e'].astype(float)
+```
+
+```python tags=[]
+#employees_df_merged
+styler.format({'Salary_o': '{:.1f}',
+               'Salary_e': '{:.1f}',
+               'Bonus %_o': '{:.1f}',
+               'Bonus %_e': '{:.1f}'}).hide(axis='index')
+```
+
+```python tags=[] jupyter={"outputs_hidden": true}
+#employees_df_merged_mask_diffs
+
+#employees_df_merged.style.apply(employees_df_merged_mask_diffs, axis=None)
+#styler = pd.io.formats.style.Styler
+#subsets = pd.IndexSlice[0, 'idx']
+styler = employees_df_merged.style.applymap(lambda x: "background-color: red", subset=(0, 'idx'))
+
+
+subsets = pd.IndexSlice[0, 'First Name_edit']
+styler.applymap(lambda x: "background-color: yellow", subset=subsets)
+#styler
+```
+
+```python jupyter={"outputs_hidden": true} tags=[]
+subsets = pd.IndexSlice[4, 'First Name_edit']
+styler.applymap(lambda x: "background-color: yellow", subset=subsets)
+```
+
+```python
+# toy example
+df = pd.DataFrame({'i1':[0,0,0,1,1,1],
+                   'i2':[0,1,2,0,1,2],
+                   'col1':[1,2,3,4,5,6]}).set_index(['i1','i2'])
+
+subsets = pd.IndexSlice[(0,1), 'col1']
+df.style.applymap(lambda x: "background-color: yellow", subset=subsets)
+```
+
+```python tags=[]
+# Highlight cells with NaN values
+# HINT: Set to 'False' when compiling to PDF!
+highlight = True
+
+if highlight:
+    # Apply style using function
+    employees_df_merged.style.apply(highlight_diff_merged, axis=None)
+
+employees_df_merged
+```
+
 ```python tags=[]
 df_final = employees_df_combined.swaplevel(axis='columns')[df1.columns[1:]]
 df_final
@@ -1185,6 +1363,7 @@ df_final
 def highlight_diff(data, color='yellow'):
     attr = 'background-color: {}'.format(color)
     other = data.xs('Original', axis='columns', level=-1)
+    #print(other)
     return pd.DataFrame(np.where(data.ne(other, level=0), attr, ''),
                         index=data.index, columns=data.columns)
 ```
@@ -1192,6 +1371,9 @@ def highlight_diff(data, color='yellow'):
 ```python tags=[]
 # Apply style using function
 df_final.style.apply(highlight_diff, axis=None)
+
+#mask = highlight_diff(df_final)
+#df_final.style.applymap(mask, axis=None)
 ```
 
 <!-- #region tags=[] -->
