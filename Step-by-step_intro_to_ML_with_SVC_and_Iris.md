@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.1
+      jupytext_version: 1.14.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -834,14 +834,14 @@ employees_df_orig = employees_df.copy(deep=True)
 ```python tags=[]
 # Highlight cells with NaN values
 # HINT: Set to 'False' when compiling to PDF!
-highlight = True
-
-employees_df_hl = employees_df
+highlight = False
 
 if highlight:
-    employees_df_hl = employees_df.style.highlight_null('yellow')
+    output = employees_df.style.highlight_null('yellow')
+else:
+    output = employees_df
 
-employees_df_hl
+output
 ```
 
 Show only the **gaps** (NaN values) from this incomplete dataset again:
@@ -851,12 +851,14 @@ employees_df_gaps = employees_df[employees_df.isnull().any(axis=1)]
 
 # Highlight cells with NaN values
 # HINT: Set to 'False' when compiling to PDF!
-highlight = True
+highlight = False
 
 if highlight:
-    employees_df_gaps = employees_df_gaps.style.highlight_null('yellow')
+    output = employees_df_gaps.style.highlight_null('yellow')
+else:
+    output = employees_df_gaps
 
-employees_df_gaps
+output
 ```
 
 <!-- #region tags=[] -->
@@ -873,20 +875,22 @@ employees_df['Gender'].fillna('No Gender', inplace = True)
 
 # Switch to apply highlight style to dataframe
 # HINT: Set to 'False' when compiling to PDF!
-highlight = True
+highlight = False
 
 # Show only rows with subtituted 'Gender' column
 employees_df_filled_gender = employees_df[employees_df['Gender'] == 'No Gender']
 
 if highlight:
     # Highlight cells by condition
-    employees_df_filled_gender = employees_df_filled_gender.style.apply(lambda x: 
+    output = employees_df_filled_gender.style.apply(lambda x: 
                                                    ['background: yellow' 
                                                     if v == 'No Gender' 
                                                     else "" for v in x], 
                                                    axis = 1)
+else:
+    output = employees_df_filled_gender
 
-employees_df_filled_gender
+output
 ```
 
 <!-- #region tags=[] -->
@@ -1031,22 +1035,23 @@ Show rows with replaced `salary` by extended index list for both genders (includ
 ```python
 # Switch to apply highlight style to dataframe
 # HINT: Set to 'False' when compiling to PDF!
-highlight = True
+highlight = False
 
 # Show rows with replaced 'salary' by index and its direct neighbors
 employees_df_filled_salary = employees_df.iloc[index_list_merged]
 
 if highlight:
     # Highlight cells by condition
-    employees_df_filled_salary = employees_df_filled_salary \
-                                    .style.apply(lambda x: 
+    output = employees_df_filled_salary.style.apply(lambda x: 
                                        ['background: yellow' 
                                         if (v == salary_median_male 
                                             or v == salary_median_female) 
                                         else "" for v in x], 
                                        axis = 1)
+else:
+    output = employees_df_filled_salary
 
-employees_df_filled_salary
+output
 ```
 
 By pure coincidence, the **predecessor** of `Shawn` with the missing salary record has the **median male salary** of the entire dataset. Therefore, this value is also highlighted.
@@ -1187,7 +1192,7 @@ df2 = employees_df.fillna('NaN')
 #df2
 ```
 
-```python tags=[] jupyter={"source_hidden": true, "outputs_hidden": true}
+```python tags=[] jupyter={"outputs_hidden": true}
 employees_df_combined = pd.concat([df1, df2], 
                    axis='columns', keys=['Original', 'Cleaned'])
 employees_df_combined
@@ -1226,7 +1231,7 @@ employees_df_merged = employees_df_merged.reindex(columns=li_reordered_cols)
 employees_df_merged
 ```
 
-```python jupyter={"source_hidden": true} tags=[]
+```python tags=[]
 # Define function to highlight differences in dataframes
 def highlight_diff_merged(data, color='yellow'):
     attr = 'background-color: {}'.format(color)
@@ -1242,7 +1247,7 @@ def highlight_diff_merged(data, color='yellow'):
 employees_df_merged.style.apply(highlight_diff_merged, axis=None)
 ```
 
-```python
+```python jupyter={"outputs_hidden": true} tags=[]
 # Iterate over rows
 for row in employees_df_merged.itertuples():
     # Iterate over columns
@@ -1250,7 +1255,7 @@ for row in employees_df_merged.itertuples():
         print(column)
 ```
 
-```python
+```python tags=[]
 # Create data frame of the same shape as the merged data frame to get a mask for highlighting
 employees_df_merged_mask_diffs = pd.DataFrame().reindex_like(employees_df_merged)
 # Fill all NaN values using fillna()
@@ -1262,12 +1267,43 @@ employees_df_merged_mask_diffs.fillna('', inplace = True)
 employees_df_merged.fillna('NaN', inplace = True)
 ```
 
+```python jupyter={"source_hidden": true} tags=[]
+# Initiate new dataframe with differences
+employees_df_merged_diff = pd.DataFrame()
+#employees_df_merged_diff = pd.concat([employees_df_merged_diff, employees_df_merged.loc[[0]]], axis='index', ignore_index=True)
+#employees_df_diff = pd.DataFrame()
+```
+
+```python
+# Create empty dataframe with same columns as 'employees_df_orig'
+employees_df_diff = pd.DataFrame(columns=employees_df_orig.columns)
+employees_df_diff
+```
+
 ```python tags=[]
 # Initiate pandas styler object
-styler = employees_df_merged.style.applymap(lambda x: "background-color: white", subset=(0, 'idx'))
+styler = employees_df_merged_diff.style.applymap(lambda x: "background-color: red", subset=(0, 'idx'))
+```
 
+```python
+def dataframe_add_row(df=None, row=[]):
+    if (df is None):
+        return
+    
+    # add a row
+    df.loc[-1] = row
+    
+    # shift the index
+    df.index = df.index + 1
+    
+    # reset the index of dataframe and avoid the old index being added as a column
+    df.reset_index(drop=True, inplace=True)
+```
+
+```python tags=[]
 rowIndex_diff_found = ''
 rowIndex_diff_old = ''
+b_diffs_found = False
 
 # Iterate over rows
 for rowIndex, row in employees_df_merged.iterrows():
@@ -1277,6 +1313,8 @@ for rowIndex, row in employees_df_merged.iterrows():
     for column, value in row.items():
         # Omit index column for comparison
         if column == 'idx':
+            #row_s = pd.Series([value])
+            row_li = [value]
             continue
         #print(f"Index : {index}, Value : {value}")
         #print(type(column))
@@ -1288,10 +1326,30 @@ for rowIndex, row in employees_df_merged.iterrows():
                 # Write value in defined cell
                 #employees_df_merged_mask_diffs[column][3] = 'background-color: yellow'
                 subsets_hl = pd.IndexSlice[rowIndex, column]
-                #print(subsets_hl)
+                #print(rowIndex, value_orig, value_edit)
                 #styler = employees_df_merged.style.applymap(lambda x: "background-color: yellow", subset=subsets_hl)
                 styler.applymap(lambda x: "background-color: yellow", subset=subsets_hl)
-                print(rowIndex)
+                # Save index of row with differences
+                rowIndex_diff_found = rowIndex
+                #row_with_diffs = employees_df_merged.loc[[rowIndex_diff_found]]
+                row_li.append(str(value_orig) + ' <=> ' + str(value_edit))
+                #pd.concat([row_s, str(value_orig) + '|' + str(value_edit)])
+                b_diffs_found = True
+            elif value_orig == value_edit:
+                row_li.append(str(value_orig))
+                #pd.concat([row_s, value_orig])
+        # Add new row to dataframe when differences found only
+    if b_diffs_found:
+        #employees_df_diff = pd.concat([employees_df_diff, row_li], axis='index', ignore_index=True)
+        dataframe_add_row(employees_df_diff, row_li)
+        #print(row_li)
+        b_diffs_found = False
+        #if rowIndex_diff_found != rowIndex_diff_old:
+        #    #print(rowIndex_diff_found)
+        #    #print(employees_df_merged.loc[[rowIndex_diff_found]])
+        #    employees_df_merged_diff = pd.concat([employees_df_merged_diff, employees_df_merged.loc[[rowIndex_diff_found]]], axis='index', ignore_index=True)
+        #    rowIndex_diff_old = rowIndex_diff_found
+    #print(row_li)
     #print(type(row))
     #for columnIndex, value in row.items():
      #   print(columnIndex, end="\t")
@@ -1300,18 +1358,57 @@ for rowIndex, row in employees_df_merged.iterrows():
 #subsets_hl = (1, 'First Name_edit')
 #type(subsets_hl)
 #employees_df_merged.style.applymap(lambda x: "background-color: yellow", subset=subsets_hl)
+employees_df_diff
+```
+
+```python tags=[]
+# Switch to apply highlight style to dataframe
+# HINT: Set to 'False' when compiling to PDF!
+highlight = True
+
+if highlight:
+    # Highlight cells by condition
+    output = employees_df_diff.style.apply(lambda x: 
+                                          ['background: yellow' 
+                                           if str(v).find('<=>') != -1
+                                           else "" for v in x], 
+                                          axis = 1)
+else:
+    output = employees_df_diff
+
+output
 ```
 
 ```python
-employees_df_merged['Salary_o'] = employees_df_merged['Salary_o'].astype(float)
-employees_df_merged['Salary_e'] = employees_df_merged['Salary_e'].astype(float)
-employees_df_merged['Bonus %_o'] = employees_df_merged['Bonus %_o'].astype(float)
-employees_df_merged['Bonus %_e'] = employees_df_merged['Bonus %_e'].astype(float)
+def highlight_diff(data, color='yellow'):
+    attr = 'background-color: {}'.format(color)
+    #print(data.columns)
+    other = data.xs('First Name_orig', axis='columns', level=-1)
+    #print(other)
+    mask_df = pd.DataFrame(np.where(data.ne(other, level=0), attr, ''),
+                        index=data.index, columns=data.columns)
+    return mask_df
+```
+
+```python
+# Convert numbers from string to float
+employees_df_merged_diff['Salary_o'] = employees_df_merged['Salary_o'].astype(float)
+employees_df_merged_diff['Salary_e'] = employees_df_merged['Salary_e'].astype(float)
+employees_df_merged_diff['Bonus %_o'] = employees_df_merged['Bonus %_o'].astype(float)
+employees_df_merged_diff['Bonus %_e'] = employees_df_merged['Bonus %_e'].astype(float)
+```
+
+```python tags=[] jupyter={"outputs_hidden": true}
+styler
 ```
 
 ```python tags=[]
 # Function to hide the index 'hide_index()' is deprecated since 
 # pandas version 1.4.0 and is replaced by 'hide()'
+from packaging import version
+
+print(pd.__version__)
+
 if version.parse(pd.__version__) < version.parse('1.4.0'):
     styler.format({'Salary_o': '{:.1f}',
                    'Salary_e': '{:.1f}',
@@ -1323,16 +1420,23 @@ else:
                    'Bonus %_o': '{:.1f}',
                    'Bonus %_e': '{:.1f}'}).hide(axis='index')
 
-styler
+employees_df_merged_diff
+#styler
+```
+
+```python
+#employees_df_merged_diff = pd.DataFrame()
+employees_df_merged_diff
+```
+
+```python
+employees_df_merged_diff = pd.concat([employees_df_merged_diff, employees_df_merged.loc[[5]]], axis='index', ignore_index=True)
+employees_df_merged_diff
 ```
 
 ```python tags=[]
 # Print row by index
 employees_df_merged.loc[[0]]
-```
-
-```python
-pd.__version__
 ```
 
 ```python tags=[] jupyter={"outputs_hidden": true}
@@ -1354,7 +1458,7 @@ subsets = pd.IndexSlice[4, 'First Name_edit']
 styler.applymap(lambda x: "background-color: yellow", subset=subsets)
 ```
 
-```python
+```python jupyter={"outputs_hidden": true} tags=[]
 # toy example
 df = pd.DataFrame({'i1':[0,0,0,1,1,1],
                    'i2':[0,1,2,0,1,2],
@@ -1376,12 +1480,12 @@ if highlight:
 employees_df_merged
 ```
 
-```python tags=[]
+```python tags=[] jupyter={"outputs_hidden": true}
 df_final = employees_df_combined.swaplevel(axis='columns')[df1.columns[1:]]
 df_final
 ```
 
-```python
+```python tags=[]
 # Define function to highlight differences in dataframes
 def highlight_diff(data, color='yellow'):
     attr = 'background-color: {}'.format(color)
@@ -1391,7 +1495,7 @@ def highlight_diff(data, color='yellow'):
                         index=data.index, columns=data.columns)
 ```
 
-```python tags=[]
+```python tags=[] jupyter={"outputs_hidden": true}
 # Apply style using function
 df_final.style.apply(highlight_diff, axis=None)
 
