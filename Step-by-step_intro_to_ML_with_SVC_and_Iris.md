@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.14.1
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -834,7 +834,7 @@ employees_df_orig = employees_df.copy(deep=True)
 ```python tags=[]
 # Highlight cells with NaN values
 # HINT: Set to 'False' when compiling to PDF!
-highlight = False
+highlight = True
 
 employees_df_hl = employees_df
 
@@ -851,7 +851,7 @@ employees_df_gaps = employees_df[employees_df.isnull().any(axis=1)]
 
 # Highlight cells with NaN values
 # HINT: Set to 'False' when compiling to PDF!
-highlight = False
+highlight = True
 
 if highlight:
     employees_df_gaps = employees_df_gaps.style.highlight_null('yellow')
@@ -873,7 +873,7 @@ employees_df['Gender'].fillna('No Gender', inplace = True)
 
 # Switch to apply highlight style to dataframe
 # HINT: Set to 'False' when compiling to PDF!
-highlight = False
+highlight = True
 
 # Show only rows with subtituted 'Gender' column
 employees_df_filled_gender = employees_df[employees_df['Gender'] == 'No Gender']
@@ -1028,12 +1028,10 @@ index_list_merged
 
 Show rows with replaced `salary` by extended index list for both genders (including the direct neighbors) for **before-and-after comparison**.
 
-By pure coincidence, the **predecessor** of `Shawn` with the missing salary record has the **median male salary** of the entire dataset. Therefore, this value is also highlighted.
-
 ```python
 # Switch to apply highlight style to dataframe
 # HINT: Set to 'False' when compiling to PDF!
-highlight = False
+highlight = True
 
 # Show rows with replaced 'salary' by index and its direct neighbors
 employees_df_filled_salary = employees_df.iloc[index_list_merged]
@@ -1050,6 +1048,8 @@ if highlight:
 
 employees_df_filled_salary
 ```
+
+By pure coincidence, the **predecessor** of `Shawn` with the missing salary record has the **median male salary** of the entire dataset. Therefore, this value is also highlighted.
 
 <!-- #region tags=[] -->
 #### Drop missing values using `dropna()`
@@ -1187,7 +1187,7 @@ df2 = employees_df.fillna('NaN')
 #df2
 ```
 
-```python tags=[]
+```python tags=[] jupyter={"source_hidden": true, "outputs_hidden": true}
 employees_df_combined = pd.concat([df1, df2], 
                    axis='columns', keys=['Original', 'Cleaned'])
 employees_df_combined
@@ -1221,11 +1221,12 @@ li_reordered_cols
 
 ```python
 # Reorder columns of the dataframe based on the new column list
+# to get same columns side-by-side
 employees_df_merged = employees_df_merged.reindex(columns=li_reordered_cols)
 employees_df_merged
 ```
 
-```python
+```python jupyter={"source_hidden": true} tags=[]
 # Define function to highlight differences in dataframes
 def highlight_diff_merged(data, color='yellow'):
     attr = 'background-color: {}'.format(color)
@@ -1237,7 +1238,7 @@ def highlight_diff_merged(data, color='yellow'):
     return mask_df
 ```
 
-```python jupyter={"outputs_hidden": true} tags=[]
+```python tags=[] jupyter={"outputs_hidden": true}
 employees_df_merged.style.apply(highlight_diff_merged, axis=None)
 ```
 
@@ -1265,6 +1266,9 @@ employees_df_merged.fillna('NaN', inplace = True)
 # Initiate pandas styler object
 styler = employees_df_merged.style.applymap(lambda x: "background-color: white", subset=(0, 'idx'))
 
+rowIndex_diff_found = ''
+rowIndex_diff_old = ''
+
 # Iterate over rows
 for rowIndex, row in employees_df_merged.iterrows():
 #for row in employees_df_merged.itertuples():
@@ -1287,6 +1291,7 @@ for rowIndex, row in employees_df_merged.iterrows():
                 #print(subsets_hl)
                 #styler = employees_df_merged.style.applymap(lambda x: "background-color: yellow", subset=subsets_hl)
                 styler.applymap(lambda x: "background-color: yellow", subset=subsets_hl)
+                print(rowIndex)
     #print(type(row))
     #for columnIndex, value in row.items():
      #   print(columnIndex, end="\t")
@@ -1305,11 +1310,29 @@ employees_df_merged['Bonus %_e'] = employees_df_merged['Bonus %_e'].astype(float
 ```
 
 ```python tags=[]
-#employees_df_merged
-styler.format({'Salary_o': '{:.1f}',
-               'Salary_e': '{:.1f}',
-               'Bonus %_o': '{:.1f}',
-               'Bonus %_e': '{:.1f}'}).hide(axis='index')
+# Function to hide the index 'hide_index()' is deprecated since 
+# pandas version 1.4.0 and is replaced by 'hide()'
+if version.parse(pd.__version__) < version.parse('1.4.0'):
+    styler.format({'Salary_o': '{:.1f}',
+                   'Salary_e': '{:.1f}',
+                   'Bonus %_o': '{:.1f}',
+                   'Bonus %_e': '{:.1f}'}).hide_index()
+else:
+    styler.format({'Salary_o': '{:.1f}',
+                   'Salary_e': '{:.1f}',
+                   'Bonus %_o': '{:.1f}',
+                   'Bonus %_e': '{:.1f}'}).hide(axis='index')
+
+styler
+```
+
+```python tags=[]
+# Print row by index
+employees_df_merged.loc[[0]]
+```
+
+```python
+pd.__version__
 ```
 
 ```python tags=[] jupyter={"outputs_hidden": true}
