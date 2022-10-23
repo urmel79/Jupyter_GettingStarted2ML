@@ -174,7 +174,9 @@
     \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
     % Document parameters
     % Document title
-    \title{\textbf{\textsf{Getting started with Machine Learning (ML) and Support Vector Classifiers (SVC) - A systematic step-by-step approach}}}\author{Dipl.-Ing. Bj\"orn Kasper (\href{mailto:kasper.bjoern@bgetem.de}{kasper.bjoern@bgetem.de})}\affil{Test and Certification Body for Electrical Engineering at BG ETEM}\date{\today; version 0.8 (pre-release)}
+    \title{\textbf{\textsf{Getting started with Machine Learning (ML) and Support Vector Classifiers (SVC) - A systematic step-by-step approach}}}\author{Dipl.-Ing. Bj\"orn Kasper (\href{mailto:kasper.bjoern@bgetem.de}{kasper.bjoern@bgetem.de})}\affil{Test and Certification Body for Electrical Engineering at BG ETEM}
+
+\date{\today} 
 
 
     
@@ -1478,7 +1480,7 @@ data analysis and ML, such as \texttt{Pandas}, \texttt{NumPY},
 \texttt{matplotlib} and \texttt{Scikit-Learn}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{376}{\boxspacing}
+\prompt{In}{incolor}{1}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{time}
 
@@ -2686,54 +2688,53 @@ dataset}, which will be used in the next subsections, has been
 \textbf{slightly modified}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{313}{\boxspacing}
+\prompt{In}{incolor}{2}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Import data to dataframe from CSV file}
 \PY{n}{employees\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{./datasets/employees\PYZus{}edit.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
-    Create a deep copy to preserve the original data frame for later
-before-and-after comparison:
+    For the \textbf{before-and-after comparison}, the \textbf{edited} and
+the \textbf{original data frames} are connected with each other
+(so-called \textbf{merging}). This merging \textbf{requires unique
+identifiers} for the individual data records (rows of the data frame).
+Using the \textbf{index} of the data frame for this is far too
+\textbf{unreliable}, since it can \textbf{change constantly} due to
+reordering or the deletion and addition of rows.
+
+Therefore, directly after importing the dataset from the CSV file, the
+dataframe \textbf{index} is \textbf{transferred to a new column} as a
+permanent and stable \textbf{records identifier}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{314}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{employees\PYZus{}df\PYZus{}orig} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-\end{Verbatim}
-\end{tcolorbox}
+\PY{c+c1}{\PYZsh{} Retrieve indices of all rows into a temporary list}
+\PY{n}{li\PYZus{}idx} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{index}
 
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{315}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Highlight cells with NaN values}
-\PY{c+c1}{\PYZsh{} HINT: Set to \PYZsq{}False\PYZsq{} when compiling to PDF!}
-\PY{n}{highlight} \PY{o}{=} \PY{k+kc}{False}
+\PY{c+c1}{\PYZsh{} Insert indices as a new index column at the first position with \PYZsq{}loc=0\PYZsq{}}
+\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{insert}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{column}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{idx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{value}\PY{o}{=}\PY{n}{li\PYZus{}idx}\PY{p}{)}
 
-\PY{n}{employees\PYZus{}df\PYZus{}hl} \PY{o}{=} \PY{n}{employees\PYZus{}df}
-
-\PY{k}{if} \PY{n}{highlight}\PY{p}{:}
-    \PY{n}{employees\PYZus{}df\PYZus{}hl} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{highlight\PYZus{}null}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-
-\PY{n}{employees\PYZus{}df\PYZus{}hl}
+\PY{n}{employees\PYZus{}df}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{315}{\boxspacing}
+\prompt{Out}{outcolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-     First Name  Gender  Start Date Last Login Time    Salary   Bonus \%  \textbackslash{}
-0       Douglas    Male    8/6/1993        12:42 PM   97308.0   6945.00
-1        Thomas    Male   3/31/1996         6:53 AM   61933.0      4.17
-2         Maria  Female   4/23/1993        11:17 AM  130590.0  11858.00
-3         Jerry    Male    3/4/2005         1:00 PM  138705.0      9.34
-4         Larry    Male   1/24/1998         4:47 PM  101004.0   1389.00
-{\ldots}         {\ldots}     {\ldots}         {\ldots}             {\ldots}       {\ldots}       {\ldots}
-999       Henry     NaN  11/23/2014         6:09 AM  132483.0  16655.00
-1000    Phillip    Male   1/31/1984         6:30 AM   42392.0  19675.00
-1001    Russell    Male   5/20/2013        12:39 PM   96914.0   1421.00
-1002      Larry    Male   4/20/2013         4:45 PM   60500.0  11985.00
-1003     Albert    Male   5/15/2012         6:24 PM  129949.0  10169.00
+       idx First Name  Gender  Start Date Last Login Time    Salary   Bonus \%  \textbackslash{}
+0        0    Douglas    Male    8/6/1993        12:42 PM   97308.0   6945.00
+1        1     Thomas    Male   3/31/1996         6:53 AM   61933.0      4.17
+2        2      Maria  Female   4/23/1993        11:17 AM  130590.0  11858.00
+3        3      Jerry    Male    3/4/2005         1:00 PM  138705.0      9.34
+4        4      Larry    Male   1/24/1998         4:47 PM  101004.0   1389.00
+{\ldots}    {\ldots}        {\ldots}     {\ldots}         {\ldots}             {\ldots}       {\ldots}       {\ldots}
+999    999      Henry     NaN  11/23/2014         6:09 AM  132483.0  16655.00
+1000  1000    Phillip    Male   1/31/1984         6:30 AM   42392.0  19675.00
+1001  1001    Russell    Male   5/20/2013        12:39 PM   96914.0   1421.00
+1002  1002      Larry    Male   4/20/2013         4:45 PM   60500.0  11985.00
+1003  1003     Albert    Male   5/15/2012         6:24 PM  129949.0  10169.00
 
      Senior Management                  Team
 0                 True             Marketing
@@ -2748,7 +2749,67 @@ before-and-after comparison:
 1002             False  Business Development
 1003              True                 Sales
 
-[1004 rows x 8 columns]
+[1004 rows x 9 columns]
+\end{Verbatim}
+\end{tcolorbox}
+        
+    Now a \textbf{deep copy} is created to preserve the \textbf{original
+data frame} for later \textbf{before-and-after comparison} - including
+the new index column to uniquely identify the records.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{employees\PYZus{}df\PYZus{}orig} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Highlight cells with NaN values}
+\PY{c+c1}{\PYZsh{} HINT: Set to \PYZsq{}False\PYZsq{} when compiling to PDF!}
+\PY{n}{highlight} \PY{o}{=} \PY{k+kc}{False}
+
+\PY{k}{if} \PY{n}{highlight}\PY{p}{:}
+    \PY{n}{output} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{highlight\PYZus{}null}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+    \PY{n}{output} \PY{o}{=} \PY{n}{employees\PYZus{}df}
+
+\PY{n}{output}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+       idx First Name  Gender  Start Date Last Login Time    Salary   Bonus \%  \textbackslash{}
+0        0    Douglas    Male    8/6/1993        12:42 PM   97308.0   6945.00
+1        1     Thomas    Male   3/31/1996         6:53 AM   61933.0      4.17
+2        2      Maria  Female   4/23/1993        11:17 AM  130590.0  11858.00
+3        3      Jerry    Male    3/4/2005         1:00 PM  138705.0      9.34
+4        4      Larry    Male   1/24/1998         4:47 PM  101004.0   1389.00
+{\ldots}    {\ldots}        {\ldots}     {\ldots}         {\ldots}             {\ldots}       {\ldots}       {\ldots}
+999    999      Henry     NaN  11/23/2014         6:09 AM  132483.0  16655.00
+1000  1000    Phillip    Male   1/31/1984         6:30 AM   42392.0  19675.00
+1001  1001    Russell    Male   5/20/2013        12:39 PM   96914.0   1421.00
+1002  1002      Larry    Male   4/20/2013         4:45 PM   60500.0  11985.00
+1003  1003     Albert    Male   5/15/2012         6:24 PM  129949.0  10169.00
+
+     Senior Management                  Team
+0                 True             Marketing
+1                 True                   NaN
+2                False               Finance
+3                 True               Finance
+4                 True       Client Services
+{\ldots}                {\ldots}                   {\ldots}
+999              False          Distribution
+1000             False               Finance
+1001             False               Product
+1002             False  Business Development
+1003              True                 Sales
+
+[1004 rows x 9 columns]
 \end{Verbatim}
 \end{tcolorbox}
         
@@ -2756,7 +2817,7 @@ before-and-after comparison:
 again:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{316}{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{employees\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
 
@@ -2765,27 +2826,29 @@ again:
 \PY{n}{highlight} \PY{o}{=} \PY{k+kc}{False}
 
 \PY{k}{if} \PY{n}{highlight}\PY{p}{:}
-    \PY{n}{employees\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}gaps}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{highlight\PYZus{}null}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{n}{output} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}gaps}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{highlight\PYZus{}null}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+    \PY{n}{output} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}gaps}
 
-\PY{n}{employees\PYZus{}df\PYZus{}gaps}
+\PY{n}{output}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{316}{\boxspacing}
+\prompt{Out}{outcolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-    First Name  Gender  Start Date Last Login Time    Salary   Bonus \%  \textbackslash{}
-1       Thomas    Male   3/31/1996         6:53 AM   61933.0      4.17
-7          NaN  Female   7/20/2015        10:43 AM   45906.0  11598.00
-10      Louise  Female   8/12/1980         9:01 AM   63241.0  15132.00
-17       Shawn    Male   12/7/1986         7:45 PM       NaN   6414.00
-20        Lois     NaN   4/22/1995         7:18 PM   64714.0   4934.00
-..         {\ldots}     {\ldots}         {\ldots}             {\ldots}       {\ldots}       {\ldots}
-965    Antonio     NaN   6/18/1989         9:37 PM  103050.0      3.05
-976     Victor     NaN   7/28/2006         2:49 PM   76381.0  11159.00
-989    Stephen     NaN   7/10/1983         8:10 PM   85668.0   1909.00
-993     Justin     NaN   2/10/1991         4:58 PM   38344.0   3794.00
-999      Henry     NaN  11/23/2014         6:09 AM  132483.0  16655.00
+     idx First Name  Gender  Start Date Last Login Time    Salary   Bonus \%  \textbackslash{}
+1      1     Thomas    Male   3/31/1996         6:53 AM   61933.0      4.17
+7      7        NaN  Female   7/20/2015        10:43 AM   45906.0  11598.00
+10    10     Louise  Female   8/12/1980         9:01 AM   63241.0  15132.00
+17    17      Shawn    Male   12/7/1986         7:45 PM       NaN   6414.00
+20    20       Lois     NaN   4/22/1995         7:18 PM   64714.0   4934.00
+..   {\ldots}        {\ldots}     {\ldots}         {\ldots}             {\ldots}       {\ldots}       {\ldots}
+965  965    Antonio     NaN   6/18/1989         9:37 PM  103050.0      3.05
+976  976     Victor     NaN   7/28/2006         2:49 PM   76381.0  11159.00
+989  989    Stephen     NaN   7/10/1983         8:10 PM   85668.0   1909.00
+993  993     Justin     NaN   2/10/1991         4:58 PM   38344.0   3794.00
+999  999      Henry     NaN  11/23/2014         6:09 AM  132483.0  16655.00
 
     Senior Management          Team
 1                True           NaN
@@ -2800,7 +2863,7 @@ again:
 993             False         Legal
 999             False  Distribution
 
-[240 rows x 8 columns]
+[240 rows x 9 columns]
 \end{Verbatim}
 \end{tcolorbox}
         
@@ -2816,7 +2879,7 @@ the original dataframe with \texttt{inplace\ =\ True} - no deep copy is
 made!
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{317}{\boxspacing}
+\prompt{In}{incolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Fill all null values in column \PYZsq{}Gender\PYZsq{} using fillna()}
 \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{No Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
@@ -2830,46 +2893,48 @@ made!
 
 \PY{k}{if} \PY{n}{highlight}\PY{p}{:}
     \PY{c+c1}{\PYZsh{} Highlight cells by condition}
-    \PY{n}{employees\PYZus{}df\PYZus{}filled\PYZus{}gender} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}filled\PYZus{}gender}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} 
+    \PY{n}{output} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}filled\PYZus{}gender}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} 
                                                    \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{background: yellow}\PY{l+s+s1}{\PYZsq{}} 
                                                     \PY{k}{if} \PY{n}{v} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{No Gender}\PY{l+s+s1}{\PYZsq{}} 
                                                     \PY{k}{else} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}} \PY{k}{for} \PY{n}{v} \PY{o+ow}{in} \PY{n}{x}\PY{p}{]}\PY{p}{,} 
                                                    \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+    \PY{n}{output} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}filled\PYZus{}gender}
 
-\PY{n}{employees\PYZus{}df\PYZus{}filled\PYZus{}gender}
+\PY{n}{output}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{317}{\boxspacing}
+\prompt{Out}{outcolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-    First Name     Gender  Start Date Last Login Time    Salary   Bonus \%  \textbackslash{}
-20        Lois  No Gender   4/22/1995         7:18 PM   64714.0   4934.00
-22      Joshua  No Gender    3/8/2012         1:58 AM   90816.0  18816.00
-27       Scott  No Gender   7/11/1991         6:58 PM  122367.0   5218.00
-31       Joyce  No Gender   2/20/2005         2:40 PM   88657.0  12752.00
-41   Christine  No Gender   6/28/2015         1:08 AM   66582.0  11308.00
-..         {\ldots}        {\ldots}         {\ldots}             {\ldots}       {\ldots}       {\ldots}
-965    Antonio  No Gender   6/18/1989         9:37 PM  103050.0      3.05
-976     Victor  No Gender   7/28/2006         2:49 PM   76381.0  11159.00
-989    Stephen  No Gender   7/10/1983         8:10 PM   85668.0   1909.00
-993     Justin  No Gender   2/10/1991         4:58 PM   38344.0   3794.00
-999      Henry  No Gender  11/23/2014         6:09 AM  132483.0  16655.00
+     idx First Name     Gender  Start Date Last Login Time    Salary  \textbackslash{}
+20    20       Lois  No Gender   4/22/1995         7:18 PM   64714.0
+22    22     Joshua  No Gender    3/8/2012         1:58 AM   90816.0
+27    27      Scott  No Gender   7/11/1991         6:58 PM  122367.0
+31    31      Joyce  No Gender   2/20/2005         2:40 PM   88657.0
+41    41  Christine  No Gender   6/28/2015         1:08 AM   66582.0
+..   {\ldots}        {\ldots}        {\ldots}         {\ldots}             {\ldots}       {\ldots}
+965  965    Antonio  No Gender   6/18/1989         9:37 PM  103050.0
+976  976     Victor  No Gender   7/28/2006         2:49 PM   76381.0
+989  989    Stephen  No Gender   7/10/1983         8:10 PM   85668.0
+993  993     Justin  No Gender   2/10/1991         4:58 PM   38344.0
+999  999      Henry  No Gender  11/23/2014         6:09 AM  132483.0
 
-    Senior Management                  Team
-20               True                 Legal
-22               True       Client Services
-27              False                 Legal
-31              False               Product
-41               True  Business Development
-..                {\ldots}                   {\ldots}
-965             False                 Legal
-976              True                 Sales
-989             False                 Legal
-993             False                 Legal
-999             False          Distribution
+      Bonus \% Senior Management                  Team
+20    4934.00              True                 Legal
+22   18816.00              True       Client Services
+27    5218.00             False                 Legal
+31   12752.00             False               Product
+41   11308.00              True  Business Development
+..        {\ldots}               {\ldots}                   {\ldots}
+965      3.05             False                 Legal
+976  11159.00              True                 Sales
+989   1909.00             False                 Legal
+993   3794.00             False                 Legal
+999  16655.00             False          Distribution
 
-[146 rows x 8 columns]
+[146 rows x 9 columns]
 \end{Verbatim}
 \end{tcolorbox}
         
@@ -2909,7 +2974,7 @@ here, among other places:
     Show rows with missing salary only:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{318}{\boxspacing}
+\prompt{In}{incolor}{8}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{employees\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Salary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{p}{]}
 \PY{n}{employees\PYZus{}df\PYZus{}gaps}
@@ -2917,12 +2982,12 @@ here, among other places:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{318}{\boxspacing}
+\prompt{Out}{outcolor}{8}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-   First Name  Gender Start Date Last Login Time  Salary  Bonus \%  \textbackslash{}
-17      Shawn    Male  12/7/1986         7:45 PM     NaN  6414.00
-63    Matthew    Male   1/2/2013        10:33 PM     NaN    18.04
-76   Margaret  Female  9/10/1988        12:42 PM     NaN  7353.00
+    idx First Name  Gender Start Date Last Login Time  Salary  Bonus \%  \textbackslash{}
+17   17      Shawn    Male  12/7/1986         7:45 PM     NaN  6414.00
+63   63    Matthew    Male   1/2/2013        10:33 PM     NaN    18.04
+76   76   Margaret  Female  9/10/1988        12:42 PM     NaN  7353.00
 
    Senior Management             Team
 17             False          Product
@@ -2941,7 +3006,7 @@ First, the \textbf{male} and \textbf{female employees} with missing
 salary records are filtered:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{319}{\boxspacing}
+\prompt{In}{incolor}{9}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Filter MALE employees with missing salary records}
 \PY{n}{employees\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{(}\PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Male}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PYZbs{}
@@ -2954,14 +3019,14 @@ salary records are filtered:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{319}{\boxspacing}
+\prompt{Out}{outcolor}{9}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 [17, 63]
 \end{Verbatim}
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{320}{\boxspacing}
+\prompt{In}{incolor}{10}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Filter FEMALE employees with missing salary records}
 \PY{n}{employees\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{(}\PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Female}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PYZbs{}
@@ -2974,7 +3039,7 @@ salary records are filtered:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{320}{\boxspacing}
+\prompt{Out}{outcolor}{10}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 [76]
 \end{Verbatim}
@@ -2983,7 +3048,7 @@ salary records are filtered:
     Get \textbf{median salaries} gender-specifically:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{321}{\boxspacing}
+\prompt{In}{incolor}{11}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Get median salary for MALE employees}
 \PY{n}{employees\PYZus{}df\PYZus{}male} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Male}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -2994,14 +3059,14 @@ salary records are filtered:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{321}{\boxspacing}
+\prompt{Out}{outcolor}{11}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 90370.0
 \end{Verbatim}
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{322}{\boxspacing}
+\prompt{In}{incolor}{12}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Get median salary for FEMALE employees}
 \PY{n}{employees\PYZus{}df\PYZus{}female} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Female}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -3012,7 +3077,7 @@ salary records are filtered:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{322}{\boxspacing}
+\prompt{Out}{outcolor}{12}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 90032.5
 \end{Verbatim}
@@ -3022,7 +3087,7 @@ salary records are filtered:
 of the salary column and replace NaN values in the original dataframe:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{323}{\boxspacing}
+\prompt{In}{incolor}{13}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Fill missing salary records by MALE indices}
 \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{index\PYZus{}list\PYZus{}male\PYZus{}salary\PYZus{}nan}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Salary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{salary\PYZus{}median\PYZus{}male}
@@ -3032,11 +3097,11 @@ of the salary column and replace NaN values in the original dataframe:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{323}{\boxspacing}
+\prompt{Out}{outcolor}{13}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-   First Name Gender Start Date Last Login Time   Salary  Bonus \%  \textbackslash{}
-17      Shawn   Male  12/7/1986         7:45 PM  90370.0  6414.00
-63    Matthew   Male   1/2/2013        10:33 PM  90370.0    18.04
+    idx First Name Gender Start Date Last Login Time   Salary  Bonus \%  \textbackslash{}
+17   17      Shawn   Male  12/7/1986         7:45 PM  90370.0  6414.00
+63   63    Matthew   Male   1/2/2013        10:33 PM  90370.0    18.04
 
    Senior Management             Team
 17             False          Product
@@ -3045,7 +3110,7 @@ of the salary column and replace NaN values in the original dataframe:
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{324}{\boxspacing}
+\prompt{In}{incolor}{14}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Fill missing salary records by FEMALE indices}
 \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{index\PYZus{}list\PYZus{}female\PYZus{}salary\PYZus{}nan}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Salary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{salary\PYZus{}median\PYZus{}female}
@@ -3055,10 +3120,10 @@ of the salary column and replace NaN values in the original dataframe:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{324}{\boxspacing}
+\prompt{Out}{outcolor}{14}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-   First Name  Gender Start Date Last Login Time   Salary  Bonus \%  \textbackslash{}
-76   Margaret  Female  9/10/1988        12:42 PM  90032.5   7353.0
+    idx First Name  Gender Start Date Last Login Time   Salary  Bonus \%  \textbackslash{}
+76   76   Margaret  Female  9/10/1988        12:42 PM  90032.5   7353.0
 
    Senior Management          Team
 76              True  Distribution
@@ -3070,7 +3135,7 @@ indices by its direct \textbf{neighbors} for later
 \textbf{before-and-after comparison}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{325}{\boxspacing}
+\prompt{In}{incolor}{15}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Function for retrieving the indices of previous and next rows of a dataframe}
 \PY{k}{def} \PY{n+nf}{get\PYZus{}previous\PYZus{}and\PYZus{}next\PYZus{}rows\PYZus{}from\PYZus{}df}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{search\PYZus{}idx}\PY{p}{)}\PY{p}{:}
@@ -3106,7 +3171,7 @@ missing salary records as well as their respective direct \textbf{gender
 neighbors} for comparison:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{326}{\boxspacing}
+\prompt{In}{incolor}{16}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Merge MALE and FEMALE index lists}
 \PY{n}{index\PYZus{}list\PYZus{}merged} \PY{o}{=} \PY{p}{[}\PY{p}{]}
@@ -3134,7 +3199,7 @@ neighbors} for comparison:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{326}{\boxspacing}
+\prompt{Out}{outcolor}{16}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 [16, 17, 21, 57, 63, 65, 75, 76, 78]
 \end{Verbatim}
@@ -3144,12 +3209,8 @@ neighbors} for comparison:
 genders (including the direct neighbors) for \textbf{before-and-after
 comparison}.
 
-By pure coincidence, the \textbf{predecessor} of \texttt{Shawn} with the
-missing salary record has the \textbf{median male salary} of the entire
-dataset. Therefore, this value is also highlighted.
-
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{327}{\boxspacing}
+\prompt{In}{incolor}{17}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Switch to apply highlight style to dataframe}
 \PY{c+c1}{\PYZsh{} HINT: Set to \PYZsq{}False\PYZsq{} when compiling to PDF!}
@@ -3160,31 +3221,32 @@ dataset. Therefore, this value is also highlighted.
 
 \PY{k}{if} \PY{n}{highlight}\PY{p}{:}
     \PY{c+c1}{\PYZsh{} Highlight cells by condition}
-    \PY{n}{employees\PYZus{}df\PYZus{}filled\PYZus{}salary} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}filled\PYZus{}salary} \PYZbs{}
-                                    \PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} 
+    \PY{n}{output} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}filled\PYZus{}salary}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} 
                                        \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{background: yellow}\PY{l+s+s1}{\PYZsq{}} 
                                         \PY{k}{if} \PY{p}{(}\PY{n}{v} \PY{o}{==} \PY{n}{salary\PYZus{}median\PYZus{}male} 
                                             \PY{o+ow}{or} \PY{n}{v} \PY{o}{==} \PY{n}{salary\PYZus{}median\PYZus{}female}\PY{p}{)} 
                                         \PY{k}{else} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}} \PY{k}{for} \PY{n}{v} \PY{o+ow}{in} \PY{n}{x}\PY{p}{]}\PY{p}{,} 
                                        \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+    \PY{n}{output} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}filled\PYZus{}salary}
 
-\PY{n}{employees\PYZus{}df\PYZus{}filled\PYZus{}salary}
+\PY{n}{output}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{327}{\boxspacing}
+\prompt{Out}{outcolor}{17}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-   First Name  Gender  Start Date Last Login Time    Salary   Bonus \%  \textbackslash{}
-16     Jeremy    Male   9/21/2010         5:56 AM   90370.0   7369.00
-17      Shawn    Male   12/7/1986         7:45 PM   90370.0   6414.00
-21    Matthew    Male    9/5/1995         2:12 AM  100612.0  13645.00
-57      Henry    Male   6/26/1996         1:44 AM   64715.0  15107.00
-63    Matthew    Male    1/2/2013        10:33 PM   90370.0     18.04
-65      Steve    Male  11/11/2009        11:44 PM   61310.0  12428.00
-75     Bonnie  Female    7/2/1991         1:27 AM  104897.0   5118.00
-76   Margaret  Female   9/10/1988        12:42 PM   90032.5   7353.00
-78      Robin  Female    6/4/1983         3:15 PM  114797.0   5965.00
+    idx First Name  Gender  Start Date Last Login Time    Salary   Bonus \%  \textbackslash{}
+16   16     Jeremy    Male   9/21/2010         5:56 AM   90370.0   7369.00
+17   17      Shawn    Male   12/7/1986         7:45 PM   90370.0   6414.00
+21   21    Matthew    Male    9/5/1995         2:12 AM  100612.0  13645.00
+57   57      Henry    Male   6/26/1996         1:44 AM   64715.0  15107.00
+63   63    Matthew    Male    1/2/2013        10:33 PM   90370.0     18.04
+65   65      Steve    Male  11/11/2009        11:44 PM   61310.0  12428.00
+75   75     Bonnie  Female    7/2/1991         1:27 AM  104897.0   5118.00
+76   76   Margaret  Female   9/10/1988        12:42 PM   90032.5   7353.00
+78   78      Robin  Female    6/4/1983         3:15 PM  114797.0   5965.00
 
    Senior Management             Team
 16             False  Human Resources
@@ -3199,6 +3261,10 @@ dataset. Therefore, this value is also highlighted.
 \end{Verbatim}
 \end{tcolorbox}
         
+    By pure coincidence, the \textbf{predecessor} of \texttt{Shawn} with the
+missing salary record has the \textbf{median male salary} of the entire
+dataset. Therefore, this value is also highlighted.
+
     \hypertarget{drop-missing-values-using-dropna}{%
 \paragraph{\texorpdfstring{Drop missing values using
 \texttt{dropna()}}{Drop missing values using dropna()}}\label{drop-missing-values-using-dropna}}
@@ -3216,7 +3282,7 @@ function drops rows with all data missing or contain null values (NaN).
 - no deep copy is made!
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{328}{\boxspacing}
+\prompt{In}{incolor}{18}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Drop rows with missing values directly in the original dataframe}
 \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{how} \PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{any}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
@@ -3228,7 +3294,7 @@ function drops rows with all data missing or contain null values (NaN).
 rows had at least 1 Null value.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{329}{\boxspacing}
+\prompt{In}{incolor}{19}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Original dataframe length:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{employees\PYZus{}df\PYZus{}orig}\PY{p}{)}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{New dataframe length:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{employees\PYZus{}df}\PY{p}{)}\PY{p}{)}
@@ -3290,22 +3356,24 @@ function \texttt{duplicated()}. This function can be used in two ways:
 Find duplicate rows across \textbf{all columns}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{330}{\boxspacing}
+\prompt{In}{incolor}{20}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Find duplicate rows across all columns}
-\PY{n}{duplicateRows} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+\PY{c+c1}{\PYZsh{} The column \PYZsq{}idx\PYZsq{} has to be ignored}
+\PY{n}{column\PYZus{}subset} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{difference}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{idx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\PY{n}{duplicateRows} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{n}{subset}\PY{o}{=}\PY{n}{column\PYZus{}subset}\PY{p}{)}\PY{p}{]}
 \PY{n}{duplicateRows}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{330}{\boxspacing}
+\prompt{Out}{outcolor}{20}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-    First Name     Gender  Start Date Last Login Time    Salary  Bonus \%  \textbackslash{}
-112      Karen     Female  11/30/1999         7:46 AM  102488.0  17653.0
-127      Linda     Female   5/25/2000         5:45 PM  119009.0  12506.0
-296    Brandon  No Gender   11/3/1997         8:17 PM  121333.0  15295.0
-580   Nicholas       Male    3/1/2013         9:26 PM  101036.0   2826.0
+     idx First Name     Gender  Start Date Last Login Time    Salary  Bonus \%  \textbackslash{}
+112  112      Karen     Female  11/30/1999         7:46 AM  102488.0  17653.0
+127  127      Linda     Female   5/25/2000         5:45 PM  119009.0  12506.0
+296  296    Brandon  No Gender   11/3/1997         8:17 PM  121333.0  15295.0
+580  580   Nicholas       Male    3/1/2013         9:26 PM  101036.0   2826.0
 
     Senior Management                  Team
 112              True               Product
@@ -3321,10 +3389,10 @@ occurrences). The resulting dataframe is \textbf{sorted by column}
 \textbf{duplicates grouped}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{331}{\boxspacing}
+\prompt{In}{incolor}{21}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Parameter \PYZsq{}keep=False\PYZsq{} displays all duplicate rows}
-\PY{n}{duplicateRows} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{n}{keep}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{]}
+\PY{n}{duplicateRows} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{n}{keep}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{subset}\PY{o}{=}\PY{n}{column\PYZus{}subset}\PY{p}{)}\PY{p}{]}
 
 \PY{c+c1}{\PYZsh{} Sort rows by column \PYZsq{}First Name\PYZsq{} to get the duplicates grouped}
 \PY{n}{duplicateRows}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{First Name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -3332,17 +3400,17 @@ occurrences). The resulting dataframe is \textbf{sorted by column}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{331}{\boxspacing}
+\prompt{Out}{outcolor}{21}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-    First Name     Gender  Start Date Last Login Time    Salary  Bonus \%  \textbackslash{}
-153    Brandon  No Gender   11/3/1997         8:17 PM  121333.0  15295.0
-296    Brandon  No Gender   11/3/1997         8:17 PM  121333.0  15295.0
-55       Karen     Female  11/30/1999         7:46 AM  102488.0  17653.0
-112      Karen     Female  11/30/1999         7:46 AM  102488.0  17653.0
-92       Linda     Female   5/25/2000         5:45 PM  119009.0  12506.0
-127      Linda     Female   5/25/2000         5:45 PM  119009.0  12506.0
-442   Nicholas       Male    3/1/2013         9:26 PM  101036.0   2826.0
-580   Nicholas       Male    3/1/2013         9:26 PM  101036.0   2826.0
+     idx First Name     Gender  Start Date Last Login Time    Salary  Bonus \%  \textbackslash{}
+153  153    Brandon  No Gender   11/3/1997         8:17 PM  121333.0  15295.0
+296  296    Brandon  No Gender   11/3/1997         8:17 PM  121333.0  15295.0
+55    55      Karen     Female  11/30/1999         7:46 AM  102488.0  17653.0
+112  112      Karen     Female  11/30/1999         7:46 AM  102488.0  17653.0
+92    92      Linda     Female   5/25/2000         5:45 PM  119009.0  12506.0
+127  127      Linda     Female   5/25/2000         5:45 PM  119009.0  12506.0
+442  442   Nicholas       Male    3/1/2013         9:26 PM  101036.0   2826.0
+580  580   Nicholas       Male    3/1/2013         9:26 PM  101036.0   2826.0
 
     Senior Management                  Team
 153             False  Business Development
@@ -3364,7 +3432,7 @@ multiple columns}
 the \textbf{duplicates grouped}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{332}{\boxspacing}
+\prompt{In}{incolor}{22}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Parameter \PYZsq{}keep=False\PYZsq{} displays all duplicate rows}
 \PY{n}{duplicateRows} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}
@@ -3376,21 +3444,21 @@ the \textbf{duplicates grouped}:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{332}{\boxspacing}
+\prompt{Out}{outcolor}{22}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-    First Name     Gender  Start Date Last Login Time    Salary  Bonus \%  \textbackslash{}
-153    Brandon  No Gender   11/3/1997         8:17 PM  121333.0  15295.0
-296    Brandon  No Gender   11/3/1997         8:17 PM  121333.0  15295.0
-55       Karen     Female  11/30/1999         7:46 AM  102488.0  17653.0
-112      Karen     Female  11/30/1999         7:46 AM  102488.0  17653.0
-92       Linda     Female   5/25/2000         5:45 PM  119009.0  12506.0
-127      Linda     Female   5/25/2000         5:45 PM  119009.0  12506.0
-37       Linda     Female  10/19/1981         8:49 PM   57427.0   9557.0
-973      Linda     Female    2/4/2010         8:49 PM   44486.0  17308.0
-66       Nancy     Female  12/15/2012        11:57 PM  125250.0   2672.0
-934      Nancy     Female   9/10/2001        11:57 PM   85213.0   2386.0
-442   Nicholas       Male    3/1/2013         9:26 PM  101036.0   2826.0
-580   Nicholas       Male    3/1/2013         9:26 PM  101036.0   2826.0
+     idx First Name     Gender  Start Date Last Login Time    Salary  Bonus \%  \textbackslash{}
+153  153    Brandon  No Gender   11/3/1997         8:17 PM  121333.0  15295.0
+296  296    Brandon  No Gender   11/3/1997         8:17 PM  121333.0  15295.0
+55    55      Karen     Female  11/30/1999         7:46 AM  102488.0  17653.0
+112  112      Karen     Female  11/30/1999         7:46 AM  102488.0  17653.0
+92    92      Linda     Female   5/25/2000         5:45 PM  119009.0  12506.0
+127  127      Linda     Female   5/25/2000         5:45 PM  119009.0  12506.0
+37    37      Linda     Female  10/19/1981         8:49 PM   57427.0   9557.0
+973  973      Linda     Female    2/4/2010         8:49 PM   44486.0  17308.0
+66    66      Nancy     Female  12/15/2012        11:57 PM  125250.0   2672.0
+934  934      Nancy     Female   9/10/2001        11:57 PM   85213.0   2386.0
+442  442   Nicholas       Male    3/1/2013         9:26 PM  101036.0   2826.0
+580  580   Nicholas       Male    3/1/2013         9:26 PM  101036.0   2826.0
 
     Senior Management                  Team
 153             False  Business Development
@@ -3434,51 +3502,53 @@ made!
 Remove duplicate rows across \textbf{all columns}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{333}{\boxspacing}
+\prompt{In}{incolor}{23}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Remove duplicate rows across all columns}
-\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} The column \PYZsq{}idx\PYZsq{} has to be ignored}
+\PY{n}{column\PYZus{}subset} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{difference}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{idx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{subset}\PY{o}{=}\PY{n}{column\PYZus{}subset}\PY{p}{)}
 \PY{n}{employees\PYZus{}df}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{333}{\boxspacing}
+\prompt{Out}{outcolor}{23}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-     First Name     Gender  Start Date Last Login Time    Salary   Bonus \%  \textbackslash{}
-0       Douglas       Male    8/6/1993        12:42 PM   97308.0   6945.00
-2         Maria     Female   4/23/1993        11:17 AM  130590.0  11858.00
-3         Jerry       Male    3/4/2005         1:00 PM  138705.0      9.34
-4         Larry       Male   1/24/1998         4:47 PM  101004.0   1389.00
-5        Dennis       Male   4/18/1987         1:35 AM  115163.0  10125.00
-{\ldots}         {\ldots}        {\ldots}         {\ldots}             {\ldots}       {\ldots}       {\ldots}
-999       Henry  No Gender  11/23/2014         6:09 AM  132483.0  16655.00
-1000    Phillip       Male   1/31/1984         6:30 AM   42392.0  19675.00
-1001    Russell       Male   5/20/2013        12:39 PM   96914.0   1421.00
-1002      Larry       Male   4/20/2013         4:45 PM   60500.0  11985.00
-1003     Albert       Male   5/15/2012         6:24 PM  129949.0  10169.00
+       idx First Name     Gender  Start Date Last Login Time    Salary  \textbackslash{}
+0        0    Douglas       Male    8/6/1993        12:42 PM   97308.0
+2        2      Maria     Female   4/23/1993        11:17 AM  130590.0
+3        3      Jerry       Male    3/4/2005         1:00 PM  138705.0
+4        4      Larry       Male   1/24/1998         4:47 PM  101004.0
+5        5     Dennis       Male   4/18/1987         1:35 AM  115163.0
+{\ldots}    {\ldots}        {\ldots}        {\ldots}         {\ldots}             {\ldots}       {\ldots}
+999    999      Henry  No Gender  11/23/2014         6:09 AM  132483.0
+1000  1000    Phillip       Male   1/31/1984         6:30 AM   42392.0
+1001  1001    Russell       Male   5/20/2013        12:39 PM   96914.0
+1002  1002      Larry       Male   4/20/2013         4:45 PM   60500.0
+1003  1003     Albert       Male   5/15/2012         6:24 PM  129949.0
 
-     Senior Management                  Team
-0                 True             Marketing
-2                False               Finance
-3                 True               Finance
-4                 True       Client Services
-5                False                 Legal
-{\ldots}                {\ldots}                   {\ldots}
-999              False          Distribution
-1000             False               Finance
-1001             False               Product
-1002             False  Business Development
-1003              True                 Sales
+       Bonus \% Senior Management                  Team
+0      6945.00              True             Marketing
+2     11858.00             False               Finance
+3         9.34              True               Finance
+4      1389.00              True       Client Services
+5     10125.00             False                 Legal
+{\ldots}        {\ldots}               {\ldots}                   {\ldots}
+999   16655.00             False          Distribution
+1000  19675.00             False               Finance
+1001   1421.00             False               Product
+1002  11985.00             False  Business Development
+1003  10169.00              True                 Sales
 
-[899 rows x 8 columns]
+[899 rows x 9 columns]
 \end{Verbatim}
 \end{tcolorbox}
         
     Remove duplicate rows across \textbf{specific columns}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{334}{\boxspacing}
+\prompt{In}{incolor}{24}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Remove duplicate rows across \PYZsq{}First Name\PYZsq{} and \PYZsq{}Last Login Time\PYZsq{} columns}
 \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}
@@ -3488,35 +3558,35 @@ Remove duplicate rows across \textbf{all columns}:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{334}{\boxspacing}
+\prompt{Out}{outcolor}{24}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-     First Name     Gender  Start Date Last Login Time    Salary   Bonus \%  \textbackslash{}
-0       Douglas       Male    8/6/1993        12:42 PM   97308.0   6945.00
-2         Maria     Female   4/23/1993        11:17 AM  130590.0  11858.00
-3         Jerry       Male    3/4/2005         1:00 PM  138705.0      9.34
-4         Larry       Male   1/24/1998         4:47 PM  101004.0   1389.00
-5        Dennis       Male   4/18/1987         1:35 AM  115163.0  10125.00
-{\ldots}         {\ldots}        {\ldots}         {\ldots}             {\ldots}       {\ldots}       {\ldots}
-999       Henry  No Gender  11/23/2014         6:09 AM  132483.0  16655.00
-1000    Phillip       Male   1/31/1984         6:30 AM   42392.0  19675.00
-1001    Russell       Male   5/20/2013        12:39 PM   96914.0   1421.00
-1002      Larry       Male   4/20/2013         4:45 PM   60500.0  11985.00
-1003     Albert       Male   5/15/2012         6:24 PM  129949.0  10169.00
+       idx First Name     Gender  Start Date Last Login Time    Salary  \textbackslash{}
+0        0    Douglas       Male    8/6/1993        12:42 PM   97308.0
+2        2      Maria     Female   4/23/1993        11:17 AM  130590.0
+3        3      Jerry       Male    3/4/2005         1:00 PM  138705.0
+4        4      Larry       Male   1/24/1998         4:47 PM  101004.0
+5        5     Dennis       Male   4/18/1987         1:35 AM  115163.0
+{\ldots}    {\ldots}        {\ldots}        {\ldots}         {\ldots}             {\ldots}       {\ldots}
+999    999      Henry  No Gender  11/23/2014         6:09 AM  132483.0
+1000  1000    Phillip       Male   1/31/1984         6:30 AM   42392.0
+1001  1001    Russell       Male   5/20/2013        12:39 PM   96914.0
+1002  1002      Larry       Male   4/20/2013         4:45 PM   60500.0
+1003  1003     Albert       Male   5/15/2012         6:24 PM  129949.0
 
-     Senior Management                  Team
-0                 True             Marketing
-2                False               Finance
-3                 True               Finance
-4                 True       Client Services
-5                False                 Legal
-{\ldots}                {\ldots}                   {\ldots}
-999              False          Distribution
-1000             False               Finance
-1001             False               Product
-1002             False  Business Development
-1003              True                 Sales
+       Bonus \% Senior Management                  Team
+0      6945.00              True             Marketing
+2     11858.00             False               Finance
+3         9.34              True               Finance
+4      1389.00              True       Client Services
+5     10125.00             False                 Legal
+{\ldots}        {\ldots}               {\ldots}                   {\ldots}
+999   16655.00             False          Distribution
+1000  19675.00             False               Finance
+1001   1421.00             False               Product
+1002  11985.00             False  Business Development
+1003  10169.00              True                 Sales
 
-[897 rows x 8 columns]
+[897 rows x 9 columns]
 \end{Verbatim}
 \end{tcolorbox}
         
@@ -3554,130 +3624,227 @@ Incorporate following sources:
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{435}{\boxspacing}
+\prompt{In}{incolor}{25}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Fill all null values with string \PYZsq{}NaN\PYZsq{} using fillna()}
 \PY{n}{df1} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}orig}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NaN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{c+c1}{\PYZsh{}df1}
-
 \PY{n}{df2} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NaN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{c+c1}{\PYZsh{}df2}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{436}{\boxspacing}
+\prompt{In}{incolor}{26}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{employees\PYZus{}df\PYZus{}combined} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{df1}\PY{p}{,} \PY{n}{df2}\PY{p}{]}\PY{p}{,} 
-                   \PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{columns}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{keys}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cleaned}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-\PY{n}{employees\PYZus{}df\PYZus{}combined}
+\PY{n}{employees\PYZus{}df\PYZus{}merged} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df1}\PY{p}{,} \PY{n}{df2}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{idx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\PY{n}{employees\PYZus{}df\PYZus{}merged}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{436}{\boxspacing}
+\prompt{Out}{outcolor}{26}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-       Original                                                          \textbackslash{}
-     First Name  Gender  Start Date Last Login Time    Salary   Bonus \%
-0       Douglas    Male    8/6/1993        12:42 PM   97308.0   6945.00
-1        Thomas    Male   3/31/1996         6:53 AM   61933.0      4.17
-2         Maria  Female   4/23/1993        11:17 AM  130590.0  11858.00
-3         Jerry    Male    3/4/2005         1:00 PM  138705.0      9.34
-4         Larry    Male   1/24/1998         4:47 PM  101004.0   1389.00
-{\ldots}         {\ldots}     {\ldots}         {\ldots}             {\ldots}       {\ldots}       {\ldots}
-999       Henry     NaN  11/23/2014         6:09 AM  132483.0  16655.00
-1000    Phillip    Male   1/31/1984         6:30 AM   42392.0  19675.00
-1001    Russell    Male   5/20/2013        12:39 PM   96914.0   1421.00
-1002      Larry    Male   4/20/2013         4:45 PM   60500.0  11985.00
-1003     Albert    Male   5/15/2012         6:24 PM  129949.0  10169.00
+       idx First Name\_x Gender\_x Start Date\_x Last Login Time\_x  Salary\_x  \textbackslash{}
+0        0      Douglas     Male     8/6/1993          12:42 PM   97308.0
+1        1       Thomas     Male    3/31/1996           6:53 AM   61933.0
+2        2        Maria   Female    4/23/1993          11:17 AM  130590.0
+3        3        Jerry     Male     3/4/2005           1:00 PM  138705.0
+4        4        Larry     Male    1/24/1998           4:47 PM  101004.0
+{\ldots}    {\ldots}          {\ldots}      {\ldots}          {\ldots}               {\ldots}       {\ldots}
+999    999        Henry      NaN   11/23/2014           6:09 AM  132483.0
+1000  1000      Phillip     Male    1/31/1984           6:30 AM   42392.0
+1001  1001      Russell     Male    5/20/2013          12:39 PM   96914.0
+1002  1002        Larry     Male    4/20/2013           4:45 PM   60500.0
+1003  1003       Albert     Male    5/15/2012           6:24 PM  129949.0
 
-                                                Cleaned             \textbackslash{}
-     Senior Management                  Team First Name     Gender
-0                 True             Marketing    Douglas       Male
-1                 True                   NaN        NaN        NaN
-2                False               Finance      Maria     Female
-3                 True               Finance      Jerry       Male
-4                 True       Client Services      Larry       Male
-{\ldots}                {\ldots}                   {\ldots}        {\ldots}        {\ldots}
-999              False          Distribution      Henry  No Gender
-1000             False               Finance    Phillip       Male
-1001             False               Product    Russell       Male
-1002             False  Business Development      Larry       Male
-1003              True                 Sales     Albert       Male
+      Bonus \%\_x Senior Management\_x                Team\_x First Name\_y  \textbackslash{}
+0       6945.00                True             Marketing      Douglas
+1          4.17                True                   NaN          NaN
+2      11858.00               False               Finance        Maria
+3          9.34                True               Finance        Jerry
+4       1389.00                True       Client Services        Larry
+{\ldots}         {\ldots}                 {\ldots}                   {\ldots}          {\ldots}
+999    16655.00               False          Distribution        Henry
+1000   19675.00               False               Finance      Phillip
+1001    1421.00               False               Product      Russell
+1002   11985.00               False  Business Development        Larry
+1003   10169.00                True                 Sales       Albert
 
-                                                                        \textbackslash{}
-      Start Date Last Login Time    Salary   Bonus \% Senior Management
-0       8/6/1993        12:42 PM   97308.0   6945.00              True
-1            NaN             NaN       NaN       NaN               NaN
-2      4/23/1993        11:17 AM  130590.0  11858.00             False
-3       3/4/2005         1:00 PM  138705.0      9.34              True
-4      1/24/1998         4:47 PM  101004.0   1389.00              True
-{\ldots}          {\ldots}             {\ldots}       {\ldots}       {\ldots}               {\ldots}
-999   11/23/2014         6:09 AM  132483.0  16655.00             False
-1000   1/31/1984         6:30 AM   42392.0  19675.00             False
-1001   5/20/2013        12:39 PM   96914.0   1421.00             False
-1002   4/20/2013         4:45 PM   60500.0  11985.00             False
-1003   5/15/2012         6:24 PM  129949.0  10169.00              True
+       Gender\_y Start Date\_y Last Login Time\_y  Salary\_y  Bonus \%\_y  \textbackslash{}
+0          Male     8/6/1993          12:42 PM   97308.0    6945.00
+1           NaN          NaN               NaN       NaN        NaN
+2        Female    4/23/1993          11:17 AM  130590.0   11858.00
+3          Male     3/4/2005           1:00 PM  138705.0       9.34
+4          Male    1/24/1998           4:47 PM  101004.0    1389.00
+{\ldots}         {\ldots}          {\ldots}               {\ldots}       {\ldots}        {\ldots}
+999   No Gender   11/23/2014           6:09 AM  132483.0   16655.00
+1000       Male    1/31/1984           6:30 AM   42392.0   19675.00
+1001       Male    5/20/2013          12:39 PM   96914.0    1421.00
+1002       Male    4/20/2013           4:45 PM   60500.0   11985.00
+1003       Male    5/15/2012           6:24 PM  129949.0   10169.00
 
+     Senior Management\_y                Team\_y
+0                   True             Marketing
+1                    NaN                   NaN
+2                  False               Finance
+3                   True               Finance
+4                   True       Client Services
+{\ldots}                  {\ldots}                   {\ldots}
+999                False          Distribution
+1000               False               Finance
+1001               False               Product
+1002               False  Business Development
+1003                True                 Sales
 
-                      Team
-0                Marketing
-1                      NaN
-2                  Finance
-3                  Finance
-4          Client Services
-{\ldots}                    {\ldots}
-999           Distribution
-1000               Finance
-1001               Product
-1002  Business Development
-1003                 Sales
-
-[1004 rows x 16 columns]
+[1004 rows x 17 columns]
 \end{Verbatim}
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{437}{\boxspacing}
+\prompt{In}{incolor}{27}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{df\PYZus{}final} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}combined}\PY{o}{.}\PY{n}{swaplevel}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{columns}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{n}{df1}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{]}
-\PY{n}{df\PYZus{}final}
+\PY{c+c1}{\PYZsh{} Rename suffixes \PYZsq{}\PYZus{}x\PYZsq{} and \PYZsq{}\PYZus{}y\PYZsq{} by using lambda inline functions}
+\PY{n}{employees\PYZus{}df\PYZus{}merged}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\PY{n}{employees\PYZus{}df\PYZus{}merged}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}e}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\PY{n}{employees\PYZus{}df\PYZus{}merged}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{437}{\boxspacing}
+\prompt{Out}{outcolor}{27}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-       Gender             Start Date             Last Login Time            \textbackslash{}
-     Original    Cleaned    Original     Cleaned        Original   Cleaned
-0        Male       Male    8/6/1993    8/6/1993        12:42 PM  12:42 PM
-1        Male        NaN   3/31/1996         NaN         6:53 AM       NaN
-2      Female     Female   4/23/1993   4/23/1993        11:17 AM  11:17 AM
-3        Male       Male    3/4/2005    3/4/2005         1:00 PM   1:00 PM
-4        Male       Male   1/24/1998   1/24/1998         4:47 PM   4:47 PM
-{\ldots}       {\ldots}        {\ldots}         {\ldots}         {\ldots}             {\ldots}       {\ldots}
-999       NaN  No Gender  11/23/2014  11/23/2014         6:09 AM   6:09 AM
-1000     Male       Male   1/31/1984   1/31/1984         6:30 AM   6:30 AM
-1001     Male       Male   5/20/2013   5/20/2013        12:39 PM  12:39 PM
-1002     Male       Male   4/20/2013   4/20/2013         4:45 PM   4:45 PM
-1003     Male       Male   5/15/2012   5/15/2012         6:24 PM   6:24 PM
+       idx First Name\_o Gender\_o Start Date\_o Last Login Time\_o  Salary\_o  \textbackslash{}
+0        0      Douglas     Male     8/6/1993          12:42 PM   97308.0
+1        1       Thomas     Male    3/31/1996           6:53 AM   61933.0
+2        2        Maria   Female    4/23/1993          11:17 AM  130590.0
+3        3        Jerry     Male     3/4/2005           1:00 PM  138705.0
+4        4        Larry     Male    1/24/1998           4:47 PM  101004.0
+{\ldots}    {\ldots}          {\ldots}      {\ldots}          {\ldots}               {\ldots}       {\ldots}
+999    999        Henry      NaN   11/23/2014           6:09 AM  132483.0
+1000  1000      Phillip     Male    1/31/1984           6:30 AM   42392.0
+1001  1001      Russell     Male    5/20/2013          12:39 PM   96914.0
+1002  1002        Larry     Male    4/20/2013           4:45 PM   60500.0
+1003  1003       Albert     Male    5/15/2012           6:24 PM  129949.0
 
-        Salary             Bonus \%           Senior Management          \textbackslash{}
-      Original   Cleaned  Original   Cleaned          Original Cleaned
-0      97308.0   97308.0   6945.00   6945.00              True    True
-1      61933.0       NaN      4.17       NaN              True     NaN
-2     130590.0  130590.0  11858.00  11858.00             False   False
-3     138705.0  138705.0      9.34      9.34              True    True
-4     101004.0  101004.0   1389.00   1389.00              True    True
-{\ldots}        {\ldots}       {\ldots}       {\ldots}       {\ldots}               {\ldots}     {\ldots}
-999   132483.0  132483.0  16655.00  16655.00             False   False
-1000   42392.0   42392.0  19675.00  19675.00             False   False
-1001   96914.0   96914.0   1421.00   1421.00             False   False
-1002   60500.0   60500.0  11985.00  11985.00             False   False
-1003  129949.0  129949.0  10169.00  10169.00              True    True
+      Bonus \%\_o Senior Management\_o                Team\_o First Name\_e  \textbackslash{}
+0       6945.00                True             Marketing      Douglas
+1          4.17                True                   NaN          NaN
+2      11858.00               False               Finance        Maria
+3          9.34                True               Finance        Jerry
+4       1389.00                True       Client Services        Larry
+{\ldots}         {\ldots}                 {\ldots}                   {\ldots}          {\ldots}
+999    16655.00               False          Distribution        Henry
+1000   19675.00               False               Finance      Phillip
+1001    1421.00               False               Product      Russell
+1002   11985.00               False  Business Development        Larry
+1003   10169.00                True                 Sales       Albert
 
-                      Team
-                  Original               Cleaned
+       Gender\_e Start Date\_e Last Login Time\_e  Salary\_e  Bonus \%\_e  \textbackslash{}
+0          Male     8/6/1993          12:42 PM   97308.0    6945.00
+1           NaN          NaN               NaN       NaN        NaN
+2        Female    4/23/1993          11:17 AM  130590.0   11858.00
+3          Male     3/4/2005           1:00 PM  138705.0       9.34
+4          Male    1/24/1998           4:47 PM  101004.0    1389.00
+{\ldots}         {\ldots}          {\ldots}               {\ldots}       {\ldots}        {\ldots}
+999   No Gender   11/23/2014           6:09 AM  132483.0   16655.00
+1000       Male    1/31/1984           6:30 AM   42392.0   19675.00
+1001       Male    5/20/2013          12:39 PM   96914.0    1421.00
+1002       Male    4/20/2013           4:45 PM   60500.0   11985.00
+1003       Male    5/15/2012           6:24 PM  129949.0   10169.00
+
+     Senior Management\_e                Team\_e
+0                   True             Marketing
+1                    NaN                   NaN
+2                  False               Finance
+3                   True               Finance
+4                   True       Client Services
+{\ldots}                  {\ldots}                   {\ldots}
+999                False          Distribution
+1000               False               Finance
+1001               False               Product
+1002               False  Business Development
+1003                True                 Sales
+
+[1004 rows x 17 columns]
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{50}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Create column list with new order}
+\PY{c+c1}{\PYZsh{} with the goal that the columns of the original and the edited data frame are directly next to each other for a better comparison}
+\PY{n}{li\PYZus{}reordered\PYZus{}cols} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{idx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} Iterate over columns}
+\PY{k}{for} \PY{n}{column} \PY{o+ow}{in} \PY{n}{employees\PYZus{}df\PYZus{}orig}\PY{o}{.}\PY{n}{columns}\PY{p}{:}
+    \PY{k}{if} \PY{n}{column} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{idx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+        \PY{n}{li\PYZus{}reordered\PYZus{}cols}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{li\PYZus{}reordered\PYZus{}cols}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}e}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{li\PYZus{}reordered\PYZus{}cols}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['idx', 'First Name\_o', 'First Name\_e', 'Gender\_o', 'Gender\_e', 'Start Date\_o',
+'Start Date\_e', 'Last Login Time\_o', 'Last Login Time\_e', 'Salary\_o',
+'Salary\_e', 'Bonus \%\_o', 'Bonus \%\_e', 'Senior Management\_o', 'Senior
+Management\_e', 'Team\_o', 'Team\_e']
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{29}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Reorder columns of the dataframe based on the new column list}
+\PY{c+c1}{\PYZsh{} to get same columns side\PYZhy{}by\PYZhy{}side}
+\PY{n}{employees\PYZus{}df\PYZus{}merged} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}merged}\PY{o}{.}\PY{n}{reindex}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{n}{li\PYZus{}reordered\PYZus{}cols}\PY{p}{)}
+\PY{n}{employees\PYZus{}df\PYZus{}merged}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{29}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+       idx First Name\_o First Name\_e Gender\_o   Gender\_e Start Date\_o  \textbackslash{}
+0        0      Douglas      Douglas     Male       Male     8/6/1993
+1        1       Thomas          NaN     Male        NaN    3/31/1996
+2        2        Maria        Maria   Female     Female    4/23/1993
+3        3        Jerry        Jerry     Male       Male     3/4/2005
+4        4        Larry        Larry     Male       Male    1/24/1998
+{\ldots}    {\ldots}          {\ldots}          {\ldots}      {\ldots}        {\ldots}          {\ldots}
+999    999        Henry        Henry      NaN  No Gender   11/23/2014
+1000  1000      Phillip      Phillip     Male       Male    1/31/1984
+1001  1001      Russell      Russell     Male       Male    5/20/2013
+1002  1002        Larry        Larry     Male       Male    4/20/2013
+1003  1003       Albert       Albert     Male       Male    5/15/2012
+
+     Start Date\_e Last Login Time\_o Last Login Time\_e  Salary\_o  Salary\_e  \textbackslash{}
+0        8/6/1993          12:42 PM          12:42 PM   97308.0   97308.0
+1             NaN           6:53 AM               NaN   61933.0       NaN
+2       4/23/1993          11:17 AM          11:17 AM  130590.0  130590.0
+3        3/4/2005           1:00 PM           1:00 PM  138705.0  138705.0
+4       1/24/1998           4:47 PM           4:47 PM  101004.0  101004.0
+{\ldots}           {\ldots}               {\ldots}               {\ldots}       {\ldots}       {\ldots}
+999    11/23/2014           6:09 AM           6:09 AM  132483.0  132483.0
+1000    1/31/1984           6:30 AM           6:30 AM   42392.0   42392.0
+1001    5/20/2013          12:39 PM          12:39 PM   96914.0   96914.0
+1002    4/20/2013           4:45 PM           4:45 PM   60500.0   60500.0
+1003    5/15/2012           6:24 PM           6:24 PM  129949.0  129949.0
+
+      Bonus \%\_o  Bonus \%\_e Senior Management\_o Senior Management\_e  \textbackslash{}
+0       6945.00    6945.00                True                True
+1          4.17        NaN                True                 NaN
+2      11858.00   11858.00               False               False
+3          9.34       9.34                True                True
+4       1389.00    1389.00                True                True
+{\ldots}         {\ldots}        {\ldots}                 {\ldots}                 {\ldots}
+999    16655.00   16655.00               False               False
+1000   19675.00   19675.00               False               False
+1001    1421.00    1421.00               False               False
+1002   11985.00   11985.00               False               False
+1003   10169.00   10169.00                True                True
+
+                    Team\_o                Team\_e
 0                Marketing             Marketing
 1                      NaN                   NaN
 2                  Finance               Finance
@@ -3690,34 +3857,175 @@ Incorporate following sources:
 1002  Business Development  Business Development
 1003                 Sales                 Sales
 
-[1004 rows x 14 columns]
+[1004 rows x 17 columns]
 \end{Verbatim}
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{438}{\boxspacing}
+\prompt{In}{incolor}{30}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Define function to highlight differences in dataframes}
-\PY{k}{def} \PY{n+nf}{highlight\PYZus{}diff}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
-    \PY{n}{attr} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{background\PYZhy{}color: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{color}\PY{p}{)}
-    \PY{n}{other} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{xs}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{columns}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{level}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
-    \PY{k}{return} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{ne}\PY{p}{(}\PY{n}{other}\PY{p}{,} \PY{n}{level}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{attr}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,}
-                        \PY{n}{index}\PY{o}{=}\PY{n}{data}\PY{o}{.}\PY{n}{index}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{data}\PY{o}{.}\PY{n}{columns}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} Fill all null values with string \PYZsq{}NaN\PYZsq{} using fillna()}
+\PY{n}{employees\PYZus{}df\PYZus{}merged}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NaN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{439}{\boxspacing}
+\prompt{In}{incolor}{46}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Apply style using function}
-\PY{n}{df\PYZus{}final}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{n}{highlight\PYZus{}diff}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} Create empty dataframe with same columns as \PYZsq{}employees\PYZus{}df\PYZus{}orig\PYZsq{}}
+\PY{n}{employees\PYZus{}df\PYZus{}diff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{n}{employees\PYZus{}df\PYZus{}orig}\PY{o}{.}\PY{n}{columns}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{47}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Define function to add rows to dataframe}
+\PY{k}{def} \PY{n+nf}{dataframe\PYZus{}add\PYZus{}row}\PY{p}{(}\PY{n}{df}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{row}\PY{o}{=}\PY{p}{[}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+    \PY{k}{if} \PY{p}{(}\PY{n}{df} \PY{o+ow}{is} \PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return}
+    
+    \PY{c+c1}{\PYZsh{} add a row}
+    \PY{n}{df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{row}
+    
+    \PY{c+c1}{\PYZsh{} shift the index}
+    \PY{n}{df}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{index} \PY{o}{+} \PY{l+m+mi}{1}
+    
+    \PY{c+c1}{\PYZsh{} reset the index of dataframe and avoid the old index being added as a column}
+    \PY{n}{df}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{48}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{b\PYZus{}diffs\PYZus{}found} \PY{o}{=} \PY{k+kc}{False}
+
+\PY{c+c1}{\PYZsh{} Iterate over rows}
+\PY{k}{for} \PY{n}{rowIndex}\PY{p}{,} \PY{n}{row} \PY{o+ow}{in} \PY{n}{employees\PYZus{}df\PYZus{}merged}\PY{o}{.}\PY{n}{iterrows}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{} Iterate over columns}
+    \PY{k}{for} \PY{n}{column}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{row}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+        \PY{c+c1}{\PYZsh{} Omit index column for comparison}
+        \PY{k}{if} \PY{n}{column} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{idx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+            \PY{n}{row\PYZus{}li} \PY{o}{=} \PY{p}{[}\PY{n}{value}\PY{p}{]}
+            \PY{k}{continue}
+        \PY{k}{if} \PY{n}{column}\PY{o}{.}\PY{n}{endswith}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+            \PY{n}{value\PYZus{}orig} \PY{o}{=} \PY{n}{value}
+        \PY{k}{elif} \PY{n}{column}\PY{o}{.}\PY{n}{endswith}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}e}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+            \PY{n}{value\PYZus{}edit} \PY{o}{=} \PY{n}{value}
+            \PY{k}{if} \PY{n}{value\PYZus{}orig} \PY{o}{!=} \PY{n}{value\PYZus{}edit}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} Combine original and edited value and mark with diff sign \PYZsq{}\PYZlt{}=\PYZgt{}\PYZsq{}}
+                \PY{n}{row\PYZus{}li}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{value\PYZus{}orig}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ \PYZlt{}=\PYZgt{} }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{value\PYZus{}edit}\PY{p}{)}\PY{p}{)}
+                \PY{n}{b\PYZus{}diffs\PYZus{}found} \PY{o}{=} \PY{k+kc}{True}
+            \PY{k}{elif} \PY{n}{value\PYZus{}orig} \PY{o}{==} \PY{n}{value\PYZus{}edit}\PY{p}{:}
+                \PY{n}{row\PYZus{}li}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{value\PYZus{}orig}\PY{p}{)}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Add new row to dataframe when differences found only}
+    \PY{k}{if} \PY{n}{b\PYZus{}diffs\PYZus{}found}\PY{p}{:}
+        \PY{n}{dataframe\PYZus{}add\PYZus{}row}\PY{p}{(}\PY{n}{employees\PYZus{}df\PYZus{}diff}\PY{p}{,} \PY{n}{row\PYZus{}li}\PY{p}{)}
+        \PY{n}{b\PYZus{}diffs\PYZus{}found} \PY{o}{=} \PY{k+kc}{False}
+
+\PY{c+c1}{\PYZsh{}employees\PYZus{}df\PYZus{}diff}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{52}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Temporarily increase the number of rows to output}
+\PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.min\PYZus{}rows}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}
+\PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.max\PYZus{}rows}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{40}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Switch to apply highlight style to dataframe}
+\PY{c+c1}{\PYZsh{} HINT: Set to \PYZsq{}False\PYZsq{} when compiling to PDF!}
+\PY{n}{highlight} \PY{o}{=} \PY{k+kc}{False}
+
+\PY{k}{if} \PY{n}{highlight}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{} Highlight cells by condition}
+    \PY{n}{output} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}diff}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} 
+                                          \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{background: yellow}\PY{l+s+s1}{\PYZsq{}} 
+                                           \PY{k}{if} \PY{n+nb}{str}\PY{p}{(}\PY{n}{v}\PY{p}{)}\PY{o}{.}\PY{n}{find}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}=\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{!=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+                                           \PY{k}{else} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}} \PY{k}{for} \PY{n}{v} \PY{o+ow}{in} \PY{n}{x}\PY{p}{]}\PY{p}{,} 
+                                          \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+    \PY{n}{output} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}diff}
+
+\PY{n}{output}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{439}{\boxspacing}
+\prompt{Out}{outcolor}{52}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-<pandas.io.formats.style.Styler at 0x7f121cc93b50>
+     idx      First Name             Gender         Start Date  \textbackslash{}
+0      1  Thomas <=> NaN       Male <=> NaN  3/31/1996 <=> NaN
+1      7             NaN     Female <=> NaN  7/20/2015 <=> NaN
+2     10  Louise <=> NaN     Female <=> NaN  8/12/1980 <=> NaN
+3     17           Shawn               Male          12/7/1986
+4     20            Lois  NaN <=> No Gender          4/22/1995
+5     22          Joshua  NaN <=> No Gender           3/8/2012
+6     23             NaN       Male <=> NaN  6/14/2012 <=> NaN
+7     25             NaN       Male <=> NaN  10/8/2012 <=> NaN
+8     27           Scott  NaN <=> No Gender          7/11/1991
+9     31           Joyce  NaN <=> No Gender          2/20/2005
+..   {\ldots}             {\ldots}                {\ldots}                {\ldots}
+235  943           Ralph  NaN <=> No Gender          7/28/1995
+236  949          Gerald  NaN <=> No Gender          4/15/1989
+237  950             NaN     Female <=> NaN  9/15/1985 <=> NaN
+238  951             NaN       Male <=> NaN  7/30/2012 <=> NaN
+239  955             NaN     Female <=> NaN  9/14/2010 <=> NaN
+240  965         Antonio  NaN <=> No Gender          6/18/1989
+241  976          Victor  NaN <=> No Gender          7/28/2006
+242  989         Stephen  NaN <=> No Gender          7/10/1983
+243  993          Justin  NaN <=> No Gender          2/10/1991
+244  999           Henry  NaN <=> No Gender         11/23/2014
+
+      Last Login Time            Salary          Bonus \% Senior Management  \textbackslash{}
+0     6:53 AM <=> NaN   61933.0 <=> NaN     4.17 <=> NaN      True <=> NaN
+1    10:43 AM <=> NaN   45906.0 <=> NaN  11598.0 <=> NaN               NaN
+2     9:01 AM <=> NaN   63241.0 <=> NaN  15132.0 <=> NaN      True <=> NaN
+3             7:45 PM   NaN <=> 90370.0           6414.0             False
+4             7:18 PM           64714.0           4934.0              True
+5             1:58 AM           90816.0          18816.0              True
+6     4:19 PM <=> NaN  125792.0 <=> NaN   5042.0 <=> NaN               NaN
+7     1:12 AM <=> NaN   37076.0 <=> NaN  18576.0 <=> NaN               NaN
+8             6:58 PM          122367.0           5218.0             False
+9             2:40 PM           88657.0          12752.0             False
+..                {\ldots}               {\ldots}              {\ldots}               {\ldots}
+235           6:53 PM           70635.0           2147.0             False
+236          12:44 PM           93712.0          17426.0              True
+237   1:50 AM <=> NaN  133472.0 <=> NaN  16941.0 <=> NaN               NaN
+238   3:07 PM <=> NaN  107351.0 <=> NaN   5329.0 <=> NaN               NaN
+239   5:19 AM <=> NaN  143638.0 <=> NaN   9662.0 <=> NaN               NaN
+240           9:37 PM          103050.0             3.05             False
+241           2:49 PM           76381.0          11159.0              True
+242           8:10 PM           85668.0           1909.0             False
+243           4:58 PM           38344.0           3794.0             False
+244           6:09 AM          132483.0          16655.0             False
+
+                        Team
+0                        NaN
+1            Finance <=> NaN
+2                        NaN
+3                    Product
+4                      Legal
+5            Client Services
+6                        NaN
+7    Client Services <=> NaN
+8                      Legal
+9                    Product
+..                       {\ldots}
+235          Client Services
+236             Distribution
+237     Distribution <=> NaN
+238        Marketing <=> NaN
+239                      NaN
+240                    Legal
+241                    Sales
+242                    Legal
+243                    Legal
+244             Distribution
+
+[245 rows x 9 columns]
 \end{Verbatim}
 \end{tcolorbox}
         
@@ -3745,7 +4053,9 @@ The description of the Iris dataset says, that it consists of \textbf{50
 samples} from \textbf{each of three species} of Iris (Iris setosa, Iris
 virginica and Iris versicolor), so there are \textbf{150 total samples}.
 
-But how to prove it?
+But how can this be verified? The following subsections provide some
+\textbf{ideas} on how to \textbf{examine the dataset} for
+\textbf{tendencies} as a \textbf{cause of bias}.
 
 \hypertarget{count-occurrences-of-unique-values}{%
 \subsubsection{Count occurrences of unique
@@ -3850,7 +4160,7 @@ variable width. The height of each rectangle then represents the
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_122_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_130_0.png}\end{center}
         \caption{Histogram for frequency distribution of the salary}
         \label{fig:histogram_salary}
     \end{figure}
@@ -3933,7 +4243,7 @@ individual subplots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_125_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_133_0.png}\end{center}
         \caption{Histograms used to explore the frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))}
         \label{fig:histogram_salary_with_PDF}
     \end{figure}
@@ -4030,7 +4340,7 @@ Choose the color sets from
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_131_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_139_0.png}\end{center}
         \caption{Correlation heatmap to explore coherences between single variables in the iris dataset}
         \label{fig:correlation_heatmap}
     \end{figure}
@@ -4084,7 +4394,7 @@ array([[1., 1., 1., 1., 1.],
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_135_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_143_0.png}\end{center}
         \caption{Correlation heatmap, which was cut at its main diagonal without losing any information}
         \label{fig:correlation_heatmap_triangle}
     \end{figure}
@@ -4134,7 +4444,7 @@ advisable to plot them in a \textbf{scatter plot}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_138_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_0.png}\end{center}
         \caption{Plotting two individual variables of the iris dataset in the scatterplot to explore the relationships between these two}
         \label{fig:scatter_plot}
     \end{figure}
@@ -4172,7 +4482,7 @@ single row and in the x-axis across a single column.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_148_0.png}\end{center}
         \caption{Plot all individual variables of the Iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables}
         \label{fig:pairs_plot}
     \end{figure}
@@ -5045,7 +5355,7 @@ the \textbf{boxplots} comparing \textbf{original data} with the
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_175_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_183_0.png}\end{center}
         \caption{Boxplots comparing the original data (left) with the normalized data (right) with all features in one scale}
         \label{fig:boxplots_comp_orig_norm}
     \end{figure}
@@ -5158,7 +5468,7 @@ data} side-by-side:
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_179_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_187_0.png}\end{center}
         \caption{Histograms with overlaid probability density functions comparing original data (left) with the normalized data (right)}
         \label{fig:histograms_comp_orig_norm}
     \end{figure}
@@ -5262,7 +5572,7 @@ with all \textbf{features at one scale}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_185_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_193_0.png}\end{center}
         \caption{Boxplots comparing the original data (left) with the standardized data (right) with all features in one scale}
         \label{fig:boxplots_comp_orig_std}
     \end{figure}
@@ -5284,7 +5594,7 @@ functions}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_187_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_195_0.png}\end{center}
         \caption{Histograms with overlaid probability density functions comparing original data (left) with the standardized data (right)}
         \label{fig:histograms_comp_orig_std}
     \end{figure}
@@ -5668,7 +5978,7 @@ colored confusion matrix.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_212_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_220_0.png}\end{center}
         \caption{Checking the accuracy of the model by using the confusion matrix for cross-validation}
         \label{fig:confusion_matrix}
     \end{figure}
@@ -5919,7 +6229,7 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_233_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_241_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
@@ -5959,7 +6269,7 @@ exactly fit the training dataset. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_235_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_243_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
@@ -5985,7 +6295,7 @@ as the classifier tries to perfectly fit the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_237_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_245_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy}
         \label{fig:plot_vary_gamma}
     \end{figure}
@@ -6024,7 +6334,7 @@ the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_239_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_247_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
@@ -6050,7 +6360,7 @@ But be careful: to high \texttt{C} values may lead to
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_241_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_249_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'C' against the prediction accuracy}
         \label{fig:plot_vary_c}
     \end{figure}
@@ -6094,7 +6404,7 @@ training times}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_243_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_251_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
@@ -6120,7 +6430,7 @@ hyperplane leads to \textbf{overfitting} the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_245_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_253_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy}
         \label{fig:plot_vary_degree}
     \end{figure}
@@ -6372,7 +6682,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_263_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_271_0.png}\end{center}
         \caption{Confusion matrix for cross-validation of the baseline}
         \label{fig:cm_baseline}
     \end{figure}
@@ -6595,7 +6905,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_283_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_291_0.png}\end{center}
         \caption{Pairs plot of the original Iris dataset}
         \label{fig:pairs_plot_orig_Iris}
     \end{figure}
@@ -6609,7 +6919,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_284_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_292_0.png}\end{center}
         \caption{Pairs plot of the noised Iris dataset}
         \label{fig:pairs_plot_noised_Iris}
     \end{figure}
@@ -6751,7 +7061,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_296_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_304_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the grid search has been performed}
         \label{fig:cm_grid_search}
     \end{figure}
@@ -6911,7 +7221,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_307_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_315_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the randomized search has been performed}
         \label{fig:cm_random_search}
     \end{figure}
