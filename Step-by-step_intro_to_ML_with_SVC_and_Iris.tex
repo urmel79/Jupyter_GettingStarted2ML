@@ -174,9 +174,7 @@
     \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
     % Document parameters
     % Document title
-    \title{\textbf{\textsf{Getting started with Machine Learning (ML) and Support Vector Classifiers (SVC) - A systematic step-by-step approach}}}\author{Dipl.-Ing. Bj\"orn Kasper (\href{mailto:kasper.bjoern@bgetem.de}{kasper.bjoern@bgetem.de})}\affil{Test and Certification Body for Electrical Engineering at BG ETEM}
-
-\date{\today} 
+    \title{\textbf{\textsf{Getting started with Machine Learning (ML) and Support Vector Classifiers (SVC) - A systematic step-by-step approach}}}\author{Dipl.-Ing. Bj\"orn Kasper (\href{mailto:kasper.bjoern@bgetem.de}{kasper.bjoern@bgetem.de})}\affil{Test and Certification Body for Electrical Engineering at BG ETEM}\date{\today; version 0.8 (pre-release)}
 
 
     
@@ -1872,7 +1870,7 @@ available via Python in the machine learning package
 it without having to find a special source for it.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{355}{\boxspacing}
+\prompt{In}{incolor}{81}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Import Iris dataset for exploration}
 \PY{n}{irisdata\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/IRIS\PYZus{}flower\PYZus{}dataset\PYZus{}kaggle.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
@@ -2095,8 +2093,8 @@ Print first or last 10 rows of dataframe:
         
     While printing a dataframe - only an abbreviated view of the dataframe
 is shown :(\\
-Default setting in the pandas library makes it to display only 5 lines
-from head and from tail.
+Default setting in the \texttt{Pandas} library makes it to display only
+5 lines from head and from tail.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{6}{\boxspacing}
@@ -2126,7 +2124,7 @@ from head and from tail.
 \end{tcolorbox}
         
     To print all rows of a dataframe, the option \texttt{display.max\_rows}
-has to set to \texttt{None} in pandas:
+has to set to \texttt{None} in \texttt{Pandas}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{7}{\boxspacing}
@@ -2347,9 +2345,15 @@ distribution}\label{get-data-ranges-and-distribution}}
     \hypertarget{histograms}{%
 \paragraph{Histograms}\label{histograms}}
 
-This type of visualization is useful to explore the frequency
-distribution for each feature in univariate plots. Each feature of the
-Iris dataset is displayed in its own \textbf{histogram}.
+This type of visualization is useful to explore the \textbf{frequency
+distribution} for each feature in univariate plots. This requires the
+separation of the data into classes (so-called \textbf{bins}). These
+bins are represented in the histogram as rectangles of equal or variable
+width. The height of each rectangle then represents the (relative or
+absolute) \textbf{frequency density}.
+
+Each \textbf{feature} of the \textbf{Iris dataset} is displayed in its
+own histogram.
 
 To illustrate the principle, the histogram subplots are first presented
 in a \textbf{not very elegant code} with many repetitions:
@@ -2422,8 +2426,8 @@ In addition, \textbf{probability density functions (PDF)} were overlaid
 on the histograms, whose hyper-parameters \textbf{mean} and
 \textbf{standard deviation} were previously identified using the
 features of the dataset. This makes it possible to estimate whether the
-data is normally distributed. In order to be able to reuse the code
-later, it was implemented as the \textbf{function}
+\textbf{data is normally distributed}. In order to be able to reuse the
+code later, it was implemented as the \textbf{function}
 \texttt{func\_plot\_histograms\_with\_PDF()}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -2601,27 +2605,28 @@ with Missing Data in Pandas}.
 \paragraph{\texorpdfstring{Check for missing values using
 \texttt{isnull()}}{Check for missing values using isnull()}}\label{check-for-missing-values-using-isnull}}
 
-In order to check for missing values in a Pandas DataFrame, the function
-\texttt{isnull()} is used here. This function returns a dataframe of
-boolean values which are \texttt{True} for \textbf{NaN values}.
+In order to check for missing values in a \texttt{pandas.DataFrame}, the
+function \texttt{isnull()} is used here. This function returns a
+dataframe of boolean values which are \texttt{True} for \textbf{NaN
+values}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{101}{\boxspacing}
+\prompt{In}{incolor}{118}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.max\PYZus{}rows}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{40}\PY{p}{)}
-\PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.min\PYZus{}rows}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{)}
+\PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.max\PYZus{}rows}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
+\PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.min\PYZus{}rows}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{102}{\boxspacing}
+\prompt{In}{incolor}{82}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{102}{\boxspacing}
+\prompt{Out}{outcolor}{82}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      sepal\_length  sepal\_width  petal\_length  petal\_width  species
 0           False        False         False        False    False
@@ -2629,27 +2634,7 @@ boolean values which are \texttt{True} for \textbf{NaN values}.
 2           False        False         False        False    False
 3           False        False         False        False    False
 4           False        False         False        False    False
-5           False        False         False        False    False
-6           False        False         False        False    False
-7           False        False         False        False    False
-8           False        False         False        False    False
-9           False        False         False        False    False
-10          False        False         False        False    False
-11          False        False         False        False    False
-12          False        False         False        False    False
-13          False        False         False        False    False
-14          False        False         False        False    False
 ..            {\ldots}          {\ldots}           {\ldots}          {\ldots}      {\ldots}
-135         False        False         False        False    False
-136         False        False         False        False    False
-137         False        False         False        False    False
-138         False        False         False        False    False
-139         False        False         False        False    False
-140         False        False         False        False    False
-141         False        False         False        False    False
-142         False        False         False        False    False
-143         False        False         False        False    False
-144         False        False         False        False    False
 145         False        False         False        False    False
 146         False        False         False        False    False
 147         False        False         False        False    False
@@ -2663,7 +2648,7 @@ boolean values which are \texttt{True} for \textbf{NaN values}.
     Show only the gaps:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{103}{\boxspacing}
+\prompt{In}{incolor}{83}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{irisdata\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{n}{irisdata\PYZus{}df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
 \PY{n}{irisdata\PYZus{}df\PYZus{}gaps}
@@ -2671,7 +2656,7 @@ boolean values which are \texttt{True} for \textbf{NaN values}.
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{103}{\boxspacing}
+\prompt{Out}{outcolor}{83}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 Empty DataFrame
 Columns: [sepal\_length, sepal\_width, petal\_length, petal\_width, species]
@@ -2683,12 +2668,12 @@ Index: []
 
 So let's look for \textbf{another dataset to exercise}. For this
 purpose, the original
-\href{https://media.geeksforgeeks.org/wp-content/uploads/employees.csv}{employes
+\href{https://media.geeksforgeeks.org/wp-content/uploads/employees.csv}{employees
 dataset}, which will be used in the next subsections, has been
 \textbf{slightly modified}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{2}{\boxspacing}
+\prompt{In}{incolor}{84}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Import data to dataframe from CSV file}
 \PY{n}{employees\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{./datasets/employees\PYZus{}edit.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -2708,7 +2693,7 @@ dataframe \textbf{index} is \textbf{transferred to a new column} as a
 permanent and stable \textbf{records identifier}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{3}{\boxspacing}
+\prompt{In}{incolor}{85}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Retrieve indices of all rows into a temporary list}
 \PY{n}{li\PYZus{}idx} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{index}
@@ -2721,7 +2706,7 @@ permanent and stable \textbf{records identifier}.
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{3}{\boxspacing}
+\prompt{Out}{outcolor}{85}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        idx First Name  Gender  Start Date Last Login Time    Salary   Bonus \%  \textbackslash{}
 0        0    Douglas    Male    8/6/1993        12:42 PM   97308.0   6945.00
@@ -2758,14 +2743,14 @@ data frame} for later \textbf{before-and-after comparison} - including
 the new index column to uniquely identify the records.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{4}{\boxspacing}
+\prompt{In}{incolor}{86}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{employees\PYZus{}df\PYZus{}orig} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{deep}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{5}{\boxspacing}
+\prompt{In}{incolor}{87}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Highlight cells with NaN values}
 \PY{c+c1}{\PYZsh{} HINT: Set to \PYZsq{}False\PYZsq{} when compiling to PDF!}
@@ -2781,7 +2766,7 @@ the new index column to uniquely identify the records.
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{5}{\boxspacing}
+\prompt{Out}{outcolor}{87}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        idx First Name  Gender  Start Date Last Login Time    Salary   Bonus \%  \textbackslash{}
 0        0    Douglas    Male    8/6/1993        12:42 PM   97308.0   6945.00
@@ -2817,7 +2802,7 @@ the new index column to uniquely identify the records.
 again:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{88}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{employees\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
 
@@ -2835,7 +2820,7 @@ again:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{6}{\boxspacing}
+\prompt{Out}{outcolor}{88}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      idx First Name  Gender  Start Date Last Login Time    Salary   Bonus \%  \textbackslash{}
 1      1     Thomas    Male   3/31/1996         6:53 AM   61933.0      4.17
@@ -2879,7 +2864,7 @@ the original dataframe with \texttt{inplace\ =\ True} - no deep copy is
 made!
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
+\prompt{In}{incolor}{89}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Fill all null values in column \PYZsq{}Gender\PYZsq{} using fillna()}
 \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{No Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
@@ -2906,7 +2891,7 @@ made!
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{7}{\boxspacing}
+\prompt{Out}{outcolor}{89}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      idx First Name     Gender  Start Date Last Login Time    Salary  \textbackslash{}
 20    20       Lois  No Gender   4/22/1995         7:18 PM   64714.0
@@ -2974,7 +2959,7 @@ here, among other places:
     Show rows with missing salary only:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
+\prompt{In}{incolor}{90}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{employees\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Salary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{p}{]}
 \PY{n}{employees\PYZus{}df\PYZus{}gaps}
@@ -2982,7 +2967,7 @@ here, among other places:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{8}{\boxspacing}
+\prompt{Out}{outcolor}{90}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
     idx First Name  Gender Start Date Last Login Time  Salary  Bonus \%  \textbackslash{}
 17   17      Shawn    Male  12/7/1986         7:45 PM     NaN  6414.00
@@ -3006,7 +2991,7 @@ First, the \textbf{male} and \textbf{female employees} with missing
 salary records are filtered:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
+\prompt{In}{incolor}{91}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Filter MALE employees with missing salary records}
 \PY{n}{employees\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{(}\PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Male}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PYZbs{}
@@ -3019,14 +3004,14 @@ salary records are filtered:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{9}{\boxspacing}
+\prompt{Out}{outcolor}{91}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 [17, 63]
 \end{Verbatim}
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{10}{\boxspacing}
+\prompt{In}{incolor}{92}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Filter FEMALE employees with missing salary records}
 \PY{n}{employees\PYZus{}df\PYZus{}gaps} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{(}\PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Female}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PYZbs{}
@@ -3039,7 +3024,7 @@ salary records are filtered:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{10}{\boxspacing}
+\prompt{Out}{outcolor}{92}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 [76]
 \end{Verbatim}
@@ -3048,7 +3033,7 @@ salary records are filtered:
     Get \textbf{median salaries} gender-specifically:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{11}{\boxspacing}
+\prompt{In}{incolor}{93}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Get median salary for MALE employees}
 \PY{n}{employees\PYZus{}df\PYZus{}male} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Male}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -3059,14 +3044,14 @@ salary records are filtered:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{11}{\boxspacing}
+\prompt{Out}{outcolor}{93}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 90370.0
 \end{Verbatim}
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{12}{\boxspacing}
+\prompt{In}{incolor}{94}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Get median salary for FEMALE employees}
 \PY{n}{employees\PYZus{}df\PYZus{}female} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Female}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -3077,7 +3062,7 @@ salary records are filtered:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{12}{\boxspacing}
+\prompt{Out}{outcolor}{94}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 90032.5
 \end{Verbatim}
@@ -3087,7 +3072,7 @@ salary records are filtered:
 of the salary column and replace NaN values in the original dataframe:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{13}{\boxspacing}
+\prompt{In}{incolor}{95}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Fill missing salary records by MALE indices}
 \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{index\PYZus{}list\PYZus{}male\PYZus{}salary\PYZus{}nan}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Salary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{salary\PYZus{}median\PYZus{}male}
@@ -3097,7 +3082,7 @@ of the salary column and replace NaN values in the original dataframe:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{13}{\boxspacing}
+\prompt{Out}{outcolor}{95}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
     idx First Name Gender Start Date Last Login Time   Salary  Bonus \%  \textbackslash{}
 17   17      Shawn   Male  12/7/1986         7:45 PM  90370.0  6414.00
@@ -3110,7 +3095,7 @@ of the salary column and replace NaN values in the original dataframe:
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{14}{\boxspacing}
+\prompt{In}{incolor}{96}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Fill missing salary records by FEMALE indices}
 \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{index\PYZus{}list\PYZus{}female\PYZus{}salary\PYZus{}nan}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Salary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{salary\PYZus{}median\PYZus{}female}
@@ -3120,7 +3105,7 @@ of the salary column and replace NaN values in the original dataframe:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{14}{\boxspacing}
+\prompt{Out}{outcolor}{96}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
     idx First Name  Gender Start Date Last Login Time   Salary  Bonus \%  \textbackslash{}
 76   76   Margaret  Female  9/10/1988        12:42 PM  90032.5   7353.0
@@ -3135,7 +3120,7 @@ indices by its direct \textbf{neighbors} for later
 \textbf{before-and-after comparison}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{15}{\boxspacing}
+\prompt{In}{incolor}{97}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Function for retrieving the indices of previous and next rows of a dataframe}
 \PY{k}{def} \PY{n+nf}{get\PYZus{}previous\PYZus{}and\PYZus{}next\PYZus{}rows\PYZus{}from\PYZus{}df}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{search\PYZus{}idx}\PY{p}{)}\PY{p}{:}
@@ -3171,7 +3156,7 @@ missing salary records as well as their respective direct \textbf{gender
 neighbors} for comparison:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{16}{\boxspacing}
+\prompt{In}{incolor}{98}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Merge MALE and FEMALE index lists}
 \PY{n}{index\PYZus{}list\PYZus{}merged} \PY{o}{=} \PY{p}{[}\PY{p}{]}
@@ -3199,7 +3184,7 @@ neighbors} for comparison:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{16}{\boxspacing}
+\prompt{Out}{outcolor}{98}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 [16, 17, 21, 57, 63, 65, 75, 76, 78]
 \end{Verbatim}
@@ -3210,7 +3195,7 @@ genders (including the direct neighbors) for \textbf{before-and-after
 comparison}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{17}{\boxspacing}
+\prompt{In}{incolor}{99}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Switch to apply highlight style to dataframe}
 \PY{c+c1}{\PYZsh{} HINT: Set to \PYZsq{}False\PYZsq{} when compiling to PDF!}
@@ -3235,7 +3220,7 @@ comparison}.
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{17}{\boxspacing}
+\prompt{Out}{outcolor}{99}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
     idx First Name  Gender  Start Date Last Login Time    Salary   Bonus \%  \textbackslash{}
 16   16     Jeremy    Male   9/21/2010         5:56 AM   90370.0   7369.00
@@ -3282,7 +3267,7 @@ function drops rows with all data missing or contain null values (NaN).
 - no deep copy is made!
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{18}{\boxspacing}
+\prompt{In}{incolor}{100}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Drop rows with missing values directly in the original dataframe}
 \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{how} \PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{any}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
@@ -3294,7 +3279,7 @@ function drops rows with all data missing or contain null values (NaN).
 rows had at least 1 Null value.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{19}{\boxspacing}
+\prompt{In}{incolor}{101}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Original dataframe length:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{employees\PYZus{}df\PYZus{}orig}\PY{p}{)}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{New dataframe length:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{employees\PYZus{}df}\PY{p}{)}\PY{p}{)}
@@ -3329,8 +3314,9 @@ This section was inspired by:
 \paragraph{\texorpdfstring{Check for duplicate values using
 \texttt{duplicated()}}{Check for duplicate values using duplicated()}}\label{check-for-duplicate-values-using-duplicated}}
 
-In order to check for duplicate values in Pandas DataFrame, we use a
-function \texttt{duplicated()}. This function can be used in two ways:
+In order to check for duplicate values in \texttt{pandas.DataFrame}, we
+use a function \texttt{duplicated()}. This function can be used in two
+ways:
 
 \begin{itemize}
 \tightlist
@@ -3356,7 +3342,7 @@ function \texttt{duplicated()}. This function can be used in two ways:
 Find duplicate rows across \textbf{all columns}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{20}{\boxspacing}
+\prompt{In}{incolor}{119}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Find duplicate rows across all columns}
 \PY{c+c1}{\PYZsh{} The column \PYZsq{}idx\PYZsq{} has to be ignored}
@@ -3367,19 +3353,12 @@ Find duplicate rows across \textbf{all columns}:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{20}{\boxspacing}
+\prompt{Out}{outcolor}{119}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-     idx First Name     Gender  Start Date Last Login Time    Salary  Bonus \%  \textbackslash{}
-112  112      Karen     Female  11/30/1999         7:46 AM  102488.0  17653.0
-127  127      Linda     Female   5/25/2000         5:45 PM  119009.0  12506.0
-296  296    Brandon  No Gender   11/3/1997         8:17 PM  121333.0  15295.0
-580  580   Nicholas       Male    3/1/2013         9:26 PM  101036.0   2826.0
-
-    Senior Management                  Team
-112              True               Product
-127              True  Business Development
-296             False  Business Development
-580              True       Human Resources
+Empty DataFrame
+Columns: [idx, First Name, Gender, Start Date, Last Login Time, Salary, Bonus \%,
+Senior Management, Team]
+Index: []
 \end{Verbatim}
 \end{tcolorbox}
         
@@ -3389,7 +3368,7 @@ occurrences). The resulting dataframe is \textbf{sorted by column}
 \textbf{duplicates grouped}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{21}{\boxspacing}
+\prompt{In}{incolor}{103}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Parameter \PYZsq{}keep=False\PYZsq{} displays all duplicate rows}
 \PY{n}{duplicateRows} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}\PY{n}{keep}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{subset}\PY{o}{=}\PY{n}{column\PYZus{}subset}\PY{p}{)}\PY{p}{]}
@@ -3400,7 +3379,7 @@ occurrences). The resulting dataframe is \textbf{sorted by column}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{21}{\boxspacing}
+\prompt{Out}{outcolor}{103}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      idx First Name     Gender  Start Date Last Login Time    Salary  Bonus \%  \textbackslash{}
 153  153    Brandon  No Gender   11/3/1997         8:17 PM  121333.0  15295.0
@@ -3432,7 +3411,7 @@ multiple columns}
 the \textbf{duplicates grouped}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{22}{\boxspacing}
+\prompt{In}{incolor}{104}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Parameter \PYZsq{}keep=False\PYZsq{} displays all duplicate rows}
 \PY{n}{duplicateRows} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{duplicated}\PY{p}{(}
@@ -3444,7 +3423,7 @@ the \textbf{duplicates grouped}:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{22}{\boxspacing}
+\prompt{Out}{outcolor}{104}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      idx First Name     Gender  Start Date Last Login Time    Salary  Bonus \%  \textbackslash{}
 153  153    Brandon  No Gender   11/3/1997         8:17 PM  121333.0  15295.0
@@ -3452,8 +3431,7 @@ the \textbf{duplicates grouped}:
 55    55      Karen     Female  11/30/1999         7:46 AM  102488.0  17653.0
 112  112      Karen     Female  11/30/1999         7:46 AM  102488.0  17653.0
 92    92      Linda     Female   5/25/2000         5:45 PM  119009.0  12506.0
-127  127      Linda     Female   5/25/2000         5:45 PM  119009.0  12506.0
-37    37      Linda     Female  10/19/1981         8:49 PM   57427.0   9557.0
+..   {\ldots}        {\ldots}        {\ldots}         {\ldots}             {\ldots}       {\ldots}      {\ldots}
 973  973      Linda     Female    2/4/2010         8:49 PM   44486.0  17308.0
 66    66      Nancy     Female  12/15/2012        11:57 PM  125250.0   2672.0
 934  934      Nancy     Female   9/10/2001        11:57 PM   85213.0   2386.0
@@ -3466,13 +3444,14 @@ the \textbf{duplicates grouped}:
 55               True               Product
 112              True               Product
 92               True  Business Development
-127              True  Business Development
-37               True       Client Services
+..                {\ldots}                   {\ldots}
 973              True           Engineering
 66               True  Business Development
 934              True             Marketing
 442              True       Human Resources
 580              True       Human Resources
+
+[12 rows x 9 columns]
 \end{Verbatim}
 \end{tcolorbox}
         
@@ -3502,7 +3481,7 @@ made!
 Remove duplicate rows across \textbf{all columns}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{23}{\boxspacing}
+\prompt{In}{incolor}{105}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Remove duplicate rows across all columns}
 \PY{c+c1}{\PYZsh{} The column \PYZsq{}idx\PYZsq{} has to be ignored}
@@ -3513,7 +3492,7 @@ Remove duplicate rows across \textbf{all columns}:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{23}{\boxspacing}
+\prompt{Out}{outcolor}{105}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        idx First Name     Gender  Start Date Last Login Time    Salary  \textbackslash{}
 0        0    Douglas       Male    8/6/1993        12:42 PM   97308.0
@@ -3548,7 +3527,7 @@ Remove duplicate rows across \textbf{all columns}:
     Remove duplicate rows across \textbf{specific columns}:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{24}{\boxspacing}
+\prompt{In}{incolor}{106}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Remove duplicate rows across \PYZsq{}First Name\PYZsq{} and \PYZsq{}Last Login Time\PYZsq{} columns}
 \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}
@@ -3558,7 +3537,7 @@ Remove duplicate rows across \textbf{all columns}:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{24}{\boxspacing}
+\prompt{Out}{outcolor}{106}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        idx First Name     Gender  Start Date Last Login Time    Salary  \textbackslash{}
 0        0    Douglas       Male    8/6/1993        12:42 PM   97308.0
@@ -3594,8 +3573,46 @@ Remove duplicate rows across \textbf{all columns}:
 \subsubsection{Compare the edited dataset with the original dataset
 side-by-side}\label{compare-the-edited-dataset-with-the-original-dataset-side-by-side}}
 
-\textbf{@TODO:}\\
-Incorporate following sources:
+In the previous sections, the dataframe holding the \textbf{employees
+dataset} was \textbf{heavily edited} by \textbf{adding missing values}
+(where it was appropriate) or \textbf{deleting gapped rows} completely.
+Therefore, the \textbf{modifications made} to the dataset should be
+finally \textbf{checked}.
+
+The \texttt{Pandas} package provides the \texttt{compare()} function,
+which can be used to \textbf{compare dataframes} and \textbf{display
+differences} (see here:
+\href{https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.compare.html}{pandas.DataFrame.compare}).
+Unfortunately, the documentation points out that this function can
+\textbf{only} be used to \textbf{compare dataframes} with the
+\textbf{same shape} (number of columns and rows) and \textbf{identical
+row and column labels}.
+
+Among other things, a lot of \textbf{gapped rows have been removed} due
+to the heavy editing. Therefore, the original and the edited dataframe
+are \textbf{anything but identical} in terms of their \textbf{number of
+rows}. As expected, the following short test ends with a \textbf{long
+error message}.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{120}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Pandas.compare() does not work with dropped rows in one dataframe!}
+\PY{c+c1}{\PYZsh{}employees\PYZus{}df\PYZus{}orig.compare(employees\PYZus{}df, keep\PYZus{}shape=False, keep\PYZus{}equal=True)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    Therefore, in this subsection, a \textbf{customized method} of
+\textbf{comparing two dataframes} that are \textbf{not identical} in
+terms of \textbf{shape} has been developed.
+
+The following approach shows one way to \textbf{compare} the
+\textbf{modified dataframe} with the \textbf{original dataframe} -
+despite the different number of rows. This is done by \textbf{merging
+both dataframes} into one, displaying the \textbf{same columns} of both
+datasets \textbf{side-by-side} and highlighting the \textbf{changes}.
+
+The following sources were the inspiration for this subsection:
 
 \begin{itemize}
 \tightlist
@@ -3606,42 +3623,55 @@ Incorporate following sources:
   \href{https://stackoverflow.com/questions/71604701/pandas-compare-two-data-frames-and-highlight-the-differences/71617662\#71617662}{pandas
   compare two data frames and highlight the differences}
 \item
+  \href{https://www.skytowner.com/explore/highlighting_a_particular_cell_of_a_dataframe_in_pandas}{Highlighting
+  a particular cell of a DataFrame in Pandas}
+\item
   \href{https://datascientyst.com/compare-two-pandas-dataframes-get-differences/}{How
   to Compare Two Pandas DataFrames and Get Differences}
 \item
+  \href{https://stackoverflow.com/questions/70566100/how-to-highlight-differences-between-the-two-data-frames-in-pandas}{How
+  to highlight differences between the two data frames in pandas}
+\item
   \href{https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.compare.html}{pandas.DataFrame.compare}
+\item
+  \href{https://pandas.pydata.org/pandas-docs/stable/user_guide/style.html}{Pandas
+  Table Visualization}
+\item
+  \href{https://towardsdatascience.com/10-examples-to-master-pandas-styler-408ea794e91}{10
+  Examples to Master Pandas Styler}
+\item
+  \href{https://towardsdatascience.com/style-pandas-dataframe-like-a-master-6b02bf6468b0}{Style
+  Pandas Dataframe Like a Master}
+\item
+  \href{https://towardsdatascience.com/a-quick-and-easy-guide-to-conditional-formatting-in-pandas-8783035071ee}{A
+  Quick and Easy Guide to Conditional Formatting in Pandas}
 \end{itemize}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{434}{\boxspacing}
+\prompt{In}{incolor}{108}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{}pd.set\PYZus{}option(\PYZsq{}display.max\PYZus{}rows\PYZsq{}, 1100)}
-\PY{c+c1}{\PYZsh{}pd.set\PYZus{}option(\PYZsq{}display.min\PYZus{}rows\PYZsq{}, 100)}
-
-\PY{c+c1}{\PYZsh{} Does not work with dropped rows in one dataframe!}
-\PY{c+c1}{\PYZsh{}employees\PYZus{}df\PYZus{}orig.compare(employees\PYZus{}df, keep\PYZus{}shape=False, keep\PYZus{}equal=True)}
+\PY{c+c1}{\PYZsh{} Set the number of rows to output to default values}
+\PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.min\PYZus{}rows}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
+\PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.max\PYZus{}rows}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{25}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Fill all null values with string \PYZsq{}NaN\PYZsq{} using fillna()}
-\PY{n}{df1} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}orig}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NaN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{df2} \PY{o}{=} \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NaN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-\end{tcolorbox}
+    First, the \textbf{original} and the \textbf{modified dataframes} are
+\textbf{merged} into a new dataframe, using the \textbf{index column}
+\texttt{idx} to \textbf{synchronize} the two dataframes.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{26}{\boxspacing}
+\prompt{In}{incolor}{109}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{employees\PYZus{}df\PYZus{}merged} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df1}\PY{p}{,} \PY{n}{df2}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{idx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\PY{n}{employees\PYZus{}df\PYZus{}merged} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{employees\PYZus{}df\PYZus{}orig}\PY{p}{,} 
+                               \PY{n}{employees\PYZus{}df}\PY{p}{,} 
+                               \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{idx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
 \PY{n}{employees\PYZus{}df\PYZus{}merged}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{26}{\boxspacing}
+\prompt{Out}{outcolor}{109}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        idx First Name\_x Gender\_x Start Date\_x Last Login Time\_x  Salary\_x  \textbackslash{}
 0        0      Douglas     Male     8/6/1993          12:42 PM   97308.0
@@ -3699,10 +3729,13 @@ Incorporate following sources:
 \end{Verbatim}
 \end{tcolorbox}
         
+    The \textbf{column suffixes} automatically added during the merge
+operation are \textbf{renamed} to \texttt{\_o} (original) and
+\texttt{\_e} (edited dataframe) using \textbf{lambda inline functions}.
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{27}{\boxspacing}
+\prompt{In}{incolor}{110}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Rename suffixes \PYZsq{}\PYZus{}x\PYZsq{} and \PYZsq{}\PYZus{}y\PYZsq{} by using lambda inline functions}
 \PY{n}{employees\PYZus{}df\PYZus{}merged}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 \PY{n}{employees\PYZus{}df\PYZus{}merged}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}e}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 \PY{n}{employees\PYZus{}df\PYZus{}merged}
@@ -3710,7 +3743,7 @@ Incorporate following sources:
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{27}{\boxspacing}
+\prompt{Out}{outcolor}{110}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        idx First Name\_o Gender\_o Start Date\_o Last Login Time\_o  Salary\_o  \textbackslash{}
 0        0      Douglas     Male     8/6/1993          12:42 PM   97308.0
@@ -3768,11 +3801,14 @@ Incorporate following sources:
 \end{Verbatim}
 \end{tcolorbox}
         
+    In order to have the \textbf{columns} of the original and the edited
+dataframe directly \textbf{next to each other} for a \textbf{better
+comparison}, a \textbf{column list} is created with the \textbf{new
+order}.
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{50}{\boxspacing}
+\prompt{In}{incolor}{111}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Create column list with new order}
-\PY{c+c1}{\PYZsh{} with the goal that the columns of the original and the edited data frame are directly next to each other for a better comparison}
 \PY{n}{li\PYZus{}reordered\PYZus{}cols} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{idx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 
 \PY{c+c1}{\PYZsh{} Iterate over columns}
@@ -3781,29 +3817,47 @@ Incorporate following sources:
         \PY{n}{li\PYZus{}reordered\PYZus{}cols}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
         \PY{n}{li\PYZus{}reordered\PYZus{}cols}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}e}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
-\PY{n+nb}{print}\PY{p}{(}\PY{n}{li\PYZus{}reordered\PYZus{}cols}\PY{p}{)}
+\PY{n}{li\PYZus{}reordered\PYZus{}cols}
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-['idx', 'First Name\_o', 'First Name\_e', 'Gender\_o', 'Gender\_e', 'Start Date\_o',
-'Start Date\_e', 'Last Login Time\_o', 'Last Login Time\_e', 'Salary\_o',
-'Salary\_e', 'Bonus \%\_o', 'Bonus \%\_e', 'Senior Management\_o', 'Senior
-Management\_e', 'Team\_o', 'Team\_e']
-    \end{Verbatim}
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{111}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+['idx',
+ 'First Name\_o',
+ 'First Name\_e',
+ 'Gender\_o',
+ 'Gender\_e',
+ 'Start Date\_o',
+ 'Start Date\_e',
+ 'Last Login Time\_o',
+ 'Last Login Time\_e',
+ 'Salary\_o',
+ 'Salary\_e',
+ 'Bonus \%\_o',
+ 'Bonus \%\_e',
+ 'Senior Management\_o',
+ 'Senior Management\_e',
+ 'Team\_o',
+ 'Team\_e']
+\end{Verbatim}
+\end{tcolorbox}
+        
+    In order to have \textbf{columns with the same meaning next to each
+other}, the columns of the merged data frame are \textbf{re-sorted}
+based on the new \textbf{column list}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{29}{\boxspacing}
+\prompt{In}{incolor}{112}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Reorder columns of the dataframe based on the new column list}
-\PY{c+c1}{\PYZsh{} to get same columns side\PYZhy{}by\PYZhy{}side}
 \PY{n}{employees\PYZus{}df\PYZus{}merged} \PY{o}{=} \PY{n}{employees\PYZus{}df\PYZus{}merged}\PY{o}{.}\PY{n}{reindex}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{n}{li\PYZus{}reordered\PYZus{}cols}\PY{p}{)}
 \PY{n}{employees\PYZus{}df\PYZus{}merged}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{29}{\boxspacing}
+\prompt{Out}{outcolor}{112}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
        idx First Name\_o First Name\_e Gender\_o   Gender\_e Start Date\_o  \textbackslash{}
 0        0      Douglas      Douglas     Male       Male     8/6/1993
@@ -3861,43 +3915,68 @@ Management\_e', 'Team\_o', 'Team\_e']
 \end{Verbatim}
 \end{tcolorbox}
         
+    To avoid problems with the subsequent comparison, \textbf{missing
+values} in the cells are \textbf{replaced} with the string \texttt{NaN}
+using the function \texttt{fillna()}.
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{30}{\boxspacing}
+\prompt{In}{incolor}{113}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Fill all null values with string \PYZsq{}NaN\PYZsq{} using fillna()}
 \PY{n}{employees\PYZus{}df\PYZus{}merged}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NaN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
+    For a better overview, only the \textbf{rows} that show
+\textbf{differences in the individual cells} will be displayed during
+the comparison. For this purpose, the new, empty dataframe
+\texttt{employees\_df\_diff} is created with the same column labels as
+the original dataframe \texttt{employees\_df\_orig}.
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{46}{\boxspacing}
+\prompt{In}{incolor}{114}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Create empty dataframe with same columns as \PYZsq{}employees\PYZus{}df\PYZus{}orig\PYZsq{}}
 \PY{n}{employees\PYZus{}df\PYZus{}diff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{n}{employees\PYZus{}df\PYZus{}orig}\PY{o}{.}\PY{n}{columns}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
+    The function \texttt{dataframe\_add\_row()} is used to easily
+\textbf{add rows} to a \textbf{dataframe}.
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{47}{\boxspacing}
+\prompt{In}{incolor}{115}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Define function to add rows to dataframe}
 \PY{k}{def} \PY{n+nf}{dataframe\PYZus{}add\PYZus{}row}\PY{p}{(}\PY{n}{df}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{row}\PY{o}{=}\PY{p}{[}\PY{p}{]}\PY{p}{)}\PY{p}{:}
     \PY{k}{if} \PY{p}{(}\PY{n}{df} \PY{o+ow}{is} \PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
         \PY{k}{return}
     
-    \PY{c+c1}{\PYZsh{} add a row}
+    \PY{c+c1}{\PYZsh{} Add a row to dataframe}
     \PY{n}{df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{row}
     
-    \PY{c+c1}{\PYZsh{} shift the index}
+    \PY{c+c1}{\PYZsh{} Shift the index of the dataframe}
     \PY{n}{df}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{index} \PY{o}{+} \PY{l+m+mi}{1}
     
-    \PY{c+c1}{\PYZsh{} reset the index of dataframe and avoid the old index being added as a column}
+    \PY{c+c1}{\PYZsh{} Reset the index of dataframe and }
+    \PY{c+c1}{\PYZsh{} avoid the old index being added as a column}
     \PY{n}{df}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
+    Now the merged dataframe \texttt{employees\_df\_merged} is
+\textbf{iterated} through \textbf{row by row} and \textbf{column by
+column} in a \textbf{nested loop}. In the inner loop, the
+\textbf{original cell value} (column with suffix \texttt{\_o}) is
+\textbf{compared} with the adjacent \textbf{edited cell value} (column
+with suffix \texttt{\_e}).
+
+If a \textbf{difference} is detected, the \textbf{original} and the
+\textbf{edited cell value} is written into a \textbf{common new cell} -
+marked with the \textbf{difference symbol}
+\texttt{\textless{}=\textgreater{}}. Then, only the \textbf{rows
+containing differences} in the cells are \textbf{added} to the
+\texttt{employees\_df\_diff} \textbf{dataframe}.
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{48}{\boxspacing}
+\prompt{In}{incolor}{116}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{b\PYZus{}diffs\PYZus{}found} \PY{o}{=} \PY{k+kc}{False}
 
@@ -3914,7 +3993,7 @@ Management\_e', 'Team\_o', 'Team\_e']
         \PY{k}{elif} \PY{n}{column}\PY{o}{.}\PY{n}{endswith}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}e}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
             \PY{n}{value\PYZus{}edit} \PY{o}{=} \PY{n}{value}
             \PY{k}{if} \PY{n}{value\PYZus{}orig} \PY{o}{!=} \PY{n}{value\PYZus{}edit}\PY{p}{:}
-                \PY{c+c1}{\PYZsh{} Combine original and edited value and mark with diff sign \PYZsq{}\PYZlt{}=\PYZgt{}\PYZsq{}}
+                \PY{c+c1}{\PYZsh{} Combine original and edited value and mark with diff symbol \PYZsq{}\PYZlt{}=\PYZgt{}\PYZsq{}}
                 \PY{n}{row\PYZus{}li}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{value\PYZus{}orig}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ \PYZlt{}=\PYZgt{} }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{value\PYZus{}edit}\PY{p}{)}\PY{p}{)}
                 \PY{n}{b\PYZus{}diffs\PYZus{}found} \PY{o}{=} \PY{k+kc}{True}
             \PY{k}{elif} \PY{n}{value\PYZus{}orig} \PY{o}{==} \PY{n}{value\PYZus{}edit}\PY{p}{:}
@@ -3928,8 +4007,19 @@ Management\_e', 'Team\_o', 'Team\_e']
 \end{Verbatim}
 \end{tcolorbox}
 
+    Finally, the \textbf{differences} can be visualized even more
+prominently by \textbf{highlighting} the \textbf{cell backgrounds in
+color}. For this purpose the function \texttt{style.apply()} provided in
+\texttt{Pandas} is used. An \textbf{inline lambda function} searches the
+cells for the difference symbol \texttt{\textless{}=\textgreater{}} and
+\textbf{highlights} the \textbf{cell} with yellow color.
+
+This allows to achieve a \textbf{similar functionality} as known from
+\textbf{spreadsheet programs} (e.g.~Open Office Calc) as so-called
+\textbf{``conditional formatting''}.
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{52}{\boxspacing}
+\prompt{In}{incolor}{123}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Temporarily increase the number of rows to output}
 \PY{n}{pd}\PY{o}{.}\PY{n}{set\PYZus{}option}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{display.min\PYZus{}rows}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}
@@ -3954,7 +4044,7 @@ Management\_e', 'Team\_o', 'Team\_e']
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{52}{\boxspacing}
+\prompt{Out}{outcolor}{123}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
      idx      First Name             Gender         Start Date  \textbackslash{}
 0      1  Thomas <=> NaN       Male <=> NaN  3/31/1996 <=> NaN
@@ -4037,7 +4127,7 @@ After the anomalies in the dataset have been found - and repaired where
 appropriate - it can be saved as a new CSV file for later use.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{335}{\boxspacing}
+\prompt{In}{incolor}{74}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{csv\PYZus{}filepath} \PY{o}{=} \PY{l+s+sa}{r}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./datasets/employees\PYZus{}edit\PYZus{}repaired.csv}\PY{l+s+s1}{\PYZsq{}}
 
@@ -4050,8 +4140,9 @@ appropriate - it can be saved as a new CSV file for later use.
 bias}}{Avoidance of tendencies due to bias}}\label{avoidance-of-tendencies-due-to-bias}}
 
 The description of the Iris dataset says, that it consists of \textbf{50
-samples} from \textbf{each of three species} of Iris (Iris setosa, Iris
-virginica and Iris versicolor), so there are \textbf{150 total samples}.
+samples} from \textbf{each of three species} of Iris (\emph{Iris
+setosa}, \emph{Iris virginica} and \emph{Iris versicolor}), so there are
+\textbf{150 samples in total}.
 
 But how can this be verified? The following subsections provide some
 \textbf{ideas} on how to \textbf{examine the dataset} for
@@ -4061,10 +4152,11 @@ But how can this be verified? The following subsections provide some
 \subsubsection{Count occurrences of unique
 values}\label{count-occurrences-of-unique-values}}
 
-To prove whether all possible classes included in the dataset and
-equally distributed, you can use the function \texttt{df.value\_counts}.
+To prove whether all possible classes are included in the dataset and
+equally distributed, the function \texttt{df.value\_counts()} can be
+used.
 
-Following parameters can be used for fine tuning:
+Following parameters are for fine tuning:
 
 \begin{itemize}
 \tightlist
@@ -4097,24 +4189,24 @@ Name: species, dtype: int64
 \end{tcolorbox}
         
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{33}{\boxspacing}
+\prompt{In}{incolor}{121}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Import (again) data to dataframe from csv file}
+\PY{c+c1}{\PYZsh{} Import (again) employees dataset to dataframe from csv file}
 \PY{n}{employees\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{./datasets/employees\PYZus{}edit.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{85}{\boxspacing}
+\prompt{In}{incolor}{124}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Count unique values and missing values in a column,}
-\PY{c+c1}{\PYZsh{} ordered descending and not absolute values}
+\PY{c+c1}{\PYZsh{} ordered descending and absolute values}
 \PY{n}{employees\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Team}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{dropna}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{normalize}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{85}{\boxspacing}
+\prompt{Out}{outcolor}{124}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 Client Services         106
 Business Development    103
@@ -4142,7 +4234,7 @@ Histogram -- DataFrame.hist()}.
 graphically. This requires the separation of the data into classes
 (so-called \textbf{bins}).
 
-These classes are represented in the histogram as rectangles of equal or
+These bins are represented in the histogram as rectangles of equal or
 variable width. The height of each rectangle then represents the
 (relative or absolute) \textbf{frequency density}.
 
@@ -4160,7 +4252,7 @@ variable width. The height of each rectangle then represents the
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_130_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_140_0.png}\end{center}
         \caption{Histogram for frequency distribution of the salary}
         \label{fig:histogram_salary}
     \end{figure}
@@ -4172,6 +4264,14 @@ histogram} above, there is also \textbf{no breakdown of salaries} by
 The following function allows a \textbf{gender-specific presentation} of
 salaries with significantly \textbf{more information content} in the
 individual subplots.
+
+In addition, \textbf{probability density functions (PDF)} were overlaid
+on the histograms, whose hyper-parameters \textbf{mean} and
+\textbf{standard deviation} were previously identified using the
+features of the dataset. This makes it possible to estimate whether the
+\textbf{data is normally distributed}. In order to be able to reuse the
+code later, it was implemented as the \textbf{function}
+\texttt{func\_plot\_histograms\_from\_list\_with\_PDF()}.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{482}{\boxspacing}
@@ -4243,7 +4343,7 @@ individual subplots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_133_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_143_0.png}\end{center}
         \caption{Histograms used to explore the frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))}
         \label{fig:histogram_salary_with_PDF}
     \end{figure}
@@ -4340,7 +4440,7 @@ Choose the color sets from
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_139_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_149_0.png}\end{center}
         \caption{Correlation heatmap to explore coherences between single variables in the iris dataset}
         \label{fig:correlation_heatmap}
     \end{figure}
@@ -4394,7 +4494,7 @@ array([[1., 1., 1., 1., 1.],
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_143_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_153_0.png}\end{center}
         \caption{Correlation heatmap, which was cut at its main diagonal without losing any information}
         \label{fig:correlation_heatmap_triangle}
     \end{figure}
@@ -4412,8 +4512,8 @@ plot}}{Visualise data with scatter plot}}\label{visualise-data-with-scatter-plot
 
 In the following, \href{https://seaborn.pydata.org/}{Seaborn} is applied
 which is a library for making statistical graphics in Python. It is
-built on top of matplotlib and closely integrated with pandas data
-structures.
+built on top of matplotlib and closely integrated with \texttt{Pandas}
+data structures.
 
 To investigate whether there are dependencies (e.g.~correlations) in
 \texttt{irisdata\_df} between individual variables in the dataset, it is
@@ -4444,7 +4544,7 @@ advisable to plot them in a \textbf{scatter plot}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_146_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_156_0.png}\end{center}
         \caption{Plotting two individual variables of the iris dataset in the scatterplot to explore the relationships between these two}
         \label{fig:scatter_plot}
     \end{figure}
@@ -4482,7 +4582,7 @@ single row and in the x-axis across a single column.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_148_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_158_0.png}\end{center}
         \caption{Plot all individual variables of the Iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables}
         \label{fig:pairs_plot}
     \end{figure}
@@ -5323,7 +5423,7 @@ implemented.
     \PY{k}{for} \PY{n}{title}\PY{p}{,} \PY{n}{df}\PY{p}{,} \PY{n}{subplot} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{titles}\PY{p}{,} \PY{n}{dataframes}\PY{p}{,} \PY{n}{subplots}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
 
         \PY{c+c1}{\PYZsh{} To create multiple boxplots in seaborn,}
-        \PY{c+c1}{\PYZsh{} we must first melt the pandas DataFrame into a long format:}
+        \PY{c+c1}{\PYZsh{} we must first melt the pandas.DataFrame into a long format:}
         \PY{n}{df\PYZus{}melted} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{melt}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Rename column to \PYZsq{}features\PYZsq{}}
         \PY{n}{df\PYZus{}melted}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{variable}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{features}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
@@ -5355,7 +5455,7 @@ the \textbf{boxplots} comparing \textbf{original data} with the
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_183_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_193_0.png}\end{center}
         \caption{Boxplots comparing the original data (left) with the normalized data (right) with all features in one scale}
         \label{fig:boxplots_comp_orig_norm}
     \end{figure}
@@ -5468,7 +5568,7 @@ data} side-by-side:
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_187_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_197_0.png}\end{center}
         \caption{Histograms with overlaid probability density functions comparing original data (left) with the normalized data (right)}
         \label{fig:histograms_comp_orig_norm}
     \end{figure}
@@ -5572,7 +5672,7 @@ with all \textbf{features at one scale}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_193_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_203_0.png}\end{center}
         \caption{Boxplots comparing the original data (left) with the standardized data (right) with all features in one scale}
         \label{fig:boxplots_comp_orig_std}
     \end{figure}
@@ -5594,7 +5694,7 @@ functions}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_195_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_205_0.png}\end{center}
         \caption{Histograms with overlaid probability density functions comparing original data (left) with the standardized data (right)}
         \label{fig:histograms_comp_orig_std}
     \end{figure}
@@ -5978,7 +6078,7 @@ colored confusion matrix.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_220_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_230_0.png}\end{center}
         \caption{Checking the accuracy of the model by using the confusion matrix for cross-validation}
         \label{fig:confusion_matrix}
     \end{figure}
@@ -6060,7 +6160,7 @@ into a training and a test dataset.
 \prompt{In}{incolor}{24}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Copy only 2 feature columns}
-\PY{c+c1}{\PYZsh{} and convert pandas dataframe to numpy array}
+\PY{c+c1}{\PYZsh{} and convert pandas.DataFrame to numpy array}
 \PY{n}{X\PYZus{}plot} \PY{o}{=} \PY{n}{irisdata\PYZus{}df\PYZus{}enc}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{to\PYZus{}numpy}\PY{p}{(}\PY{n}{copy}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
 \PY{c+c1}{\PYZsh{}X\PYZus{}plot = irisdata\PYZus{}df\PYZus{}enc[[\PYZsq{}sepal\PYZus{}length\PYZsq{}, \PYZsq{}sepal\PYZus{}width\PYZsq{}]].to\PYZus{}numpy(copy=True)}
 \PY{c+c1}{\PYZsh{}X\PYZus{}plot}
@@ -6070,7 +6170,7 @@ into a training and a test dataset.
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{25}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Convert pandas dataframe to numpy array}
+\PY{c+c1}{\PYZsh{} Convert pandas.DataFrame to numpy array}
 \PY{c+c1}{\PYZsh{} and get a flat 1D copy of 2D numpy array}
 \PY{n}{y\PYZus{}plot} \PY{o}{=} \PY{n}{irisdata\PYZus{}df\PYZus{}enc}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{species}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{to\PYZus{}numpy}\PY{p}{(}\PY{n}{copy}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}
 \PY{c+c1}{\PYZsh{}y\PYZus{}plot}
@@ -6229,7 +6329,7 @@ kernel}) kernel use non linear hyperplanes. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_241_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_251_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')}
         \label{fig:vary_kernels}
     \end{figure}
@@ -6269,7 +6369,7 @@ exactly fit the training dataset. The \textbf{default} is
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_243_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_253_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel}
         \label{fig:vary_gamma_parameter}
     \end{figure}
@@ -6295,7 +6395,7 @@ as the classifier tries to perfectly fit the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_245_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_255_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy}
         \label{fig:plot_vary_gamma}
     \end{figure}
@@ -6334,7 +6434,7 @@ the training points correctly. The \textbf{default} is \texttt{C=1.0}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_247_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_257_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel}
         \label{fig:vary_c_parameter}
     \end{figure}
@@ -6360,7 +6460,7 @@ But be careful: to high \texttt{C} values may lead to
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_249_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_259_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'C' against the prediction accuracy}
         \label{fig:plot_vary_c}
     \end{figure}
@@ -6404,7 +6504,7 @@ training times}.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_251_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_261_0.png}\end{center}
         \caption{This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel}
         \label{fig:vary_degree_parameter}
     \end{figure}
@@ -6430,7 +6530,7 @@ hyperplane leads to \textbf{overfitting} the training data.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_253_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_263_0.png}\end{center}
         \caption{The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy}
         \label{fig:plot_vary_degree}
     \end{figure}
@@ -6682,7 +6782,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_271_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_281_0.png}\end{center}
         \caption{Confusion matrix for cross-validation of the baseline}
         \label{fig:cm_baseline}
     \end{figure}
@@ -6905,7 +7005,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_291_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_301_0.png}\end{center}
         \caption{Pairs plot of the original Iris dataset}
         \label{fig:pairs_plot_orig_Iris}
     \end{figure}
@@ -6919,7 +7019,7 @@ dataframes are visualized in pairs plots.
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_292_0.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_302_0.png}\end{center}
         \caption{Pairs plot of the noised Iris dataset}
         \label{fig:pairs_plot_noised_Iris}
     \end{figure}
@@ -7061,7 +7161,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_304_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_314_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the grid search has been performed}
         \label{fig:cm_grid_search}
     \end{figure}
@@ -7221,7 +7321,7 @@ Iris-versicolor       0.90      1.00      0.95         9
 \end{tcolorbox}
 
     \begin{figure}
-        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_315_0.png}\end{center}
+        \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_325_0.png}\end{center}
         \caption{Confusion matrix for cross-validation after the randomized search has been performed}
         \label{fig:cm_random_search}
     \end{figure}

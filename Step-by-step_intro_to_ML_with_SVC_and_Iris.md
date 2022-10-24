@@ -570,13 +570,13 @@ irisdata_df.tail()
 ```
 
 While printing a dataframe - only an abbreviated view of the dataframe is shown :(  
-Default setting in the pandas library makes it to display only 5 lines from head and from tail.
+Default setting in the `Pandas` library makes it to display only 5 lines from head and from tail.
 
 ```python tags=[]
 irisdata_df
 ```
 
-To print all rows of a dataframe, the option `display.max_rows` has to set to `None` in pandas:
+To print all rows of a dataframe, the option `display.max_rows` has to set to `None` in `Pandas`:
 
 ```python tags=[]
 pd.set_option('display.max_rows', None)
@@ -598,7 +598,9 @@ irisdata_df.describe()
 <!-- #region tags=[] -->
 #### Histograms
 
-This type of visualization is useful to explore the frequency distribution for each feature in univariate plots. Each feature of the Iris dataset is displayed in its own **histogram**.
+This type of visualization is useful to explore the **frequency distribution** for each feature in univariate plots. This requires the separation of the data into classes (so-called **bins**). These bins are represented in the histogram as rectangles of equal or variable width. The height of each rectangle then represents the (relative or absolute) **frequency density**.
+
+Each **feature** of the **Iris dataset** is displayed in its own histogram.
 
 To illustrate the principle, the histogram subplots are first presented in a **not very elegant code** with many repetitions:
 <!-- #endregion -->
@@ -655,7 +657,7 @@ plt.show()
 
 To improve the code, the function `subplots.flatten()` converts the subplot array to an iterable list. Afterwards, a loop allows to iterate through the subplots - this **saves many repetitions** in the code.
 
-In addition, **probability density functions (PDF)** were overlaid on the histograms, whose hyper-parameters **mean** and **standard deviation** were previously identified using the features of the dataset. This makes it possible to estimate whether the data is normally distributed. In order to be able to reuse the code later, it was implemented as the **function** `func_plot_histograms_with_PDF()`.
+In addition, **probability density functions (PDF)** were overlaid on the histograms, whose hyper-parameters **mean** and **standard deviation** were previously identified using the features of the dataset. This makes it possible to estimate whether the **data is normally distributed**. In order to be able to reuse the code later, it was implemented as the **function** `func_plot_histograms_with_PDF()`.
 
 ```python tags=[]
 from scipy.stats import norm
@@ -783,12 +785,12 @@ This section was inspired by [Working with Missing Data in Pandas](https://www.g
 
 #### Check for missing values using `isnull()`
 
-In order to check for missing values in a Pandas DataFrame, the function `isnull()` is used here. This function returns a dataframe of boolean values which are `True` for **NaN values**.
+In order to check for missing values in a `pandas.DataFrame`, the function `isnull()` is used here. This function returns a dataframe of boolean values which are `True` for **NaN values**.
 <!-- #endregion -->
 
 ```python
-pd.set_option('display.max_rows', 40)
-pd.set_option('display.min_rows', 30)
+pd.set_option('display.max_rows', 10)
+pd.set_option('display.min_rows', 10)
 ```
 
 ```python tags=[]
@@ -804,7 +806,7 @@ irisdata_df_gaps
 
 Fine - the **Iris dataset** seems to be **complete** :)
 
-So let's look for **another dataset to exercise**. For this purpose, the original [employes dataset](https://media.geeksforgeeks.org/wp-content/uploads/employees.csv), which will be used in the next subsections, has been **slightly modified**.
+So let's look for **another dataset to exercise**. For this purpose, the original [employees dataset](https://media.geeksforgeeks.org/wp-content/uploads/employees.csv), which will be used in the next subsections, has been **slightly modified**.
 
 ```python
 # Import data to dataframe from CSV file
@@ -1082,17 +1084,18 @@ print("Number of rows with at least 1 NaN value: ",
       (len(employees_df_orig)-len(employees_df)))
 ```
 
+<!-- #region tags=[] -->
 ### Find and remove duplicates in dataset
 
 This section was inspired by:
 
 - [How to Find Duplicates in Pandas DataFrame (With Examples)](https://www.statology.org/pandas-find-duplicates/)
 - [How to Drop Duplicate Rows in a Pandas DataFrame](https://www.statology.org/pandas-drop-duplicates/)
-
+<!-- #endregion -->
 
 #### Check for duplicate values using `duplicated()`
 
-In order to check for duplicate values in Pandas DataFrame, we use a function `duplicated()`. This function can be used in two ways:
+In order to check for duplicate values in `pandas.DataFrame`, we use a function `duplicated()`. This function can be used in two ways:
 
 - find duplicate rows across **all columns** with `df.duplicated()`
 - find duplicate rows across **specific columns** with parameter `subset=['col1', 'col2']`
@@ -1163,47 +1166,64 @@ employees_df.drop_duplicates(
 employees_df
 ```
 
-<!-- #region tags=["TODO_Step_2_2"] -->
+<!-- #region tags=[] -->
 ### Compare the edited dataset with the original dataset side-by-side
 
-**@TODO:**  
-Incorporate following sources:
+In the previous sections, the dataframe holding the **employees dataset** was **heavily edited** by **adding missing values** (where it was appropriate) or **deleting gapped rows** completely. Therefore, the **modifications made** to the dataset should be finally **checked**.
 
-- [Compare two DataFrames and output their differences side-by-side](https://stackoverflow.com/questions/17095101/compare-two-dataframes-and-output-their-differences-side-by-side/47112033#47112033)
-- [pandas compare two data frames and highlight the differences](https://stackoverflow.com/questions/71604701/pandas-compare-two-data-frames-and-highlight-the-differences/71617662#71617662)
-- [How to Compare Two Pandas DataFrames and Get Differences](https://datascientyst.com/compare-two-pandas-dataframes-get-differences/)
-- [pandas.DataFrame.compare](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.compare.html)
+The `Pandas` package provides the `compare()` function, which can be used to **compare dataframes** and **display differences** (see here: [pandas.DataFrame.compare](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.compare.html)). Unfortunately, the documentation points out that this function can **only** be used to **compare dataframes** with the **same shape** (number of columns and rows) and **identical row and column labels**.
+
+Among other things, a lot of **gapped rows have been removed** due to the heavy editing. Therefore, the original and the edited dataframe are **anything but identical** in terms of their **number of rows**. As expected, the following short test ends with a **long error message**.
 <!-- #endregion -->
 
 ```python tags=[]
-#pd.set_option('display.max_rows', 1100)
-#pd.set_option('display.min_rows', 100)
-
-# Does not work with dropped rows in one dataframe!
+# Pandas.compare() does not work with dropped rows in one dataframe!
 #employees_df_orig.compare(employees_df, keep_shape=False, keep_equal=True)
 ```
 
-```python
-# Fill all null values with string 'NaN' using fillna()
-df1 = employees_df_orig.fillna('NaN')
-df2 = employees_df.fillna('NaN')
-```
+Therefore, in this subsection, a **customized method** of **comparing two dataframes** that are **not identical** in terms of **shape** has been developed.
+
+The following approach shows one way to **compare** the **modified dataframe** with the **original dataframe** - despite the different number of rows. This is done by **merging both dataframes** into one, displaying the **same columns** of both datasets **side-by-side** and highlighting the **changes**.
+
+The following sources were the inspiration for this subsection:
+
+- [Compare two DataFrames and output their differences side-by-side](https://stackoverflow.com/questions/17095101/compare-two-dataframes-and-output-their-differences-side-by-side/47112033#47112033)
+- [pandas compare two data frames and highlight the differences](https://stackoverflow.com/questions/71604701/pandas-compare-two-data-frames-and-highlight-the-differences/71617662#71617662)
+- [Highlighting a particular cell of a DataFrame in Pandas](https://www.skytowner.com/explore/highlighting_a_particular_cell_of_a_dataframe_in_pandas)
+- [How to Compare Two Pandas DataFrames and Get Differences](https://datascientyst.com/compare-two-pandas-dataframes-get-differences/)
+- [How to highlight differences between the two data frames in pandas](https://stackoverflow.com/questions/70566100/how-to-highlight-differences-between-the-two-data-frames-in-pandas)
+- [pandas.DataFrame.compare](https://pandas.pydata.org/docs/dev/reference/api/pandas.DataFrame.compare.html)
+- [Pandas Table Visualization](https://pandas.pydata.org/pandas-docs/stable/user_guide/style.html)
+- [10 Examples to Master Pandas Styler](https://towardsdatascience.com/10-examples-to-master-pandas-styler-408ea794e91)
+- [Style Pandas Dataframe Like a Master](https://towardsdatascience.com/style-pandas-dataframe-like-a-master-6b02bf6468b0)
+- [A Quick and Easy Guide to Conditional Formatting in Pandas](https://towardsdatascience.com/a-quick-and-easy-guide-to-conditional-formatting-in-pandas-8783035071ee)
 
 ```python
-employees_df_merged = pd.merge(df1, df2, how='left', on=['idx'])
+# Set the number of rows to output to default values
+pd.set_option('display.min_rows', 10)
+pd.set_option('display.max_rows', 10)
+```
+
+First, the **original** and the **modified dataframes** are **merged** into a new dataframe, using the **index column** `idx` to **synchronize** the two dataframes.
+
+```python tags=[]
+employees_df_merged = pd.merge(employees_df_orig, 
+                               employees_df, 
+                               how='left', on=['idx'])
 employees_df_merged
 ```
 
+The **column suffixes** automatically added during the merge operation are **renamed** to `_o` (original) and `_e` (edited dataframe) using **lambda inline functions**.
+
 ```python
-# Rename suffixes '_x' and '_y' by using lambda inline functions
 employees_df_merged.rename(columns=lambda x: x.replace('_x', '_o'), inplace=True)
 employees_df_merged.rename(columns=lambda x: x.replace('_y', '_e'), inplace=True)
 employees_df_merged
 ```
 
+In order to have the **columns** of the original and the edited dataframe directly **next to each other** for a **better comparison**, a **column list** is created with the **new order**.
+
 ```python
-# Create column list with new order
-# with the goal that the columns of the original and the edited data frame are directly next to each other for a better comparison
 li_reordered_cols = ['idx']
 
 # Iterate over columns
@@ -1212,41 +1232,49 @@ for column in employees_df_orig.columns:
         li_reordered_cols.append(column + '_o')
         li_reordered_cols.append(column + '_e')
 
-print(li_reordered_cols)
+li_reordered_cols
 ```
 
+In order to have **columns with the same meaning next to each other**, the columns of the merged data frame are **re-sorted** based on the new **column list**.
+
 ```python
-# Reorder columns of the dataframe based on the new column list
-# to get same columns side-by-side
 employees_df_merged = employees_df_merged.reindex(columns=li_reordered_cols)
 employees_df_merged
 ```
 
+To avoid problems with the subsequent comparison, **missing values** in the cells are **replaced** with the string `NaN` using the function `fillna()`.
+
 ```python
-# Fill all null values with string 'NaN' using fillna()
 employees_df_merged.fillna('NaN', inplace = True)
 ```
 
+For a better overview, only the **rows** that show **differences in the individual cells** will be displayed during the comparison. For this purpose, the new, empty dataframe `employees_df_diff` is created with the same column labels as the original dataframe `employees_df_orig`.
+
 ```python
-# Create empty dataframe with same columns as 'employees_df_orig'
 employees_df_diff = pd.DataFrame(columns=employees_df_orig.columns)
 ```
 
+The function `dataframe_add_row()` is used to easily **add rows** to a **dataframe**.
+
 ```python
-# Define function to add rows to dataframe
 def dataframe_add_row(df=None, row=[]):
     if (df is None):
         return
     
-    # add a row
+    # Add a row to dataframe
     df.loc[-1] = row
     
-    # shift the index
+    # Shift the index of the dataframe
     df.index = df.index + 1
     
-    # reset the index of dataframe and avoid the old index being added as a column
+    # Reset the index of dataframe and 
+    # avoid the old index being added as a column
     df.reset_index(drop=True, inplace=True)
 ```
+
+Now the merged dataframe `employees_df_merged` is **iterated** through **row by row** and **column by column** in a **nested loop**. In the inner loop, the **original cell value** (column with suffix `_o`) is **compared** with the adjacent **edited cell value** (column with suffix `_e`).
+
+If a **difference** is detected, the **original** and the **edited cell value** is written into a **common new cell** - marked with the **difference symbol** `<=>`. Then, only the **rows containing differences** in the cells are **added** to the `employees_df_diff` **dataframe**.
 
 ```python tags=[]
 b_diffs_found = False
@@ -1264,7 +1292,7 @@ for rowIndex, row in employees_df_merged.iterrows():
         elif column.endswith('_e'):
             value_edit = value
             if value_orig != value_edit:
-                # Combine original and edited value and mark with diff sign '<=>'
+                # Combine original and edited value and mark with diff symbol '<=>'
                 row_li.append(str(value_orig) + ' <=> ' + str(value_edit))
                 b_diffs_found = True
             elif value_orig == value_edit:
@@ -1276,6 +1304,10 @@ for rowIndex, row in employees_df_merged.iterrows():
 
 #employees_df_diff
 ```
+
+Finally, the **differences** can be visualized even more prominently by **highlighting** the **cell backgrounds in color**. For this purpose the function `style.apply()` provided in `Pandas` is used. An **inline lambda function** searches the cells for the difference symbol `<=>` and **highlights** the **cell** with yellow color.
+
+This allows to achieve a **similar functionality** as known from **spreadsheet programs** (e.g. Open Office Calc) as so-called **"conditional formatting"**.
 
 ```python tags=[]
 # Temporarily increase the number of rows to output
@@ -1314,15 +1346,15 @@ employees_df.to_csv(csv_filepath, sep =',', index = False, header=True)
 <!-- #region tags=[] -->
 ## Avoidance of **tendencies due to bias**
 
-The description of the Iris dataset says, that it consists of **50 samples** from **each of three species** of Iris (Iris setosa, Iris virginica and Iris versicolor), so there are **150 total samples**.
+The description of the Iris dataset says, that it consists of **50 samples** from **each of three species** of Iris (*Iris setosa*, *Iris virginica* and *Iris versicolor*), so there are **150 samples in total**.
 
 But how can this be verified? The following subsections provide some **ideas** on how to **examine the dataset** for **tendencies** as a **cause of bias**.
 
 ### Count occurrences of unique values
 
-To prove whether all possible classes included in the dataset and equally distributed, you can use the function `df.value_counts`.
+To prove whether all possible classes are included in the dataset and equally distributed, the function `df.value_counts()` can be used.
 
-Following parameters can be used for fine tuning:
+Following parameters are for fine tuning:
 
 - `ascending=False`: sort resulting classes descending
 - `dropna=False` causes that NaN values are included
@@ -1336,13 +1368,13 @@ irisdata_df['species'].value_counts(ascending=False, dropna=False, normalize=Fal
 ```
 
 ```python
-# Import (again) data to dataframe from csv file
+# Import (again) employees dataset to dataframe from csv file
 employees_df = pd.read_csv("./datasets/employees_edit.csv")
 ```
 
 ```python
 # Count unique values and missing values in a column,
-# ordered descending and not absolute values
+# ordered descending and absolute values
 employees_df['Team'].value_counts(ascending=False, dropna=False, normalize=False)
 ```
 
@@ -1353,7 +1385,7 @@ This section was inspired by: [Pandas Histogram – DataFrame.hist()](https://da
 
 **Histograms** represent **frequency distributions** graphically. This requires the separation of the data into classes (so-called **bins**).
 
-These classes are represented in the histogram as rectangles of equal or variable width. The height of each rectangle then represents the (relative or absolute) **frequency density**.
+These bins are represented in the histogram as rectangles of equal or variable width. The height of each rectangle then represents the (relative or absolute) **frequency density**.
 <!-- #endregion -->
 
 ```python caption="Histogram for frequency distribution of the salary" label="fig:histogram_salary" tags=[] widefigure=false
@@ -1369,6 +1401,8 @@ plt.show()
 Apart from the not very appealing **standard formatting of the histogram** above, there is also **no breakdown of salaries** by **gender** here.
 
 The following function allows a **gender-specific presentation** of salaries with significantly **more information content** in the individual subplots.
+
+In addition, **probability density functions (PDF)** were overlaid on the histograms, whose hyper-parameters **mean** and **standard deviation** were previously identified using the features of the dataset. This makes it possible to estimate whether the **data is normally distributed**. In order to be able to reuse the code later, it was implemented as the **function** `func_plot_histograms_from_list_with_PDF()`.
 
 ```python
 from scipy.stats import norm
@@ -1517,7 +1551,7 @@ Somewhat lower correlates **sepal length** with **petal length** (0.87).
 <!-- #region tags=[] -->
 ### Visualise data with **scatter plot**
 
-In the following, [Seaborn](https://seaborn.pydata.org/) is applied which is a library for making statistical graphics in Python. It is built on top of matplotlib and closely integrated with pandas data structures. 
+In the following, [Seaborn](https://seaborn.pydata.org/) is applied which is a library for making statistical graphics in Python. It is built on top of matplotlib and closely integrated with `Pandas` data structures. 
 
 To investigate whether there are dependencies (e.g. correlations) in `irisdata_df` between individual variables in the dataset, it is advisable to plot them in a **scatter plot**.
 <!-- #endregion -->
@@ -1914,7 +1948,7 @@ def func_boxplots_comp_scaling(dataframes, titles):
     for title, df, subplot in zip(titles, dataframes, subplots.flatten()):
 
         # To create multiple boxplots in seaborn,
-        # we must first melt the pandas DataFrame into a long format:
+        # we must first melt the pandas.DataFrame into a long format:
         df_melted = pd.melt(df.drop('species', axis=1))
         # Rename column to 'features'
         df_melted.rename(columns={'variable': 'features'}, inplace=True)
@@ -2348,14 +2382,14 @@ However, as seen in the previous section, this selection is very much at the exp
 
 ```python tags=[]
 # Copy only 2 feature columns
-# and convert pandas dataframe to numpy array
+# and convert pandas.DataFrame to numpy array
 X_plot = irisdata_df_enc[['petal_length', 'petal_width']].to_numpy(copy=True)
 #X_plot = irisdata_df_enc[['sepal_length', 'sepal_width']].to_numpy(copy=True)
 #X_plot
 ```
 
 ```python
-# Convert pandas dataframe to numpy array
+# Convert pandas.DataFrame to numpy array
 # and get a flat 1D copy of 2D numpy array
 y_plot = irisdata_df_enc[['species']].to_numpy(copy=True).flatten()
 #y_plot
