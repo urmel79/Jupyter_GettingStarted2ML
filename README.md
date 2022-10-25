@@ -12,7 +12,6 @@ auto-generate the TOC with the command line tool 'gh-md-toc' (https://github.com
 $ cat README.md | ./tools/github-markdown-toc/gh-md-toc - > toc.md
 -->
 
-- [Table of contents](#table-of-contents)
 - [Aim of the project](#aim-of-the-project)
 - [Short introduction](#short-introduction)
 - [Method of the Getting Started Tutorial](#method-of-the-getting-started-tutorial)
