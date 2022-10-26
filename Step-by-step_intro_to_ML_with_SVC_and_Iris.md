@@ -515,7 +515,7 @@ The objectives of the exploration of the dataset are as follows:
     - Which data formats or types are there? **&rarr;** Do they have to be converted?
     - In which value ranges do the measurement data vary? **&rarr;** Are normalizations necessary?
 
-3. Identify **anomalies** in the datasets:
+3. Identify **anomalies** in the dataset:
     - Do the data have **gaps** or **duplicates**? **&rarr;** Does the dataset needs to be cleaned?
     - Are there obvious erroneous entries or measurement outliers? **&rarr;** Does (statistical) filtering have to be carried out?
 
