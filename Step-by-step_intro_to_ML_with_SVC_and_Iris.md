@@ -1369,7 +1369,10 @@ irisdata_df['species'].value_counts(ascending=False, dropna=False, normalize=Fal
 
 ```python
 # Import (again) employees dataset to dataframe from csv file
-employees_df = pd.read_csv("./datasets/employees_edit.csv")
+#csv_filepath = r'./datasets/employees_edit.csv'
+csv_filepath = r'./datasets/employees_edit_repaired.csv'
+
+employees_df = pd.read_csv(csv_filepath)
 ```
 
 ```python
@@ -1404,7 +1407,7 @@ The following function allows a **gender-specific presentation** of salaries wit
 
 In addition, **probability density functions (PDF)** were overlaid on the histograms, whose hyper-parameters **mean** and **standard deviation** were previously identified using the features of the dataset. This makes it possible to estimate whether the **data is normally distributed**. In order to be able to reuse the code later, it was implemented as the **function** `func_plot_histograms_from_list_with_PDF()`.
 
-```python
+```python tags=[]
 from scipy.stats import norm
 
 def func_plot_histograms_from_list_with_PDF(df_list, column, titles, y_max):
