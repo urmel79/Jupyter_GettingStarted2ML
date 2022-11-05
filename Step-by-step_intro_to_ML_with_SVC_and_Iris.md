@@ -3115,6 +3115,8 @@ Using a custom Python class, the **run times** for the two search methods were d
 As an outlook, the current tutorial could be extended by replacing the Iris dataset with the much more modern **[Penguin dataset](https://github.com/mcnakhaee/palmerpenguins)** (original package for **R**: <cite data-cite="palmerpenguins_R_2020">Allison et al., 2020</cite> as well as adapted package for **Python**: <cite data-cite="palmerpenguins_Python_2020">Nakhaee, 2021</cite>). However, this would mean a fundamental reworking of all the steps in this tutorial.
 
 As explained above, the tutorial so far is limited to the introduction of the ML algorithms, the tools for data analysis, and the Python libraries and programming systems. In a further step, concrete hints could be given on how to build an own **real ML application** and how to generate a suitable dataset for classification.
+
+In the future, the **systematic process steps** of a typical ML workflow explained in the tutorial could form the **foundation** for possible **test guidelines**. These could be used to perform **reviews of industrial ML applications** - similar to the evaluation of the functional safety of control software.
 <!-- #endregion -->
 
 ## German summary
@@ -3147,6 +3149,8 @@ Ausblickend könnte das vorliegende Tutorial erweitert werden, indem der Iris-Da
 
 Wie oben erläutert, beschränkt sich das Tutorial bisher auf die Vorstellung der ML-Algorithmen, die Werkzeuge zur Datenanalyse sowie die Python-Bibliotheken und Programmiersysteme. In einem weiteren Schritt könnten konkrete Hinweise gegeben werden, wie eine eigene **reale ML-Applikation** aufgebaut und ein geeigneter Datensatz für eine Klassifikation erzeugt werden kann.
 
+Zukünftig könnten die im Tutorial erläuterten **systematischen Prozessschritte** eines typischen ML-Workflows die **Grundlage** für mögliche **Prüfgrundsätze** bilden. Mit diesen könnten **Reviews industrieller ML-Applikationen** durchgeführt werden - ähnlich wie bei der Bewertung der funktionalen Sicherheit von Steuerungssoftware.
+
 <!-- #region tags=[] -->
 # Acknowledgments
 
@@ -3158,5 +3162,5 @@ Weiterhin danke ich meinen Kollegen des Dresdener Prüflabors dafür, dass sie s
 
 Abschließend möchte ich meiner Lebensgefährtin danken, dass sie erste Textentwürfe kritisch Korrektur gelesen hat und mir ansonsten den Rücken freigehalten hat - auch wenn ich nach Feierabend oder an den Wochenenden programmiert und geschrieben habe. Unserem zweijährigen Sohn danke ich für seine Geduld mit Papa. Er hätte sicherlich das ein oder andere Mal lieber "Die Sendung mit der Maus" statt seltsamer Grafiken mit mir auf dem Rechner angeschaut.
 
-Dresden, 25.10.2022
+Dresden, 05.11.2022
 <!-- #endregion -->
