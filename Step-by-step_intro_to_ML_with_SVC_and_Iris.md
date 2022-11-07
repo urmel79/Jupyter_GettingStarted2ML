@@ -833,6 +833,8 @@ Now a **deep copy** is created to preserve the **original data frame** for later
 employees_df_orig = employees_df.copy(deep=True)
 ```
 
+To check for missing values (NaN) in employees dataset, the function `isnull()` is used again:
+
 ```python tags=[]
 # Highlight cells with NaN values
 # HINT: Set to 'False' when compiling to PDF!
@@ -1410,7 +1412,7 @@ In addition, **probability density functions (PDF)** were overlaid on the histog
 ```python tags=[]
 from scipy.stats import norm
 
-def func_plot_histograms_from_list_with_PDF(df_list, column, titles, y_max):
+def func_plot_histograms_from_list_with_PDF(df_list, column, titles):
     # Number of bins for the histogram
     # - bins=<integer>: defines the number of equal-width bins in the range
     # - bins=<string>: one of the binning strategies is used:
@@ -1467,7 +1469,7 @@ li_employees_df = list()
 for gender in genders:
     li_employees_df.append(employees_df.loc[(employees_df['Gender'] == gender)])
 
-func_plot_histograms_from_list_with_PDF(li_employees_df, 'Salary', genders, 1.4)
+func_plot_histograms_from_list_with_PDF(li_employees_df, 'Salary', genders)
 ```
 
 ## First **idea of correlations** in dataset
@@ -1593,7 +1595,7 @@ sns.set(font_scale=1.0)
 sns.set_style("white")
 
 g = sns.pairplot(irisdata_df, diag_kind="kde", hue='species', 
-                 palette='Dark2', height=2.5)
+                 palette='Dark2', height=2.0)
 
 g.map_lower(sns.kdeplot, levels=4, color=".2")
 # y .. padding between title and plot
@@ -2410,7 +2412,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, shuf
 #X_train
 ```
 
-**Normalize** the feature values for **prediction and evaluation**. Normalisation is deliberately used here to avoid visualisation problems due to negative values.
+**Normalize** the feature values for **prediction and evaluation**. Normalisation is deliberately used here to avoid visualisation problems due to negative values by standardization.
 
 ```python tags=[]
 norm_scaler_pred = MinMaxScaler()
@@ -2420,7 +2422,7 @@ X_test = norm_scaler_pred.transform(X_test)
 
 ## Plotting functions
 
-This function helps to visualize the modifications by varying the individual SVC parameters:
+This function helps to **visualize** the modifications by **varying** the individual **SVC parameters**:
 
 ```python
 def plotSVC(title, svc, X, y, xlabel, ylabel, subplot):
@@ -2449,7 +2451,7 @@ def plotSVC(title, svc, X, y, xlabel, ylabel, subplot):
     ax.grid(visible=False)
 ```
 
-This function cares for cross validation:
+This function cares for **cross validation**:
 
 ```python
 def crossValSVC(X_train, y_train, kernel='rbf', gamma='scale', C=1.0, degree=3):
@@ -2466,7 +2468,7 @@ def crossValSVC(X_train, y_train, kernel='rbf', gamma='scale', C=1.0, degree=3):
     return accuracy
 ```
 
-This function plots the variation of the SVC parameters against the prediction accuracy to show the effect of variation and its limits regarding the phenomenon **overfitting**:
+This function plots the variation of the SVC parameters against the prediction accuracy to show the **effect of variation** and its **limits regarding** the phenomenon **overfitting**:
 
 ```python
 def plotParamsAcc(param_list, acc_list, param_name, log_scale=False):
