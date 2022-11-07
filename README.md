@@ -1,7 +1,5 @@
 # Getting started with Machine Learning (ML) and Support Vector Classifiers (SVC) - A systematic step-by-step approach
 
-Last changes on October 25, 2022.
-
 ![Cover image of the Getting Started Tutorial (source: Kasper, license: CC BY-SA 4.0)](./images/Cover_image.png)
 
 ## Table of contents
