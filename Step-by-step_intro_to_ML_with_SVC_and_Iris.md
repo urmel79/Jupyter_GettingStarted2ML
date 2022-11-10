@@ -52,8 +52,6 @@ However, someone who opens the door for the first time to this equally very exci
 
 This Getting Started tutorial has exactly this goal, demonstrating systematically and step-by-step the typical ML workflow using the very powerful **Support Vector Classifier (SVC)** as an example.
 
-This tutorial will be presented in the context of a workshop at the **Conference "Artificial Intelligence"**, hosted by the German Social Accident Insurance (DGUV), probably in November 2022 in Dresden. The workshop addresses interested ML novices in the technical occupational safety and health of the social accident insurance institutions.
-
 Besides the **deep neural networks**, which are very present in the media, there is a very rich diversity of other very powerful ML algorithms - suitable for the particular use case. For a more generally comprehensible introduction, the SVC algorithm was deliberately chosen for the target audience of the workshop. Its operating principles are easy to convey to ML novices as well as in the time frame given for the workshop - quite in contrast to the entry into the world of deep neural networks.
 
 The following main sections will demonstrate the typical ML workflow step-by-step. In **step 0**, specific guidance is provided for selecting hardware and software suitable for machine learning. To allow an ML novice to first familiarize themselves with the ML algorithms, tools, libraries, and programming systems, the ready-made and very beginner-friendly **Iris dataset** is involved in **step 1**. Only after a comprehensive acquaintance with the application of ML tools would it make sense to examine one's own environment for ML-suitable applications and to obtain suitable datasets from them. However, this is beyond the scope of this introductory tutorial.
@@ -67,6 +65,8 @@ In **step 4** the dataset is preprocessed for the actual classification by SVC. 
 Since the classification in step 5 was initially performed with standard parameters (so-called **hyper-parameters**), their meaning is explained in **step 7** and then their effect on the classification result is demonstrated by manually varying the individual hyper-parameters.
 
 In the final **step 8**, two approaches to systematic hyper-parameter search are presented: **Grid Search** and **Randomized Search**. While the former exhaustively considers all parameter combinations for given values, the latter selects a number of candidates from a parameter space with a particular random distribution.
+
+In November 2022, the **Artificial Intelligence Conference** took place in Dresden, which was hosted by the German Social Accident Insurance (DGUV). There, the current tutorial was presented to interested ML newcomers in the technical occupational safety and health of the social accident insurance institutions as part of a separate **Getting Started** workshop.
 <!-- #endregion -->
 
 <!-- #region tags=[] jp-MarkdownHeadingCollapsed=true tags=[] -->
@@ -104,8 +104,6 @@ Wer jedoch zum ersten Mal die Tür zu dieser ebenso spannenden wie beliebig komp
 
 Genau dieses Ziel verfolgt das vorliegende Getting-Started-Tutorial, indem systematisch und Schritt-für-Schritt der typische ML-Arbeitsablauf am Beispiel des sehr leistungsfähigen **Support Vector Classifier (SVC)** demonstriert wird.
 
-Dieses Tutorial wird im Rahmen eines Workshops auf der **Fachtagung "Künstliche Intelligenz"**, ausgerichtet durch die Deutsche Gesetzliche Unfallversicherung (DGUV), voraussichtlich im November 2022 in Dresden vorgestellt. Der Workshop richtet sich an interessierte ML-Neulinge im technischen Arbeitsschutz der gesetzlichen Unfallversicherungsträger.
-
 Neben den medial sehr präsenten **tiefen neuronalen Netzen** gibt es eine sehr reichhaltige Auswahl anderer sehr leistungsfähiger ML-Algorithmen - passend für den jeweiligen Anwendungsfall. Für einen allgemein verständlicheren Einstieg wurde für die Zielgruppe des Workshops der SVC-Algorithmus bewusst gewählt. Dessen Arbeitsweise ist sowohl für ML-Neulinge als auch in dem für den Workshop vorgegebenen Zeitrahmen leicht vermittelbar - ganz im Gegensatz zum Einstieg in die Welt der tiefen neuronalen Netze.
 
 Die folgenden Hauptabschnitte demonstrieren den typischen ML-Arbeitsablauf Schritt-für-Schritt. Im **Schritt 0** werden konkrete Hinweise für die Auswahl der für das maschinelle Lernen geeigneten Hardware und Software gegeben. Damit sich ein ML-Neuling zunächst mit den ML-Algorithmen, Werkzeugen, Bibliotheken und Programmiersystemen vertraut machen kann, wird im **Schritt 1** der fertige und sehr einsteigerfreundliche **Iris-Datensatz** hinzugezogen. Erst nach einer umfassenden Einarbeitung in die Anwendung der ML-Werkzeuge wäre es sinnvoll, die eigene Umgebung auf ML-taugliche Anwendungen hin zu untersuchen und daraus geeignete Datensätze zu gewinnen. Dies geht jedoch über den Rahmen dieses einführenden Tutorials hinaus.
@@ -119,6 +117,8 @@ Im **Schritt 4** wird der Datensatz für die eigentliche Klassifikation per SVC 
 Da die Klassifikation im Schritt 5 zunächst mit Standard-Parametern (den sogenannten **Hyper-Parametern**) durchgeführt wurde, wird ihre Bedeutung im **Schritt 7** erklärt und danach ihr Einfluss auf das Klassifikationsergebnis durch manuelle Variation der einzelnen Hyper-Parameter demonstriert.
 
 Im abschließenden **Schritt 8** werden zwei Ansätze zur systematischen Hyper-Parameter-Suche vorgestellt: **Grid Search** und **Randomized Search**. Während bei ersterer für gegebene Werte erschöpfend alle Parameterkombinationen betrachtet werden, wird beim zweiten Ansatz eine Anzahl von Kandidaten aus einem Parameterraum mit einer bestimmten zufälligen Verteilung ausgewählt.
+
+Im November 2022 fand die **Fachtagung "Künstliche Intelligenz"** in Dresden statt, welche durch die Deutsche Gesetzliche Unfallversicherung (DGUV) ausgerichtet wurde. Dort wurde im Rahmen eines eigenen **Getting-Started-Workshops** das vorliegende Tutorial interessierten ML-Neulingen im technischen Arbeitsschutz der gesetzlichen Unfallversicherungsträger präsentiert.
 <!-- #endregion -->
 
 ## Steps of the systematic ML process
@@ -341,11 +341,11 @@ import seaborn as sns
 # Set font sizes of figure title, axes and labels 
 # globally via a rcParams dictionary
 import matplotlib.pylab as pylab
-params = {'legend.fontsize': 'large',
-         'axes.labelsize':   'large',
-         'axes.titlesize':   'large',
-         'xtick.labelsize':  'medium',
-         'ytick.labelsize':  'medium',
+params = {'legend.fontsize': 12,
+         'axes.labelsize':   12,
+         'axes.titlesize':   14,
+         'xtick.labelsize':  12,
+         'ytick.labelsize':  12,
          'axes.edgecolor':   '#000000'}
 pylab.rcParams.update(params)
 ```
@@ -1119,7 +1119,8 @@ Find **all completely identical duplicates** (first and last occurrences). The r
 
 ```python
 # Parameter 'keep=False' displays all duplicate rows
-duplicateRows = employees_df[employees_df.duplicated(keep=False, subset=column_subset)]
+duplicateRows = employees_df[employees_df.duplicated(keep=False, 
+                                                     subset=column_subset)]
 
 # Sort rows by column 'First Name' to get the duplicates grouped
 duplicateRows.sort_values('First Name')
@@ -1393,7 +1394,7 @@ This section was inspired by: [Pandas Histogram – DataFrame.hist()](https://da
 These bins are represented in the histogram as rectangles of equal or variable width. The height of each rectangle then represents the (relative or absolute) **frequency density**.
 <!-- #endregion -->
 
-```python caption="Histogram for frequency distribution of the salary" label="fig:histogram_salary" tags=[] widefigure=false
+```python caption="Histogram showing the frequency distribution of the salary" label="fig:histogram_salary" tags=[] widefigure=false
 employees_df.hist(column=['Salary'], bins = 'auto', density=True, rwidth=0.95, 
                   zorder=2, alpha=0.8)
 plt.title('Salary distribution over all gender')
@@ -1419,7 +1420,7 @@ def func_plot_histograms_from_list_with_PDF(df_list, column, titles):
     #   'auto', 'fd', 'doane', 'scott', 'stone', 'rice', 'sturges', or 'sqrt'
     n_bins = 'auto'
     subplot_columns = len(df_list)
-    fig, subplots = plt.subplots(1, subplot_columns, figsize=(14, 4))
+    fig, subplots = plt.subplots(1, subplot_columns, figsize=(16, 4))
     # Set margins between subplots
     plt.subplots_adjust(wspace=0.3, hspace=0.3)
 
@@ -1505,9 +1506,9 @@ irisdata_df_enc.corr()
 
 #### Correlation heatmap
 
-Choose the color sets from [color map](https://pod.hatenablog.com/entry/2018/09/20/212527).
+The color sets are chosen from [color map](https://pod.hatenablog.com/entry/2018/09/20/212527).
 
-```python caption="Correlation heatmap to explore coherences between single variables in the iris dataset" label="fig:correlation_heatmap" tags=[] widefigure=true
+```python caption="Correlation heatmap to explore coherences between single variables in the Iris dataset" label="fig:correlation_heatmap" tags=[] widefigure=true
 # increase the size of the heatmap
 plt.figure(figsize=(16, 6))
 
@@ -1518,15 +1519,15 @@ plt.figure(figsize=(16, 6))
 heatmap = sns.heatmap(irisdata_df_enc.corr(), vmin=-1, vmax=1, 
                       annot=True, cmap='PRGn_r')
 
-# give a title to the heatmap
-# 'pad=12' defines the distance of the title from the top of the heatmap
-heatmap.set_title('Correlation Heatmap', fontdict={'fontsize':18}, pad=16)
+# set a title to the heatmap
+# pad ... defines the distance of the title from the top of the heatmap
+heatmap.set_title('Correlation Heatmap', pad=16)
 plt.show()
 ```
 
 #### Triangle correlation heatmap
 
-When looking at the correlation heatmaps above, you would not lose any information by **cutting** away half of it **along the diagonal** line marked by 1-s.
+When looking at the correlation heatmap above, you would not lose any information by **cutting** away half of it **along the diagonal** line marked by 1-s.
 
 The **numpy** function `np.triu()` can be used to isolate the upper triangle of a matrix while turning all the values in the lower triangle into 0.
 
@@ -1545,7 +1546,7 @@ mask = np.triu(np.ones_like(irisdata_df_enc.corr(), dtype=bool))
 heatmap = sns.heatmap(irisdata_df_enc.corr(), mask=mask, 
                       vmin=-1, vmax=1, annot=True, cmap='PRGn_r')
 
-heatmap.set_title('Triangle Correlation Heatmap', fontdict={'fontsize':18}, pad=16)
+heatmap.set_title('Triangle Correlation Heatmap', pad=16)
 plt.show()
 ```
 
@@ -1561,28 +1562,27 @@ In the following, [Seaborn](https://seaborn.pydata.org/) is applied which is a l
 To investigate whether there are dependencies (e.g. correlations) in `irisdata_df` between individual variables in the dataset, it is advisable to plot them in a **scatter plot**.
 <!-- #endregion -->
 
-```python caption="Plotting two individual variables of the iris dataset in the scatterplot to explore the relationships between these two" label="fig:scatter_plot" tags=[] widefigure=true
+```python caption="Plotting two individual variables of the iris dataset in the scatterplot to explore the relationships between these two" label="fig:scatter_plot" tags=[] widefigure=false
 # There are five preset seaborn themes: darkgrid, whitegrid, dark, white, and ticks.
 sns.set_style("whitegrid")
-# set scale of fonts
-sns.set_context("notebook", font_scale=1.3, rc={"lines.linewidth": 2.5})
 
-# 'sepal_length', 'petal_length' are iris feature data
+# 'sepal_length', 'petal_length' are Iris feature data
 # 'height' used to define height of graph
-# 'hue' stores the class/label of iris dataset
+# 'hue' stores the class/label of Iris dataset
 sns.FacetGrid(irisdata_df, hue ="species",
-              height = 7).map(plt.scatter,
+              height = 5).map(plt.scatter,
                               'petal_width',
                               'petal_length').add_legend()
 
 
-plt.title('Scatterplot of petal length and width')
+# y .. padding between title and plot
+plt.title('Scatterplot of petal length and width', y=1.05)
 plt.xlabel('petal width [cm]')
 plt.ylabel('petal length [cm]')
 plt.show()
 ```
 
-### Visualise data with **pairs plot**
+### Visualize data with **pairs plot**
 
 For systematic investigation of dependencies, all variables (each against each) are plotted in separate scatter plots.
 
@@ -1591,15 +1591,14 @@ With this so called **[pairs plot](https://vita.had.co.nz/papers/gpp.pdf)** it i
 This function will create a grid of Axes such that **each numeric variable** in `irisdata_df` will by shared in the y-axis across a single row and in the x-axis across a single column.
 
 ```python caption="Plot all individual variables of the Iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables" label="fig:pairs_plot" tags=[] widefigure=true
-sns.set(font_scale=1.0)
 sns.set_style("white")
 
 g = sns.pairplot(irisdata_df, diag_kind="kde", hue='species', 
                  palette='Dark2', height=2.0)
 
 g.map_lower(sns.kdeplot, levels=4, color=".2")
-# y .. padding between title and plot
-g.fig.suptitle('Pairs plot of the Iris dataset', y=1.05)
+# x, y .. padding between title and plot
+plt.title('Pairs plot of the Iris dataset', x=-1.0, y=4.3)
 plt.show()
 ```
 
@@ -1618,9 +1617,9 @@ Due to the increase in knowledge from AI research as well as the exploration of 
 
 The main part of the **definition** describes what an AI system (should) do:
 
-> [An **artificial intelligence system** is an] engineered system that generates outputs such as content, forecasts, recommendations or decisions for a given set of human-defined objectives.
+> [An **artificial intelligence system** is an] engineered system that generates outputs such as **content**, **forecasts**, **recommendations** or **decisions** for a given set of **human-defined objectives**.
 
-A **Note** to the definition describes the techniques necessary to achieve this:
+A **note** to the definition describes the techniques necessary to achieve this:
 
 > [..] The engineered system can use various techniques and approaches related to artificial intelligence to develop a **model** to represent data, **knowledge**, processes, etc. which can be used to conduct **tasks**.
 
@@ -1735,7 +1734,7 @@ Among other ML algorithms suitable for the Iris dataset (such as the decision-tr
 The following **reasons** led to the decision for the **Support Vector Classifier (SVC)**:
 
 - The aim is to predict the species using unlabeled test data, so the task is to **classify**.
-- The iris dataset is **fully labeled** (by designating the iris species).
+- The Iris dataset is **fully labeled** (by designating the Iris species).
 - The dataset contains significantly **less than 100k samples**.
 
 But the most important reason is that it is **easy to understand** how it works - so it is exactly suitable for a beginner tutorial.
@@ -2171,7 +2170,9 @@ from sklearn.model_selection import train_test_split
 X = irisdata_df.drop('species', axis=1)
 y = irisdata_df['species']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, shuffle=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                    test_size = 0.20, 
+                                                    shuffle=True)
 ```
 
 Check that the split datasets are still balanced and that no **bias** has been created by the splitting.
@@ -2187,7 +2188,9 @@ X_train_bias_test_df['species'] = y_train
 
 # Count unique values without missing values in a column,
 # ordered descending and not normalized
-X_train_bias_test_df['species'].value_counts(ascending=True, dropna=False, normalize=False)
+X_train_bias_test_df['species'].value_counts(ascending=True, 
+                                             dropna=False, 
+                                             normalize=False)
 ```
 
 For training, do not use only the variables that correlate best with each other, but all of them. 
@@ -2324,15 +2327,17 @@ sns.set_style("white")
 # print colored confusion matrix
 cm_colored = metrics.ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
 
-cm_colored.figure_.suptitle("Colored Confusion Matrix")
 cm_colored.figure_.set_figwidth(8)
 cm_colored.figure_.set_figheight(7)
 
 cm_colored.confusion_matrix
 
+# y .. padding between title and plot
+plt.title('Colored Confusion Matrix', y=1.1)
+
 # save figure as PNG
-plt.tight_layout()
-plt.savefig('images/confusion_matrix.png', dpi=150, pad_inches=5)
+#plt.tight_layout()
+#plt.savefig('images/confusion_matrix.png', dpi=150, pad_inches=5)
 plt.show()
 ```
 
@@ -2408,7 +2413,9 @@ To **evaluate the recognition accuracy** by parameter variation, the complete Ir
 X = irisdata_df.drop('species', axis=1)
 y = irisdata_df['species']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, shuffle=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                    test_size = 0.20, 
+                                                    shuffle=True)
 #X_train
 ```
 
@@ -2472,7 +2479,7 @@ This function plots the variation of the SVC parameters against the prediction a
 
 ```python
 def plotParamsAcc(param_list, acc_list, param_name, log_scale=False):
-    fig, ax = plt.subplots(figsize=(16, 6))
+    fig, ax = plt.subplots(figsize=(12, 4))
     title_str = 'Variation of {} parameter '.format(param_name) \
                 +'and its effect to prediction accuracy'
     plt.title(title_str)
@@ -2497,7 +2504,7 @@ xlabel = 'Petal length'
 ylabel = 'Petal width'
 
 # Setup 2x2 grid for plotting
-fig, subplots = plt.subplots(2, 2, figsize=(16, 12))
+fig, subplots = plt.subplots(2, 2, figsize=(14, 10))
 # Set margins between subplots
 plt.subplots_adjust(wspace=0.3, hspace=0.3)
 
@@ -2505,7 +2512,8 @@ plt.subplots_adjust(wspace=0.3, hspace=0.3)
 for kernel, subplot in zip(kernels, subplots.flatten()):
     svc_plot = svm.SVC(kernel=kernel).fit(X_plot, y_plot)
     accuracy = crossValSVC(X_train, y_train, kernel=kernel)
-    title_str = 'kernel: \''+str(kernel)+'\', '+'Acc. prediction: {:.2f}%'.format(accuracy)
+    title_str = 'kernel: \''+str(kernel)+'\', ' \
+                +'Acc. prediction: {:.2f}%'.format(accuracy)
     plotSVC(title_str, svc_plot, X_plot, y_plot, xlabel, ylabel, subplot)
 
 plt.show()
@@ -2522,7 +2530,7 @@ xlabel = 'Petal length'
 ylabel = 'Petal width'
 
 # Setup 2x3 grid for plotting
-fig, subplots = plt.subplots(3, 2, figsize=(16, 19))
+fig, subplots = plt.subplots(3, 2, figsize=(14, 15))
 # Set margins between subplots
 plt.subplots_adjust(wspace=0.3, hspace=0.3)
 
@@ -2563,7 +2571,7 @@ xlabel = 'Petal length'
 ylabel = 'Petal width'
 
 # Setup 2x3 grid for plotting
-fig, subplots = plt.subplots(3, 2, figsize=(16, 19))
+fig, subplots = plt.subplots(3, 2, figsize=(14, 15))
 # Set margins between subplots
 plt.subplots_adjust(wspace=0.3, hspace=0.3)
 
@@ -2606,7 +2614,7 @@ xlabel = 'Petal length'
 ylabel = 'Petal width'
 
 # Setup 2x3 grid for plotting
-fig, subplots = plt.subplots(3, 2, figsize=(16, 19))
+fig, subplots = plt.subplots(3, 2, figsize=(14, 15))
 # Set margins between subplots
 plt.subplots_adjust(wspace=0.3, hspace=0.3)
 
@@ -2700,7 +2708,9 @@ irisdata_df = pd.read_csv(CSV_PATH)
 X = irisdata_df.drop('species', axis=1)
 y = irisdata_df['species']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, shuffle=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                    test_size = 0.20, 
+                                                    shuffle=True)
 ```
 
 Check that the split datasets are still balanced and that no **bias** has been created by the splitting.
@@ -2716,7 +2726,9 @@ X_train_bias_test_df['species'] = y_train
 
 # count unique values without missing values in a column, 
 # ordered descending and normalized
-X_train_bias_test_df['species'].value_counts(ascending=False, dropna=False, normalize=True)
+X_train_bias_test_df['species'].value_counts(ascending=False, 
+                                             dropna=False, 
+                                             normalize=True)
 ```
 
 Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**:
@@ -2776,11 +2788,13 @@ sns.set_style("white")
 # print colored confusion matrix
 cm_colored = metrics.ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
 
-cm_colored.figure_.suptitle("Colored Confusion Matrix")
 cm_colored.figure_.set_figwidth(8)
 cm_colored.figure_.set_figheight(7)
 
 cm_colored.confusion_matrix
+
+# y .. padding between title and plot
+plt.title('Colored Confusion Matrix', y=1.1)
 
 plt.tight_layout()
 plt.show()
@@ -2884,11 +2898,11 @@ To compare the original Iris dataset with its noisy copy, both dataframes are vi
 # Define a function to visualize data as pairs plots
 def plotPairs(df, title):
     g = sns.pairplot(df, diag_kind="kde", hue='species', 
-                     palette='Dark2', height=2.5)
+                     palette='Dark2', height=2.0)
 
     g.map_lower(sns.kdeplot, levels=4, color=".2")
-    # y .. padding between title and plot
-    g.fig.suptitle(title, y=1.05)
+    # x, y .. padding between title and plot
+    plt.title(title, x=-1.0, y=4.3)
     plt.show()
 ```
 
@@ -2965,7 +2979,7 @@ y_pred = bestModel.predict(X_test)
 # calculate cross validation score from the best model
 # HINT: do NOT use the accuracy score - it's to inaccurate!
 accuracies = cross_val_score(estimator = bestModel, X = X_train, 
-                             y = y_train, cv = 10)
+                             y = y_train, cv = 20)
 
 print("Cross-validation score: {:.2f} %".format(accuracies.mean()*100))
 print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
@@ -2983,11 +2997,13 @@ sns.set_style("white")
 # print colored confusion matrix
 cm_colored = metrics.ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
 
-cm_colored.figure_.suptitle("Colored Confusion Matrix")
 cm_colored.figure_.set_figwidth(8)
 cm_colored.figure_.set_figheight(7)
 
 cm_colored.confusion_matrix
+
+# y .. padding between title and plot
+plt.title('Colored Confusion Matrix', y=1.1)
 
 plt.tight_layout()
 plt.show()
@@ -3071,11 +3087,13 @@ sns.set_style("white")
 # print colored confusion matrix
 cm_colored = metrics.ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
 
-cm_colored.figure_.suptitle("Colored Confusion Matrix")
 cm_colored.figure_.set_figwidth(8)
 cm_colored.figure_.set_figheight(7)
 
 cm_colored.confusion_matrix
+
+# y .. padding between title and plot
+plt.title('Colored Confusion Matrix', y=1.1)
 
 plt.tight_layout()
 plt.show()
@@ -3090,7 +3108,7 @@ bestModel.get_params()
 
 ## English summary
 
-In November 2022, the **Artificial Intelligence Conference** will be hosted by the German Social Accident Insurance (DGUV) in Dresden. This tutorial is to be presented to interested ML novices in the technical occupational safety and health of the social accident insurance institutions as part of a separate **Getting Started Workshop**.
+In November 2022, the **Artificial Intelligence Conference** took place in Dresden, which was hosted by the German Social Accident Insurance (DGUV). There, the current tutorial was presented to interested ML newcomers in the technical occupational safety and health of the social accident insurance institutions as part of a separate **Getting Started** workshop.
 
 In the **tutorial**, the **typical workflow** in **machine learning (ML)** was demonstrated systematically and step-by-step using the very familiar **Iris dataset**. The reasons for choosing a ready-made dataset are that an ML novice could first become familiar with ML algorithms, data analysis tools and software libraries as well as programming systems. The task was to distinguish, i.e. classify, three different Iris species based on the **dimensions** (width and length) of their **petals and sepals**. The dataset contains **50 measured individuals per species**.
 
@@ -3123,7 +3141,7 @@ In the future, the **systematic process steps** of a typical ML workflow explain
 
 ## German summary
 
-Im November 2022 wird die **Fachtagung "Künstliche Intelligenz"** durch die Deutsche Gesetzliche Unfallversicherung (DGUV) in Dresden ausgerichtet. Dabei soll das vorliegende Tutorial interessierten ML-Neulingen im technischen Arbeitsschutz der gesetzlichen Unfallversicherungsträger im Rahmen eines eigenen **Getting-Started-Workshop** präsentiert werden.
+Im November 2022 fand die **Fachtagung "Künstliche Intelligenz"** in Dresden statt, welche durch die Deutsche Gesetzliche Unfallversicherung (DGUV) ausgerichtet wurde. Dort wurde im Rahmen eines eigenen **Getting-Started-Workshops** das vorliegende Tutorial interessierten ML-Neulingen im technischen Arbeitsschutz der gesetzlichen Unfallversicherungsträger präsentiert.
 
 Im **Tutorial** wurde systematisch und Schritt-für-Schritt der **typische Arbeitsablauf** beim **maschinellen Lernen (ML)** anhand des sehr bekannten **Iris-Datensatzes** demonstriert. Es wurde deshalb auf einen fertigen Datensatz zurückgegriffen, damit sich ein ML-Neuling zunächst mit den ML-Algorithmen, den Werkzeugen zur Datenanalyse sowie den Software-Bibliotheken und Programmiersystemen vertraut machen kann. Die Aufgabe bestand darin, drei verschiedene Iris-Arten anhand der **Abmessungen** (Breite und Länge) ihrer **Kron- und Kelchblätter** zu unterscheiden, d. h. zu klassifizieren. Der Datensatz enthält jeweils **50 vermessene Individuen pro Art**.
 
@@ -3164,5 +3182,5 @@ Weiterhin danke ich meinen Kollegen des Dresdener Prüflabors dafür, dass sie s
 
 Abschließend möchte ich meiner Lebensgefährtin danken, dass sie erste Textentwürfe kritisch Korrektur gelesen hat und mir ansonsten den Rücken freigehalten hat - auch wenn ich nach Feierabend oder an den Wochenenden programmiert und geschrieben habe. Unserem zweijährigen Sohn danke ich für seine Geduld mit Papa. Er hätte sicherlich das ein oder andere Mal lieber "Die Sendung mit der Maus" statt seltsamer Grafiken mit mir auf dem Rechner angeschaut.
 
-Dresden, 05.11.2022
+Dresden, 10.11.2022
 <!-- #endregion -->
