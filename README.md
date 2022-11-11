@@ -22,7 +22,7 @@ From the perspective of **technical occupational safety and health (OSH)**, the 
 
 Therefore, this Getting Started Tutorial [Step-by-step_intro_to_ML_with_SVC_and_Iris.ipynb](./Step-by-step_intro_to_ML_with_SVC_and_Iris.ipynb) aims to demonstrate systematically and step-by-step the typical ML workflow using the very powerful and performant **Support Vector Classifier (SVC)** as an example. The process steps of **data analysis** and **classification** are illustrated by using the widely known and remarkably beginner-friendly **Iris dataset**. In addition, the selection of the ***correct*** **SVC kernel** and its **parameters** are described, and their effects on the classification result are shown.
 
-In November 2022, the **Artificial Intelligence Conference** will be hosted by the German Social Accident Insurance (DGUV) in Dresden. This tutorial is to be presented to interested ML novices in the technical occupational safety and health of the social accident insurance institutions as part of a separate **Getting Started Workshop**.
+In November 2022, the **Artificial Intelligence Conference** took place in Dresden, which was hosted by the German Social Accident Insurance (DGUV). There, the current tutorial was presented to interested ML newcomers in the technical occupational safety and health of the social accident insurance institutions as part of a separate **Getting Started Workshop**.
 
 ## Short introduction
 

@@ -66,7 +66,7 @@ Since the classification in step 5 was initially performed with standard paramet
 
 In the final **step 8**, two approaches to systematic hyper-parameter search are presented: **Grid Search** and **Randomized Search**. While the former exhaustively considers all parameter combinations for given values, the latter selects a number of candidates from a parameter space with a particular random distribution.
 
-In November 2022, the **Artificial Intelligence Conference** took place in Dresden, which was hosted by the German Social Accident Insurance (DGUV). There, the current tutorial was presented to interested ML newcomers in the technical occupational safety and health of the social accident insurance institutions as part of a separate **Getting Started** workshop.
+In November 2022, the **Artificial Intelligence Conference** took place in Dresden, which was hosted by the German Social Accident Insurance (DGUV). There, the current tutorial was presented to interested ML newcomers in the technical occupational safety and health of the social accident insurance institutions as part of a separate **Getting Started Workshop**.
 <!-- #endregion -->
 
 <!-- #region tags=[] jp-MarkdownHeadingCollapsed=true tags=[] -->
@@ -3108,7 +3108,7 @@ bestModel.get_params()
 
 ## English summary
 
-In November 2022, the **Artificial Intelligence Conference** took place in Dresden, which was hosted by the German Social Accident Insurance (DGUV). There, the current tutorial was presented to interested ML newcomers in the technical occupational safety and health of the social accident insurance institutions as part of a separate **Getting Started** workshop.
+In November 2022, the **Artificial Intelligence Conference** took place in Dresden, which was hosted by the German Social Accident Insurance (DGUV). There, the current tutorial was presented to interested ML newcomers in the technical occupational safety and health of the social accident insurance institutions as part of a separate **Getting Started Workshop**.
 
 In the **tutorial**, the **typical workflow** in **machine learning (ML)** was demonstrated systematically and step-by-step using the very familiar **Iris dataset**. The reasons for choosing a ready-made dataset are that an ML novice could first become familiar with ML algorithms, data analysis tools and software libraries as well as programming systems. The task was to distinguish, i.e. classify, three different Iris species based on the **dimensions** (width and length) of their **petals and sepals**. The dataset contains **50 measured individuals per species**.
 
