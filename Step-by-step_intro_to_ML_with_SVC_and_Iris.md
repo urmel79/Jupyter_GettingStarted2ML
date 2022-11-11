@@ -356,9 +356,9 @@ pylab.rcParams.update(params)
 
 **[Integrated development environments (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment)** are software applications that provide comprehensive features to computer programmers for **software development**. An IDE typically consists of a **source code editor**, automated **build tools** for compiling or an **interpreter** for scripting languages, a front end to the **version control system** like e.g. [Git](https://en.wikipedia.org/wiki/Git) and a **debugger** (<cite data-cite="Wiki_IDE">Wikipedia: IDE</cite>).
 
-Following trend chart shows how the [popularity of selected IDEs](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code) suitable for ML programming languages has evolved since 2008:
+Following trend chart shows how the [popularity of selected IDEs](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code%2Cpycharm) suitable for ML programming languages has evolved since 2008:
 
-![Trend chart shows popularity of selected IDEs for ML programming languages (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code), license: CC BY-SA 4.0)](images/2022-09-07_StackOverflowTrends_IDEs_wide.png)
+![Trend chart shows popularity of selected IDEs for ML programming languages (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=rstudio%2Cjupyter-notebook%2Cvisual-studio-code%2Cpycharm), license: CC BY-SA 4.0)](images/2022-11-11_StackOverflowTrends_IDEs_wide.png)
 
 
 
@@ -380,6 +380,15 @@ Originally Jupyter was intended as an IDE for the programming languages **Julia*
 ![Screenshot of IDE *JupyterLab* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_JupyterLab.png)
 
 
+#### [PyCharm](https://de.wikipedia.org/wiki/PyCharm)
+
+It is an IDE of the company **JetBrains** for the programming language **Python**. In addition to a **fee-based professional version**, there is also a free, **open source community version**. With the latter, pure Python projects can be created and edited. The professional version offers support for other programming languages such as HTML, JavaScript and SQL.
+
+Furthermore, tools for version control (e.g. **Git**) as well as various possibilities for **automatic creation** and **completion of code** are included.
+
+![Screenshot of IDE *PyCharm* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_PyCharm.png)
+
+
 #### [RStudio](https://en.wikipedia.org/wiki/RStudio)
 
 It is an IDE and graphical user interface for the statistical programming language **R** offered by **RStudio, Inc.** and is made available in two formats. **RStudio Desktop** is a regular desktop application while **RStudio Server** runs on a remote server and allows accessing RStudio using a web browser. Both software products are available in **open source** and **commercial** versions, each with different functionalities.
@@ -396,8 +405,6 @@ It is the official graphical user interface for the **GNU Octave** programming l
 If the command line interpreter (CLI) starts instead of the graphical user interface (GUI) when `octave` is called, this can be forced via the `octave --gui` option.
 
 ![Screenshot of IDE *GNU Octave* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_GNU_Octave.png)
-
-
 
 
 ### Cloud-hosted IDEs
@@ -3184,5 +3191,5 @@ Weiterhin danke ich meinen Kollegen des Dresdener Prüflabors dafür, dass sie s
 
 Abschließend möchte ich meiner Lebensgefährtin danken, dass sie erste Textentwürfe kritisch Korrektur gelesen hat und mir ansonsten den Rücken freigehalten hat - auch wenn ich nach Feierabend oder an den Wochenenden programmiert und geschrieben habe. Unserem zweijährigen Sohn danke ich für seine Geduld mit Papa. Er hätte sicherlich das ein oder andere Mal lieber "Die Sendung mit der Maus" statt seltsamer Grafiken mit mir auf dem Rechner angeschaut.
 
-Dresden, 10.11.2022
+Dresden, 11.11.2022
 <!-- #endregion -->
