@@ -320,7 +320,7 @@ Due to the superior advantages of **Python** (see previous section), a selection
 
 - [Keras](https://keras.io/about/) is an open source software library for **deep learning** that provides a Python interface for **ANNs**. Keras acts as an **general interface** for several **backends**, such as **TensorFlow**, **Microsoft Cognitive Toolkit** and **Theano**. Keras will also not be used in this beginner tutorial.
 
-- [PyTorch](https://pytorch.org/docs/stable/index.html) is an optimized open source tensor library for deep learning using GPUs and CPUs. It can be used to create **Tensor analyses** accelerated by **GPUs** as well as **Neural Networks** based on an Autograd system. Proven Python libraries such as **NumPy**, **SciPy** and **Cython** can be used. In Deep Learning, the program library is characterized by a lot of **flexibility** and a **high speed**.
+- [PyTorch](https://pytorch.org/docs/stable/index.html) is an optimized open source tensor library for deep learning using GPUs and CPUs. It can be used to create **Tensor analyses** accelerated by **GPUs** as well as **Neural Networks** based on an Autograd system. Proven Python libraries such as **NumPy**, **SciPy** and **Cython** can be used. In Deep Learning, the program library is characterized by a lot of **flexibility** and a **high speed**. However, PyTorch will also not be used in this beginner tutorial.
 
 <!-- #region tags=[] -->
 ### Import Python packages globally
