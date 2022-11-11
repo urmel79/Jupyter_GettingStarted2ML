@@ -2383,7 +2383,9 @@ distribution} for each feature in univariate plots. This requires the
 separation of the data into classes (so-called \textbf{bins}). These
 bins are represented in the histogram as rectangles of equal or variable
 width. The height of each rectangle then represents the (relative or
-absolute) \textbf{frequency density}.
+absolute) \textbf{frequency density}, that is, the (relative or
+absolute) \textbf{frequency divided by the width} of the corresponding
+\textbf{class}.
 
 Each \textbf{feature} of the \textbf{Iris dataset} is displayed in its
 own histogram.
@@ -2400,7 +2402,8 @@ in a \textbf{not very elegant code} with many repetitions:
 \PY{c+c1}{\PYZsh{} Set margins between subplots}
 \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
 
-\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{)}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,} 
+              \PY{n}{density}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{)}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Show grid}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
@@ -2408,9 +2411,10 @@ in a \textbf{not very elegant code} with many repetitions:
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density (absolute)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
-\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{)}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,} 
+              \PY{n}{density}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{)}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sepal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Show grid}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
@@ -2418,9 +2422,10 @@ in a \textbf{not very elegant code} with many repetitions:
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density (absolute)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
-\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{)}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,} 
+              \PY{n}{density}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{)}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Show grid}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
@@ -2428,9 +2433,10 @@ in a \textbf{not very elegant code} with many repetitions:
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density (absolute)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
-\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{)}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{irisdata\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{n}{n\PYZus{}bins}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,} 
+              \PY{n}{density}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{)}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Petal Width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Show grid}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
@@ -2438,7 +2444,7 @@ in a \textbf{not very elegant code} with many repetitions:
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
 \PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{axs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density (absolute)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
 \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
@@ -2446,7 +2452,7 @@ in a \textbf{not very elegant code} with many repetitions:
 
     \begin{figure}
         \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_53_0.png}\end{center}
-        \caption{Histograms used to explore the frequency distribution of the 4 features in the Iris dataset}
+        \caption{Histograms used to explore the absolute frequency distribution of the 4 features in the Iris dataset}
         \label{fig:histogram_iris_simple}
     \end{figure}
     
@@ -2476,7 +2482,7 @@ code later, it was implemented as the \textbf{function}
     \PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}
     \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
     \PY{c+c1}{\PYZsh{} Set margins between subplots}
-    \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.35}\PY{p}{)}
 
     \PY{c+c1}{\PYZsh{} Make subplots iterable via \PYZsq{}subplots.flatten()\PYZsq{}}
     \PY{k}{for} \PY{n}{feature}\PY{p}{,} \PY{n}{title}\PY{p}{,} \PY{n}{subplot} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{features}\PY{p}{,} \PY{n}{titles}\PY{p}{,} \PY{n}{subplots}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
@@ -2495,14 +2501,16 @@ code later, it was implemented as the \textbf{function}
 
         \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ (Mean: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZdq{}} \PYZbs{}
                        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Std. deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
-        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Set the title of the histogram}
+        \PY{c+c1}{\PYZsh{} pad ... defines the distance of the title from the top of the histogram}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{,} \PY{n}{pad}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Show grid}
         \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
         \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
         \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density (relative)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
     \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
@@ -2523,7 +2531,7 @@ code later, it was implemented as the \textbf{function}
 
     \begin{figure}
         \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_57_0.png}\end{center}
-        \caption{Histograms used to explore the frequency distribution of the 4 features in the Iris dataset (with improved code and overlaid probability density functions (PDF))}
+        \caption{Histograms used to explore the relative frequency distribution of the 4 features in the Iris dataset (with improved code and overlaid probability density functions (PDF))}
         \label{fig:histogram_iris_with_PDF}
     \end{figure}
     
@@ -2544,7 +2552,7 @@ saves a lot of repetition in the code.
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Set margins between subplots}
-\PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.35}\PY{p}{)}
 
 \PY{n}{class\PYZus{}names} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iris\PYZhy{}setosa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iris\PYZhy{}versicolor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iris\PYZhy{}virginica}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \PY{n}{features} \PY{o}{=}    \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -2561,8 +2569,9 @@ saves a lot of repetition in the code.
     \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
     \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{} Set title of subplot}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Feature: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{feature}\PY{p}{)}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Set the title of the boxplot}
+    \PY{c+c1}{\PYZsh{} pad ... defines the distance of the title from the top of the boxplot}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Feature: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{feature}\PY{p}{)}\PY{p}{,} \PY{n}{pad}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
     \PY{c+c1}{\PYZsh{} Label y\PYZhy{}axis}
     \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     
@@ -2590,7 +2599,7 @@ code.
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} Set margins between subplots}
-\PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.35}\PY{p}{)}
 
 \PY{n}{class\PYZus{}names} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iris\PYZhy{}setosa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iris\PYZhy{}versicolor}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Iris\PYZhy{}virginica}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
 \PY{n}{features} \PY{o}{=}    \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{petal\PYZus{}width}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -2607,8 +2616,9 @@ code.
     \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
     \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
-    \PY{c+c1}{\PYZsh{} Set title of subplot}
-    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Feature: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{feature}\PY{p}{)}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Set the title of the violin plot}
+    \PY{c+c1}{\PYZsh{} pad ... defines the distance of the title from the top of the violin plot}
+    \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Feature: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{feature}\PY{p}{)}\PY{p}{,} \PY{n}{pad}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
     \PY{c+c1}{\PYZsh{} Label y\PYZhy{}axis}
     \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
     
@@ -4289,17 +4299,21 @@ variable width. The height of each rectangle then represents the
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{employees\PYZus{}df}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{column}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Salary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{bins} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{density}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{rwidth}\PY{o}{=}\PY{l+m+mf}{0.95}\PY{p}{,} 
                   \PY{n}{zorder}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.8}\PY{p}{)}
-\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Salary distribution over all gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Set the title of the histogram}
+\PY{c+c1}{\PYZsh{} pad ... defines the distance of the title from the top of the histogram}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Salary distribution over all gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{pad}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{salary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{,} \PY{n}{zorder}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mf}{1.0}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density (relative)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} Show grid and hide behind the bars}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{zorder}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mf}{1.0}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{figure}
         \begin{center}\includegraphics[scale=0.6]{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_142_0.png}\end{center}
-        \caption{Histogram showing the frequency distribution of the salary}
+        \caption{Histogram showing the relative frequency distribution of the salary}
         \label{fig:histogram_salary}
     \end{figure}
     
@@ -4331,9 +4345,10 @@ code later, it was implemented as the \textbf{function}
     \PY{c+c1}{\PYZsh{}   \PYZsq{}auto\PYZsq{}, \PYZsq{}fd\PYZsq{}, \PYZsq{}doane\PYZsq{}, \PYZsq{}scott\PYZsq{}, \PYZsq{}stone\PYZsq{}, \PYZsq{}rice\PYZsq{}, \PYZsq{}sturges\PYZsq{}, or \PYZsq{}sqrt\PYZsq{}}
     \PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}
     \PY{n}{subplot\PYZus{}columns} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df\PYZus{}list}\PY{p}{)}
-    \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{subplot\PYZus{}columns}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+    \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{subplot\PYZus{}columns}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{14}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
     \PY{c+c1}{\PYZsh{} Set margins between subplots}
-    \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.4}\PY{p}{)}
+    \PY{n}{ylim\PYZus{}max} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{)}
 
     \PY{c+c1}{\PYZsh{} Make subplots iterable via \PYZsq{}subplots.flatten()\PYZsq{}}
     \PY{k}{for} \PY{n}{df}\PY{p}{,} \PY{n}{title}\PY{p}{,} \PY{n}{subplot} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{df\PYZus{}list}\PY{p}{,} \PY{n}{titles}\PY{p}{,} \PY{n}{subplots}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
@@ -4355,19 +4370,25 @@ code later, it was implemented as the \textbf{function}
 
         \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Salary of }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ (Mean: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}} \PYZbs{}
                                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Std. deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
-        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Set the title of the histogram}
+        \PY{c+c1}{\PYZsh{} pad ... defines the distance of the title from the top of the histogram}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{,} \PY{n}{pad}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Show grid}
         \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
         \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
         \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{salary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density (relative)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Rotate x\PYZhy{}ticks by \PYZhy{}45°}
         \PY{n}{subplot}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelrotation}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{45}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Get maximum range of y\PYZhy{}axes over all histograms}
+        \PY{k}{if} \PY{n}{ylim\PYZus{}max}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{subplot}\PY{o}{.}\PY{n}{get\PYZus{}ylim}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{} Take new maximum}
+            \PY{n}{ylim\PYZus{}max} \PY{o}{=} \PY{n}{subplot}\PY{o}{.}\PY{n}{get\PYZus{}ylim}\PY{p}{(}\PY{p}{)}
 
     \PY{c+c1}{\PYZsh{} Set all y\PYZhy{}axes to the same range for comparison}
-    \PY{n}{plt}\PY{o}{.}\PY{n}{setp}\PY{p}{(}\PY{n}{subplots}\PY{p}{,} \PY{n}{ylim}\PY{o}{=}\PY{n}{subplots}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{.}\PY{n}{get\PYZus{}ylim}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{setp}\PY{p}{(}\PY{n}{subplots}\PY{p}{,} \PY{n}{ylim}\PY{o}{=}\PY{n}{ylim\PYZus{}max}\PY{p}{)}
     \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
@@ -4390,7 +4411,7 @@ code later, it was implemented as the \textbf{function}
 
     \begin{figure}
         \begin{center}\adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Step-by-step_intro_to_ML_with_SVC_and_Iris_files/Step-by-step_intro_to_ML_with_SVC_and_Iris_145_0.png}\end{center}
-        \caption{Histograms used to explore the frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))}
+        \caption{Histograms used to explore the relative frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))}
         \label{fig:histogram_salary_with_PDF}
     \end{figure}
     
@@ -5491,7 +5512,9 @@ implemented.
         \PY{n}{subplot}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
         \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
-        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ data}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{)}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Set the title of the boxplot}
+        \PY{c+c1}{\PYZsh{} pad ... defines the distance of the title from the top of the boxplot}
+        \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ data}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{)}\PY{p}{,} \PY{n}{pad}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
         \PY{n}{subplot}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
     \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
@@ -5530,14 +5553,13 @@ density functions}, the function
 
 \PY{k}{def} \PY{n+nf}{func\PYZus{}histograms\PYZus{}comp\PYZus{}scaling}\PY{p}{(}\PY{n}{df\PYZus{}orig}\PY{p}{,} \PY{n}{df\PYZus{}scaled}\PY{p}{,} \PY{n}{features}\PY{p}{,}
                                  \PY{n}{titles}\PY{p}{,} \PY{n}{scaling\PYZus{}type}\PY{p}{)}\PY{p}{:}
-
     \PY{c+c1}{\PYZsh{} Number of bins for the histogram}
     \PY{c+c1}{\PYZsh{} \PYZhy{} bins=\PYZlt{}integer\PYZgt{}: defines the number of equal\PYZhy{}width bins in the range}
     \PY{c+c1}{\PYZsh{} \PYZhy{} bins=\PYZlt{}string\PYZgt{}: one of the binning strategies is used:}
     \PY{c+c1}{\PYZsh{}   \PYZsq{}auto\PYZsq{}, \PYZsq{}fd\PYZsq{}, \PYZsq{}doane\PYZsq{}, \PYZsq{}scott\PYZsq{}, \PYZsq{}stone\PYZsq{}, \PYZsq{}rice\PYZsq{}, \PYZsq{}sturges\PYZsq{}, or \PYZsq{}sqrt\PYZsq{}}
     \PY{n}{n\PYZus{}bins} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{auto}\PY{l+s+s1}{\PYZsq{}}
     \PY{c+c1}{\PYZsh{}n\PYZus{}bins = 10}
-    \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
+    \PY{n}{fig}\PY{p}{,} \PY{n}{subplots} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{18}\PY{p}{)}\PY{p}{)}
     \PY{c+c1}{\PYZsh{} Set margins between subplots}
     \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{hspace}\PY{o}{=}\PY{l+m+mf}{0.4}\PY{p}{)}
 
@@ -5566,15 +5588,16 @@ density functions}, the function
 
         \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ (Mean: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZdq{}} \PYZbs{}
                        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Std. deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
-        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Set the title of the histogram}
+        \PY{c+c1}{\PYZsh{} pad ... defines the distance of the title from the top of the histogram}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{,} \PY{n}{pad}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Show grid}
         \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
         \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}axisbelow}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
         \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{original value range [cm]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density (relative)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
     \PY{c+c1}{\PYZsh{} Show histograms with SCALED data,}
     \PY{c+c1}{\PYZsh{} so loop through list of subplots with ODD indexes}
@@ -5595,7 +5618,9 @@ density functions}, the function
 
         \PY{n}{title\PYZus{}concat} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ (Mean: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZdq{}} \PYZbs{}
                        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Std. deviation: }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{std}\PY{p}{)}
-        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Set the title of the histogram}
+        \PY{c+c1}{\PYZsh{} pad ... defines the distance of the title from the top of the histogram}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title\PYZus{}concat}\PY{p}{,} \PY{n}{pad}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Show grid}
         \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
         \PY{c+c1}{\PYZsh{} Hide grid behind the bars}
@@ -5603,7 +5628,7 @@ density functions}, the function
         \PY{c+c1}{\PYZsh{} Label x and y\PYZhy{}axis}
         \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ value range [cm]}\PY{l+s+s1}{\PYZsq{}}
                                               \PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{scaling\PYZus{}type}\PY{p}{)}\PY{p}{)}
-        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{subplot\PYZus{}list}\PY{p}{[}\PY{n}{index\PYZus{}subplt}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{frequency density (relative)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
     \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
@@ -5836,9 +5861,9 @@ added back to the training dataset \texttt{X\_train}.
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
 \prompt{Out}{outcolor}{85}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-Iris-setosa        35
+Iris-setosa        33
 Iris-versicolor    40
-Iris-virginica     42
+Iris-virginica     44
 Name: species, dtype: int64
 \end{Verbatim}
 \end{tcolorbox}
@@ -5949,7 +5974,7 @@ labels} in \texttt{y\_test}. For further details see
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Accuracy score: 100.00 \%
+Accuracy score: 96.67 \%
     \end{Verbatim}
 
     \hypertarget{classification-report}{%
@@ -5999,13 +6024,13 @@ The metrics are defined in the form of \textbf{true/false positives} and
     \begin{Verbatim}[commandchars=\\\{\}]
                  precision    recall  f1-score   support
 
-    Iris-setosa       1.00      1.00      1.00        13
-Iris-versicolor       1.00      1.00      1.00        10
- Iris-virginica       1.00      1.00      1.00         7
+    Iris-setosa       1.00      1.00      1.00        15
+Iris-versicolor       1.00      0.90      0.95        10
+ Iris-virginica       0.83      1.00      0.91         5
 
-       accuracy                           1.00        30
-      macro avg       1.00      1.00      1.00        30
-   weighted avg       1.00      1.00      1.00        30
+       accuracy                           0.97        30
+      macro avg       0.94      0.97      0.95        30
+   weighted avg       0.97      0.97      0.97        30
 
     \end{Verbatim}
 
@@ -6106,9 +6131,9 @@ the \textbf{predicted class labels} is plotted.
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[[13  0  0]
- [ 0 10  0]
- [ 0  0  7]]
+[[15  0  0]
+ [ 0  9  1]
+ [ 0  0  5]]
     \end{Verbatim}
 
     \hypertarget{colored-confusion-matrix}{%
@@ -6307,7 +6332,9 @@ This function helps to \textbf{visualize} the modifications by
     \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{n}{xlabel}\PY{p}{)}
     \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{n}{ylabel}\PY{p}{)}
     \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{n}{xx}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{xx}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{)}
-    \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Set the title of the diagram}
+    \PY{c+c1}{\PYZsh{} pad ... defines the distance of the title from the top of the diagram}
+    \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title}\PY{p}{,} \PY{n}{pad}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
     \PY{n}{ax}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{n}{visible}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
@@ -6343,7 +6370,9 @@ prediction accuracy to show the \textbf{effect of variation} and its
     \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
     \PY{n}{title\PYZus{}str} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Variation of }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ parameter }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{param\PYZus{}name}\PY{p}{)} \PYZbs{}
                 \PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{and its effect to prediction accuracy}\PY{l+s+s1}{\PYZsq{}}
-    \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{n}{title\PYZus{}str}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} Set the title of the diagram}
+    \PY{c+c1}{\PYZsh{} pad ... defines the distance of the title from the top of the diagram}
+    \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{n}{title\PYZus{}str}\PY{p}{,} \PY{n}{pad}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
     \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{param\PYZus{}list}\PY{p}{,} \PY{n}{accuracy\PYZus{}list}\PY{p}{)}
     \PY{k}{if} \PY{n}{log\PYZus{}scale}\PY{p}{:}
         \PY{c+c1}{\PYZsh{} set the X axis scale to logarithmic}

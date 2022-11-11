@@ -607,21 +607,22 @@ irisdata_df.describe()
 <!-- #region tags=[] -->
 #### Histograms
 
-This type of visualization is useful to explore the **frequency distribution** for each feature in univariate plots. This requires the separation of the data into classes (so-called **bins**). These bins are represented in the histogram as rectangles of equal or variable width. The height of each rectangle then represents the (relative or absolute) **frequency density**.
+This type of visualization is useful to explore the **frequency distribution** for each feature in univariate plots. This requires the separation of the data into classes (so-called **bins**). These bins are represented in the histogram as rectangles of equal or variable width. The height of each rectangle then represents the (relative or absolute) **frequency density**, that is, the (relative or absolute) **frequency divided by the width** of the corresponding **class**.
 
 Each **feature** of the **Iris dataset** is displayed in its own histogram.
 
 To illustrate the principle, the histogram subplots are first presented in a **not very elegant code** with many repetitions:
 <!-- #endregion -->
 
-```python caption="Histograms used to explore the frequency distribution of the 4 features in the Iris dataset" tags=[] label="fig:histogram_iris_simple" widefigure=true
+```python caption="Histograms used to explore the absolute frequency distribution of the 4 features in the Iris dataset" tags=[] label="fig:histogram_iris_simple" widefigure=true
 # Number of bins for the histogram
 n_bins = 10
 fig, axs = plt.subplots(2, 2, figsize=(12, 10))
 # Set margins between subplots
 plt.subplots_adjust(wspace=0.3, hspace=0.3)
 
-axs[0,0].hist(irisdata_df['sepal_length'], bins = n_bins, rwidth=0.95)
+axs[0,0].hist(irisdata_df['sepal_length'], bins = n_bins, rwidth=0.95, 
+              density=False, alpha=0.8)
 axs[0,0].set_title('Sepal Length')
 # Show grid
 axs[0,0].grid(visible=True)
@@ -629,9 +630,10 @@ axs[0,0].grid(visible=True)
 axs[0,0].set_axisbelow(True)
 # Label x and y-axis
 axs[0,0].set_xlabel('value range [cm]')
-axs[0,0].set_ylabel('frequency density')
+axs[0,0].set_ylabel('frequency density (absolute)')
 
-axs[0,1].hist(irisdata_df['sepal_width'], bins = n_bins, rwidth=0.95)
+axs[0,1].hist(irisdata_df['sepal_width'], bins = n_bins, rwidth=0.95, 
+              density=False, alpha=0.8)
 axs[0,1].set_title('Sepal Width')
 # Show grid
 axs[0,1].grid(visible=True)
@@ -639,9 +641,10 @@ axs[0,1].grid(visible=True)
 axs[0,1].set_axisbelow(True)
 # Label x and y-axis
 axs[0,1].set_xlabel('value range [cm]')
-axs[0,1].set_ylabel('frequency density')
+axs[0,1].set_ylabel('frequency density (absolute)')
 
-axs[1,0].hist(irisdata_df['petal_length'], bins = n_bins, rwidth=0.95)
+axs[1,0].hist(irisdata_df['petal_length'], bins = n_bins, rwidth=0.95, 
+              density=False, alpha=0.8)
 axs[1,0].set_title('Petal Length')
 # Show grid
 axs[1,0].grid(visible=True)
@@ -649,9 +652,10 @@ axs[1,0].grid(visible=True)
 axs[1,0].set_axisbelow(True)
 # Label x and y-axis
 axs[1,0].set_xlabel('value range [cm]')
-axs[1,0].set_ylabel('frequency density')
+axs[1,0].set_ylabel('frequency density (absolute)')
 
-axs[1,1].hist(irisdata_df['petal_width'], bins = n_bins, rwidth=0.95)
+axs[1,1].hist(irisdata_df['petal_width'], bins = n_bins, rwidth=0.95, 
+              density=False, alpha=0.8)
 axs[1,1].set_title('Petal Width')
 # Show grid
 axs[1,1].grid(visible=True)
@@ -659,7 +663,7 @@ axs[1,1].grid(visible=True)
 axs[1,1].set_axisbelow(True)
 # Label x and y-axis
 axs[1,1].set_xlabel('value range [cm]')
-axs[1,1].set_ylabel('frequency density')
+axs[1,1].set_ylabel('frequency density (absolute)')
 
 plt.show()
 ```
@@ -679,7 +683,7 @@ def func_plot_histograms_with_PDF(df, features, titles):
     n_bins = 'auto'
     fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
     # Set margins between subplots
-    plt.subplots_adjust(wspace=0.3, hspace=0.3)
+    plt.subplots_adjust(wspace=0.3, hspace=0.35)
 
     # Make subplots iterable via 'subplots.flatten()'
     for feature, title, subplot in zip(features, titles, subplots.flatten()):
@@ -698,21 +702,23 @@ def func_plot_histograms_with_PDF(df, features, titles):
 
         title_concat = "{} (Mean: {:.2f}, " \
                        "Std. deviation: {:.2f})".format(title, mu, std)
-        subplot.set_title(title_concat)
+        # Set the title of the histogram
+        # pad ... defines the distance of the title from the top of the histogram
+        subplot.set_title(title_concat, pad=10)
         # Show grid
         subplot.grid(visible=True)
         # Hide grid behind the bars
         subplot.set_axisbelow(True)
         # Label x and y-axis
         subplot.set_xlabel('value range [cm]')
-        subplot.set_ylabel('frequency density')
+        subplot.set_ylabel('frequency density (relative)')
 
     plt.show()
 ```
 
 Call the new function to plot the **histograms** with overlaid **probability density functions**:
 
-```python caption="Histograms used to explore the frequency distribution of the 4 features in the Iris dataset (with improved code and overlaid probability density functions (PDF))" tags=[] label="fig:histogram_iris_with_PDF" widefigure=true
+```python caption="Histograms used to explore the relative frequency distribution of the 4 features in the Iris dataset (with improved code and overlaid probability density functions (PDF))" tags=[] label="fig:histogram_iris_with_PDF" widefigure=true
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
@@ -728,7 +734,7 @@ In the following code example, the 4 variables of the Iris dataset are displayed
 ```python caption="Boxplots used to explore the data ranges in the Iris dataset" tags=[] label="fig:boxplots_iris" widefigure=true
 fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
 # Set margins between subplots
-plt.subplots_adjust(wspace=0.3, hspace=0.3)
+plt.subplots_adjust(wspace=0.3, hspace=0.35)
 
 class_names = ['Iris-setosa', 'Iris-versicolor', 'Iris-virginica']
 features =    ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
@@ -745,8 +751,9 @@ for feature, subplot in zip(features, subplots.flatten()):
     subplot.grid(axis='y')
     # Hide grid behind the bars
     subplot.set_axisbelow(True)
-    # Set title of subplot
-    subplot.set_title('Feature: {}'.format(feature))
+    # Set the title of the boxplot
+    # pad ... defines the distance of the title from the top of the boxplot
+    subplot.set_title('Feature: {}'.format(feature), pad=10)
     # Label y-axis
     subplot.set_ylabel('value range [cm]')
     
@@ -760,7 +767,7 @@ Another type of visualization is the **violin plot**, which **combines** the adv
 ```python tags=[] caption="Violin plots combine histograms and box plots" label="fig:violinplots_iris" widefigure=true
 fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
 # Set margins between subplots
-plt.subplots_adjust(wspace=0.3, hspace=0.3)
+plt.subplots_adjust(wspace=0.3, hspace=0.35)
 
 class_names = ['Iris-setosa', 'Iris-versicolor', 'Iris-virginica']
 features =    ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
@@ -777,8 +784,9 @@ for feature, subplot in zip(features, subplots.flatten()):
     subplot.grid(axis='y')
     # Hide grid behind the bars
     subplot.set_axisbelow(True)
-    # Set title of subplot
-    subplot.set_title('Feature: {}'.format(feature))
+    # Set the title of the violin plot
+    # pad ... defines the distance of the title from the top of the violin plot
+    subplot.set_title('Feature: {}'.format(feature), pad=10)
     # Label y-axis
     subplot.set_ylabel('value range [cm]')
     
@@ -1403,13 +1411,17 @@ This section was inspired by: [Pandas Histogram – DataFrame.hist()](https://da
 These bins are represented in the histogram as rectangles of equal or variable width. The height of each rectangle then represents the (relative or absolute) **frequency density**.
 <!-- #endregion -->
 
-```python caption="Histogram showing the frequency distribution of the salary" label="fig:histogram_salary" tags=[] widefigure=false
+```python caption="Histogram showing the relative frequency distribution of the salary" label="fig:histogram_salary" tags=[] widefigure=false
 employees_df.hist(column=['Salary'], bins = 'auto', density=True, rwidth=0.95, 
                   zorder=2, alpha=0.8)
-plt.title('Salary distribution over all gender')
+
+# Set the title of the histogram
+# pad ... defines the distance of the title from the top of the histogram
+plt.title('Salary distribution over all gender', pad=10)
 plt.xlabel('salary')
-plt.ylabel('frequency density')
-plt.grid(True, zorder=-1.0)
+plt.ylabel('frequency density (relative)')
+# Show grid and hide behind the bars
+plt.grid(visible=True, zorder=-1.0)
 plt.show()
 ```
 
@@ -1429,9 +1441,10 @@ def func_plot_histograms_from_list_with_PDF(df_list, column, titles):
     #   'auto', 'fd', 'doane', 'scott', 'stone', 'rice', 'sturges', or 'sqrt'
     n_bins = 'auto'
     subplot_columns = len(df_list)
-    fig, subplots = plt.subplots(1, subplot_columns, figsize=(16, 4))
+    fig, subplots = plt.subplots(1, subplot_columns, figsize=(14, 4))
     # Set margins between subplots
-    plt.subplots_adjust(wspace=0.3, hspace=0.3)
+    plt.subplots_adjust(wspace=0.3, hspace=0.4)
+    ylim_max = (0.0, 0.0)
 
     # Make subplots iterable via 'subplots.flatten()'
     for df, title, subplot in zip(df_list, titles, subplots.flatten()):
@@ -1453,23 +1466,29 @@ def func_plot_histograms_from_list_with_PDF(df_list, column, titles):
 
         title_concat = "Salary of {} (Mean: {:.2f}, \n" \
                                "Std. deviation: {:.2f})".format(title, mu, std)
-        subplot.set_title(title_concat)
+        # Set the title of the histogram
+        # pad ... defines the distance of the title from the top of the histogram
+        subplot.set_title(title_concat, pad=20)
         # Show grid
         subplot.grid(visible=True)
         # Hide grid behind the bars
         subplot.set_axisbelow(True)
         # Label x and y-axis
         subplot.set_xlabel('salary')
-        subplot.set_ylabel('frequency density')
+        subplot.set_ylabel('frequency density (relative)')
         # Rotate x-ticks by -45°
         subplot.tick_params('x', labelrotation=-45)
+        # Get maximum range of y-axes over all histograms
+        if ylim_max[1] < subplot.get_ylim()[1]:
+            # Take new maximum
+            ylim_max = subplot.get_ylim()
 
     # Set all y-axes to the same range for comparison
-    plt.setp(subplots, ylim=subplots[2].get_ylim())
+    plt.setp(subplots, ylim=ylim_max)
     plt.show()
 ```
 
-```python caption="Histograms used to explore the frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))" tags=[] label="fig:histogram_salary_with_PDF" widefigure=true
+```python caption="Histograms used to explore the relative frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))" tags=[] label="fig:histogram_salary_with_PDF" widefigure=true
 genders = ['Male', 'Female', 'No Gender']
 
 # Create list for storing the dataframes
@@ -1971,7 +1990,9 @@ def func_boxplots_comp_scaling(dataframes, titles):
         subplot.grid(axis='y')
         # Hide grid behind the bars
         subplot.set_axisbelow(True)
-        subplot.set_title('{} data'.format(title))
+        # Set the title of the boxplot
+        # pad ... defines the distance of the title from the top of the boxplot
+        subplot.set_title('{} data'.format(title), pad=10)
         subplot.set_ylabel('value range [cm]')
 
     plt.show()
@@ -1993,14 +2014,13 @@ from scipy.stats import norm
 
 def func_histograms_comp_scaling(df_orig, df_scaled, features,
                                  titles, scaling_type):
-
     # Number of bins for the histogram
     # - bins=<integer>: defines the number of equal-width bins in the range
     # - bins=<string>: one of the binning strategies is used:
     #   'auto', 'fd', 'doane', 'scott', 'stone', 'rice', 'sturges', or 'sqrt'
     n_bins = 'auto'
     #n_bins = 10
-    fig, subplots = plt.subplots(4, 2, figsize=(12, 16))
+    fig, subplots = plt.subplots(4, 2, figsize=(12, 18))
     # Set margins between subplots
     plt.subplots_adjust(wspace=0.3, hspace=0.4)
 
@@ -2029,15 +2049,16 @@ def func_histograms_comp_scaling(df_orig, df_scaled, features,
 
         title_concat = "{} (Mean: {:.2f}, " \
                        "Std. deviation: {:.2f})".format(title, mu, std)
-        subplot_list[index_subplt].set_title(title_concat)
+        # Set the title of the histogram
+        # pad ... defines the distance of the title from the top of the histogram
+        subplot_list[index_subplt].set_title(title_concat, pad=10)
         # Show grid
         subplot_list[index_subplt].grid(visible=True)
         # Hide grid behind the bars
         subplot_list[index_subplt].set_axisbelow(True)
         # Label x and y-axis
         subplot_list[index_subplt].set_xlabel('original value range [cm]')
-        subplot_list[index_subplt].set_ylabel('frequency density')
-
+        subplot_list[index_subplt].set_ylabel('frequency density (relative)')
 
     # Show histograms with SCALED data,
     # so loop through list of subplots with ODD indexes
@@ -2058,7 +2079,9 @@ def func_histograms_comp_scaling(df_orig, df_scaled, features,
 
         title_concat = "{} (Mean: {:.2f}, " \
                        "Std. deviation: {:.2f})".format(title, mu, std)
-        subplot_list[index_subplt].set_title(title_concat)
+        # Set the title of the histogram
+        # pad ... defines the distance of the title from the top of the histogram
+        subplot_list[index_subplt].set_title(title_concat, pad=10)
         # Show grid
         subplot_list[index_subplt].grid(visible=True)
         # Hide grid behind the bars
@@ -2066,7 +2089,7 @@ def func_histograms_comp_scaling(df_orig, df_scaled, features,
         # Label x and y-axis
         subplot_list[index_subplt].set_xlabel('{} value range [cm]'
                                               .format(scaling_type))
-        subplot_list[index_subplt].set_ylabel('frequency density')
+        subplot_list[index_subplt].set_ylabel('frequency density (relative)')
 
     plt.show()
 ```
@@ -2463,7 +2486,9 @@ def plotSVC(title, svc, X, y, xlabel, ylabel, subplot):
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.set_xlim(xx.min(), xx.max())
-    ax.set_title(title)
+    # Set the title of the diagram
+    # pad ... defines the distance of the title from the top of the diagram
+    ax.set_title(title, pad=10)
     ax.grid(visible=False)
 ```
 
@@ -2491,7 +2516,9 @@ def plotParamsAcc(param_list, acc_list, param_name, log_scale=False):
     fig, ax = plt.subplots(figsize=(12, 4))
     title_str = 'Variation of {} parameter '.format(param_name) \
                 +'and its effect to prediction accuracy'
-    plt.title(title_str)
+    # Set the title of the diagram
+    # pad ... defines the distance of the title from the top of the diagram
+    plt.title(title_str, pad=10)
     ax.plot(param_list, accuracy_list)
     if log_scale:
         # set the X axis scale to logarithmic
