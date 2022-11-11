@@ -289,9 +289,9 @@ The **mathematics** and the **numerical implementation** of various algorithms f
 
 From the user's point of view, when selecting libraries for the respective task, attention should be paid not only to functionality but also to the **comprehensibility of the user interface supported by good documentation**. Furthermore, the **size of the community** behind the library, consisting of active developers as well as technical experts for supporting the users in the event of questions or problems arising, should be decisive in the selection.
 
-Following trend chart shows how the [popularity of selected python packages](https://insights.stackoverflow.com/trends?tags=pandas%2Ctensorflow%2Cnumpy%2Ckeras%2Cscikit-learn%2Cmatplotlib) suitable for **data analysis**, **data visualization** and **machine learning** has evolved since 2008:
+Following trend chart shows how the [popularity of selected python packages](https://insights.stackoverflow.com/trends?tags=pandas%2Cnumpy%2Cmatplotlib%2Cseaborn%2Cscikit-learn%2Ctensorflow%2Ckeras%2Cpytorch) suitable for **data analysis**, **data visualization** and **machine learning** has evolved since 2008:
 
-![Trend chart shows popularity of selected python packages for data analysis, data visualization and machine learning (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=pandas%2Ctensorflow%2Cnumpy%2Ckeras%2Cscikit-learn%2Cmatplotlib), license: CC BY-SA 4.0)](images/2022-09-07_StackOverflowTrends_MLPythonPackages_wide.png)
+![Trend chart shows popularity of selected python packages for data analysis, data visualization and machine learning (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=pandas%2Cnumpy%2Cmatplotlib%2Cseaborn%2Cscikit-learn%2Ctensorflow%2Ckeras%2Cpytorch), license: CC BY-SA 4.0)](images/2022-11-11_StackOverflowTrends_MLPythonPackages_wide.png)
 
 In the scientific research and systematic improvement of ML algorithms, a very dynamic progression can be observed in recent years. The latest scientific findings are regularly compared with each other in **"Machine Learning Competitions"** using known and **freely available datasets** (see benchmarking competitions of ML algorithms on platforms such as [https://www.kaggle.com/competitions](https://www.kaggle.com/competitions)). At the same time, the corresponding ML libraries are revised, extended and made available to general users by the scientific community. Therefore, this **scientific transfer** ideally takes place in the context of **open source developments**.
 
@@ -319,6 +319,8 @@ Due to the superior advantages of **Python** (see previous section), a selection
 - [TensorFlow](https://www.tensorflow.org) offers, among other things, the possibility to create and train **artificial neural networks (ANN)** based on **Google AI**. it is an open source software library for **machine learning** and **artificial intelligence**. It can be used across a range of tasks but has a particular focus on training and inference of **deep neural networks**. However, the installation and usage is very much beyond the scope of this beginner tutorial.
 
 - [Keras](https://keras.io/about/) is an open source software library for **deep learning** that provides a Python interface for **ANNs**. Keras acts as an **general interface** for several **backends**, such as **TensorFlow**, **Microsoft Cognitive Toolkit** and **Theano**. Keras will also not be used in this beginner tutorial.
+
+- [PyTorch](https://pytorch.org/docs/stable/index.html) is an optimized open source tensor library for deep learning using GPUs and CPUs. It can be used to create **Tensor analyses** accelerated by **GPUs** as well as **Neural Networks** based on an Autograd system. Proven Python libraries such as **NumPy**, **SciPy** and **Cython** can be used. In Deep Learning, the program library is characterized by a lot of **flexibility** and a **high speed**.
 
 <!-- #region tags=[] -->
 ### Import Python packages globally
