@@ -143,11 +143,13 @@
     ((*- endif *))
     ((*- endblock abstract *))
     
+    ((*- if nb.metadata["latex_metadata"]: -*))
+    ((*- if nb.metadata["latex_metadata"]["CC_logo"]: -*))
     \noindent
     \begin{center}
 	    \begin{tabular}{>{\centering}m{0.2\textwidth}m{0.65\textwidth}}
 	    \begin{minipage}{\linewidth}
-	        \includegraphics{images/CC_BY-SA_40.png}
+	        \includegraphics{((( nb.metadata["latex_metadata"]["CC_logo"] )))}
 	    \end{minipage}
 	    &
 	    \begin{minipage}{\linewidth}
@@ -155,6 +157,8 @@
 	    \end{minipage}
 	    \end{tabular}
 	\end{center}
+    ((*- endif *))
+    ((*- endif *))
 
     \newpage
 
