@@ -174,11 +174,7 @@
     \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
     % Document parameters
     % Document title
-    \title{\textbf{\textsf{Test}}}\author{Dipl.-Ing. Bj\"orn Kasper (\href{mailto:kasper.bjoern@bgetem.de}{kasper.bjoern@bgetem.de})}\affil{Test and Certification Body for Electrical Engineering at BG ETEM}
-\author[1]{Dipl.-Ing. Bj\"orn Kasper (\href{mailto:kasper.bjoern@bgetem.de}{kasper.bjoern@bgetem.de})}
-\affil[1]{}
-\author[2]{Dipl.-Ing. Bj\"orn Kasper (\href{mailto:kasper.bjoern@bgetem.de}{kasper.bjoern@bgetem.de})}
-\affil[2]{}\date{\today; version 0.1}
+    \title{\textbf{\textsf{Test}}}\author{Dipl.-Ing. Bj\"orn Kasper (\href{mailto:kasper.bjoern@bgetem.de}{kasper.bjoern@bgetem.de})}\affil{Test and Certification Body for Electrical Engineering at BG ETEM}\date{\today; version 0.1}
 
 
     
@@ -419,13 +415,11 @@
     \begin{abstract}
     Test
     \end{abstract}
-    \vfill
-    
-    \noindent
+    \vfill\noindent
     \begin{center}
 	    \begin{tabular}{>{\centering}m{0.2\textwidth}m{0.65\textwidth}}
 	    \begin{minipage}{\linewidth}
-	        \includegraphics{images/CC_BY-SA_40.png}
+	        \includegraphics{../images/CC_BY-SA_40.png}
 	    \end{minipage}
 	    &
 	    \begin{minipage}{\linewidth}
@@ -466,14 +460,14 @@
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
+\prompt{In}{incolor}{17}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k+kn}{import} \PY{n}{display}\PY{p}{,} \PY{n}{Markdown}\PY{p}{,} \PY{n}{Latex}
+\PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k+kn}{import} \PY{n}{display}\PY{p}{,} \PY{n}{Markdown}\PY{p}{,} \PY{n}{Latex}\PY{p}{,} \PY{n}{HTML}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{17}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{A}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{B}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{to\PYZus{}markdown}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{)}
@@ -489,14 +483,14 @@
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{20}{\boxspacing}
+\prompt{In}{incolor}{4}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{display}\PY{p}{(}\PY{n}{Latex}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{to\PYZus{}latex}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-/tmp/ipykernel\_6421/265042420.py:1: FutureWarning: In future versions
+/tmp/ipykernel\_104488/265042420.py:1: FutureWarning: In future versions
 `DataFrame.to\_latex` is expected to utilise the base implementation of
 `Styler.to\_latex` for formatting and rendering. The arguments signature may
 therefore change. It is recommended instead to use `DataFrame.style.to\_latex`
@@ -517,7 +511,7 @@ c &  3 &  3 \\
 
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{21}{\boxspacing}
+\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{display}\PY{p}{(}\PY{n}{df}\PY{p}{)}
 \end{Verbatim}
@@ -533,40 +527,40 @@ c  3  3
 
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{22}{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{to\PYZus{}markdown}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{longtable}[]{@{}lrr@{}}
-\toprule()
-& A & B \\
-\midrule()
+\toprule
+& A & B\tabularnewline
+\midrule
 \endhead
-a & 1 & 1 \\
-b & 2 & 2 \\
-c & 3 & 3 \\
-\bottomrule()
+a & 1 & 1\tabularnewline
+b & 2 & 2\tabularnewline
+c & 3 & 3\tabularnewline
+\bottomrule
 \end{longtable}
 
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{23}{\boxspacing}
+\prompt{In}{incolor}{11}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{df\PYZus{}styled} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{set\PYZus{}caption}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test table rendered in markdown}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{df\PYZus{}styled} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{set\PYZus{}caption}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test table rendered in LaTeX}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{28}{\boxspacing}
+\prompt{In}{incolor}{12}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{display}\PY{p}{(}\PY{n}{Latex}\PY{p}{(}\PY{n}{df\PYZus{}styled}\PY{o}{.}\PY{n}{to\PYZus{}latex}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{table}
-\caption{Test table rendered in markdown}
+\caption{Test table rendered in LaTeX}
 \begin{tabular}{lrr}
  & A & B \\
 a & 1 & 1 \\
@@ -577,37 +571,41 @@ c & 3 & 3 \\
 
 
     
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{21}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}display(Markdown(df\PYZus{}styled))}
+\PY{n}{df}\PY{o}{.}\PY{n}{to\PYZus{}markdown}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}display(HTML(df\PYZus{}styled.to\PYZus{}html()))}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{21}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+'|    |   A |   B |\textbackslash{}n|:---|----:|----:|\textbackslash{}n| a  |   1 |   1 |\textbackslash{}n| b  |   2 |   2
+|\textbackslash{}n| c  |   3 |   3 |'
+\end{Verbatim}
+\end{tcolorbox}
+        
     \begin{longtable}[]{@{}lrr@{}}
 \caption{Das ist die Tabellenüberschrift}\tabularnewline
-\toprule()
-& A & B \\
-\midrule()
+\toprule
+& A & B\tabularnewline
+\midrule
 \endfirsthead
-\toprule()
-& A & B \\
-\midrule()
+\toprule
+& A & B\tabularnewline
+\midrule
 \endhead
-a & 1 & 1 \\
-a & 2 & 2 \\
-b & 3 & 3 \\
-\bottomrule()
+a & 1 & 1\tabularnewline
+a & 2 & 2\tabularnewline
+b & 3 & 3\tabularnewline
+\bottomrule
 \end{longtable}
-
-    \begin{longtable}[]{@{}lrr@{}}
-\toprule()
-& A & B \\
-\midrule()
-\endhead
-a & 1 & 1 \\
-a & 2 & 2 \\
-b & 3 & 3 \\
-\bottomrule()
-\end{longtable}
-
-{[}Table caption{]}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{25}{\boxspacing}
+\prompt{In}{incolor}{9}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{display}\PY{p}{(}\PY{n}{Latex}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}table\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{caption}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{Test table rendered in markdown\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{begin}\PY{l+s+si}{\PYZob{}tabular\PYZcb{}}\PY{l+s+si}{\PYZob{}lrr\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ \PYZam{} }\PY{l+s+si}{\PYZob{}A\PYZcb{}}\PY{l+s+s2}{ \PYZam{} }\PY{l+s+si}{\PYZob{}B\PYZcb{}}\PY{l+s+s2}{ }\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{a \PYZam{} 1 \PYZam{} 1 }\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{a \PYZam{} 2 \PYZam{} 2 }\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{b \PYZam{} 3 \PYZam{} 3 }\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}tabular\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s2}{end}\PY{l+s+si}{\PYZob{}table\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
@@ -626,63 +624,175 @@ b & 3 & 3 \\
 
     
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{27}{\boxspacing}
+\prompt{In}{incolor}{30}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{|    |   A |   B | }\PY{l+s+se}{\PYZbs{}}
-\PY{l+s+s2}{                  |:\PYZhy{}\PYZhy{}\PYZhy{}|\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}:|\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}:| }\PY{l+s+se}{\PYZbs{}}
-\PY{l+s+s2}{                  | a  |   1 |   1 | }\PY{l+s+se}{\PYZbs{}}
-\PY{l+s+s2}{                  | a  |   2 |   2 | }\PY{l+s+se}{\PYZbs{}}
-\PY{l+s+s2}{                  | b  |   3 |   3 |}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{|    |   A |   B |}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PYZbs{}
+                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{|:\PYZhy{}\PYZhy{}\PYZhy{}|\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}:|\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}:|}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PYZbs{}
+                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{| a  |   1 |   1 |}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PYZbs{}
+                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{| b  |   2 |   2 |}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PYZbs{}
+                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{| c  |   3 |   3 |}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
-    ~~~\textbar{} A \textbar{} B \textbar{}
-\textbar:---\textbar----:\textbar----:\textbar{} \textbar{} a \textbar{}
-1 \textbar{} 1 \textbar{} \textbar{} a \textbar{} 2 \textbar{} 2
-\textbar{} \textbar{} b \textbar{} 3 \textbar{} 3 \textbar{}
-
-    
-    \begin{longtable}[]{@{}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0947}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0526}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.5684}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2842}}@{}}
-\caption{File table for all participants}\tabularnewline
-\toprule()
-\begin{minipage}[b]{\linewidth}\raggedleft
-file\_idx
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-keys
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-filenames
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-descriptions
-\end{minipage} \\
-\midrule()
-\endfirsthead
-\toprule()
-\begin{minipage}[b]{\linewidth}\raggedleft
-file\_idx
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-keys
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-filenames
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-descriptions
-\end{minipage} \\
-\midrule()
+    \begin{longtable}[]{@{}lrr@{}}
+\toprule
+& A & B\tabularnewline
+\midrule
 \endhead
-1 & crit & rdata\_all\_crit\_AHP\_edible\_Cities\_2022-03-18\_09-53.csv
-& criteria (main criteria) \\
-2 & env & rdata\_all\_env\_AHP\_edible\_Cities\_2022-03-18\_09-53.csv &
-environmental sub-criteria \\
-3 & soc & rdata\_all\_soc\_AHP\_edible\_Cities\_2022-03-18\_09-53.csv &
-social sub-criteria \\
-4 & eco & rdata\_all\_eco\_AHP\_edible\_Cities\_2022-03-18\_09-53.csv &
-economic sub-criteria \\
-\bottomrule()
+a & 1 & 1\tabularnewline
+b & 2 & 2\tabularnewline
+c & 3 & 3\tabularnewline
+\bottomrule
 \end{longtable}
 
+    
+    \begin{longtable}[]{@{}rlll@{}}
+\caption{File table for all participants}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.08\columnwidth}\raggedleft
+file\_idx\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright
+keys\strut
+\end{minipage} & \begin{minipage}[b]{0.50\columnwidth}\raggedright
+filenames\strut
+\end{minipage} & \begin{minipage}[b]{0.25\columnwidth}\raggedright
+descriptions\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.08\columnwidth}\raggedleft
+file\_idx\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright
+keys\strut
+\end{minipage} & \begin{minipage}[b]{0.50\columnwidth}\raggedright
+filenames\strut
+\end{minipage} & \begin{minipage}[b]{0.25\columnwidth}\raggedright
+descriptions\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.08\columnwidth}\raggedleft
+1\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+crit\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+rdata\_all\_crit\_AHP\_edible\_Cities\_2022-03-18\_09-53.csv\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+criteria (main criteria)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.08\columnwidth}\raggedleft
+2\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+env\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+rdata\_all\_env\_AHP\_edible\_Cities\_2022-03-18\_09-53.csv\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+environmental sub-criteria\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.08\columnwidth}\raggedleft
+3\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+soc\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+rdata\_all\_soc\_AHP\_edible\_Cities\_2022-03-18\_09-53.csv\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+social sub-criteria\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.08\columnwidth}\raggedleft
+4\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
+eco\strut
+\end{minipage} & \begin{minipage}[t]{0.50\columnwidth}\raggedright
+rdata\_all\_eco\_AHP\_edible\_Cities\_2022-03-18\_09-53.csv\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+economic sub-criteria\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{34}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{str\PYZus{}table\PYZus{}caption} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test table rendered in Markdown}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{str\PYZus{}table\PYZus{}content} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{to\PYZus{}markdown}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+
+\PY{n}{str\PYZus{}table\PYZus{}complete} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Table: }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{str\PYZus{}table\PYZus{}caption} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{str\PYZus{}table\PYZus{}content}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{str\PYZus{}table\PYZus{}complete}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Table: Test table rendered in Markdown
+
+|    |   A |   B |
+|:---|----:|----:|
+| a  |   1 |   1 |
+| b  |   2 |   2 |
+| c  |   3 |   3 |
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{35}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{n}{str\PYZus{}table\PYZus{}complete}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{longtable}[]{@{}lrr@{}}
+\caption{Test table rendered in Markdown}\tabularnewline
+\toprule
+& A & B\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+& A & B\tabularnewline
+\midrule
+\endhead
+a & 1 & 1\tabularnewline
+b & 2 & 2\tabularnewline
+c & 3 & 3\tabularnewline
+\bottomrule
+\end{longtable}
+
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{39}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{func\PYZus{}render\PYZus{}dataframe2Markdown}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{str\PYZus{}caption}\PY{p}{)}\PY{p}{:}
+    \PY{n}{str\PYZus{}table\PYZus{}complete} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Table: }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{str\PYZus{}caption} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PYZbs{}
+                         \PY{o}{+} \PY{n}{df}\PY{o}{.}\PY{n}{to\PYZus{}markdown}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+    \PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{n}{str\PYZus{}table\PYZus{}complete}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{40}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{str\PYZus{}table\PYZus{}caption} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test table rendered in Markdown}\PY{l+s+s1}{\PYZsq{}}
+
+\PY{n}{func\PYZus{}render\PYZus{}dataframe2Markdown}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{str\PYZus{}table\PYZus{}caption}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{longtable}[]{@{}lrr@{}}
+\caption{Test table rendered in Markdown}\tabularnewline
+\toprule
+& A & B\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+& A & B\tabularnewline
+\midrule
+\endhead
+a & 1 & 1\tabularnewline
+b & 2 & 2\tabularnewline
+c & 3 & 3\tabularnewline
+\bottomrule
+\end{longtable}
+
+    
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]

@@ -331,7 +331,7 @@ The aim of this section is to import globally used Python packages for data anal
 ```python
 import time
 
-from IPython.display import HTML
+from IPython.display import display, Markdown
 
 import pandas as pd
 import numpy as np
@@ -350,6 +350,17 @@ params = {'legend.fontsize': 12,
          'ytick.labelsize':  12,
          'axes.edgecolor':   '#000000'}
 pylab.rcParams.update(params)
+
+# Function to render dataframes to markdown table with caption
+def func_render_dataframe2Markdown(df, str_caption):
+    str_table_complete = 'Table: ' + str_caption + '\n\n' \
+                         + df.to_markdown(index=True)
+    display(Markdown(str_table_complete))
+
+# Function extends Pandas API to head and tail simultaneously
+def head_tail(df, rows=5):
+    return pd.concat([df.head(rows), df.tail(rows)], axis=0)
+setattr(pd.DataFrame, 'head_tail', head_tail)
 ```
 
 ### Programming IDEs
@@ -571,25 +582,37 @@ Here are pictures of the three different Iris species (*Iris setosa*, *Iris virg
 Print first or last 10 rows of dataframe:
 
 ```python
-irisdata_df.head(10)
+str_caption = 'Get first 10 rows of Iris dataframe'
+func_render_dataframe2Markdown(irisdata_df.head(10), str_caption)
 ```
 
 ```python
-irisdata_df.tail()
+str_caption = 'Get last 10 rows of Iris dataframe'
+func_render_dataframe2Markdown(irisdata_df.tail(10), str_caption)
 ```
 
-While printing a dataframe - only an abbreviated view of the dataframe is shown :(  
+While printing a dataframe (without rendering) - only an abbreviated view of the dataframe is shown :(  
 Default setting in the `Pandas` library makes it to display only 5 lines from head and from tail.
 
 ```python tags=[]
-irisdata_df
+print(irisdata_df)
 ```
 
-To print all rows of a dataframe, the option `display.max_rows` has to set to `None` in `Pandas`:
+To be able to output the **head** and the **tail** of the dataframe **simultaneously**, the Pandas API was extended by the function `head_tail(rows)` directly after the import of the Pandas library.
+
+```python
+str_caption = 'Get head and tail of Iris dataframe simultaneously'
+func_render_dataframe2Markdown(irisdata_df.head_tail(5), str_caption)
+```
+
+To print all rows of a dataframe, the option `display.max_rows` has to set to `None` in `Pandas`.
+
+Alternatively, if the dataframe is rendered with a function from the `IPython.display` package, all rows of the dataframe are displayed by default. **Rendering dataframes as markdown tables** is handled here by the custom function `func_render_dataframe2Markdown()`.
 
 ```python tags=[]
-pd.set_option('display.max_rows', None)
-irisdata_df
+#pd.set_option('display.max_rows', None)
+str_caption = 'Get all rows of Iris dataframe'
+func_render_dataframe2Markdown(irisdata_df, str_caption)
 ```
 
 ### Get data types
@@ -599,7 +622,8 @@ irisdata_df.info()
 ```
 
 ```python
-irisdata_df.describe()
+str_caption = 'Get some basic statistical data of Iris dataframe'
+func_render_dataframe2Markdown(irisdata_df.describe(), str_caption)
 ```
 
 ### Get data ranges and distribution
@@ -806,19 +830,22 @@ In order to check for missing values in a `pandas.DataFrame`, the function `isnu
 <!-- #endregion -->
 
 ```python
-pd.set_option('display.max_rows', 10)
-pd.set_option('display.min_rows', 10)
+#pd.set_option('display.max_rows', 10)
+#pd.set_option('display.min_rows', 10)
 ```
 
 ```python tags=[]
-irisdata_df.isnull()
+str_caption = 'Check for NaN values in Iris dataframe'
+func_render_dataframe2Markdown(irisdata_df.isnull().head(5), str_caption)
 ```
 
 Show only the gaps:
 
 ```python
 irisdata_df_gaps = irisdata_df[irisdata_df.isnull().any(axis=1)]
-irisdata_df_gaps
+
+str_caption = 'Show NaN values in Iris dataframe only'
+func_render_dataframe2Markdown(irisdata_df_gaps, str_caption)
 ```
 
 Fine - the **Iris dataset** seems to be **complete** :)
@@ -841,7 +868,8 @@ li_idx = employees_df.index
 # Insert indices as a new index column at the first position with 'loc=0'
 employees_df.insert(loc=0, column='idx', value=li_idx)
 
-employees_df
+str_caption = 'Get head and tail of employees dataset'
+func_render_dataframe2Markdown(employees_df.head_tail(10), str_caption)
 ```
 
 Now a **deep copy** is created to preserve the **original data frame** for later **before-and-after comparison** - including the new index column to uniquely identify the records.
@@ -859,10 +887,11 @@ highlight = False
 
 if highlight:
     output = employees_df.style.highlight_null('yellow')
+    display(output)
 else:
-    output = employees_df
-
-output
+    str_caption = 'Get head and tail of complete employees dataset \
+                   showing NaN values'
+    func_render_dataframe2Markdown(employees_df.head_tail(5), str_caption)
 ```
 
 Show only the **gaps** (NaN values) from this incomplete dataset again:
@@ -876,10 +905,11 @@ highlight = False
 
 if highlight:
     output = employees_df_gaps.style.highlight_null('yellow')
+    display(output)
 else:
-    output = employees_df_gaps
-
-output
+    str_caption = 'Get head and tail of employees dataset showing rows \
+                   with NaN values only'
+    func_render_dataframe2Markdown(employees_df_gaps.head_tail(5), str_caption)
 ```
 
 <!-- #region tags=[] -->
@@ -908,10 +938,12 @@ if highlight:
                                                     if v == 'No Gender' 
                                                     else "" for v in x], 
                                                    axis = 1)
+    display(output)
 else:
-    output = employees_df_filled_gender
-
-output
+    str_caption = 'Get head and tail of employees dataset showing rows \
+                   with subtituted "Gender" column'
+    func_render_dataframe2Markdown(employees_df_filled_gender.head_tail(5),
+                                   str_caption)
 ```
 
 <!-- #region tags=[] -->
@@ -932,7 +964,9 @@ Show rows with missing salary only:
 
 ```python tags=[]
 employees_df_gaps = employees_df[employees_df['Salary'].isnull()]
-employees_df_gaps
+
+str_caption = 'Show rows with missing salary only in employees dataset'
+func_render_dataframe2Markdown(employees_df_gaps, str_caption)
 ```
 
 As will be shown later in the section [Display Histogram](#Display-Histogram), the **salary structure depends** very much **on gender**. In order **not to distort the dataset** too much, the **median salaries** are determined **gender-specifically**.
@@ -983,14 +1017,18 @@ Fill missing salary records with the **gender-specifically median** of the salar
 # Fill missing salary records by MALE indices
 employees_df.loc[index_list_male_salary_nan, 'Salary'] = salary_median_male
 
-employees_df.loc[index_list_male_salary_nan]
+str_caption = 'Show filled missing salary records in dataset for male employees'
+func_render_dataframe2Markdown(employees_df.loc[index_list_male_salary_nan],
+                               str_caption)
 ```
 
 ```python
 # Fill missing salary records by FEMALE indices
 employees_df.loc[index_list_female_salary_nan, 'Salary'] = salary_median_female
 
-employees_df.loc[index_list_female_salary_nan]
+str_caption = 'Show filled missing salary records in dataset for female employees'
+func_render_dataframe2Markdown(employees_df.loc[index_list_female_salary_nan],
+                               str_caption)
 ```
 
 **Merge** male and female index lists and **extend** the indices by its direct **neighbors** for later **before-and-after comparison**:
@@ -1000,16 +1038,16 @@ employees_df.loc[index_list_female_salary_nan]
 def get_previous_and_next_rows_from_df(df, search_idx):
     # Get list of indices of dataframe rows
     index_list = df.index.to_list()
-    
+
     li_elem_df_prev = 0
     li_elem_df_next = 0
     b_element_found = False
-    
+
     # Cycle over list of indices of given dataframe
     for li_idx_df, li_elem_df in enumerate(index_list):
         # Check index bounds
         if (li_idx_df+1 < len(index_list) and li_idx_df-1 >= 0):
-            
+
             # Get previous and successing list elements
             if li_elem_df == search_idx:
                 b_element_found = True
@@ -1017,7 +1055,6 @@ def get_previous_and_next_rows_from_df(df, search_idx):
                 li_elem_df_next = index_list[li_idx_df+1]
 
     if b_element_found:
-        #print(li_elem_df_prev, search_idx, li_elem_df_next)
         return [li_elem_df_prev, search_idx, li_elem_df_next]
     else:
         print('Element was not found :(')
@@ -1047,7 +1084,7 @@ for li_idx_salary_nan in index_list_female_salary_nan:
     li_neighbors_female = get_previous_and_next_rows_from_df(employees_df_female, 
                                                            li_idx_salary_nan)
     index_list_merged.extend(li_neighbors_female)
-    
+
 index_list_merged
 ```
 
@@ -1069,10 +1106,11 @@ if highlight:
                                             or v == salary_median_female) 
                                         else "" for v in x], 
                                        axis = 1)
+    display(output)
 else:
-    output = employees_df_filled_salary
-
-output
+    str_caption = 'Show rows with replaced salary by extended index list \
+                   for both genders and their neighbors'
+    func_render_dataframe2Markdown(employees_df_filled_salary, str_caption)
 ```
 
 By pure coincidence, the **predecessor** of `Shawn` with the missing salary record has the **median male salary** of the entire dataset. Therefore, this value is also highlighted.
@@ -1091,7 +1129,6 @@ Giving the parameter `how = 'all'` the function drops rows with all data missing
 ```python tags=[]
 # Drop rows with missing values directly in the original dataframe
 employees_df.dropna(axis = 0, how ='any', inplace = True)
-#employees_df
 ```
 
 Finally we compare the sizes of dataframes so that we learn how many rows had at least 1 Null value.
@@ -1129,7 +1166,9 @@ Find duplicate rows across **all columns**:
 # The column 'idx' has to be ignored
 column_subset = employees_df.columns.difference(['idx'])
 duplicateRows = employees_df[employees_df.duplicated(subset=column_subset)]
-duplicateRows
+
+str_caption = 'Find duplicate rows across all columns'
+func_render_dataframe2Markdown(duplicateRows, str_caption)
 ```
 
 Find **all completely identical duplicates** (first and last occurrences). The resulting dataframe is **sorted by column** `'First Name'` to get the **duplicates grouped**:
@@ -1140,7 +1179,9 @@ duplicateRows = employees_df[employees_df.duplicated(keep=False,
                                                      subset=column_subset)]
 
 # Sort rows by column 'First Name' to get the duplicates grouped
-duplicateRows.sort_values('First Name')
+str_caption = 'Find all completely identical duplicates and group \
+               by column "First Name"'
+func_render_dataframe2Markdown(duplicateRows.sort_values('First Name'), str_caption)
 ```
 
 Find **all duplicates** (first and last occurrences) across **specific columns**. The resulting dataframe is **sorted by multiple columns** `'First Name'` and `'Last Login Time'` to get the **duplicates grouped**:
@@ -1150,8 +1191,13 @@ Find **all duplicates** (first and last occurrences) across **specific columns**
 duplicateRows = employees_df[employees_df.duplicated(
                     subset=['First Name', 'Last Login Time'], keep=False)]
 
-# Sort rows by column 'First Name' to get the duplicates grouped
-duplicateRows.sort_values(['First Name', 'Last Login Time'])
+# Sort rows by multiple columns 'First Name' and 'Last Login Time' to get 
+# the duplicates grouped
+str_caption = 'Find all completely identical duplicates and group \
+               by multiple columns "First Name" and "Last Login Time"'
+func_render_dataframe2Markdown(duplicateRows.sort_values(['First Name', 
+                                                          'Last Login Time']), 
+                               str_caption)
 ```
 
 <!-- #region tags=[] -->
@@ -1174,7 +1220,9 @@ Remove duplicate rows across **all columns**:
 # The column 'idx' has to be ignored
 column_subset = employees_df.columns.difference(['idx'])
 employees_df.drop_duplicates(inplace=True, subset=column_subset)
-employees_df
+
+str_caption = 'Show dataset after removing all completely identical duplicates'
+func_render_dataframe2Markdown(employees_df.head_tail(5), str_caption)
 ```
 
 Remove duplicate rows across **specific columns**:
@@ -1183,7 +1231,10 @@ Remove duplicate rows across **specific columns**:
 # Remove duplicate rows across 'First Name' and 'Last Login Time' columns
 employees_df.drop_duplicates(
     subset=['First Name', 'Last Login Time'], keep='last', inplace=True)
-employees_df
+
+str_caption = 'Show dataset after removing duplicate rows across \
+               columns "First Name" and "Last Login Time"'
+func_render_dataframe2Markdown(employees_df.head_tail(5), str_caption)
 ```
 
 <!-- #region tags=[] -->
@@ -1220,8 +1271,8 @@ The following sources were the inspiration for this subsection:
 
 ```python
 # Set the number of rows to output to default values
-pd.set_option('display.min_rows', 10)
-pd.set_option('display.max_rows', 10)
+#pd.set_option('display.min_rows', 10)
+#pd.set_option('display.max_rows', 10)
 ```
 
 First, the **original** and the **modified dataframes** are **merged** into a new dataframe, using the **index column** `idx` to **synchronize** the two dataframes.
@@ -1230,7 +1281,18 @@ First, the **original** and the **modified dataframes** are **merged** into a ne
 employees_df_merged = pd.merge(employees_df_orig, 
                                employees_df, 
                                how='left', on=['idx'])
-employees_df_merged
+
+# Due to the limitation of the page width, the dataframe is displayed in 2 parts
+employees_df_merged_orig = employees_df_merged.filter(regex='_x$',
+                                                      axis=1).head_tail(5)
+employees_df_merged_edit = employees_df_merged.filter(regex='_y$',
+                                                      axis=1).head_tail(5)
+
+str_caption = 'Show part 1 of the merged dataframe with the original data'
+func_render_dataframe2Markdown(employees_df_merged_orig, str_caption)
+
+str_caption = 'Show part 2 of the merged dataframe with the edited data'
+func_render_dataframe2Markdown(employees_df_merged_edit, str_caption)
 ```
 
 The **column suffixes** automatically added during the merge operation are **renamed** to `_o` (original) and `_e` (edited dataframe) using **lambda inline functions**.

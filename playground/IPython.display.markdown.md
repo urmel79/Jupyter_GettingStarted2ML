@@ -18,7 +18,7 @@ import pandas as pd
 ```
 
 ```python id="BPeWqz0ZB_vH"
-from IPython.display import display, Markdown, Latex
+from IPython.display import display, Markdown, Latex, HTML
 ```
 
 ```python tags=[]
@@ -39,11 +39,17 @@ display(Markdown(df.to_markdown()))
 ```
 
 ```python id="yBOTzL-gEgD5"
-df_styled = df.style.set_caption('Test table rendered in markdown')
+df_styled = df.style.set_caption('Test table rendered in LaTeX')
 ```
 
 ```python tags=[]
 display(Latex(df_styled.to_latex()))
+```
+
+```python
+#display(Markdown(df_styled))
+df.to_markdown(index=True)
+#display(HTML(df_styled.to_html()))
 ```
 
 <!-- #region id="_2CMWexxb_6I" -->
@@ -56,26 +62,16 @@ Table: Das ist die Tabellenüberschrift
 | b  |   3 |   3 |
 <!-- #endregion -->
 
-<!-- #region id="InhLK335cf0r" -->
-|    |   A |   B |
-|:---|----:|----:|
-| a  |   1 |   1 |
-| a  |   2 |   2 |
-| b  |   3 |   3 |
-
-[Table caption]
-<!-- #endregion -->
-
 ```python tags=[]
 display(Latex("\\begin{table}\n\\caption{Test table rendered in markdown}\n\\begin{tabular}{lrr}\n{} & {A} & {B} \\\\\na & 1 & 1 \\\\\na & 2 & 2 \\\\\nb & 3 & 3 \\\\\n\\end{tabular}\n\\end{table}\n"))
 ```
 
-```python tags=[]
-display(Markdown("|    |   A |   B | \
-                  |:---|----:|----:| \
-                  | a  |   1 |   1 | \
-                  | a  |   2 |   2 | \
-                  | b  |   3 |   3 |"))
+```python
+display(Markdown('|    |   A |   B |\n' \
+                 '|:---|----:|----:|\n' \
+                 '| a  |   1 |   1 |\n' \
+                 '| b  |   2 |   2 |\n' \
+                 '| c  |   3 |   3 |'))
 ```
 
 <!-- #region id="0bu4axNPeFOq" -->
@@ -88,6 +84,33 @@ Table: File table for all participants
 |        3|soc  |rdata_all_soc_AHP_edible_Cities_2022-03-18_09-53.csv  |social sub-criteria        |
 |        4|eco  |rdata_all_eco_AHP_edible_Cities_2022-03-18_09-53.csv  |economic sub-criteria      |
 <!-- #endregion -->
+
+```python
+str_table_caption = 'Test table rendered in Markdown'
+str_table_content = df.to_markdown(index=True)
+
+str_table_complete = 'Table: ' + str_table_caption + '\n\n' + str_table_content
+
+print(str_table_complete)
+```
+
+```python
+display(Markdown(str_table_complete))
+```
+
+```python
+# Function to render dataframes to markdown table with caption
+def func_render_dataframe2Markdown(df, str_caption):
+    str_table_complete = 'Table: ' + str_caption + '\n\n' \
+                         + df.to_markdown(index=True)
+    display(Markdown(str_table_complete))
+```
+
+```python
+str_table_caption = 'Test table rendered in Markdown'
+
+func_render_dataframe2Markdown(df, str_table_caption)
+```
 
 ```python
 
