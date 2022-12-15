@@ -357,7 +357,7 @@ def func_render_dataframe2Markdown(df, str_caption):
                          + df.to_markdown(index=True)
     display(Markdown(str_table_complete))
 
-# Function extends Pandas API to head and tail simultaneously
+# Function to extend Pandas API to head and tail simultaneously
 def head_tail(df, rows=5):
     return pd.concat([df.head(rows), df.tail(rows)], axis=0)
 setattr(pd.DataFrame, 'head_tail', head_tail)
@@ -579,7 +579,25 @@ Here are pictures of the three different Iris species (*Iris setosa*, *Iris virg
 
 ### Inspect **structure of dataframe**
 
-Print first or last 10 rows of dataframe:
+
+While printing a dataframe (without rendering) - only an abbreviated view of the dataframe is shown :(  
+Default setting in the `Pandas` library makes it to display only 5 lines from head and from tail.
+
+```python tags=[]
+print(irisdata_df)
+```
+
+To print all rows of a dataframe, the option `display.max_rows` has to set to `None` in `Pandas` options.
+
+Alternatively, if the dataframe is rendered with a function from the `IPython.display` package, all rows of the dataframe are displayed by default. **Rendering dataframes as markdown tables** is handled here by the custom function `func_render_dataframe2Markdown()`.
+
+```python tags=[]
+#pd.set_option('display.max_rows', None)
+str_caption = 'Get all rows of Iris dataframe'
+func_render_dataframe2Markdown(irisdata_df, str_caption)
+```
+
+Print first or last 10 rows of rendered dataframe:
 
 ```python
 str_caption = 'Get first 10 rows of Iris dataframe'
@@ -591,31 +609,14 @@ str_caption = 'Get last 10 rows of Iris dataframe'
 func_render_dataframe2Markdown(irisdata_df.tail(10), str_caption)
 ```
 
-While printing a dataframe (without rendering) - only an abbreviated view of the dataframe is shown :(  
-Default setting in the `Pandas` library makes it to display only 5 lines from head and from tail.
-
-```python tags=[]
-print(irisdata_df)
-```
-
-To be able to output the **head** and the **tail** of the dataframe **simultaneously**, the Pandas API was extended by the function `head_tail(rows)` directly after the import of the Pandas library.
+To be able to output the **head** and the **tail** of the dataframe **simultaneously**, the Pandas API was extended by the function `head_tail(rows)` directly after the [import of the Pandas library](#Import-Python-packages-globally).
 
 ```python
 str_caption = 'Get head and tail of Iris dataframe simultaneously'
 func_render_dataframe2Markdown(irisdata_df.head_tail(5), str_caption)
 ```
 
-To print all rows of a dataframe, the option `display.max_rows` has to set to `None` in `Pandas`.
-
-Alternatively, if the dataframe is rendered with a function from the `IPython.display` package, all rows of the dataframe are displayed by default. **Rendering dataframes as markdown tables** is handled here by the custom function `func_render_dataframe2Markdown()`.
-
-```python tags=[]
-#pd.set_option('display.max_rows', None)
-str_caption = 'Get all rows of Iris dataframe'
-func_render_dataframe2Markdown(irisdata_df, str_caption)
-```
-
-### Get data types
+### Get data types and basic statistical data
 
 ```python tags=[]
 irisdata_df.info()
@@ -828,11 +829,6 @@ This section was inspired by [Working with Missing Data in Pandas](https://www.g
 
 In order to check for missing values in a `pandas.DataFrame`, the function `isnull()` is used here. This function returns a dataframe of boolean values which are `True` for **NaN values**.
 <!-- #endregion -->
-
-```python
-#pd.set_option('display.max_rows', 10)
-#pd.set_option('display.min_rows', 10)
-```
 
 ```python tags=[]
 str_caption = 'Check for NaN values in Iris dataframe'
@@ -1269,11 +1265,6 @@ The following sources were the inspiration for this subsection:
 - [Style Pandas Dataframe Like a Master](https://towardsdatascience.com/style-pandas-dataframe-like-a-master-6b02bf6468b0)
 - [A Quick and Easy Guide to Conditional Formatting in Pandas](https://towardsdatascience.com/a-quick-and-easy-guide-to-conditional-formatting-in-pandas-8783035071ee)
 
-```python
-# Set the number of rows to output to default values
-#pd.set_option('display.min_rows', 10)
-#pd.set_option('display.max_rows', 10)
-```
 
 First, the **original** and the **modified dataframes** are **merged** into a new dataframe, using the **index column** `idx` to **synchronize** the two dataframes.
 
@@ -1281,26 +1272,18 @@ First, the **original** and the **modified dataframes** are **merged** into a ne
 employees_df_merged = pd.merge(employees_df_orig, 
                                employees_df, 
                                how='left', on=['idx'])
-
-# Due to the limitation of the page width, the dataframe is displayed in 2 parts
-employees_df_merged_orig = employees_df_merged.filter(regex='_x$',
-                                                      axis=1).head_tail(5)
-employees_df_merged_edit = employees_df_merged.filter(regex='_y$',
-                                                      axis=1).head_tail(5)
-
-str_caption = 'Show part 1 of the merged dataframe with the original data'
-func_render_dataframe2Markdown(employees_df_merged_orig, str_caption)
-
-str_caption = 'Show part 2 of the merged dataframe with the edited data'
-func_render_dataframe2Markdown(employees_df_merged_edit, str_caption)
 ```
 
-The **column suffixes** automatically added during the merge operation are **renamed** to `_o` (original) and `_e` (edited dataframe) using **lambda inline functions**.
+During the merge operation **column suffixes** `_x` (first) and `_y` (second dataframe) are automatically added.
+
+For a better comprehensibility these suffixes are **renamed** to ` orig` (original) and ` edit` (edited dataframe) using **lambda inline functions**.
 
 ```python
-employees_df_merged.rename(columns=lambda x: x.replace('_x', '_o'), inplace=True)
-employees_df_merged.rename(columns=lambda x: x.replace('_y', '_e'), inplace=True)
-employees_df_merged
+employees_df_merged.rename(columns=lambda x: x.replace('_x', ' orig'), inplace=True)
+employees_df_merged.rename(columns=lambda x: x.replace('_y', ' edit'), inplace=True)
+
+# Print columnname as a list
+employees_df_merged.columns.to_list()
 ```
 
 In order to have the **columns** of the original and the edited dataframe directly **next to each other** for a **better comparison**, a **column list** is created with the **new order**.
@@ -1311,8 +1294,9 @@ li_reordered_cols = ['idx']
 # Iterate over columns
 for column in employees_df_orig.columns:
     if column != 'idx':
-        li_reordered_cols.append(column + '_o')
-        li_reordered_cols.append(column + '_e')
+        # Create new order of column names
+        li_reordered_cols.append(column + ' orig')
+        li_reordered_cols.append(column + ' edit')
 
 li_reordered_cols
 ```
@@ -1321,7 +1305,35 @@ In order to have **columns with the same meaning next to each other**, the colum
 
 ```python
 employees_df_merged = employees_df_merged.reindex(columns=li_reordered_cols)
-employees_df_merged
+
+# Due to the limitation of the page width, the dataframe is displayed in 2 parts
+li_cols2display_01 = []
+li_cols2display_02 = []
+
+# Iterate over columns
+for column in employees_df_merged.columns:
+    if column != 'idx':
+        # Select column names
+        if (column.startswith('First Name') or
+            column.startswith('Gender') or
+            column.startswith('Start Date') or
+            column.startswith('Last Login Time')):
+            
+            li_cols2display_01.append(column)
+        elif (column.startswith('Salary') or
+              column.startswith('Bonus %') or
+              column.startswith('Senior Management') or
+              column.startswith('Team')):
+            
+            li_cols2display_02.append(column)
+
+str_caption = 'Show part 1 of the merged and reordered dataframe'
+func_render_dataframe2Markdown(employees_df_merged[li_cols2display_01].head_tail(5), 
+                               str_caption)
+
+str_caption = 'Show part 2 of the merged and reordered dataframe'
+func_render_dataframe2Markdown(employees_df_merged[li_cols2display_02].head_tail(5), 
+                               str_caption)
 ```
 
 To avoid problems with the subsequent comparison, **missing values** in the cells are **replaced** with the string `NaN` using the function `fillna()`.
@@ -1354,7 +1366,7 @@ def dataframe_add_row(df=None, row=[]):
     df.reset_index(drop=True, inplace=True)
 ```
 
-Now the merged dataframe `employees_df_merged` is **iterated** through **row by row** and **column by column** in a **nested loop**. In the inner loop, the **original cell value** (column with suffix `_o`) is **compared** with the adjacent **edited cell value** (column with suffix `_e`).
+Now the merged dataframe `employees_df_merged` is **iterated** through **row by row** and **column by column** in a **nested loop**. In the inner loop, the **original cell value** (column with suffix ` orig`) is **compared** with the adjacent **edited cell value** (column with suffix ` edit`).
 
 If a **difference** is detected, the **original** and the **edited cell value** is written into a **common new cell** - marked with the **difference symbol** `<=>`. Then, only the **rows containing differences** in the cells are **added** to the `employees_df_diff` **dataframe**.
 
@@ -1369,9 +1381,9 @@ for rowIndex, row in employees_df_merged.iterrows():
         if column == 'idx':
             row_li = [value]
             continue
-        if column.endswith('_o'):
+        if column.endswith(' orig'):
             value_orig = value
-        elif column.endswith('_e'):
+        elif column.endswith(' edit'):
             value_edit = value
             if value_orig != value_edit:
                 # Combine original and edited value and mark with diff symbol '<=>'
@@ -1384,6 +1396,10 @@ for rowIndex, row in employees_df_merged.iterrows():
         dataframe_add_row(employees_df_diff, row_li)
         b_diffs_found = False
 
+# Add suffix to the column names to visualize the original and the edited values
+employees_df_diff.rename(columns=lambda x : x+' o<=>e' if x !='idx' else x, 
+                         inplace=True)
+
 #employees_df_diff
 ```
 
@@ -1392,10 +1408,6 @@ Finally, the **differences** can be visualized even more prominently by **highli
 This allows to achieve a **similar functionality** as known from **spreadsheet programs** (e.g. Open Office Calc) as so-called **"conditional formatting"**.
 
 ```python tags=[]
-# Temporarily increase the number of rows to output
-pd.set_option('display.min_rows', 20)
-pd.set_option('display.max_rows', 40)
-
 # Switch to apply highlight style to dataframe
 # HINT: Set to 'False' when compiling to PDF!
 highlight = False
@@ -1407,10 +1419,11 @@ if highlight:
                                            if str(v).find('<=>') != -1
                                            else "" for v in x], 
                                           axis = 1)
+    display(output)
 else:
-    output = employees_df_diff
-
-output
+    str_caption = 'Visualize differences between the original and \
+                   the edited employees dataset'
+    func_render_dataframe2Markdown(employees_df_diff.head_tail(6), str_caption)
 ```
 
 <!-- #region tags=[] -->
@@ -1570,7 +1583,7 @@ To get a rough idea of the **dependencies** and **correlations** in the dataset,
 Later, 2 particularly well correlated variables are selected from the dataset and plotted in a **scatterplot**.
 
 <!-- #region -->
-### Visualise data with **correlation heatmap**
+### Visualize data with **correlation heatmap**
 
 This section was inspired by [How to Create a Seaborn Correlation Heatmap in Python?](https://medium.com/@szabo.bibor/how-to-create-a-seaborn-correlation-heatmap-in-python-834c0686b88e).
 
@@ -1587,11 +1600,11 @@ Because **string values can never be correlated**, the class names (species) hav
 irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":0,
                                                     "Iris-versicolor":1, 
                                                     "Iris-virginica":2}})
-#irisdata_df_enc
 ```
 
 ```python
-irisdata_df_enc.corr()
+str_caption = 'Simple correlation matrix'
+func_render_dataframe2Markdown(irisdata_df_enc.corr(), str_caption)
 ```
 
 #### Correlation heatmap
@@ -1645,7 +1658,7 @@ As a result from the **heatmaps** we can see, that the shape of the **petals** a
 Somewhat lower correlates **sepal length** with **petal length** (0.87).
 
 <!-- #region tags=[] -->
-### Visualise data with **scatter plot**
+### Visualize data with **scatter plot**
 
 In the following, [Seaborn](https://seaborn.pydata.org/) is applied which is a library for making statistical graphics in Python. It is built on top of matplotlib and closely integrated with `Pandas` data structures. 
 
@@ -1914,8 +1927,12 @@ Find **all completely identical duplicates** (first and last occurrences). The r
 # Parameter 'keep=False' displays all duplicate rows
 irisdata_duplicateRows = irisdata_df[irisdata_df.duplicated(keep=False)]
 
-# Sort rows by column 'First Name' to get the duplicates grouped
+# Sort rows by column 'species' to get the duplicates grouped
 irisdata_duplicateRows.sort_values('species')
+
+str_caption = 'Listing of all completely identical duplicates found in \
+               the Iris data set'
+func_render_dataframe2Markdown(irisdata_duplicateRows, str_caption)
 ```
 
 Interestingly, there are indeed **duplicates** in the original **Iris dataset**.
@@ -1931,7 +1948,7 @@ This **imbalance** could cause **tendencies** and have a (negative) effect on th
 ```python tags=[]
 # Remove duplicate rows across all columns
 irisdata_df.drop_duplicates(inplace=True)
-irisdata_df
+#irisdata_df
 ```
 
 ```python
@@ -2027,7 +2044,8 @@ irisdata_df_norm.iloc[:, 0:4] = irisdata_np_norm
 ```
 
 ```python
-irisdata_df_norm.describe()
+str_caption = 'Get some basic statistical data of the normalized Iris dataframe'
+func_render_dataframe2Markdown(irisdata_df_norm.describe(), str_caption)
 ```
 
 To display the **original data** with the **scaled data** side-by-side as **boxplots** with all **features in one scale**, the function `func_boxplots_comp_scaling()` is implemented.
@@ -2211,7 +2229,8 @@ irisdata_df_std.iloc[:, 0:4] = irisdata_np_std
 ```
 
 ```python
-irisdata_df_std.describe()
+str_caption = 'Get some basic statistical data of the standardized Iris dataframe'
+func_render_dataframe2Markdown(irisdata_df_std.describe(), str_caption)
 ```
 
 As in the previous section, the **original** and the **standardized data** are plotted as side-by-side **boxplots** with all **features at one scale**.
@@ -2352,7 +2371,7 @@ print("Accuracy score: {:.2f} %".format(acc_score.mean()*100))
 <!-- #region tags=[] -->
 ## Classification Report
 
-The **classification report** shows a representation of the most important **classification metrics** on a **class-by-class basis**. This gives a **better understanding** of the behaviour of the classifier than **global accuracy**, which can mask functional weaknesses in one class of a multi-class problem (see [Classification Report] (https://www.scikit-yb.org/en/latest/api/classifier/classification_report.html)).
+The **classification report** shows a representation of the most important **classification metrics** on a **class-by-class basis**. This gives a **better understanding** of the behaviour of the classifier than **global accuracy**, which can mask functional weaknesses in one class of a multi-class problem (see [Classification Report](https://www.scikit-yb.org/en/latest/api/classifier/classification_report.html)).
 
 The metrics are defined in the form of **true/false positives** and **true/false negatives** as follows:
 
@@ -2513,7 +2532,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y,
 #X_train
 ```
 
-**Normalize** the feature values for **prediction and evaluation**. Normalisation is deliberately used here to avoid visualisation problems due to negative values by standardization.
+**Normalize** the feature values for **prediction and evaluation**. Normalization is deliberately used here to avoid visualization problems due to negative values by standardization.
 
 ```python tags=[]
 norm_scaler_pred = MinMaxScaler()
@@ -2987,7 +3006,8 @@ irisdata_df_noised = irisdata_df_orig.copy(deep=True)
 # Replace values of dataframe with noisy values from array
 irisdata_df_noised.iloc[:, 0:4] = irisdata_np_noised_shifted
 
-irisdata_df_noised.describe()
+str_caption = 'Get some basic statistical data of the noised Iris dataframe'
+func_render_dataframe2Markdown(irisdata_df_noised.describe(), str_caption)
 ```
 
 To compare the original Iris dataset with its noisy copy, both dataframes are visualized in pairs plots.
