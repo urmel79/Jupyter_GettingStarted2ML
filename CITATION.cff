@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Kasper"
+  given-names: "Björn"
+  orcid: "https://orcid.org/0000-0002-5954-9650"
+title: "Getting started with Machine Learning (ML) and Support Vector Classifiers (SVC) - A systematic step-by-step approach"
+version: v1.3rel\_zenodo
+doi: 10.5281/zenodo.7455232
+date-released: 2022-12-18
+url: "https://github.com/urmel79/Jupyter_GettingStarted2ML"
