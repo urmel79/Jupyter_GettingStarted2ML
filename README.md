@@ -10,11 +10,20 @@ auto-generate the TOC with the command line tool 'gh-md-toc' (https://github.com
 $ cat README.md | ./tools/github-markdown-toc/gh-md-toc - > toc.md
 -->
 
+- [How to cite the project](#how-to-cite-the-project)
 - [Aim of the project](#aim-of-the-project)
 - [Short introduction](#short-introduction)
 - [Method of the Getting Started Tutorial](#method-of-the-getting-started-tutorial)
 - [Overview of the main steps](#overview-of-the-main-steps)
 - [License](#license)
+
+## How to cite the project
+
+To make this **software project citable**, the Github repository has been linked to my [Zenodo](https://zenodo.org) account starting with **release version 1.3**. This and all subsequent updates to the project are now synchronized with Zenodo.
+
+The **major advantage** of this linkage is that **release 1.3** (and all subsequent releases) can be **scientifically cited** via their following **unique [DOI](https://en.wikipedia.org/wiki/Digital_object_identifier)**: 
+
+[![DOI](https://zenodo.org/badge/509174585.svg)](https://zenodo.org/badge/latestdoi/509174585)
 
 ## Aim of the project
 
