@@ -215,7 +215,7 @@ Following trend chart shows how the [popularity of selected programming language
 
 It is a high-level, **general-purpose** programming language where its design philosophy emphasizes **code readability**. The **variable types** in Python are **dynamic** and **memory** is **automatically managed** to create and delete data objects (see [garbage collection](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science))).
 
-**Pros:**
+##### Pros:
 
 - Python offers simple, concise, and **readable code** for allowing to write robust and reliable programs.
 - It lets you focus on solving the ML problem instead of getting lost in the language’s technical nuances.
@@ -223,9 +223,9 @@ It is a high-level, **general-purpose** programming language where its design ph
 - The language has been around for decades and has developed a large and helpful community.
 - Besides extensive online documentation, there are thousands of question-answers and community guides for various functionalities of the language (this is also very well reflected in the trend graph on the popularity of programming languages).
 
-**Cons:**
+##### Cons:
 
-- (unknown drawbacks so far ...)
+As far as I know, there are no technical drawbacks when using Python -- of course, this evaluation depends on the particular application.
 <!-- #endregion -->
 
 <!-- #region jp-MarkdownHeadingCollapsed=true tags=[] -->
@@ -233,7 +233,7 @@ It is a high-level, **general-purpose** programming language where its design ph
 
 It is a programming language for **statistical computing** and **graphics** supported by the **R Core Team** and the **R Foundation for Statistical Computing**. Created by statisticians Ross Ihaka and Robert Gentleman, R is used among data miners, bioinformaticians and statisticians for data analysis and developing statistical software.
 
-**Pros:**
+##### Pros:
 
 - After Python, R is the recommended ML programming language.
 - R is a flexible and cross-platform compatible language.
@@ -241,7 +241,7 @@ It is a programming language for **statistical computing** and **graphics** supp
 - R is well suited for data visualization and **statistics**, often making it the language of choice for applications with a large amount of statistical data.
 - It is considered a powerful choice for **machine learning**, offering a variety of machine learning techniques (e.g., data visualization, data sampling, data analysis and supervised and unsupervised machine learning models) via post-installable libraries.
 
-**Cons:**
+##### Cons:
 
 - R is often reported to be laggier and slower as compared to Python when dealing with large-scale datasets.
 - It has a **significantly lower community** support when answering questions or giving guidance **compared to Python** (see trend chart on popularity of programming languages).
@@ -252,7 +252,7 @@ It is a programming language for **statistical computing** and **graphics** supp
 
 It is a high-level, **class-based**, **object-oriented** programming language that is designed to have **as few implementation dependencies** as possible. It is a **general-purpose** programming language intended that compiled Java code can run on all platforms that support Java without the need to recompile.
 
-**Pros:**
+##### Pros:
 
 - Using Java for machine learning is especially popular among developers with a Java background, as it skips the need to learn another programming language such as Python or R.
 - Like Python and R, Java also has a variety of third-party machine learning libraries, e.g. **JavaML** is a built-in library with a collection of algorithms implemented in Java for ML.
@@ -260,7 +260,7 @@ It is a high-level, **class-based**, **object-oriented** programming language th
 - [Java Virtual Machine (JVM)](https://en.wikipedia.org/wiki/Java_virtual_machine) enables the development of ML applications for multiple platforms.
 - Java is very well suited for speed-critical ML projects.
 
-**Cons:**
+##### Cons:
 
 - Java has a much lower community support in answering questions or giving guidance compared to Python - but a better one than R (see trend chart on popularity of programming languages).
 
@@ -269,12 +269,12 @@ It is a high-level, **class-based**, **object-oriented** programming language th
 
 It is a high-level programming language that’s **designed for numerical computations** (<cite data-cite="Octave_for_ML_2021">Adhikari, 2021</cite>).
 
-**Pros:**
+##### Pros:
 
 - With Octave, **linear and non-linear numerical problems** can be solved quickly.
 - Octave is syntactically very similar to [MATLAB](https://en.wikipedia.org/wiki/MATLAB) and mostly **compatible with MATLAB**. If no MATLAB-specific functions are used, the program code also runs in Octave. In addition, Octave even has some language functions and a syntax diversity that MATLAB lacks.
 
-**Cons:**
+##### Cons:
 
 - However, Octave is not a good programming language for machine learning in a production environment.
 - It doesn’t have the same functionality as other languages used for ML, due to **missing libraries** and frameworks to speed up ML tasks.
@@ -375,12 +375,14 @@ Following trend chart shows how the [popularity of selected IDEs](https://insigh
 
 #### [Visual Studio Code (VSC)](https://en.wikipedia.org/wiki/Visual_Studio_Code)
 
-It is an IDE made by **Microsoft** for **Windows**, **Linux** and **macOS**. Features include support for **debugging**, **syntax highlighting** for many different programming languages, intelligent **code completion** and embedded **version control system** Git. Users can change the theme, keyboard shortcuts, preferences, and install **extensions** from a huge repository that add additional functionality. Despite of its platform independence, VSC is **not open source** - in fact it is released under a traditional [Microsoft product license](https://code.visualstudio.com/License/).
-
 ![Screenshot of IDE *Visual Studio Code* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_VSC.png)
+
+It is an IDE made by **Microsoft** for **Windows**, **Linux** and **macOS**. Features include support for **debugging**, **syntax highlighting** for many different programming languages, intelligent **code completion** and embedded **version control system** Git. Users can change the theme, keyboard shortcuts, preferences, and install **extensions** from a huge repository that add additional functionality. Despite of its platform independence, VSC is **not open source** - in fact it is released under a traditional [Microsoft product license](https://code.visualstudio.com/License/).
 
 
 #### [JupyterLab](https://en.wikipedia.org/wiki/Project_Jupyter#Jupyter_Notebook)
+
+![Screenshot of IDE *JupyterLab* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_JupyterLab.png)
 
 It is the successor product for the web-based interactive environment **Jupyter Notebook**. Within this IDE, Jupyter Notebook documents can be created, edited, and executed interactively. The notebooks consist of **input and output cells**, each of which can contain program code, formatted text in **Markdown** format and live plots generated from the code.
 
@@ -388,34 +390,32 @@ Jupyter is a new **open source** alternative to the proprietary numerical softwa
 
 Originally Jupyter was intended as an IDE for the programming languages **Julia** and **Python**. Besides that it is also possible to install other interpreter kernels, such as the **[IRkernel](https://irkernel.github.io/installation/)** for R. This can be interesting if the IDE **RStudio Desktop** is not available on the target platform used. For example, it is very difficult to install RStudio on the ARM-based embedded computer **Raspberry Pi** due to many technical dependencies. In contrast, using the R kernel in JupyterLab on the Raspberry Pi works very well and performant.
 
-![Screenshot of IDE *JupyterLab* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_JupyterLab.png)
-
 
 #### [PyCharm](https://de.wikipedia.org/wiki/PyCharm)
+
+![Screenshot of IDE *PyCharm* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_PyCharm.png)
 
 It is an IDE of the company **JetBrains** for the programming language **Python**. In addition to a **fee-based professional version**, there is also a free, **open source community version**. With the latter, pure Python projects can be created and edited. The professional version offers support for other programming languages such as HTML, JavaScript and SQL.
 
 Furthermore, tools for version control (e.g. **Git**) as well as various possibilities for **automatic creation** and **completion of code** are included.
 
-![Screenshot of IDE *PyCharm* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_PyCharm.png)
-
 
 #### [RStudio](https://en.wikipedia.org/wiki/RStudio)
+
+![Screenshot of IDE *RStudio* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_RStudio.png)
 
 It is an IDE and graphical user interface for the statistical programming language **R** offered by **RStudio, Inc.** and is made available in two formats. **RStudio Desktop** is a regular desktop application while **RStudio Server** runs on a remote server and allows accessing RStudio using a web browser. Both software products are available in **open source** and **commercial** versions, each with different functionalities.
 
 The program editor in RStudio allows **autocompletion**, **automatic indentation**, **syntax highlighting**, **code folding** as well as **integrated help** and information about functions and objects in the working environment. There is the ability to view and edit the contents of variables and datasets. To facilitate collaboration, scripts, data and other files can be combined into projects (.Rproj) and versioned with **Git**.
 
-![Screenshot of IDE *RStudio* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_RStudio.png)
-
 
 #### [GNU Octave (GUI)](https://en.wikipedia.org/wiki/GNU_Octave#User_interfaces)
+
+![Screenshot of IDE *GNU Octave* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_GNU_Octave.png)
 
 It is the official graphical user interface for the **GNU Octave** programming language and is available for Windows, macOS, Linux and BSD under **Open Source** licensing.
 
 If the command line interpreter (CLI) starts instead of the graphical user interface (GUI) when `octave` is called, this can be forced via the `octave --gui` option.
-
-![Screenshot of IDE *GNU Octave* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_GNU_Octave.png)
 
 
 ### Cloud-hosted IDEs
@@ -433,29 +433,29 @@ However, with all the advantages, **data protection aspects** should definitely 
 
 #### [Google Colaboratory](https://colab.research.google.com/)
 
+![Screenshot of IDE *Google Colaboratory* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_google_Colab.png)
+
 In recent years, **Google Colaboratory** (**Colab** for short) has become a popular choice for cloud-based Jupyter notebooks. Thanks to its free-to-use GPUs and cloud storage linked to Google Drive, it is used by many researchers in the ML and data science community (<cite data-cite="Colab_Alternatives_2021">Rapp, 2021</cite>).
 
 Due to the similarity of the web interface to Jupyter, Python developers can write and run arbitrary Python program codes. Colab is a cloud-hosted version of Jupyter Notebook that provides free access to compute infrastructure such as memory, storage, processing capacity, GPUs and TPUs (<cite data-cite="Colab_about_2022">Das, 2022</cite>).
 
 Furthermore, commonly used libraries such as **PyTorch**, **TensorFlow** and **Keras** can be used to develop deep learning applications (<cite data-cite="Colab_5_Alternatives_2021">Misal, 2021</cite>).
 
-![Screenshot of IDE *Google Colaboratory* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_google_Colab.png)
-
 
 #### [Google Kaggle](https://www.kaggle.com)
+
+![Screenshot of IDE *Google Kaggle* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_google_Kaggle.png)
 
 This is another Google product with similar functionality to Colab. Like Colab, **Kaggle** also offers free browser-based Jupyter notebooks and the use of GPUs. Kaggle also has many **Python packages pre-installed**, which lowers the barrier to entry for many users (<cite data-cite="Colab_Alternatives_2021">Rapp, 2021</cite>).
 
 Kaggle and Colab have a number of similarities - among other things, most of the keyboard shortcuts are the same as in Jupyter notebooks. Furthermore, many datasets can be imported. Kaggle has a large user community to learn and improve data science skills (<cite data-cite="Colab_5_Alternatives_2021">Misal, 2021</cite>).
 
-![Screenshot of IDE *Google Kaggle* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_google_Kaggle.png)
-
 
 #### [Paperspace Gradient](https://www.paperspace.com/gradient/notebooks)
 
-Unlike Colab, **Paperspace Gradient** can implement entire **ML workflows** from data pre-processing to training models to deploying the trained models. Furthermore, Gradient has features like a CLI tool, more control over the GPU  and simpler data management services. Due to the variety of functions, one must first become familiar with the operation of the significantly more complex user interface (<cite data-cite="Free_GPUs_for_ML_2020">Siow, 2020</cite>).
-
 ![Screenshot of IDE *Paperspace Gradient* (source: Kasper, license: CC BY-SA 4.0)](images/Screenshot_Paperspace_Gradient.png)
+
+Unlike Colab, **Paperspace Gradient** can implement entire **ML workflows** from data pre-processing to training models to deploying the trained models. Furthermore, Gradient has features like a CLI tool, more control over the GPU  and simpler data management services. Due to the variety of functions, one must first become familiar with the operation of the significantly more complex user interface (<cite data-cite="Free_GPUs_for_ML_2020">Siow, 2020</cite>).
 
 
 ### Operating systems
@@ -639,7 +639,7 @@ Each **feature** of the **Iris dataset** is displayed in its own histogram.
 To illustrate the principle, the histogram subplots are first presented in a **not very elegant code** with many repetitions:
 <!-- #endregion -->
 
-```python caption="Histograms used to explore the absolute frequency distribution of the 4 features in the Iris dataset" tags=[] label="fig:histogram_iris_simple" widefigure=true
+```python caption="Histograms used to explore the absolute frequency distribution of the 4 features in the Iris dataset" label="fig:histogram_iris_simple" tags=[] widefigure=true
 # Number of bins for the histogram
 n_bins = 10
 fig, axs = plt.subplots(2, 2, figsize=(12, 10))
@@ -743,7 +743,7 @@ def func_plot_histograms_with_PDF(df, features, titles):
 
 Call the new function to plot the **histograms** with overlaid **probability density functions**:
 
-```python caption="Histograms used to explore the relative frequency distribution of the 4 features in the Iris dataset (with improved code and overlaid probability density functions (PDF))" tags=[] label="fig:histogram_iris_with_PDF" widefigure=true
+```python caption="Histograms used to explore the relative frequency distribution of the 4 features in the Iris dataset (with improved code and overlaid probability density functions (PDF))" label="fig:histogram_iris_with_PDF" tags=[] widefigure=true
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
@@ -756,7 +756,7 @@ This type of visualization can be used to explore the **data ranges** in the dat
 
 In the following code example, the 4 variables of the Iris dataset are displayed side-by-side in individual boxplots. As in the previous histogram example, a loop is used to iterate through the subplots, which saves a lot of repetition in the code.
 
-```python caption="Boxplots used to explore the data ranges in the Iris dataset" tags=[] label="fig:boxplots_iris" widefigure=true
+```python caption="Boxplots used to explore the data ranges in the Iris dataset" label="fig:boxplots_iris" tags=[] widefigure=true
 fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
 # Set margins between subplots
 plt.subplots_adjust(wspace=0.3, hspace=0.35)
@@ -789,7 +789,7 @@ plt.show()
 
 Another type of visualization is the **violin plot**, which **combines** the advantages of both the **histogram** and the **box plot**. As in the two previous examples, a loop is used to iterate through the subplots, which saves a lot of repetition in the code.
 
-```python tags=[] caption="Violin plots combine histograms and box plots" label="fig:violinplots_iris" widefigure=true
+```python caption="Violin plots combine histograms and box plots" label="fig:violinplots_iris" tags=[] widefigure=true
 fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
 # Set margins between subplots
 plt.subplots_adjust(wspace=0.3, hspace=0.35)
@@ -1476,7 +1476,7 @@ employees_df = pd.read_csv(csv_filepath)
 employees_df['Team'].value_counts(ascending=False, dropna=False, normalize=False)
 ```
 
-<!-- #region caption="Histograms used to explore the frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))" tags=[] label="fig:histogram_salary_with_PDF" widefigure=true -->
+<!-- #region caption="Histograms used to explore the frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))" label="fig:histogram_salary_with_PDF" tags=[] widefigure=true -->
 ### Display Histogram
 
 This section was inspired by: [Pandas Histogram – DataFrame.hist()](https://dataindependent.com/pandas/pandas-histogram-dataframe-hist/).
@@ -1563,7 +1563,7 @@ def func_plot_histograms_from_list_with_PDF(df_list, column, titles):
     plt.show()
 ```
 
-```python caption="Histograms used to explore the relative frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))" tags=[] label="fig:histogram_salary_with_PDF" widefigure=true
+```python caption="Histograms used to explore the relative frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))" label="fig:histogram_salary_with_PDF" tags=[] widefigure=true
 genders = ['Male', 'Female', 'No Gender']
 
 # Create list for storing the dataframes
@@ -2080,7 +2080,7 @@ def func_boxplots_comp_scaling(dataframes, titles):
 
 Call the new function `func_boxplots_comp_scaling()` to create the **boxplots** comparing **original data** with the **scaled data** side-by-side:
 
-```python caption="Boxplots comparing the original data (left) with the normalized data (right) with all features in one scale" tags=[] label="fig:boxplots_comp_orig_norm" widefigure=true
+```python caption="Boxplots comparing the original data (left) with the normalized data (right) with all features in one scale" label="fig:boxplots_comp_orig_norm" tags=[] widefigure=true
 titles     = ['Original', 'Normalized']
 dataframes = [irisdata_df, irisdata_df_norm]
 
@@ -2176,7 +2176,7 @@ def func_histograms_comp_scaling(df_orig, df_scaled, features,
 
 Call the new function `func_histograms_comp_scaling()` to create the **histograms** with overlaid **probability density functions** comparing **original data** with the **normalized data** side-by-side:
 
-```python caption="Histograms with overlaid probability density functions comparing original data (left) with the normalized data (right)" tags=[] label="fig:histograms_comp_orig_norm" widefigure=true
+```python caption="Histograms with overlaid probability density functions comparing original data (left) with the normalized data (right)" label="fig:histograms_comp_orig_norm" tags=[] widefigure=true
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
@@ -2235,7 +2235,7 @@ func_render_dataframe2Markdown(irisdata_df_std.describe(), str_caption)
 
 As in the previous section, the **original** and the **standardized data** are plotted as side-by-side **boxplots** with all **features at one scale**.
 
-```python caption="Boxplots comparing the original data (left) with the standardized data (right) with all features in one scale" tags=[] label="fig:boxplots_comp_orig_std" widefigure=true
+```python caption="Boxplots comparing the original data (left) with the standardized data (right) with all features in one scale" label="fig:boxplots_comp_orig_std" tags=[] widefigure=true
 titles     = ['Original', 'Standardized']
 dataframes = [irisdata_df, irisdata_df_std]
 
@@ -2244,7 +2244,7 @@ func_boxplots_comp_scaling(dataframes, titles)
 
 As in the previous section, the **original** and the **standardized data** are plotted as side-by-side **histograms** with overlaid **probability density functions**.
 
-```python caption="Histograms with overlaid probability density functions comparing original data (left) with the standardized data (right)" tags=[] label="fig:histograms_comp_orig_std" widefigure=true
+```python caption="Histograms with overlaid probability density functions comparing original data (left) with the standardized data (right)" label="fig:histograms_comp_orig_std" tags=[] widefigure=true
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
@@ -2899,7 +2899,7 @@ print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
 print(classification_report(y_test, y_pred))
 ```
 
-```python caption="Confusion matrix for cross-validation of the baseline" tags=[] label="fig:cm_baseline" widefigure=false
+```python caption="Confusion matrix for cross-validation of the baseline" label="fig:cm_baseline" tags=[] widefigure=false
 sns.set_style("white")
 
 # print colored confusion matrix
@@ -3024,12 +3024,12 @@ def plotPairs(df, title):
     plt.show()
 ```
 
-```python caption="Pairs plot of the original Iris dataset" tags=[] label="fig:pairs_plot_orig_Iris" widefigure=true
+```python caption="Pairs plot of the original Iris dataset" label="fig:pairs_plot_orig_Iris" tags=[] widefigure=true
 title = 'Pairs plot of the ORIGINAL Iris dataset'
 plotPairs(irisdata_df_orig, title)
 ```
 
-```python caption="Pairs plot of the noised Iris dataset" tags=[] label="fig:pairs_plot_noised_Iris" widefigure=true
+```python caption="Pairs plot of the noised Iris dataset" label="fig:pairs_plot_noised_Iris" tags=[] widefigure=true
 title = 'Pairs plot of the NOISED Iris dataset'
 plotPairs(irisdata_df_noised, title)
 ```
@@ -3109,7 +3109,7 @@ from sklearn.metrics import classification_report
 print(classification_report(y_test, y_pred))
 ```
 
-```python caption="Confusion matrix for cross-validation after the grid search has been performed" tags=[] label="fig:cm_grid_search" widefigure=false
+```python caption="Confusion matrix for cross-validation after the grid search has been performed" label="fig:cm_grid_search" tags=[] widefigure=false
 sns.set_style("white")
 
 # print colored confusion matrix
@@ -3199,7 +3199,7 @@ from sklearn.metrics import classification_report
 print(classification_report(y_test, y_pred))
 ```
 
-```python caption="Confusion matrix for cross-validation after the randomized search has been performed" tags=[] label="fig:cm_random_search" widefigure=false
+```python caption="Confusion matrix for cross-validation after the randomized search has been performed" label="fig:cm_random_search" tags=[] widefigure=false
 sns.set_style("white")
 
 # print colored confusion matrix
@@ -3302,3 +3302,7 @@ Abschließend möchte ich meiner Lebensgefährtin danken, dass sie erste Textent
 
 Dresden, 11.11.2022
 <!-- #endregion -->
+
+```python
+
+```

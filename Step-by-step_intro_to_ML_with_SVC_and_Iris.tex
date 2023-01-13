@@ -33,8 +33,11 @@
 
     \usepackage{iftex}
     \ifPDFTeX
-        \usepackage[T1]{fontenc}
         \usepackage[utf8]{inputenc}
+        \usepackage[T1]{fontenc}
+        % Without the 'lmodern' package, 'pdflatex' substitutes the Type 1 fonts 
+        % against the bitmap based Type 3 fonts and you get a very pixelated typeface.
+        \usepackage{lmodern}
     \else
         \usepackage{fontspec}
         \usepackage{unicode-math}
@@ -8951,6 +8954,13 @@ lieber ``Die Sendung mit der Maus'' statt seltsamer Grafiken mit mir auf
 dem Rechner angeschaut.
 
 Dresden, 11.11.2022
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
 
 
     % Add a bibliography block to the postdoc
