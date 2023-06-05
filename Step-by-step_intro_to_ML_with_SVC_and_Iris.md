@@ -6,21 +6,23 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.14.0
+      jupytext_version: 1.14.5
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
     name: python3
 ---
 
-<!-- #region toc-hr-collapsed=true tags=[] -->
 # Introduction
-<!-- #endregion -->
 
-<!-- #region tags=[] -->
+
 ## English introduction
 
+### AI and ML in the digitalized working world
+
 In the **digitized work environment**, there is an increasing demand for **Work equipment** to be able to adapt independently and in a task-related manner to changing work situations. Depending on the strength of the degree of flexibility, this **situational adaptivity** can often only be realized by applying mathematical models and algorithms from the field of **Machine Learning (ML)** as a subset of **Artificial Intelligence (AI)**.
+
+### Automation and autonomy
 
 Examples of such AI applications in work environments can range from comparatively simple **voice assistance systems** (similar, for example, to Siri or Alexa from the private sphere) to partially or **highly automated systems**. The transition from **automation to autonomy** is currently the subject of much controversy among experts and can be viewed in terms of the transition of responsibility from humans to technical systems (<cite data-cite="Adler_2021">Adler, 2021</cite>; <cite data-cite="Adler_2019">Adler, 2019</cite>).
 
@@ -32,7 +34,11 @@ In contrast to highly automated systems, autonomous systems are only able to act
 
 For example, **driverless transport systems (AGVs)** can navigate **autonomously** through larger industrial facilities using self-learned self-updated maps shared with other AGVs, and avoid location-changing obstacles by independently finding and optimizing suitable routes. However, at a higher level of abstraction, new logistics tasks are given to them by human operators, which is why AGVs tend to be **highly automated systems** from a human perspective.
 
+### Operating and safety functions
+
 In addition to the many very interesting advantages, e.g. in terms of economic efficiency and workload reduction, such highly automated systems and, depending on the point of view, autonomous subsystems are characterized by a very high level of technical complexity. This concerns both their **operating functions** (e.g. autonomous navigation through complex industrial environments with shared use of the roadways by other human-controlled vehicles) and their **safety functions** (e.g. evaluation of interlinked imaging and non-imaging safety sensors for monitoring the driving space to avoid collisions).
+
+### Requirements for safety functions
 
 Very high requirements are placed on such autonomous systems and the AI algorithms used for this purpose with regard to **functional safety**. However, the requirements for safety evaluability in terms of **transparency** (complete understanding of the system) and **explainability** of decisions made by AI are currently very difficult or impossible to achieve, especially when using AI algorithms from the field of **deep learning** (<cite data-cite="Liggesmeyer_2019">Liggesmeyer und Kuhn, 2019</cite>).
 
@@ -42,17 +48,27 @@ Furthermore, in terms of their **recognition rates** and thus the **reliability 
 
 Compared to traditional, fully programmed software, the relatively low robustness of data-driven algorithms from the field of deep learning is another challenge. This can cause **small changes** in the function-determining **training data** to cause **large and unpredictable changes** in system behavior under some circumstances. However, the **predictability** and **transparency** of the system behavior are elementary for a **safety verification** (<cite data-cite="BAuA_Rechtsgutachten_KI_2021">BAuA-Rechtsgutachten KI-Systeme, 2021</cite>).
 
+### Occupational safety and health: placing on the market law and occupational safety and health law
+
 An appropriate assessment or even **testing** with regard to the required functional safety according to uniform and ideally standardized criteria has numerous consequences for the future orientation and organization of technical **occupational safety and health (OSH)** in Germany and in Europe. In addition to the currently still very difficult safety-related assessability, an important point is that the previous clear separation between **placing on the market law** (see e.g. Machinery Directive) and **occupational safety and health law** (see European Framework Directive for Occupational Safety and Health and German Ordinance on Occupational Safety and Health) can no longer be continued in this way. The reason for this is that **safety-related properties** will also change, especially of systems **continuously learning** at runtime, due to new or **adapted behaviors** learned during operation (<cite data-cite="BAuA_Rechtsgutachten_KI_2021">BAuA-Rechtsgutachten KI-Systeme, 2021</cite>). From today's point of view, systems based on **learned-out** and at runtime **invariable models** are not affected by this.
 
+### Evaluation of systems capable of learning
+
 For these reasons, especially the actors of **technical occupational safety and health** who will deal with the **evaluation** of such **systems capable of learning** or system components with AI algorithms in the future should familiarize themselves in depth with the software structures used for this purpose as early as possible. This is the only way to ensure that the rapid development of systems capable of learning can be accompanied by OSH and their testing authorities in a constructive, critical and technically appropriate manner. If this is omitted, it must be assumed on the basis of the experiences of recent years that the OSH system will be ruthlessly circumvented or undermined by the economic interests of globally operating software giants. This would have the consequence that serious or fatal **occupational accidents** are more likely to occur **due to inadequately designed AI-based work systems**.
+
+### Entry into the world of ML
 
 However, the safety-related evaluation of such learning-capable systems requires a more in-depth technical entry into the world of **machine learning** as a subfield of **artificial intelligence**. For this purpose, it is necessary to deal with the basic operation of typical ML algorithms, corresponding software tools, libraries and programming systems.
 
 However, someone who opens the door for the first time to this equally very exciting as well as arbitrarily complex and, at first glance, confusing world will very quickly be overwhelmed. In addition to reading general technical literature, it is advisable to consult introductory and systematic tutorials.
 
+### Goals of the Getting Started Tutorial
+
 This Getting Started tutorial has exactly this goal, demonstrating systematically and step-by-step the typical ML workflow using the very powerful **Support Vector Classifier (SVC)** as an example.
 
 Besides the **deep neural networks**, which are very present in the media, there is a very rich diversity of other very powerful ML algorithms - suitable for the particular use case. For a more generally comprehensible introduction, the SVC algorithm was deliberately chosen for the target audience of the workshop. Its operating principles are easy to convey to ML novices as well as in the time frame given for the workshop - quite in contrast to the entry into the world of deep neural networks.
+
+### ML workflow as a step-by-step guide
 
 The following main sections will demonstrate the typical ML workflow step-by-step. In **step 0**, specific guidance is provided for selecting hardware and software suitable for machine learning. To allow an ML novice to first familiarize themselves with the ML algorithms, tools, libraries, and programming systems, the ready-made and very beginner-friendly **Iris dataset** is involved in **step 1**. Only after a comprehensive acquaintance with the application of ML tools would it make sense to examine one's own environment for ML-suitable applications and to obtain suitable datasets from them. However, this is beyond the scope of this introductory tutorial.
 
@@ -66,13 +82,18 @@ Since the classification in step 5 was initially performed with standard paramet
 
 In the final **step 8**, two approaches to systematic hyper-parameter search are presented: **Grid Search** and **Randomized Search**. While the former exhaustively considers all parameter combinations for given values, the latter selects a number of candidates from a parameter space with a particular random distribution.
 
-In November 2022, the **Artificial Intelligence Conference** took place in Dresden, which was hosted by the German Social Accident Insurance (DGUV). There, the current tutorial was presented to interested ML newcomers in the technical occupational safety and health of the social accident insurance institutions as part of a separate **Getting Started Workshop**.
-<!-- #endregion -->
+### Presentation at the "Artificial Intelligence" conference in 2022
 
-<!-- #region tags=[] jp-MarkdownHeadingCollapsed=true tags=[] -->
+In November 2022, the **Artificial Intelligence Conference** took place in Dresden, which was hosted by the German Social Accident Insurance (DGUV). There, the current tutorial was presented to interested ML newcomers in the technical occupational safety and health of the social accident insurance institutions as part of a separate **Getting Started Workshop**.
+
+<!-- #region jp-MarkdownHeadingCollapsed=true -->
 ## German introduction
 
+### KI und ML in der digitalisierten Arbeitswelt
+
 Von den **Arbeitsmitteln** in der **digitalisierten Arbeitswelt** wird immer stärker gefordert, dass sie sich selbstständig und aufgabenbezogen an sich ändernde Arbeitssituationen anpassen können. Diese **situative Adaptivität** kann je nach Stärke des Flexibilisierungsgrades oft nur durch die Anwendung mathematischer Modelle und Algorithmen aus dem Bereich des **Maschinellen Lernens (ML)** als Teilmenge der **Künstlichen Intelligenz (KI)** realisiert werden.
+
+### Automatisierung und Autonomie
 
 Beispiele für solche KI-Anwendungen in der Arbeitswelt reichen von vergleichsweise einfachen **Sprachassistenzsystemen** (ähnlich z. B. Siri oder Alexa aus dem privaten Umfeld) bis hin zu teil- oder **hochautomatisierten Systemen**. Der Übergang von **Automatisierung zu Autonomie** wird derzeit in der Fachwelt sehr kontrovers diskutiert und kann unter dem Aspekt des Übergangs der Verantwortung vom Menschen zum technischen System betrachtet werden (<cite data-cite="Adler_2021">Adler, 2021</cite>; <cite data-cite="Adler_2019">Adler, 2019</cite>).
 
@@ -84,7 +105,11 @@ Im Gegensatz zu hochautomatisierten Systemen sind autonome Systeme nur durch Ein
 
 Beispielsweise können **fahrerlose Transportsysteme (FTS)** anhand selbst erlernter, selbstständig aktualisierter und mit anderen FTS geteilter Karten **autonom** durch größere Industrieanlagen navigieren und ortsveränderlichen Hindernissen ausweichen, indem sie selbstständig geeignete Routen finden und optimieren. Jedoch werden ihnen in einer höheren Abstraktionsebene neue Logistikaufträge durch menschliche Bediener vorgegeben, weswegen es sich bei FTS aus menschlicher Perspektive eher um **hochautomatisierte Systeme** handelt.
 
+### Betriebs- und Sicherheitsfunktionen
+
 Neben den vielen sehr interessanten Vorteilen z. B. bzgl. Wirtschaftlichkeit und Arbeitserleichterung kennzeichnet solche hochautomatisierten und je nach Betrachtung autonomen Teilsysteme eine sehr hohe technische Komplexität. Diese betrifft sowohl ihre **Betriebsfunktionen** (z. B. autonome Navigation durch komplexe industrielle Umgebungen bei gemeinsamer Nutzung der Fahrwege durch andere menschlich gesteuerte Fahrzeuge) als auch ihre **Sicherheitsfunktionen** (z. B. Auswertung miteinander verknüpfter bildgebender und nicht-bildgebender Sicherheitssensorik zur Überwachung des Fahrraums zur Kollisionsvermeidung).
+
+### Anforderungen an Sicherheitsfunktionen
 
 An solche autonomen Systeme und die hierfür eingesetzten KI-Algorithmen werden sehr hohe Anforderungen hinsichtlich der **funktionalen Sicherheit** gestellt. Jedoch sind die Anforderungen für eine sicherheitstechnische Bewertbarkeit bezüglich der **Transparenz** (vollständiges Systemverständnis) und **Erklärbarkeit** der durch KI getroffenen Entscheidungen insbesondere bei Einsatz von KI-Algorithmen aus dem Bereich des **Deep Learnings** derzeit nur sehr schwer oder gar nicht erreichbar (<cite data-cite="Liggesmeyer_2019">Liggesmeyer und Kuhn, 2019</cite>). 
 
@@ -94,17 +119,27 @@ Weiterhin erfüllen heutige KI-Algorithmen hinsichtlich ihrer erreichbaren **Erk
 
 Im Vergleich zu traditioneller, vollständig ausprogrammierter Software ist bei datengetriebenen Algorithmen aus dem Bereich des Deep Learnings die verhältnismäßig geringe Robustheit eine weitere Herausforderung. Diese kann dazu führen, dass **kleine Änderungen** in den funktionsbestimmenden **Trainingsdaten** unter Umständen **große und unvorhersehbare Veränderungen** des Systemverhaltens bewirken. Jedoch sind die **Vorhersehbarkeit** und **Nachvollziehbarkeit** des Systemverhaltens für einen **Sicherheitsnachweis** elementar (<cite data-cite="BAuA_Rechtsgutachten_KI_2021">BAuA-Rechtsgutachten KI-Systeme, 2021</cite>).
 
+### Arbeitsschutz: Inverkehrbringensrecht und betrieblicher Arbeitsschutz
+
 Eine hinsichtlich der geforderten funktionalen Sicherheit angemessene Bewertung oder gar **Prüfung** nach einheitlichen und idealerweise genormten Maßstäben hat viele Konsequenzen für die zukünftige Ausrichtung und Gestaltung des **technischen Arbeitsschutzes** in Deutschland und in Europa. Neben der derzeit noch sehr schwierigen sicherheitstechnischen Bewertbarkeit von KI-Algorithmen ist ein wichtiger Punkt, dass die bisherige klare Trennung zwischen **Inverkehrbringensrecht** (siehe z. B. Maschinenrichtlinie) und **betrieblichem Arbeitsschutzrecht** (siehe Arbeitsschutz-Rahmenrichtlinie und Betriebssicherheitsverordnung) so nicht mehr aufrechterhalten werden kann. Grund hierfür ist, dass sich auch die **sicherheitsrelevanten Eigenschaften** insbesondere von zur Laufzeit **weiterlernenden Systemen** durch während des Betriebs erlernte, neue oder **angepasste Verhaltensweisen** verändern werden (<cite data-cite="BAuA_Rechtsgutachten_KI_2021">BAuA-Rechtsgutachten KI-Systeme, 2021</cite>). Systeme auf Basis **ausgelernter** und zur Laufzeit **unveränderlicher Modelle** sind aus heutiger Sicht hiervon nicht betroffen.
 
+### Prüfung lernfähiger Systeme
+
 Aus diesen Gründen sollten sich insbesondere die Akteure des **technischen Arbeitsschutzes**, die sich zukünftig mit der **Prüfung** solcher **lernfähigen Systeme** oder Systemkomponenten mit KI-Algorithmen befassen werden, möglichst frühzeitig mit den hierfür eingesetzten Software-Strukturen vertieft auseinandersetzen. Nur dadurch lässt sich erreichen, dass die stürmische Entwicklung lernfähiger Systeme durch den Arbeitsschutz und dessen Prüfinstitute konstruktiv, kritisch und fachlich angemessen begleitet werden kann. Wird dies versäumt, muss aufgrund der Erfahrungen der vergangenen Jahre davon ausgegangen werden, dass das Arbeitsschutzsystem durch die wirtschaftlichen Interessen global agierender Softwaregiganten skrupellos umgangen oder ausgehebelt werden wird. Dies hätte die Folge, dass schwere oder tödliche **Arbeitsunfälle wegen unzulänglich gestalteter KI-basierter Arbeitssysteme** wahrscheinlicher werden.
+
+### Einstieg in die Welt des ML
 
 Allerdings erfordert die sicherheitstechnische Bewertung solcher lernfähigen Systeme einen tiefer gehenden fachlichen Einstieg in die Welt des **maschinellen Lernens** als Teilgebiet der **künstlichen Intelligenz**. Hierzu muss sich mit den grundlegenden Funktionsweisen typischer ML-Algorithmen, entsprechenden Software-Werkzeugen, Bibliotheken und Programmiersystemen auseinander gesetzt werden.
 
 Wer jedoch zum ersten Mal die Tür zu dieser ebenso spannenden wie beliebig komplexen und auf den ersten Blick verwirrenden Welt öffnet, wird sehr schnell überfordert sein. Hier empfiehlt es sich neben dem Lesen allgemeiner Fachliteratur, einführende und systematische Anleitungen zu Rate zu ziehen.
 
+### Ziele des Getting-Started-Tutorials
+
 Genau dieses Ziel verfolgt das vorliegende Getting-Started-Tutorial, indem systematisch und Schritt-für-Schritt der typische ML-Arbeitsablauf am Beispiel des sehr leistungsfähigen **Support Vector Classifier (SVC)** demonstriert wird.
 
 Neben den medial sehr präsenten **tiefen neuronalen Netzen** gibt es eine sehr reichhaltige Auswahl anderer sehr leistungsfähiger ML-Algorithmen - passend für den jeweiligen Anwendungsfall. Für einen allgemein verständlicheren Einstieg wurde für die Zielgruppe des Workshops der SVC-Algorithmus bewusst gewählt. Dessen Arbeitsweise ist sowohl für ML-Neulinge als auch in dem für den Workshop vorgegebenen Zeitrahmen leicht vermittelbar - ganz im Gegensatz zum Einstieg in die Welt der tiefen neuronalen Netze.
+
+### ML-Arbeitsablauf als Schritt-für-Schritt-Anleitung
 
 Die folgenden Hauptabschnitte demonstrieren den typischen ML-Arbeitsablauf Schritt-für-Schritt. Im **Schritt 0** werden konkrete Hinweise für die Auswahl der für das maschinelle Lernen geeigneten Hardware und Software gegeben. Damit sich ein ML-Neuling zunächst mit den ML-Algorithmen, Werkzeugen, Bibliotheken und Programmiersystemen vertraut machen kann, wird im **Schritt 1** der fertige und sehr einsteigerfreundliche **Iris-Datensatz** hinzugezogen. Erst nach einer umfassenden Einarbeitung in die Anwendung der ML-Werkzeuge wäre es sinnvoll, die eigene Umgebung auf ML-taugliche Anwendungen hin zu untersuchen und daraus geeignete Datensätze zu gewinnen. Dies geht jedoch über den Rahmen dieses einführenden Tutorials hinaus.
 
@@ -117,6 +152,8 @@ Im **Schritt 4** wird der Datensatz für die eigentliche Klassifikation per SVC 
 Da die Klassifikation im Schritt 5 zunächst mit Standard-Parametern (den sogenannten **Hyper-Parametern**) durchgeführt wurde, wird ihre Bedeutung im **Schritt 7** erklärt und danach ihr Einfluss auf das Klassifikationsergebnis durch manuelle Variation der einzelnen Hyper-Parameter demonstriert.
 
 Im abschließenden **Schritt 8** werden zwei Ansätze zur systematischen Hyper-Parameter-Suche vorgestellt: **Grid Search** und **Randomized Search**. Während bei ersterer für gegebene Werte erschöpfend alle Parameterkombinationen betrachtet werden, wird beim zweiten Ansatz eine Anzahl von Kandidaten aus einem Parameterraum mit einer bestimmten zufälligen Verteilung ausgewählt.
+
+### Vorstellung auf der Fachtagung "Künstliche Intelligenz" in 2022
 
 Im November 2022 fand die **Fachtagung "Künstliche Intelligenz"** in Dresden statt, welche durch die Deutsche Gesetzliche Unfallversicherung (DGUV) ausgerichtet wurde. Dort wurde im Rahmen eines eigenen **Getting-Started-Workshops** das vorliegende Tutorial interessierten ML-Neulingen im technischen Arbeitsschutz der gesetzlichen Unfallversicherungsträger präsentiert.
 <!-- #endregion -->
@@ -135,7 +172,7 @@ The following **steps of the systematic ML process** are covered in the next mai
 - [STEP 7: Vary parameters of the ML model manually](#STEP-7:-Vary-parameters-of-the-ML-model-manually)
 - [STEP 8: Tune the ML model systematically](#STEP-8:-Tune-the-ML-model-systematically)
 
-<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true tags=[] -->
+<!-- #region toc-hr-collapsed=true -->
 # STEP 0: Select hardware and software suitable for ML
 
 In this step, specific guidance is provided for selecting hardware and software suitable for machine learning.
@@ -188,10 +225,10 @@ Here are some links for further reading:
 - [Does TensorFlow Support OpenCL?](https://indiantechwarrior.com/does-tensorflow-support-opencl/) (<cite data-cite="TF_OpenCL_2022">IndianTechWarrior, 2022</cite>)
 - [TensorFlow for OpenCL using SYCL](https://www.codeplay.com/portal/blogs/2016/06/01/tensorflow-for-opencl-using-sycl.html) (<cite data-cite="TF_OpenCL_SYCL_2016">Iwanski, 2016</cite>)
 
-<!-- #region tags=[] -->
+
 ## Software
 
-<!-- #endregion -->
+
 
 ### Programming languages
 
@@ -210,7 +247,7 @@ Following trend chart shows how the [popularity of selected programming language
 
 ![Trend chart shows popularity of programming languages for ML (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=python%2Cr%2Coctave%2Cjava%2Cc%2B%2B), license: CC BY-SA 4.0)](images/2022-09-07_StackOverflowTrends_ProgrammingLanguages_wide.png)
 
-<!-- #region tags=[] -->
+
 #### [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
 
 It is a high-level, **general-purpose** programming language where its design philosophy emphasizes **code readability**. The **variable types** in Python are **dynamic** and **memory** is **automatically managed** to create and delete data objects (see [garbage collection](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science))).
@@ -226,9 +263,8 @@ It is a high-level, **general-purpose** programming language where its design ph
 ##### Cons:
 
 As far as I know, there are no technical drawbacks when using Python -- of course, this evaluation depends on the particular application.
-<!-- #endregion -->
 
-<!-- #region jp-MarkdownHeadingCollapsed=true tags=[] -->
+<!-- #region jp-MarkdownHeadingCollapsed=true -->
 #### [R](https://en.wikipedia.org/wiki/R_(programming_language))
 
 It is a programming language for **statistical computing** and **graphics** supported by the **R Core Team** and the **R Foundation for Statistical Computing**. Created by statisticians Ross Ihaka and Robert Gentleman, R is used among data miners, bioinformaticians and statisticians for data analysis and developing statistical software.
@@ -322,11 +358,10 @@ Due to the superior advantages of **Python** (see previous section), a selection
 
 - [PyTorch](https://pytorch.org/docs/stable/index.html) is an optimized open source tensor library for deep learning using GPUs and CPUs. It can be used to create **Tensor analyses** accelerated by **GPUs** as well as **Neural Networks** based on an Autograd system. Proven Python libraries such as **NumPy**, **SciPy** and **Cython** can be used. In Deep Learning, the program library is characterized by a lot of **flexibility** and a **high speed**. However, PyTorch will also not be used in this beginner tutorial.
 
-<!-- #region tags=[] -->
+
 ### Import Python packages globally
 
 The aim of this section is to import globally used Python packages for data analysis and ML, such as `Pandas`, `NumPY`, `matplotlib` and `Scikit-Learn`.
-<!-- #endregion -->
 
 ```python
 import time
@@ -490,7 +525,7 @@ However, there are also significant disadvantages here:
 - The **access to 3D graphics cards** is usually **not possible** due to virtualization.
 - This solution has only **low application performance**, as regular business computers are often only very sparsely equipped in terms of RAM and processor performance for cost reasons.
 
-<!-- #region tags=[] -->
+
 #### Separate lab computer
 
 All the problems mentioned in the previous section can only be solved satisfactorily by acquiring a **separate laboratory computer** with **its own internet access** (e.g. via an **LTE-capable wifi router**).
@@ -498,9 +533,8 @@ All the problems mentioned in the previous section can only be solved satisfacto
 This laboratory computer can be configured according to your own requirements, depending on the available budget in terms of hardware and software. 
 
 However, it should be noted here that the **IT departments** of many employers do **not offer any support** for this solution. You are usually responsible for software installation, maintenance and troubleshooting yourself!
-<!-- #endregion -->
 
-<!-- #region tags=[] -->
+
 # STEP 1: Acquire the ML dataset
 
 To allow an ML novice to first familiarize themselves with the ML algorithms, tools, libraries, and programming systems, the ready-made and very beginner-friendly **Iris dataset** is involved in this step. Only after a comprehensive acquaintance with the application of ML tools would it make sense to examine one's own environment for ML-suitable applications and to obtain suitable datasets from them. However, this is beyond the scope of this introductory tutorial.
@@ -508,14 +542,12 @@ To allow an ML novice to first familiarize themselves with the ML algorithms, to
 Several details, for example, on the history of the creation of the [Iris flower dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set) can be found e.g. on Wikipedia (see <cite data-cite="Wiki_IrisDS">Wikipedia: Iris dataset</cite>).
 
 It can be downloaded on [Kaggle: Iris Flower Dataset](https://www.kaggle.com/datasets/arshid/iris-flower-dataset) (<cite data-cite="Kaggle_IrisDS">Srinagar, 2018</cite>). Furthermore, the dataset is available via Python in the machine learning package [Scikit-learn](https://scikit-learn.org), so that users can access it without having to find a special source for it.
-<!-- #endregion -->
 
 ```python
 # Import Iris dataset for exploration
 irisdata_df = pd.read_csv('./datasets/IRIS_flower_dataset_kaggle.csv')
 ```
 
-<!-- #region tags=[] toc-hr-collapsed=true toc-hr-collapsed=true toc-hr-collapsed=true tags=[] -->
 # STEP 2: Explore the ML dataset
 
 One of the most important steps in the entire ML process is this step, in which the dataset included in Step 1 is examined using typical data analysis tools. In addition to exploring the **data structure** and **internal correlations** in the dataset, errors such as **gaps**, **duplications**, or obvious **misentries** must also be found and corrected where possible. This is enormously important so that the classification can later provide plausible results.
@@ -543,7 +575,7 @@ The objectives of the exploration of the dataset are as follows:
     - Are all possible classes included in the dataset and equally distributed? **&rarr;** Does the dataset need to be enriched with additional data for balance?
 
 5. Find a first rough **idea of which correlations** could be in the dataset
-<!-- #endregion -->
+
 
 ## Clarify the **origins history**
 
@@ -564,15 +596,13 @@ The dataset consists of 50 samples from each of three species of Iris: [*Iris se
 
 Four features were measured from each sample: the length and the width of the **[sepals](https://en.wikipedia.org/wiki/Sepal)** and **[petals](https://en.wikipedia.org/wiki/Petal)**, in centimetres (<cite data-cite="Wiki_Sepal">Wikipedia: Sepal</cite> and <cite data-cite="Wiki_Petal">Wikipedia: Petal</cite>). Here you can see a principle illustration of a flower in which, among other things, the sepals and petals are shown:
 
-<!-- #region caption="" label="fig:flower_sepal_petal" tags=[] widefigure=true -->
+<!-- #region caption="" label="fig:flower_sepal_petal" widefigure=true -->
 ![Principle illustration of a flower with sepal and petal (source: [Mature_flower_diagram.svg](https://en.wikipedia.org/wiki/File:Mature_flower_diagram.svg), license: public domain)](images/Mature_flower_diagram_1024px.png)
 <!-- #endregion -->
 
-<!-- #region tags=[] -->
 Here are pictures of the three different Iris species (*Iris setosa*, *Iris virginica* and *Iris versicolor*). Given the dimensions of the flower, it will be possible to predict the class of the flower.
-<!-- #endregion -->
 
-<!-- #region caption="" label="fig:Iris_setosa_virginica_versicolor" tags=[] widefigure=true -->
+<!-- #region caption="" label="fig:Iris_setosa_virginica_versicolor" widefigure=true -->
 ![Left: *Iris setosa* (source: [Irissetosa1.jpg](https://commons.wikimedia.org/wiki/File:Irissetosa1.jpg), license: public domain); middle: *Iris versicolor* (source: [Iris_versicolor_3.jpg](https://en.wikipedia.org/wiki/File:Iris_versicolor_3.jpg), license: CC SA 3.0); right: *Iris virginica* (source: [Iris_virginica.jpg](https://en.wikipedia.org/wiki/File:Iris_virginica.jpg), license: CC SA 2.0)
 ](images/Iris_images.png)
 <!-- #endregion -->
@@ -583,7 +613,7 @@ Here are pictures of the three different Iris species (*Iris setosa*, *Iris virg
 While printing a dataframe (without rendering) - only an abbreviated view of the dataframe is shown :(  
 Default setting in the `Pandas` library makes it to display only 5 lines from head and from tail.
 
-```python tags=[]
+```python
 print(irisdata_df)
 ```
 
@@ -591,7 +621,7 @@ To print all rows of a dataframe, the option `display.max_rows` has to set to `N
 
 Alternatively, if the dataframe is rendered with a function from the `IPython.display` package, all rows of the dataframe are displayed by default. **Rendering dataframes as markdown tables** is handled here by the custom function `func_render_dataframe2Markdown()`.
 
-```python tags=[]
+```python
 #pd.set_option('display.max_rows', None)
 str_caption = 'Get all rows of Iris dataframe'
 func_render_dataframe2Markdown(irisdata_df, str_caption)
@@ -618,7 +648,7 @@ func_render_dataframe2Markdown(irisdata_df.head_tail(5), str_caption)
 
 ### Get data types and basic statistical data
 
-```python tags=[]
+```python
 irisdata_df.info()
 ```
 
@@ -629,7 +659,7 @@ func_render_dataframe2Markdown(irisdata_df.describe(), str_caption)
 
 ### Get data ranges and distribution
 
-<!-- #region tags=[] -->
+
 #### Histograms
 
 This type of visualization is useful to explore the **frequency distribution** for each feature in univariate plots. This requires the separation of the data into classes (so-called **bins**). These bins are represented in the histogram as rectangles of equal or variable width. The height of each rectangle then represents the (relative or absolute) **frequency density**, that is, the (relative or absolute) **frequency divided by the width** of the corresponding **class**.
@@ -637,9 +667,8 @@ This type of visualization is useful to explore the **frequency distribution** f
 Each **feature** of the **Iris dataset** is displayed in its own histogram.
 
 To illustrate the principle, the histogram subplots are first presented in a **not very elegant code** with many repetitions:
-<!-- #endregion -->
 
-```python caption="Histograms used to explore the absolute frequency distribution of the 4 features in the Iris dataset" label="fig:histogram_iris_simple" tags=[] widefigure=true
+```python caption="Histograms used to explore the absolute frequency distribution of the 4 features in the Iris dataset" label="fig:histogram_iris_simple" widefigure=true
 # Number of bins for the histogram
 n_bins = 10
 fig, axs = plt.subplots(2, 2, figsize=(12, 10))
@@ -690,6 +719,8 @@ axs[1,1].set_axisbelow(True)
 axs[1,1].set_xlabel('value range [cm]')
 axs[1,1].set_ylabel('frequency density (absolute)')
 
+fig.savefig('./images/Iris_histograms.png', dpi=150, pad_inches=5)
+
 plt.show()
 ```
 
@@ -697,7 +728,7 @@ To improve the code, the function `subplots.flatten()` converts the subplot arra
 
 In addition, **probability density functions (PDF)** were overlaid on the histograms, whose hyper-parameters **mean** and **standard deviation** were previously identified using the features of the dataset. This makes it possible to estimate whether the **data is normally distributed**. In order to be able to reuse the code later, it was implemented as the **function** `func_plot_histograms_with_PDF()`.
 
-```python tags=[]
+```python
 from scipy.stats import norm
 
 def func_plot_histograms_with_PDF(df, features, titles):
@@ -737,13 +768,15 @@ def func_plot_histograms_with_PDF(df, features, titles):
         # Label x and y-axis
         subplot.set_xlabel('value range [cm]')
         subplot.set_ylabel('frequency density (relative)')
+        
+        fig.savefig('./images/Iris_histograms_pdf.png', dpi=150, pad_inches=5)
 
     plt.show()
 ```
 
 Call the new function to plot the **histograms** with overlaid **probability density functions**:
 
-```python caption="Histograms used to explore the relative frequency distribution of the 4 features in the Iris dataset (with improved code and overlaid probability density functions (PDF))" label="fig:histogram_iris_with_PDF" tags=[] widefigure=true
+```python caption="Histograms used to explore the relative frequency distribution of the 4 features in the Iris dataset (with improved code and overlaid probability density functions (PDF))" label="fig:histogram_iris_with_PDF" widefigure=true
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
@@ -756,7 +789,7 @@ This type of visualization can be used to explore the **data ranges** in the dat
 
 In the following code example, the 4 variables of the Iris dataset are displayed side-by-side in individual boxplots. As in the previous histogram example, a loop is used to iterate through the subplots, which saves a lot of repetition in the code.
 
-```python caption="Boxplots used to explore the data ranges in the Iris dataset" label="fig:boxplots_iris" tags=[] widefigure=true
+```python caption="Boxplots used to explore the data ranges in the Iris dataset" label="fig:boxplots_iris" widefigure=true
 fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
 # Set margins between subplots
 plt.subplots_adjust(wspace=0.3, hspace=0.35)
@@ -782,6 +815,8 @@ for feature, subplot in zip(features, subplots.flatten()):
     # Label y-axis
     subplot.set_ylabel('value range [cm]')
     
+    fig.savefig('./images/Iris_boxplots.png', dpi=150, pad_inches=5)
+    
 plt.show()
 ```
 
@@ -789,7 +824,7 @@ plt.show()
 
 Another type of visualization is the **violin plot**, which **combines** the advantages of both the **histogram** and the **box plot**. As in the two previous examples, a loop is used to iterate through the subplots, which saves a lot of repetition in the code.
 
-```python caption="Violin plots combine histograms and box plots" label="fig:violinplots_iris" tags=[] widefigure=true
+```python caption="Violin plots combine histograms and box plots" label="fig:violinplots_iris" widefigure=true
 fig, subplots = plt.subplots(2, 2, figsize=(12, 10))
 # Set margins between subplots
 plt.subplots_adjust(wspace=0.3, hspace=0.35)
@@ -815,10 +850,11 @@ for feature, subplot in zip(features, subplots.flatten()):
     # Label y-axis
     subplot.set_ylabel('value range [cm]')
     
+    fig.savefig('./images/Iris_violinplots.png', dpi=150, pad_inches=5)
+    
 plt.show()
 ```
 
-<!-- #region tags=[] -->
 ## Identify **anomalies** in the datasets
 
 ### Find and repair gaps in dataset
@@ -828,9 +864,8 @@ This section was inspired by [Working with Missing Data in Pandas](https://www.g
 #### Check for missing values using `isnull()`
 
 In order to check for missing values in a `pandas.DataFrame`, the function `isnull()` is used here. This function returns a dataframe of boolean values which are `True` for **NaN values**.
-<!-- #endregion -->
 
-```python tags=[]
+```python
 str_caption = 'Check for NaN values in Iris dataframe'
 func_render_dataframe2Markdown(irisdata_df.isnull().head(5), str_caption)
 ```
@@ -876,7 +911,7 @@ employees_df_orig = employees_df.copy(deep=True)
 
 To check for missing values (NaN) in employees dataset, the function `isnull()` is used again:
 
-```python tags=[]
+```python
 # Highlight cells with NaN values
 # HINT: Set to 'False' when compiling to PDF!
 highlight = False
@@ -892,7 +927,7 @@ else:
 
 Show only the **gaps** (NaN values) from this incomplete dataset again:
 
-```python tags=[]
+```python
 employees_df_gaps = employees_df[employees_df.isnull().any(axis=1)]
 
 # Highlight cells with NaN values
@@ -908,15 +943,13 @@ else:
     func_render_dataframe2Markdown(employees_df_gaps.head_tail(5), str_caption)
 ```
 
-<!-- #region tags=[] -->
 #### Fill in missing *string* values with `fillna()`
 
 Now all null values (NaN) in the column "Gender" of the data type String are filled with *"No gender "*.
 
 **Warning:** The following example replaces the strings directly in the original dataframe with `inplace = True` - no deep copy is made!
-<!-- #endregion -->
 
-```python tags=[]
+```python
 # Fill all null values in column 'Gender' using fillna()
 employees_df['Gender'].fillna('No Gender', inplace = True)
 
@@ -942,7 +975,6 @@ else:
                                    str_caption)
 ```
 
-<!-- #region tags=[] -->
 #### Fill in missing *numerical* values with median values
 
 Missing integer or float values can be filled with the **mean** or **median values** of the corresponding feature column.
@@ -954,11 +986,11 @@ Further information on the subject of **imputation** can be found here, among ot
 - [Pandas: How to Fill NaN Values with Median (3 Examples)](https://www.statology.org/pandas-fillna-with-median)
 - [pandas DataFrame: replace nan values with average of columns](https://stackoverflow.com/questions/18689823/pandas-dataframe-replace-nan-values-with-average-of-columns)
 - [scikit-learn: Imputation of missing values](https://scikit-learn.org/stable/modules/impute.html)
-<!-- #endregion -->
+
 
 Show rows with missing salary only:
 
-```python tags=[]
+```python
 employees_df_gaps = employees_df[employees_df['Salary'].isnull()]
 
 str_caption = 'Show rows with missing salary only in employees dataset'
@@ -1111,7 +1143,7 @@ else:
 
 By pure coincidence, the **predecessor** of `Shawn` with the missing salary record has the **median male salary** of the entire dataset. Therefore, this value is also highlighted.
 
-<!-- #region tags=[] -->
+
 #### Drop missing values using `dropna()`
 
 In order to drop null values from a dataframe, we use `dropna()` function. This function drops rows or columns of datasets with NaN values in different ways.
@@ -1120,9 +1152,8 @@ Default is to drop rows with at least 1 null value (NaN).
 Giving the parameter `how = 'all'` the function drops rows with all data missing or contain null values (NaN).
 
 **Warning:** The following example drops rows with missing values (NaN) directly in the original dataframe with `inplace = True` - no deep copy is made!
-<!-- #endregion -->
 
-```python tags=[]
+```python
 # Drop rows with missing values directly in the original dataframe
 employees_df.dropna(axis = 0, how ='any', inplace = True)
 ```
@@ -1136,14 +1167,13 @@ print("Number of rows with at least 1 NaN value: ",
       (len(employees_df_orig)-len(employees_df)))
 ```
 
-<!-- #region tags=[] -->
 ### Find and remove duplicates in dataset
 
 This section was inspired by:
 
 - [How to Find Duplicates in Pandas DataFrame (With Examples)](https://www.statology.org/pandas-find-duplicates/)
 - [How to Drop Duplicate Rows in a Pandas DataFrame](https://www.statology.org/pandas-drop-duplicates/)
-<!-- #endregion -->
+
 
 #### Check for duplicate values using `duplicated()`
 
@@ -1182,7 +1212,7 @@ func_render_dataframe2Markdown(duplicateRows.sort_values('First Name'), str_capt
 
 Find **all duplicates** (first and last occurrences) across **specific columns**. The resulting dataframe is **sorted by multiple columns** `'First Name'` and `'Last Login Time'` to get the **duplicates grouped**:
 
-```python tags=[]
+```python
 # Parameter 'keep=False' displays all duplicate rows
 duplicateRows = employees_df[employees_df.duplicated(
                     subset=['First Name', 'Last Login Time'], keep=False)]
@@ -1196,7 +1226,6 @@ func_render_dataframe2Markdown(duplicateRows.sort_values(['First Name',
                                str_caption)
 ```
 
-<!-- #region tags=[] -->
 #### Drop duplicate values using `drop_duplicates()`
 
 In order to drop duplicate values from a dataframe, we use `drop_duplicates()` function.
@@ -1209,9 +1238,8 @@ This function can be used in two ways:
 **Warning:** The following example replaces the strings directly in the original dataframe with `inplace = True` - no deep copy is made!
 
 Remove duplicate rows across **all columns**:
-<!-- #endregion -->
 
-```python tags=[]
+```python
 # Remove duplicate rows across all columns
 # The column 'idx' has to be ignored
 column_subset = employees_df.columns.difference(['idx'])
@@ -1223,7 +1251,7 @@ func_render_dataframe2Markdown(employees_df.head_tail(5), str_caption)
 
 Remove duplicate rows across **specific columns**:
 
-```python tags=[]
+```python
 # Remove duplicate rows across 'First Name' and 'Last Login Time' columns
 employees_df.drop_duplicates(
     subset=['First Name', 'Last Login Time'], keep='last', inplace=True)
@@ -1233,7 +1261,6 @@ str_caption = 'Show dataset after removing duplicate rows across \
 func_render_dataframe2Markdown(employees_df.head_tail(5), str_caption)
 ```
 
-<!-- #region tags=[] -->
 ### Compare the edited dataset with the original dataset side-by-side
 
 In the previous sections, the dataframe holding the **employees dataset** was **heavily edited** by **adding missing values** (where it was appropriate) or **deleting gapped rows** completely. Therefore, the **modifications made** to the dataset should be finally **checked**.
@@ -1241,9 +1268,8 @@ In the previous sections, the dataframe holding the **employees dataset** was **
 The `Pandas` package provides the `compare()` function, which can be used to **compare dataframes** and **display differences** (see here: [pandas.DataFrame.compare](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.compare.html)). Unfortunately, the documentation points out that this function can **only** be used to **compare dataframes** with the **same shape** (number of columns and rows) and **identical row and column labels**.
 
 Among other things, a lot of **gapped rows have been removed** due to the heavy editing. Therefore, the original and the edited dataframe are **anything but identical** in terms of their **number of rows**. As expected, the following short test ends with a **long error message**.
-<!-- #endregion -->
 
-```python tags=[]
+```python
 # Pandas.compare() does not work with dropped rows in one dataframe!
 #employees_df_orig.compare(employees_df, keep_shape=False, keep_equal=True)
 ```
@@ -1268,7 +1294,7 @@ The following sources were the inspiration for this subsection:
 
 First, the **original** and the **modified dataframes** are **merged** into a new dataframe, using the **index column** `idx` to **synchronize** the two dataframes.
 
-```python tags=[]
+```python
 employees_df_merged = pd.merge(employees_df_orig, 
                                employees_df, 
                                how='left', on=['idx'])
@@ -1370,7 +1396,7 @@ Now the merged dataframe `employees_df_merged` is **iterated** through **row by 
 
 If a **difference** is detected, the **original** and the **edited cell value** is written into a **common new cell** - marked with the **difference symbol** `<=>`. Then, only the **rows containing differences** in the cells are **added** to the `employees_df_diff` **dataframe**.
 
-```python tags=[]
+```python
 b_diffs_found = False
 
 # Iterate over rows
@@ -1407,7 +1433,7 @@ Finally, the **differences** can be visualized even more prominently by **highli
 
 This allows to achieve a **similar functionality** as known from **spreadsheet programs** (e.g. Open Office Calc) as so-called **"conditional formatting"**.
 
-```python tags=[]
+```python
 # Switch to apply highlight style to dataframe
 # HINT: Set to 'False' when compiling to PDF!
 highlight = False
@@ -1426,11 +1452,9 @@ else:
     func_render_dataframe2Markdown(employees_df_diff.head_tail(6), str_caption)
 ```
 
-<!-- #region tags=[] -->
 ### Save edited dataset to new CSV file
 
 After the anomalies in the dataset have been found - and repaired where appropriate - it can be saved as a new CSV file for later use.
-<!-- #endregion -->
 
 ```python
 csv_filepath = r'./datasets/employees_edit_repaired.csv'
@@ -1438,7 +1462,6 @@ csv_filepath = r'./datasets/employees_edit_repaired.csv'
 employees_df.to_csv(csv_filepath, sep =',', index = False, header=True)
 ```
 
-<!-- #region tags=[] -->
 ## Avoidance of **tendencies due to bias**
 
 The description of the Iris dataset says, that it consists of **50 samples** from **each of three species** of Iris (*Iris setosa*, *Iris virginica* and *Iris versicolor*), so there are **150 samples in total**.
@@ -1454,7 +1477,6 @@ Following parameters are for fine tuning:
 - `ascending=False`: sort resulting classes descending
 - `dropna=False` causes that NaN values are included
 - `normalize=True`: relative frequencies of the unique values are returned
-<!-- #endregion -->
 
 ```python
 # Count unique values without missing values in a column,
@@ -1476,7 +1498,7 @@ employees_df = pd.read_csv(csv_filepath)
 employees_df['Team'].value_counts(ascending=False, dropna=False, normalize=False)
 ```
 
-<!-- #region caption="Histograms used to explore the frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))" label="fig:histogram_salary_with_PDF" tags=[] widefigure=true -->
+<!-- #region caption="Histograms used to explore the frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))" label="fig:histogram_salary_with_PDF" widefigure=true -->
 ### Display Histogram
 
 This section was inspired by: [Pandas Histogram – DataFrame.hist()](https://dataindependent.com/pandas/pandas-histogram-dataframe-hist/).
@@ -1486,7 +1508,7 @@ This section was inspired by: [Pandas Histogram – DataFrame.hist()](https://da
 These bins are represented in the histogram as rectangles of equal or variable width. The height of each rectangle then represents the (relative or absolute) **frequency density**.
 <!-- #endregion -->
 
-```python caption="Histogram showing the relative frequency distribution of the salary" label="fig:histogram_salary" tags=[] widefigure=false
+```python caption="Histogram showing the relative frequency distribution of the salary" label="fig:histogram_salary" widefigure=false
 employees_df.hist(column=['Salary'], bins = 'auto', density=True, rwidth=0.95, 
                   zorder=2, alpha=0.8)
 
@@ -1506,7 +1528,7 @@ The following function allows a **gender-specific presentation** of salaries wit
 
 In addition, **probability density functions (PDF)** were overlaid on the histograms, whose hyper-parameters **mean** and **standard deviation** were previously identified using the features of the dataset. This makes it possible to estimate whether the **data is normally distributed**. In order to be able to reuse the code later, it was implemented as the **function** `func_plot_histograms_from_list_with_PDF()`.
 
-```python tags=[]
+```python
 from scipy.stats import norm
 
 def func_plot_histograms_from_list_with_PDF(df_list, column, titles):
@@ -1563,7 +1585,7 @@ def func_plot_histograms_from_list_with_PDF(df_list, column, titles):
     plt.show()
 ```
 
-```python caption="Histograms used to explore the relative frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))" label="fig:histogram_salary_with_PDF" tags=[] widefigure=true
+```python caption="Histograms used to explore the relative frequency distribution of the salary in comparison between the genders (with overlaid probability density functions (PDF))" label="fig:histogram_salary_with_PDF" widefigure=true
 genders = ['Male', 'Female', 'No Gender']
 
 # Create list for storing the dataframes
@@ -1595,7 +1617,7 @@ This section was inspired by [How to Create a Seaborn Correlation Heatmap in Pyt
 Because **string values can never be correlated**, the class names (species) have to be converted first:
 <!-- #endregion -->
 
-```python tags=[]
+```python
 # encoding the class column
 irisdata_df_enc = irisdata_df.replace({"species":  {"Iris-setosa":0,
                                                     "Iris-versicolor":1, 
@@ -1611,7 +1633,7 @@ func_render_dataframe2Markdown(irisdata_df_enc.corr(), str_caption)
 
 The color sets are chosen from [color map](https://pod.hatenablog.com/entry/2018/09/20/212527).
 
-```python caption="Correlation heatmap to explore coherences between single variables in the Iris dataset" label="fig:correlation_heatmap" tags=[] widefigure=true
+```python caption="Correlation heatmap to explore coherences between single variables in the Iris dataset" label="fig:correlation_heatmap" widefigure=true
 # increase the size of the heatmap
 plt.figure(figsize=(16, 6))
 
@@ -1640,7 +1662,7 @@ np.triu(np.ones_like(irisdata_df_enc.corr()))
 
 Use this mask to cut the heatmap along the diagonal:
 
-```python caption="Correlation heatmap, which was cut at its main diagonal without losing any information" label="fig:correlation_heatmap_triangle" tags=[] widefigure=true
+```python caption="Correlation heatmap, which was cut at its main diagonal without losing any information" label="fig:correlation_heatmap_triangle" widefigure=true
 plt.figure(figsize=(16, 6))
 
 # define the mask to set the values in the upper triangle to 'True'
@@ -1657,15 +1679,14 @@ As a result from the **heatmaps** we can see, that the shape of the **petals** a
 
 Somewhat lower correlates **sepal length** with **petal length** (0.87).
 
-<!-- #region tags=[] -->
+
 ### Visualize data with **scatter plot**
 
 In the following, [Seaborn](https://seaborn.pydata.org/) is applied which is a library for making statistical graphics in Python. It is built on top of matplotlib and closely integrated with `Pandas` data structures. 
 
 To investigate whether there are dependencies (e.g. correlations) in `irisdata_df` between individual variables in the dataset, it is advisable to plot them in a **scatter plot**.
-<!-- #endregion -->
 
-```python caption="Plotting two individual variables of the iris dataset in the scatterplot to explore the relationships between these two" label="fig:scatter_plot" tags=[] widefigure=false
+```python caption="Plotting two individual variables of the iris dataset in the scatterplot to explore the relationships between these two" label="fig:scatter_plot" widefigure=false
 # There are five preset seaborn themes: darkgrid, whitegrid, dark, white, and ticks.
 sns.set_style("whitegrid")
 
@@ -1693,7 +1714,7 @@ With this so called **[pairs plot](https://vita.had.co.nz/papers/gpp.pdf)** it i
 
 This function will create a grid of Axes such that **each numeric variable** in `irisdata_df` will by shared in the y-axis across a single row and in the x-axis across a single column.
 
-```python caption="Plot all individual variables of the Iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables" label="fig:pairs_plot" tags=[] widefigure=true
+```python caption="Plot all individual variables of the Iris dataset in pairs plot to see both the relationships between two variables and the distribution of the individual variables" label="fig:pairs_plot" widefigure=true
 sns.set_style("white")
 
 g = sns.pairplot(irisdata_df, diag_kind="kde", hue='species', 
@@ -1705,7 +1726,6 @@ plt.title('Pairs plot of the Iris dataset', x=-1.0, y=4.3)
 plt.show()
 ```
 
-<!-- #region tags=[] -->
 # STEP 3: Choose and create the ML model
 
 After exploring the dataset, in this step one has to decide on a specific ML algorithm based on certain selection criteria.
@@ -1745,13 +1765,11 @@ that enable computers to learn independently and solve complex problems in the f
 The following **Venn diagram** shows the relationship between AI, machine learning and other integrated technologies. The quantities that do not belong to the main category represent techniques that can function as stand-alone techniques and do not necessarily fall into the artificial intelligence group in all cases (<cite data-cite="AI_beverages_2019">Gonzalez Viejo et al. 2019</cite>).
 
 For example, simple **robotic behaviors** can be realized via fixed pre-programmed **if-then-else decisions**. In images, objects can be identified by [edge detection](https://en.wikipedia.org/wiki/Edge_detection) by applying, for example, [Sobel](https://en.wikipedia.org/wiki/Sobel_operator) or [Laplace filters](https://en.wikipedia.org/wiki/Laplace_operator). In both examples, no learnable algorithms are needed, therefore the Venn diagram was adapted accordingly.
-<!-- #endregion -->
 
-<!-- #region caption="" label="fig:AI_ML_venn_diagram" tags=[] widefigure=false -->
+<!-- #region caption="" label="fig:AI_ML_venn_diagram" widefigure=false -->
 ![Venn diagram showing the relationship between AI, machine learning and other integrated technologies (source: Kasper, adapted from <cite data-cite="AI_beverages_2019">Gonzalez Viejo et al. 2019</cite>, license: CC BY-SA 4.0)](images/AI_ML_venn_diagram_wide.png)
 <!-- #endregion -->
 
-<!-- #region tags=[] -->
 ## Taxonomy of machine learning algorithms
 
 The field of machine learning can be divided into the following **types of learning**:
@@ -1768,7 +1786,7 @@ Here are some further sources:
 - [A Taxonomy of Machine Learning Techniques](https://www.researchgate.net/publication/358089496_A_Taxonomy_of_Machine_Learning_Techniques)
 - [ML Algorithms: One SD](https://medium.com/@Shaier/ml-algorithms-one-sd-%CF%83-74bcb28fafb6)
 - [Machine Learning Map](https://github.com/trekhleb/homemade-machine-learning#machine-learning-map)
-<!-- #endregion -->
+
 
 ### Supervised learning
 
@@ -1826,7 +1844,7 @@ The diverse estimators available are more or less well qualified for the respect
 
 However, it must also be emphasized that a considerable **level of experience** through systematic trial and error is crucial to be successful in finding an "optimal" estimator.
 
-<!-- #region caption="" label="fig:scikit-learn_ml_algorithm_decision" tags=[] widefigure=true -->
+<!-- #region caption="" label="fig:scikit-learn_ml_algorithm_decision" widefigure=true -->
 ![Decision graph for choosing an appropriate ML algorithm (source: [Choosing the right estimator](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html), license: unknown)](images/scikit-learn_ml_algorithm_decision.png)
 <!-- #endregion -->
 
@@ -1862,7 +1880,7 @@ The right graph shows the **optimal hyperplane** characterized by **maximizing t
 
 Interestingly, the vectors that are more distant from the boundary are not important for the calculation. Therefore, they do not need to be loaded into the main memory, which makes the SVC very memory efficient.
 
-<!-- #region caption="" label="fig:Svm_separating_hyperplanes" tags=[] widefigure=true -->
+<!-- #region caption="" label="fig:Svm_separating_hyperplanes" widefigure=true -->
 ![Support Vector Classifiers (SVC) separate the data points in classes by finding the best hyperplane by maximizing the margin to its support vectors (source: Kasper, license: CC BY-SA 4.0)](images/SVC_operatingPrinciple.png)
 <!-- #endregion -->
 
@@ -1903,7 +1921,6 @@ from sklearn.svm import SVC
 classifier = SVC(kernel = 'linear', random_state = 0)
 ```
 
-<!-- #region tags=[] -->
 # STEP 4: Preprocess the dataset for training
 
 In this step the dataset is prepared for the actual classification by SVC. Depending on the selected ML algorithm as well as the data structure, it may be necessary to prepare the data before training (e.g., by **standardization**, **normalization**, or **discretization** to cluster the data based on thresholds). Furthermore, errors in the dataset (e.g. **data gaps**, **duplicates** or obvious **misentries**) should be corrected now at the latest.
@@ -1911,7 +1928,6 @@ In this step the dataset is prepared for the actual classification by SVC. Depen
 ## Heal the dataset
 
 Through the intensive exploration of the data (see [STEP 2: Explore the ML dataset](#STEP-2:-Explore-the-ML-dataset)), we know that special **preparation** of the data is **not necessary**. The values of the Iris dataset are **complete and without gaps**.
-<!-- #endregion -->
 
 ```python
 # Import ORIGINAL Iris dataset for classification
@@ -1945,7 +1961,7 @@ The duplicates occur **imbalanced** across the classes:
 
 This **imbalance** could cause **tendencies** and have a (negative) effect on the **classification result**. Therefore, the duplicates are removed and the **cleaned Iris dataset** is **saved** as a new CSV file.
 
-```python tags=[]
+```python
 # Remove duplicate rows across all columns
 irisdata_df.drop_duplicates(inplace=True)
 #irisdata_df
@@ -1963,7 +1979,6 @@ csv_filepath = r'./datasets/IRIS_flower_dataset_kaggle_cleaned.csv'
 irisdata_df.to_csv(csv_filepath, sep =',', index = False, header=True)
 ```
 
-<!-- #region tags=[] -->
 ## Transform the dataset by feature scaling
 
 Some machine learning algorithms are very sensitive to feature scaling, while others are virtually unaffected.
@@ -1997,7 +2012,7 @@ Others:
 - [Feature scaling](https://en.wikipedia.org/wiki/Feature_scaling)
 - [Normalization (statistics)](https://en.wikipedia.org/wiki/Normalization_(statistics))
 - [Standard score](https://en.wikipedia.org/wiki/Standard_score)
-<!-- #endregion -->
+
 
 ### Normalization
 
@@ -2015,7 +2030,7 @@ Thereby $X_{max}$ and $X_{min}$ are the maximum and the minimum values of the fe
 
 For further details read here: [scikit-learn: Normalization](https://scikit-learn.org/stable/modules/preprocessing.html#normalization).
 
-```python tags=[]
+```python
 from sklearn.preprocessing import MinMaxScaler
 
 # Fit the MinMax scaler on raw input dataframe
@@ -2050,7 +2065,7 @@ func_render_dataframe2Markdown(irisdata_df_norm.describe(), str_caption)
 
 To display the **original data** with the **scaled data** side-by-side as **boxplots** with all **features in one scale**, the function `func_boxplots_comp_scaling()` is implemented.
 
-```python tags=[]
+```python
 def func_boxplots_comp_scaling(dataframes, titles):
     fig, subplots = plt.subplots(1, 2, figsize=(12, 5))
     # Set margins between subplots
@@ -2080,7 +2095,7 @@ def func_boxplots_comp_scaling(dataframes, titles):
 
 Call the new function `func_boxplots_comp_scaling()` to create the **boxplots** comparing **original data** with the **scaled data** side-by-side:
 
-```python caption="Boxplots comparing the original data (left) with the normalized data (right) with all features in one scale" label="fig:boxplots_comp_orig_norm" tags=[] widefigure=true
+```python caption="Boxplots comparing the original data (left) with the normalized data (right) with all features in one scale" label="fig:boxplots_comp_orig_norm" widefigure=true
 titles     = ['Original', 'Normalized']
 dataframes = [irisdata_df, irisdata_df_norm]
 
@@ -2176,7 +2191,7 @@ def func_histograms_comp_scaling(df_orig, df_scaled, features,
 
 Call the new function `func_histograms_comp_scaling()` to create the **histograms** with overlaid **probability density functions** comparing **original data** with the **normalized data** side-by-side:
 
-```python caption="Histograms with overlaid probability density functions comparing original data (left) with the normalized data (right)" label="fig:histograms_comp_orig_norm" tags=[] widefigure=true
+```python caption="Histograms with overlaid probability density functions comparing original data (left) with the normalized data (right)" label="fig:histograms_comp_orig_norm" widefigure=true
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
@@ -2184,7 +2199,6 @@ func_histograms_comp_scaling(irisdata_df, irisdata_df_norm,
                              features, titles, 'normalized')
 ```
 
-<!-- #region tags=[] -->
 ### Standardization
 
 **Standardization** is another scaling technique in which **values are centered around the mean** with a **unit standard deviation**. That is, the **mean** of the feature **becomes zero** and the resulting **distribution** has a **unit standard deviation** (see <cite data-cite="feature_scaling_2020">Bhandari, 2020</cite>).
@@ -2199,9 +2213,8 @@ $$X' = \frac{X - \mu}{\sigma}$$
 It should be noted that the values after standardization are not limited to a certain range (unlike normalization).
 
 For further details read here: [scikit-learn: Standardization, or mean removal and variance scaling](https://scikit-learn.org/stable/modules/preprocessing.html#standardization-or-mean-removal-and-variance-scaling).
-<!-- #endregion -->
 
-```python tags=[]
+```python
 from sklearn.preprocessing import StandardScaler
 
 # Fit the standard scaler on raw input dataframe
@@ -2235,7 +2248,7 @@ func_render_dataframe2Markdown(irisdata_df_std.describe(), str_caption)
 
 As in the previous section, the **original** and the **standardized data** are plotted as side-by-side **boxplots** with all **features at one scale**.
 
-```python caption="Boxplots comparing the original data (left) with the standardized data (right) with all features in one scale" label="fig:boxplots_comp_orig_std" tags=[] widefigure=true
+```python caption="Boxplots comparing the original data (left) with the standardized data (right) with all features in one scale" label="fig:boxplots_comp_orig_std" widefigure=true
 titles     = ['Original', 'Standardized']
 dataframes = [irisdata_df, irisdata_df_std]
 
@@ -2244,7 +2257,7 @@ func_boxplots_comp_scaling(dataframes, titles)
 
 As in the previous section, the **original** and the **standardized data** are plotted as side-by-side **histograms** with overlaid **probability density functions**.
 
-```python caption="Histograms with overlaid probability density functions comparing original data (left) with the standardized data (right)" label="fig:histograms_comp_orig_std" tags=[] widefigure=true
+```python caption="Histograms with overlaid probability density functions comparing original data (left) with the standardized data (right)" label="fig:histograms_comp_orig_std" widefigure=true
 features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
 titles =   ['Sepal Length', 'Sepal Width', 'Petal Length', 'Petal Width']
 
@@ -2252,7 +2265,7 @@ func_histograms_comp_scaling(irisdata_df, irisdata_df_std,
                              features, titles, 'standardized')
 ```
 
-<!-- #region toc-hr-collapsed=true tags=[] -->
+<!-- #region toc-hr-collapsed=true -->
 # STEP 5: Carry out training, prediction and testing
 
 To avoid errors, the Iris dataset is imported again:
@@ -2292,7 +2305,7 @@ Check that the split datasets are still balanced and that no **bias** has been c
 
 For this test, the previously separated labels `y_train` must be added back to the training dataset `X_train`.
 
-```python tags=[]
+```python
 # Make a deep copy of 'X_train'
 X_train_bias_test_df = X_train.copy(deep=True)
 
@@ -2321,7 +2334,7 @@ Otherwise, the result of the prediction would be significantly worse. Maybe this
 
 Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**:
 
-```python tags=[]
+```python
 from sklearn.preprocessing import StandardScaler
 
 std_scaler = StandardScaler()
@@ -2350,7 +2363,7 @@ y_pred = classifier.predict(X_test)
 #y_pred
 ```
 
-<!-- #region toc-hr-collapsed=true tags=[] -->
+<!-- #region toc-hr-collapsed=true -->
 # STEP 6: Evaluate model's performance
 
 Subsequently to the training of the SVC model and the classification predictions made based on the test data, this step evaluates the **quality of the classification result** using known **metrics** such as the **accuracy score**, the **cross-validation score** as well as the **confusion matrix**.
@@ -2368,7 +2381,6 @@ acc_score = accuracy_score(y_test, y_pred)
 print("Accuracy score: {:.2f} %".format(acc_score.mean()*100))
 ```
 
-<!-- #region tags=[] -->
 ## Classification Report
 
 The **classification report** shows a representation of the most important **classification metrics** on a **class-by-class basis**. This gives a **better understanding** of the behaviour of the classifier than **global accuracy**, which can mask functional weaknesses in one class of a multi-class problem (see [Classification Report](https://www.scikit-yb.org/en/latest/api/classifier/classification_report.html)).
@@ -2382,7 +2394,6 @@ The metrics are defined in the form of **true/false positives** and **true/false
 - **f1-score:** is a **weighted harmonic mean of precision and recall**, with the best value being 1.0 and the worst 0.0.
 
 - **support:** is the **number of actual occurrences of the class** in the specified data set. This metric is an indication of the **balance of the class distribution** in the test dataset.
-<!-- #endregion -->
 
 ```python
 from sklearn.metrics import classification_report
@@ -2434,7 +2445,7 @@ print(cm)
 
 The function `sklearn.metrics.ConfusionMatrixDisplay()` plots a colored confusion matrix.
 
-```python caption="Checking the accuracy of the model by using the confusion matrix for cross-validation" label="fig:confusion_matrix" tags=[] widefigure=false
+```python caption="Checking the accuracy of the model by using the confusion matrix for cross-validation" label="fig:confusion_matrix" widefigure=false
 sns.set_style("white")
 
 # print colored confusion matrix
@@ -2454,7 +2465,7 @@ plt.title('Colored Confusion Matrix', y=1.1)
 plt.show()
 ```
 
-<!-- #region toc-hr-collapsed=true tags=[] -->
+<!-- #region toc-hr-collapsed=true -->
 # STEP 7: Vary parameters of the ML model manually
 
 This section was inspired by [In Depth: Parameter tuning for SVC](https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769)
@@ -2466,7 +2477,7 @@ In this section, the 4 SVC parameters `kernel`, `gamma`, `C` and `degree` will b
 ## Prepare dataset
 <!-- #endregion -->
 
-```python tags=[]
+```python
 # Import packages
 from sklearn.svm import SVC
 #from sklearn.preprocessing import StandardScaler
@@ -2476,7 +2487,7 @@ from sklearn.model_selection import cross_val_score
 import numpy as np
 ```
 
-<!-- #region toc-hr-collapsed=true tags=[] -->
+<!-- #region toc-hr-collapsed=true -->
 To avoid errors, the Iris dataset is imported again:
 <!-- #endregion -->
 
@@ -2503,7 +2514,7 @@ These datasets will  be used for parameter variation and plotting only. In parti
 
 However, as seen in the previous section, this selection is very much at the expense of detection accuracy. Therefore, it is not useful to make predictions with this subset of data - it is not necessary to divide it into a training and a test dataset.
 
-```python tags=[]
+```python
 # Copy only 2 feature columns
 # and convert pandas.DataFrame to numpy array
 X_plot = irisdata_df_enc[['petal_length', 'petal_width']].to_numpy(copy=True)
@@ -2534,7 +2545,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y,
 
 **Normalize** the feature values for **prediction and evaluation**. Normalization is deliberately used here to avoid visualization problems due to negative values by standardization.
 
-```python tags=[]
+```python
 norm_scaler_pred = MinMaxScaler()
 X_train = norm_scaler_pred.fit_transform(X_train)
 X_test = norm_scaler_pred.transform(X_test)
@@ -2614,7 +2625,7 @@ def plotParamsAcc(param_list, acc_list, param_name, log_scale=False):
 
 The `kernel` parameter selects the type of hyperplane that is used to separate the data. Using `linear` ([linear classifier](https://en.wikipedia.org/wiki/Linear_classifier)) kernel will use a linear hyperplane (a line in the case of 2D data). The `rbf` ([radial basis function kernel](https://en.wikipedia.org/wiki/Radial_basis_function_kernel)) and `poly` ([polynomial kernel](https://en.wikipedia.org/wiki/Polynomial_kernel)) kernel use non linear hyperplanes. The **default** is `kernel=rbf`.
 
-```python caption="This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')" label="fig:vary_kernels" tags=[] widefigure=true
+```python caption="This group of images shows the effect on the classification by the choice of the different SVC kernels ('linear', 'rbf', 'poly' and 'sigmoid')" label="fig:vary_kernels" widefigure=true
 kernels = ['linear', 'rbf', 'poly', 'sigmoid']
 
 xlabel = 'Petal length'
@@ -2640,7 +2651,7 @@ plt.show()
 
 The `gamma` parameter is used for **non linear hyperplanes**. The higher the `gamma` float value it tries to exactly fit the training dataset. The **default** is `gamma='scale'`.
 
-```python caption="This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel" label="fig:vary_gamma_parameter" tags=[] widefigure=true
+```python caption="This group of images shows the effect on the classification by the variation of the parameter 'gamma' of the 'rbf' kernel" label="fig:vary_gamma_parameter" widefigure=true
 gammas = [0.1, 0.3, 0.5, 1, 10, 100]
 
 xlabel = 'Petal length'
@@ -2666,7 +2677,7 @@ Show the variation of the SVC parameter `gamma` against the **prediction accurac
 
 As we can see, increasing `gamma` leads to **overfitting** as the classifier tries to perfectly fit the training data.
 
-```python caption="The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy" label="fig:plot_vary_gamma" tags=[] widefigure=true
+```python caption="The plot shows the variation of the SVC parameter 'gamma' against the prediction accuracy" label="fig:plot_vary_gamma" widefigure=true
 gammas = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 10, 100, 200]
 
 accuracy_list = list()
@@ -2681,7 +2692,7 @@ plotParamsAcc(gammas, accuracy_list, 'gamma', log_scale=True)
 
 The `C` parameter is the **penalty** of the error term. It controls the trade off between smooth decision boundary and classifying the training points correctly. The **default** is `C=1.0`.
 
-```python caption="This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel" label="fig:vary_c_parameter" tags=[] widefigure=true
+```python caption="This group of images shows the effect on the classification by the variation of the parameter 'C' of the 'rbf' kernel" label="fig:vary_c_parameter" widefigure=true
 cs = [0.1, 1, 5, 10, 100, 1000]
 
 xlabel = 'Petal length'
@@ -2707,7 +2718,7 @@ Show the variation of the SVC parameter `C` against the **prediction accuracy**.
 
 But be careful: to high `C` values may lead to **overfitting** the training data.
 
-```python caption="The plot shows the variation of the SVC parameter 'C' against the prediction accuracy" label="fig:plot_vary_c" tags=[] widefigure=true
+```python caption="The plot shows the variation of the SVC parameter 'C' against the prediction accuracy" label="fig:plot_vary_c" widefigure=true
 cs = [0.1, 1, 5, 6, 7, 8, 10, 100, 1000, 10000]
 
 accuracy_list = list()
@@ -2724,7 +2735,7 @@ The `degree` parameter is used when the `kernel` is set to `poly` and is ignored
 
 Using `degree = 1` is the same as using a `linear` kernel. Also, increasing this parameters leads to **higher training times**.
 
-```python caption="This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel" label="fig:vary_degree_parameter" tags=[] widefigure=true
+```python caption="This group of images shows the effect on the classification by the variation of the parameter 'degree' of the 'poly' kernel" label="fig:vary_degree_parameter" widefigure=true
 degrees = [1, 2, 3, 4, 5, 6]
 
 xlabel = 'Petal length'
@@ -2750,7 +2761,7 @@ Show the variation of the SVC parameter `degree` against the **prediction accura
 
 As we can see, increasing the `degree` of the polynomial hyperplane leads to **overfitting** the training data.
 
-```python caption="The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy" label="fig:plot_vary_degree" tags=[] widefigure=true
+```python caption="The plot shows the variation of the SVC parameter 'degree' against the prediction accuracy" label="fig:plot_vary_degree" widefigure=true
 degrees = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 accuracy_list = list()
@@ -2761,7 +2772,7 @@ for degree in degrees:
 plotParamsAcc(degrees, accuracy_list, 'degree', log_scale=False)
 ```
 
-<!-- #region toc-hr-collapsed=true tags=[] -->
+<!-- #region toc-hr-collapsed=true -->
 # STEP 8: Tune the ML model systematically
 
 In the final step, two approaches to systematic hyper-parameter search are presented: **Grid Search** and **Randomized Search**. While the former exhaustively considers all parameter combinations for given values, the latter selects a number of candidates from a parameter space with a particular random distribution.
@@ -2834,7 +2845,7 @@ Check that the split datasets are still balanced and that no **bias** has been c
 
 For this test, the previously separated labels `y_train` must be added back to the training dataset `X_train`.
 
-```python tags=[]
+```python
 # make a deep copy of 'X_train'
 X_train_bias_test_df = X_train.copy(deep=True)
 
@@ -2850,7 +2861,7 @@ X_train_bias_test_df['species'].value_counts(ascending=False,
 
 Standardize the feature values by computing the **mean**, subtracting the mean from the data points, and then dividing by the **standard deviation**:
 
-```python tags=[]
+```python
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
@@ -2899,7 +2910,7 @@ print("Standard Deviation: {:.2f} %".format(accuracies.std()*100))
 print(classification_report(y_test, y_pred))
 ```
 
-```python caption="Confusion matrix for cross-validation of the baseline" label="fig:cm_baseline" tags=[] widefigure=false
+```python caption="Confusion matrix for cross-validation of the baseline" label="fig:cm_baseline" widefigure=false
 sns.set_style("white")
 
 # print colored confusion matrix
@@ -2945,7 +2956,7 @@ n_cols = irisdata_df_orig.shape[1] - 1
 
 Now a `numpy` array in the shape of the Iris dataset is generated. This contains **normally distributed random values** according to the **Gaussian curve** with a defined **standard deviation $\sigma$**. The **mean** of the Gaussian curve remains unchanged and is **not shifted** in the first place.
 
-```python tags=[]
+```python
 # mean: "centre" of the distribution
 # sigma: standard deviation (spread or “width”) of the distribution
 mean, sigma = 0, 0.2
@@ -2958,7 +2969,7 @@ irisdata_np_noise = np.random.normal(mean, sigma, (n_rows, n_cols))
 
 The first 4 columns of the dataframe containing the original Iris dataset are converted to a `numpy` array.
 
-```python tags=[]
+```python
 # Select columns 1-4 with all rows
 # and convert it to numpy array
 irisdata_np_orig = irisdata_df_orig.iloc[:, 0:4].to_numpy()
@@ -2966,14 +2977,14 @@ irisdata_np_orig = irisdata_df_orig.iloc[:, 0:4].to_numpy()
 
 The array with the normally distributed random values is added to this.
 
-```python tags=[]
+```python
 # Add noise to original values
 irisdata_np_noised = irisdata_np_orig + irisdata_np_noise
 ```
 
 **Negative measured values** do **not make sense** for this dataset and should therefore be avoided. Therefore, the **minimum value** over the entire array is first retrieved with the function `numpy.amin()`. If this is negative, an **integer offset** for shifting the data into the positive range is calculated from the rounded up amount of the minimum value. The function `math.ceil()` is used for this.
 
-```python tags=[]
+```python
 import math
 
 min_val = np.amin(irisdata_np_noised)
@@ -2992,7 +3003,7 @@ print("Offset for array shifting: {}".format(offset))
 
 The calculated **offset** is **added** to the array with the noisy measurements to **shift** the data into the **positive range**.
 
-```python tags=[]
+```python
 irisdata_np_noised_shifted = irisdata_np_noised + offset
 #irisdata_np_noised_shifted
 ```
@@ -3024,12 +3035,12 @@ def plotPairs(df, title):
     plt.show()
 ```
 
-```python caption="Pairs plot of the original Iris dataset" label="fig:pairs_plot_orig_Iris" tags=[] widefigure=true
+```python caption="Pairs plot of the original Iris dataset" label="fig:pairs_plot_orig_Iris" widefigure=true
 title = 'Pairs plot of the ORIGINAL Iris dataset'
 plotPairs(irisdata_df_orig, title)
 ```
 
-```python caption="Pairs plot of the noised Iris dataset" label="fig:pairs_plot_noised_Iris" tags=[] widefigure=true
+```python caption="Pairs plot of the noised Iris dataset" label="fig:pairs_plot_noised_Iris" widefigure=true
 title = 'Pairs plot of the NOISED Iris dataset'
 plotPairs(irisdata_df_noised, title)
 ```
@@ -3065,7 +3076,7 @@ grid = dict(kernel=kernels, gamma=gammas, C=cs, degree=degrees)
 
 Initialize a **cross-validation fold** and **perform a grid search** to tune the hyperparameters:
 
-```python tags=[]
+```python
 cvFold = RepeatedKFold(n_splits=10, n_repeats=3, random_state=1)
 
 gridSearch = GridSearchCV(estimator=classifier, param_grid=grid, n_jobs=-1,
@@ -3109,7 +3120,7 @@ from sklearn.metrics import classification_report
 print(classification_report(y_test, y_pred))
 ```
 
-```python caption="Confusion matrix for cross-validation after the grid search has been performed" label="fig:cm_grid_search" tags=[] widefigure=false
+```python caption="Confusion matrix for cross-validation after the grid search has been performed" label="fig:cm_grid_search" widefigure=false
 sns.set_style("white")
 
 # print colored confusion matrix
@@ -3154,7 +3165,7 @@ grid = dict(kernel=kernels, gamma=gammas, C=cs, degree=degrees)
 
 Initialize a **cross-validation fold** and **perform a randomized search** to tune the hyperparameters:
 
-```python tags=[]
+```python
 cvFold = RepeatedKFold(n_splits=10, n_repeats=3, random_state=1)
 
 randomSearch = RandomizedSearchCV(estimator=classifier, n_jobs=-1,
@@ -3199,7 +3210,7 @@ from sklearn.metrics import classification_report
 print(classification_report(y_test, y_pred))
 ```
 
-```python caption="Confusion matrix for cross-validation after the randomized search has been performed" label="fig:cm_random_search" tags=[] widefigure=false
+```python caption="Confusion matrix for cross-validation after the randomized search has been performed" label="fig:cm_random_search" widefigure=false
 sns.set_style("white")
 
 # print colored confusion matrix
@@ -3221,7 +3232,6 @@ plt.show()
 bestModel.get_params()
 ```
 
-<!-- #region tags=[] -->
 # Summary and outlook
 
 ## English summary
@@ -3255,7 +3265,7 @@ As an outlook, the current tutorial could be extended by replacing the Iris data
 As explained above, the tutorial so far is limited to the introduction of the ML algorithms, the tools for data analysis, and the Python libraries and programming systems. In a further step, concrete hints could be given on how to build an own **real ML application** and how to generate a suitable dataset for classification.
 
 In the future, the **systematic process steps** of a typical ML workflow explained in the tutorial could form the **foundation** for possible **test guidelines**. These could be used to perform **reviews of industrial ML applications** - similar to the evaluation of the functional safety of control software.
-<!-- #endregion -->
+
 
 ## German summary
 
@@ -3289,7 +3299,7 @@ Wie oben erläutert, beschränkt sich das Tutorial bisher auf die Vorstellung de
 
 Zukünftig könnten die im Tutorial erläuterten **systematischen Prozessschritte** eines typischen ML-Workflows die **Grundlage** für mögliche **Prüfgrundsätze** bilden. Mit diesen könnten **Reviews industrieller ML-Applikationen** durchgeführt werden - ähnlich wie bei der Bewertung der funktionalen Sicherheit von Steuerungssoftware.
 
-<!-- #region tags=[] -->
+
 # Acknowledgments
 
 Vor einem reichlichen Jahr wurde ich eingeladen, im Vorbereitungskomitee für die DGUV-Fachtagung "Künstliche Intelligenz" mitwirken zu dürfen. Mein Vorschlag, einen eigenen Getting-Started-Workshop für interessierte ML-Neulinge zu gestalten, wurde dort sehr positiv aufgenommen. Das hat mich für die Ausarbeitung des vorliegenden Tutorials sehr motiviert.
@@ -3301,8 +3311,3 @@ Weiterhin danke ich meinen Kollegen des Dresdener Prüflabors dafür, dass sie s
 Abschließend möchte ich meiner Lebensgefährtin danken, dass sie erste Textentwürfe kritisch Korrektur gelesen hat und mir ansonsten den Rücken freigehalten hat - auch wenn ich nach Feierabend oder an den Wochenenden programmiert und geschrieben habe. Unserem zweijährigen Sohn danke ich für seine Geduld mit Papa. Er hätte sicherlich das ein oder andere Mal lieber "Die Sendung mit der Maus" statt seltsamer Grafiken mit mir auf dem Rechner angeschaut.
 
 Dresden, 11.11.2022
-<!-- #endregion -->
-
-```python
-
-```
