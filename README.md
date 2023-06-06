@@ -23,7 +23,11 @@ To make this **software project citable**, the Github repository has been linked
 
 The **major advantage** of this linkage is that **release 1.3** (and all subsequent releases) can be **scientifically cited** via their following **unique [DOI](https://en.wikipedia.org/wiki/Digital_object_identifier)**: 
 
-[![DOI](https://zenodo.org/badge/509174585.svg)](https://zenodo.org/badge/latestdoi/509174585)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7455231.svg)](https://doi.org/10.5281/zenodo.7455231)
+
+The **paper** itself as **LaTeX compiled PDF** can be referenced using the following **DOI**:
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7457119.svg)](https://doi.org/10.5281/zenodo.7457119)
 
 ## Aim of the project
 
